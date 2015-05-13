@@ -77,7 +77,7 @@ class Commons_Booking {
      *
      * @var      object
      */
-    protected $cpts = array( 'demo' );
+    protected $cpts = array( 'bookings', 'items', 'locations' );
 
     /**
      * Array of capabilities by roles
@@ -86,18 +86,22 @@ class Commons_Booking {
      * 
      * @var array
      */
-    protected static $plugin_roles = array(
+    protected static $plugin_roles = array( // @TODO: User Roles 
         'editor' => array(
-            'edit_demo' => true,
-            'edit_others_demo' => true,
+            'edit_bookings' => true,
+            'edit_others_bookings' => true,            
+            'edit_items' => true,
+            'edit_others_items' => true,            
+            'edit_locations' => true,
+            'edit_others_locations' => true,
         ),
         'author' => array(
-            'edit_demo' => true,
-            'edit_others_demo' => false,
+            'edit_bookings' => true,
+            'edit_others_bookings' => false,
         ),
         'subscriber' => array(
-            'edit_demo' => false,
-            'edit_others_demo' => false,
+            'edit_bookings' => false,
+            'edit_others_bookings' => false,
         ),
     );
 
@@ -116,11 +120,11 @@ class Commons_Booking {
 
         // Create Custom Post Type https://github.com/jtsternberg/CPT_Core/blob/master/README.md
         register_via_cpt_core(
-                array( __( 'Demo', $this->get_plugin_slug() ), __( 'Demos', $this->get_plugin_slug() ), 'demo' ), array(
-            'taxonomies' => array( 'demo-section' ),
+                array( __( 'Item', $this->get_plugin_slug() ), __( 'Items', $this->get_plugin_slug() ), 'items' ), array(
+            'taxonomies' => array( 'item-cats' ),
             'capabilities' => array(
-                'edit_post' => 'edit_demo',
-                'edit_others_posts' => 'edit_other_demo',
+                'edit_post' => 'edit_items',
+                'edit_others_posts' => 'edit_other_items',
             ),
             'map_meta_cap' => true
                 )
@@ -128,7 +132,7 @@ class Commons_Booking {
 
         // Create Custom Taxonomy https://github.com/jtsternberg/Taxonomy_Core/blob/master/README.md
         register_via_taxonomy_core(
-                array( __( 'Demo Section', $this->get_plugin_slug() ), __( 'Demo Sections', $this->get_plugin_slug() ), 'demo-section' ), array(
+                array( __( 'Item Category', $this->get_plugin_slug() ), __( 'Item categories', $this->get_plugin_slug() ), 'item-cats' ), array(
             'public' => true,
             'capabilities' => array(
                 'assign_terms' => 'edit_posts',
