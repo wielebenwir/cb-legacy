@@ -145,8 +145,8 @@ class Commons_Booking_Admin {
 		if ( !class_exists( 'WP_Admin_Notice' ) ) {
 			require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Admin-Notice/WP_Admin_Notice.php' );
 		}
-		new WP_Admin_Notice( __( 'Updated Messages' ), 'updated' );
-		new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
+		// new WP_Admin_Notice( __( 'Updated Messages' ), 'updated' );
+		// new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
 
 		/*
 		 * Load PointerPlus for the Wp Pointer
