@@ -12,6 +12,10 @@
  */
 
 
+/**
+ * 1. Items
+ */
+
 class Item_CPT extends CPT_Core {
 
     /**
@@ -22,8 +26,8 @@ class Item_CPT extends CPT_Core {
         // Register this cpt
         // First parameter should be an array with Singular, Plural, and Registered name
         parent::__construct(
-            array( __( 'Item', 'your-text-domain' ), __( 'Items', 'your-text-domain' ), 'items' ),
-            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_ui' => FALSE)
+            array( __( 'Item', 'your-text-domain' ), __( 'Items', 'your-text-domain' ), 'cb_items' ),
+            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
 
         );
 
@@ -57,6 +61,75 @@ class Item_CPT extends CPT_Core {
 
 }
 
+
+/**
+ * 2. Locations
+ */
+
+class Locations_CPT extends CPT_Core {
+
+    /**
+     * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+     */
+    public function __construct() {
+
+        // Register this cpt
+        // First parameter should be an array with Singular, Plural, and Registered name
+        parent::__construct(
+            array( __( 'Location', 'your-text-domain' ), __( 'locations', 'your-text-domain' ), 'cb_locations' ),
+            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
+
+        );
+
+    }
+
+}
+
+/**
+ * 3. Timeframes
+ */
+
+class Timeframes_CPT extends CPT_Core {
+
+    /**
+     * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+     */
+    public function __construct() {
+
+        // Register this cpt
+        // First parameter should be an array with Singular, Plural, and Registered name
+        parent::__construct(
+            array( __( 'Timeframe', 'your-text-domain' ), __( 'timeframes', 'your-text-domain' ), 'cb_timeframes' ),
+            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
+
+        );
+
+    }
+
+}
+
+/**
+ * 4. Bookings
+ */
+
+class Bookings_CPT extends CPT_Core {
+
+    /**
+     * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
+     */
+    public function __construct() {
+
+        // Register this cpt
+        // First parameter should be an array with Singular, Plural, and Registered name
+        parent::__construct(
+            array( __( 'Booking', 'your-text-domain' ), __( 'bookings', 'your-text-domain' ), 'cb_bookings' ),
+            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
+
+        );
+
+    }
+
+}
 
 
 

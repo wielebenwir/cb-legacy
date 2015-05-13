@@ -119,7 +119,30 @@ class Commons_Booking {
         add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php 
+       
+
+
+        add_action( 'admin_menu', 'register_cb_menu' );
+        function register_cb_menu() {
+            add_menu_page( __( 'Welcome to Commons Booking' ), __( 'C-Booking' ), 'manage_options', 'cb_menu', 'todoMessage',  plugins_url( 'myplugin/images/icon.png' ), 6 );
+            //  add_submenu_page(
+            //     'cb_menu',
+            //     'Items', /*page title*/
+            //     'Items', /*menu title*/
+            //     'manage_options', /*roles and capabiliyt needed*/
+            //     'cb_manage_items',
+            //     'edit.php?post_type=cb_items'
+
+            // );
+
+        }
+        function todoMessage() { echo (" Nothing here yet"); }
+
         new Item_CPT();
+        new Locations_CPT();
+        new Timeframes_CPT();
+        new Bookings_CPT();
+
 
 
         add_filter( 'body_class', array( $this, 'add_pn_class' ), 10, 3 );
