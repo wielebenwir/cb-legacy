@@ -3,11 +3,11 @@
 /**
  * Plugin Name.
  *
- * @package   Plugin_Name_Admin
- * @author    Your Name <email@example.com>
+ * @package   Commons_Booking_Admin
+ * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  */
 
 /**
@@ -19,10 +19,10 @@
  *
  * @TODO: Rename this class to a proper name for your plugin.
  *
- * @package Plugin_Name_Admin
+ * @package Commons_Booking_Admin
  * @author  Your Name <email@example.com>
  */
-class Plugin_Name_Admin {
+class Commons_Booking_Admin {
 
 	/**
 	 * Instance of this class.
@@ -64,12 +64,12 @@ class Plugin_Name_Admin {
 		 *
 		 * @TODO:
 		 *
-		 * - Rename "Plugin_Name" to the name of your initial plugin class
+		 * - Rename "Commons_Booking" to the name of your initial plugin class
 		 *
 		 */
-		$plugin = Plugin_Name::get_instance();
+		$plugin = Commons_Booking::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
-		$this->plugin_name = $plugin->get_plugin_name();
+		$this->Commons_Booking = $plugin->get_Commons_Booking();
 		$this->version = $plugin->get_plugin_version();
 		$this->cpts = $plugin->get_cpts();
 
@@ -193,7 +193,7 @@ class Plugin_Name_Admin {
 	 *
 	 * @TODO:
 	 *
-	 * - Rename "Plugin_Name" to the name your plugin
+	 * - Rename "Commons_Booking" to the name your plugin
 	 *
 	 * @since     1.0.0
 	 *
@@ -206,7 +206,7 @@ class Plugin_Name_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
-			wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Plugin_Name::VERSION );
+			wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
 		}
 	}
 
@@ -215,7 +215,7 @@ class Plugin_Name_Admin {
 	 *
 	 * @TODO:
 	 *
-	 * - Rename "Plugin_Name" to the name your plugin
+	 * - Rename "Commons_Booking" to the name your plugin
 	 *
 	 * @since     1.0.0
 	 *
@@ -228,7 +228,7 @@ class Plugin_Name_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Plugin_Name::VERSION );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
 	}
 

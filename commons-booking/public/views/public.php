@@ -5,11 +5,11 @@
  * This typically includes any information, if any, that is rendered to the
  * frontend of the theme when the plugin is activated.
  *
- * @package   Plugin_Name
- * @author    Your Name <email@example.com>
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  */
 ?>
 

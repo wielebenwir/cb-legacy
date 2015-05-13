@@ -7,7 +7,7 @@ if ( !class_exists( 'Fake_Page' ) ) {
     /**
      * Simple class that generate a fake page on the fly
      *
-     * @package   Plugin_Name
+     * @package   Commons_Booking
      * @author    Ohad Raz & Mte90 <mte90net@gmail.com>
      * @license   GPL-2.0+
      * @copyright 2014 

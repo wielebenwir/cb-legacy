@@ -6,7 +6,7 @@
  * Load template files of the plugin also include a filter pn_get_template_part<br>
  * Based on WooCommerce function<br>
  *
- * @package   Plugin_Name
+ * @package   Commons_Booking
  * @author  Mte90 <mte90net@gmail.com>
  * @license   GPL-2.0+
  * @copyright 2014 
@@ -15,7 +15,7 @@
 function pn_get_template_part( $slug, $name = '', $include = true ) {
 	$template = '';
 	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
-	$plugin = Plugin_Name::get_instance();
+	$plugin = Commons_Booking::get_instance();
 	$plugin_slug = $plugin->get_plugin_slug().'/';
 	
 	// Look in yourtheme/slug-name.php and yourtheme/commons-booking/slug-name.php

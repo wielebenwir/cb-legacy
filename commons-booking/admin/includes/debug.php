@@ -3,7 +3,7 @@
 /**
  * Provides interface for debugging variables with Debug Bar
  * 
- * @package   Plugin_Name_Admin
+ * @package   Commons_Booking_Admin
  * @author    Benjamin J. Balter <ben@balter.com> & Mte90 <mte90net@gmail.com>
  * @license   GPL-2.0+
  * @copyright 2014 
@@ -74,7 +74,7 @@ class Pn_Debug {
 	 * @return array the modified panels
 	 */
 	function register_panel( $panels ) {
-		$panels[] = new Pn_Debug_Panel( $this->parent->plugin_name . ' Debug', $this->history );
+		$panels[] = new Pn_Debug_Panel( $this->parent->Commons_Booking . ' Debug', $this->history );
 		return $panels;
 	}
 

@@ -5,7 +5,7 @@ class My_Recent_Posts_Widget extends WPH_Widget {
 
 	function __construct() {
 		
-		$plugin = Plugin_Name::get_instance();
+		$plugin = Commons_Booking::get_instance();
 		$this->plugin_slug = $plugin->get_plugin_slug();
 
 		// Configure widget array

@@ -5,7 +5,7 @@
  * 
  * example use https://gist.github.com/Mte90/fe687ceed408ab743238
  * 
- * @package   Plugin_Name
+ * @package   Commons_Booking
  * @author Mte90 <mte90net@gmail.com>
  * @license   GPL-2.0+
  * @copyright 2014 
@@ -36,23 +36,23 @@ function get_language() {
  *
  * @since   1.0.0
  *
- * @param     string   $plugin_name_human_format  The Plugin name 
+ * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string
  * @param     string   $value					  The value
  */
-function register_string( $plugin_name_human_format, $string_name, $value ) {
+function register_string( $Commons_Booking_human_format, $string_name, $value ) {
 	if ( function_exists( 'icl_register_string' ) ) {
-		icl_register_string( $plugin_name_human_format, $string_name, $value );
+		icl_register_string( $Commons_Booking_human_format, $string_name, $value );
 	} elseif ( has_filter( 'cml_my_translations' ) ) {
-		add_filter( 'cml_my_translations', create_function( "$groups, $plugin_name_human_format","
-            $plugin_name_human_format_replaced = str_replace( ' ', '-', $plugin_name_human_format );
-            CMLTranslations:add( $string_name, $value, $plugin_name_human_format );
-            $groups[$plugin_name_human_format_replaced] = $plugin_name_human_format;
+		add_filter( 'cml_my_translations', create_function( "$groups, $Commons_Booking_human_format","
+            $Commons_Booking_human_format_replaced = str_replace( ' ', '-', $Commons_Booking_human_format );
+            CMLTranslations:add( $string_name, $value, $Commons_Booking_human_format );
+            $groups[$Commons_Booking_human_format_replaced] = $Commons_Booking_human_format;
             return $groups;"
         ) );
 	} elseif ( function_exists( 'pll_register_string' ) ) {
-		$plugin_name_human_format_replaced = str_replace( ' ', '-', $plugin_name_human_format );
-		pll_register_string( $plugin_name_human_format_replaced, $string_name );
+		$Commons_Booking_human_format_replaced = str_replace( ' ', '-', $Commons_Booking_human_format );
+		pll_register_string( $Commons_Booking_human_format_replaced, $string_name );
 	}
 }
 
@@ -61,15 +61,15 @@ function register_string( $plugin_name_human_format, $string_name, $value ) {
  *
  * @since   1.0.0
  *
- * @param     string   $plugin_name_human_format  The Plugin name 
+ * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string
  */
-function deregister_string( $plugin_name_human_format, $string_name ) {
+function deregister_string( $Commons_Booking_human_format, $string_name ) {
 	if ( function_exists( 'icl_unregister_string' ) ) {
-		icl_unregister_string( $plugin_name_human_format, $string_name );
+		icl_unregister_string( $Commons_Booking_human_format, $string_name );
 	} elseif ( has_filter( 'cml_my_translations' ) ) {
-		$plugin_name_human_format_replaced = str_replace( ' ', '-', $plugin_name_human_format );
-		CMLTranslations::delete( $plugin_name_human_format_replaced );
+		$Commons_Booking_human_format_replaced = str_replace( ' ', '-', $Commons_Booking_human_format );
+		CMLTranslations::delete( $Commons_Booking_human_format_replaced );
 	}
 }
 
@@ -78,15 +78,15 @@ function deregister_string( $plugin_name_human_format, $string_name ) {
  *
  * @since   1.0.0
  *
- * @param     string   $plugin_name_human_format  The Plugin name 
+ * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string
  * @param     string   $value					  The value
  */
-function get_string( $plugin_name_human_format, $string_name, $value ) {
+function get_string( $Commons_Booking_human_format, $string_name, $value ) {
 	if ( function_exists( 'icl_t' ) ) {
-		return icl_t( $plugin_name_human_format, $string_name, $value );
+		return icl_t( $Commons_Booking_human_format, $string_name, $value );
 	} elseif ( has_filter( 'cml_my_translations' ) ) {
-		return CMLTranslations::get( CMLLanguage::get_current_id(), $string_name, str_replace( ' ', '-', $plugin_name_human_format ) );
+		return CMLTranslations::get( CMLLanguage::get_current_id(), $string_name, str_replace( ' ', '-', $Commons_Booking_human_format ) );
 	} elseif ( function_exists( 'pll__' ) ) {
 		return pll__( $string_name );
 	}

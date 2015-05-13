@@ -6,18 +6,18 @@
  * A foundation off of which to build well-documented WordPress plugins that
  * also follow WordPress Coding Standards and PHP best practices.
  *
- * @package   Plugin_Name
- * @author    Your Name <email@example.com>
+ * @package   Commons Booking
+ * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  *
  * @wordpress-plugin
- * Plugin Name:       @TODO
+ * Plugin Name:       Commons Booking
  * Plugin URI:        @TODO
  * Description:       @TODO
  * Version:           1.0.0
- * Author:            @TODO
+ * Author:            Florian Egermann
  * Author URI:        @TODO
  * Text Domain:       commons-booking
  * License:           GPL-2.0+
@@ -84,19 +84,19 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' )
  *
  * @TODO:
  *
- * - replace Plugin_Name with the name of the class defined in
+ * - replace Commons_Booking with the name of the class defined in
  *   `class-commons-booking.php`
  */
-register_activation_hook( __FILE__, array( 'Plugin_Name', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Plugin_Name', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'Commons_Booking', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Commons_Booking', 'deactivate' ) );
 
 /*
  * @TODO:
  *
- * - replace Plugin_Name with the name of the class defined in
+ * - replace Commons_Booking with the name of the class defined in
  *   `class-commons-booking.php`
  */
-add_action( 'plugins_loaded', array( 'Plugin_Name', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Commons_Booking', 'get_instance' ) );
 
 /* ----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
@@ -106,7 +106,7 @@ add_action( 'plugins_loaded', array( 'Plugin_Name', 'get_instance' ) );
  * @TODO:
  *
  * - replace `class-commons-booking-admin.php` with the name of the plugin's admin file
- * - replace Plugin_Name_Admin with the name of the class defined in
+ * - replace Commons_Booking_Admin with the name of the class defined in
  *   `class-commons-booking-admin.php`
  *
  * If you want to include Ajax within the dashboard, change the following
@@ -121,5 +121,5 @@ add_action( 'plugins_loaded', array( 'Plugin_Name', 'get_instance' ) );
 if ( is_admin() && (!defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-admin.php' );
-	add_action( 'plugins_loaded', array( 'Plugin_Name_Admin', 'get_instance' ) );
+	add_action( 'plugins_loaded', array( 'Commons_Booking_Admin', 'get_instance' ) );
 }

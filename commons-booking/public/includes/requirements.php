@@ -23,7 +23,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
      *
      * Complete example of use with all the sub-classes
      * 
-     * new Plugin_Requirements( self::$plugin_name, self::$plugin_slug, array(
+     * new Plugin_Requirements( self::$Commons_Booking, self::$plugin_slug, array(
      *  'PHP' => new PHP_Requirement( '5.9.0' ),
      * 	'WP' => new WordPress_Requirement( '3.9.0' ),
      *  'Extension' => new PHP_Extension_Requirement( array('mysql', 'mysqli', 'session', 'pcre','json', 'gd', 'mbstring', 'zlib' ),
@@ -33,7 +33,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
      *   ) )
      * 	) );
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class Plugin_Requirements {
@@ -136,7 +136,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Check the PHP environment, for example go to Plugin_Requirements documentation
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class PHP_Requirement {
@@ -183,7 +183,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Check the Wordpress environment, for example go to Plugin_Requirements documentation
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class WordPress_Requirement {
@@ -232,7 +232,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Check the PHP extension, for example go to Plugin_Requirements documentation
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class PHP_Extension_Requirement {
@@ -296,7 +296,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Check the plugin required, for example go to Plugin_Requirements documentation
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class Plugin_Requirement {
@@ -361,7 +361,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Generate the exception that stop the activation of the plugin
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class Plugin_Requirements_Exception extends \Exception {
@@ -371,7 +371,7 @@ if ( class_exists( 'Plugin_Requirements' ) === false ) {
     /**
      * Generate the warning error and deactivate the plugin
      *
-     * @package Plugin_Name
+     * @package Commons_Booking
      * @author  Mte90 and dsawardekar
      */
     class Requirement_Error {

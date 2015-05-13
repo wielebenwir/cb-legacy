@@ -3,11 +3,11 @@
 /**
  * Plugin Name.
  *
- * @package   Plugin_Name
- * @author    Your Name <email@example.com>
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
- * @link      http://example.com
- * @copyright 2014 Your Name or Company Name
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  */
 
 /**
@@ -19,10 +19,10 @@
  *
  * @TODO: Rename this class to a proper name for your plugin.
  *
- * @package Plugin_Name
+ * @package Commons_Booking
  * @author  Your Name <email@example.com>
  */
-class Plugin_Name {
+class Commons_Booking {
 
     /**
      * Plugin version, used for cache-busting of style and script file references.
@@ -59,7 +59,7 @@ class Plugin_Name {
      *
      * @var      string
      */
-    protected static $plugin_name = 'Plugin Name';
+    protected static $Commons_Booking = 'Plugin Name';
 
     /**
      * Instance of this class.
@@ -173,8 +173,8 @@ class Plugin_Name {
      *
      * @return    Plugin name variable.
      */
-    public function get_plugin_name() {
-        return self::$plugin_name;
+    public function get_Commons_Booking() {
+        return self::$Commons_Booking;
     }
 
     /**
@@ -332,7 +332,7 @@ class Plugin_Name {
     private static function single_activate() {
         //Requirements Detection System - read the doc in the library file
         require_once( plugin_dir_path( __FILE__ ) . 'includes/requirements.php' );
-        new Plugin_Requirements( self::$plugin_name, self::$plugin_slug, array(
+        new Plugin_Requirements( self::$Commons_Booking, self::$plugin_slug, array(
             'WP' => new WordPress_Requirement( '3.9.0' ),
                 ) );
 
