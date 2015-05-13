@@ -15,7 +15,7 @@
  * public-facing side of the WordPress site.
  *
  * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-plugin-name-admin.php`
+ * functionality, then refer to `class-commons-booking-admin.php`
  *
  * @TODO: Rename this class to a proper name for your plugin.
  *
@@ -34,7 +34,7 @@ class Plugin_Name {
     const VERSION = '1.0.0';
 
     /**
-     * @TODO - Rename "plugin-name" to the name of your plugin
+     * @TODO - Rename "commons-booking" to the name of your plugin
      *
      * Unique identifier for your plugin.
      *
@@ -47,7 +47,7 @@ class Plugin_Name {
      *
      * @var      string
      */
-    protected static $plugin_slug = 'plugin-name';
+    protected static $plugin_slug = 'commons-booking';
 
     /**
      * @TODO - Rename "Plugin Name" to the name of your plugin

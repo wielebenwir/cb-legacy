@@ -1,5 +1,5 @@
 # WordPress Plugin Boilerplate Powered
-![Logo](./plugin-name/assets/icon-256x256.png)
+![Logo](./commons-booking/assets/icon-256x256.png)
 
 The WordPress Plugin Boilerplate Powered is a complete foundation (without framework only wrapper) for building your WordPress plugins.  
 *Look in Recommended tools section of this readme for the Yeoman Generator and Vagrant.*   
@@ -99,7 +99,7 @@ On [https://github.com/sudar/wp-plugin-in-github](https://github.com/sudar/wp-pl
 
 PS: Use the Yeoman generator in the Generator Tool is better and simple!
 
-1. Copy the `plugin-name` directory into your `wp-content/plugins` directory
+1. Copy the `commons-booking` directory into your `wp-content/plugins` directory
 2. Navigate to the *Plugins* dashboard page
 3. Locate the menu item that reads *TODO*
 4. Click on *Activate*
@@ -110,7 +110,7 @@ Because the Boilerplate has no real functionality, nothing will be added to Word
 ###Git Clone
 	
 	git clone --recursive https://github.com/Mte90/WordPress-Plugin-Boilerplate-Powered
-	cd WordPress-Plugin-Boilerplate-Powered/plugin-name
+	cd WordPress-Plugin-Boilerplate-Powered/commons-booking
 
 ##Git update submodule
 

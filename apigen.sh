@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-slug="plugin-name"
+slug="commons-booking"
 
 if [ -d "./docs" ]; then
 	rm -r ./docs

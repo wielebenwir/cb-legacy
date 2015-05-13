@@ -18,7 +18,7 @@ function pn_get_template_part( $slug, $name = '', $include = true ) {
 	$plugin = Plugin_Name::get_instance();
 	$plugin_slug = $plugin->get_plugin_slug().'/';
 	
-	// Look in yourtheme/slug-name.php and yourtheme/plugin-name/slug-name.php
+	// Look in yourtheme/slug-name.php and yourtheme/commons-booking/slug-name.php
 	if ( $name ) {
 		$template = locate_template( array( "{$slug}-{$name}.php", $plugin_slug . "{$slug}-{$name}.php" ) );
 	} else {
