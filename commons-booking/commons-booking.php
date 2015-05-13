@@ -40,6 +40,7 @@ if ( !defined( 'WPINC' ) ) {
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/Taxonomy_Core/Taxonomy_Core.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'includes/CPT_Core/CPT_Core.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/includes/class-commons-booking-cpt.php' );
 
 /*
  * Load template system
@@ -70,12 +71,7 @@ new Fake_Page(
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/language.php' );
 
-/*
- * @TODO:
- *
- * - replace `class-commons-booking.php` with the name of the plugin's class file
- *
- */
+
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' );
 
 /*

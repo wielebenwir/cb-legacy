@@ -118,27 +118,9 @@ class Commons_Booking {
         // Activate plugin when new blog is added
         add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-        // Create Custom Post Type https://github.com/jtsternberg/CPT_Core/blob/master/README.md
-        register_via_cpt_core(
-                array( __( 'Item', $this->get_plugin_slug() ), __( 'Items', $this->get_plugin_slug() ), 'items' ), array(
-            'taxonomies' => array( 'item-cats' ),
-            'capabilities' => array(
-                'edit_post' => 'edit_items',
-                'edit_others_posts' => 'edit_other_items',
-            ),
-            'map_meta_cap' => true
-                )
-        );
+        // Create all needed custom post types defined in class-commons-booking-cpt.php 
+        new Item_CPT();
 
-        // Create Custom Taxonomy https://github.com/jtsternberg/Taxonomy_Core/blob/master/README.md
-        register_via_taxonomy_core(
-                array( __( 'Item Category', $this->get_plugin_slug() ), __( 'Item categories', $this->get_plugin_slug() ), 'item-cats' ), array(
-            'public' => true,
-            'capabilities' => array(
-                'assign_terms' => 'edit_posts',
-            )
-                ), array( 'demo' )
-        );
 
         add_filter( 'body_class', array( $this, 'add_pn_class' ), 10, 3 );
 
