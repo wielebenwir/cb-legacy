@@ -22,3 +22,6 @@
 [submodule "commons-booking/includes/Widgets-Helper"]
 	path = commons-booking/includes/Widgets-Helper
 	url = git@github.com:jabga/WordPress-Widgets-Helper-Class.git
+[submodule "commons-booking/admin/includes/CMB2-Post-Search-Field"]
+	path = commons-booking/admin/includes/CMB2-Post-Search-Field
+	url = https://github.com/WebDevStudios/CMB2-Post-Search-field
