@@ -1,7 +1,7 @@
 <?php
 /**
  * Define the custom post types:
- * items, locations, bookings. 
+ * items, locations, timeframes, bookings. 
  *
  *
  * @package   Commons_Booking
