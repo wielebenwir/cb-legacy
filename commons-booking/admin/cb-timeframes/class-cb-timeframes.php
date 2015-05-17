@@ -187,11 +187,11 @@ class cb_timeframes_table_List_Table extends WP_List_Table
      */
     function column_location_id($item)
     {
-        return get_the_title( $item['location_id'] );
+      return '<strong> ' . get_the_title( $item['location_id'] ) . '</strong>';
     }    
     function column_item_id($item)
     {
-        return get_the_title( $item['item_id'] );
+      return '<strong>' .get_the_title( $item['item_id'] ). '</strong>';
     }
 
     /**
@@ -201,21 +201,18 @@ class cb_timeframes_table_List_Table extends WP_List_Table
      * @param $item - row (key, value array)
      * @return HTML
      */
-    function column_id($item)
+    function column_edit_actions($item)
     {
         // links going to /admin.php?page=[your_plugin_page][&other_params]
         // notice how we used $_REQUEST['page'], so action will be done on curren page
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=timeframes_form&id=%s">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
+            'edit' => sprintf('<a href="?page=timeframes_form&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
         );
 
-        return sprintf('%s %s',
-            $item['id'],
-            $this->row_actions($actions)
-        );
+        return $this->row_actions($actions);
     }
 
     /**
@@ -247,8 +244,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             'item_id' => __('Item', 'cb_timeframes_table'),
             'date_start' => __('Starting Date', 'cb_timeframes_table'),
             'date_end' => __('End Date', 'cb_timeframes_table'),
-            'id' => __('ID', 'cb_timeframes_table'),            
-            'timeframe_title' => __('Title', 'cb_timeframes_table'),
+            'timeframe_title' => __('Note', 'cb_timeframes_table'),
+            'edit_actions' => __('Edit', 'cb_timeframes_table'),
         );
         return $columns;
     }
@@ -522,13 +519,12 @@ function cb_timeframes_table_form_page_handler()
     }
 
     // here we adding our custom meta box
-    add_meta_box('timeframes_form_meta_box', 'Person data', 'cb_timeframes_table_form_meta_box_handler', 'person', 'normal', 'default');
+    add_meta_box('timeframes_form_meta_box', 'Person data', 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
 
     ?>
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Person', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+    <h2><?php _e('Edit Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
     </h2>
 
     <?php if (!empty($notice)): ?>
@@ -547,7 +543,7 @@ function cb_timeframes_table_form_page_handler()
             <div id="post-body">
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
-                    <?php do_meta_boxes('person', 'normal', $item); ?>
+                    <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
                     <input type="submit" value="<?php _e('Save', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
@@ -570,15 +566,6 @@ function cb_timeframes_table_form_meta_box_handler($item)
 
 <table cellspacing="2" cellpadding="5" style="width: 100%;" class="form-table">
     <tbody>
-    <tr class="form-field">
-        <th valign="top" scope="row">
-            <label for="timeframe_title"><?php _e('Timeframe title', 'cb_timeframes_table')?></label>
-        </th>
-        <td>
-            <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
-                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'cb_timeframes_table')?>" required>
-        </td>
-    </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
             <label for="item_id"><?php _e('Item', 'cb_timeframes_table')?></label>
@@ -611,6 +598,15 @@ function cb_timeframes_table_form_meta_box_handler($item)
         <td>
             <input id="date_end" name="date_end" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
                    size="50" class="date" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
+        </td>
+    </tr>
+    <tr class="form-field">
+        <th valign="top" scope="row">
+            <label for="timeframe_title"><?php _e('Note', 'cb_timeframes_table')?></label>
+        </th>
+        <td>
+            <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
+                   size="50" class="code" placeholder="<?php _e('Note', 'cb_timeframes_table')?>" required>
         </td>
     </tr>
     </tbody>
