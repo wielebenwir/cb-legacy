@@ -100,11 +100,17 @@ class Commons_Booking_Admin {
 		 */
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2/init.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Shortcode/shortcode-button.php' );
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Post-Search-Field/cmb2_post_search_field.php' );
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
+
+		// the admin table for timeframes
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/class-cb-timeframes.php' );
+
 
 		/*
 		 * Add metabox
 		 */
-		add_filter( 'cmb2_meta_boxes', array( $this, 'cmb_demo_metaboxes' ) );
+		add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
 
 		/*
 		 * Define custom functionality.
@@ -399,23 +405,34 @@ class Commons_Booking_Admin {
 	}
 
 	/**
-	 * NOTE:     Your metabox on Demo CPT
+	 * NOTE:     Metaboxes for Locations @TODO: Move to another file
 	 *
 	 * @since    1.0.0
 	 */
-	public function cmb_demo_metaboxes( array $meta_boxes ) {
-		$meta_boxes[ 'test_metabox' ] = array(
-			'id' => 'test_metabox',
-			'title' => __( 'Demo Metabox', $this->plugin_slug ),
-			'object_types' => array( 'demo', ), // Post type
+	public function cb_location_metaboxes( array $meta_boxes ) {
+
+
+		$items = new Commons_Booking_Items();
+		// print_r ($items->get_Items());
+
+		$meta_boxes[ 'cb_location_metabox_adress' ] = array(
+			'id' => 'cb_location_metabox',
+			'title' => __( 'Location', $this->plugin_slug ),
+			'object_types' => array( 'cb_locations', ), // Post type
 			'context' => 'normal',
 			'priority' => 'high',
 			'show_names' => true, // Show field names on the left
 			'fields' => array(
 				array(
-					'name' => __( 'Text', $this->plugin_slug ),
+					'name' => __( 'Street and House Number', $this->plugin_slug ),
 					'desc' => __( 'field description (optional)', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_test_text',
+					'id' => $this->plugin_slug . '_location_address_street',
+					'type' => 'text',
+				),				
+				array(
+					'name' => __( 'City', $this->plugin_slug ),
+					'desc' => __( 'field description (optional)', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_address_city',
 					'type' => 'text',
 				),
 				array(
@@ -423,7 +440,22 @@ class Commons_Booking_Admin {
 					'desc' => __( 'field description (optional)', $this->plugin_slug ),
 					'id' => $this->plugin_slug . '_test_textsmall',
 					'type' => 'text_small',
-				), ),
+				),
+				array(
+					'name' => __( 'Typeahead', $this->plugin_slug ),
+					'desc' => __( 'no field descritopn', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_test_typeahead',
+					'type' => 'post_search_text',
+					'post_search_cpt' => 'cb_items',
+				),
+				array(
+					'name' => __( 'Posts', 'cmb2' ),
+					'id'   => 'cmb_attached_posts',
+					'type' => 'custom_attached_posts',
+					'desc' => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
+				),
+
+				),
 		);
 
 		return $meta_boxes;
