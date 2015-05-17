@@ -25,3 +25,6 @@
 [submodule "commons-booking/admin/includes/CMB2-Post-Search-Field"]
 	path = commons-booking/admin/includes/CMB2-Post-Search-Field
 	url = https://github.com/WebDevStudios/CMB2-Post-Search-field
+[submodule "commons-booking/admin/includes/CMB2-Attached-Posts-Field"]
+	path = commons-booking/admin/includes/CMB2-Attached-Posts-Field
+	url = https://github.com/WebDevStudios/cmb2-attached-posts
