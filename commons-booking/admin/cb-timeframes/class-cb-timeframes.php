@@ -21,17 +21,17 @@ Version: 1.1
  * In case your are developing and want to check plugin use:
  *
  * DROP TABLE IF EXISTS wp_cte;
- * DELETE FROM wp_options WHERE option_name = 'custom_table_example_install_data';
+ * DELETE FROM wp_options WHERE option_name = 'cb_timeframes_table_install_data';
  *
  * to drop table and option
  */
 
 /**
- * $custom_table_example_db_version - holds current database version
+ * $cb_timeframes_table_db_version - holds current database version
  * and used on plugin update to sync database tables
  */
-global $custom_table_example_db_version;
-$custom_table_example_db_version = '1.1'; // version changed from 1.0 to 1.1
+global $cb_timeframes_table_db_version;
+$cb_timeframes_table_db_version = '1.1'; // version changed from 1.0 to 1.1
 
 /**
  * register_activation_hook implementation
@@ -39,10 +39,10 @@ $custom_table_example_db_version = '1.1'; // version changed from 1.0 to 1.1
  * will be called when user activates plugin first time
  * must create needed database tables
  */
-function custom_table_example_install()
+function cb_timeframes_table_install()
 {
     global $wpdb;
-    global $custom_table_example_db_version;
+    global $cb_timeframes_table_db_version;
 
     $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
 
@@ -68,13 +68,13 @@ function custom_table_example_install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('custom_table_example_db_version', $custom_table_example_db_version);
+    add_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 1.1 version
      *
      * If you develop new version of plugin
-     * just increment $custom_table_example_db_version variable
+     * just increment $cb_timeframes_table_db_version variable
      * and add following block of code
      *
      * must be repeated for each new version
@@ -83,8 +83,8 @@ function custom_table_example_install()
      * and again we are not executing sql
      * we are using dbDelta to migrate table changes
      */
-    $installed_ver = get_option('custom_table_example_db_version');
-    if ($installed_ver != $custom_table_example_db_version) {
+    $installed_ver = get_option('cb_timeframes_table_db_version');
+    if ($installed_ver != $cb_timeframes_table_db_version) {
         $sql = "CREATE TABLE " . $table_name . " (
           id int(11) unsigned NOT NULL AUTO_INCREMENT,
           timeframe_title text,
@@ -99,11 +99,11 @@ function custom_table_example_install()
         dbDelta($sql);
 
         // notice that we are updating option, rather than adding it
-        update_option('custom_table_example_db_version', $custom_table_example_db_version);
+        update_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
     }
 }
 
-register_activation_hook(__FILE__, 'custom_table_example_install');
+register_activation_hook(__FILE__, 'cb_timeframes_table_install');
 
 /**
  * register_activation_hook implementation
@@ -112,7 +112,7 @@ register_activation_hook(__FILE__, 'custom_table_example_install');
  * additional implementation of register_activation_hook
  * to insert some dummy data
  */
-function custom_table_example_install_data()
+function cb_timeframes_table_install_data()
 {
     global $wpdb;
 
@@ -123,20 +123,20 @@ function custom_table_example_install_data()
     ));
 }
 
-register_activation_hook(__FILE__, 'custom_table_example_install_data');
+register_activation_hook(__FILE__, 'cb_timeframes_table_install_data');
 
 /**
  * Trick to update plugin database, see docs
  */
-function custom_table_example_update_db_check()
+function cb_timeframes_table_update_db_check()
 {
-    global $custom_table_example_db_version;
-    if (get_site_option('custom_table_example_db_version') != $custom_table_example_db_version) {
-        custom_table_example_install();
+    global $cb_timeframes_table_db_version;
+    if (get_site_option('cb_timeframes_table_db_version') != $cb_timeframes_table_db_version) {
+        cb_timeframes_table_install();
     }
 }
 
-add_action('plugins_loaded', 'custom_table_example_update_db_check');
+add_action('plugins_loaded', 'cb_timeframes_table_update_db_check');
 
 /**
  * PART 2. Defining Custom Table List
@@ -154,10 +154,10 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * Custom_Table_Example_List_Table class that will display our custom table
+ * cb_timeframes_table_List_Table class that will display our custom table
  * records in nice table
  */
-class Custom_Table_Example_List_Table extends WP_List_Table
+class cb_timeframes_table_List_Table extends WP_List_Table
 {
     /**
      * [REQUIRED] You must declare constructor and give some basic params
@@ -217,8 +217,8 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=persons_form&id=%s">%s</a>', $item['id'], __('Edit', 'custom_table_example')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'custom_table_example')),
+            'edit' => sprintf('<a href="?page=timeframes_form&id=%s">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
         );
 
         return sprintf('%s %s',
@@ -252,12 +252,12 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'location_id' => __('Location', 'custom_table_example'),
-            'item_id' => __('Item', 'custom_table_example'),
-            'date_start' => __('Starting Date', 'custom_table_example'),
-            'date_end' => __('End Date', 'custom_table_example'),
-            'id' => __('ID', 'custom_table_example'),            
-            'timeframe_title' => __('Title', 'custom_table_example'),
+            'location_id' => __('Location', 'cb_timeframes_table'),
+            'item_id' => __('Item', 'cb_timeframes_table'),
+            'date_start' => __('Starting Date', 'cb_timeframes_table'),
+            'date_end' => __('End Date', 'cb_timeframes_table'),
+            'id' => __('ID', 'cb_timeframes_table'),            
+            'timeframe_title' => __('Title', 'cb_timeframes_table'),
         );
         return $columns;
     }
@@ -344,7 +344,7 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
         
-        // get paramas to filter the list @TODO: Security Check
+        // get paramas to filter the list @TODO: Security Check / there should be a better way / see: extra_tablenav();
         if (isset($_REQUEST['filter']) AND isset($_REQUEST['cat'])) { 
           $filter = 'WHERE ' . $_REQUEST['filter'] . '=' . $_REQUEST['cat'];
           echo ("FILTERED"); } else { 
@@ -374,17 +374,17 @@ class Custom_Table_Example_List_Table extends WP_List_Table
  */
 
 /**
- * admin_menu hook implementation, will add pages to list persons and to add new one
+ * admin_menu hook implementation, will add pages to list timeframes and to add new one
  */
-function custom_table_example_admin_menu()
+function cb_timeframes_table_admin_menu()
 {
-    add_menu_page(__('Persons', 'custom_table_example'), __('Persons', 'custom_table_example'), 'activate_plugins', 'persons', 'custom_table_example_persons_page_handler');
-    add_submenu_page('persons', __('Persons', 'custom_table_example'), __('Persons', 'custom_table_example'), 'activate_plugins', 'persons', 'custom_table_example_persons_page_handler');
+    add_menu_page(__('timeframes', 'cb_timeframes_table'), __('timeframes', 'cb_timeframes_table'), 'activate_plugins', 'timeframes', 'cb_timeframes_table_page_handler');
+    add_submenu_page('timeframes', __('timeframes', 'cb_timeframes_table'), __('timeframes', 'cb_timeframes_table'), 'activate_plugins', 'timeframes', 'cb_timeframes_table_page_handler');
     // add new will be described in next part
-    add_submenu_page('persons', __('Add new', 'custom_table_example'), __('Add new', 'custom_table_example'), 'activate_plugins', 'persons_form', 'custom_table_example_persons_form_page_handler');
+    add_submenu_page('timeframes', __('Add new', 'cb_timeframes_table'), __('Add new', 'cb_timeframes_table'), 'activate_plugins', 'timeframes_form', 'cb_timeframes_table_form_page_handler');
 }
 
-add_action('admin_menu', 'custom_table_example_admin_menu');
+add_action('admin_menu', 'cb_timeframes_table_admin_menu');
 
 /**
  * List page handler
@@ -396,27 +396,27 @@ add_action('admin_menu', 'custom_table_example_admin_menu');
  *
  * Look into /wp-admin/includes/class-wp-*-list-table.php for examples
  */
-function custom_table_example_persons_page_handler()
+function cb_timeframes_table_page_handler()
 {
     global $wpdb;
 
-    $table = new Custom_Table_Example_List_Table();
+    $table = new cb_timeframes_table_List_Table();
     $table->prepare_items();
 
     $message = '';
     if ('delete' === $table->current_action()) {
-        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count($_REQUEST['id'])) . '</p></div>';
+        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'cb_timeframes_table'), count($_REQUEST['id'])) . '</p></div>';
     }
     ?>
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Persons', 'custom_table_example')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=persons_form');?>"><?php _e('Add new', 'custom_table_example')?></a>
+    <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new', 'cb_timeframes_table')?></a>
     </h2>
     <?php echo $message; ?>
 
-    <form id="persons-table" method="GET">
+    <form id="timeframes-table" method="GET">
         <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
         <?php $table->display() ?>
     </form>
@@ -442,7 +442,7 @@ function custom_table_example_persons_page_handler()
  * Form page handler checks is there some data posted and tries to save it
  * Also it renders basic wrapper in which we are callin meta box render
  */
-function custom_table_example_persons_form_page_handler()
+function cb_timeframes_table_form_page_handler()
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
@@ -466,22 +466,22 @@ function custom_table_example_persons_form_page_handler()
         $item = shortcode_atts($default, $_REQUEST);
         // validate data, and if all ok save item to database
         // if id is zero insert otherwise update
-        $item_valid = custom_table_example_validate_person($item);
+        $item_valid = cb_timeframes_table_validate_person($item);
         if ($item_valid === true) {
             if ($item['id'] == 0) {
                 $result = $wpdb->insert($table_name, $item);
                 $item['id'] = $wpdb->insert_id;
                 if ($result) {
-                    $message = __('Item was successfully saved', 'custom_table_example');
+                    $message = __('Item was successfully saved', 'cb_timeframes_table');
                 } else {
-                    $notice = __('There was an error while saving item', 'custom_table_example');
+                    $notice = __('There was an error while saving item', 'cb_timeframes_table');
                 }
             } else {
                 $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                 if ($result) {
-                    $message = __('Item was successfully updated', 'custom_table_example');
+                    $message = __('Item was successfully updated', 'cb_timeframes_table');
                 } else {
-                    $notice = __('There was an error while updating item', 'custom_table_example');
+                    $notice = __('There was an error while updating item', 'cb_timeframes_table');
                 }
             }
         } else {
@@ -496,19 +496,19 @@ function custom_table_example_persons_form_page_handler()
             $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
             if (!$item) {
                 $item = $default;
-                $notice = __('Item not found', 'custom_table_example');
+                $notice = __('Item not found', 'cb_timeframes_table');
             }
         }
     }
 
     // here we adding our custom meta box
-    add_meta_box('persons_form_meta_box', 'Person data', 'custom_table_example_persons_form_meta_box_handler', 'person', 'normal', 'default');
+    add_meta_box('timeframes_form_meta_box', 'Person data', 'cb_timeframes_table_form_meta_box_handler', 'person', 'normal', 'default');
 
     ?>
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Person', 'custom_table_example')?> <a class="add-new-h2"
-                                href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=persons');?>"><?php _e('back to list', 'custom_table_example')?></a>
+    <h2><?php _e('Person', 'cb_timeframes_table')?> <a class="add-new-h2"
+                                href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
     </h2>
 
     <?php if (!empty($notice)): ?>
@@ -528,7 +528,7 @@ function custom_table_example_persons_form_page_handler()
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('person', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save', 'custom_table_example')?>" id="submit" class="button-primary" name="submit">
+                    <input type="submit" value="<?php _e('Save', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
         </div>
@@ -543,7 +543,7 @@ function custom_table_example_persons_form_page_handler()
  *
  * @param $item
  */
-function custom_table_example_persons_form_meta_box_handler($item)
+function cb_timeframes_table_form_meta_box_handler($item)
 {
     ?>
 
@@ -552,45 +552,45 @@ function custom_table_example_persons_form_meta_box_handler($item)
     <tbody>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="timeframe_title"><?php _e('Timeframe title', 'custom_table_example')?></label>
+            <label for="timeframe_title"><?php _e('Timeframe title', 'cb_timeframes_table')?></label>
         </th>
         <td>
             <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
-                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'custom_table_example')?>" required>
+                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'cb_timeframes_table')?>" required>
         </td>
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="item_id"><?php _e('Item', 'custom_table_example')?></label>
+            <label for="item_id"><?php _e('Item', 'cb_timeframes_table')?></label>
         </th>
         <td>
-          <?php custom_table_example_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
+          <?php cb_timeframes_table_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
         </td>
     </tr>    
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="location_id"><?php _e('Location', 'custom_table_example')?></label>
+            <label for="location_id"><?php _e('Location', 'cb_timeframes_table')?></label>
         </th>
         <td>
-          <?php custom_table_example_edit_dropdown( 'cb_locations', 'location_id', esc_attr($item['location_id']) ); ?>
+          <?php cb_timeframes_table_edit_dropdown( 'cb_locations', 'location_id', esc_attr($item['location_id']) ); ?>
         </td>
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="date_start"><?php _e('Start Date', 'custom_table_example')?></label>
+            <label for="date_start"><?php _e('Start Date', 'cb_timeframes_table')?></label>
         </th>
         <td>
             <input id="date_start" name="date_start" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
-                   size="50" class="date" placeholder="<?php _e('Start Date', 'custom_table_example')?>" required>
+                   size="50" class="date" placeholder="<?php _e('Start Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>    
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="date_end"><?php _e('End Date', 'custom_table_example')?></label>
+            <label for="date_end"><?php _e('End Date', 'cb_timeframes_table')?></label>
         </th>
         <td>
             <input id="date_end" name="date_end" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
-                   size="50" class="date" placeholder="<?php _e('End Date', 'custom_table_example')?>" required>
+                   size="50" class="date" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>
     </tbody>
@@ -605,13 +605,13 @@ function custom_table_example_persons_form_meta_box_handler($item)
  * @param $item
  * @return bool|string
  */
-function custom_table_example_validate_person($item)
+function cb_timeframes_table_validate_person($item)
 {
     $messages = array();
 
-    // if (empty($item['name'])) $messages[] = __('Name is required', 'custom_table_example');
-    // if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'custom_table_example');
-    // if (!ctype_digit($item['age'])) $messages[] = __('Age in wrong format', 'custom_table_example');
+    // if (empty($item['name'])) $messages[] = __('Name is required', 'cb_timeframes_table');
+    // if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'cb_timeframes_table');
+    // if (!ctype_digit($item['age'])) $messages[] = __('Age in wrong format', 'cb_timeframes_table');
     //if(!empty($item['age']) && !absint(intval($item['age'])))  $messages[] = __('Age can not be less than zero');
     //if(!empty($item['age']) && !preg_match('/[0-9]+/', $item['age'])) $messages[] = __('Age must be number');
     //...
@@ -623,7 +623,7 @@ function custom_table_example_validate_person($item)
 /**
  * Do not forget about translating your plugin, use __('english string', 'your_uniq_plugin_name') to retrieve translated string
  * and _e('english string', 'your_uniq_plugin_name') to echo it
- * in this example plugin your_uniq_plugin_name == custom_table_example
+ * in this example plugin your_uniq_plugin_name == cb_timeframes_table
  *
  * to create translation file, use poedit FileNew catalog...
  * Fill name of project, add "." to path (ENSURE that it was added - must be in list)
@@ -634,9 +634,9 @@ function custom_table_example_validate_person($item)
  * http://codex.wordpress.org/Writing_a_Plugin#Internationalizing_Your_Plugin
  * http://codex.wordpress.org/I18n_for_WordPress_Developers
  */
-function custom_table_example_languages()
+function cb_timeframes_table_languages()
 {
-    load_plugin_textdomain('custom_table_example', false, dirname(plugin_basename(__FILE__)));
+    load_plugin_textdomain('cb_timeframes_table', false, dirname(plugin_basename(__FILE__)));
 }
 
 /**
@@ -645,7 +645,7 @@ function custom_table_example_languages()
 * @param $posttype, $fieldname, $selected
 * @return html dropdown
 */
-function custom_table_example_edit_dropdown( $posttype, $fieldname, $selected ) {
+function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
 
   $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
   $the_query = new WP_Query( $args );
@@ -669,4 +669,4 @@ function custom_table_example_edit_dropdown( $posttype, $fieldname, $selected ) 
 
 
 
-add_action('init', 'custom_table_example_languages');
+add_action('init', 'cb_timeframes_table_languages');
