@@ -1,14 +1,4 @@
-￼<?php
-/*
-Plugin Name: Custom table example
-Description: example plugin to demonstrate wordpress capatabilities
-Plugin URI: http://mac-blog.org.ua/
-Author URI: http://mac-blog.org.ua/
-Author: Marchenko Alexandr
-License: Public Domain
-Version: 1.1
-*/
-
+<?php
 /**
  * PART 1. Defining Custom Database Table
  * ============================================================================
@@ -675,3 +665,4 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
 
 
 add_action('init', 'cb_timeframes_table_languages');
+?>
