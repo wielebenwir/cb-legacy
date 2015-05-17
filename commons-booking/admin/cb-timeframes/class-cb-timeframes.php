@@ -337,20 +337,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
+        $filter = get_sql_filter($_REQUEST['item-filter'], $_REQUEST['location-filter']);
 
-        // get paramas to filter the list @TODO: Security Check / there should be a more elegant way  / show filtered      
-        $filterparams =  array();
-        if( isset($_REQUEST['item-filter'])) { 
-          array_push($filterparams, 'item_id =' .$_REQUEST['item-filter']); 
-        }        
-        if( isset($_REQUEST['location-filter'])) { 
-          array_push($filterparams, 'location_id=' . $_REQUEST['location-filter']); 
-        }  
-        if ( $filterparams ) {
-          $filter = 'WHERE ' . implode (' AND ', $filterparams);
-        } else {
-          $filter = ''; 
-        }
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
@@ -699,6 +687,28 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $g
 }
 
 
+/**
+* Gets the filter parameters for the sql query  
+*
+* @param  item filter from url, location filter from url
+* @return string
+*/
+function get_sql_filter( $filterItems, $filterLocations ) {
+      // get paramas to filter the list @TODO: Security Check / there should be a more elegant way  / show filtered in dropdown    
+    $filterparams =  array();
+    if( isset($filterItems)) { 
+      array_push($filterparams, 'item_id =' .$filterItems); 
+    }        
+    if( isset($filterLocations)) { 
+      array_push($filterparams, 'location_id=' . $filterLocations); 
+    }  
+    if ( $filterparams ) {
+      $filter = 'WHERE ' . implode (' AND ', $filterparams);
+    } else {
+      $filter = ''; 
+    }
+    return $filter;
+}
 
 
 add_action('init', 'cb_timeframes_table_languages');
