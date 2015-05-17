@@ -337,13 +337,20 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
-        
-        // get paramas to filter the list @TODO: Security Check / there should be a better way / see: extra_tablenav();
-        if (isset($_REQUEST['filter']) AND isset($_REQUEST['cat'])) { 
-          $filter = 'WHERE ' . $_REQUEST['filter'] . '=' . $_REQUEST['cat'];
-          echo ("FILTERED"); } else { 
-            $filter = "";
-            echo ("unfiltered"); }
+
+        // get paramas to filter the list @TODO: Security Check / there should be a more elegant way  / show filtered      
+        $filterparams =  array();
+        if( isset($_REQUEST['item-filter'])) { 
+          array_push($filterparams, 'item_id =' .$_REQUEST['item-filter']); 
+        }        
+        if( isset($_REQUEST['location-filter'])) { 
+          array_push($filterparams, 'location_id=' . $_REQUEST['location-filter']); 
+        }  
+        if ( $filterparams ) {
+          $filter = 'WHERE ' . implode (' AND ', $filterparams);
+        } else {
+          $filter = ''; 
+        }
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
@@ -356,6 +363,36 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             'total_pages' => ceil($total_items / $per_page) // calculate pages count
         ));
     }
+
+    /**
+     * Get all 
+     *
+     * It will get rows from database and prepare them to be showed in table
+     */
+    function get_connected() {
+
+    }
+
+    function extra_tablenav( $which ) {
+      global $wpdb, $item;
+      $move_on_url = '&sitem-filter=';
+      if ( $which == "top" ){
+          ?>
+          <div class="alignleft actions bulkactions">
+          <form>
+        <?php cb_timeframes_table_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']), 'admin.php?page=timeframes&sitem-filter=' ); ?>
+          <input type="submit" id="dofilter" name="action" class="button action" value="<?php echo __("Sumbit"); ?>">
+        </form>
+ 
+          </div>
+          <?php
+      }
+      if ( $which == "bottom" ){
+          //The code that goes after the table is there
+
+      }
+  }
+
 }
 
 /**
@@ -632,15 +669,15 @@ function cb_timeframes_table_validate_person($item)
 function cb_timeframes_table_languages()
 {
     load_plugin_textdomain('cb_timeframes_table', false, dirname(plugin_basename(__FILE__)));
-}
+} 
 
 /**
 * Renders a dropdown menu for items and locations 
 *
-* @param $posttype, $fieldname, $selected
+* @param $posttype, $fieldname, $selected, $goto
 * @return html dropdown
 */
-function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
+function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $goto="" ) {
 
   $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
   $the_query = new WP_Query( $args );
@@ -651,7 +688,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
       $the_query->the_post();
       $id = get_the_ID(); 
       if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
-      echo '<option value=' .$id . '"' . $s .' >' . get_the_title() . '</option>';
+      echo '<option value=' . $goto . $id . '"' . $s .' >' . get_the_title() . '</option>';
     }
     echo '</select>';
   } else {
