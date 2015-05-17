@@ -564,7 +564,7 @@ function custom_table_example_persons_form_meta_box_handler($item)
             <label for="item_id"><?php _e('Item', 'custom_table_example')?></label>
         </th>
         <td>
-          <?php custom_table_example_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
+          <?php custom_table_example_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
         </td>
     </tr>    
     <tr class="form-field">
@@ -572,7 +572,7 @@ function custom_table_example_persons_form_meta_box_handler($item)
             <label for="location_id"><?php _e('Location', 'custom_table_example')?></label>
         </th>
         <td>
-          <?php custom_table_example_dropdown( 'cb_locations', 'location_id', esc_attr($item['location_id']) ); ?>
+          <?php custom_table_example_edit_dropdown( 'cb_locations', 'location_id', esc_attr($item['location_id']) ); ?>
         </td>
     </tr>
     <tr class="form-field">
@@ -645,7 +645,7 @@ function custom_table_example_languages()
 * @param $posttype, $fieldname, $selected
 * @return html dropdown
 */
-function custom_table_example_dropdown( $posttype, $fieldname, $selected ) {
+function custom_table_example_edit_dropdown( $posttype, $fieldname, $selected ) {
 
   $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
   $the_query = new WP_Query( $args );
