@@ -102,6 +102,8 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Shortcode/shortcode-button.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Post-Search-Field/cmb2_post_search_field.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
+
 
 		// the admin table for timeframes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/class-cb-timeframes.php' );
@@ -424,38 +426,17 @@ class Commons_Booking_Admin {
 			'show_names' => true, // Show field names on the left
 			'fields' => array(
 				array(
-					'name' => __( 'Street and House Number', $this->plugin_slug ),
-					'desc' => __( 'field description (optional)', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_address_street',
-					'type' => 'text',
+					'name' => __( 'Contact Information', $this->plugin_slug ),
+					'desc' => __( 'Phone Numbers & Opening hours', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_contactinformation',
+					'type' => 'textarea',
 				),				
 				array(
-					'name' => __( 'City', $this->plugin_slug ),
-					'desc' => __( 'field description (optional)', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_address_city',
-					'type' => 'text',
+					'name' => __( 'Location', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_map',
+					'type' => 'pw_map',
 				),
-				array(
-					'name' => __( 'Text Small', $this->plugin_slug ),
-					'desc' => __( 'field description (optional)', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_test_textsmall',
-					'type' => 'text_small',
-				),
-				array(
-					'name' => __( 'Typeahead', $this->plugin_slug ),
-					'desc' => __( 'no field descritopn', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_test_typeahead',
-					'type' => 'post_search_text',
-					'post_search_cpt' => 'cb_items',
-				),
-				array(
-					'name' => __( 'Posts', 'cmb2' ),
-					'id'   => 'cmb_attached_posts',
-					'type' => 'custom_attached_posts',
-					'desc' => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
-				),
-
-				),
+			),
 		);
 
 		return $meta_boxes;
