@@ -275,6 +275,9 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             'location_id' => array('location_id', true),
             'item_id' => array('item_id', false),
             'date_start' => array('date_start', false),
+            'date_end' => array('date_end', false),
+            'id' => array('ID', false),
+            'timeframe_title' => array('timeframe_title', false),
         );
         return $sortable_columns;
     }
