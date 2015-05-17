@@ -28,3 +28,6 @@
 [submodule "commons-booking/admin/includes/CMB2-Attached-Posts-Field"]
 	path = commons-booking/admin/includes/CMB2-Attached-Posts-Field
 	url = https://github.com/WebDevStudios/cmb2-attached-posts
+[submodule "commons-booking/admin/includes/CMB2-GoogleMaps"]
+	path = commons-booking/admin/includes/CMB2-GoogleMaps
+	url = git@github.com:mustardBees/cmb_field_map.git
