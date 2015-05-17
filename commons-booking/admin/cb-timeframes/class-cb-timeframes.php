@@ -15,6 +15,8 @@
  * License:     GPL-2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * GitHub Plugin URI: https://github.com/Askelon/Custom-AJAX-List-Table-Example
+ *
+ * @TODO: make a copy and move to new class WP_List_Table() is located in /wp-admin/includes/class-wp-list-table.php.
  */
 
 /**
@@ -221,9 +223,11 @@ class CB_Timeframes_List_Table extends WP_List_Table {
 
     switch ( $column_name ) {
 
-      case 'rating':
-      case 'director':
-        return $item[ $column_name ];
+      case 'item_id':
+      case 'location_id':
+        return get_the_title( $item[ $column_name ] );
+      case 'date_end':
+        return ($item[ $column_name ]);
       default:
         //Show the whole array for troubleshooting purposes
         return print_r( $item, true );
@@ -258,7 +262,7 @@ class CB_Timeframes_List_Table extends WP_List_Table {
     
     //Return the title contents
     return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-      /*$1%s*/ $item['title'],
+      /*$1%s*/ get_the_title( $item['item_id'] ),
       /*$2%s*/ $item['ID'],
       /*$3%s*/ $this->row_actions( $actions )
     );
@@ -304,9 +308,9 @@ class CB_Timeframes_List_Table extends WP_List_Table {
 
     return $columns = array(
       'cb'    => '<input type="checkbox" />', //Render a checkbox instead of text
-      'title'   => 'Title',
-      'rating'  => 'Rating',
-      'director'  => 'Director'
+      'title'   => 'Item',
+      'location_id'  => 'Location',      
+      'date_end'  => 'Date Start'
     );
   }
 
@@ -328,9 +332,9 @@ class CB_Timeframes_List_Table extends WP_List_Table {
   function get_sortable_columns() {
 
     return $sortable_columns = array(
-      'title'   => array( 'title', false ), //true means it's already sorted
-      'rating'  => array( 'rating', false ),
-      'director'  => array( 'director', false )
+      'Item'   => array( 'title', false ), //true means it's already sorted
+      'Location'  => array( 'location_id', false ),
+      'Date Start'  => array( 'date_end', false )
     );
   }
 
@@ -396,7 +400,7 @@ class CB_Timeframes_List_Table extends WP_List_Table {
     /**
      * First, lets decide how many records per page to show
      */
-    $per_page = 4;
+    $per_page = 20;
     
     
     /**
@@ -436,8 +440,13 @@ class CB_Timeframes_List_Table extends WP_List_Table {
      * use sort and pagination data to build a custom query instead, as you'll
      * be able to use your precisely-queried data immediately.
      */
-    $data = $this->example_data;
-        
+    // $data = $this->example_data;
+ 
+     global $wpdb;
+    $query = ( 'SELECT * FROM wpdev_cb_timeframes' ); // @TODO: DB prefix as variable
+
+    $data = $wpdb->get_results($query, ARRAY_A);
+    var_dump($data);       
     
     /**
      * This checks for sorting input and sorts the data in our array accordingly.
@@ -450,7 +459,7 @@ class CB_Timeframes_List_Table extends WP_List_Table {
     function usort_reorder( $a, $b ) {
 
       //If no sort, default to title
-      $orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? $_REQUEST['orderby'] : 'title';
+      $orderby = ( ! empty( $_REQUEST['orderby'] ) ) ? $_REQUEST['orderby'] : 'item_id';
       //If no order, default to asc
       $order = ( ! empty( $_REQUEST['order'] ) ) ? $_REQUEST['order'] : 'asc';
        //Determine sort order
@@ -460,19 +469,6 @@ class CB_Timeframes_List_Table extends WP_List_Table {
     }
     usort( $data, 'usort_reorder' );
     
-    
-    /***********************************************************************
-     * ---------------------------------------------------------------------
-     * vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-     * 
-     * In a real-world situation, this is where you would place your query.
-     *
-     * For information on making queries in WordPress, see this Codex entry:
-     * http://codex.wordpress.org/Class_Reference/wpdb
-     * 
-     * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-     * ---------------------------------------------------------------------
-     **********************************************************************/
     
         
     /**
