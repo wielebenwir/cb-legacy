@@ -24,6 +24,7 @@ Version: 1.1
  * DELETE FROM wp_options WHERE option_name = 'cb_timeframes_table_install_data';
  *
  * to drop table and option
+ * @TODO move table creation to install
  */
 
 /**
@@ -377,7 +378,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
  */
 
 /**
- * admin_menu hook implementation, will add pages to list timeframes and to add new one
+ * admin_menu hook implementation, will add pages to list timeframes and to add new one 
+ * @TODO: move menu creation to init/ restructure the menu 
  */
 function cb_timeframes_table_admin_menu()
 {
