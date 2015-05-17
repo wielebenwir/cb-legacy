@@ -343,10 +343,17 @@ class Custom_Table_Example_List_Table extends WP_List_Table
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
+        
+        // get paramas to filter the list @TODO: Security Check
+        if (isset($_REQUEST['filter']) AND isset($_REQUEST['cat'])) { 
+          $filter = 'WHERE ' . $_REQUEST['filter'] . '=' . $_REQUEST['cat'];
+          echo ("FILTERED"); } else { 
+            $filter = "";
+            echo ("unfiltered"); }
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
-        $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
+        $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $filter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
@@ -633,29 +640,33 @@ function custom_table_example_languages()
 }
 
 /**
- * Renders a dropdown menu for items and locations 
- */
-
+* Renders a dropdown menu for items and locations 
+*
+* @param $posttype, $fieldname, $selected
+* @return html dropdown
+*/
 function custom_table_example_dropdown( $posttype, $fieldname, $selected ) {
 
   $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
   $the_query = new WP_Query( $args );
 
-// The Loop
-if ( $the_query->have_posts() ) {
-  echo '<select name="' . $fieldname .'" size="1">';
-  while ( $the_query->have_posts() ) {
-    $the_query->the_post();
-    $id = get_the_ID(); 
-    if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
-    echo '<option value=' .$id . '"' . $s .' >' . get_the_title() . '</option>';
+  if ( $the_query->have_posts() ) {
+    echo '<select name="' . $fieldname .'" size="1">';
+    while ( $the_query->have_posts() ) {
+      $the_query->the_post();
+      $id = get_the_ID(); 
+      if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
+      echo '<option value=' .$id . '"' . $s .' >' . get_the_title() . '</option>';
+    }
+    echo '</select>';
+  } else {
+   echo __( 'Something went wrong', $plugin_slug);
   }
-  echo '</select>';
-} else {
-  // no posts found
+  /* Restore original Post Data */
+  wp_reset_postdata();
 }
-/* Restore original Post Data */
-wp_reset_postdata();
-}
+
+
+
 
 add_action('init', 'custom_table_example_languages');
