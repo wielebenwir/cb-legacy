@@ -252,12 +252,12 @@ class Custom_Table_Example_List_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'id' => __('ID', 'custom_table_example'),            
-            'timeframe_title' => __('Title', 'custom_table_example'),
             'location_id' => __('Location', 'custom_table_example'),
             'item_id' => __('Item', 'custom_table_example'),
             'date_start' => __('Starting Date', 'custom_table_example'),
             'date_end' => __('End Date', 'custom_table_example'),
+            'id' => __('ID', 'custom_table_example'),            
+            'timeframe_title' => __('Title', 'custom_table_example'),
         );
         return $columns;
     }
