@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name.
+ * Commons Booking
  *
  * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
@@ -16,22 +16,20 @@
  *
  * If you're interested in introducing administrative or dashboard
  * functionality, then refer to `class-commons-booking-admin.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
+ * *
  * @package Commons_Booking
- * @author  Your Name <email@example.com>
+ * @author    Florian Egermann <florian@macht-medien.de>
  */
 class Commons_Booking {
 
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
-     * @since   1.0.0
+     * @since   0.0.1
      *
      * @var     string
      */
-    const VERSION = '1.0.0';
+    const VERSION = '0.0.1';
 
     /**
      * @TODO - Rename "commons-booking" to the name of your plugin
@@ -43,7 +41,7 @@ class Commons_Booking {
      * of text. Its value should match the Text Domain file header in the main
      * plugin file.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @var      string
      */
@@ -55,7 +53,7 @@ class Commons_Booking {
      * Unique identifier for your plugin.
      *
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @var      string
      */
@@ -64,7 +62,7 @@ class Commons_Booking {
     /**
      * Instance of this class.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @var      object
      */
@@ -73,43 +71,43 @@ class Commons_Booking {
     /**
      * Array of cpts of the plugin
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @var      object
      */
-    protected $cpts = array( 'bookings', 'items', 'locations' );
+    protected $cpts = array( 'items', 'locations' );
 
     /**
      * Array of capabilities by roles
      * 
-     * @since 1.0.0
+     * @since 0.0.1
      * 
      * @var array
      */
     protected static $plugin_roles = array( // @TODO: User Roles 
-        'editor' => array(
-            'edit_bookings' => true,
-            'edit_others_bookings' => true,            
-            'edit_items' => true,
-            'edit_others_items' => true,            
-            'edit_locations' => true,
-            'edit_others_locations' => true,
-        ),
-        'author' => array(
-            'edit_bookings' => true,
-            'edit_others_bookings' => false,
-        ),
-        'subscriber' => array(
-            'edit_bookings' => false,
-            'edit_others_bookings' => false,
-        ),
+        // 'editor' => array(
+        //     'edit_bookings' => true,
+        //     'edit_others_bookings' => true,            
+        //     'edit_items' => true,
+        //     'edit_others_items' => true,            
+        //     'edit_locations' => true,
+        //     'edit_others_locations' => true,
+        // ),
+        // 'author' => array(
+        //     'edit_bookings' => true,
+        //     'edit_others_bookings' => false,
+        // ),
+        // 'subscriber' => array(
+        //     'edit_bookings' => false,
+        //     'edit_others_bookings' => false,
+        // ),
     );
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
      *
-     * @since     1.0.0
+     * @since     0.0.1
      */
     private function __construct() {
         // Load plugin text domain
@@ -131,8 +129,6 @@ class Commons_Booking {
         // Create all needed custom post types defined in class-commons-booking-cpt.php 
         new Item_CPT();
         new Locations_CPT();
-        new Timeframes_CPT();
-        new Bookings_CPT();
 
 
 
@@ -158,7 +154,7 @@ class Commons_Booking {
     /**
      * Return the plugin slug.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @return    Plugin slug variable.
      */
@@ -169,7 +165,7 @@ class Commons_Booking {
     /**
      * Return the plugin name.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @return    Plugin name variable.
      */
@@ -180,7 +176,7 @@ class Commons_Booking {
     /**
      * Return the version
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @return    Version const.
      */
@@ -191,7 +187,7 @@ class Commons_Booking {
     /**
      * Return the cpts
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @return    Cpts array
      */
@@ -202,7 +198,7 @@ class Commons_Booking {
     /**
      * Return an instance of this class.
      *
-     * @since     1.0.0
+     * @since     0.0.1
      *
      * @return    object    A single instance of this class.
      */
@@ -219,7 +215,7 @@ class Commons_Booking {
     /**
      * Fired when the plugin is activated.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @param    boolean    $network_wide    True if WPMU superadmin uses
      *                                       "Network Activate" action, false if
@@ -253,7 +249,7 @@ class Commons_Booking {
     /**
      * Fired when the plugin is deactivated.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @param    boolean    $network_wide    True if WPMU superadmin uses
      *                                       "Network Deactivate" action, false if
@@ -287,7 +283,7 @@ class Commons_Booking {
     /**
      * Fired when a new site is activated with a WPMU environment.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @param    int    $blog_id    ID of the new blog.
      */
@@ -308,7 +304,7 @@ class Commons_Booking {
      * - not spam
      * - not deleted
      *
-     * @since    1.0.0
+     * @since    0.0.1
      *
      * @return   array|false    The blog ids, false if no matches.
      */
@@ -327,7 +323,7 @@ class Commons_Booking {
     /**
      * Fired for each blog when the plugin is activated.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     private static function single_activate() {
         //Requirements Detection System - read the doc in the library file
@@ -362,7 +358,7 @@ class Commons_Booking {
     /**
      * Fired for each blog when the plugin is deactivated.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     private static function single_deactivate() {
         // @TODO: Define deactivation functionality here
@@ -374,7 +370,7 @@ class Commons_Booking {
     /**
      * Load the plugin text domain for translation.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function load_plugin_textdomain() {
         $domain = $this->get_plugin_slug();
@@ -387,7 +383,7 @@ class Commons_Booking {
     /**
      * Register and enqueue public-facing style sheet.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
@@ -396,7 +392,7 @@ class Commons_Booking {
     /**
      * Register and enqueues public-facing JavaScript files.
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function enqueue_scripts() {
         wp_enqueue_script( $this->get_plugin_slug() . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
@@ -405,7 +401,7 @@ class Commons_Booking {
     /**
      * Print the PHP var in the HTML of the frontend for access by JavaScript
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function enqueue_js_vars() {
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'pn_js_vars', array(
@@ -417,7 +413,7 @@ class Commons_Booking {
     /**
      * Add class in the body on the frontend
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function add_pn_class( $classes ) {
         $classes[] = $this->get_plugin_slug();
@@ -427,7 +423,7 @@ class Commons_Booking {
     /**
      * Example for override the template system on the frontend
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function load_content_demo( $original_template ) {
         if ( is_singular( 'demo' ) && in_the_loop() ) {
@@ -444,7 +440,7 @@ class Commons_Booking {
      *        Actions:    http://codex.wordpress.org/Plugin_API#Actions
      *        Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function action_method_name() {
         // @TODO: Define your action hook callback here
@@ -457,7 +453,7 @@ class Commons_Booking {
      *        Filters: http://codex.wordpress.org/Plugin_API#Filters
      *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
@@ -469,7 +465,7 @@ class Commons_Booking {
      *
      *        Reference:  http://codex.wordpress.org/Shortcode_API
      *
-     * @since    1.0.0
+     * @since    0.0.1
      */
     public function shortcode_method_name() {
         // @TODO: Define your shortcode here

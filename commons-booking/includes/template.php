@@ -10,7 +10,7 @@
  * @author  Mte90 <mte90net@gmail.com>
  * @license   GPL-2.0+
  * @copyright 2014 
- * @since    1.0.0
+ * @since    0.0.1
  */
 function pn_get_template_part( $slug, $name = '', $include = true ) {
 	$template = '';

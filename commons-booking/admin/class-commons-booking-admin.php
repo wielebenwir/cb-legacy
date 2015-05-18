@@ -27,7 +27,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Instance of this class.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 *
 	 * @var      object
 	 */
@@ -36,7 +36,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Slug of the plugin screen.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 *
 	 * @var      string
 	 */
@@ -46,7 +46,7 @@ class Commons_Booking_Admin {
 	 * Initialize the plugin by loading admin scripts & styles and adding a
 	 * settings page and menu.
 	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 */
 	private function __construct() {
 
@@ -173,7 +173,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 *
 	 * @return    object    A single instance of this class.
 	 */
@@ -199,11 +199,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
-	 * @TODO:
-	 *
-	 * - Rename "Commons_Booking" to the name your plugin
-	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 *
 	 * @return    null    Return early if no settings page is registered.
 	 */
@@ -221,11 +217,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Register and enqueue admin-specific JavaScript.
 	 *
-	 * @TODO:
-	 *
-	 * - Rename "Commons_Booking" to the name your plugin
-	 *
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 *
 	 * @return    null    Return early if no settings page is registered.
 	 */
@@ -243,7 +235,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function add_plugin_admin_menu() {
 
@@ -253,28 +245,21 @@ class Commons_Booking_Admin {
 		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
 		 *
 		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-		 *
-		 * @TODO:
-		 *
-		 * - Change 'Page Title' to the title of your plugin admin page
-		 * - Change 'Menu Text' to the text for menu item for the plugin settings page
-		 * - Change 'manage_options' to the capability you see fit
-		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Page Title', $this->plugin_slug ), __( 'Menu Text', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Page Title', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
 		/*
 		 * Settings page in the menu
 		 * 
 		 */
-		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Page Title', $this->plugin_slug ), __( 'Menu Text', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
+		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Commons Booking Settings', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
 	}
 
 	/**
 	 * Render the settings page for this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function display_plugin_admin_page() {
 		include_once( 'views/admin.php' );
@@ -283,7 +268,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Add settings action link to the plugins page.
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function add_action_links( $links ) {
 		return array_merge(
@@ -301,7 +286,7 @@ class Commons_Booking_Admin {
 	 *           Actions:    http://codex.wordpress.org/Plugin_API#Actions
 	 *           Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function action_method_name() {
 		// @TODO: Define your action hook callback here
@@ -314,7 +299,7 @@ class Commons_Booking_Admin {
 	 *           Filters: http://codex.wordpress.org/Plugin_API#Filters
 	 *           Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function filter_method_name() {
 		// @TODO: Define your filter hook callback here
@@ -326,7 +311,7 @@ class Commons_Booking_Admin {
 	 *
 	 *        Reference:  http://wpsnipp.com/index.php/functions-php/wordpress-post-types-dashboard-at-glance-widget/
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function cpt_dashboard_support( $items = array() ) {
 		$post_types = $this->cpts;
@@ -356,7 +341,7 @@ class Commons_Booking_Admin {
 	 *
 	 *        Reference:  http://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items/95058
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	function pending_cpt_bubble() {
 		global $menu;
@@ -394,7 +379,7 @@ class Commons_Booking_Admin {
 	 *
 	 *        Reference:  http://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items/95058
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	private function recursive_array_search_php( $needle, $haystack ) {
 		foreach ( $haystack as $key => $value ) {
@@ -409,7 +394,7 @@ class Commons_Booking_Admin {
 	/**
 	 * NOTE:     Metaboxes for Locations @TODO: Move to another file
 	 *
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	public function cb_location_metaboxes( array $meta_boxes ) {
 
@@ -444,7 +429,7 @@ class Commons_Booking_Admin {
 
 	/**
 	 * Process a settings export from config
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	function settings_export() {
 
@@ -478,7 +463,7 @@ class Commons_Booking_Admin {
 
 	/**
 	 * Process a settings import from a json file
-	 * @since    1.0.0
+	 * @since    0.0.1
 	 */
 	function settings_import() {
 
@@ -518,7 +503,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Filter for change the folder of Contextual Help
 	 * 
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 *
 	 * @return    string    the path
 	 */
@@ -530,7 +515,7 @@ class Commons_Booking_Admin {
 	/**
 	 * Filter for change the folder image of Contextual Help
 	 * 
-	 * @since     1.0.0
+	 * @since     0.0.1
 	 *
 	 * @return    string    the path
 	 */
@@ -543,7 +528,7 @@ class Commons_Booking_Admin {
 	 * Contextual Help, docs in /help-docs folter
 	 * Documentation https://github.com/voceconnect/wp-contextual-help
 	 * 
-	 * @since    1.0.0 
+	 * @since    0.0.1 
 	 */
 	public function contextual_help() {
 		if ( !class_exists( 'WP_Contextual_Help' ) ) {

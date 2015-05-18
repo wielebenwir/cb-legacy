@@ -14,7 +14,7 @@
 /**
  * Return the language 2-4 letters code
  *
- * @since   1.0.0
+ * @since   0.0.1
  *
  * @return     string 4 letters cod of the locale
  */
@@ -34,7 +34,7 @@ function get_language() {
 /**
  * Add registration for multilanguage string (contain hook)
  *
- * @since   1.0.0
+ * @since   0.0.1
  *
  * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string
@@ -59,7 +59,7 @@ function register_string( $Commons_Booking_human_format, $string_name, $value ) 
 /**
  * Unregister multilanguage string, Polylang missing support of this feature
  *
- * @since   1.0.0
+ * @since   0.0.1
  *
  * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string
@@ -76,7 +76,7 @@ function deregister_string( $Commons_Booking_human_format, $string_name ) {
 /**
  * Get multilanguage string
  *
- * @since   1.0.0
+ * @since   0.0.1
  *
  * @param     string   $Commons_Booking_human_format  The Plugin name 
  * @param     string   $string_name               The name of the string

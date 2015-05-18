@@ -354,7 +354,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
      *
      * It will get rows from database and prepare them to be showed in table
      */
-    function get_connected() {
+    function add_filterbox( $filterby ) {
 
     }
 
@@ -519,7 +519,7 @@ function cb_timeframes_table_form_page_handler()
     }
 
     // here we adding our custom meta box
-    add_meta_box('timeframes_form_meta_box', 'Person data', 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
+    add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
 
     ?>
 <div class="wrap">
@@ -667,7 +667,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $g
   $the_query = new WP_Query( $args );
 
   if ( $the_query->have_posts() ) {
-    echo '<select name="' . $fieldname .'" size="1">';
+    echo '<select name="' . $fieldname .'" size="1" class="target">';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 

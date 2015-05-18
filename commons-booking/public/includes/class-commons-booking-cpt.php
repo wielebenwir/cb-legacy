@@ -1,7 +1,7 @@
 <?php
 /**
  * Define the custom post types:
- * items, locations, timeframes, bookings. 
+ * items, locations
  *
  *
  * @package   Commons_Booking
@@ -41,7 +41,7 @@ class Item_CPT extends CPT_Core {
      */
     public function columns( $columns ) {
         $new_column = array(
-            'headshot' => sprintf( __( '%s Headshot', 'your-text-domain' ), $this->post_type( 'singular' ) ),
+            'image' => sprintf( __( '%s image', 'your-text-domain' ), $this->post_type( 'singular' ) ),
         );
         return array_merge( $new_column, $columns );
     }
@@ -53,7 +53,7 @@ class Item_CPT extends CPT_Core {
      */
     public function columns_display( $column, $post_id ) {
         switch ( $column ) {
-            case 'headshot':
+            case 'image':
                 the_post_thumbnail();
                 break;
         }
@@ -84,53 +84,6 @@ class Locations_CPT extends CPT_Core {
     }
 
 }
-
-/**
- * 3. Timeframes
- */
-
-class Timeframes_CPT extends CPT_Core {
-
-    /**
-     * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
-     */
-    public function __construct() {
-
-        // Register this cpt
-        // First parameter should be an array with Singular, Plural, and Registered name
-        parent::__construct(
-            array( __( 'Timeframe', 'your-text-domain' ), __( 'timeframes', 'your-text-domain' ), 'cb_timeframes' ),
-            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
-
-        );
-
-    }
-
-}
-
-/**
- * 4. Bookings
- */
-
-class Bookings_CPT extends CPT_Core {
-
-    /**
-     * Register Custom Post Types. See documentation in CPT_Core, and in wp-includes/post.php
-     */
-    public function __construct() {
-
-        // Register this cpt
-        // First parameter should be an array with Singular, Plural, and Registered name
-        parent::__construct(
-            array( __( 'Booking', 'your-text-domain' ), __( 'bookings', 'your-text-domain' ), 'cb_bookings' ),
-            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
-
-        );
-
-    }
-
-}
-
 
 
 ?>
