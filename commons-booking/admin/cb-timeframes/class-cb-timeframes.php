@@ -338,20 +338,19 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         // define custom query filters 
         $filterQuery = array();
         $filter = '';
-        $filters = array ( 
+        $filterDefinition = array ( 
             array ('name' => 'Items', 'filter' =>'item-filter', 'id' => 'item_id'),
             array ('name' => 'Locations', 'filter' =>'location-filter', 'id' => 'location_id')
             );
 
         // check if defined, remove if not 
-        foreach ($filters as $key => $subArray) {
+        foreach ($filterDefinition as $key => $subArray) {
             if (!isset($_REQUEST[($subArray['filter'])])) { 
-             unset($filters[$key]);
+             unset($filterDefinition[$key]);
             } else {
             array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]);
             }
         }
-
         // set query 
         if (count($filterQuery) > 0) { 
             $filter = 'WHERE ' . implode (' AND ', $filterQuery);
@@ -368,31 +367,6 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             'per_page' => $per_page, // per page constant defined at top of method
             'total_pages' => ceil($total_items / $per_page) // calculate pages count
         ));
-    }
-
-    /**
-     * Get all 
-     *
-     * It will get rows from database and prepare them to be showed in table
-     */
-    function add_filterbox( $filterby ) {
-
-          // get paramas to filter the list @TODO: Security Check / there should be a more elegant way  / show filtered in dropdown    
-        $filterparams =  array();
-        if( isset($filterItems)) { 
-          array_push($filterparams, 'item_id =' .$filterItems); 
-        }        
-        if( isset($filterLocations)) { 
-          array_push($filterparams, 'location_id=' . $filterLocations); 
-        }  
-        if ( $filterparams ) {
-          $filter = 'WHERE ' . implode (' AND ', $filterparams);
-        } else {
-          $filter = ''; 
-        }
-        return $filter;
-
-
     }
 
     function extra_tablenav( $which ) {
@@ -465,7 +439,7 @@ function cb_timeframes_table_page_handler()
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new', 'cb_timeframes_table')?></a>
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
     <?php echo $message; ?>
 
