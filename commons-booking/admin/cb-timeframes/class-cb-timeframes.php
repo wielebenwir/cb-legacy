@@ -345,10 +345,10 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
         // check if defined, remove if not 
         foreach ($filterDefinition as $key => $subArray) {
-            if (!isset($_REQUEST[($subArray['filter'])])) { 
-             unset($filterDefinition[$key]);
-            } else {
+            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
             array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]);
+            } else {
+               unset($filterDefinition[$key]);
             }
         }
         // set query 
@@ -439,7 +439,7 @@ function cb_timeframes_table_page_handler()
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a> <php echo $filter; ?>
     </h2>
     <?php echo $message; ?>
 
