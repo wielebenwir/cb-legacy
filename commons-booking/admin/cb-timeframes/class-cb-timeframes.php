@@ -346,8 +346,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         // check if defined, remove if not 
         foreach ($filterDefinition as $key => $subArray) {
             if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
-            array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]);
-            } else {
+            array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
+            } else { // remove from filter array
                unset($filterDefinition[$key]);
             }
         }
