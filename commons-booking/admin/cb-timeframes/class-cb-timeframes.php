@@ -337,7 +337,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         
         // define custom query filters 
         $filterQuery = array();
-        $filter = '';
+        $sqlfilter = '';
         $filterDefinition = array ( 
             array ('name' => 'Items', 'filter' =>'item-filter', 'id' => 'item_id'),
             array ('name' => 'Locations', 'filter' =>'location-filter', 'id' => 'location_id')
@@ -353,13 +353,13 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         }
         // set query 
         if (count($filterQuery) > 0) { 
-            $filter = 'WHERE ' . implode (' AND ', $filterQuery);
+            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);           
         }
-        echo $filter;
+        echo $sqlfilter;
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
-        $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $filter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
+        $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
@@ -439,7 +439,7 @@ function cb_timeframes_table_page_handler()
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a> <php echo $filter; ?>
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a><php echo $filter; ?>
     </h2>
     <?php echo $message; ?>
 
