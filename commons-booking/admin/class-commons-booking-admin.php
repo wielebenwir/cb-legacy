@@ -51,20 +51,7 @@ class Commons_Booking_Admin {
 	private function __construct() {
 
 		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-		  return;
-		  } */
-
-		/*
 		 * Call $plugin_slug from public plugin class.
-		 *
-		 * @TODO:
-		 *
-		 * - Rename "Commons_Booking" to the name of your initial plugin class
 		 *
 		 */
 		$plugin = Commons_Booking::get_instance();
@@ -107,6 +94,7 @@ class Commons_Booking_Admin {
 
 		// the admin table for timeframes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/class-cb-timeframes.php' );
+		// require_once( plugin_dir_path( __FILE__ ) . 'class-admin-table-filters.php' );
 
 
 		/*
@@ -253,7 +241,7 @@ class Commons_Booking_Admin {
 		 * Settings page in the menu
 		 * 
 		 */
-		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Commons Booking Settings', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
+		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
 	}
 
 	/**

@@ -57,7 +57,7 @@ class Commons_Booking {
      *
      * @var      string
      */
-    protected static $Commons_Booking = 'Plugin Name';
+    protected static $Commons_Booking = 'Commons Booking';
 
     /**
      * Instance of this class.
@@ -75,7 +75,7 @@ class Commons_Booking {
      *
      * @var      object
      */
-    protected $cpts = array( 'items', 'locations' );
+    protected $cpts = array( 'cb_items', 'cb_locations' );
 
     /**
      * Array of capabilities by roles
@@ -121,12 +121,12 @@ class Commons_Booking {
         // Add Main Menu Item
         add_action( 'admin_menu', 'register_cb_menu' );
         function register_cb_menu() {
-            add_menu_page( __( 'Welcome to Commons Booking' ), __( 'C-Booking' ), 'manage_options', 'cb_menu', 'todoMessage',  plugins_url( 'myplugin/images/icon.png' ), 6 );
+            add_menu_page( __( 'Welcome to Commons Booking' ), __( 'CBooking' ), 'manage_options', 'cb_menu', todoMessage(),  plugins_url( 'myplugin/images/icon.png' ), 6 );
         }
         function todoMessage() { echo (" Nothing here yet"); }
 
 
-        // Create all needed custom post types defined in class-commons-booking-cpt.php 
+        // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
         new Item_CPT();
         new Locations_CPT();
 

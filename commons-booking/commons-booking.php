@@ -1,10 +1,8 @@
 <?php
 
 /**
- * The WordPress Plugin Boilerplate.
+ * Commons Booking
  *
- * A foundation off of which to build well-documented WordPress plugins that
- * also follow WordPress Coding Standards and PHP best practices.
  *
  * @package   Commons Booking
  * @author    Florian Egermann <florian@macht-medien.de>
@@ -16,7 +14,7 @@
  * Plugin Name:       Commons Booking
  * Plugin URI:        @TODO
  * Description:       @TODO
- * Version:           1.0.0
+ * Version:           0.0.1
  * Author:            Florian Egermann
  * Author URI:        @TODO
  * Text Domain:       commons-booking
