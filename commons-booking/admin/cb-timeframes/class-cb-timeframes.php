@@ -24,7 +24,7 @@
  * and used on plugin update to sync database tables
  */
 global $cb_timeframes_table_db_version;
-$cb_timeframes_table_db_version = '1.1'; // version changed from 1.0 to 1.1
+$cb_timeframes_table_db_version = '0.1'; // version changed from 1.0 to 0.1
 
 /**
  * register_activation_hook implementation
@@ -64,14 +64,14 @@ function cb_timeframes_table_install()
     add_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
 
     /**
-     * [OPTIONAL] Example of updating to 1.1 version
+     * [OPTIONAL] Example of updating to 0.1 version
      *
      * If you develop new version of plugin
      * just increment $cb_timeframes_table_db_version variable
      * and add following block of code
      *
      * must be repeated for each new version
-     * in version 1.1 we change email field
+     * in version 0.1 we change email field
      * to contain 200 chars rather 100 in version 1.0
      * and again we are not executing sql
      * we are using dbDelta to migrate table changes
