@@ -326,12 +326,11 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         );
      return $filterDefinition;
     }
+
     /**
-     * Set up the sql filter 
-     * @return string
+     * Get the selected IDs 
+     * @return array
      */
-
-
     public function get_selected_IDs() 
     {
         $fd = $this->filterDefinition();
@@ -344,7 +343,10 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         }
         return $selectedIDs;
     }
-
+    /**
+     * Get the Filters  
+     * @return array
+     */
     public function get_selected_Filters() 
     {
         $fd = $this->filterDefinition();
@@ -356,46 +358,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
                 array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
             } 
         }   
-        if (count($filterQuery) > 0) { 
-            // set query 
-            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);
-            return $sqlfilter;
-        }
-
+        return $filterQuery;
     }
-
-    public function prepare_filters() 
-    {
-        $fd = $this->filterDefinition();
-        $selected = "";
-        $selectedIDs = array();  
-        $filterQuery = array();
-        // $selectedIDs = array();
-        $sqlfilter = '';
-        // check if defined, remove if not 
-        foreach ($fd as $key => $subArray) {
-            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
-                array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
-                array_push ($selectedIDs, $_REQUEST[($subArray['filter'])]); 
-            } else { // remove from filter array
-                // unset($filterDefinition[$key]);
-            }
-        }
-        var_dump($filterQuery);
-        $this->selected = $selectedIDs;
-        if (count($filterQuery) > 0) { 
-            // set query 
-            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);
-            return $sqlfilter;
-        }
-    }
-    /**
-     * Set up variables for dropdown 
-     * @return string
-     */
-
-
-
 
     /**
      * [REQUIRED] This is the most important method
@@ -427,8 +391,15 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
-        $sqlfilter = $this->get_selected_Filters(); 
+        // get filters
+        $filters = $this->get_selected_Filters(); 
+        $sqlfilter = "";
 
+        // construct Query 
+        if (count($filters) > 0) { 
+            // set query 
+            $sqlfilter = 'WHERE ' . implode (' AND ', $filters);
+        }
 
 
         // [REQUIRED] define $items array
@@ -461,7 +432,8 @@ class cb_timeframes_table_List_Table extends WP_List_Table
     public function filterDropDown( $fd, $selectedIDs) {
 
         $selected = $this->get_selected_IDs();
-        $filters = $this->get_selected_IDs(); // @TODO get array of filters -> make get_Filters return the array, move the sql implode to function call
+
+        $filters = $this->filterDefinition(); // @TODO get array of filters -> make get_Filters return the array, move the sql implode to function call
             var_dump($selected);
 
       $args = array( 'posts_per_page' => -1, 'post_type' => $fd['posttype'] );
