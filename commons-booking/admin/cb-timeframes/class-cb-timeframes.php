@@ -404,6 +404,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
     *
     * @param $filterDefinition, $selectedIDs
     * @return html dropdown
+    * @TODO: Add nothing selected
     */
     public function filterDropDown( $fd, $selectedIDs) {
 
@@ -417,11 +418,13 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
         echo '<select name="filterby-' . $fd['name'].'" size="1" class="filterby-'. $fd['name'].'">';
         while ( $the_query->have_posts() ) {
+
+
           $the_query->the_post();
           $id = get_the_ID(); 
           if ( in_array($id, $selectedIDs )) { 
             $s = ' selected '; } else { $s = ''; }
-          echo '<option value=' . $goto . $id . '"' . $s .' >' . get_the_title() . '</option>';
+          echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
         }
         echo '</select>';
       } else {
@@ -744,6 +747,7 @@ function cb_timeframes_table_languages()
 *
 * @param @TODO
 * @return html dropdown
+* @TODO 
 */
 function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
 
@@ -753,6 +757,8 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   if ( $the_query->have_posts() ) {
 
     echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
+    if (!$selected) { $new = "selected disabled"; } else { $new = ""; } // if new entry, set pre-selected 
+    echo '<option '. $new  . '>'. __(" – Please select – ") . '</option>';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 
