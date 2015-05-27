@@ -745,20 +745,19 @@ function cb_timeframes_table_languages()
 * @param @TODO
 * @return html dropdown
 */
-function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $goto="" ) {
+function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
 
   $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
   $the_query = new WP_Query( $args );
 
   if ( $the_query->have_posts() ) {
-    // echo ("selected:" . $selected);
 
-    echo '<select name="' . $fieldname .'" size="1" class="filterby-'. $fieldname .'">';
+    echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 
       if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
-      echo '<option value=' . $goto . $id . '"' . $s .' >' . get_the_title() . '</option>';
+      echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
     }
     echo '</select>';
   } else {
