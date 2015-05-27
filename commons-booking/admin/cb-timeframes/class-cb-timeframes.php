@@ -310,7 +310,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
      * Define the filters 
      * @return array
      */
-    public function set_filters() 
+    public function filterDefinition() 
     {
      $filterDefinition = array ( 
         array ( 'name' => 'Items', 
@@ -326,10 +326,47 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         );
      return $filterDefinition;
     }
+    /**
+     * Set up the sql filter 
+     * @return string
+     */
+
+
+    public function get_selected_IDs() 
+    {
+        $fd = $this->filterDefinition();
+        $selectedIDs = array();
+        // check if defined, remove if not 
+        foreach ($fd as $key => $subArray) {
+            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
+                array_push ($selectedIDs, $_REQUEST[($subArray['filter'])]); 
+            } 
+        }
+        return $selectedIDs;
+    }
+
+    public function get_selected_Filters() 
+    {
+        $fd = $this->filterDefinition();
+        $sqlfilter = '';
+        $filterQuery = array();
+        // check if defined, remove if not 
+        foreach ($fd as $key => $subArray) {
+            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
+                array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
+            } 
+        }   
+        if (count($filterQuery) > 0) { 
+            // set query 
+            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);
+            return $sqlfilter;
+        }
+
+    }
 
     public function prepare_filters() 
     {
-        $fd = $this->set_filters();
+        $fd = $this->filterDefinition();
         $selected = "";
         $selectedIDs = array();  
         $filterQuery = array();
@@ -344,6 +381,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
                 // unset($filterDefinition[$key]);
             }
         }
+        var_dump($filterQuery);
         $this->selected = $selectedIDs;
         if (count($filterQuery) > 0) { 
             // set query 
@@ -351,6 +389,12 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             return $sqlfilter;
         }
     }
+    /**
+     * Set up variables for dropdown 
+     * @return string
+     */
+
+
 
 
     /**
@@ -383,7 +427,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
-        $sqlfilter = $this->prepare_filters(); 
+        $sqlfilter = $this->get_selected_Filters(); 
 
 
 
@@ -416,13 +460,15 @@ class cb_timeframes_table_List_Table extends WP_List_Table
     */
     public function filterDropDown( $fd, $selectedIDs) {
 
-    var_dump($fd);
+        $selected = $this->get_selected_IDs();
+        $filters = $this->get_selected_IDs(); // @TODO get array of filters -> make get_Filters return the array, move the sql implode to function call
+            var_dump($selected);
 
       $args = array( 'posts_per_page' => -1, 'post_type' => $fd['posttype'] );
       $the_query = new WP_Query( $args );
 
+
       if ( $the_query->have_posts() ) {
-        echo ("selected:" . $selectedIDs);
 
         echo '<select name="filterby-' . $fd['name'].'" size="1" class="filterby-'. $fd['name'].'">';
         while ( $the_query->have_posts() ) {
@@ -456,8 +502,10 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         // echo( "<h2>--- ".$this->$testing."</h2>" );
 
         if ( $which == "top" ){
-            $this->filterDropDown( $this->filterDefinition, $this->selectedIDs );
-            echo ("<h2>test</h2>");
+            $filters = $this->filterDefinition();
+            $this->filterDropDown( $filters[0], $this->selectedIDs );
+            echo ("selected");
+            var_dump($this->selectedIDs );
         // $this->filterDropDown ($this->$filterDefinition[0], $this->$selectedIDs);
         }     
         if ( $which == "bottom" ){
