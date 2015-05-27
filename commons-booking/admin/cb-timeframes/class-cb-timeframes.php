@@ -423,7 +423,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
 
     /**
-    * Renders a dropdown menu for items and locations 
+    * Renders a dropdown filter menu
     *
     * @param Post Type
     * @return html dropdown
