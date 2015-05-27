@@ -17,6 +17,8 @@
  * @TODO move table creation to install
  */
 
+
+
 /**
  * $cb_timeframes_table_db_version - holds current database version
  * and used on plugin update to sync database tables
@@ -305,12 +307,38 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         }
     }
 
+    public function prepare_filters( $fd ) 
+    {
+        // define custom query filters 
+        $selected = "";
+        $selectedIDs = array();  
+        $filterQuery = array();
+        // $selectedIDs = array();
+        $sqlfilter = '';
+        // check if defined, remove if not 
+        foreach ($fd as $key => $subArray) {
+            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
+                array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
+                array_push ($selectedIDs, $_REQUEST[($subArray['filter'])]); 
+            } else { // remove from filter array
+                // unset($filterDefinition[$key]);
+            }
+        }
+        $this->selected = $selectedIDs;
+        if (count($filterQuery) > 0) { 
+            // set query 
+            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);
+            return $sqlfilter;
+        }
+    }
+
+
     /**
      * [REQUIRED] This is the most important method
      *
      * It will get rows from database and prepare them to be showed in table
      */
-    function prepare_items()
+    public function prepare_items()
     {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
@@ -334,32 +362,31 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
-        
-        // define custom query filters 
-        $filterQuery = array();
-        $sqlfilter = '';
-        $filterDefinition = array ( 
-            array ('name' => 'Items', 'filter' =>'item-filter', 'id' => 'item_id'),
-            array ('name' => 'Locations', 'filter' =>'location-filter', 'id' => 'location_id')
+ 
+         $filterDefinition = array ( 
+            array ( 'name' => 'Items', 
+                    'filter' =>'item-filter', 
+                    'id' => 'item_id',
+                    'posttype' => 'cb_items'
+                    ),
+            array ( 'name' => 'Locations', 
+                    'filter' =>'location-filter', 
+                    'id' => 'location_id',
+                    'posttype' => 'cb_locations'
+                    )
             );
+        $sqlfilter = $this->prepare_filters($filterDefinition); 
 
-        // check if defined, remove if not 
-        foreach ($filterDefinition as $key => $subArray) {
-            if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
-            array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
-            } else { // remove from filter array
-               unset($filterDefinition[$key]);
-            }
-        }
-        // set query 
-        if (count($filterQuery) > 0) { 
-            $sqlfilter = 'WHERE ' . implode (' AND ', $filterQuery);           
-        }
-        echo $sqlfilter;
+
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
+
+
+        echo "selected:<h2>";
+        var_dump($this->selected);
+        echo ("</h2>");
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
@@ -367,27 +394,74 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             'per_page' => $per_page, // per page constant defined at top of method
             'total_pages' => ceil($total_items / $per_page) // calculate pages count
         ));
+
+
+    } //  prepare_items()
+
+
+    /**
+    * Renders a dropdown menu for items and locations 
+    *
+    * @param $filterDefinition, $selectedIDs
+    * @return html dropdown
+    */
+    public function filterDropDown( $fd, $selectedIDs) {
+
+    var_dump($fd);
+
+      $args = array( 'posts_per_page' => -1, 'post_type' => $fd['posttype'] );
+      $the_query = new WP_Query( $args );
+
+      if ( $the_query->have_posts() ) {
+        echo ("selected:" . $selectedIDs);
+
+        echo '<select name="filterby-' . $fd['name'].'" size="1" class="filterby-'. $fd['name'].'">';
+        while ( $the_query->have_posts() ) {
+          $the_query->the_post();
+          $id = get_the_ID(); 
+          if ( in_array($id, $selectedIDs )) { 
+            $s = ' selected '; } else { $s = ''; }
+          echo '<option value=' . $goto . $id . '"' . $s .' >' . get_the_title() . '</option>';
+        }
+        echo '</select>';
+      } else {
+       echo __( 'Something went wrong', $plugin_slug);
+      }
+      /* Restore original Post Data */
+      wp_reset_postdata();
     }
 
-    function extra_tablenav( $which ) {
-      global $wpdb, $item;
-      $move_on_url = '&sitem-filter=';
-      if ( $which == "top" ){
-          ?>
-          <div class="alignleft actions bulkactions">
-          <form>
-        <?php cb_timeframes_table_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']), 'admin.php?page=timeframes&sitem-filter=' ); ?>
-          <input type="submit" id="dofilter" name="action" class="button action" value="<?php echo __("Sumbit"); ?>">
-        </form>
- 
-          </div>
-          <?php
-      }
-      if ( $which == "bottom" ){
-          //The code that goes after the table is there
 
-      }
-  }
+    /**
+    * Overwrite Table Navigation 
+    *
+    * @param $tableNav
+    * @return html dropdown
+    */    
+
+    function extra_tablenav( $which ) {
+
+        global $wpdb;
+        // echo( "<h2>--- ".$this->$testing."</h2>" );
+
+        if ( $which == "top" ){
+            $this->filterDropDown( $this->filterDefinition, $this->selectedIDs );
+            echo ("<h2>test</h2>");
+        // $this->filterDropDown ($this->$filterDefinition[0], $this->$selectedIDs);
+        }     
+        if ( $which == "bottom" ){
+            //The code that goes after the table is there
+         } 
+    }
+    
+    function add_tablenav( $var ) {
+        // return $this->$myvar;
+        echo ($var);
+
+    }
+
+
+
 
 }
 
@@ -406,9 +480,9 @@ class cb_timeframes_table_List_Table extends WP_List_Table
  */
 function cb_timeframes_table_admin_menu()
 {
-    add_submenu_page('cb_menu', __('Timeframes', 'cb_timeframes_table'), __('Timeframes', 'cb_timeframes_table'), 'activate_plugins', 'Timeframes', 'cb_timeframes_table_page_handler');
+    add_submenu_page('cb_menu', __('Timeframes', 'cb_timeframes_table'), __('Timeframes', 'cb_timeframes_table'), 'activate_plugins', 'timeframes', 'cb_timeframes_table_page_handler');
     // add new will be described in next part
-    //add_submenu_page('timeframes', __('Add new', 'cb_timeframes_table'), __('Add new', 'cb_timeframes_table'), 'activate_plugins', 'timeframes_form', 'cb_timeframes_table_form_page_handler');
+    add_submenu_page('timeframes', __('Add new', 'cb_timeframes_table'), __('Add new', 'cb_timeframes_table'), 'activate_plugins', 'timeframes_form', 'cb_timeframes_table_form_page_handler');
 }
 
 add_action('admin_menu', 'cb_timeframes_table_admin_menu');
@@ -668,7 +742,7 @@ function cb_timeframes_table_languages()
 /**
 * Renders a dropdown menu for items and locations 
 *
-* @param $posttype, $fieldname, $selected, $goto
+* @param @TODO
 * @return html dropdown
 */
 function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $goto="" ) {
@@ -677,7 +751,9 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected, $g
   $the_query = new WP_Query( $args );
 
   if ( $the_query->have_posts() ) {
-    echo '<select name="' . $fieldname .'" size="1" class="target">';
+    // echo ("selected:" . $selected);
+
+    echo '<select name="' . $fieldname .'" size="1" class="filterby-'. $fieldname .'">';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 
