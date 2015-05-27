@@ -306,10 +306,30 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             }
         }
     }
-
-    public function prepare_filters( $fd ) 
+    /**
+     * Define the filters 
+     * @return array
+     */
+    public function set_filters() 
     {
-        // define custom query filters 
+     $filterDefinition = array ( 
+        array ( 'name' => 'Items', 
+                'filter' =>'item-filter', 
+                'id' => 'item_id',
+                'posttype' => 'cb_items'
+                ),
+        array ( 'name' => 'Locations', 
+                'filter' =>'location-filter', 
+                'id' => 'location_id',
+                'posttype' => 'cb_locations'
+                )
+        );
+     return $filterDefinition;
+    }
+
+    public function prepare_filters() 
+    {
+        $fd = $this->set_filters();
         $selected = "";
         $selectedIDs = array();  
         $filterQuery = array();
@@ -363,19 +383,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
-         $filterDefinition = array ( 
-            array ( 'name' => 'Items', 
-                    'filter' =>'item-filter', 
-                    'id' => 'item_id',
-                    'posttype' => 'cb_items'
-                    ),
-            array ( 'name' => 'Locations', 
-                    'filter' =>'location-filter', 
-                    'id' => 'location_id',
-                    'posttype' => 'cb_locations'
-                    )
-            );
-        $sqlfilter = $this->prepare_filters($filterDefinition); 
+        $sqlfilter = $this->prepare_filters(); 
 
 
 
@@ -743,11 +751,10 @@ function cb_timeframes_table_languages()
 } 
 
 /**
-* Renders a dropdown menu for items and locations 
+* Renders a dropdown menu for items and locations
 *
 * @param @TODO
 * @return html dropdown
-* @TODO 
 */
 function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
 
