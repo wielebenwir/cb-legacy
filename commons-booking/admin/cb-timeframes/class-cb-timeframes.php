@@ -406,11 +406,6 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
 
-
-        echo "selected:<h2>";
-        var_dump($this->selected);
-        echo ("</h2>");
-
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
             'total_items' => $total_items, // total items defined above
@@ -459,6 +454,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
       }
       /* Restore original Post Data */
       wp_reset_postdata();
+
     }
 
 
