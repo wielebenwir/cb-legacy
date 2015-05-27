@@ -425,32 +425,33 @@ class cb_timeframes_table_List_Table extends WP_List_Table
     /**
     * Renders a dropdown menu for items and locations 
     *
-    * @param $filterDefinition, $selectedIDs
+    * @param Post Type
     * @return html dropdown
-    * @TODO: Add nothing selected
     */
-    public function filterDropDown( $fd, $selectedIDs) {
+    public function filterDropDown( $posttype ) {
 
         $selected = $this->get_selected_IDs();
+        $filters = $this->filterDefinition(); 
 
-        $filters = $this->filterDefinition(); // @TODO get array of filters -> make get_Filters return the array, move the sql implode to function call
-            var_dump($selected);
+        $key = array_search( $posttype, array_column( $filters, 'filter' ));
 
-      $args = array( 'posts_per_page' => -1, 'post_type' => $fd['posttype'] );
-      $the_query = new WP_Query( $args );
+        $type = $filters[ $key ][ 'posttype' ];
+        $name = $filters[ $key ][ 'name' ];
 
+        $args = array( 'posts_per_page' => -1, 'post_type' => $type );
+        $the_query = new WP_Query( $args );
+        if ( $the_query->have_posts() ) {
 
-      if ( $the_query->have_posts() ) {
+            echo '<select name="filterby-' . $name .'" size="1" class="filterby-'. $name .'">';
+            echo '<option value="">-- ' . $name . ' --</option>';
+         
+            while ( $the_query->have_posts() ) {
 
-        echo '<select name="filterby-' . $fd['name'].'" size="1" class="filterby-'. $fd['name'].'">';
-        while ( $the_query->have_posts() ) {
+            $the_query->the_post();
+            $id = get_the_ID(); 
 
-
-          $the_query->the_post();
-          $id = get_the_ID(); 
-          if ( in_array($id, $selectedIDs )) { 
-            $s = ' selected '; } else { $s = ''; }
-          echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
+            if ( in_array( $id, $selected )) {  $s = ' selected '; } else { $s = ''; }
+            echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
         }
         echo '</select>';
       } else {
@@ -475,10 +476,9 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
-            $this->filterDropDown( $filters[0], $this->selectedIDs );
-            echo ("selected");
-            var_dump($this->selectedIDs );
-        // $this->filterDropDown ($this->$filterDefinition[0], $this->$selectedIDs);
+            echo __( 'Filter by: ');  
+            $this->filterDropDown( 'location-filter' ); 
+            $this->filterDropDown( 'item-filter' );
         }     
         if ( $which == "bottom" ){
             //The code that goes after the table is there
