@@ -182,6 +182,8 @@ class Commons_Booking_Admin {
 	 */
 	public function enqueue_admin_table_scripts() {
 
+
+		// @TODO: add this only at table screens
 		$screen = get_current_screen();
 
 		wp_enqueue_script( $this->plugin_slug . 'admin-table-script', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );

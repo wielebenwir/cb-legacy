@@ -19,8 +19,8 @@
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1"><?php _e( 'Settings' ); ?></a></li>
-			<li><a href="#tabs-2"><?php _e( 'Settings 2', $this->plugin_slug ); ?></a></li>
+			<li><a href="#tabs-1"><?php _e( 'Main Settings' ); ?></a></li>
+			<li><a href="#tabs-2"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
 			<li><a href="#tabs-3"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
 		</ul>
 		<div id="tabs-1">
@@ -56,27 +56,20 @@
 			<?php
 
 			$option_fields_second = array(
-				'id' => $this->plugin_slug . '_options-second',
+				'id' => $this->plugin_slug . '_options-codes',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
 				'fields' => array(
 					array(
-						'name' => __( 'Text2', $this->plugin_slug ),
-						'desc' => __( 'field description (optional)', $this->plugin_slug ),
-						'id' => $this->plugin_slug . '_text-second',
-						'type' => 'text',
-					),
-					array(
-						'name' => __( 'Color Picker2', $this->plugin_slug ),
-						'desc' => __( 'field description (optional)', $this->plugin_slug ),
-						'id' => $this->plugin_slug . '_colorpicker-second',
-						'type' => 'colorpicker',
-						'default' => '#ffffff'
+						'name' => __( 'Codes', $this->plugin_slug ),
+						'desc' => __( 'Enter comma-seperated Codes here', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_codes_pool',
+						'type' => 'textarea',
 					),
 				),
 			);
 
-			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-second' );
+			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
 			?>
 
 			<!-- @TODO: Provide other markup for your options page here. -->
