@@ -432,7 +432,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
         $type = $filters[ $key ][ 'posttype' ];
         $name = $filters[ $key ][ 'name' ];
-
+        $filter = $filters[ $key ][ 'filter' ];
         $args = array( 'posts_per_page' => -1, 'post_type' => $type );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) {
@@ -446,7 +446,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
             $id = get_the_ID(); 
 
             if ( in_array( $id, $selected )) {  $s = ' selected '; } else { $s = ''; }
-            echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
+            echo '<option value="&' . $filter . "=". $id . '"' . $s .' >' . get_the_title() . '</option>';
         }
         echo '</select>';
       } else {
@@ -472,9 +472,11 @@ class cb_timeframes_table_List_Table extends WP_List_Table
 
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
+            echo (' <div class="tablefilters">' );
             echo __( 'Filter by: ');  
             $this->filterDropDown( 'location-filter' ); 
             $this->filterDropDown( 'item-filter' );
+            echo ( '</div>' );
         }     
         if ( $which == "bottom" ){
             //The code that goes after the table is there
