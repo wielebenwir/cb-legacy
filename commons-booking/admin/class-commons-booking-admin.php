@@ -14,11 +14,6 @@
  * Plugin class. This class should ideally be used to work with the
  * administrative side of the WordPress site.
  *
- * If you're interested in introducing public-facing
- * functionality, then refer to `class-commons-booking.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
  * @package Commons_Booking_Admin
  * @author  Your Name <email@example.com>
  */
@@ -65,6 +60,10 @@ class Commons_Booking_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		// Load admin style in dashboard for the At glance widget
 		add_action( 'admin_head-index.php', array( $this, 'enqueue_admin_styles' ) );
+
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_table_scripts' ) );
+
 
 		// At Glance Dashboard widget for your cpts
 		add_filter( 'dashboard_glance_items', array( $this, 'cpt_dashboard_support' ), 10, 1 );
@@ -167,21 +166,27 @@ class Commons_Booking_Admin {
 	 */
 	public static function get_instance() {
 
-		/*
-		 * @TODO :
-		 *
-		 * - Uncomment following lines if the admin class should only be available for super admins
-		 */
-		/* if( ! is_super_admin() ) {
-		  return;
-		  } */
-
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Register and enqueue admin-table-specific JavaScript.
+	 *
+	 * @since     0.0.1
+	 *
+	 */
+	public function enqueue_admin_table_scripts() {
+
+		$screen = get_current_screen();
+
+		wp_enqueue_script( $this->plugin_slug . 'admin-table-script', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );
+
+
 	}
 
 	/**
