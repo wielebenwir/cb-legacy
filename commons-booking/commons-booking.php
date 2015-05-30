@@ -48,6 +48,9 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.p
 // Class for Timeframes functionality
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/class-cb-timeframes.php' );
 
+// Class for Codes
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/class-cb-codes-csv.php' );
+
 /*
  * Load template system
  */

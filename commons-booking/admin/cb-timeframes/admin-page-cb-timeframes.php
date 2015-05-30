@@ -631,8 +631,11 @@ function cb_timeframes_table_form_page_handler()
         }
     }
 
-    // here we adding our custom meta box
+
+    // here we adding our custom meta boxes
     add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
+    add_meta_box('timeframes_form_meta_box', __( 'Codes' ), 'cb_timeframes_table_form_meta_codes_handler', 'timeframes_form_meta_codes', 'normal', 'default');
+
 
     ?>
 <div class="wrap">
@@ -657,6 +660,7 @@ function cb_timeframes_table_form_page_handler()
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
+                    <?php do_meta_boxes('timeframes_form_meta_codes', 'normal', $item); ?>
                     <input type="submit" value="<?php _e('Save', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
@@ -665,6 +669,24 @@ function cb_timeframes_table_form_page_handler()
 </div>
 <?php
 }
+
+/**
+ * This function renders codes meta box 
+ * $item is row
+ *
+ * @param $item
+ */
+function cb_timeframes_table_form_meta_codes_handler($item)
+{
+
+    $date_start = $item['date_start'];
+    $date_end = $item['date_end'];
+    $codes = new Commons_Booking_Codes_CSV ( $item['item_id'], $date_start, $date_end);
+
+    $codes->compare();
+
+}
+
 
 /**
  * This function renders our custom meta box
