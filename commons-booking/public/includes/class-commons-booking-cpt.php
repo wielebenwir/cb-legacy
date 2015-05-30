@@ -27,7 +27,7 @@ class Item_CPT extends CPT_Core {
         // First parameter should be an array with Singular, Plural, and Registered name
         parent::__construct(
             array( __( 'Item', 'your-text-domain' ), __( 'Items', 'your-text-domain' ), 'cb_items' ),
-            array( 'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
+            array( 'supports' => array( 'title', 'editor', 'thumbnail' ), 'show_in_menu' => 'cb_menu')
 
         );
 
