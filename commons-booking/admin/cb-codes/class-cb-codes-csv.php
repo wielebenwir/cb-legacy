@@ -66,22 +66,24 @@ class Commons_Booking_Codes_CSV {
 
   public function compare() {
     $this->get_settings();
-    $timeframeDates = $this->get_dates();
-    $codeDates = $this->get_codetable_entries();
+    $this->$timeframeDates = $this->get_dates();
+    $this->$codeDates = $this->get_codetable_entries();
 
-    $timeframeDates = array_filter($timeframeDates); // remove empty 
-    $result=array_diff($codeDates,$timeframeDates);
-    var_dump($timeframeDates);
+    $this->timeframeDates = array_filter($this->timeframeDates); // remove empty 
+    $result=array_diff($this->timeframeDates, $this->codeDates);
 
-    if ( empty( $timeframeDates ) ) {
+    if ( empty( $this->timeframeDates ) ) {
      echo __( 'You need to add a timeframe and save before generating Codes' );
     } elseif ( $result ) {
-     echo __( 'Codes missing or incomplete, click to genereate' );   
+     echo __( 'Codes missing or incomplete, click to generate' ); 
 
     }
 
   }
 
+  public function render() {
+
+  }
 
 
 }
