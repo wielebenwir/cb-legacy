@@ -9,6 +9,11 @@
  * @copyright 2015 wielebenwir
  */
 
+class Commons_Booking_Items_Metabox {
+
+  /**
+   * Hook into the appropriate actions when the class is constructed.
+   */
   public function __construct() {
 
     add_action('add_meta_boxes', array($this, 'cb_items_add_meta_box'));
