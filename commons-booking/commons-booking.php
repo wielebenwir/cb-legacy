@@ -45,6 +45,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/includes/class-commons-booki
 // Classes for the individual content types - not sure if it belongs here. @TODO
 require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
 
+// Class for Timeframes functionality
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/class-cb-timeframes.php' );
 
 /*
  * Load template system

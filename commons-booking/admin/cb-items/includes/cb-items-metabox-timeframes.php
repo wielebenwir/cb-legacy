@@ -28,7 +28,7 @@ class Commons_Booking_Items_Metabox {
     //limit meta box to certain post types
     if (in_array($post_type, $post_types)) {
       add_meta_box('cs-meta',
-      'Add Custom Message',
+      __('Timeframes'),
       array($this, 'cb_items_meta_box_function'),
       $post_type,
       'normal',
@@ -43,6 +43,10 @@ class Commons_Booking_Items_Metabox {
    */
 
   public function cb_items_meta_box_function($post) {
+
+    $timeframes = new Commons_Booking_Timeframes( $post->ID );
+    echo ( '<a class="add-new-h2" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=timeframes_form">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );
+    $timeframes->render_timeframes();
 
     // Add an nonce field so we can check for it later.
     wp_nonce_field('cs_nonce_check', 'cs_nonce_check_value');
