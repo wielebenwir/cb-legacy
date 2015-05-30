@@ -596,7 +596,7 @@ function cb_timeframes_table_form_page_handler()
         $item = shortcode_atts($default, $_REQUEST);
         // validate data, and if all ok save item to database
         // if id is zero insert otherwise update
-        $item_valid = cb_timeframes_table_validate_enty($item);
+        $item_valid = cb_timeframes_table_validate_entry($item);
         if ($item_valid === true) {
             if ($item['id'] == 0) {
                 $result = $wpdb->insert($table_name, $item);
@@ -734,7 +734,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
  * @param $item
  * @return bool|string
  */
-function cb_timeframes_table_validate_enty($item)
+function cb_timeframes_table_validate_entry($item)
 {
     $messages = array();
 
