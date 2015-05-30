@@ -81,7 +81,7 @@ class Commons_Booking_Timeframes {
         if ( isset($cols[$headerkey])) {  // check if col is in defined fields OR edit  
             $columns .= $this->table_fields ($headerkey, $cols[$headerkey]); // get table fields
         } elseif ($headerkey = "edit") {
-            $columns .= $this->table_fields ($headerkey, "");
+            $columns .= $this->table_fields ($headerkey, $cols['id']);
         }
       }
       $columns = '<tr>' .$columns . '</tr>';
@@ -94,18 +94,18 @@ class Commons_Booking_Timeframes {
    *   
    * @return  mixed html
    */
-  private function table_fields( $key, $value ) {
+  public function table_fields( $key, $value ) {
 
     if (array_key_exists($key, $this->colDefinition)) {
       switch ($key) {  // Handle different field display
         case 'item_id':
-        $field = ( 'ID:<strong>' . $this->table_fields_get_title($value) . '</strong>' );
+        $field = ( '<strong>' . $this->table_fields_get_link( $value ) . '</strong>' );
           break;      
         case 'location_id':
-        $field = ( '<strong>' . $this->table_fields_get_title($value) . '</strong>' );
+        $field = ( '<strong>' . $this->table_fields_get_link( $value ) . '</strong>' );
           break;
         case 'edit':
-          $field = "edit"; 
+          $field = $this->table_fields_edit_button( $value ); 
           break;         
         default:
           $field = $value;
@@ -114,19 +114,23 @@ class Commons_Booking_Timeframes {
     }
   }
 
-  private function table_fields_edit ( $itemID ) {
-
-    //return '<span class="edit"><a href="  ' . $itemID; 
+   /**
+   * Button to jump to timeframe table for editing
+   *   
+   * @return  html
+   */ 
+  private function table_fields_edit_button( $itemID ) {
+    return '<a href="?page=timeframes_form&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
+ 
   }
 
    /**
-   * Sorts the array, removes any leftovers
+   * Button to jump to post type for editing
    *   
-   * @return  array
+   * @return  html
    */ 
-  private function table_fields_get_title( $itemID ) {
-    
-    return '<a href="' . get_the_permalink($itemID) . '">' . get_the_title($itemID) . '</a>';
+  private function table_fields_get_link( $itemID ) {    
+    return '<a href="' . get_edit_post_link( $itemID ) . '">' . get_the_title( $itemID ) . '</a>';
     
   }
 
@@ -166,13 +170,6 @@ class Commons_Booking_Timeframes {
     $tableheader = $this->table_header();
     $tablecolumns = $this->table_columns();
     echo ('<table class="wp-list-table widefat fixed striped timeframe">' . $tableheader . $tablecolumns . '</table>');
-    // echo ('<table>');
-    // foreach ($rows as $key => $value) {
-    //   echo ('<tr>');
-    //   echo ('<td class="'. $key . '">'. $value['timeframe_title']. '</td><td>' . $value['timeframe_title']);
-    //   echo ('</tr>');
-    // }
-    // echo ('</table>');
   }
 
 }
