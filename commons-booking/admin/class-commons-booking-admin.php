@@ -89,12 +89,13 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
 
+		// add custom metabox for items
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metabox-timeframes.php' );
 
 
 		// the admin table for timeframes & codes
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/class-cb-timeframes.php' );
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-cb-codes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/admin-page-cb-timeframes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/admin-page-cb-codes.php' );
 		// require_once( plugin_dir_path( __FILE__ ) . 'class-admin-table-filters.php' );
 
 
