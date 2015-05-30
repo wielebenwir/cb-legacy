@@ -1,17 +1,14 @@
 <?php
 
 /*
-
+ * Registers a metabox for display of timeframe entries on the item edit screen
+ * @package   Commons_Booking_Admin
+ * @author    Florian Egermann <florian@macht-medien.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  */
 
-/**
- * The Class.
- */
-class Commons_Booking_Items_Metabox {
-
-  /**
-   * Hook into the appropriate actions when the class is constructed.
-   */
   public function __construct() {
 
     add_action('add_meta_boxes', array($this, 'cb_items_add_meta_box'));
