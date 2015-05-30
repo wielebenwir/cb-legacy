@@ -61,9 +61,8 @@ class Commons_Booking_Admin {
 		// Load admin style in dashboard for the At glance widget
 		add_action( 'admin_head-index.php', array( $this, 'enqueue_admin_styles' ) );
 
-
+		// load the js for table filtering
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_table_scripts' ) );
-
 
 		// At Glance Dashboard widget for your cpts
 		add_filter( 'dashboard_glance_items', array( $this, 'cpt_dashboard_support' ), 10, 1 );
@@ -90,6 +89,8 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
 
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metabox-timeframes.php' );
+
 
 		// the admin table for timeframes & codes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/class-cb-timeframes.php' );
@@ -98,9 +99,15 @@ class Commons_Booking_Admin {
 
 
 		/*
-		 * Add metabox
+		 * Add location metaboxes
 		 */
 		add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
+
+		/*
+		 * Add item metaboxes
+		 */
+		// add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
+		new Commons_Booking_Items_Metabox;
 
 		/*
 		 * Define custom functionality.
