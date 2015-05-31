@@ -70,19 +70,25 @@ class Commons_Booking_Codes_CSV {
     $this->$codeDates = $this->get_codetable_entries();
 
     $this->timeframeDates = array_filter($this->timeframeDates); // remove empty 
-    $result=array_diff($this->timeframeDates, $this->codeDates);
+    $diff=array_diff($this->timeframeDates, $this->codeDates);
 
     if ( empty( $this->timeframeDates ) ) {
      echo __( 'You need to add a timeframe and save before generating Codes' );
-    } elseif ( $result ) {
+    } elseif ( $diff ) {
      echo __( 'Codes missing or incomplete, click to generate' ); 
-
     }
-
   }
 
-  public function render() {
+  public function compare_arrays( $cd, $tfd ) { // @TODO: not yet working properly 
+    if (in_array( $cd, $this->timeframeDates)) {
+      echo ("drin");
+    } else {
+      echo ("NICHT drin");
+    }
+  }
 
+  public function render_dates() {
+    // foreach ($this->timeframeDates as $d) {
   }
 
 
