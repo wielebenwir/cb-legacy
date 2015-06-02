@@ -509,9 +509,14 @@ class cb_timeframes_table_List_Table extends WP_List_Table
  */
 function cb_timeframes_table_admin_menu()
 {
+
+    // @TODO: Replace 'cb_timeframes_table' with plugin slug
     add_submenu_page('cb_menu', __('Timeframes', 'cb_timeframes_table'), __('Timeframes', 'cb_timeframes_table'), 'activate_plugins', 'timeframes', 'cb_timeframes_table_page_handler');
-    // add new will be described in next part
+    
+    // Editing or adding entries
     add_submenu_page('timeframes', __('Add new', 'cb_timeframes_table'), __('Add new', 'cb_timeframes_table'), 'activate_plugins', 'timeframes_form', 'cb_timeframes_table_form_page_handler');
+    // Generate Codes
+    add_submenu_page('timeframes', __('Generate Codes', 'cb_timeframes_table'), __('Generate Codes', 'cb_timeframes_table'), 'activate_plugins', 'timeframes_codes', 'cb_timeframes_generate_codes_page_handler');
 }
 
 add_action('admin_menu', 'cb_timeframes_table_admin_menu');
@@ -820,6 +825,9 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   /* Restore original Post Data */
   wp_reset_postdata();
 }
+
+function cb_timeframes_generate_codes_page_handler() {}
+
 
 add_action('init', 'cb_timeframes_table_languages');
 ?>
