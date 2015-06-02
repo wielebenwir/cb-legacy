@@ -112,18 +112,5 @@ public function render_table( $dates ) {
 }
 
 
-  public function compare_arrays( $tfDates, $cDates ) { // @TODO: not yet working properly 
-    foreach ($tfDates as $tfdate) {      
-      echo ( $tfdate );
-      if (in_array( $tfdate, $cDates)) {
-        echo ("drin");
-      } else {
-        echo ("NICHT drin");
-      }
-      echo ("<br>");
-    }
-  }
-
-
 
 }
