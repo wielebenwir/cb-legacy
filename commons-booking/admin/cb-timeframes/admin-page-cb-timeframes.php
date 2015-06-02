@@ -684,6 +684,7 @@ function cb_timeframes_table_form_meta_codes_handler($item)
     $codes = new Commons_Booking_Codes_CSV ( $item['item_id'], $date_start, $date_end);
 
     $codes->compare();
+    $codes->render();
 
 }
 

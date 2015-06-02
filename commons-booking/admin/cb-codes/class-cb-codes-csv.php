@@ -54,42 +54,76 @@ class Commons_Booking_Codes_CSV {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_codes';
     $dateRangeStart = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
-    $codeDates = $wpdb->get_results($wpdb->prepare("SELECT date FROM $table_name WHERE item_id = %s AND date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
-    $return = array();
-    foreach ( $codeDates as  $codeDate ) { // flatten array
-      array_push ($return, $codeDate['date'] );
-    }
-    return $return;
-
+    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
+    return $codesDB;
   } 
 
 
   public function compare() {
     $this->get_settings();
-    $this->$timeframeDates = $this->get_dates();
-    $this->$codeDates = $this->get_codetable_entries();
+    $codesDB = $this->get_codetable_entries();
 
-    $this->timeframeDates = array_filter($this->timeframeDates); // remove empty 
-    $diff=array_diff($this->timeframeDates, $this->codeDates);
+    $tfDates = $this->get_dates();
+    $codeDates = array();
 
-    if ( empty( $this->timeframeDates ) ) {
-     echo __( 'You need to add a timeframe and save before generating Codes' );
-    } elseif ( $diff ) {
-     echo __( 'Codes missing or incomplete, click to generate' ); 
+    foreach ( $codesDB as $entry ) {
+      array_push ($codeDates, $entry['date']);
+    }
+    
+    $matched = array();
+    $missing = array();
+
+    for ( $i = 0; $i < count($tfDates); $i++ ) {
+
+      $index = array_search( $tfDates[ $i ], $codeDates );
+      $temp = array();
+      if ( ($index !== FALSE) ) {
+        $temp[ 'date'] = $tfDates[ $i ];
+        $temp[ 'code'] = $codesDB[ $index ]['bookingcode'];
+        array_push ($matched, $temp);
+      } else {
+        $temp[ 'date'] = $tfDates[ $i ];
+        array_push ($missing, $temp);
+      }
+    }
+    $this->matchedDates = $matched;
+    $this->missingDates = $missing;
+  }
+
+
+public function render() {
+
+  if ( $this->missingDates ) {
+    echo __( '<h2>No codes generated or Codes missing. Please generate Codes</h2>' );
+  }
+
+  $allDates = array_merge ($this->missingDates, $this->matchedDates);
+  $this->render_table( $allDates );
+}
+
+public function render_table( $dates ) {
+  echo ( '<table class="widefat striped">' );
+  foreach ($dates as $row) {
+    if ( !isset($row[ 'code' ])) { $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing! ') .'</span>'); }
+    echo ( '<tr><td>' . $row[ 'date' ] . '</td><td>' . $row[ 'code' ] . '</td>');
+    echo ( '</tr>' );
+  }
+  echo ( '</table>' );
+}
+
+
+  public function compare_arrays( $tfDates, $cDates ) { // @TODO: not yet working properly 
+    foreach ($tfDates as $tfdate) {      
+      echo ( $tfdate );
+      if (in_array( $tfdate, $cDates)) {
+        echo ("drin");
+      } else {
+        echo ("NICHT drin");
+      }
+      echo ("<br>");
     }
   }
 
-  public function compare_arrays( $cd, $tfd ) { // @TODO: not yet working properly 
-    if (in_array( $cd, $this->timeframeDates)) {
-      echo ("drin");
-    } else {
-      echo ("NICHT drin");
-    }
-  }
-
-  public function render_dates() {
-    // foreach ($this->timeframeDates as $d) {
-  }
 
 
 }
