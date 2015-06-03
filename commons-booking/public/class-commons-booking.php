@@ -118,12 +118,12 @@ class Commons_Booking {
 
        
 
-        // Add Main Menu Item
+        // Add Main Menu Item @TODO: This doesn´t work this way
         add_action( 'admin_menu', 'register_cb_menu' );
         function register_cb_menu() {
-            add_menu_page( __( 'Welcome to Commons Booking' ), __( 'CBooking' ), 'manage_options', 'cb_menu', todoMessage(),  plugins_url( 'myplugin/images/icon.png' ), 6 );
+         add_menu_page( __( 'Welcome to Commons Booking' ), __( 'CBooking' ), 'manage_options', 'cb_menu', todoMessage(),  plugins_url( 'myplugin/images/icon.png' ), 6 );
         }
-        function todoMessage() { echo (" Nothing here yet"); }
+        function todoMessage() {  }
 
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
