@@ -17,7 +17,7 @@ class Commons_Booking_Items_Metabox {
   public function __construct() {
 
     add_action('add_meta_boxes', array($this, 'cb_items_add_meta_box'));
-    add_action('save_post', array($this, 'save'));
+    // add_action('save_post', array($this, 'save')); @TODO is this to delete????
     add_action('the_content', array($this, 'custom_message'));
   }
 
