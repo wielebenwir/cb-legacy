@@ -641,9 +641,15 @@ function cb_timeframes_table_form_page_handler()
     add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
     ?>
 <div class="wrap">
+    
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Edit Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+    <?php if (isset($_REQUEST['id'])) { ?> 
+    <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'cb_timeframes_table') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
     </h2>
+    <?php } else { ?>
+    <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+    </h2>
+    <?php } ?>
 
     <?php if (!empty($notice)): ?>
     <div id="notice" class="error"><p><?php echo $notice ?></p></div>
@@ -668,7 +674,9 @@ function cb_timeframes_table_form_page_handler()
         </div>
     </form>
 
-    <?php cb_timeframes_table_form_render_codes($item); ?>
+    <?php 
+        cb_timeframes_table_form_render_codes($item);
+         ?>
 </div>
 <?php
 }
