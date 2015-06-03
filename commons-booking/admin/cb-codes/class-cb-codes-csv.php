@@ -29,14 +29,14 @@ class Commons_Booking_Codes_CSV {
 }
 
   public function get_settings() {
+
     global $wpdb;
     $settings = get_option( 'commons-booking-settings-codes' ); // @TODO: add Prefix;
     $csv = $settings['commons-booking_codes_pool'];
 
     $singleCodes = explode(",", $csv);
     $singleCodes = preg_grep('#S#', array_map('trim', $singleCodes)); // Remove Empty
-
-    $this->codes = $singleCodes;
+    $this->csvcodes = $singleCodes;
 
   }
 
@@ -71,6 +71,7 @@ class Commons_Booking_Codes_CSV {
     
     $matched = array();
     $missing = array();
+    $missingFlat = '';
 
     for ( $i = 0; $i < count($tfDates); $i++ ) {
 
@@ -99,7 +100,10 @@ public function render() {
     <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
     </form>
     <?php
-    $this->generate_codes_sql();
+    if (isset($_REQUEST['generate'])) {
+      $sql = $this->prepare_sql( $this->item_id, $this->missingDates, $this->csvcodes );
+      $this->generate_codes_sql($sql );
+    }
   } else { // no Codes missing?>
     <h2>Codes</h2>
     <?php   
@@ -119,13 +123,32 @@ public function render_table( $dates ) {
   echo ( '</table>' );
 }
 
-private function generate_codes_sql() {
+private function prepare_sql( $itemid, $array, $codes) {
+
   global $wpdb;
   $table_name = $wpdb->prefix . 'cb_codes'; 
-  if (isset($_REQUEST['generate'])) {
-    echo ("we would generate now");
-  }
 
+  shuffle( $codes ); // randomize array
+  $sqlcols = "item_id,date,bookingcode";
+  $sqlcontents = array();
+  $sqlquery = '';
+  $count = count( $array );
+
+  for ( $i=0; $i < $count; $i++ ) {
+    array_push($sqlcontents, '("' . $itemid. '","' . $array[$i]['date'] . '","' . $codes[$i] . '")');
+  }
+  $sqlquery = 'INSERT INTO ' . $table_name . ' (' . $sqlcols . ') VALUES ' . implode (',', $sqlcontents ) . ';';
+
+  $wpdb->query($sqlquery);
+
+
+  // return $sqlquery;
+
+
+}
+
+private function generate_codes_sql() {
+  echo ("we would generate now");
 
 }
 

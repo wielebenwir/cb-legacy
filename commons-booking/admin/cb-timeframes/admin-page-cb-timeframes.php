@@ -637,11 +637,8 @@ function cb_timeframes_table_form_page_handler()
     }
 
 
-    // here we adding our custom meta boxes
+    // Editing Form
     add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
-    add_meta_box('timeframes_form_meta_box', __( 'Codes' ), 'cb_timeframes_table_form_meta_codes_handler', 'timeframes_form_meta_codes', 'normal', 'default');
-
-
     ?>
 <div class="wrap">
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
@@ -665,12 +662,13 @@ function cb_timeframes_table_form_page_handler()
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
-                    <?php do_meta_boxes('timeframes_form_meta_codes', 'normal', $item); ?>
                     <input type="submit" value="<?php _e('Save', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
         </div>
     </form>
+
+    <?php cb_timeframes_table_form_render_codes($item); ?>
 </div>
 <?php
 }
@@ -681,7 +679,7 @@ function cb_timeframes_table_form_page_handler()
  *
  * @param $item
  */
-function cb_timeframes_table_form_meta_codes_handler($item)
+function cb_timeframes_table_form_render_codes($item)
 {
 
     $date_start = $item['date_start'];
@@ -705,7 +703,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
     ?>
 
 
-<table cellspacing="2" cellpadding="5" style="width: 100%;" class="form-table">
+<table cellspacing="2" cellpadding="5" class="form-table">
     <tbody>
     <tr class="form-field">
         <th valign="top" scope="row">
@@ -826,7 +824,13 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   wp_reset_postdata();
 }
 
-function cb_timeframes_generate_codes_page_handler() {}
+function cb_timeframes_generate_codes_page_handler() {
+
+    echo ("<h2>look elsewhere</h2>");
+    // $codes = new Commons_Booking_Codes_CSV ( $item['item_id'], $date_start, $date_end);
+
+    // $codes->generate_codes();
+}
 
 
 add_action('init', 'cb_timeframes_table_languages');
