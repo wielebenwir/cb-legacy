@@ -93,7 +93,12 @@ class Commons_Booking_Codes_CSV {
 
 public function render() {
 
-  if ( $this->missingDates ) { ?>
+  if ( $this->missingDates ) { 
+    // @TODO: This is not working
+    // new WP_Admin_Notice( __( 'No codes generated or codes missing. Please generate Codes' ), 'error' );
+    ?>
+
+
     <h2><?php _e('No codes generated or codes missing. Please generate Codes', 'cb_timeframes_table')?></h2>
     <form id ="codes" method="POST">
     <input class="hidden" name="generate" value="generate">
@@ -129,6 +134,11 @@ private function prepare_sql( $itemid, $array, $codes) {
   $table_name = $wpdb->prefix . 'cb_codes'; 
 
   shuffle( $codes ); // randomize array
+
+  if ( count( $codes ) < count( $array )) {
+    echo __("Not enough Codes defined in backend");
+  }
+
   $sqlcols = "item_id,date,bookingcode";
   $sqlcontents = array();
   $sqlquery = '';
