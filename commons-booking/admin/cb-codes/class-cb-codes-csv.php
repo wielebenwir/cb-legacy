@@ -35,7 +35,6 @@ class Commons_Booking_Codes_CSV {
 
     $singleCodes = explode(",", $csv);
     $singleCodes = preg_grep('#S#', array_map('trim', $singleCodes)); // Remove Empty
-    shuffle($singleCodes);
 
     $this->codes = $singleCodes;
 
@@ -93,9 +92,18 @@ class Commons_Booking_Codes_CSV {
 
 public function render() {
 
-  if ( $this->missingDates ) {
-    echo __( '<h2>No codes generated or Codes missing. Please generate Codes</h2>' );
-  }
+  if ( $this->missingDates ) { ?>
+    <h2><?php _e('No codes generated or codes missing. Please generate Codes', 'cb_timeframes_table')?></h2>
+    <form id ="codes" method="POST">
+    <input class="hidden" name="generate" value="generate">
+    <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
+    </form>
+    <?php
+    $this->generate_codes_sql();
+  } else { // no Codes missing?>
+    <h2>Codes</h2>
+    <?php   
+  } // end if $missingDates
 
   $allDates = array_merge ($this->missingDates, $this->matchedDates);
   $this->render_table( $allDates );
@@ -109,6 +117,16 @@ public function render_table( $dates ) {
     echo ( '</tr>' );
   }
   echo ( '</table>' );
+}
+
+private function generate_codes_sql() {
+  global $wpdb;
+  $table_name = $wpdb->prefix . 'cb_codes'; 
+  if (isset($_REQUEST['generate'])) {
+    echo ("we would generate now");
+  }
+
+
 }
 
 
