@@ -596,7 +596,7 @@ function cb_timeframes_table_form_page_handler()
     );
 
     // here we are verifying does this request is post back and have correct nonce
-    if (wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {
+    if ( wp_verify_nonce($_REQUEST['tfnonce'], basename(__FILE__)) ) {
         // combine our default item with request params
         $item = shortcode_atts($default, $_REQUEST);
         // validate data, and if all ok save item to database
@@ -657,9 +657,8 @@ function cb_timeframes_table_form_page_handler()
     <?php if (!empty($message)): ?>
     <div id="message" class="updated"><p><?php echo $message ?></p></div>
     <?php endif;?>
-
     <form id="form" method="POST">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
+        <input type="hidden" name="tfnonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
         <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
 
@@ -770,6 +769,8 @@ function cb_timeframes_table_form_meta_box_handler($item)
  */
 function cb_timeframes_table_validate_entry($item)
 {
+
+    // @TODO validation
     $messages = array();
 
     // if (empty($item['name'])) $messages[] = __('Name is required', 'cb_timeframes_table');
