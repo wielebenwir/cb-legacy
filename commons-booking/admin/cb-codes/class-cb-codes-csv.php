@@ -22,14 +22,23 @@ class Commons_Booking_Codes_CSV {
   public $date_start;
   public $date_end;
 
+/**
+ * Constructor.
+ *
+ * @param $item_id 
+ * @param $date_start
+ * @param $date_end
+ *
+ */
   public function __construct( $item_id, $date_start, $date_end) {
      $this->item_id = $item_id;
      $this->date_start = $date_start;
      $this->date_end = $date_end;
 }
-
+/**
+ * Get settings from backend.
+ */
   public function get_settings() {
-
     global $wpdb;
     $settings = get_option( 'commons-booking-settings-codes' ); // @TODO: add Prefix;
     $csv = $settings['commons-booking_codes_pool'];
@@ -40,6 +49,11 @@ class Commons_Booking_Codes_CSV {
 
   }
 
+/**
+ * Get a list of all dates within the defind range. 
+ *
+ * @return array
+ */
   public function get_dates() {
     $dates = array($this->date_start);
     while(end($dates) < $this->date_end){
@@ -48,7 +62,11 @@ class Commons_Booking_Codes_CSV {
     return $dates;
   }
 
-
+/**
+ * Get all entries from the codes DB. Ignore dates earlier than 30 days 
+ *
+ * @return array
+ */
   public function get_codetable_entries() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_codes';
@@ -57,7 +75,9 @@ class Commons_Booking_Codes_CSV {
     return $codesDB;
   } 
 
-
+/**
+ * Compare timeframe dates and entries in the codes db 
+ * */
   public function compare() {
     $this->get_settings();
     $codesDB = $this->get_codetable_entries();
@@ -90,7 +110,9 @@ class Commons_Booking_Codes_CSV {
     $this->missingDates = $missing;
   }
 
-
+/**
+ * Handle the display of the dates/codes interface
+ */
 public function render() {
 
   if ( $this->missingDates ) { 
@@ -107,7 +129,6 @@ public function render() {
     <?php
     if (isset($_REQUEST['generate'])) {
       $sql = $this->prepare_sql( $this->item_id, $this->missingDates, $this->csvcodes );
-      $this->generate_codes_sql($sql );
     }
   } else { // no Codes missing?>
     <h2>Codes</h2>
@@ -117,8 +138,12 @@ public function render() {
   $allDates = array_merge ($this->missingDates, $this->matchedDates);
   $this->render_table( $allDates );
 }
-
+/**
+ * Render the dates/codes-table.
+ *
+ */
 public function render_table( $dates ) {
+
   echo ( '<table class="widefat striped">' );
   foreach ($dates as $row) {
     if ( !isset($row[ 'code' ])) { $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing! ') .'</span>'); }
@@ -127,7 +152,14 @@ public function render_table( $dates ) {
   }
   echo ( '</table>' );
 }
-
+/**
+ * Add pointers.
+ * @TODO: check for security 
+ *
+ * @param $itemid 
+ * @param $array list of dates
+ * @param $array list of codes
+ */
 private function prepare_sql( $itemid, $array, $codes) {
 
   global $wpdb;
@@ -150,18 +182,5 @@ private function prepare_sql( $itemid, $array, $codes) {
   $sqlquery = 'INSERT INTO ' . $table_name . ' (' . $sqlcols . ') VALUES ' . implode (',', $sqlcontents ) . ';';
 
   $wpdb->query($sqlquery);
-
-
-  // return $sqlquery;
-
-
-}
-
-private function generate_codes_sql() {
-  echo ("we would generate now");
-
-}
-
-
-
+  }
 }
