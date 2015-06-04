@@ -143,14 +143,22 @@ public function render() {
  *
  */
 public function render_table( $dates ) {
-
-  echo ( '<table class="widefat striped">' );
-  foreach ($dates as $row) {
-    if ( !isset($row[ 'code' ])) { $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing! ') .'</span>'); }
-    echo ( '<tr><td>' . $row[ 'date' ] . '</td><td>' . $row[ 'code' ] . '</td>');
-    echo ( '</tr>' );
-  }
-  echo ( '</table>' );
+  ?>
+  <table class="widefat striped">
+    <thead>
+      <tr>
+        <th><?php _e( 'Date' ); ?></th>
+        <th><?php _e( 'Code' ); ?></th>
+      </tr>
+    </thead>
+  <?php foreach ($dates as $row) {
+      if ( !isset($row[ 'code' ])) { 
+        $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing! ') .'</span>'); 
+      } ?>
+    <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php _e( $row[ 'code' ] ); ?></td></tr>
+  <?php } // end foreach ?>
+  </table>
+  <?php
 }
 /**
  * Add pointers.
