@@ -610,7 +610,6 @@ function cb_codes_table_form_page_handler()
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php _e('Edit Timeframe', 'cb_codes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=codes');?>"><?php _e('back to list', 'cb_codes_table')?></a>
     </h2>
-
     <?php if (!empty($notice)): ?>
     <div id="notice" class="error"><p><?php echo $notice ?></p></div>
     <?php endif;?>

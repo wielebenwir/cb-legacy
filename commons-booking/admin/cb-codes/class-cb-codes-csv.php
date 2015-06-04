@@ -13,7 +13,7 @@
  * administrative side of the WordPress site.
  *
  * @package Commons_Booking_Codes_CSV
- * @author  Your Name <email@example.com>
+ * @author  Florian Egermann <email@example.com>
  */
 class Commons_Booking_Codes_CSV {
 
