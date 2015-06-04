@@ -162,7 +162,7 @@ public function render_table( $dates ) {
 }
 /**
  * Add pointers.
- * @TODO: check for security 
+ * @TODO: check for security / split into prepare_sql and do_sql
  *
  * @param $itemid 
  * @param $array list of dates
@@ -177,6 +177,7 @@ private function prepare_sql( $itemid, $array, $codes) {
 
   if ( count( $codes ) < count( $array )) {
     echo __("Not enough Codes defined in backend");
+    die();
   }
 
   $sqlcols = "item_id,date,bookingcode";
