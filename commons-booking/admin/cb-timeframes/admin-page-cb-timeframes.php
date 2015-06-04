@@ -594,52 +594,56 @@ function cb_timeframes_table_form_page_handler()
     );
 
     // here we are verifying does this request is post back and have correct nonce
-    if ( wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__)) ) {
-        // combine our default item with request params
-        $item = shortcode_atts($default, $_REQUEST);
-        // validate data, and if all ok save item to database
-        // if id is zero insert otherwise update
-        $item_valid = cb_timeframes_table_validate_entry($item);
-        if ($item_valid === true) {
-            if ($item['id'] == 0) {
-                $result = $wpdb->insert($table_name, $item);
-                $item['id'] = $wpdb->insert_id;
-                if ($result) {
-                    $message = __('Item was successfully saved', 'cb_timeframes_table');
+        if ( wp_verify_nonce( $_REQUEST['nonce'], 'edit-timeframe' )) { // if nonce is correct
+            // combine our default item with request params
+            $item = shortcode_atts($default, $_REQUEST);
+            // validate data, and if all ok save item to database
+            // if id is zero insert otherwise update
+            $item_valid = cb_timeframes_table_validate_entry($item);
+            if ($item_valid === true) {
+                if ($item['id'] == 0) {
+                    $result = $wpdb->insert($table_name, $item);
+                    $item['id'] = $wpdb->insert_id;
+                    if ($result) {
+                        $message = __('Item was successfully saved', 'cb_timeframes_table');
+                    } else {
+                        $notice = __('There was an error while saving item', 'cb_timeframes_table');
+                    }
                 } else {
-                    $notice = __('There was an error while saving item', 'cb_timeframes_table');
+                    $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
+                    if ($result) {
+                        $message = __('Item was successfully updated', 'cb_timeframes_table');
+                    } else {
+                        $notice = __('There was an error while updating item', 'cb_timeframes_table');
+                    }
                 }
             } else {
-                $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
-                if ($result) {
-                    $message = __('Item was successfully updated', 'cb_timeframes_table');
-                } else {
-                    $notice = __('There was an error while updating item', 'cb_timeframes_table');
+                // if $item_valid not true it contains error message(s)
+                $notice = $item_valid;
+            }
+        }
+        else {
+            // if this is not post back we load item to edit or give new one to create
+            $item = $default;
+            if (isset($_REQUEST['id'])) {
+                $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
+                if (!$item) {
+                    $item = $default;
+                    $notice = __('Item not found', 'cb_timeframes_table');
                 }
             }
-        } else {
-            // if $item_valid not true it contains error message(s)
-            $notice = $item_valid;
         }
-    }
-    else {
-        // if this is not post back we load item to edit or give new one to create
-        $item = $default;
-        if (isset($_REQUEST['id'])) {
-            $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
-            if (!$item) {
-                $item = $default;
-                $notice = __('Item not found', 'cb_timeframes_table');
-            }
-        }
-    }
-
 
     // Editing Form
     add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
     ?>
 <div class="wrap">
-        <?php echo ("<h2>BASENAME:" . basename(__FILE__) . "</h2>"); ?>
+
+        <?php 
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            echo ("post");
+        }
+        echo ("<h2>BASENAME:" . 'edit-timeframe' . "</h2>"); ?>
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <?php if (isset($_REQUEST['id'])) { ?> 
@@ -657,7 +661,7 @@ function cb_timeframes_table_form_page_handler()
     <div id="message" class="updated"><p><?php echo $message ?></p></div>
     <?php endif;?>
     <form id="timeframes-edit" method="POST">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
+        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('edit-timeframe')?>"/>
         <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
 
@@ -673,7 +677,9 @@ function cb_timeframes_table_form_page_handler()
     </form>
 
     <?php 
+        if ($item['item_id']) {
         cb_timeframes_table_form_render_codes($item);
+        }
          ?>
 </div>
 <?php
@@ -690,7 +696,7 @@ function cb_timeframes_table_form_render_codes($item)
 
     $date_start = $item['date_start'];
     $date_end = $item['date_end'];
-    $codes = new Commons_Booking_Codes_CSV ( $item['item_id'], $date_start, $date_end);
+    $codes = new Commons_Booking_Codes_CSV ( $item['id'], $item['item_id'], $date_start, $date_end);
 
     $codes->compare();
     $codes->render();

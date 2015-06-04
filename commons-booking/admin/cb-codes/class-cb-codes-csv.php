@@ -30,7 +30,8 @@ class Commons_Booking_Codes_CSV {
  * @param $date_end
  *
  */
-  public function __construct( $item_id, $date_start, $date_end) {
+  public function __construct( $timeframe_id, $item_id, $date_start, $date_end) {
+     $this->timeframe_id = $timeframe_id;
      $this->item_id = $item_id;
      $this->date_start = $date_start;
      $this->date_end = $date_end;
@@ -121,8 +122,9 @@ public function render() {
     ?>
 
 
-    <h2><?php _e('No codes generated or codes missing. Please generate Codes', 'cb_timeframes_table')?></h2>
-    <form id ="codes" method="POST">
+    <h2><?=$this->item_id; ?><?php _e('No codes generated or codes missing.', 'cb_timeframes_table')?></h2>
+    <form id="codes" method="POST">
+    <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
     <input class="hidden" name="generate" value="generate">
     <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
     </form>
