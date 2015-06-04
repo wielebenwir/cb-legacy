@@ -14,7 +14,7 @@
  * @package Commons_Booking_Timeframes
  * @author  Your Name <email@example.com>
  */
-class Commons_Booking_Timeframes {
+class Commons_Booking_Timeframes_List {
 
   private $postID; 
   private $colDefinition;

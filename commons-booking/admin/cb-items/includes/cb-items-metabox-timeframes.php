@@ -46,7 +46,7 @@ class Commons_Booking_Items_Metabox {
 
   public function cb_items_meta_box_function($post) {
 
-    $timeframes = new Commons_Booking_Timeframes( $post->ID );
+    $timeframes = new Commons_Booking_Timeframes_List( $post->ID );
     echo ( '<a class="add-new-h2" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=timeframes_form">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );
     $timeframes->render_timeframes();
 
