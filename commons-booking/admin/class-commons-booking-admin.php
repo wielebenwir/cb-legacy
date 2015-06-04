@@ -94,7 +94,7 @@ class Commons_Booking_Admin {
 
 
 		// the admin table for timeframes & codes
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/admin-page-cb-timeframes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/admin-page-cb-codes.php' );
 		// require_once( plugin_dir_path( __FILE__ ) . 'class-admin-table-filters.php' );
 

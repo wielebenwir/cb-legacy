@@ -562,7 +562,7 @@ function cb_codes_table_form_page_handler()
     );
 
     // here we are verifying does this request is post back and have correct nonce
-    if (wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {
+    if (wp_verify_nonce($_REQUEST['nonce'], 'basename(__FILE__)')) {
         // combine our default item with request params
         $item = shortcode_atts($default, $_REQUEST);
         // validate data, and if all ok save item to database
@@ -618,7 +618,7 @@ function cb_codes_table_form_page_handler()
     <?php endif;?>
 
     <form id="form" method="POST">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
+        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('basename(__FILE__)')?>"/>
         <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
 
@@ -705,25 +705,6 @@ function cb_codes_table_validate_entry($item)
 }
 
 /**
- * Do not forget about translating your plugin, use __('english string', 'your_uniq_plugin_name') to retrieve translated string
- * and _e('english string', 'your_uniq_plugin_name') to echo it
- * in this example plugin your_uniq_plugin_name == cb_codes_table
- *
- * to create translation file, use poedit FileNew catalog...
- * Fill name of project, add "." to path (ENSURE that it was added - must be in list)
- * and on last tab add "__" and "_e"
- *
- * Name your file like this: [my_plugin]-[ru_RU].po
- *
- * http://codex.wordpress.org/Writing_a_Plugin#Internationalizing_Your_Plugin
- * http://codex.wordpress.org/I18n_for_WordPress_Developers
- */
-function cb_codes_table_languages()
-{
-    load_plugin_textdomain('cb_codes_table', false, dirname(plugin_basename(__FILE__)));
-} 
-
-/**
 * Renders a dropdown menu for items and locations
 *
 * @param @TODO
@@ -753,5 +734,4 @@ function cb_codes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   wp_reset_postdata();
 }
 
-add_action('init', 'cb_codes_table_languages');
 ?>

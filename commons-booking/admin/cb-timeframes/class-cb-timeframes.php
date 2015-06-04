@@ -9,8 +9,7 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
+ * Display the list of configured Timeframes in a metabox on the item edit screen.
  *
  * @package Commons_Booking_Timeframes
  * @author  Your Name <email@example.com>
