@@ -114,12 +114,12 @@ class Commons_Booking_Timeframes_List {
   }
 
    /**
-   * Button to jump to timeframe table for editing
+   * Button to jump to timeframe table for editing //@TODO set path correctly
    *   
    * @return  html
    */ 
   private function table_fields_edit_button( $itemID ) {
-    return '<a href="?page=timeframes_form&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
+    return '<a href="admin.php?page=timeframes_form&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
  
   }
 
