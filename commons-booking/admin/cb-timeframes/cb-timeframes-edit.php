@@ -71,11 +71,6 @@ function cb_timeframes_table_form_page_handler()
     ?>
 <div class="wrap">
 
-        <?php 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            echo ("post");
-        }
-        echo ("<h2>BASENAME:" . 'edit-timeframe' . "</h2>"); ?>
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <?php if (isset($_REQUEST['id'])) { ?> 
@@ -154,7 +149,15 @@ function cb_timeframes_table_form_meta_box_handler($item)
             <label for="item_id"><?php _e('Item', 'cb_timeframes_table')?></label>
         </th>
         <td>
-          <?php cb_timeframes_table_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
+          <?php 
+            // if you came here from the item edit screen, pre-populate the item value
+            $setItem =  esc_attr($item['item_id']);
+            if ( isset( $_GET['new'] )) {
+                 $setItem = $_GET['item_id'];
+                } 
+          cb_timeframes_table_edit_dropdown( 'cb_items', 'item_id', $setItem ); 
+
+          ?>
         </td>
     </tr>    
     <tr class="form-field">
@@ -234,7 +237,6 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   $the_query = new WP_Query( $args );
 
   if ( $the_query->have_posts() ) {
-
     echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
     if (!$selected) { $new = "selected disabled"; } else { $new = ""; } // if new entry, set pre-selected 
     echo '<option '. $new  . '>'. __(" – Please select – ") . '</option>';

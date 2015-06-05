@@ -126,22 +126,28 @@ class Commons_Booking_Timeframes_List {
    /**
    * Button to jump to post type for editing
    *   
+   * @param $itemID
+   *
    * @return  html
    */ 
   private function table_fields_get_link( $itemID ) {    
     return '<a href="' . get_edit_post_link( $itemID ) . '">' . get_the_title( $itemID ) . '</a>';
     
   }
+   /**
+   * Jump to timeframe editing screen 
+   *   
+   *
+   * @return  html
+   */ 
+  private function jump_to_timeframes_link() {    
+     return ( '<a class="button" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=timeframes_form&item_id='. $this->postID. '&new=1">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );    
+  }
+
 
   /**
-   * Returns a object of timeframes
+   * Gets objects from DB and displays message on fail
    *
-   * @param   array     $params       An array of optional parameters
-   *              types       An array of portfolio item type slugs
-   *              industries    An array of portfolio industry slugs
-   *              quantity    Number of posts to return
-   *
-   * @return  object    A post object
    */
   private function get_Items() {
 
@@ -166,6 +172,7 @@ class Commons_Booking_Timeframes_List {
   public function render_timeframes() {
     // $colDefinition = $this->set_Columns();
     $this->prepare();
+    echo $this->jump_to_timeframes_link();
     $tableheader = $this->table_header();
     $tablecolumns = $this->table_columns();
     echo ('<table class="wp-list-table widefat fixed striped timeframe">' . $tableheader . $tablecolumns . '</table>');
