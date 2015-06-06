@@ -158,7 +158,7 @@ class Commons_Booking_Timeframes_List {
     if ($this->postID) {
       global $wpdb;
 
-      $sql = $wpdb->prepare( 'SELECT * FROM $table_name WHERE item_id = %s ORDER BY item_id DESC', $this->postID );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY item_id DESC', $this->postID );
       $this->items = $wpdb->get_results($sql, ARRAY_A);
 
       if ( $this->items ) {
