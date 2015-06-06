@@ -1,5 +1,7 @@
 <?php
 
+// @TODO Move this to another file
+
 // Install
 require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes-setup.php' );
 
