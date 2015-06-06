@@ -335,7 +335,9 @@ class Commons_Booking {
         // @TODO: Define activation functionality here
 
         $timeframe_table = new Commons_Booking_Timeframes_Setup;
-        $timeframe_table->install();
+        $timeframe_table->install();        
+        $codes_table = new Commons_Booking_Codes_Setup;
+        $codes_table->install();
 
 
 
