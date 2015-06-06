@@ -46,9 +46,10 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/includes/class-commons-booki
 require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
 
 // Class for Timeframes functionality
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/includes/class-cb-timeframes-list.php' );
+//require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/includes/class-cb-timeframes-list.php' );
 
-// require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
+
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
 
 
 // Class for Codes
@@ -72,6 +73,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/language.php' );
 
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' );
+
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.

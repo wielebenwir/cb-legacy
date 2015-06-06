@@ -1,7 +1,7 @@
 <?php
 
 // Install
-require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes-install.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes-setup.php' );
 
 // List
 require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes-list.php' );
