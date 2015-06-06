@@ -151,12 +151,13 @@ class Commons_Booking_Timeframes_List {
    */
   private function get_Items() {
 
-    $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
 
     $return = '';
 
     if ($this->postID) {
       global $wpdb;
+
+      $table_name = $wpdb->prefix . 'cb_timeframes'; 
 
       $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY item_id DESC', $this->postID );
       $this->items = $wpdb->get_results($sql, ARRAY_A);
