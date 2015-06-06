@@ -334,23 +334,30 @@ class Commons_Booking {
 
         // @TODO: Define activation functionality here
 
-        global $wp_roles;
-        if ( !isset( $wp_roles ) ) {
-            $wp_roles = new WP_Roles;
-        }
+        $timeframe_table = new Commons_Booking_Timeframes_Setup;
+        $timeframe_table->install();        
+        $codes_table = new Commons_Booking_Codes_Setup;
+        $codes_table->install();
 
-        foreach ( $wp_roles->role_names as $role => $label ) {
-            //if the role is a standard role, map the default caps, otherwise, map as a subscriber
-            $caps = ( array_key_exists( $role, self::$plugin_roles ) ) ? self::$plugin_roles[ $role ] : self::$plugin_roles[ 'subscriber' ];
 
-            //loop and assign
-            foreach ( $caps as $cap => $grant ) {
-                //check to see if the user already has this capability, if so, don't re-add as that would override grant
-                if ( !isset( $wp_roles->roles[ $role ][ 'capabilities' ][ $cap ] ) ) {
-                    $wp_roles->add_cap( $role, $cap, $grant );
-                }
-            }
-        }
+
+        // global $wp_roles;
+        // if ( !isset( $wp_roles ) ) {
+        //     $wp_roles = new WP_Roles;
+        // }
+
+        // foreach ( $wp_roles->role_names as $role => $label ) {
+        //     //if the role is a standard role, map the default caps, otherwise, map as a subscriber
+        //     $caps = ( array_key_exists( $role, self::$plugin_roles ) ) ? self::$plugin_roles[ $role ] : self::$plugin_roles[ 'subscriber' ];
+
+        //     //loop and assign
+        //     foreach ( $caps as $cap => $grant ) {
+        //         //check to see if the user already has this capability, if so, don't re-add as that would override grant
+        //         if ( !isset( $wp_roles->roles[ $role ][ 'capabilities' ][ $cap ] ) ) {
+        //             $wp_roles->add_cap( $role, $cap, $grant );
+        //         }
+        //     }
+        // }
         //Clear the permalinks
         flush_rewrite_rules();
     }

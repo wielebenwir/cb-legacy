@@ -46,9 +46,11 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/includes/class-commons-booki
 require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
 
 // Class for Timeframes functionality
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/includes/class-cb-timeframes-list.php' );
+//require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/includes/class-cb-timeframes-list.php' );
 
-// require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
+
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/cb-codes.php' );
 
 // CLasses for Frontend-Booking
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-frontend.php' );
@@ -69,25 +71,13 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/Widgets-Helper/wph-widget-
 require_once( plugin_dir_path( __FILE__ ) . 'includes/widgets/sample.php' );
 
 /*
- * Load Fake Page class
- */
-require_once( plugin_dir_path( __FILE__ ) . 'includes/fake-page.php' );
-
-new Fake_Page(
-		array(
-	'slug' => 'fake_slug',
-	'post_title' => 'Fake Page Title',
-	'post content' => 'This is the fake page content'
-		)
-);
-
-/*
  * Load Language wrapper function for WPML/Ceceppa Multilingua/Polylang
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/language.php' );
 
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' );
+
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
