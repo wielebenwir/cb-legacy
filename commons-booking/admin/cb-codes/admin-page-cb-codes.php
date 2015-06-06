@@ -70,7 +70,6 @@ function cb_codes_table_install()
      * and add following block of code
      *
      */
-<<<<<<< .merge_file_YfI4eu
     // $installed_ver = get_option('cb_codes_table_db_version');
     // if ($installed_ver != $cb_codes_table_db_version) {
     // $sql = "CREATE TABLE " . $table_name . " (
@@ -87,24 +86,6 @@ function cb_codes_table_install()
     //     // notice that we are updating option, rather than adding it
     //     update_option('cb_codes_table_db_version', $cb_codes_table_db_version);
     // }
-=======
-    $installed_ver = get_option('cb_codes_table_db_version');
-    if ($installed_ver != $cb_codes_table_db_version) {
-    $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) AUTO_INCREMENT,
-      bookingcode text CHARACTER SET utf8,        
-      item_id int(11) DEFAULT NULL,
-      booking_date date DEFAULT NULL,
-      PRIMARY KEY  (id)
-    );";
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
-
-        // notice that we are updating option, rather than adding it
-        update_option('cb_codes_table_db_version', $cb_codes_table_db_version);
-    }
->>>>>>> .merge_file_7pA0te
 }
 
 register_activation_hook(__FILE__, 'cb_codes_table_install');
