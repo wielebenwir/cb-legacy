@@ -47,11 +47,11 @@ function cb_codes_table_install()
     //    Like this: PRIMARY KEY[space][space](id)
     // otherwise dbDelta will not work
     $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) unsigned NOT NULL AUTO_INCREMENT,
+      code_id int(11) AUTO_INCREMENT,
       bookingcode text CHARACTER SET utf8,        
       item_id int(11) DEFAULT NULL,
-      date date DEFAULT NULL,
-      PRIMARY KEY (id)
+      booking_date date DEFAULT NULL,
+      PRIMARY KEY  (code_id)
     );";
 
     // we do not execute sql directly
@@ -72,13 +72,13 @@ function cb_codes_table_install()
      */
     $installed_ver = get_option('cb_codes_table_db_version');
     if ($installed_ver != $cb_codes_table_db_version) {
-        $sql = "CREATE TABLE " . $table_name . " (
-          id int(11) unsigned NOT NULL AUTO_INCREMENT,
-          bookingcode text CHARACTER SET utf8,        
-          item_id int(11) DEFAULT NULL,
-          date date DEFAULT NULL,
-          PRIMARY KEY (id)
-        );";
+    $sql = "CREATE TABLE " . $table_name . " (
+      code_id int(11) AUTO_INCREMENT,
+      bookingcode text CHARACTER SET utf8,        
+      item_id int(11) DEFAULT NULL,
+      booking_date date DEFAULT NULL,
+      PRIMARY KEY  (code_id)
+    );";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
