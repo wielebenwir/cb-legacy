@@ -184,7 +184,7 @@ private function prepare_sql( $itemid, $array, $codes) {
     die();
   }
 
-  $sqlcols = "item_id,date,bookingcode";
+  $sqlcols = "item_id,booking_date,bookingcode";
   $sqlcontents = array();
   $sqlquery = '';
   $count = count( $array );
