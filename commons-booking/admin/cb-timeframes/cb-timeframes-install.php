@@ -38,7 +38,7 @@ function cb_timeframes_table_install()
       location_id int(11) DEFAULT NULL,
       date_start date DEFAULT NULL,
       date_end date DEFAULT NULL,
-      PRIMARY KEY (id)
+      PRIMARY KEY  (id)
     );";
 
     // we do not execute sql directly
@@ -47,7 +47,7 @@ function cb_timeframes_table_install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
+    // add_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 0.1 version
@@ -62,24 +62,25 @@ function cb_timeframes_table_install()
      * and again we are not executing sql
      * we are using dbDelta to migrate table changes
      */
-    $installed_ver = get_option('cb_timeframes_table_db_version');
-    if ($installed_ver != $cb_timeframes_table_db_version) {
-        $sql = "CREATE TABLE " . $table_name . " (
-          id int(11) unsigned NOT NULL AUTO_INCREMENT,
-          timeframe_title text,
-          item_id int(11) DEFAULT NULL,
-          location_id int(11) DEFAULT NULL,
-          date_start date DEFAULT NULL,
-          date_end date DEFAULT NULL,
-          PRIMARY KEY (id)
-        );";
+    
+    // $installed_ver = get_option('cb_timeframes_table_db_version');
+    // if ($installed_ver != $cb_timeframes_table_db_version) {
+    //     $sql = "CREATE TABLE " . $table_name . " (
+    //       id int(11) unsigned NOT NULL AUTO_INCREMENT,
+    //       timeframe_title text,
+    //       item_id int(11) DEFAULT NULL,
+    //       location_id int(11) DEFAULT NULL,
+    //       date_start date DEFAULT NULL,
+    //       date_end date DEFAULT NULL,
+    //       PRIMARY KEY (id)
+    //     );";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+    //     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    //     dbDelta($sql);
 
-        // notice that we are updating option, rather than adding it
-        update_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
-    }
+    //     // notice that we are updating option, rather than adding it
+    //     update_option('cb_timeframes_table_db_version', $cb_timeframes_table_db_version);
+    // }
 }
 
 register_activation_hook(__FILE__, 'cb_timeframes_table_install');

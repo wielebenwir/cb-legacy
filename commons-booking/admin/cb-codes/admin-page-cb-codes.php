@@ -47,11 +47,11 @@ function cb_codes_table_install()
     //    Like this: PRIMARY KEY[space][space](id)
     // otherwise dbDelta will not work
     $sql = "CREATE TABLE " . $table_name . " (
-      code_id int(11) AUTO_INCREMENT,
+      id int(11) AUTO_INCREMENT,
       bookingcode text CHARACTER SET utf8,        
       item_id int(11) DEFAULT NULL,
       booking_date date DEFAULT NULL,
-      PRIMARY KEY  (code_id)
+      PRIMARY KEY  (id)
     );";
 
     // we do not execute sql directly
@@ -60,7 +60,7 @@ function cb_codes_table_install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('cb_codes_table_db_version', $cb_codes_table_db_version);
+    // add_option('cb_codes_table_db_version', $cb_codes_table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 0.1 version
@@ -70,22 +70,22 @@ function cb_codes_table_install()
      * and add following block of code
      *
      */
-    $installed_ver = get_option('cb_codes_table_db_version');
-    if ($installed_ver != $cb_codes_table_db_version) {
-    $sql = "CREATE TABLE " . $table_name . " (
-      code_id int(11) AUTO_INCREMENT,
-      bookingcode text CHARACTER SET utf8,        
-      item_id int(11) DEFAULT NULL,
-      booking_date date DEFAULT NULL,
-      PRIMARY KEY  (code_id)
-    );";
+    // $installed_ver = get_option('cb_codes_table_db_version');
+    // if ($installed_ver != $cb_codes_table_db_version) {
+    // $sql = "CREATE TABLE " . $table_name . " (
+    //   code_id int(11) AUTO_INCREMENT,
+    //   bookingcode text CHARACTER SET utf8,        
+    //   item_id int(11) DEFAULT NULL,
+    //   booking_date date DEFAULT NULL,
+    //   PRIMARY KEY  (code_id)
+    // );";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        dbDelta($sql);
+    //     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    //     dbDelta($sql);
 
-        // notice that we are updating option, rather than adding it
-        update_option('cb_codes_table_db_version', $cb_codes_table_db_version);
-    }
+    //     // notice that we are updating option, rather than adding it
+    //     update_option('cb_codes_table_db_version', $cb_codes_table_db_version);
+    // }
 }
 
 register_activation_hook(__FILE__, 'cb_codes_table_install');
