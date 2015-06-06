@@ -399,6 +399,7 @@ function cb_timeframes_table_admin_menu()
 
 add_action('admin_menu', 'cb_timeframes_table_admin_menu');
 
+
 /**
  * List page handler
  *
@@ -411,6 +412,8 @@ add_action('admin_menu', 'cb_timeframes_table_admin_menu');
  */
 function cb_timeframes_table_page_handler()
 {
+
+
     global $wpdb;
 
     $table = new cb_timeframes_table_List_Table();
@@ -428,6 +431,9 @@ function cb_timeframes_table_page_handler()
     <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
                                  href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
+
+       <?php new WP_Admin_Notice( __( 'Error dsad' ), 'updated' ); ?>
+
     <?php echo $message; ?>
 
     <form id="timeframes-table" method="GET">

@@ -141,17 +141,15 @@ class Commons_Booking_Admin {
 		}
 		add_action( 'init', array( $this, 'contextual_help' ) );
 
-		/*
-		 * Load Wp_Admin_Notice for the notices in the backend
-		 * 
-		 * First parameter the HTML, the second is the css class
-		 */
-		if ( !class_exists( 'WP_Admin_Notice' ) ) {
-			require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Admin-Notice/WP_Admin_Notice.php' );
-		}
-		// new WP_Admin_Notice( __( 'Updated Messages' ), 'updated' );
-		// new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
-
+	  /*
+	   * Load Wp_Admin_Notice for the notices in the backend
+	   * 
+	   * First parameter the HTML, the second is the css class
+	   */
+	  if ( !class_exists( 'WP_Admin_Notice' ) ) {
+	    require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Admin-Notice/WP_Admin_Notice.php' );
+	  }
+			
 		/*
 		 * Load PointerPlus for the Wp Pointer
 		 * 

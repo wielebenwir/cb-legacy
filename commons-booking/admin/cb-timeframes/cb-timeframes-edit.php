@@ -70,6 +70,7 @@ function cb_timeframes_table_form_page_handler()
     add_meta_box('timeframes_form_meta_box', __('Edit'), 'cb_timeframes_table_form_meta_box_handler', 'timeframes_form_meta_box', 'normal', 'default');
     ?>
 <div class="wrap">
+       <?php new WP_Admin_Notice( __( 'Error Messages' ), 'error' ); ?>
 
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>

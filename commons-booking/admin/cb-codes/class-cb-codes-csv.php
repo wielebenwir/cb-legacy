@@ -172,6 +172,8 @@ public function render_table( $dates ) {
  */
 private function prepare_sql( $itemid, $array, $codes) {
 
+  new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
+
   global $wpdb;
   $table_name = $wpdb->prefix . 'cb_codes'; 
 
