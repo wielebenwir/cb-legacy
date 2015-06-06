@@ -72,7 +72,7 @@ class Commons_Booking_Codes_CSV {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_codes';
     $dateRangeStart = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
-    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
+    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND booking_date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
     return $codesDB;
   } 
 
@@ -87,7 +87,7 @@ class Commons_Booking_Codes_CSV {
     $codeDates = array();
 
     foreach ( $codesDB as $entry ) {
-      array_push ($codeDates, $entry['date']);
+      array_push ($codeDates, $entry['booking_date']);
     }
     
     $matched = array();
