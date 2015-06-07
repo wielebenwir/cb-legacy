@@ -15,10 +15,10 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * cb_timeframes_table_List_Table class that will display our custom table
+ * Commons_Booking_Timeframes_List_Table class that will display our custom table
  * records in nice table
  */
-class cb_timeframes_table_List_Table extends WP_List_Table
+class Commons_Booking_Timeframes_List_Table extends WP_List_Table
 {
     /**
      * [REQUIRED] You must declare constructor and give some basic params
@@ -78,7 +78,7 @@ class cb_timeframes_table_List_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=timeframes_form&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
+            'edit' => sprintf('<a href="?page=cb_timeframes_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
             'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
         );
 
@@ -369,38 +369,6 @@ class cb_timeframes_table_List_Table extends WP_List_Table
  */
 
 /**
- * admin_menu hook implementation, will add pages to list timeframes and to add new one 
- * @TODO: move menu creation to init/ restructure the menu 
- */
-function cb_timeframes_table_admin_menu()
-{
-
-    // @TODO: Replace 'cb_timeframes_table' with plugin slug
-    add_submenu_page(
-        'cb_menu', 
-        __('Timeframes', 
-        'cb_timeframes_table'), 
-        __('Timeframes', 'cb_timeframes_table'), 
-        'activate_plugins', 
-        'timeframes', 
-        'cb_timeframes_table_page_handler'
-        );
-    
-    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
-    add_submenu_page(
-        'cb_menu', 
-        __('Add new', 'cb_timeframes_table'), 
-        __('Add new', 'cb_timeframes_table'), 
-        'activate_plugins', 
-        'timeframes_form', 
-        'cb_timeframes_table_form_page_handler'
-        );
-}
-
-add_action('admin_menu', 'cb_timeframes_table_admin_menu');
-
-
-/**
  * List page handler
  *
  * This function renders our custom table
@@ -416,7 +384,7 @@ function cb_timeframes_table_page_handler()
 
     global $wpdb;
 
-    $table = new cb_timeframes_table_List_Table();
+    $table = new Commons_Booking_Timeframes_List_Table();
     $table->prepare_items();
 
     $message = '';
@@ -428,8 +396,8 @@ function cb_timeframes_table_page_handler()
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
+    <h2><?php echo get_admin_page_title(); ?> <a class="add-new-h2"
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
 
        <?php new WP_Admin_Notice( __( 'Error dsad' ), 'updated' ); ?>
