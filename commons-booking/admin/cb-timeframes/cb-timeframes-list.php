@@ -78,7 +78,7 @@ class Commons_Booking_Timeframes_List_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=cb_timeframes_form&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
+            'edit' => sprintf('<a href="?page=cb_timeframes_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
             'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
         );
 
@@ -397,7 +397,7 @@ function cb_timeframes_table_page_handler()
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php echo get_admin_page_title(); ?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
 
        <?php new WP_Admin_Notice( __( 'Error dsad' ), 'updated' ); ?>

@@ -264,7 +264,7 @@ class Commons_Booking_Admin {
         __( 'Add/Edit Timeframes', $this->plugin_slug ), 			// page_title
         __( 'Add Timeframe', $this->plugin_slug ), 						// menu_title
         $capability, 																					// capability
-        'cb_timeframes_form', 																// menu_slug
+        'cb_timeframes_edit', 																// menu_slug
         'cb_timeframes_table_form_page_handler'								// function
         );
 		/*

@@ -119,7 +119,7 @@ class Commons_Booking_Timeframes_List {
    * @return  html
    */ 
   private function table_fields_edit_button( $itemID ) {
-    return '<a href="admin.php?page=cb_timeframes_form&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
+    return '<a href="admin.php?page=cb_timeframes_edit&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
  
   }
 
@@ -141,7 +141,7 @@ class Commons_Booking_Timeframes_List {
    * @return  html
    */ 
   private function jump_to_timeframes_link() {    
-     return ( '<a class="button" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=cb_timeframes_form&item_id='. $this->postID. '&new=1">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );    
+     return ( '<a class="button" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=cb_timeframes_edit&item_id='. $this->postID. '&new=1">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );    
   }
 
 
