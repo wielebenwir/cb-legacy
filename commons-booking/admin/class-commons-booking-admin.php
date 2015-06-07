@@ -239,7 +239,7 @@ class Commons_Booking_Admin {
 	}
 
 	/**
-	 * Register the menues Timeframes, Codes & Bookings.
+	 * Register the menues Timeframes, Codes & Bookings. 1-2 are Items & Locations
 	 *
 	 * @TODO add bookings
 	 * @since    0.0.1
@@ -271,7 +271,7 @@ class Commons_Booking_Admin {
         'cb_timeframes_table_form_page_handler'								// function
         );
 		/*
-		 * 4. Codes
+		 * 4. Bookings
 		 */
     $this->plugin_screen_hook_suffix = add_menu_page(
         __( 'Bookings', $this->plugin_slug ), 				// page_title
@@ -282,7 +282,7 @@ class Commons_Booking_Admin {
         'dashicons-admin-network', 								// icon_url
         34 																				// position
         );		/*
-		 * 4. Codes
+		 * 5. Codes
 		 */
     $this->plugin_screen_hook_suffix = add_menu_page(
         __( 'Codes', $this->plugin_slug ), 				// page_title
