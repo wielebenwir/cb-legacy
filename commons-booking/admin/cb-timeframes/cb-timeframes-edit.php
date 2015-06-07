@@ -37,16 +37,17 @@ function cb_timeframes_table_form_page_handler()
                     $result = $wpdb->insert($table_name, $item);
                     $item['id'] = $wpdb->insert_id;
                     if ($result) {
-                        $message = __('Item was successfully saved', 'cb_timeframes_table');
+                        new Admin_Table_Message ( __('Item saved', 'cb_timeframes_table'), 'updated' );
                     } else {
-                        $notice = __('There was an error while saving item', 'cb_timeframes_table');
+                        new Admin_Table_Message ( __('There was an error while saving item', 'cb_timeframes_table'), 'error' );
                     }
                 } else {
                     $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                     if ($result) {
-                        $message = __('Item was successfully updated', 'cb_timeframes_table');
+                        new Admin_Table_Message( __('Item was successfully updated', 'cb_timeframes_table'), 'updated' );
+
                     } else {
-                        $notice = __('There was an error while updating item', 'cb_timeframes_table');
+                         new Admin_Table_Message ( __('There was an error while updating item!', 'cb_timeframes_table'), 'error' );
                     }
                 }
             } else {
@@ -76,24 +77,27 @@ function cb_timeframes_table_form_page_handler()
         'default');
     ?>
 <div class="wrap">
-       <?php new WP_Admin_Notice( __( 'Error Messages' ), 'error' ); ?>
-
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <?php if (isset($_REQUEST['id'])) { ?> 
-    <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'cb_timeframes_table') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
-    </h2>
+    <?php 
+    if (isset($_REQUEST['id'])) { ?> 
+        <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'cb_timeframes_table') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+        </h2>
     <?php } else { ?>
-    <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
-    </h2>
+        <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+        </h2>
     <?php } ?>
 
-    <?php if (!empty($notice)): ?>
-    <div id="notice" class="error"><p><?php echo $notice ?></p></div>
-    <?php endif;?>
-    <?php if (!empty($message)): ?>
-    <div id="message" class="updated"><p><?php echo $message ?></p></div>
-    <?php endif;?>
+    <?php 
+
+    // Display Messages if any
+    if (!empty($notice)) {
+        new Admin_Table_Message ( $notice, 'error' );
+    }
+    if (!empty($message)) {
+        new Admin_Table_Message ( $message, 'updated' );
+    }
+    ?>
     <form id="timeframes-edit" method="POST">
         <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('edit-timeframe')?>"/>
         <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
