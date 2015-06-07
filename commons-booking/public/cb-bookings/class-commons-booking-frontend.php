@@ -62,7 +62,7 @@ class Commons_Booking_Frontend {
 
     	 // @TODO: Insert check an error-handling if result-numer > 1
 
-    	 return $sqlresult[0];
+    	 return $sqlresult[0]['location_id'];
 
      }
     
@@ -86,35 +86,103 @@ class Commons_Booking_Frontend {
     	 
     	 // @TODO: Insert check an error-handling if result-numer > 1
 
-    	 return $sqlresult[0];
+    	 return $sqlresult[0]['booking_code_id'];
 
     }
 
  /**
- * Store all booking relevant data into booking-table, set status pending
+ * Get bookinc-code text
+ *
+ * @return array
+ */   
+    public function get_code( $code_id ) {
+    	
+    	global $wpdb;
+
+		$sqlresult = $wpdb->get_row("SELECT * FROM $this->table_codes WHERE id = $code_id", ARRAY_A);
+
+    	return $sqlresult['bookingcode'];
+
+    }
+
+
+ /**
+ * Get item-data title
+ *
+ * @return array
+ */   
+    public function get_item ( $posts_id ) {
+    	
+    	global $wpdb;
+
+		$sqlresult = $wpdb->get_row("SELECT * FROM $twpds->posts WHERE id = $posts_id", ARRAY_A);
+
+		$item['item_title] = $sqlresult['post_title'];
+
+    	return $item;
+
+    }
+
+
+
+
+ /**
+ * Store all booking relevant data into booking-table, set status pending. Return booking_id
  *
  * @return array
  */   
     public function create_booking( $date_start, $date_end, $item_id ) {
     	
     	global $wpdb;
+    	$table_bookings = $wpdb->prefix . 'cb_bookings';
 
     	// get relevant data
-    	$booking[ ''];
-
+    	$code_id = $this->get_booking_code_id( $date_start, $item_id );
+    	$location_id = $this->get_booking_location_id ( $date_start, $date_end, $item_id );
 
     	$wpdb->insert( 
-			'table', 
+			$table_bookings, 
 			array( 
-				'column1' => 'value1', 
-				'column2' => 123 
+				'date_start' 	=> $date_start , 
+				'date_end' 		=> $date_end,
+				'item_id' 		=> $item_id,
+				'user_id' 		=> $this->user_id, 
+				'code_id' 		=> $code_id,
+				'location_id' 	=> $location_id,
+				'booking_time' 	=> date('Y-m-d H:i:s'),
+				'status' => 'pending'
 			), 
 				array( 
 				'%s', 
-				'%d' 
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%s',
+				'%s' 
 			) 
 		);
 
+		return $wpdb->insert_id;
 	}
+
+
+
+ /**
+ * get all booking-date as array
+ *
+ * @return array
+ */   
+    public function get_booking( $booking_id ) {
+    	
+    	global $wpdb;
+    	$table_bookings = $wpdb->prefix . 'cb_bookings';
+
+    	$booking_data = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);
+
+    	return $booking_data;
+    }
+
 }
 ?>
