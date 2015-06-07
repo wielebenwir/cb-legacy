@@ -64,7 +64,6 @@ class cb_codes_table_List_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=codes_form&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_codes_table')),
             'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_codes_table')),
         );
 
@@ -98,7 +97,7 @@ class cb_codes_table_List_Table extends WP_List_Table
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
             'item_id' => __('Item', 'cb_codes_table'),
             'bookingcode' => __('Code', 'cb_codes_table'),
-            'date' => __('Date', 'cb_codes_table'),
+            'booking_date' => __('Date', 'cb_codes_table'),
             'edit_actions' => __('Edit', 'cb_codes_table'),
         );
         return $columns;
@@ -115,7 +114,7 @@ class cb_codes_table_List_Table extends WP_List_Table
     {
         $sortable_columns = array(
             'item_id' => array('item_id', false),
-            'date' => array('date', false),
+            'booking_date' => array('booking_date', false),
             'id' => array('ID', false),
         );
         return $sortable_columns;
@@ -371,9 +370,7 @@ function cb_codes_table_page_handler()
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('codes', 'cb_codes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=codes_form');?>"><?php _e('Add new Code', 'cb_codes_table')?></a><php echo $filter; ?>
-    </h2>
+    <h2><?php _e('codes', 'cb_codes_table')?></h2>
     <?php echo $message; ?>
 
     <form id="codes-table" method="GET">
@@ -415,7 +412,7 @@ function cb_codes_table_form_page_handler()
         'id' => 0,
         'item_id' => null,
         'bookingcode' => null,        
-        'date' => '',
+        'booking_date' => '',
     );
 
     // here we are verifying does this request is post back and have correct nonce
@@ -529,8 +526,8 @@ function cb_codes_table_form_meta_box_handler($item)
             <label for="date"><?php _e('Date', 'cb_codes_table')?></label>
         </th>
         <td>
-            <input id="date" name="date" type="date" style="width: 95%" value="<?php echo esc_attr($item['date'])?>"
-                   size="50" class="date" placeholder="<?php _e('Date Date', 'cb_codes_table')?>" required>
+            <input id="booking_date" name="booking_date" type="date" style="width: 95%" value="<?php echo esc_attr($item['booking_date'])?>"
+                   size="50" class="date" placeholder="<?php _e('Date', 'cb_codes_table')?>" required>
         </td>
     </tr>       
    
