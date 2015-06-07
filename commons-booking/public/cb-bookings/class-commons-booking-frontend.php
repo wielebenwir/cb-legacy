@@ -191,7 +191,7 @@ class Commons_Booking_Frontend {
 				'user_id' 		=> $this->user_id, 
 				'code_id' 		=> $code_id,
 				'location_id' 	=> $location_id,
-				'booking_time' 	=> date('Y-m-d H:i:s'),
+				//'booking_time' 	=> date(),
 				'status' => 'pending'
 			), 
 				array( 
@@ -230,11 +230,35 @@ class Commons_Booking_Frontend {
     	$booking_data['code']			= $this->get_code( $sqlresult['code_id'] );
     	$booking_data['user']			= $this->get_booking_user( $sqlresult['user_id'] );
     	$booking_data['location']		= $this->get_location( $sqlresult['location_id']);
-    	$booking_data['booking_time']	= $sqlresult['booking_time'];
+    	$booking_data['booking_time']	= $sqlresult['bookingtime'];
     	$booking_data['status']			= $sqlresult['status'];
 
     	return $booking_data;
     }
+
+ /**
+ * set status in booking table.
+ * parameter: booking_id (id), status = new statu (e.g. "confirmed")
+ *
+ * @return array
+ */   
+    public function set_booking_status( $booking_id, $status ) {
+    	
+    	global $wpdb;
+    	$table_bookings = $wpdb->prefix . 'cb_bookings';
+
+		$wpdb->query(
+			"
+			UPDATE $table_bookings 
+			SET status = '" . $status . "'
+			WHERE id = $booking_id
+			"
+		);
+
+		return;
+
+    }
+
 
 }
 ?>
