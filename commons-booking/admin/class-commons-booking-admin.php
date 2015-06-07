@@ -229,7 +229,7 @@ class Commons_Booking_Admin {
 		if ( !isset( $this->plugin_screen_hook_suffix ) ) {
 			return;
 		}
-
+		$screen = get_current_screen();
 		if ( $screen->id == 'settings_page_commons-booking' ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
