@@ -396,8 +396,8 @@ function cb_timeframes_table_page_handler()
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('timeframes', 'cb_timeframes_table')?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
+    <h2><?php echo get_admin_page_title(); ?> <a class="add-new-h2"
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_form');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
 
        <?php new WP_Admin_Notice( __( 'Error dsad' ), 'updated' ); ?>
