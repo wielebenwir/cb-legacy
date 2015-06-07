@@ -389,7 +389,7 @@ function cb_timeframes_table_page_handler()
 
     $message = '';
     if ('delete' === $table->current_action()) {
-        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'cb_timeframes_table'), count($_REQUEST['id'])) . '</p></div>';
+        $message =  sprintf(__('Items deleted: %d', 'cb_timeframes_table'), count($_REQUEST['id']));
     }
     ?>
 
@@ -400,9 +400,7 @@ function cb_timeframes_table_page_handler()
                                  href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
     </h2>
 
-       <?php new WP_Admin_Notice( __( 'Error dsad' ), 'updated' ); ?>
-
-    <?php echo $message; ?>
+    <?php new Admin_Table_Message ( $message, 'updated' ); ?>
 
     <form id="timeframes-table" method="GET">
         <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
