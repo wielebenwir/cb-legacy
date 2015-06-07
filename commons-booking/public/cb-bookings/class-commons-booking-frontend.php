@@ -180,6 +180,8 @@ class Commons_Booking_Frontend {
     	$code_id = $this->get_booking_code_id( $date_start, $item_id );
     	$location_id = $this->get_booking_location_id ( $date_start, $date_end, $item_id );
 
+    	//@TODO: check if identical booking is already in database and cancel booking proucess if its true
+
     	$wpdb->insert( 
 			$table_bookings, 
 			array( 
@@ -210,13 +212,11 @@ class Commons_Booking_Frontend {
 
 
  /**
- * get all booking-date as array
+ * get all booking-dataa as array
  *
  * @return array
  */   
     public function get_booking( $booking_id ) {
-
-    	$booking_user = new WP_User;
     	
     	global $wpdb;
     	$table_bookings = $wpdb->prefix . 'cb_bookings';
@@ -227,6 +227,7 @@ class Commons_Booking_Frontend {
     	$booking_data['date_start']		= $sqlresult['date_start'];
     	$booking_data['date_end']		= $sqlresult['date_end'];
     	$booking_data['item']			= $this->get_item( $sqlresult['item_id'] );
+    	$booking_data['code']			= $this->get_code( $sqlresult['code_id'] );
     	$booking_data['user']			= $this->get_booking_user( $sqlresult['user_id'] );
     	$booking_data['location']		= $this->get_location( $sqlresult['location_id']);
     	$booking_data['booking_time']	= $sqlresult['booking_time'];
