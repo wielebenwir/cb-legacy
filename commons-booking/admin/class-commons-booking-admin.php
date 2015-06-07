@@ -279,16 +279,6 @@ class Commons_Booking_Admin {
         'dashicons-admin-network', 								// icon_url
         34 																				// position
         );
-    
-    // // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
-    // $this->plugin_screen_hook_suffix = add_submenu_page(
-    //     'cb_codes', 																				// parent_menu_slug
-    //     __( 'Add/Edit Code', $this->plugin_slug ), 			// page_title
-    //     __( 'Add Timeframe', $this->plugin_slug ), 					// menu_title
-    //     $capability, 																					// capability
-    //     'timeframes_form', 																		// menu_slug
-    //     'cb_timeframes_table_form_page_handler'								// function
-    //     );
 	}
 
 
@@ -302,12 +292,8 @@ class Commons_Booking_Admin {
 		 * Menu in Plugin Settings
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Commongs Booking Settings', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
-		/*
-		 * Settings page in the menu
-		 */
-		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
 	}
 
 	/**
