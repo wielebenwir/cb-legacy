@@ -213,7 +213,7 @@ class Commons_Booking_Admin {
 		}
 
 		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
+		if ( $screen->id == 'settings_page_commons-booking' || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
 			wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
 		}
 	}
@@ -230,14 +230,13 @@ class Commons_Booking_Admin {
 			return;
 		}
 
-		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+		if ( $screen->id == 'settings_page_commons-booking' ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
 	}
 
 	/**
-	 * Register the menus for Items, Locations, Timeframes, Codes & Bookings.
+	 * Register the menues Timeframes, Codes & Bookings.
 	 *
 	 * @TODO add bookings
 	 * @since    0.0.1
