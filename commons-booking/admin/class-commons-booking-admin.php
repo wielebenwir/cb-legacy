@@ -249,7 +249,7 @@ class Commons_Booking_Admin {
 		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Page Title', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Commongs Booking Settings', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
 		/*
 		 * Settings page in the menu
