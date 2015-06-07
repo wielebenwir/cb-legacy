@@ -90,7 +90,6 @@ class Commons_Booking_Frontend {
 
     }
 
-
  /**
  * Store all booking relevant data into booking-table, set status pending
  *
@@ -99,6 +98,10 @@ class Commons_Booking_Frontend {
     public function create_booking( $date_start, $date_end, $item_id ) {
     	
     	global $wpdb;
+
+    	// get relevant data
+    	$booking[ ''];
+
 
     	$wpdb->insert( 
 			'table', 
@@ -113,4 +116,5 @@ class Commons_Booking_Frontend {
 		);
 
 	}
+}
 ?>
