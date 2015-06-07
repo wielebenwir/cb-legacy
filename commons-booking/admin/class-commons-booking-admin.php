@@ -68,6 +68,8 @@ class Commons_Booking_Admin {
 		add_filter( 'dashboard_glance_items', array( $this, 'cpt_dashboard_support' ), 10, 1 );
 
 		// Add the options page and menu item.
+		add_action( 'admin_menu', array( $this, 'add_plugin_admin_settings' ) );		
+		// Add the Entrys for Items, Timeframes, Codes, ...
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 		//Add bubble notification for cpt pending
 		add_action( 'admin_menu', array( $this, 'pending_cpt_bubble' ), 999 );
@@ -211,7 +213,7 @@ class Commons_Booking_Admin {
 		}
 
 		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
+		if ( $screen->id == 'settings_page_commons-booking' || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
 			wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
 		}
 	}
@@ -228,34 +230,70 @@ class Commons_Booking_Admin {
 			return;
 		}
 
-		$screen = get_current_screen();
-		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+		if ( $screen->id == 'settings_page_commons-booking' ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
 	}
+
+	/**
+	 * Register the menues Timeframes, Codes & Bookings.
+	 *
+	 * @TODO add bookings
+	 * @since    0.0.1
+	 */
+	public function add_plugin_admin_menu() {
+
+		$capability = 'manage_options'; // Restrict access to whole menu to users with this capabilty
+
+		/*
+		 * 3. Timeframes
+		 */
+    $this->plugin_screen_hook_suffix = add_menu_page(
+        __( 'Timeframes', $this->plugin_slug ), 	// page_title
+        __( 'Timeframes', $this->plugin_slug ), 	// menu_title
+        $capability, 															// capability
+        'cb_timeframes', 														// menu_slug
+        'cb_timeframes_table_page_handler',				// function
+        'dashicons-calendar-alt', 								// icon_url
+        33 																				// position
+        );
+    
+    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
+    $this->plugin_screen_hook_suffix = add_submenu_page(
+        'cb_timeframes', 																			// parent_menu_slug
+        __( 'Add/Edit Timeframes', $this->plugin_slug ), 			// page_title
+        __( 'Add Timeframe', $this->plugin_slug ), 						// menu_title
+        $capability, 																					// capability
+        'cb_timeframes_form', 																// menu_slug
+        'cb_timeframes_table_form_page_handler'								// function
+        );
+		/*
+		 * 4. Codes
+		 */
+    $this->plugin_screen_hook_suffix = add_menu_page(
+        __( 'Codes', $this->plugin_slug ), 				// page_title
+        __( 'Codes', $this->plugin_slug ), 				// menu_title
+        $capability, 															// capability
+        'cb_codes', 															// menu_slug
+        'cb_codes_table_page_handler',						// function
+        'dashicons-admin-network', 								// icon_url
+        34 																				// position
+        );
+	}
+
 
 	/**
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 *
 	 * @since    0.0.1
 	 */
-	public function add_plugin_admin_menu() {
-
+	public function add_plugin_admin_settings() {
 		/*
-		 * Add a settings page for this plugin to the Settings menu.
-		 *
-		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-		 *
-		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
+		 * Menu in Plugin Settings
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Page Title', $this->plugin_slug ), __( 'Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
-		/*
-		 * Settings page in the menu
-		 * 
-		 */
-		$this->plugin_screen_hook_suffix = add_menu_page( __( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' ), 'dashicons-hammer', 90 );
 	}
 
 	/**

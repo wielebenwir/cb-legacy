@@ -347,19 +347,6 @@ class cb_codes_table_List_Table extends WP_List_Table
  */
 
 /**
- * admin_menu hook implementation, will add pages to list codes and to add new one 
- * @TODO: move menu creation to init/ restructure the menu 
- */
-function cb_codes_table_admin_menu()
-{
-    add_submenu_page('cb_menu', __('Codes', 'cb_codes_table'), __('Codes', 'cb_codes_table'), 'activate_plugins', 'codes', 'cb_codes_table_page_handler');
-    // add new will be described in next part
-    add_submenu_page('codes', __('Add new', 'cb_codes_table'), __('Add new', 'cb_codes_table'), 'activate_plugins', 'codes_form', 'cb_codes_table_form_page_handler');
-}
-
-add_action('admin_menu', 'cb_codes_table_admin_menu');
-
-/**
  * List page handler
  *
  * This function renders our custom table
