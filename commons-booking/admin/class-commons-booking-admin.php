@@ -279,7 +279,7 @@ class Commons_Booking_Admin {
         $capability, 															// capability
         'cb_bookings', 															// menu_slug
         'cb_bookings_list_page_handler',						// function
-        'dashicons-admin-network', 								// icon_url
+        'dashicons-tag', 								// icon_url
         34 																				// position
         );		/*
 		 * 5. Codes
