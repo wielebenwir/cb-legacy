@@ -2,7 +2,8 @@
 /**
  *
  * @package   Commons_Booking_Admin
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@macht-medien.de
+ * @author    Christian Wenzel <christian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
@@ -16,7 +17,7 @@
  */
 
 
-class Commons_Booking_Timeframes_Setup {
+class Commons_Booking_Bookings_Setup {
 
   public $table_db_version = '0.1'; // version changed from 1.0 to 0.1
 
@@ -36,7 +37,7 @@ public function install()
 {
 
     global $wpdb;
-    $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
+    $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
     // sql to create your table
     // NOTICE that:
@@ -45,14 +46,17 @@ public function install()
     //    Like this: PRIMARY KEY[space][space](id)
     // otherwise dbDelta will not work
     $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) unsigned NOT NULL AUTO_INCREMENT,
-      timeframe_title text,
-      item_id int(11) DEFAULT NULL,
-      location_id int(11) DEFAULT NULL,
-      date_start date DEFAULT NULL,
-      date_end date DEFAULT NULL,
+      id int(11) NOT NULL AUTO_INCREMENT,
+      date_start date NOT NULL,
+      date_end date NOT NULL,
+      item_id int(11) NOT NULL,
+      user_id int(11) NOT NULL,
+      code_id int(11) NOT NULL,
+      location_id int(11) NOT NULL,
+      booking_time datetime NOT NULL,
+      status varchar(50) NOT NULL
       PRIMARY KEY  (id)
-    );";
+      );";
 
     // we do not execute sql directly
     // we are calling dbDelta which cant migrate database
@@ -60,7 +64,7 @@ public function install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('cb_timeframes_table_db_version', $this->table_db_version);
+    add_option('cb_bookings_table_db_version', $this->table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 0.1 version
@@ -76,23 +80,26 @@ public function install()
      * we are using dbDelta to migrate table changes
      */
     
-    $installed_ver = get_option('cb_timeframes_table_db_version');
+    $installed_ver = get_option('cb_bookings_table_db_version');
     if ($installed_ver != $this->table_db_version) {
-        $sql = "CREATE TABLE " . $table_name . " (
-          id int(11) unsigned NOT NULL AUTO_INCREMENT,
-          timeframe_title text,
-          item_id int(11) DEFAULT NULL,
-          location_id int(11) DEFAULT NULL,
-          date_start date DEFAULT NULL,
-          date_end date DEFAULT NULL,
-          PRIMARY KEY (id)
+      $sql = "CREATE TABLE " . $table_name . " (
+        id int(11) NOT NULL AUTO_INCREMENT,
+        date_start date NOT NULL,
+        date_end date NOT NULL,
+        item_id int(11) NOT NULL,
+        user_id int(11) NOT NULL,
+        code_id int(11) NOT NULL,
+        location_id int(11) NOT NULL,
+        booking_time datetime NOT NULL,
+        status varchar(50) NOT NULL
+        PRIMARY KEY  (id)
         );";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
 
         // notice that we are updating option, rather than adding it
-        update_option('cb_timeframes_table_db_version', $this->table_db_version);
+        update_option('cb_bookings_table_db_version', $this->table_db_version);
     }
 }
 
@@ -108,10 +115,10 @@ public function install_data()
 {
     global $wpdb;
 
-    $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
+    $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
     $wpdb->insert($table_name, array(
-        'timeframe_title' => 'Test'
+        'date_start' => '2015-01-01'
     ));
 }
 
@@ -121,8 +128,8 @@ public function install_data()
  */
 public function update_db_check()
 {
-    if (get_site_option('cb_timeframes_table_db_version') != $this->table_db_version) {
-        cb_timeframes_table_install();
+    if (get_site_option('cb_bookings_table_db_version') != $this->table_db_version) {
+        cb_bookings_table_install();
     }
 }
 }
