@@ -253,7 +253,7 @@ class Commons_Booking_Admin {
         __( 'Timeframes', $this->plugin_slug ), 	// page_title
         __( 'Timeframes', $this->plugin_slug ), 	// menu_title
         $capability, 															// capability
-        'timeframes', 														// menu_slug
+        'cb_timeframes', 														// menu_slug
         'cb_timeframes_table_page_handler',				// function
         'dashicons-calendar-alt', 								// icon_url
         33 																				// position
@@ -261,14 +261,35 @@ class Commons_Booking_Admin {
     
     // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
     $this->plugin_screen_hook_suffix = add_submenu_page(
-        'timeframes', 																				// parent_menu_slug
+        'cb_timeframes', 																			// parent_menu_slug
         __( 'Add/Edit Timeframes', $this->plugin_slug ), 			// page_title
-        __( 'Add/Edit Timeframes', $this->plugin_slug ), 			// menu_title
+        __( 'Add Timeframe', $this->plugin_slug ), 						// menu_title
         $capability, 																					// capability
-        'timeframes_form', 																		// menu_slug
+        'cb_timeframes_form', 																// menu_slug
         'cb_timeframes_table_form_page_handler'								// function
         );
-
+		/*
+		 * 4. Codes
+		 */
+    $this->plugin_screen_hook_suffix = add_menu_page(
+        __( 'Codes', $this->plugin_slug ), 				// page_title
+        __( 'Codes', $this->plugin_slug ), 				// menu_title
+        $capability, 															// capability
+        'cb_codes', 															// menu_slug
+        'cb_codes_table_page_handler',						// function
+        'dashicons-admin-network', 								// icon_url
+        34 																				// position
+        );
+    
+    // // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
+    // $this->plugin_screen_hook_suffix = add_submenu_page(
+    //     'cb_codes', 																				// parent_menu_slug
+    //     __( 'Add/Edit Code', $this->plugin_slug ), 			// page_title
+    //     __( 'Add Timeframe', $this->plugin_slug ), 					// menu_title
+    //     $capability, 																					// capability
+    //     'timeframes_form', 																		// menu_slug
+    //     'cb_timeframes_table_form_page_handler'								// function
+    //     );
 	}
 
 
