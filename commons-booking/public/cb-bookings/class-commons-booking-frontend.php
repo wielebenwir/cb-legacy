@@ -111,15 +111,55 @@ class Commons_Booking_Frontend {
  *
  * @return array
  */   
-    public function get_item ( $posts_id ) {
+    public function get_item( $posts_id ) {
     	
     	global $wpdb;
 
-		$sqlresult = $wpdb->get_row("SELECT * FROM $twpds->posts WHERE id = $posts_id", ARRAY_A);
+		$sqlresult = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE id = $posts_id", ARRAY_A);
 
 		$item['item_title'] = $sqlresult['post_title'];
 
+    	return $item['item_title'];
+
+    }
+
+ /**
+ * Get location-data
+ *
+ * @return array
+ */   
+    public function get_location( $posts_id ) {
+    	
+    	global $wpdb;
+
+		$sqlresult_posts = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE id = $posts_id", ARRAY_A);
+
+		$item['location_title'] = $sqlresult_posts['post_title'];
+
+		//get meta-data
+		$sqlresult_meta = $wpdb->get_row("SELECT * FROM $wpdb->postmeta WHERE post_id = $posts_id AND meta_key = 'commons-booking_location_contactinformation'", ARRAY_A);
+
+		$item['location_contactinformation'] = $sqlresult_meta['meta_value'];
+
     	return $item;
+
+    }
+
+ /**
+ * Get booking-userdata
+ *
+ * @return array
+ */   
+    public function get_booking_user( $user_id ) {
+    	
+    	$userdata = get_userdata( $user_id );
+
+    	$user['name'] 			= $userdata->user_nicename;
+    	$user['email'] 			= $userdata->user_email;
+    	$user['address']		= "ADRESSFELD IN DATENBANK FEHLT"; //@TODO: Adresse in Userdaten integrieren
+    	$user['phone']			= "TELEFONNUMMER-FELD IN DATENBANK FEHLT"; //@TODO: Telefonnummer in Userdaten integrieren
+
+    	return $user;
 
     }
 
@@ -175,11 +215,22 @@ class Commons_Booking_Frontend {
  * @return array
  */   
     public function get_booking( $booking_id ) {
+
+    	$booking_user = new WP_User;
     	
     	global $wpdb;
     	$table_bookings = $wpdb->prefix . 'cb_bookings';
 
-    	$booking_data = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);
+    	$sqlresult = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);
+
+    	$booking_data['id']				= $sqlresult['id'];
+    	$booking_data['date_start']		= $sqlresult['date_start'];
+    	$booking_data['date_end']		= $sqlresult['date_end'];
+    	$booking_data['item']			= $this->get_item( $sqlresult['item_id'] );
+    	$booking_data['user']			= $this->get_booking_user( $sqlresult['user_id'] );
+    	$booking_data['location']		= $this->get_location( $sqlresult['location_id']);
+    	$booking_data['booking_time']	= $sqlresult['booking_time'];
+    	$booking_data['status']			= $sqlresult['status'];
 
     	return $booking_data;
     }
