@@ -369,38 +369,6 @@ class cb_timeframes_table_List_Table extends WP_List_Table
  */
 
 /**
- * admin_menu hook implementation, will add pages to list timeframes and to add new one 
- * @TODO: move menu creation to init/ restructure the menu 
- */
-function cb_timeframes_table_admin_menu()
-{
-
-    // @TODO: Replace 'cb_timeframes_table' with plugin slug
-    add_submenu_page(
-        'cb_menu', 
-        __('Timeframes', 
-        'cb_timeframes_table'), 
-        __('Timeframes', 'cb_timeframes_table'), 
-        'activate_plugins', 
-        'timeframes', 
-        'cb_timeframes_table_page_handler'
-        );
-    
-    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
-    add_submenu_page(
-        'cb_menu', 
-        __('Add new', 'cb_timeframes_table'), 
-        __('Add new', 'cb_timeframes_table'), 
-        'activate_plugins', 
-        'timeframes_form', 
-        'cb_timeframes_table_form_page_handler'
-        );
-}
-
-add_action('admin_menu', 'cb_timeframes_table_admin_menu');
-
-
-/**
  * List page handler
  *
  * This function renders our custom table
