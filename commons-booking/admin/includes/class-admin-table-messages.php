@@ -25,7 +25,9 @@ class Admin_Table_Message {
     function __construct( $message, $class = 'updated' ){
         $this->class = $class;
         $this->message = $message;
-        $this->output();
+        if ( !empty ( $this->message ) ) {
+          $this->output();
+        }
     }
 
     function output(){
