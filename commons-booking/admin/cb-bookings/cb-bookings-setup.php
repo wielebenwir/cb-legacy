@@ -54,7 +54,7 @@ public function install()
       code_id int(11) NOT NULL,
       location_id int(11) NOT NULL,
       booking_time datetime NOT NULL,
-      status varchar(50) NOT NULL
+      status varchar(50) NOT NULL,
       PRIMARY KEY  (id)
       );";
 
@@ -91,7 +91,7 @@ public function install()
         code_id int(11) NOT NULL,
         location_id int(11) NOT NULL,
         booking_time datetime NOT NULL,
-        status varchar(50) NOT NULL
+        status varchar(50) NOT NULL,
         PRIMARY KEY  (id)
         );";
 
@@ -131,7 +131,7 @@ public function update_db_check()
     if (get_site_option('cb_bookings_table_db_version') != $this->table_db_version) {
         cb_bookings_table_install();
     }
-}
+  }
 }
 
 ?>
