@@ -116,21 +116,13 @@ class Commons_Booking {
         // Activate plugin when new blog is added
         add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
 
-       
-
-        // Add Main Menu Item @TODO: This doesn´t work this way
-        add_action( 'admin_menu', 'register_cb_menu' );
-        function register_cb_menu() {
-         add_menu_page( __( 'Welcome to Commons Booking' ), __( 'CBooking' ), 'manage_options', 'cb_menu', todoMessage(),  plugins_url( 'myplugin/images/icon.png' ), 6 );
-        }
-        function todoMessage() {  }
 
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
         $type_items = new Commons_Booking_Items_CPT();
         $type_items->register_taxonomy();
         // new Commons_Booking_Items_CPT();
-        new Commons_Booking_Locations_CPT();
+        $type_locations = new Commons_Booking_Locations_CPT();
 
 
 
