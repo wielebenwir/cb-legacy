@@ -116,24 +116,23 @@ class Commons_Booking_Codes_CSV {
  */
 public function render() {
 
+  echo ( '<h2>Codes: ' . get_the_title( $this->item_id ) . '</h2>');
+
   if ( $this->missingDates ) { 
-    // @TODO: This is not working
-    // new WP_Admin_Notice( __( 'No codes generated or codes missing. Please generate Codes' ), 'error' );
     ?>
 
-
-    <h2><?=$this->item_id; ?><?php _e('No codes generated or codes missing.', 'cb_timeframes_table')?></h2>
+    <?php  new Admin_Table_Message ( __('No codes generated or codes missing.', 'cb_timeframes_table'), 'error' ); ?>
     <form id="codes" method="POST">
-    <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
-    <input class="hidden" name="generate" value="generate">
-    <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
+      <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
+      <input class="hidden" name="generate" value="generate">
+      <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
     </form>
+
     <?php
     if (isset($_REQUEST['generate'])) {
-      $sql = $this->prepare_sql( $this->item_id, $this->missingDates, $this->csvcodes );
+      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->csvcodes );
     }
   } else { // no Codes missing?>
-    <h2>Codes</h2>
     <?php   
   } // end if $missingDates
 
@@ -170,7 +169,7 @@ public function render_table( $dates ) {
  * @param $array list of dates
  * @param $array list of codes
  */
-private function prepare_sql( $itemid, $array, $codes) {
+private function sql_insert( $itemid, $array, $codes) {
 
   new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
 
@@ -180,8 +179,9 @@ private function prepare_sql( $itemid, $array, $codes) {
   shuffle( $codes ); // randomize array
 
   if ( count( $codes ) < count( $array )) {
-    echo __("Not enough Codes defined in backend");
-    die();
+    new Admin_Table_Message ( __('Not enough codes defined. Enter them in the Settings.', 'cb_timeframes_table'), 'error' );
+    return false;
+
   }
 
   $sqlcols = "item_id,booking_date,bookingcode";
