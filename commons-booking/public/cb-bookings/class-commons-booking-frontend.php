@@ -117,7 +117,7 @@ class Commons_Booking_Frontend {
 
 		$sqlresult = $wpdb->get_row("SELECT * FROM $twpds->posts WHERE id = $posts_id", ARRAY_A);
 
-		$item['item_title] = $sqlresult['post_title'];
+		$item['item_title'] = $sqlresult['post_title'];
 
     	return $item;
 
