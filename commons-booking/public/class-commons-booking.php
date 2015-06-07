@@ -127,8 +127,10 @@ class Commons_Booking {
 
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
-        new Item_CPT();
-        new Locations_CPT();
+        $type_items = new Commons_Booking_Items_CPT();
+        $type_items->register_taxonomy();
+        // new Commons_Booking_Items_CPT();
+        new Commons_Booking_Locations_CPT();
 
 
 

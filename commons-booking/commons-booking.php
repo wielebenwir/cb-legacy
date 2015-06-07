@@ -39,8 +39,9 @@ if ( !defined( 'WPINC' ) ) {
 require_once( plugin_dir_path( __FILE__ ) . 'includes/Taxonomy_Core/Taxonomy_Core.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'includes/CPT_Core/CPT_Core.php' );
 
-// CPT Definition
-require_once( plugin_dir_path( __FILE__ ) . 'public/includes/class-commons-booking-cpt.php' );
+// Custom Post Type and Taxonomy Definitions
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-items/class-commons-booking-items-cpt.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-booking-locations-cpt.php' );
 
 // Classes for the individual content types - not sure if it belongs here. @TODO
 require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
