@@ -52,6 +52,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.p
 
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/cb-codes.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-bookings/cb-bookings.php' );
 
 // CLasses for Frontend-Booking
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-frontend.php' );

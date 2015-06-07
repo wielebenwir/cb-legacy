@@ -332,6 +332,8 @@ class Commons_Booking {
         $timeframe_table->install();        
         $codes_table = new Commons_Booking_Codes_Setup;
         $codes_table->install();
+        $bookings_table = new Commons_Booking_Bookings_Setup;
+        $bookings_table->install();
 
 
 
