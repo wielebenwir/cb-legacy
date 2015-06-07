@@ -5,12 +5,26 @@
  * This includes the header, options, and other information that should provide
  * The User Interface to the end user.
  *
+ * @TODO: change DB prefix to cb_ 
+ *
  * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
+
+
+function pages_dropdown() {
+	// dropdown for page select
+	$pages = get_pages();
+	$dropdown = array();
+	
+	foreach ( $pages as $page ) {
+		$dropdown[$page->ID] = $page->post_title;
+	}
+	return $dropdown;
+}
 ?>
 
 <div class="wrap">
@@ -19,11 +33,13 @@
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1"><?php _e( 'Main Settings' ); ?></a></li>
-			<li><a href="#tabs-2"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
-			<li><a href="#tabs-3"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
+			<li><a href="#tabs-main"><?php _e( 'Main Settings' ); ?></a></li>
+			<li><a href="#tabs-display"><?php _e( 'Display' ); ?></a></li>
+			<li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
+			<li><a href="#tabs-importexport"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
 		</ul>
-		<div id="tabs-1">
+
+		<div id="tabs-main">
 			<?php
 
 			$option_fields = array(
@@ -49,10 +65,32 @@
 
 			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings' );
 			?>
-
-			<!-- @TODO: Provide other markup for your options page here. -->
 		</div>
-		<div id="tabs-2">
+		<div id="tabs-display">
+			<?php
+
+			$option_fields = array(
+				'id' => $this->plugin_slug . '_options_display',
+				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
+				'show_names' => true,
+				'fields' => array(
+					array(
+				    'name'             => __( 'Plugin Page', $this->plugin_slug ),
+				    'desc'             => __( 'The page where the calendar and map will appear', $this->plugin_slug ),
+				    'id'               => $this->plugin_slug . '_page_select',
+				    'type'             => 'select',
+				    'show_option_none' => true,
+				    'default'          => 'none',
+				    'options'          => pages_dropdown(),
+					),
+				),
+			);
+
+			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings' );
+			?>
+		</div>
+
+		<div id="tabs-codes">
 			<?php
 
 			$option_fields_second = array(
@@ -72,9 +110,8 @@
 			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
 			?>
 
-			<!-- @TODO: Provide other markup for your options page here. -->
 		</div>
-		<div id="tabs-3" class="metabox-holder">
+		<div id="tabs-importexport" class="metabox-holder">
 			<div class="postbox">
 				<h3 class="hndle"><span><?php _e( 'Export Settings', $this->plugin_slug ); ?></span></h3>
 				<div class="inside">
