@@ -95,11 +95,14 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metabox-timeframes.php' );
 
 
+
 		// the admin table for timeframes & codes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/cb-codes.php' );
 		// require_once( plugin_dir_path( __FILE__ ) . 'class-admin-table-filters.php' );
 
+		// Admin messages
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/class-admin-table-messages.php' );
 
 		/*
 		 * Add location metaboxes
