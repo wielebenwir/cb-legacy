@@ -82,6 +82,12 @@ function pages_dropdown() {
 				    'show_option_none' => true,
 				    'default'          => 'none',
 				    'options'          => pages_dropdown(),
+					),					
+					array(
+				    'name'             => __( 'Show support', $this->plugin_slug ),
+				    'desc'             => __( 'Add a link to the Commons Booking Website.', $this->plugin_slug ),
+				    'id'               => $this->plugin_slug . '_showsupport',
+ 						'type'  					 => 'checkbox',
 					),
 				),
 			);
