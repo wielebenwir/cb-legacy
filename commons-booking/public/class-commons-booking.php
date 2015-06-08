@@ -136,6 +136,18 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_vars' ) );
 
+
+
+        /* 
+         * Add Table to predefined page
+         */
+
+
+        add_action( 'the_content', array( $this, 'wpse83525_filter_the_title' ) );
+
+        // add_filter( 'the_content', function( $title ) { return '<b>' . $title . '</b>'; } );
+
+
         /* 
          * Define custom functionality.
          * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
@@ -144,6 +156,21 @@ class Commons_Booking {
         add_filter( '@TODO', array( $this, 'filter_method_name' ) );
         add_shortcode( '@TODO', array( $this, 'shortcode_method_name' ) );
     }
+
+
+
+
+       public function wpse83525_filter_the_title() {
+        // $pageID = get_option( 'commons-booking-settings-display' );
+        var_dump($pageID );
+            // if ( is_page_template( 'page-courses.php' ) ) {
+            //     return 'Custom Title';
+            // }
+            // return $title;
+            return 'Custom Title';
+
+        }
+
 
     /**
      * Return the plugin slug.
