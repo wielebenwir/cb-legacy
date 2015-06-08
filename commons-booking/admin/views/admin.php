@@ -75,9 +75,18 @@ function pages_dropdown() {
 				'show_names' => true,
 				'fields' => array(
 					array(
-				    'name'             => __( 'Plugin Page', $this->plugin_slug ),
-				    'desc'             => __( 'The page where the calendar and map will appear', $this->plugin_slug ),
-				    'id'               => $this->plugin_slug . '_page_select',
+				    'name'             => __( 'Items Page', $this->plugin_slug ),
+				    'desc'             => __( 'The page where the items list should appear', $this->plugin_slug ),
+				    'id'               => $this->plugin_slug . '_item_page_select',
+				    'type'             => 'select',
+				    'show_option_none' => true,
+				    'default'          => 'none',
+				    'options'          => pages_dropdown(),
+					),						
+					array(
+				    'name'             => __( 'Locations Page', $this->plugin_slug ),
+				    'desc'             => __( 'The page where the locations list', $this->plugin_slug ),
+				    'id'               => $this->plugin_slug . '_location_page_select',
 				    'type'             => 'select',
 				    'show_option_none' => true,
 				    'default'          => 'none',

@@ -139,13 +139,9 @@ class Commons_Booking {
 
 
         /* 
-         * Add Table to predefined page
+         * Filter: Add main plugin overview output to page selected in settings.
          */
-
-
         add_action( 'the_content', array( $this, 'add_plugin_to_page' ) );
-
-        // add_filter( 'the_content', function( $title ) { return '<b>' . $title . '</b>'; } );
 
 
         /* 
@@ -158,7 +154,7 @@ class Commons_Booking {
     }
 
     /**
-     * Add plugin to page selected in settings.
+     * Add main plugin overview output to page selected in settings.
      *
      * @since    0.0.1
      *
@@ -166,8 +162,8 @@ class Commons_Booking {
      */
     public function add_plugin_to_page( $pageID ) {
         $settings_display = get_option( 'commons-booking-settings-display' );
-            if ( !empty( $settings_display[ 'commons-booking_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_page_select' ] ) ) ) {
-                return 'Custom';
+            if ( !empty( $settings_display[ 'commons-booking_item_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_item_page_select' ] ) ) ) {
+                return get_the_content( $pageID ) . 'Custom';
             } else {
                 return get_the_content( $pageID );
             }
