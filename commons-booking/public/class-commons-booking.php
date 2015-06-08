@@ -127,7 +127,7 @@ class Commons_Booking {
 
 
 
-        add_filter( 'body_class', array( $this, 'add_pn_class' ), 10, 3 );
+        add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
         //Override the template hierarchy for load /templates/content-demo.php
         add_filter( 'template_include', array( $this, 'load_content_demo' ) );
@@ -473,7 +473,7 @@ class Commons_Booking {
      *
      * @since    0.0.1
      */
-    public function add_pn_class( $classes ) {
+    public function add_cb_class( $classes ) {
         $classes[] = $this->get_plugin_slug();
         return $classes;
     }
