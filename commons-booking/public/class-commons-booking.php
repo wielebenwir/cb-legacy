@@ -143,7 +143,7 @@ class Commons_Booking {
          */
 
 
-        add_action( 'the_content', array( $this, 'wpse83525_filter_the_title' ) );
+        add_action( 'the_content', array( $this, 'add_plugin_to_page' ) );
 
         // add_filter( 'the_content', function( $title ) { return '<b>' . $title . '</b>'; } );
 
@@ -160,15 +160,13 @@ class Commons_Booking {
 
 
 
-       public function wpse83525_filter_the_title() {
-        // $pageID = get_option( 'commons-booking-settings-display' );
-        var_dump($pageID );
-            // if ( is_page_template( 'page-courses.php' ) ) {
-            //     return 'Custom Title';
-            // }
-            // return $title;
-            return 'Custom Title';
-
+       public function add_plugin_to_page( $pageID ) {
+        $settings_display = get_option( 'commons-booking-settings-display' );
+            if ( is_page( $settings_display['commons-booking_page_select'] ) ) {
+                return 'Custom';
+            } else {
+                return get_the_content( $pageID );
+            }
         }
 
 
