@@ -86,7 +86,7 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings' );
+			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings-display' );
 			?>
 		</div>
 
