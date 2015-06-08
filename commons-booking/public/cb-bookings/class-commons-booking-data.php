@@ -114,8 +114,8 @@ class Commons_Booking_Data {
  * Compare timeframe dates and entries in the codes db 
  * */
   public function compare() {
-    $codesDB = $this->get_codes();
-    $tfDates = $this->get_dates();
+    $codesDB = $this->codes;
+    $tfDates = $this->dates;
     $codeDates = array();
 
     foreach ( $codesDB as $entry ) {
@@ -157,31 +157,53 @@ class Commons_Booking_Data {
     $this->gather_data();
 
 
-
     $tf = $this->timeframes;
+    $codes = $this->codes;
+
+    // var_dump($codes);
 
     foreach ( $this->timeframes as $tf) {
       if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
-      $this->render_timeframe( $tf );
+      $this->render_timeframe( $tf, $codes );
       }
     }
 
   }
 
-  public function render_timeframe( $tf ) {
-    echo ('<h3>' . $tf['timeframe_title'] . '</h3><ol>');
+  public function render_timeframe( $tf, $codes ) {
+
+    $timeframe_comment = $tf['timeframe_title'];
+
+    $location_name = get_the_title( $tf['location_id'] );
+    $location_geo = ( get_post_meta( $tf['location_id'], 'commons-booking_location_map', true ) ); // @TODO: add prefix
+    $location_contact = ( get_post_meta( $tf['location_id'], 'commons-booking_location_contactinformation', true ) ); // @TODO: add prefix
+
+    include (commons_booking_get_template_part( 'calendar', 'location', FALSE ));
+
 
     // $dates = array();
     $first = strtotime( $tf['date_start'] );
-    $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) );
+    $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
     while( $first <= $last ) {
 
       echo ( '<li class="' .  date ('D', $first ) .'" >' . date ('D d.m.', $first ) . '</li>' );
-        $first = strtotime('+1 day', $first);
+      $code = ( $this->searcharray( date('Y-m-d', $first ), 'booking_date', $codes ) );
+      echo ($codes[$code]['bookingcode']);
+      $first = strtotime('+1 day', $first); // counter
     }
     echo ('</ol>');
   }
+
+  public function searcharray($value, $key, $array) {
+   foreach ($array as $k => $val) {
+       if ($val[$key] == $value) {
+           return $k;
+       }
+   }
+   return null;
+  }
+
 }
 
 
