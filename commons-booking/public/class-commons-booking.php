@@ -157,12 +157,16 @@ class Commons_Booking {
         add_shortcode( '@TODO', array( $this, 'shortcode_method_name' ) );
     }
 
-
-
-
-       public function add_plugin_to_page( $pageID ) {
+    /**
+     * Add plugin to page selected in settings.
+     *
+     * @since    0.0.1
+     *
+     * @return    Mixed 
+     */
+    public function add_plugin_to_page( $pageID ) {
         $settings_display = get_option( 'commons-booking-settings-display' );
-            if ( is_page( $settings_display['commons-booking_page_select'] ) ) {
+            if ( !empty( $settings_display[ 'commons-booking_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_page_select' ] ) ) ) {
                 return 'Custom';
             } else {
                 return get_the_content( $pageID );
