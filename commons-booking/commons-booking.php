@@ -57,6 +57,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-bookings/cb-bookings.php' 
 // CLasses for Frontend-Booking
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-frontend.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
 
 
 // Class for Codes
