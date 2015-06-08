@@ -380,17 +380,18 @@ class Commons_Booking {
             'WP' => new WordPress_Requirement( '3.9.0' ),
                 ) );
 
-        // @TODO: Define activation functionality here
-
+        // install the database tables 
         $timeframe_table = new Commons_Booking_Timeframes_Setup;
         $timeframe_table->install();        
+       
         $codes_table = new Commons_Booking_Codes_Setup;
         $codes_table->install();
+       
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
 
 
-
+        // @TODO: check roles 
         // global $wp_roles;
         // if ( !isset( $wp_roles ) ) {
         //     $wp_roles = new WP_Roles;
