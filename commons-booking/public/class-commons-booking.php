@@ -142,7 +142,11 @@ class Commons_Booking {
         /* 
          * Filter: Add main plugin overview output to page selected in settings.
          */
-        add_action( 'the_content', array( $this, 'add_plugin_to_page' ) );
+        add_action( 'the_content', array( $this, 'add_plugin_to_page' ) );        /* 
+        
+         * Filter: Add main plugin overview output to page selected in settings.
+         */
+        add_action( 'the_content', array( $this, 'items_single' ) );
 
 
         /* 
@@ -170,6 +174,27 @@ class Commons_Booking {
                 return get_the_content( $pageID ) . $items->show();
             } else {
                 return get_the_content( $pageID );
+            }
+        }
+
+    /**
+     * Add Timeframes list to items single.
+     *
+     * @since    0.0.1
+     *
+     * @return    Mixed 
+     */
+    public function items_single( $postID ) {
+            if (  is_singular( 'cb_items' ) ) {                
+                
+                // $timeframes_display = "<h1>hello single item</h1>";
+                $item_id = get_the_ID();
+                $timeframes = new Commons_Booking_Data();
+                $timeframes_display = $timeframes->show_by_item($item_id);
+
+                return get_the_content( $postID ) . $timeframes_display;
+            } else {
+                return get_the_content( $postID );
             }
         }
 
