@@ -121,8 +121,9 @@ class Commons_Booking {
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
         $type_items = new Commons_Booking_Items_CPT();
         $type_items->register_taxonomy();
-        // new Commons_Booking_Items_CPT();
         $type_locations = new Commons_Booking_Locations_CPT();
+
+        $items = new Commons_Booking_Public_Items();
 
 
 
@@ -154,7 +155,7 @@ class Commons_Booking {
     }
 
     /**
-     * Add main plugin overview output to page selected in settings.
+     * Add items list output to page selected in settings.
      *
      * @since    0.0.1
      *
@@ -163,7 +164,10 @@ class Commons_Booking {
     public function add_plugin_to_page( $pageID ) {
         $settings_display = get_option( 'commons-booking-settings-display' );
             if ( !empty( $settings_display[ 'commons-booking_item_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_item_page_select' ] ) ) ) {
-                return get_the_content( $pageID ) . 'Custom';
+                
+                $items = new Commons_Booking_Public_Items;
+
+                return get_the_content( $pageID ) . $items->show();
             } else {
                 return get_the_content( $pageID );
             }
