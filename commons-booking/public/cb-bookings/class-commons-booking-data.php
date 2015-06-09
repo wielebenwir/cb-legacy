@@ -35,8 +35,7 @@ class Commons_Booking_Data {
  *
  */
   public function __construct() {
-     // $this->queryid = $queryid;
-     // $this->selector = $selector;
+    $this->prefix = 'commons-booking';
     $this->daystoshow = 30;
 }
 
@@ -116,6 +115,37 @@ class Commons_Booking_Data {
       return __(' Something went wrong ' );
     }
   }
+
+
+
+  private function get_status() {
+
+    $return = '';
+    $end = $this->date_range_end; 
+
+    if ($this->item_id) {
+      global $wpdb;
+
+      $table_name = $wpdb->prefix . 'cb_timeframes'; 
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY date_start ASC', $this->item_id );
+      $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
+
+      if ( $this->timeframes ) {
+          return $this->timeframes;
+        } else { 
+          return __(' No Timeframes configured ' );
+        } 
+    } else {
+      return __(' Something went wrong ' );
+    }
+  }
+/**
+ * Get all timeframes.
+ * @TODO: restrict to current 
+ *
+ * @return array
+ */
+
 /**
  * Compare timeframe dates and entries in the codes db 
  * */
@@ -150,6 +180,29 @@ class Commons_Booking_Data {
   }
 
 
+  private function get_location ( $id ) {
+   
+    if ( $id ) {
+
+    $location = array ( 
+      'name' => get_the_title( $id ),
+      'address' => array ( 
+        'street' => get_post_meta( $id, 'commons-booking_location_adress_street', true ),
+        'city' => get_post_meta( $id, 'commons-booking_location_adress_city', true ),
+        'zip' => get_post_meta( $id, 'commons-booking_location_adress_zip', true ),
+      ),
+      'country' => get_post_meta( $id, 'commons-booking_location_adress_country', true ),
+      'contact' => get_post_meta( $id, 'commons-booking_location_contactinfo_text', true ),
+      'contact_hide' => get_post_meta( $id, 'commons-booking_location_contactinfo_hide', true ),
+      'closed_days' => get_post_meta( $id, 'commons-booking_location_closeddays', true ),
+      );
+    return $location;
+  } else {
+    return false;
+    }
+
+  }
+
 
   public function show_by_item( $item_id ) {
 
@@ -166,49 +219,81 @@ class Commons_Booking_Data {
     $tf = $this->timeframes;
     $codes = $this->codes;
 
-    // var_dump($codes);
-
     foreach ( $this->timeframes as $tf) {
       if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
-      $this->render_timeframe( $tf, $codes );
+        
+        $location = $this->get_location ( $tf['location_id'] );
+        $this->render_timeframe( $tf, $codes, $location );
+      
       }
     }
 
   }
 
-  public function render_timeframe( $tf, $codes ) {
+
+
+
+
+  public function render_timeframe( $tf, $codes, $location ) {
 
     $timeframe_comment = $tf['timeframe_title'];
-
-    $location_name = get_the_title( $tf['location_id'] );
-    $location_geo = ( get_post_meta( $tf['location_id'], 'commons-booking_location_map', true ) ); // @TODO: add prefix
-    $location_contact = ( get_post_meta( $tf['location_id'], 'commons-booking_location_contactinformation', true ) ); // @TODO: add prefix
-    
-    $location_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) ) ;
+    $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
-
-    // $dates = array();
     $start = strtotime( $tf['date_start'] );
-    $first = $start;
+    $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
+
 
     echo ('<ul class="cb calendar">');
 
-    while( $first <= $last ) {
+    while( $counter <= $last ) { // loop through days
+      $display_day = date ('D', $counter );
+      $display_date = date ('j.n.', $counter ); 
+      $code = $this->get_code_by_date ( $counter, $codes ); 
 
-      $day = date ('D', $first );
-      $date = date ('j.n.', $first ); 
-      $needle = ( $this->searcharray( date('Y-m-d', $first ), 'booking_date', $codes ) );
-      $code = ( $codes[ $needle ][ 'bookingcode' ] );
+      $class= $this->set_day_status( $counter, $location );
 
       include (commons_booking_get_template_part( 'calendar', 'cell', FALSE )); // include the template
 
-      $first = strtotime('+1 day', $first); // counter
+      $counter = strtotime('+1 day', $counter); // counter
     }
     echo ('</ul>');
   }
+
+/**
+ * Get code by Date
+ *
+ * @param $date singe date
+ * @param $codes array of codes
+ * @return string / false
+ */
+  private function get_code_by_date ( $date, $codes ) {
+      $needle = ( $this->searcharray( date('Y-m-d', $date ), 'booking_date', $codes ) );
+      if ( $needle ) {
+         $code = ( $codes[ $needle ][ 'bookingcode' ] ); 
+         return $code;    
+      } else {
+        return false;
+      }
+
+  }
+
+
+  private function set_day_status( $date, $location ) {
+    // first: check if it´s in the locations´ closed days array
+    $status = '';
+    if ( in_array( date( 'N', $date ), $location[ 'closed_days'] )) {
+      $status = 'closed';
+    } else {
+      $status = 'bookable';
+    }
+    return $status;
+
+  }
+
+
 
   public function searcharray($value, $key, $array) {
    foreach ($array as $k => $val) {
