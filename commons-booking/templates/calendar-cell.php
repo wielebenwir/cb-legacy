@@ -5,9 +5,9 @@
  * @since   0.0.1
  */
 ?>
-<li class="<?php echo $day; ?>">
-  <span class="cb-date"><?php echo $date; ?></span>
-  <span class="cb-day"><?php echo $day; ?></span>
+<li class="<?php echo $display_day; ?>">
+  <span class="cb-date"><?php echo $display_date; ?></span>
+  <span class="cb-day"><?php echo $display_day; ?></span>
 
 
 </li>
