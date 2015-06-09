@@ -11,13 +11,18 @@
   }
 }
 
+
+$width: 100%;
+$cellwidth: $width / 7;
+
+
 .pusher {
-    .Mon {margin-left: 0;     }
-    .Tue {margin-left: 14.2%;  }
-    .Wed {margin-left: 38.4%; }
-    .Thu {margin-left: 52.6%; }
-    .Fri {margin-left: 66.8%; }
-    .Sat {margin-left: 80%; }
+    &.Mon {margin-left: 0; }
+    &.Tue {margin-left: $cellwidth; }
+    &.Wed {margin-left: $cellwidth * 2; }
+    &.Thu {margin-left: $cellwidth * 3; }
+    &.Fri {margin-left: $cellwidth * 4; }
+    &.Sat {margin-left: $cellwidth * 5; }
 
 }
 
@@ -33,9 +38,10 @@ ul.cb.calendar {
   margin-bottom: 1em 0 1em 0; 
   li:first-child {
     color:red;
+    @extend .pusher;
   }
   li {
-    width: 14.28%;
+    width: $cellwidth;
     padding: 10px;
     float: left;
     text-align: center;

@@ -5,18 +5,18 @@
   border: 1px solid #F2F2F2;
   background: #F2F2F2; }
 
-.pusher .Mon {
+.pusher.Mon, ul.cb.calendar li.Mon:first-child {
   margin-left: 0; }
-.pusher .Tue {
-  margin-left: 14.2%; }
-.pusher .Wed {
-  margin-left: 38.4%; }
-.pusher .Thu {
-  margin-left: 52.6%; }
-.pusher .Fri {
-  margin-left: 66.8%; }
-.pusher .Sat {
-  margin-left: 80%; }
+.pusher.Tue, ul.cb.calendar li.Tue:first-child {
+  margin-left: 14.28571%; }
+.pusher.Wed, ul.cb.calendar li.Wed:first-child {
+  margin-left: 28.57143%; }
+.pusher.Thu, ul.cb.calendar li.Thu:first-child {
+  margin-left: 42.85714%; }
+.pusher.Fri, ul.cb.calendar li.Fri:first-child {
+  margin-left: 57.14286%; }
+.pusher.Sat, ul.cb.calendar li.Sat:first-child {
+  margin-left: 71.42857%; }
 
 ul.cb.calendar {
   list-style: none;
@@ -26,7 +26,7 @@ ul.cb.calendar {
   ul.cb.calendar li:first-child {
     color: red; }
   ul.cb.calendar li {
-    width: 14.28%;
+    width: 14.28571%;
     padding: 10px;
     float: left;
     text-align: center;

@@ -6,6 +6,7 @@
  */
 ?>
 <div class="cb location">
+  <span class="cb date"><?php echo $location_date; ?></span>
   <h2><?php echo $location_name; ?></h2>
   <p class="cb comment"><?php echo $timeframe_comment; ?></p>
   <p class="cb contact"><?php echo $location_contact; ?></p>
