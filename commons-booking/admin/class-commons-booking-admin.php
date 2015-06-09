@@ -512,7 +512,7 @@ class Commons_Booking_Admin {
 	    'fields' => array(					
 				array(
 					'name' => __( 'Location is closed on the following days, booking is prohibited. ', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_closeddays_mon',
+					'id' => $this->plugin_slug . '_location_closeddays',
 					'type'    => 'multicheck',
 			    'options' => array(
 			        'mon' => __( 'Monday', $this->plugin_slug ),
