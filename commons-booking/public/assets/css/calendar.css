@@ -1,5 +1,5 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
-.cb.location {
+.cb-location {
   padding: 1em;
   margin-bottom: 1em;
   border: 1px solid #F2F2F2;
@@ -32,6 +32,9 @@ ul.cb.calendar {
     text-align: center;
     background: #F2F2F2;
     border: 1px solid #fff; }
+    ul.cb.calendar li.bookable {
+      color: #207B1C;
+      background: #adecaa; }
     ul.cb.calendar li:hover {
       color: #fff;
       background: #000; }
