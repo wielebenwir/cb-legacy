@@ -130,7 +130,7 @@ class Commons_Booking {
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
         //Override the template hierarchy for load /templates/content-demo.php
-        add_filter( 'template_include', array( $this, 'load_content_demo' ) );
+        // add_filter( 'template_include', array( $this, 'load_content_demo' ) ); //@TODO: delete
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -140,9 +140,9 @@ class Commons_Booking {
 
 
         /* 
-         * Filter: Add main plugin overview output to page selected in settings.
+         * Filter: Add main items list to page selected in settings.
          */
-        add_action( 'the_content', array( $this, 'add_plugin_to_page' ) );        /* 
+        add_action( 'the_content', array( $this, 'page_items_list' ) );        /* 
         
          * Filter: Add main plugin overview output to page selected in settings.
          */
@@ -151,7 +151,7 @@ class Commons_Booking {
 
         /* 
          * Define custom functionality.
-         * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
+         * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters // @TODO: cleanup
          */
         add_action( '@TODO', array( $this, 'action_method_name' ) );
         add_filter( '@TODO', array( $this, 'filter_method_name' ) );
@@ -165,7 +165,7 @@ class Commons_Booking {
      *
      * @return    Mixed 
      */
-    public function add_plugin_to_page( $pageID ) {
+    public function page_items_list( $pageID ) {
         $settings_display = get_option( 'commons-booking-settings-display' );
             if ( !empty( $settings_display[ 'commons-booking_item_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_item_page_select' ] ) ) ) {
                 
@@ -445,6 +445,10 @@ class Commons_Booking {
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+        if ( is_singular ( 'cb_items' )) {
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-lemonade', plugins_url( 'assets/css/lemonade.min.css', __FILE__ ), array(), self::VERSION );
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/calendar.css', __FILE__ ), array(), self::VERSION );
+        }
     }
 
     /**
