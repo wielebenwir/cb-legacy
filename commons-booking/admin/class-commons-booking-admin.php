@@ -468,13 +468,23 @@ class Commons_Booking_Admin {
 					'name' => __( 'Contact Information', $this->plugin_slug ),
 					'desc' => __( 'Phone Numbers & Opening hours', $this->plugin_slug ),
 					'id' => $this->plugin_slug . '_location_contactinformation',
-					'type' => 'textarea',
+					'type' => 'text',
+				),						
+				array(
+					'name' => __( 'Street', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_adress_street',
+					'type' => 'text',
 				),				
 				array(
-					'name' => __( 'Location', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_map',
-					'type' => 'pw_map',
-				),
+					'name' => __( 'City', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_adress_city',
+					'type' => 'text',
+				),				
+				// array(
+				// 	'name' => __( 'Location', $this->plugin_slug ),
+				// 	'id' => $this->plugin_slug . '_location_map',
+				// 	'type' => 'pw_map',
+				// ),
 			),
 		);
 
