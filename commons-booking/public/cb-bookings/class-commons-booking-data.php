@@ -183,12 +183,15 @@ class Commons_Booking_Data {
     $location_name = get_the_title( $tf['location_id'] );
     $location_geo = ( get_post_meta( $tf['location_id'], 'commons-booking_location_map', true ) ); // @TODO: add prefix
     $location_contact = ( get_post_meta( $tf['location_id'], 'commons-booking_location_contactinformation', true ) ); // @TODO: add prefix
+    
+    $location_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) ) ;
 
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
 
     // $dates = array();
-    $first = strtotime( $tf['date_start'] );
+    $start = strtotime( $tf['date_start'] );
+    $first = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
     echo ('<ul class="cb calendar">');
