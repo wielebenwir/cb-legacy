@@ -454,22 +454,15 @@ class Commons_Booking_Admin {
 
 
 		$items = new Commons_Booking_Items();
-		// print_r ($items->get_Items());
 
 		$meta_boxes[ 'cb_location_metabox_adress' ] = array(
-			'id' => 'cb_location_metabox',
-			'title' => __( 'Location', $this->plugin_slug ),
+			'id' => 'cb_location_metabox_adress',
+			'title' => __( 'Address', $this->plugin_slug ),
 			'object_types' => array( 'cb_locations', ), // Post type
 			'context' => 'normal',
 			'priority' => 'high',
-			'show_names' => true, // Show field names on the left
-			'fields' => array(
-				array(
-					'name' => __( 'Contact Information', $this->plugin_slug ),
-					'desc' => __( 'Phone Numbers & Opening hours', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_contactinformation',
-					'type' => 'text',
-				),						
+			'show_names' => true, // Show field names on the left		
+	    'fields' => array(				
 				array(
 					'name' => __( 'Street', $this->plugin_slug ),
 					'id' => $this->plugin_slug . '_location_adress_street',
@@ -479,14 +472,61 @@ class Commons_Booking_Admin {
 					'name' => __( 'City', $this->plugin_slug ),
 					'id' => $this->plugin_slug . '_location_adress_city',
 					'type' => 'text',
-				),				
-				// array(
-				// 	'name' => __( 'Location', $this->plugin_slug ),
-				// 	'id' => $this->plugin_slug . '_location_map',
-				// 	'type' => 'pw_map',
-				// ),
-			),
+				),					
+				array(
+					'name' => __( 'Country', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_adress_country',
+					'type' => 'text',
+				),	
+			),			
 		);
+
+		$meta_boxes[ 'cb_location_metabox_contactinfo' ] = array(
+			'id' => 'cb_location_metabox_contactinfo',
+			'title' => __( 'Contact Information', $this->plugin_slug ),
+			'object_types' => array( 'cb_locations', ), // Post type
+			'context' => 'normal',
+			'priority' => 'high',
+			'show_names' => true, // Show field names on the left	
+	    'fields' => array(		
+				array(
+					'name' => __( 'Phone Number, Email, ...', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_contactinfo_text',
+					'type' => 'textarea',
+				),				
+				array(
+					'name' => __( 'Hide contact information (will be sent with booking)', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_contactinfo_hide',
+					'type' => 'checkbox',
+				),	
+			),							
+		);		
+
+		$meta_boxes[ 'cb_location_metabox_closeddays' ] = array(
+			'id' => 'cb_location_metabox_closeddays',
+			'title' => __( 'Closed Days', $this->plugin_slug ),
+			'object_types' => array( 'cb_locations', ), // Post type
+			'context' => 'normal',
+			'priority' => 'high',
+			'show_names' => true, // Show field names on the left	
+	    'fields' => array(					
+				array(
+					'name' => __( 'Location is closed on the following days, booking is prohibited. ', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_closeddays_mon',
+					'type'    => 'multicheck',
+			    'options' => array(
+			        'mon' => __( 'Monday', $this->plugin_slug ),
+			        'tue' => __( 'Tuesday', $this->plugin_slug ),
+			        'wed' => __( 'Wednesday', $this->plugin_slug ),
+			        'thu' => __( 'Thursday', $this->plugin_slug ),
+			        'fri' => __( 'Friday', $this->plugin_slug ),
+			        'sat' => __( 'Saturday', $this->plugin_slug ),
+			        'sun' => __( 'Sunday', $this->plugin_slug ),
+			    		),
+			    ),				
+			),							
+		);
+
 
 		return $meta_boxes;
 	}
