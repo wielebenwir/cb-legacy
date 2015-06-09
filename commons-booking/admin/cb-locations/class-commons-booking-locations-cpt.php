@@ -28,7 +28,7 @@ class Commons_Booking_Locations_CPT extends CPT_Core {
                 'cb_locations' 
                 ),
             array( 
-                'supports' => array( 'title', 'editor', 'excerpt', 'thumbnail' ), 
+                'supports' => array( 'title', 'editor', 'thumbnail' ), 
                 'show_in_menu' => true,
                 'menu_position' => 32,
                 'menu_icon' => 'dashicons-location-alt'
