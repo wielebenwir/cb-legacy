@@ -472,6 +472,11 @@ class Commons_Booking_Admin {
 					'name' => __( 'City', $this->plugin_slug ),
 					'id' => $this->plugin_slug . '_location_adress_city',
 					'type' => 'text',
+				),				
+				array(
+					'name' => __( 'Zip Code', $this->plugin_slug ),
+					'id' => $this->plugin_slug . '_location_adress_zip',
+					'type' => 'text',
 				),					
 				array(
 					'name' => __( 'Country', $this->plugin_slug ),
