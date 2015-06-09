@@ -1,0 +1,59 @@
+/* This stylesheet is used to style the public-facing components of the plugin. */
+
+.cb.location {
+  padding: 1em;
+  margin-bottom: 1em;
+
+  border: 1px solid #F2F2F2;
+  background: #F2F2F2;
+
+  h2, h3 {
+  }
+}
+
+.pusher {
+    .Mon {margin-left: 0;     }
+    .Tue {margin-left: 14.2%;  }
+    .Wed {margin-left: 38.4%; }
+    .Thu {margin-left: 52.6%; }
+    .Fri {margin-left: 66.8%; }
+    .Sat {margin-left: 80%; }
+
+}
+
+
+
+ul.cb.calendar {
+
+
+
+  list-style: none; 
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 1em 0 1em 0; 
+  li:first-child {
+    color:red;
+  }
+  li {
+    width: 14.28%;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    background: #F2F2F2;
+    border: 1px solid #fff;
+    &:hover {
+      color: #fff;
+      background: #000;
+    }
+  }
+  .cb-day {
+    display: block; 
+      font-size: 0.8em;
+
+  }
+  .cb-date {
+    display: block; 
+  }
+
+}
+

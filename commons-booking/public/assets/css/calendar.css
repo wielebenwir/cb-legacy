@@ -1,0 +1,44 @@
+/* This stylesheet is used to style the public-facing components of the plugin. */
+.cb.location {
+  padding: 1em;
+  margin-bottom: 1em;
+  border: 1px solid #F2F2F2;
+  background: #F2F2F2; }
+
+.pusher .Mon {
+  margin-left: 0; }
+.pusher .Tue {
+  margin-left: 14.2%; }
+.pusher .Wed {
+  margin-left: 38.4%; }
+.pusher .Thu {
+  margin-left: 52.6%; }
+.pusher .Fri {
+  margin-left: 66.8%; }
+.pusher .Sat {
+  margin-left: 80%; }
+
+ul.cb.calendar {
+  list-style: none;
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 1em 0 1em 0; }
+  ul.cb.calendar li:first-child {
+    color: red; }
+  ul.cb.calendar li {
+    width: 14.28%;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    background: #F2F2F2;
+    border: 1px solid #fff; }
+    ul.cb.calendar li:hover {
+      color: #fff;
+      background: #000; }
+  ul.cb.calendar .cb-day {
+    display: block;
+    font-size: 0.8em; }
+  ul.cb.calendar .cb-date {
+    display: block; }
+
+/*# sourceMappingURL=calendar.css.map */
