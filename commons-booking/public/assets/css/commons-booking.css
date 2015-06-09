@@ -1,0 +1,59 @@
+/* Typo general */
+.cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
+  font-size: 0.8em; }
+
+.cb-big, .cb-timeframe .cb-location .cb-location-name {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+/* Timeframes */
+.cb-timeframe {
+  margin-bottom: 1em;
+  border-bottom: 1px solid #000;
+  /* Calendar */ }
+  .cb-timeframe .pusher.Mon, .cb-timeframe ul.cb-calendar li.Mon:first-child {
+    margin-left: 0; }
+  .cb-timeframe .pusher.Tue, .cb-timeframe ul.cb-calendar li.Tue:first-child {
+    margin-left: 14.28571%; }
+  .cb-timeframe .pusher.Wed, .cb-timeframe ul.cb-calendar li.Wed:first-child {
+    margin-left: 28.57143%; }
+  .cb-timeframe .pusher.Thu, .cb-timeframe ul.cb-calendar li.Thu:first-child {
+    margin-left: 42.85714%; }
+  .cb-timeframe .pusher.Fri, .cb-timeframe ul.cb-calendar li.Fri:first-child {
+    margin-left: 57.14286%; }
+  .cb-timeframe .pusher.Sat, .cb-timeframe ul.cb-calendar li.Sat:first-child {
+    margin-left: 71.42857%; }
+  .cb-timeframe .cb-location {
+    display: block;
+    overflow: hidden; }
+    .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
+      width: 50%;
+      float: left; }
+  .cb-timeframe ul.cb-calendar {
+    list-style: none;
+    clear: both;
+    overflow: hidden;
+    margin: 1em 0 1em 0; }
+    .cb-timeframe ul.cb-calendar li {
+      width: 14.28571%;
+      height: 80px;
+      overflow: hidden;
+      padding: 10px;
+      float: left;
+      text-align: center;
+      background: #F2F2F2;
+      border: 1px solid #fff; }
+      .cb-timeframe ul.cb-calendar li.bookable {
+        cursor: pointer;
+        color: #207B1C;
+        background: #adecaa; }
+        .cb-timeframe ul.cb-calendar li.bookable:hover {
+          background: #207B1C;
+          color: #fff; }
+    .cb-timeframe ul.cb-calendar .cb-day {
+      display: block;
+      font-size: 0.8em; }
+    .cb-timeframe ul.cb-calendar .cb-date {
+      display: block; }
+
+/*# sourceMappingURL=commons-booking.css.map */

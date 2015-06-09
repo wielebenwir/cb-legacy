@@ -446,8 +446,7 @@ class Commons_Booking {
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
         if ( is_singular ( 'cb_items' )) {
-        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-lemonade', plugins_url( 'assets/css/lemonade.min.css', __FILE__ ), array(), self::VERSION );
-        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/calendar.css', __FILE__ ), array(), self::VERSION );
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );
         }
     }
 

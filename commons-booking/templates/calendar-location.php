@@ -7,10 +7,9 @@
 ?>
 <div class="cb-location">
   <span class="cb-date"><?php echo $timeframe_date; ?></span>
-  <h2><?php echo $location[ 'name']; ?></h2>
-  <p class="cb-comment"><?php echo $timeframe_comment; ?></p>
-  <?php if (!$location[ 'contact_hide' ] ) { 
-    echo ( '<p class="cb-contact">' . $location[ 'contact' ] . '</p>' ); 
-    } ?>
+  <div class="cb-location-name"><?php echo $location[ 'name']; ?> – <?php echo $timeframe_comment; ?></div>
   <div class="cb-address"><?php echo ( implode( ' ', $location[ 'address' ] ) ); ?></div>
+  <?php if (!$location[ 'contact_hide' ] ) { 
+    echo ( '<div class="cb-contact">' . $location[ 'contact' ] . '</div>' ); 
+    } ?>
 </div>

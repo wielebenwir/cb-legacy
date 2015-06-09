@@ -1,0 +1,87 @@
+/* Typo general */
+
+  .cb-small { font-size: 0.8em; }
+  .cb-big { font-size: 1.2em; font-weight: bold;}
+
+
+/* Timeframes */
+.cb-timeframe {
+
+  $width: 100%;
+  $cellwidth: $width / 7;
+
+  margin-bottom: 1em;
+  border-bottom: 1px solid #000;
+
+  .pusher {
+      &.Mon {margin-left: 0; }
+      &.Tue {margin-left: $cellwidth; }
+      &.Wed {margin-left: $cellwidth * 2; }
+      &.Thu {margin-left: $cellwidth * 3; }
+      &.Fri {margin-left: $cellwidth * 4; }
+      &.Sat {margin-left: $cellwidth * 5; }
+
+  }
+
+  .cb-location {
+    display: block;
+    overflow: hidden; 
+    .cb-date {
+      @extend .cb-small;
+    }
+    .cb-location-name {
+      @extend .cb-big;
+    }
+
+    .cb-contact, .cb-address {
+        width: 50%;
+        float: left;
+        @extend .cb-small;
+
+    }
+
+  }
+
+  /* Calendar */
+  ul.cb-calendar {
+    list-style: none; 
+    clear: both;
+    overflow: hidden;
+    margin: 1em 0 1em 0; 
+
+    li:first-child {
+      @extend .pusher; // add margin to push first entry. 
+    }
+    li {
+      width: $cellwidth;
+      height: 80px;
+      overflow: hidden;
+      padding: 10px;
+      float: left;
+      text-align: center;
+      background: #F2F2F2;
+      border: 1px solid #fff;
+    
+      &.bookable { // selectable dates
+        cursor: pointer;
+        color: #207B1C;
+        background: lighten(#207B1C, 50%);
+        &:hover {
+          background: #207B1C;
+          color: #fff;
+        }
+      }
+      &:hover {
+      }  
+    }
+    .cb-day {
+      display: block; 
+        font-size: 0.8em;
+
+    }
+    .cb-date {
+      display: block; 
+    }
+
+  }
+}
