@@ -183,22 +183,21 @@ class Commons_Booking_Data {
   private function get_location ( $id ) {
    
     if ( $id ) {
-
-    $location = array ( 
-      'name' => get_the_title( $id ),
-      'address' => array ( 
-        'street' => get_post_meta( $id, 'commons-booking_location_adress_street', true ),
-        'city' => get_post_meta( $id, 'commons-booking_location_adress_city', true ),
-        'zip' => get_post_meta( $id, 'commons-booking_location_adress_zip', true ),
-      ),
-      'country' => get_post_meta( $id, 'commons-booking_location_adress_country', true ),
-      'contact' => get_post_meta( $id, 'commons-booking_location_contactinfo_text', true ),
-      'contact_hide' => get_post_meta( $id, 'commons-booking_location_contactinfo_hide', true ),
-      'closed_days' => get_post_meta( $id, 'commons-booking_location_closeddays', true ),
-      );
-    return $location;
-  } else {
-    return false;
+      $location = array ( 
+        'name' => get_the_title( $id ),
+        'address' => array ( 
+          'street' => get_post_meta( $id, 'commons-booking_location_adress_street', true ),
+          'city' => get_post_meta( $id, 'commons-booking_location_adress_city', true ),
+          'zip' => get_post_meta( $id, 'commons-booking_location_adress_zip', true ),
+        ),
+        'country' => get_post_meta( $id, 'commons-booking_location_adress_country', true ),
+        'contact' => get_post_meta( $id, 'commons-booking_location_contactinfo_text', true ),
+        'contact_hide' => get_post_meta( $id, 'commons-booking_location_contactinfo_hide', true ),
+        'closed_days' => get_post_meta( $id, 'commons-booking_location_closeddays', true ),
+        );
+      return $location;
+    } else {
+      return false;
     }
 
   }
@@ -239,6 +238,8 @@ class Commons_Booking_Data {
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
+    echo ( '<div class="cb-timeframe">');
+
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
     $start = strtotime( $tf['date_start'] );
@@ -246,7 +247,7 @@ class Commons_Booking_Data {
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
 
-    echo ('<ul class="cb calendar">');
+    echo ('<ul class="cb-calendar">');
 
     while( $counter <= $last ) { // loop through days
       $display_day = date ('D', $counter );
@@ -260,6 +261,7 @@ class Commons_Booking_Data {
       $counter = strtotime('+1 day', $counter); // counter
     }
     echo ('</ul>');
+    echo ( '</div>');
   }
 
 /**
