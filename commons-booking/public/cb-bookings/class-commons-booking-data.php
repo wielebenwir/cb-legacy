@@ -89,16 +89,22 @@ class Commons_Booking_Data {
     $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND booking_date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
     return $codesDB;
   } 
-
+/**
+ * Get all timeframes.
+ * @TODO: restrict to current 
+ *
+ * @return array
+ */
   private function get_timeframes() {
 
     $return = '';
+    $end = $this->date_range_end; 
 
     if ($this->item_id) {
       global $wpdb;
 
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY item_id DESC', $this->item_id );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY date_start ASC', $this->item_id );
       $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
 
       if ( $this->timeframes ) {
@@ -178,21 +184,27 @@ class Commons_Booking_Data {
     $location_geo = ( get_post_meta( $tf['location_id'], 'commons-booking_location_map', true ) ); // @TODO: add prefix
     $location_contact = ( get_post_meta( $tf['location_id'], 'commons-booking_location_contactinformation', true ) ); // @TODO: add prefix
 
-    include (commons_booking_get_template_part( 'calendar', 'location', FALSE ));
+    include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
 
     // $dates = array();
     $first = strtotime( $tf['date_start'] );
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
+    echo ('<ul class="cb calendar">');
+
     while( $first <= $last ) {
 
-      echo ( '<li class="' .  date ('D', $first ) .'" >' . date ('D d.m.', $first ) . '</li>' );
-      $code = ( $this->searcharray( date('Y-m-d', $first ), 'booking_date', $codes ) );
-      echo ($codes[$code]['bookingcode']);
+      $day = date ('D', $first );
+      $date = date ('j.n.', $first ); 
+      $needle = ( $this->searcharray( date('Y-m-d', $first ), 'booking_date', $codes ) );
+      $code = ( $codes[ $needle ][ 'bookingcode' ] );
+
+      include (commons_booking_get_template_part( 'calendar', 'cell', FALSE )); // include the template
+
       $first = strtotime('+1 day', $first); // counter
     }
-    echo ('</ol>');
+    echo ('</ul>');
   }
 
   public function searcharray($value, $key, $array) {
