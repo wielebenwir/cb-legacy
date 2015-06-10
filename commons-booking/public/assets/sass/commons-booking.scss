@@ -3,6 +3,29 @@
   .cb-small { font-size: 0.8em; }
   .cb-big { font-size: 1.2em; font-weight: bold;}
 
+.gradient {
+   background: rgba(207,207,207,1);
+  background: -moz-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(207,207,207,1)), color-stop(100%, rgba(255,255,255,1)));
+  background: -webkit-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
+  background: -o-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
+  background: -ms-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 );   
+  }
+
+#cb-bookingbar {
+  padding: 10px;
+  position: fixed;
+  height: auto;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0; 
+  @extend .gradient;
+
+}
+
 
 /* Timeframes */
 .cb-timeframe {
@@ -53,6 +76,9 @@
       @extend .pusher; // add margin to push first entry. 
     }
     li {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
       width: $cellwidth;
       height: 80px;
       overflow: hidden;
@@ -67,9 +93,14 @@
         color: #207B1C;
         background: lighten(#207B1C, 50%);
         &:hover {
-          background: #207B1C;
+          background: darken(#207B1C, 10%);
           color: #fff;
         }
+      }
+      &.selected {
+        border: 1px solid #207B1C;
+        background: #207B1C;
+        color: #fff;
       }
       &:hover {
       }  

@@ -185,18 +185,17 @@ class Commons_Booking {
      * @return    Mixed 
      */
     public function items_single( $postID ) {
-            if (  is_singular( 'cb_items' ) ) {                
-                
-                // $timeframes_display = "<h1>hello single item</h1>";
-                $item_id = get_the_ID();
-                $timeframes = new Commons_Booking_Data();
-                $timeframes_display = $timeframes->show_by_item($item_id);
+        if (  is_singular( 'cb_items' ) ) {                             
+            $item_id = get_the_ID();
+            $timeframes = new Commons_Booking_Data();
+            $timeframes_display = $timeframes->show_by_item($item_id);
+            $bookingbar_display = $timeframes->show_booking_bar(); 
 
-                return get_the_content( $postID ) . $timeframes_display;
-            } else {
-                return get_the_content( $postID );
-            }
+            return get_the_content( $postID ) . $timeframes_display . $bookingbar_display;
+        } else {
+            return get_the_content( $postID );
         }
+    }    
 
 
     /**

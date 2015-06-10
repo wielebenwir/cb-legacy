@@ -6,6 +6,25 @@
   font-size: 1.2em;
   font-weight: bold; }
 
+.gradient, #cb-bookingbar {
+  background: #cfcfcf;
+  background: -moz-linear-gradient(top, #cfcfcf 0%, white 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #cfcfcf), color-stop(100%, white));
+  background: -webkit-linear-gradient(top, #cfcfcf 0%, white 100%);
+  background: -o-linear-gradient(top, #cfcfcf 0%, white 100%);
+  background: -ms-linear-gradient(top, #cfcfcf 0%, white 100%);
+  background: linear-gradient(to bottom, #cfcfcf 0%, white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 ); }
+
+#cb-bookingbar {
+  padding: 10px;
+  position: fixed;
+  height: auto;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
 /* Timeframes */
 .cb-timeframe {
   margin-bottom: 1em;
@@ -35,6 +54,9 @@
     overflow: hidden;
     margin: 1em 0 1em 0; }
     .cb-timeframe ul.cb-calendar li {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
       width: 14.28571%;
       height: 80px;
       overflow: hidden;
@@ -48,8 +70,12 @@
         color: #207B1C;
         background: #adecaa; }
         .cb-timeframe ul.cb-calendar li.bookable:hover {
-          background: #207B1C;
+          background: #155113;
           color: #fff; }
+      .cb-timeframe ul.cb-calendar li.selected {
+        border: 1px solid #207B1C;
+        background: #207B1C;
+        color: #fff; }
     .cb-timeframe ul.cb-calendar .cb-day {
       display: block;
       font-size: 0.8em; }
