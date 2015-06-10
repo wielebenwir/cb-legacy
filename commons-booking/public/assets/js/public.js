@@ -18,6 +18,7 @@
     // Use this variable to set up the common and page specific functions. If you
     // rename this variable, you will also need to rename the namespace below.
     var Commons_Booking = {
+
       // All pages
       common: {
         init: function() {
@@ -26,18 +27,87 @@
       },
       // Script for booking, fired on single cb_items
       single_cb_items: {
+
         init: function() {
-          var selected_days = new Array();
-          $( "li.bookable" ).each(function() {
-           $(this).on("click", function(){
-            $( this ).toggleClass( "selected");
-            selected_days.push($( this ).attr('id'));
-            // $( this ).next( "li" ).css( "background-color", "red" );
-              });
+
+          var selectedIndexes = [];
+          var selectedDates = [];
+          var startContainer = $( '#date-start' );
+          var endContainer = $( '#date-end' );
+          var maxDays = 3; 
+          var high;
+          var low;
+          var sortArray = [];
+          var arrayToSort;
+          var minMax = 0;
+
+
+          $('.tooltip').tooltipster({
+            animation: 'grow',
+            delay: 0,
+            theme: 'tooltipster-default',
+            touchDevices: false,
           });
+
+
+        $( "li.bookable" ).on( "click", function( index ) {
+          // console.log( $( this ).index() );
+          update ( $( this ) );
+
+        });
+        function update( obj ) {
+
+          var needle = $.inArray( obj.index(), selectedIndexes ); // look for index in array. 
+          
+
+          if ( needle > -1 )  { // found, so remove from array and classes
+            obj.removeClass ( "selected" );
+            selectedIndexes.splice(needle, 1); 
+          } else if ( minMax < maxDays ) {
+              obj.addClass ( "selected" );
+              selectedIndexes.push( obj.index() );
+          }
+          // console.log (minMax[0] - minMax[1] );
+          // console.log ( minMax );
+          console.log ( selectedIndexes );
+          minMax = getMinMax( selectedIndexes );          
+
+
+          // if ( obj.hasClass( "selected" ) ) {
+          //   obj.removeClass ( "selected" );
+          //   // selectedIndexes.pop();
+          //   } else if ( (minMax[0] - minMax[1] ) < maxDays ) {
+          //     obj.addClass ( "selected" );
+
+          //   }
+
+         //  if ( (high - low) < maxDays ) {
+         //    obj.toggleClass( "selected");
+         // }
+
+          // selectedDates.push( obj.attr('id'));
+          // if ( selectedIndexes.length < maxDays ) {
+
+          // }
+        
+        }
+        function getMinMax( sortArray ) {
+          if (sortArray.length > 0 ) {
+            sortArray.sort(function(a, b){return b-a}); // sort by # asc       
+            var myarray = [ sortArray[0], sortArray[sortArray.length -1] ];
+            console.log ( myarray );
+            return ( myarray[0] - myarray[1] );
+          } else {
+            return sortArray; 
+          }
+        }
         }
       }
     };
+
+
+
+
 
     // The routing fires all common scripts, followed by the page specific scripts.
     // Add additional events for more control over timing e.g. a finalize event
