@@ -296,6 +296,10 @@ class Commons_Booking_Data {
   }
 
 
+  public function show_booking_bar() {
+    include (commons_booking_get_template_part( 'calendar', 'bookingbar', FALSE )); // include the template
+  }
+
 
   public function searcharray($value, $key, $array) {
    foreach ($array as $k => $val) {
