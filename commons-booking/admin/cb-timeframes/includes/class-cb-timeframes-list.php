@@ -151,7 +151,6 @@ class Commons_Booking_Timeframes_List {
    */
   private function get_Items() {
 
-
     $return = '';
 
     if ($this->postID) {
