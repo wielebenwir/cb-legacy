@@ -24,10 +24,17 @@
           // JavaScript to be fired on all pages
         }
       },
-      // Home page
-      home: {
+      // Script for booking, fired on single cb_items
+      single_cb_items: {
         init: function() {
-          // JavaScript to be fired on the home page
+          var selected_days = new Array();
+          $( "li.bookable" ).each(function() {
+           $(this).on("click", function(){
+            $( this ).toggleClass( "selected");
+            selected_days.push($( this ).attr('id'));
+            // $( this ).next( "li" ).css( "background-color", "red" );
+              });
+          });
         }
       }
     };
