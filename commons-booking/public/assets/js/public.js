@@ -51,56 +51,48 @@
 
 
         $( "li.bookable" ).on( "click", function( index ) {
-          // console.log( $( this ).index() );
           update ( $( this ) );
+          console.log ("fired:" + $( this ).index());
+
 
         });
         function update( obj ) {
 
-          var needle = $.inArray( obj.index(), selectedIndexes ); // look for index in array. 
-          
+          var index = obj.index();
+
+          var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
 
           if ( needle > -1 )  { // found, so remove from array and classes
             obj.removeClass ( "selected" );
-            selectedIndexes.splice(needle, 1); 
-          } else if ( minMax < maxDays ) {
-              obj.addClass ( "selected" );
-              selectedIndexes.push( obj.index() );
-          }
-          // console.log (minMax[0] - minMax[1] );
-          // console.log ( minMax );
-          console.log ( selectedIndexes );
-          minMax = getMinMax( selectedIndexes );          
-
-
-          // if ( obj.hasClass( "selected" ) ) {
-          //   obj.removeClass ( "selected" );
-          //   // selectedIndexes.pop();
-          //   } else if ( (minMax[0] - minMax[1] ) < maxDays ) {
-          //     obj.addClass ( "selected" );
-
-          //   }
-
-         //  if ( (high - low) < maxDays ) {
-         //    obj.toggleClass( "selected");
-         // }
-
-          // selectedDates.push( obj.attr('id'));
-          // if ( selectedIndexes.length < maxDays ) {
-
-          // }
-        
-        }
-        function getMinMax( sortArray ) {
-          if (sortArray.length > 0 ) {
-            sortArray.sort(function(a, b){return b-a}); // sort by # asc       
-            var myarray = [ sortArray[0], sortArray[sortArray.length -1] ];
-            console.log ( myarray );
-            return ( myarray[0] - myarray[1] );
+            selectedIndexes.splice( needle, 1 ); 
           } else {
-            return sortArray; 
+            if ( validate( index, selectedIndexes ) == 1 ) {
+              selectedIndexes.push( index );
+              obj.addClass ( "selected" );
           }
         }
+          console.log ("indexes:" + selectedIndexes);
+
+      }
+
+
+        function validate ( index, selectedIndexes ) {
+          
+          var arr = selectedIndexes;
+          arr.push ( index );
+
+          arr.sort(function(a, b){return a-b}); // sort by # ASC 
+          console.log (arr[arr.length -1] - arr[0] );
+
+          if ( ( arr[arr.length -1] - arr[0]) < maxDays ) {
+            return 1;
+          } 
+         
+
+
+        }
+
+
         }
       }
     };
