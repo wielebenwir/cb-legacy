@@ -1,5 +1,21 @@
 <?php 
-global $wpdb;
+/**
+ *
+ * @package   Commons_Booking_Public
+ * @author    Florian Egermann <florian@macht-medien.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Display the booking bar
+ *
+ * @package Commons_Booking_Bookingbar
+ * @author  Your Name <email@example.com>
+ */
+
+
 ?>
 <div id="cb-bookingbar">
 
@@ -12,10 +28,10 @@ global $wpdb;
       echo $current_user->display_name;
     ?>
   </div>
-  <div id="date-from">
+  <div id="date-start">
     from
   </div>
-  <div id="date-till">
+  <div id="date-end">
     date till
   </div>
 
