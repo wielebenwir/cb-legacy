@@ -50,45 +50,78 @@
           });
 
 
-        $( "li.bookable" ).on( "click", function( index ) {
+        $( ".cb-calendar li" ).on( "click", function( index ) {
           update ( $( this ) );
-          console.log ("fired:" + $( this ).index());
 
 
         });
         function update( obj ) {
 
+          // console.log ("indexeslength:" + selectedIndexes.length);
+
           var index = obj.index();
+          var clickedIndexes = [];
+
 
           var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
+          var clickedIndexes = selectedIndexes.concat();
 
-          if ( needle > -1 )  { // found, so remove from array and classes
-            obj.removeClass ( "selected" );
-            selectedIndexes.splice( needle, 1 ); 
-          } else {
-            if ( validate( index, selectedIndexes ) == 1 ) {
-              selectedIndexes.push( index );
-              obj.addClass ( "selected" );
+
+          // console.log (needle);
+
+          console.log ("before: " + selectedIndexes);
+
+          // De-Selection
+          if ( needle > -1 )  { // already selected, so de-select
+            clickedIndexes.splice( needle, 1 );              
+          } else {        
+            if (selectedIndexes.length > 1 ) { // 2 selected, so exchange first item with it
+              clickedIndexes[0] = index;   
+            } else {
+               clickedIndexes.push ( index );          
+            }
           }
+
+          // Valdiation 
+          var distance = 0;
+          if ( clickedIndexes.length > 1 ) {
+             var distance = clickedIndexes.reduce(function(a, b) {
+                return Math.abs( a - b );
+              });
+          }
+
+          if ( ( distance < 3 ) ) {  
+            console.log ("smaller");
+            selectedIndexes = clickedIndexes;  
+
+            } else {
+              console.log ("higher");
+          }
+          setSelected( selectedIndexes );
+
+          console.log (  "after: " + selectedIndexes);
+
+          }
+
+          // console.log (selectedIndexes);
+
+          // $( "li.bookable" ).get( selectedIndexes[0] ).addClass ( "selected" );
+
+      
+        function setSelected( selected ) {
+          // console.log ("indexes:" + i);
+
+          $( ".cb-calendar li" ).each(function( myindex ) {
+
+            if ( $.inArray( myindex, selected )  > -1 )  {
+              $( this ).addClass(' selected ');
+            } else {
+              $( this ).removeClass(' selected ');
+          }
+          });        
         }
-          console.log ("indexes:" + selectedIndexes);
 
-      }
-
-
-        function validate ( index, selectedIndexes ) {
-          
-          var arr = selectedIndexes;
-          arr.push ( index );
-
-          arr.sort(function(a, b){return a-b}); // sort by # ASC 
-          console.log (arr[arr.length -1] - arr[0] );
-
-          if ( ( arr[arr.length -1] - arr[0]) < maxDays ) {
-            return 1;
-          } 
-         
-
+        function displayMsg ( msg, class ) {
 
         }
 
