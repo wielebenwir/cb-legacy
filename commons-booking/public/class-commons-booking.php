@@ -467,8 +467,11 @@ class Commons_Booking {
      * @since    0.0.1
      */
     public function enqueue_js_vars() {
-        wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'pn_js_vars', array(
-            'alert' => __( 'Hey! You have clicked the button!', $this->get_plugin_slug() )
+        wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
+            'setting_maxdays' => 3,
+            'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
+            'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
+            'text_returnpickup' => __( 'Pickup and return date:', $this->get_plugin_slug() )
                 )
         );
     }
