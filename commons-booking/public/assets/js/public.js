@@ -51,25 +51,19 @@
 
 
         $( ".cb-calendar li" ).on( "click", function( index ) {
-          update ( $( this ) );
+          update ( $( this ).index() );
 
 
         });
-        function update( obj ) {
+        function update( index ) {
 
           // console.log ("indexeslength:" + selectedIndexes.length);
 
-          var index = obj.index();
-          var clickedIndexes = [];
+           var clickedIndexes = [];
 
 
           var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
           var clickedIndexes = selectedIndexes.concat();
-
-
-          // console.log (needle);
-
-          console.log ("before: " + selectedIndexes);
 
           // De-Selection
           if ( needle > -1 )  { // already selected, so de-select
@@ -91,16 +85,10 @@
           }
 
           if ( ( distance < 3 ) ) {  
-            console.log ("smaller");
             selectedIndexes = clickedIndexes;  
-
-            } else {
-              console.log ("higher");
           }
+
           setSelected( selectedIndexes );
-
-          console.log (  "after: " + selectedIndexes);
-
           }
 
           // console.log (selectedIndexes);
@@ -111,19 +99,45 @@
         function setSelected( selected ) {
           // console.log ("indexes:" + i);
 
+          var indexes = selected.concat();
+          var start;
+          var end;
+          var ids = [];
+          // ids = $( "li.bookable" ).get( dates ).id;
+
+
           $( ".cb-calendar li" ).each(function( myindex ) {
 
-            if ( $.inArray( myindex, selected )  > -1 )  {
+            if ( $.inArray( myindex, indexes )  > -1 )  {
               $( this ).addClass(' selected ');
             } else {
               $( this ).removeClass(' selected ');
           }
-          });        
+          });   
+
+          start = $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
+          if ( indexes.length > 1 ) {
+            end = $( ".cb-calendar li" ).get([ indexes[1] ]).innerHTML;
+          } else {
+            end = $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
+         
+          }
+
+
+          startContainer.html ( start );
+          endContainer.html ( end );
+          // endContainer.html ( end );
+
+          // var start = $( "li.bookable" ).get( dates);
+          // var end = $( "li.bookable" ).get( dates[1] );
+          console.log ( "indexes: " + indexes );
+          // startContainer.text( start.first()  );    
+          // endContainer.text( end  );    
         }
 
-        function displayMsg ( msg, class ) {
+        // function displayMsg ( msg, class ) {
 
-        }
+        // }
 
 
         }
@@ -156,7 +170,7 @@
     $(document).ready(UTIL.loadEvents);
 
     // Write in console log the PHP value passed in enqueue_js_vars in public/class-commons-booking.php
-    console.log( pn_js_vars.alert );
+    console.log( cb_js_vars.text_pickup );
     
     // Place your public-facing JavaScript here
 
