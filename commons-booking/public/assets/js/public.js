@@ -39,6 +39,7 @@
           var text_choose = cb_js_vars.text_choose;
           var text_error_days = cb_js_vars.text_error_days;
           var text_error_timeframes = cb_js_vars.text_error_timeframes;
+          var text_error_notbookable = cb_js_vars.text_error_notbookable;
 
           var selectedIndexes = [];
           var selectedDates = [];
@@ -107,7 +108,7 @@
               displayNotice (text_error_timeframes,  "error");
               return false;
           } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
-              displayNotice ("This day is not bookable",  "error");
+              displayNotice (text_error_notbookable,  "error");
               return false;       
           } else if ( (distance >= maxDays )) { // max days is not exceeded
             displayNotice (text_error_days + maxDays, "error");
@@ -150,6 +151,8 @@
                 $( this ).removeClass(' selected ');
             }
             });   
+
+            bookingButton.hide();
 
             if ( indexes.length == 0 ) {
               form_date_start.val(''); // clear start & end input values
