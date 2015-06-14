@@ -238,7 +238,7 @@ class Commons_Booking_Data {
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
-    echo ( '<div class="cb-timeframe">');
+    echo ( '<div class="cb-timeframe">' );
 
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
@@ -246,7 +246,7 @@ class Commons_Booking_Data {
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
-
+    echo (' <div id ="timeframe_' . $tf[ 'id' ] .'" class="cb_timeframe_form">');
     echo ('<ul class="cb-calendar">');
 
     while( $counter <= $last ) { // loop through days
@@ -260,7 +260,8 @@ class Commons_Booking_Data {
 
       $counter = strtotime('+1 day', $counter); // counter
     }
-    echo ('</ul>');
+    echo ('</ul>' );
+    echo ( '</div>' );
     echo ( '</div>');
   }
 
