@@ -30,16 +30,35 @@
 
         init: function() {
 
+          // js vars from php
+          var maxDays = cb_js_vars.setting_maxdays;
+          var text_start_booking = cb_js_vars.text_start_booking;
+          var text_return = cb_js_vars.text_return;
+          var text_pickup = cb_js_vars.text_pickup;
+          var text_pickupreturn = cb_js_vars.text_pickupreturn;
+          var text_choose = cb_js_vars.text_choose;
+          var text_error_days = cb_js_vars.text_error_days;
+          var text_error_timeframes = cb_js_vars.text_error_timeframes;
+
           var selectedIndexes = [];
           var selectedDates = [];
+          var currentTimeFrame;
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
-          var maxDays = 3; 
+
+          var wrapper = $( '.cb-timeframe' );
+          var calEl = $( '.cb-calendar li' );
+          var msgEl = $( '#cb-bookingbar-msg' );
+
           var high;
           var low;
           var sortArray = [];
           var arrayToSort;
           var minMax = 0;
+
+          // set starting text
+          startContainer.html ( text_choose );
+          endContainer.html ( '' );
 
 
           $('.tooltip').tooltipster({
@@ -49,18 +68,16 @@
             touchDevices: false,
           });
 
-
-        $( ".cb-calendar li" ).on( "click", function( index ) {
-          update ( $( this ).index() );
-
-
+        wrapper.each( function( ) {
+          $( 'li', this).on( "click", function( index ) {
+              update ( $( this ).index(), $( this ).parents( '.cb_timeframe_form' ).attr( 'id' ) );
+          });
         });
-        function update( index ) {
 
-          // console.log ("indexeslength:" + selectedIndexes.length);
+        function update( index, id ) {
 
-           var clickedIndexes = [];
 
+          var clickedIndexes = [];
 
           var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
           var clickedIndexes = selectedIndexes.concat();
@@ -76,6 +93,13 @@
             }
           }
 
+          if ( selectedIndexes.length > 0 && currentTimeFrame != id ) {
+            displayNotice (text_error_timeframes,  "error");
+            return false;
+          } else {
+             currentTimeFrame = id;
+          }
+
           // Valdiation 
           var distance = 0;
           if ( clickedIndexes.length > 1 ) {
@@ -83,30 +107,38 @@
                 return Math.abs( a - b );
               });
           }
-
-          if ( ( distance < 3 ) ) {  
+          // check if distance smaller than 
+          if ( ( distance < maxDays ) ) {  
             selectedIndexes = clickedIndexes;  
+          } else {
+            displayNotice (text_error_days + maxDays, "error");
           }
 
-          setSelected( selectedIndexes );
+          setSelected( selectedIndexes, id );
+
           }
 
-          // console.log (selectedIndexes);
+        function displayNotice ( msg, theclass) {
+          msgEl.html( msg );
+          msgEl.show();
+          msgEl.attr( 'class', theclass );
+          msgEl.delay(3000).fadeOut();
 
-          // $( "li.bookable" ).get( selectedIndexes[0] ).addClass ( "selected" );
+        }
 
       
-        function setSelected( selected ) {
+        function setSelected( selected, id ) {
           // console.log ("indexes:" + i);
 
+          var tf_id = id;
           var indexes = selected.concat();
           var start;
           var end;
-          var ids = [];
-          // ids = $( "li.bookable" ).get( dates ).id;
+
+          var indexes = selected.sort(function(a,b){return a - b});
 
 
-          $( ".cb-calendar li" ).each(function( myindex ) {
+          $( '#'+tf_id+' li' ).each(function( myindex ) {
 
             if ( $.inArray( myindex, indexes )  > -1 )  {
               $( this ).addClass(' selected ');
@@ -115,30 +147,21 @@
           }
           });   
 
-          start = $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
-          if ( indexes.length > 1 ) {
-            end = $( ".cb-calendar li" ).get([ indexes[1] ]).innerHTML;
+          // start = text_pickup + $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
+          if ( indexes.length == 0 ) {
+            start = text_choose;
+            end = "";
+          } else if ( indexes.length == 1 ) { 
+            start = text_pickupreturn + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
+            end = "";
           } else {
-            end = $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
-         
+            start = text_pickup + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
+            end = text_return + $( '#'+tf_id+' li' ).get([ indexes[1] ]).innerHTML;
           }
 
-
           startContainer.html ( start );
-          endContainer.html ( end );
-          // endContainer.html ( end );
-
-          // var start = $( "li.bookable" ).get( dates);
-          // var end = $( "li.bookable" ).get( dates[1] );
-          console.log ( "indexes: " + indexes );
-          // startContainer.text( start.first()  );    
-          // endContainer.text( end  );    
+          endContainer.html ( end );  
         }
-
-        // function displayMsg ( msg, class ) {
-
-        // }
-
 
         }
       }
