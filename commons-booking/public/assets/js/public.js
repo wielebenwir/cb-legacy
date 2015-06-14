@@ -45,20 +45,16 @@
           var currentTimeFrame;
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
+          var bookingButton = $( '#cb-submit .button' );
 
           var wrapper = $( '.cb-timeframe' );
           var calEl = $( '.cb-calendar li' );
           var msgEl = $( '#cb-bookingbar-msg' );
 
-          var high;
-          var low;
-          var sortArray = [];
-          var arrayToSort;
-          var minMax = 0;
-
           // set starting text
           startContainer.html ( text_choose );
           endContainer.html ( '' );
+          bookingButton.hide();
 
 
           $('.tooltip').tooltipster({
@@ -74,8 +70,7 @@
           });
         });
 
-        function update( index, id ) {
-
+        function update( index, tf_id ) {
 
           var clickedIndexes = [];
 
@@ -93,75 +88,78 @@
             }
           }
 
-          if ( selectedIndexes.length > 0 && currentTimeFrame != id ) {
-            displayNotice (text_error_timeframes,  "error");
-            return false;
-          } else {
-             currentTimeFrame = id;
-          }
-
-          // Valdiation 
+          // Calculate Distance 
           var distance = 0;
           if ( clickedIndexes.length > 1 ) {
              var distance = clickedIndexes.reduce(function(a, b) {
                 return Math.abs( a - b );
               });
           }
-          // check if distance smaller than 
-          if ( ( distance < maxDays ) ) {  
-            selectedIndexes = clickedIndexes;  
-          } else {
+
+
+          // VALIDATION
+          if ( selectedIndexes.length > 0 && currentTimeFrame != tf_id ) { // within current timeframe
+              displayNotice (text_error_timeframes,  "error");
+              return false;
+          } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
+              displayNotice ("This day is not bookable",  "error");
+              return false;       
+          } else if ( (distance >= maxDays )) { // max days is not exceeded
             displayNotice (text_error_days + maxDays, "error");
+            return false;       
+          } else { // no errors
+            selectedIndexes = clickedIndexes;  
+            currentTimeFrame = tf_id;     
           }
 
-          setSelected( selectedIndexes, id );
+          // set selected, show Booking Button
+          setSelected( selectedIndexes, tf_id );
+          bookingButton.show();
 
           }
 
-        function displayNotice ( msg, theclass) {
-          msgEl.html( msg );
-          msgEl.show();
-          msgEl.attr( 'class', theclass );
-          msgEl.delay(3000).fadeOut();
+          // show notices
+          function displayNotice ( msg, theclass) {
+            msgEl.html( msg );
+            msgEl.show();
+            msgEl.attr( 'class', theclass );
+            msgEl.delay(3000).fadeOut();
+          }
 
-        }
+          // set the selection & texts 
+          function setSelected( selected, id ) {
 
-      
-        function setSelected( selected, id ) {
-          // console.log ("indexes:" + i);
+            var tf_id = id;
+            var indexes = selected.concat();
+            var start;
+            var end;
 
-          var tf_id = id;
-          var indexes = selected.concat();
-          var start;
-          var end;
-
-          var indexes = selected.sort(function(a,b){return a - b});
+            var indexes = selected.sort(function(a,b){return a - b});
 
 
-          $( '#'+tf_id+' li' ).each(function( myindex ) {
+            $( '#'+tf_id+' li' ).each(function( myindex ) {
 
-            if ( $.inArray( myindex, indexes )  > -1 )  {
-              $( this ).addClass(' selected ');
+              if ( $.inArray( myindex, indexes )  > -1 )  {
+                $( this ).addClass(' selected ');
+              } else {
+                $( this ).removeClass(' selected ');
+            }
+            });   
+
+            if ( indexes.length == 0 ) {
+              start = text_choose;
+              end = "";
+            } else if ( indexes.length == 1 ) { 
+              start = text_pickupreturn + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
+              end = "";
             } else {
-              $( this ).removeClass(' selected ');
-          }
-          });   
+              start = text_pickup + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
+              end = text_return + $( '#'+tf_id+' li' ).get([ indexes[1] ]).innerHTML;
+            }
 
-          // start = text_pickup + $( ".cb-calendar li" ).get([ indexes[0] ]).innerHTML;
-          if ( indexes.length == 0 ) {
-            start = text_choose;
-            end = "";
-          } else if ( indexes.length == 1 ) { 
-            start = text_pickupreturn + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
-            end = "";
-          } else {
-            start = text_pickup + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
-            end = text_return + $( '#'+tf_id+' li' ).get([ indexes[1] ]).innerHTML;
+            startContainer.html ( start );
+            endContainer.html ( end );  
           }
-
-          startContainer.html ( start );
-          endContainer.html ( end );  
-        }
 
         }
       }
