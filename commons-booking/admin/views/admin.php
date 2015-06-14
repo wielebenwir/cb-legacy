@@ -33,8 +33,9 @@ function pages_dropdown() {
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-main"><?php _e( 'Main Settings' ); ?></a></li>
-			<li><a href="#tabs-display"><?php _e( 'Display' ); ?></a></li>
+			<li><a href="#tabs-main"><?php _e( 'Main Settings', $this->plugin_slug  ); ?></a></li>
+			<li><a href="#tabs-display"><?php _e( 'Appearance', $this->plugin_slug  ); ?></a></li>
+			<li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
 			<li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
 			<li><a href="#tabs-importexport"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
 		</ul>
@@ -76,7 +77,7 @@ function pages_dropdown() {
 				'fields' => array(
 					array(
 				    'name'             => __( 'Items Page', $this->plugin_slug ),
-				    'desc'             => __( 'The page where the items list should appear', $this->plugin_slug ),
+				    'desc'             => __( 'Display list of items on this page', $this->plugin_slug ),
 				    'id'               => $this->plugin_slug . '_item_page_select',
 				    'type'             => 'select',
 				    'show_option_none' => true,
@@ -85,8 +86,17 @@ function pages_dropdown() {
 					),						
 					array(
 				    'name'             => __( 'Locations Page', $this->plugin_slug ),
-				    'desc'             => __( 'The page where the locations list', $this->plugin_slug ),
+				    'desc'             => __( 'Display list of Locations on this page', $this->plugin_slug ),
 				    'id'               => $this->plugin_slug . '_location_page_select',
+				    'type'             => 'select',
+				    'show_option_none' => true,
+				    'default'          => 'none',
+				    'options'          => pages_dropdown(),
+					),						
+					array(
+				    'name'             => __( 'Booking Submit Page', $this->plugin_slug ),
+				    'desc'             => __( 'Once you click "Book, you will be forwarded to this page', $this->plugin_slug ),
+				    'id'               => $this->plugin_slug . '_bookingsubmit_page_select',
 				    'type'             => 'select',
 				    'show_option_none' => true,
 				    'default'          => 'none',
@@ -104,7 +114,27 @@ function pages_dropdown() {
 			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings-display' );
 			?>
 		</div>
+		<div id="tabs-bookingsettings">
+			<?php
 
+			$option_fields = array(
+				'id' => $this->plugin_slug . '_options_bookingsettings',
+				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
+				'show_names' => true,
+				'fields' => array(
+					array(
+						'name' => __( 'Maximum booking days', $this->plugin_slug ),
+						'desc' => __( 'Users can only book this many days at once', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_bookingsettings_maxdays',
+						'type' => 'text_small',
+						'default' => "3",
+					),
+				),
+			);
+
+			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings-bookings' );
+			?>
+		</div>
 		<div id="tabs-codes">
 			<?php
 
