@@ -20,7 +20,16 @@
 <div id="cb-bookingbar">
   <div id="cb-bookingbar-msg"></div>
   <div class="inner">
+    <div class="cb-userinfo cb-small">
 
+   <?php if ( is_user_logged_in() ) { ?>
+      <?php 
+      global $current_user;
+        get_currentuserinfo();
+        echo ( __( 'Logged in as:' ));
+        echo $current_user->display_name;
+      ?>
+    </div>
   <div class="booking">
     <div id="intro">
     <?php _e ( 'Book this item:') ?>
@@ -37,15 +46,11 @@
         </a>
       </div>
   </div>
-   <?php if ( is_user_logged_in() ) { ?>
-       <div class="cb-userinfo cb-small">
-      <?php 
-      global $current_user;
-        get_currentuserinfo();
-        echo ( __( 'Logged in as:' ));
-        echo $current_user->display_name;
-      ?>
-    </div>
+    <?php // Form fields to save the selection ?>
+    <form id="booking-selection">
+      <input type="hidden" name="date_start">
+      <input type="hidden" name="date_end">
+    </form>
     <?php } else { ?>
       <p class="cb-big"><?php echo __( 'You have to be registered to book.' ); ?></p>
       <a href="<?php echo wp_login_url(); ?>"><?php echo __( 'Login' ); ?></a> | <a href="<?php echo wp_registration_url(); ?>"><?php echo __( 'Register' ); ?></a>
