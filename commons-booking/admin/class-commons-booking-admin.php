@@ -121,8 +121,13 @@ class Commons_Booking_Admin {
 		 * Read more about actions and filters:
 		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
 		 */
-		add_action( '@TODO', array( $this, 'action_method_name' ) );
-		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+		// add_action( '@TODO', array( $this, 'action_method_name' ) );
+		// add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+    add_action( 'show_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
+    add_action( 'edit_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
+  	add_action( 'personal_options_update', array( $this, 'cb_save_extra_profile_fields' ) );
+		add_action( 'edit_user_profile_update', array( $this, 'cb_save_extra_profile_fields' ) );
+
 
 		//Add the export settings method
 		add_action( 'admin_init', array( $this, 'settings_export' ) );
@@ -185,6 +190,55 @@ class Commons_Booking_Admin {
 
 		return self::$instance;
 	}
+
+
+/**
+ * Add items list output to page selected in settings.
+ *
+ * @since    0.0.1
+ *
+ * @return    Mixed 
+ */
+  public function cb_show_extra_profile_fields( $user ) { ?>
+
+        <h3><?php _e ( ' Extra Fields', $this->plugin_slug ); ?> </h3>
+
+        <table class="form-table">
+            <tr>
+                <th><label for="phone"><?php _e ( 'Phone number', $this->plugin_slug ); ?></label></th>
+
+                <td>
+                    <input type="text" name="phone" id="phone" value="<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="regular-text" /><br />
+                </td>
+            </tr>               
+            <tr>
+                <th><label for="address"><?php _e ( 'Address', $this->plugin_slug ); ?></label></th>
+
+                <td>
+                    <input type="textarea" name="address" id="address" value="<?php echo esc_attr( get_the_author_meta( 'address', $user->ID ) ); ?>" class="regular-text" /><br />
+                </td>
+            </tr>
+
+        </table>
+    <?php }
+
+	/**
+	 * Add items list output to page selected in settings.
+	 *
+	 * @since    0.0.1
+	 *
+	 * @return    Mixed 
+	 */
+
+		public function cb_save_extra_profile_fields( $user_id ) {
+
+			if ( !current_user_can( 'edit_user', $user_id ) )
+				return false;
+
+			update_user_meta( $user_id, 'phone', $_POST['phone'] );
+			update_user_meta( $user_id, 'address', $_POST['address'] );
+		}
+
 
 	/**
 	 * Register and enqueue admin-table-specific JavaScript.
