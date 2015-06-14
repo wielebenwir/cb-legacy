@@ -469,9 +469,13 @@ class Commons_Booking {
     public function enqueue_js_vars() {
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => 3,
+            'text_start_booking' => __( 'Booking', $this->get_plugin_slug() ),
+            'text_choose' => __( 'Choose by clicking date(s):', $this->get_plugin_slug() ),
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
             'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
-            'text_returnpickup' => __( 'Pickup and return date:', $this->get_plugin_slug() )
+            'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
+            'text_error_days' => __( 'Too many days selected, the maximum is: ', $this->get_plugin_slug() ),
+            'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() )
                 )
         );
     }
