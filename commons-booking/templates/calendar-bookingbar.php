@@ -22,18 +22,20 @@
   <div class="inner">
 
   <div class="booking">
-   <div id="date-start">
-      from
+    <div id="intro">
+    <?php _e ( 'Book this item:') ?>
     </div>
-    <div id="date-end">
-      date till
-    </div>
-
-    <div id="cb-submit">
-      <a href="#" class="button cb-button">
-        Submit
-      </a>
-    </div>
+    <div id="date-start">
+        from
+      </div>
+      <div id="date-end">
+        date till
+      </div>
+      <div id="cb-submit">
+        <a href="#" class="button cb-button">
+          <?php _e( 'Book'); ?>
+        </a>
+      </div>
   </div>
    <?php if ( is_user_logged_in() ) { ?>
        <div class="cb-userinfo cb-small">
