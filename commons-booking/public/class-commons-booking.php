@@ -467,15 +467,19 @@ class Commons_Booking {
      * @since    0.0.1
      */
     public function enqueue_js_vars() {
+            $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
+            $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
+
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
-            'setting_maxdays' => 3,
+            'setting_maxdays' => $maxdays,
             'text_start_booking' => __( 'Booking', $this->get_plugin_slug() ),
-            'text_choose' => __( 'Choose by clicking date(s):', $this->get_plugin_slug() ),
+            'text_choose' => __( 'Click pickup and return date(s):', $this->get_plugin_slug() ),
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
             'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
             'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
             'text_error_days' => __( 'Too many days selected, the maximum is: ', $this->get_plugin_slug() ),
-            'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() )
+            'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() ),
+            'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() )
                 )
         );
     }
