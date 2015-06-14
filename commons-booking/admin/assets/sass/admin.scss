@@ -1,3 +1,9 @@
+.box {
+	padding: 20px;
+	background: white;
+}
+
+
 // This stylesheet is used to style the admin option form of the plugin.
 
 // Tabs
@@ -41,4 +47,18 @@
 
 #dashboard_right_now a.demo-count:before {
 	content: "\f115";
+}
+
+.cmb2-wrap {
+	.cmb-row {
+		border-top: 1px solid rgb(204, 204, 204);
+		padding-top: 10px;
+	}
+	margin-bottom: 10px;
+	@extend .box;
+	label {
+		font-weight: bold;
+		margin-bottom: 10px;
+		display: block;
+	}
 }
