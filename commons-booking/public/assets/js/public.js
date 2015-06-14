@@ -43,6 +43,8 @@
           var selectedIndexes = [];
           var selectedDates = [];
           var currentTimeFrame;
+
+          // DOM containers
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
           var bookingButton = $( '#cb-submit .button' );
@@ -50,6 +52,9 @@
           var wrapper = $( '.cb-timeframe' );
           var calEl = $( '.cb-calendar li' );
           var msgEl = $( '#cb-bookingbar-msg' );
+
+          var form_date_start = $( 'input[name="date_start"]' ); 
+          var form_date_end = $( 'input[name="date_end"]' ); 
 
           // set starting text
           startContainer.html ( text_choose );
@@ -114,7 +119,6 @@
 
           // set selected, show Booking Button
           setSelected( selectedIndexes, tf_id );
-          bookingButton.show();
 
           }
 
@@ -136,8 +140,9 @@
 
             var indexes = selected.sort(function(a,b){return a - b});
 
+            var targetli = $( '#'+tf_id+' li' );
 
-            $( '#'+tf_id+' li' ).each(function( myindex ) {
+            targetli.each(function( myindex ) {
 
               if ( $.inArray( myindex, indexes )  > -1 )  {
                 $( this ).addClass(' selected ');
@@ -147,14 +152,22 @@
             });   
 
             if ( indexes.length == 0 ) {
-              start = text_choose;
+              form_date_start.val(''); // clear start & end input values
+              form_date_end.val('');  
+              start = text_choose;    // set texts
               end = "";
-            } else if ( indexes.length == 1 ) { 
-              start = text_pickupreturn + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
+            } else if ( indexes.length == 1 ) { // 1 selected -> pickup & return same day 
+              bookingButton.show();
+              start = text_pickupreturn + targetli.get([ indexes[0] ]).innerHTML;
+              form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
+              form_date_end.val( targetli.eq([ indexes[0] ]).attr('id') );
               end = "";
-            } else {
-              start = text_pickup + $( '#'+tf_id+' li' ).get([ indexes[0] ]).innerHTML;
-              end = text_return + $( '#'+tf_id+' li' ).get([ indexes[1] ]).innerHTML;
+            } else { // 2 selected -> pickup & return different days 
+              bookingButton.show();
+              start = text_pickup + targetli.get([ indexes[0] ]).innerHTML;
+              end = text_return + targetli.get([ indexes[1] ]).innerHTML;
+              form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
+              form_date_end.val( targetli.eq([ indexes[1] ]).attr('id') );
             }
 
             startContainer.html ( start );
