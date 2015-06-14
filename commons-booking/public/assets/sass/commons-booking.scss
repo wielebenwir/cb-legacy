@@ -14,20 +14,26 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 );   
   }
 
-.error {
-  background: red;
-  color: #fff;
+.padding {
+  padding: 10px;
 }
-.notice {
-  background: green;
-  color: #fff;
+#cb-bookingbar-msg {
+  @extend .padding;
+  &.error {
+    background: red;
+    color: #fff;
+  }
+  &.notice {
+    background: green;
+    color: #fff;
+  }
 }
 
 #cb-bookingbar {
   font-family: Helvetica, Arial, sans-serif;
   z-index: 99;
   .inner {
-  padding: 10px;  
+    @extend .padding;
         background: lighten(#207B1C, 60%);
   overflow: hidden;
   }

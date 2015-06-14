@@ -16,11 +16,13 @@
   background: linear-gradient(to bottom, #cfcfcf 0%, white 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 ); }
 
-.error {
+.padding, #cb-bookingbar-msg, #cb-bookingbar .inner {
+  padding: 10px; }
+
+#cb-bookingbar-msg.error {
   background: red;
   color: #fff; }
-
-.notice {
+#cb-bookingbar-msg.notice {
   background: green;
   color: #fff; }
 
@@ -34,7 +36,6 @@
   right: 0;
   bottom: 0; }
   #cb-bookingbar .inner {
-    padding: 10px;
     background: #d5f5d4;
     overflow: hidden; }
   #cb-bookingbar .cb-userinfo {
