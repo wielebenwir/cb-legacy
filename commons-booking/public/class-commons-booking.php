@@ -126,7 +126,6 @@ class Commons_Booking {
         $items = new Commons_Booking_Public_Items();
 
 
-
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
         //Override the template hierarchy for load /templates/content-demo.php
@@ -136,8 +135,6 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_vars' ) );
-
-
 
         /* 
          * Filter: Add main items list to page selected in settings.
@@ -166,8 +163,8 @@ class Commons_Booking {
      * @return    Mixed 
      */
     public function page_items_list( $pageID ) {
-        $settings_display = get_option( 'commons-booking-settings-display' );
-            if ( !empty( $settings_display[ 'commons-booking_item_page_select' ] ) AND ( is_page( $settings_display[ 'commons-booking_item_page_select' ] ) ) ) {
+        $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
+            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) ) ) {
                 
                 $items = new Commons_Booking_Public_Items;
 
