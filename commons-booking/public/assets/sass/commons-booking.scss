@@ -14,15 +14,42 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 );   
   }
 
+.error {
+  background: red;
+  color: #fff;
+}
+.notice {
+  background: green;
+  color: #fff;
+}
+
 #cb-bookingbar {
-  padding: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 99;
+  .inner {
+  padding: 10px;  
+        background: lighten(#207B1C, 60%);
+  overflow: hidden;
+  }
+  .cb-userinfo {
+    display: block;
+  }
+
+  #date-start, #date-end, #cb-submit {
+    @extend .cb-big;
+    span {
+      font-weight: bold;
+      color: green;
+    }
+    float: left;
+    margin-right: 20px;
+  }
   position: fixed;
   height: auto;
   width: 100%;
   left: 0;
   right: 0;
   bottom: 0; 
-  @extend .gradient;
 
 }
 
@@ -71,6 +98,10 @@
     clear: both;
     overflow: hidden;
     margin: 1em 0 1em 0; 
+
+    input {
+      display:none;
+    }
 
     li:first-child {
       @extend .pusher; // add margin to push first entry. 

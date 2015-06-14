@@ -2,11 +2,11 @@
 .cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
   font-size: 0.8em; }
 
-.cb-big, .cb-timeframe .cb-location .cb-location-name {
+.cb-big, #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit, .cb-timeframe .cb-location .cb-location-name {
   font-size: 1.2em;
   font-weight: bold; }
 
-.gradient, #cb-bookingbar {
+.gradient {
   background: #cfcfcf;
   background: -moz-linear-gradient(top, #cfcfcf 0%, white 100%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #cfcfcf), color-stop(100%, white));
@@ -16,14 +16,35 @@
   background: linear-gradient(to bottom, #cfcfcf 0%, white 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 ); }
 
+.error {
+  background: red;
+  color: #fff; }
+
+.notice {
+  background: green;
+  color: #fff; }
+
 #cb-bookingbar {
-  padding: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  z-index: 99;
   position: fixed;
   height: auto;
   width: 100%;
   left: 0;
   right: 0;
   bottom: 0; }
+  #cb-bookingbar .inner {
+    padding: 10px;
+    background: #d5f5d4;
+    overflow: hidden; }
+  #cb-bookingbar .cb-userinfo {
+    display: block; }
+  #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit {
+    float: left;
+    margin-right: 20px; }
+    #cb-bookingbar #date-start span, #cb-bookingbar #date-end span, #cb-bookingbar #cb-submit span {
+      font-weight: bold;
+      color: green; }
 
 /* Timeframes */
 .cb-timeframe {
@@ -53,6 +74,8 @@
     clear: both;
     overflow: hidden;
     margin: 1em 0 1em 0; }
+    .cb-timeframe ul.cb-calendar input {
+      display: none; }
     .cb-timeframe ul.cb-calendar li {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
