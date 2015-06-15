@@ -248,7 +248,7 @@ class Commons_Booking_Data {
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
-    echo ( '<div class="cb-timeframe">' );
+    echo ( '<div class="cb-timeframe" id="'. $tf['id'] .'">' );
 
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
@@ -256,8 +256,8 @@ class Commons_Booking_Data {
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
-    $settings = $this->get_settings( 'display', 'bookingsubmit_page_select' );
-    var_dump($settings);
+    $target_page_id = $this->get_settings( 'display', 'bookingsubmit_page_select' ); // get setting for bookings review page (id)
+    $this->target_url = get_the_permalink( $target_page_id ); // get url from id
 
     echo (' <div id ="timeframe_' . $tf[ 'id' ] .'" class="cb_timeframe_form">');
     echo ('<ul class="cb-calendar">');
