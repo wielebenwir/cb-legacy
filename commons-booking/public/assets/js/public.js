@@ -43,13 +43,15 @@
           var text_error_notbookable = cb_js_vars.text_error_notbookable;
 
           var selectedIndexes = [];
-          var selectedDates = [];
           var currentTimeFrame;
 
           // DOM containers
+          var debug = $( '#debug' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
           var bookingButton = $( '#cb-submit .button' );
+  
+          var dataContainer = $( '#cb-bookingbar #data' );
 
           var wrapper = $( '.cb-timeframe' );
           var calEl = $( '.cb-calendar li' );
@@ -58,6 +60,9 @@
           var formEl = $( '#booking-selection');
           var form_date_start = $( 'input[name="date_start"]' ); 
           var form_date_end = $( 'input[name="date_end"]' ); 
+          var form_item_id = $( 'input[name="item_id"]' ); 
+          var form_location_id = $( 'input[name="location_id"]' ); 
+          var form_timeframe_id = $( 'input[name="timeframe_id"]' ); 
           var formButton = $('#cb-submit a');
 
           // set starting text
@@ -144,8 +149,10 @@
 
             var tf_id = id;
             var indexes = selected.concat();
-            var start;
-            var end;
+            var textFirst;
+            var textSecond;
+
+            var ready = 0;
 
             var indexes = selected.sort(function(a,b){return a - b});
 
@@ -160,30 +167,95 @@
             }
             });   
 
-            bookingButton.hide();
 
-            if ( indexes.length == 0 ) {
+            if ( indexes.length == 1  ) { // 1 selected -> pickup & return same day 
+              
+              textFirst = text_pickupreturn + targetli.get([ indexes[0] ]).innerHTML; // set Text
+              textSecond = '';
+
+              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') ); // write to Container
+              dataContainer.data( "de", targetli.eq([ indexes[0] ]).attr('id') ); 
+            
+              ready = 1;
+
+            } else if ( indexes.length == 2 ) { // 2 selected -> pickup & return different days 
+
+              textFirst = text_pickup + targetli.get([ indexes[0] ]).innerHTML; // set Text
+              textSecond = text_return + targetli.get([ indexes[1] ]).innerHTML;
+
+              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') );  // write to Container
+              dataContainer.data( "de", targetli.eq([ indexes[1] ]).attr('id') ); 
+
+              ready = 1;
+
+            } else { // None selected or error
+
               form_date_start.val(''); // clear start & end input values
               form_date_end.val('');  
-              start = text_choose;    // set texts
-              end = "";
-            } else if ( indexes.length == 1 ) { // 1 selected -> pickup & return same day 
-              bookingButton.show();
-              start = text_pickupreturn + targetli.get([ indexes[0] ]).innerHTML;
-              form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
-              form_date_end.val( targetli.eq([ indexes[0] ]).attr('id') );
-              end = "";
-            } else { // 2 selected -> pickup & return different days 
-              bookingButton.show();
-              start = text_pickup + targetli.get([ indexes[0] ]).innerHTML;
-              end = text_return + targetli.get([ indexes[1] ]).innerHTML;
-              form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
-              form_date_end.val( targetli.eq([ indexes[1] ]).attr('id') );
+              
+              textFirst = text_choose;    // set texts
+              textSecond = "";
+
+              ready = 0;
+            } 
+
+            startContainer.html ( textFirst );
+            endContainer.html ( textSecond );  
+
+            if ( ready == 1 ) {
+
+
+              dataContainer.data( "tf_id", targetli.parents('.cb-timeframe').data('tfid') );  // get data from DOM data- attribute
+              dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
+              dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
+
+
+              // set inputs
+              form_date_start.val( dataContainer.data ("ds") );
+              form_date_end.val( dataContainer.data ("de") );
+
+              form_timeframe_id.val( dataContainer.data ("tf_id") );
+              form_item_id.val( dataContainer.data ("item_id") );
+              form_location_id.val( dataContainer.data ("location_id") );      
+
+              bookingButton.show(); 
+            } else {
+              bookingButton.hide();           
             }
 
-            startContainer.html ( start );
-            endContainer.html ( end );  
+
+            // end if 
+
+            // if ( indexes.length == 0 ) {
+
+            // } else if ( indexes.length == 1 ) { // 1 selected -> pickup & return same day 
+            //   bookingButton.show();
+
+            //   form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
+            //   form_date_end.val( targetli.eq([ indexes[0] ]).attr('id') );
+            //   end = "";
+            // } else { // 2 selected -> pickup & return different days 
+            //   bookingButton.show();
+            //   start = text_pickup + targetli.get([ indexes[0] ]).innerHTML;
+            //   end = text_return + targetli.get([ indexes[1] ]).innerHTML;
+             
+            //   form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
+            //   form_date_end.val( targetli.eq([ indexes[1] ]).attr('id') );
+            // }
+
+
           } // setselected
+
+          function updateData ( ds ) {
+            dataContainer.data( "ds", ds )
+            dataContainer.data( "de", de )
+            debug.text( dataContainer.data( "go" ) );
+
+          }
+
+          function setData () {
+
+          }
 
           function submitForm() {
             $( "#target" ).submit();

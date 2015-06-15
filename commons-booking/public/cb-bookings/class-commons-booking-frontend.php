@@ -259,6 +259,19 @@ class Commons_Booking_Frontend {
 
     }
 
+    public function get_calendar_data() {
+
+    }
+
+
+    public function render_bookingreview(  ) {
+        $this->get_calendar_data();
+
+      include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // include the template
+
+    }
+
+
 
 }
 ?>
