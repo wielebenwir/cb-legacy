@@ -94,7 +94,7 @@ function pages_dropdown() {
 				    'options'          => pages_dropdown(),
 					),						
 					array(
-				    'name'             => __( 'Booking Submit Page', $this->plugin_slug ),
+				    'name'             => __( 'Booking Review Page', $this->plugin_slug ),
 				    'desc'             => __( 'Once you click "Book, you will be forwarded to this page', $this->plugin_slug ),
 				    'id'               => $this->plugin_slug . '_bookingsubmit_page_select',
 				    'type'             => 'select',
