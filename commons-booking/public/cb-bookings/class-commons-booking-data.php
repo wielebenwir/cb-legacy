@@ -213,7 +213,7 @@ class Commons_Booking_Data {
   }
 
 
-  public function show_by_item( $item_id ) {
+  public function show_by_item( $item_id  ) {
 
     $this->item_id = $item_id;
 
@@ -232,7 +232,7 @@ class Commons_Booking_Data {
       if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
         
         $location = $this->get_location ( $tf['location_id'] );
-        $this->render_timeframe( $tf, $codes, $location );
+        $this->render_timeframe( $tf, $codes, $location, $item_id );
       
       }
     }
@@ -243,12 +243,12 @@ class Commons_Booking_Data {
 
 
 
-  public function render_timeframe( $tf, $codes, $location ) {
+  public function render_timeframe( $tf, $codes, $location, $item_id ) {
 
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
-    echo ( '<div class="cb-timeframe" id="'. $tf['id'] .'">' );
+    echo ( '<div class="cb-timeframe" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
     include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
 
