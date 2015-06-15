@@ -47,9 +47,10 @@
       </div>
   </div>
     <?php // Form fields to save the selection ?>
-    <form id="booking-selection">
+    <form id="booking-selection" action="<?php echo $this->target_url; ?>" method="post">
       <input type="hidden" name="date_start">
       <input type="hidden" name="date_end">
+      <?php wp_nonce_field('booking-review-nonce'); ?>
     </form>
     <?php } else { ?>
       <p class="cb-big"><?php echo __( 'You have to be registered to book.' ); ?></p>
