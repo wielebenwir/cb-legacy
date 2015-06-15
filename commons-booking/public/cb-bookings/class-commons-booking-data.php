@@ -55,11 +55,21 @@ class Commons_Booking_Data {
 
 
 /**
- * Get settings from backend.
+ * Get settings from backend. Return either full array or specified setting
+ *
+ *@param setting_page: name of the page (cmb metabox name)
+ *@param (optional) name of the setting
+ *
+ *@return array
  */
-  public function get_settings() {
+  public function get_settings( $setting_page, $setting_name = "") {
     global $wpdb;
-    $settings = get_option( 'commons-booking-settings-codes' ); // @TODO: add Prefix;
+    $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
+    if ( $setting_name ) {
+     return $page [ $this->prefix . '_'. $setting_name ];
+    } else {
+      return $page;
+    }
   }
 
 /**
@@ -245,6 +255,9 @@ class Commons_Booking_Data {
     $start = strtotime( $tf['date_start'] );
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
+
+    $settings = $this->get_settings( 'display', 'bookingsubmit_page_select' );
+    var_dump($settings);
 
     echo (' <div id ="timeframe_' . $tf[ 'id' ] .'" class="cb_timeframe_form">');
     echo ('<ul class="cb-calendar">');
