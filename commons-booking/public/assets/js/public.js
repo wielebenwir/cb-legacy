@@ -32,6 +32,7 @@
 
           // js vars from php
           var maxDays = cb_js_vars.setting_maxdays;
+          var booking_review_page = cb_js_vars.setting_booking_review_page;
           var text_start_booking = cb_js_vars.text_start_booking;
           var text_return = cb_js_vars.text_return;
           var text_pickup = cb_js_vars.text_pickup;
@@ -54,8 +55,10 @@
           var calEl = $( '.cb-calendar li' );
           var msgEl = $( '#cb-bookingbar-msg' );
 
+          var formEl = $( '#booking-selection');
           var form_date_start = $( 'input[name="date_start"]' ); 
           var form_date_end = $( 'input[name="date_end"]' ); 
+          var formButton = $('#cb-submit a');
 
           // set starting text
           startContainer.html ( text_choose );
@@ -68,6 +71,11 @@
             delay: 0,
             theme: 'tooltipster-default',
             touchDevices: false,
+          });
+
+          formButton.click(function() {
+            event.preventDefault();
+            formEl.submit();
           });
 
         wrapper.each( function( ) {
@@ -175,6 +183,10 @@
 
             startContainer.html ( start );
             endContainer.html ( end );  
+          } // setselected
+
+          function submitForm() {
+            $( "#target" ).submit();
           }
 
         }
