@@ -489,8 +489,14 @@ class Commons_Booking {
     public function enqueue_js_vars() {
 
         $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
+        var_dump($s);
         $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
-        $allowclosed = $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed'];
+        
+        $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
+        if ( $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed'] ) {
+            $allowclosed = "on";
+        }
+        
 
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => $maxdays,
@@ -500,9 +506,11 @@ class Commons_Booking {
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
             'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
             'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
-            'text_error_days' => __( 'To many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
+            'text_error_days' => __( 'Sorry, To many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
             'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() ),
-            'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() )
+            'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() ),
+            'text_error_bookedday' => __( 'Sorry, there must be no booked day between pickup and return.', $this->get_plugin_slug() ),
+            'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', $this->get_plugin_slug() )
                 )
         );
     }
