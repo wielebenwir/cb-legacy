@@ -178,7 +178,8 @@ class Commons_Booking_Frontend {
 
     	// get relevant data
     	$code_id = $this->get_booking_code_id( $date_start, $item_id );
-    	$location_id = $this->get_booking_location_id ( $date_start, $date_end, $item_id );
+    	$location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );
+        // $this->get_booking_location_id ( $date_start, $date_end, $item_id );
 
     	//@TODO: check if identical booking is already in database and cancel booking proucess if its true
 
@@ -191,7 +192,7 @@ class Commons_Booking_Frontend {
 				'user_id' 		=> $this->user_id, 
 				'code_id' 		=> $code_id,
 				'location_id' 	=> $location_id,
-				//'booking_time' 	=> date(),
+				'booking_time' 	=> date('Y-m-d H:i:s'),
 				'status' => 'pending'
 			), 
 				array( 
@@ -259,15 +260,58 @@ class Commons_Booking_Frontend {
 
     }
 
-    public function get_calendar_data() {
+    public function render_bookingreview( ) {
+          if (is_user_logged_in() ) {
 
-    }
+           if ( !empty($_REQUEST['create']) && $_REQUEST['create'] == 1) { // we create a new booking
+
+               if ( !empty($_REQUEST['date_start']) && !empty($_REQUEST['date_end']) && !empty($_REQUEST['timeframe_id']) && !empty($_REQUEST['item_id']) && !empty($_REQUEST['location_id']) && !empty($_REQUEST['_wpnonce']) ) { // all needed vars available
+
+                  if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-review-nonce') ) die("Security check");
+
+                     $this->date_start = ( $_REQUEST['date_start'] );  
+                     $this->date_end = ( $_REQUEST['date_end'] );  
+
+                     $this->nice_date_start = date_i18n( get_option( 'date_format' ), $this->date_start );
+                     $this->nice_date_end = date_i18n( get_option( 'date_format' ), $this->date_end );
+
+                     $this->location_id = ( $_REQUEST['location_id'] );  
+                     $this->item_id = ( $_REQUEST['item_id'] );  
+                     $this->timeframe_id = ( $_REQUEST['timeframe_id'] );  
+
+                    include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // include the template
+
+                    // write to DB
+                    $booking_id = $this->create_booking( date( 'Y-m-d', $this->date_start), date( 'Y-m-d', $this->date_end ), $this->item_id );
+                    
+                    include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
+
+                    echo ("<h2>". $booking_id ."</h2>");
+
+              } else { // not all needed vars available 
+                echo "Error";
+                die();
+              }
+            } else if ( !empty($_REQUEST['confirm']) && $_REQUEST['confirm'] == 1 ) { // we confirm the booking 
+
+                if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-confirm-nonce') ) die("Security check");
+
+             
+                echo ("confirmed!");
+                $booking_id = ( $_REQUEST['booking_id'] );  
+
+                $this->set_booking_status( $booking_id, 'confirmed' );
 
 
-    public function render_bookingreview(  ) {
-        $this->get_calendar_data();
+            } // end if confirm
+          
 
-      include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // include the template
+          }else { // not logged in     
+            echo "You ahve to be logged in.";
+        } // end if logged in 
+
+
+
 
     }
 
