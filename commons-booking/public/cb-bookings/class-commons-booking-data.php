@@ -174,6 +174,32 @@ class Commons_Booking_Data {
       return false;
     }
   }
+/**
+ * Get User info and meta outside the loop
+ *
+ *@param $id user id
+ *
+ *@return array 
+ *
+ */
+  public function get_user( $id ) {
+  
+    if ( $id ) {
+      $userdb = get_user_by( 'id', $id );
+ 
+      $user = array ( 
+        'id' => $id ,
+        'name' => $userdb->first_name . ' ' .  $userdb->last_name,
+        'login' => $userdb->userdb_login,
+        'email' => $userdb->user_email,
+        'phone' => get_user_meta( $id, 'phone', true ),
+        'address' => get_user_meta( $id, 'address', true ),
+        );
+      return $user;
+    } else {
+      return false;
+    }
+  }
 
 /**
  * Main function, called from the outside. Renders the complete timeframe
