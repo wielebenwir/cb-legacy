@@ -129,7 +129,7 @@ class Commons_Booking {
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
         //Override the template hierarchy for load /templates/content-demo.php
-        // add_filter( 'template_include', array( $this, 'load_content_demo' ) ); //@TODO: delete
+        add_filter( 'template_include', array( $this, 'load_content_demo' ) ); //@TODO: delete
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -139,20 +139,24 @@ class Commons_Booking {
         /* 
          * Filter: Add main items list to page selected in settings.
          */
-        add_action( 'the_content', array( $this, 'page_items_list' ) );        /* 
-        
+        add_action( 'the_content', array( $this, 'page_items_list' ) );             
+       
+        /* 
          * Filter: Add main plugin overview output to page selected in settings.
          */
         add_action( 'the_content', array( $this, 'items_single' ) );
-
+        /* 
+         * Filter: Add bookings review to page selected in settings.
+         */
+        add_action( 'the_content', array( $this, 'page_booking_review' ) ); 
 
         /* 
          * Define custom functionality.
          * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters // @TODO: cleanup
          */
-        add_action( '@TODO', array( $this, 'action_method_name' ) );
-        add_filter( '@TODO', array( $this, 'filter_method_name' ) );
-        add_shortcode( '@TODO', array( $this, 'shortcode_method_name' ) );
+        // add_action( '@TODO', array( $this, 'action_method_name' ) );
+        // add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+        // add_shortcode( '@TODO', array( $this, 'shortcode_method_name' ) );
     }
 
     /**
@@ -169,6 +173,24 @@ class Commons_Booking {
                 $items = new Commons_Booking_Public_Items;
 
                 return get_the_content( $pageID ) . $items->show();
+            } else {
+                return get_the_content( $pageID );
+            }
+        }    
+    /**
+     * Add items list output to page selected in settings.
+     *
+     * @since    0.0.1
+     *
+     * @return    Mixed 
+     */
+    public function page_booking_review( $pageID ) {
+        $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
+            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) ) ) {
+
+                $bookingpage = new Commons_Booking_Frontend;
+                $review = $bookingpage->render_bookingreview();
+                return $review;
             } else {
                 return get_the_content( $pageID );
             }
@@ -465,17 +487,18 @@ class Commons_Booking {
      * @since    0.0.1
      */
     public function enqueue_js_vars() {
-            $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
-            $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
+
+        $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
+        $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
 
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => $maxdays,
-            'text_start_booking' => __( 'Booking', $this->get_plugin_slug() ),
+            'text_start_booking' => __( 'Book here:', $this->get_plugin_slug() ),
             'text_choose' => __( 'Click pickup and return date(s):', $this->get_plugin_slug() ),
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
             'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
             'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
-            'text_error_days' => __( 'Too many days selected, the maximum is: ', $this->get_plugin_slug() ),
+            'text_error_days' => __( 'To many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
             'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() ),
             'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() )
                 )
