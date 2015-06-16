@@ -31,3 +31,6 @@
 [submodule "commons-booking/admin/includes/CMB2-GoogleMaps"]
 	path = commons-booking/admin/includes/CMB2-GoogleMaps
 	url = git@github.com:mustardBees/cmb_field_map.git
+[submodule "commons-booking/public/includes/dateFormatJS"]
+	path = commons-booking/public/includes/dateFormatJS
+	url = git@github.com:jacwright/date.format.git
