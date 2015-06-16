@@ -134,7 +134,7 @@ class Commons_Booking_Data {
  */
 
   public function get_location ( $id ) {
-   
+  
     if ( $id ) {
       $location = array ( 
         'name' => get_the_title( $id ),
@@ -152,7 +152,6 @@ class Commons_Booking_Data {
     } else {
       return false;
     }
-
   }
 
 /**
