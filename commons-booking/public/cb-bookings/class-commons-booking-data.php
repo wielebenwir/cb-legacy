@@ -138,17 +138,38 @@ class Commons_Booking_Data {
     if ( $id ) {
       $location = array ( 
         'name' => get_the_title( $id ),
+        'id' => $id ,
         'address' => array ( 
           'street' => get_post_meta( $id, 'commons-booking_location_adress_street', true ),
           'city' => get_post_meta( $id, 'commons-booking_location_adress_city', true ),
           'zip' => get_post_meta( $id, 'commons-booking_location_adress_zip', true ),
+          'country' => get_post_meta( $id, 'commons-booking_location_adress_country', true ),
         ),
-        'country' => get_post_meta( $id, 'commons-booking_location_adress_country', true ),
         'contact' => get_post_meta( $id, 'commons-booking_location_contactinfo_text', true ),
         'contact_hide' => get_post_meta( $id, 'commons-booking_location_contactinfo_hide', true ),
         'closed_days' => get_post_meta( $id, 'commons-booking_location_closeddays', true ),
         );
       return $location;
+    } else {
+      return false;
+    }
+  }
+
+/**
+ * Get Item contents outside the loop
+ *
+ *@param $id item id
+ *
+ *@return array 
+ *
+ */
+  public function get_item ( $id ) {
+  
+    global $wpdb;
+
+    if ( $id ) {
+      $item = get_post($id , ARRAY_A);
+      return $item;
     } else {
       return false;
     }
