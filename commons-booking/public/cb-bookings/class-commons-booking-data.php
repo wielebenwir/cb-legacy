@@ -245,6 +245,10 @@ class Commons_Booking_Data {
 
   public function render_timeframe( $tf, $codes, $location, $item_id ) {
 
+    $booked = new Commons_Booking_Frontend;
+    $booke_days = $booked->get_booked_days( $item_id );
+
+
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
 
@@ -267,7 +271,7 @@ class Commons_Booking_Data {
       $display_date = date ('j.n.', $counter ); 
       $code = $this->get_code_by_date ( $counter, $codes ); 
 
-      $class= $this->set_day_status( $counter, $location );
+      $class= $this->set_day_status( $counter, $location, $booke_days );
 
       include (commons_booking_get_template_part( 'calendar', 'cell', FALSE )); // include the template
 
@@ -297,11 +301,13 @@ class Commons_Booking_Data {
   }
 
 
-  private function set_day_status( $date, $location ) {
+  private function set_day_status( $date, $location, $booked_days ) {
     // first: check if it´s in the locations´ closed days array
     $status = '';
     if ( in_array( date( 'N', $date ), $location[ 'closed_days'] )) {
       $status = 'closed';
+    } else if ( in_array( $date, $booked_days )) {
+      $status = 'booked';
     } else {
       $status = 'bookable';
     }

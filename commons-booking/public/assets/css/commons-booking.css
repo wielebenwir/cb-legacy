@@ -100,6 +100,9 @@
         border: 1px solid #207B1C;
         background: #207B1C;
         color: #fff; }
+      .cb-timeframe ul.cb-calendar li.booked {
+        background: red;
+        color: #fff; }
     .cb-timeframe ul.cb-calendar .cb-day {
       display: block;
       font-size: 0.8em; }

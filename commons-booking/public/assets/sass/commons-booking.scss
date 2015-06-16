@@ -138,6 +138,10 @@
         border: 1px solid #207B1C;
         background: #207B1C;
         color: #fff;
+      }      
+      &.booked {
+        background: red;
+        color: #fff;
       }
       &:hover {
       }  

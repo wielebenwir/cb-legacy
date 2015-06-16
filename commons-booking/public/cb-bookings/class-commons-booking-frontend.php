@@ -170,26 +170,37 @@ class Commons_Booking_Frontend {
  *
  * @return array
  */  
+public function get_booked_days( $item_id ) {
+    
+    global $wpdb;
 
-    public function get_booked_days( $item_id ) {
-        
-        global $wpdb;
+    $currentdate = date( 'Y-m-d');
 
-        // get booking_code-id fromt codes database
-         $sqlresult = $wpdb->get_results($wpdb->prepare(
-            "
-            SELECT id AS booking_code_id
-            FROM " . $this->table_codes . " 
-            WHERE booking_date = '%s' AND item_id = '%s'
-            ", 
-            $date_start, $item_id), ARRAY_A); // get dates from 
-         
-         // @TODO: Insert check an error-handling if result-numer > 1
+    // get booking_code-id fromt codes database
+     $sqlresult = $wpdb->get_results($wpdb->prepare(
+        "
+        SELECT date_start, date_end
+        FROM " . $this->table_bookings . " 
+        WHERE date_start > '%s' AND item_id = '%s'
+        ", 
+        $currentdate , $item_id), ARRAY_A); // get dates from 
+     
+     $booked_days = [];
 
-         return $sqlresult[0]['booking_code_id'];
 
-    }
+     foreach ($sqlresult as $date) {
+        // var_dump( $date ) ;
+        $datediff = strtotime( $date['date_end'] ) - strtotime( $date['date_start'] );
+        $datediff = floor( $datediff / ( 60*60*24 ));
+        for($i = 0; $i < $datediff + 1; $i++){
+            // echo date("Y-m-d", strtotime( $date['date_start'] . ' + ' . $i . 'day')) . "<br>";
+            $thedate = date("Y-m-d", strtotime( $date['date_start'] . ' + ' . $i . 'day'));
+            array_push( $booked_days, strtotime ($thedate) );
+        }
+     }
+     return $booked_days;
 
+}
 
 
  /**
