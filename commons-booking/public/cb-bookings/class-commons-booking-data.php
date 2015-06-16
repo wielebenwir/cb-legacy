@@ -36,12 +36,12 @@ class Commons_Booking_Data {
  */
   public function __construct() {
     $this->prefix = 'commons-booking';
-    $this->daystoshow = 30;
+    $this->daystoshow = 30; //@TODO make a backend setting
 }
 
 
 /**
- * Gather all necessary data 
+ * Gather all necessary data from databases for timeframe render
  *
  */
   public function gather_data() {
@@ -51,8 +51,6 @@ class Commons_Booking_Data {
     $this->dates = $this->get_dates();
 
   } 
-
-
 
 /**
  * Get settings from backend. Return either full array or specified setting
@@ -126,71 +124,16 @@ class Commons_Booking_Data {
     }
   }
 
-
-
-  private function get_status() {
-
-    $return = '';
-    $end = $this->date_range_end; 
-
-    if ($this->item_id) {
-      global $wpdb;
-
-      $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY date_start ASC', $this->item_id );
-      $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
-
-      if ( $this->timeframes ) {
-          return $this->timeframes;
-        } else { 
-          return __(' No Timeframes configured ' );
-        } 
-    } else {
-      return __(' Something went wrong ' );
-    }
-  }
 /**
- * Get all timeframes.
- * @TODO: restrict to current 
+ * Get Location & metadata 
  *
- * @return array
+ *@param $id location id
+ *
+ *@return array 
+ *
  */
 
-/**
- * Compare timeframe dates and entries in the codes db 
- * */
-  public function compare() {
-    $codesDB = $this->codes;
-    $tfDates = $this->dates;
-    $codeDates = array();
-
-    foreach ( $codesDB as $entry ) {
-      array_push ($codeDates, $entry['booking_date']);
-    }
-    
-    $matched = array();
-    $missing = array();
-    $missingFlat = '';
-
-    for ( $i = 0; $i < count($tfDates); $i++ ) {
-
-      $index = array_search( $tfDates[ $i ], $codeDates );
-      $temp = array();
-      if ( ($index !== FALSE) ) {
-        $temp[ 'date'] = $tfDates[ $i ];
-        $temp[ 'code'] = $codesDB[ $index ]['bookingcode'];
-        array_push ($matched, $temp);
-      } else {
-        $temp[ 'date'] = $tfDates[ $i ];
-        array_push ($missing, $temp);
-      }
-    }
-    $this->matchedDates = $matched;
-    $this->missingDates = $missing;
-  }
-
-
-  private function get_location ( $id ) {
+  public function get_location ( $id ) {
    
     if ( $id ) {
       $location = array ( 
@@ -212,6 +155,12 @@ class Commons_Booking_Data {
 
   }
 
+/**
+ * Main function, called from the outside. Renders the complete timeframe
+ *
+ *@param $id item id
+ *
+*/
 
   public function show_by_item( $item_id  ) {
 
@@ -245,7 +194,7 @@ class Commons_Booking_Data {
 
   public function render_timeframe( $tf, $codes, $location, $item_id ) {
 
-    $booked = new Commons_Booking_Frontend;
+    $booked = new Commons_Booking_Booking;
     $booke_days = $booked->get_booked_days( $item_id );
 
 
@@ -254,7 +203,7 @@ class Commons_Booking_Data {
 
     echo ( '<div class="cb-timeframe" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
-    include (commons_booking_get_template_part( 'calendar', 'location', FALSE )); // include the template
+    include (commons_booking_get_template_part( 'locations', 'detailed', FALSE )); // include the template
 
     $start = strtotime( $tf['date_start'] );
     $counter = $start;
@@ -285,7 +234,7 @@ class Commons_Booking_Data {
 /**
  * Get code by Date
  *
- * @param $date singe date
+ * @param $date single date
  * @param $codes array of codes
  * @return string / false
  */
@@ -300,7 +249,15 @@ class Commons_Booking_Data {
 
   }
 
-
+/**
+ * Get status of the day
+ *
+ * @param $date         single date
+ * @param $location     array
+ * @param $booked_days  array
+ *
+ * @return array statuses
+ */
   private function set_day_status( $date, $location, $booked_days ) {
     // first: check if it´s in the locations´ closed days array
     $status = '';
@@ -315,12 +272,18 @@ class Commons_Booking_Data {
 
   }
 
-
+/**
+ * Include the booking bar
+ *
+ */
   public function show_booking_bar() {
     include (commons_booking_get_template_part( 'calendar', 'bookingbar', FALSE )); // include the template
   }
 
-
+/**
+ * Helper: search a 2-dim array for key, return value
+ * 
+ */
   public function searcharray($value, $key, $array) {
    foreach ($array as $k => $val) {
        if ($val[$key] == $value) {
