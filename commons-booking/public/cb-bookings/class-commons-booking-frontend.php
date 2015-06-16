@@ -34,7 +34,8 @@ class Commons_Booking_Frontend {
     	global $wpdb;
     	$this->user_id = get_current_user_id();  // get user id
     	$this->table_timeframe = $wpdb->prefix . 'cb_timeframes';
-    	$this->table_codes = $wpdb->prefix . 'cb_codes';
+        $this->table_codes = $wpdb->prefix . 'cb_codes';
+    	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
 		if (!$this->user_id) {
     		// error message and exit
@@ -164,6 +165,31 @@ class Commons_Booking_Frontend {
     }
 
 
+ /**
+ * Get a list of all booked days
+ *
+ * @return array
+ */  
+
+    public function get_booked_days( $item_id ) {
+        
+        global $wpdb;
+
+        // get booking_code-id fromt codes database
+         $sqlresult = $wpdb->get_results($wpdb->prepare(
+            "
+            SELECT id AS booking_code_id
+            FROM " . $this->table_codes . " 
+            WHERE booking_date = '%s' AND item_id = '%s'
+            ", 
+            $date_start, $item_id), ARRAY_A); // get dates from 
+         
+         // @TODO: Insert check an error-handling if result-numer > 1
+
+         return $sqlresult[0]['booking_code_id'];
+
+    }
+
 
 
  /**
@@ -174,7 +200,7 @@ class Commons_Booking_Frontend {
     public function create_booking( $date_start, $date_end, $item_id ) {
     	
     	global $wpdb;
-    	$table_bookings = $wpdb->prefix . 'cb_bookings';
+    	// $table_bookings = $wpdb->prefix . 'cb_bookings';
 
     	// get relevant data
     	$code_id = $this->get_booking_code_id( $date_start, $item_id );
@@ -184,7 +210,7 @@ class Commons_Booking_Frontend {
     	//@TODO: check if identical booking is already in database and cancel booking proucess if its true
 
     	$wpdb->insert( 
-			$table_bookings, 
+			$this->table_bookings, 
 			array( 
 				'date_start' 	=> $date_start , 
 				'date_end' 		=> $date_end,
