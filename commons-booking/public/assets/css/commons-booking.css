@@ -27,6 +27,7 @@
   color: #fff; }
 
 #cb-bookingbar {
+  padding: 30px;
   font-family: Helvetica, Arial, sans-serif;
   z-index: 99;
   position: fixed;
