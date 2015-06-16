@@ -32,6 +32,7 @@
 
           // js vars from php
           var maxDays = cb_js_vars.setting_maxdays;
+          var allowclosed = cb_js_vars.setting_allowclosed;
           var booking_review_page = cb_js_vars.setting_booking_review_page;
           var text_start_booking = cb_js_vars.text_start_booking;
           var text_return = cb_js_vars.text_return;
@@ -41,6 +42,8 @@
           var text_error_days = cb_js_vars.text_error_days;
           var text_error_timeframes = cb_js_vars.text_error_timeframes;
           var text_error_notbookable = cb_js_vars.text_error_notbookable;
+          var text_error_closedforbidden = cb_js_vars.text_error_closedforbidden;
+          var text_error_bookedday = cb_js_vars.text_error_bookedday;
 
           var selectedIndexes = [];
           var currentTimeFrame;
@@ -107,22 +110,20 @@
             }
           }
 
-          console.log ( );
 
-          // Calculate Distance 
+          // Calculate Distance & get the classes of the days in between
           var distance = 0;
-          if ( clickedIndexes.length > 1 ) {
-            var idFirst = $( '#'+tf_id+' li').eq( clickedIndexes[0] ).attr('id');
-            var idSecond = $( '#'+tf_id+' li').eq( clickedIndexes[1] ).attr('id');
-            var daysBetween = getDaysBetween (idFirst, idSecond);
-            debug.text (daysBetween);
+          var daystatus = 0;
 
-             var distance = clickedIndexes.reduce(function(a, b) {
-                return Math.abs( a - b );
-              });
+          if ( clickedIndexes.length > 1 ) { // if more than one clicked 
+            var firstEl = $( '#'+tf_id+' li').eq( clickedIndexes[0] ).attr('id');
+            var secondEl = $( '#'+tf_id+' li').eq( clickedIndexes[1] ).attr('id');
+            
+            var daysBetween = getDaysBetween (firstEl, secondEl);
+            daystatus = getDayStatus ( daysBetween );            
+            distance = daysBetween.length -1;
+
           }
-          
-
 
           // VALIDATION
           if ( selectedIndexes.length > 0 && currentTimeFrame != tf_id ) { // within current timeframe
@@ -131,9 +132,15 @@
           } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
               displayNotice (text_error_notbookable,  "error");
               return false;       
-          } else if ( (distance >= maxDays )) { // max days is not exceeded
-            displayNotice (text_error_days + maxDays, "error");
-            return false;       
+          } else if ( distance >= maxDays ) { // max days is not exceeded
+              displayNotice (text_error_days + maxDays, "error");
+              return false;              
+          } else if ( daystatus < 0 ) { // between pickup date and return date is a booked date
+              displayNotice ( text_error_bookedday, "error");
+              return false;            
+          } else if ( ( daystatus > 0 ) && ( allowclosed != "on" ) ) { // booking over closed days, but not allowed
+              displayNotice ( text_error_closedforbidden , "error");
+              return false;       
           } else { // no errors
             selectedIndexes = clickedIndexes;  
             currentTimeFrame = tf_id;     
@@ -163,11 +170,9 @@
             var ready = 0;
 
             var indexes = selected.sort(function(a,b){return a - b});
-
             var targetli = $( '#'+tf_id+' li' );
 
             targetli.each(function( myindex ) {
-
               if ( $.inArray( myindex, indexes )  > -1 )  {
                 $( this ).addClass(' selected ');
               } else {
@@ -253,11 +258,16 @@
            * @param   startdate, endDate: timestamps
            * @return  array (timestamps)
            */
-          function getDaysBetween(startdate, endDate) {
+          function getDaysBetween(startdate, endDate) { // todo: enddate can be smaller than startdate then it fails
+
+            var dates = [startdate, endDate];
+            dates.sort();
+            console.log ("dates: "+dates);
+            console.log ("sorted: "+dates.sort());
 
             // convert timestamps to date js object
-            var start = new Date( startdate * 1000 ),
-                end = new Date ( endDate * 1000 ),
+            var start = new Date( dates[0] * 1000 ),
+                end = new Date ( dates[1]  * 1000 ),
                 currentDate = start,
                 between = []
             ;
@@ -269,7 +279,23 @@
             }
             return between;
           } // getDaysBetween
-
+          
+          /* 
+           * Gets the relevant classes 
+           * @param   array ids 
+           * @return  int closed days count 
+           */
+          function getDayStatus( ids ) {
+            var closed = 0;
+            for (var i = ids.length - 1; i >= 0; i--) {
+              if ( $( 'li#'+ids[i]).hasClass( 'booked' ) ) {
+                return -1;
+              } else if ( $( 'li#'+ids[i]).hasClass( 'closed' ) ) {
+                closed++;
+              }
+            };
+            return closed;
+          } // getDaysBetween
 
         }
       }
