@@ -223,27 +223,6 @@
               bookingButton.hide();           
             }
 
-
-            // end if 
-
-            // if ( indexes.length == 0 ) {
-
-            // } else if ( indexes.length == 1 ) { // 1 selected -> pickup & return same day 
-            //   bookingButton.show();
-
-            //   form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
-            //   form_date_end.val( targetli.eq([ indexes[0] ]).attr('id') );
-            //   end = "";
-            // } else { // 2 selected -> pickup & return different days 
-            //   bookingButton.show();
-            //   start = text_pickup + targetli.get([ indexes[0] ]).innerHTML;
-            //   end = text_return + targetli.get([ indexes[1] ]).innerHTML;
-             
-            //   form_date_start.val( targetli.eq([ indexes[0] ]).attr('id') );
-            //   form_date_end.val( targetli.eq([ indexes[1] ]).attr('id') );
-            // }
-
-
           } // setselected
 
           function updateData ( ds ) {
