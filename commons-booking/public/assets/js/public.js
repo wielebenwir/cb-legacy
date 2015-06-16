@@ -107,13 +107,21 @@
             }
           }
 
+          console.log ( );
+
           // Calculate Distance 
           var distance = 0;
           if ( clickedIndexes.length > 1 ) {
+            var idFirst = $( '#'+tf_id+' li').eq( clickedIndexes[0] ).attr('id');
+            var idSecond = $( '#'+tf_id+' li').eq( clickedIndexes[1] ).attr('id');
+            var daysBetween = getDaysBetween (idFirst, idSecond);
+            debug.text (daysBetween);
+
              var distance = clickedIndexes.reduce(function(a, b) {
                 return Math.abs( a - b );
               });
           }
+          
 
 
           // VALIDATION
@@ -239,6 +247,29 @@
           function submitForm() {
             $( "#target" ).submit();
           }
+
+          /* 
+           * Gets the days between two timestamps
+           * @param   startdate, endDate: timestamps
+           * @return  array (timestamps)
+           */
+          function getDaysBetween(startdate, endDate) {
+
+            // convert timestamps to date js object
+            var start = new Date( startdate * 1000 ),
+                end = new Date ( endDate * 1000 ),
+                currentDate = start,
+                between = []
+            ;
+
+            while (currentDate <= end) {
+                var temp = new Date(currentDate);
+                between.push( temp.getTime()/1000 ); // convert back to timestamp and push into array
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            return between;
+          } // getDaysBetween
+
 
         }
       }
