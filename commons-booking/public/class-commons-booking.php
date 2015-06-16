@@ -489,11 +489,10 @@ class Commons_Booking {
     public function enqueue_js_vars() {
 
         $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
-        var_dump($s);
         $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
         
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
-        if ( $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed'] ) {
+        if ( isset( $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
             $allowclosed = "on";
         }
         
