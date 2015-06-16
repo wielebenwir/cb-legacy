@@ -1,7 +1,29 @@
 /* Typo general */
 
+$grey: #EFEFEF;
+$blue: #6AB5EF;
+
+.padding {
+  padding: 1em;
+}
+
   .cb-small { font-size: 0.8em; }
   .cb-big { font-size: 1.2em; font-weight: bold;}
+  .cb-headline { font-size: 1.2em; font-weight: bold;}
+  .cb-box { 
+    @extend .padding;
+    border: 1px solid $grey; display: block; 
+  }
+
+.cb-booking-code  strong{
+    padding: 5px;
+    display:block;
+  font-family: Courier, monospaced;
+  color: green;
+  font-weight: normal;
+  background: $grey;
+
+}
 
 .gradient {
    background: rgba(207,207,207,1);
@@ -14,9 +36,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 );   
   }
 
-.padding {
-  padding: 10px;
-}
+
 #cb-bookingbar-msg {
   @extend .padding;
   &.error {
