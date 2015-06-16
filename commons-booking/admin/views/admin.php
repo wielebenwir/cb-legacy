@@ -128,6 +128,13 @@ function pages_dropdown() {
 						'id' => $this->plugin_slug . '_bookingsettings_maxdays',
 						'type' => 'text_small',
 						'default' => "3",
+					),					
+					array(
+						'name' => __( 'Allow booking over closed days', $this->plugin_slug ),
+						'desc' => __( 'Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as "closed" in the location editor, user will still be able book from friday till monday.', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_bookingsettings_allowclosed',
+						'type' => 'checkbox',
+						'default' => "0",
 					),
 				),
 			);

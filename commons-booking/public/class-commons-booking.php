@@ -490,9 +490,11 @@ class Commons_Booking {
 
         $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
         $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
+        $allowclosed = $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed'];
 
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => $maxdays,
+            'setting_allowclosed' => $allowclosed,
             'text_start_booking' => __( 'Book here:', $this->get_plugin_slug() ),
             'text_choose' => __( 'Click pickup and return date(s):', $this->get_plugin_slug() ),
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
