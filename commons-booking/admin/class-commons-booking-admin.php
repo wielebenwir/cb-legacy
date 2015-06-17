@@ -103,6 +103,11 @@ class Commons_Booking_Admin {
 
 		// Admin messages
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/class-admin-table-messages.php' );
+		
+		// Settings 
+
+		// $settings = new Commons_Booking_Settings;
+		// $settings->show();
 
 		/*
 		 * Add location metaboxes
