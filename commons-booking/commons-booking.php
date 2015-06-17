@@ -55,9 +55,11 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/cb-codes.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-bookings/cb-bookings.php' );
 
 // CLasses for Frontend-Booking
-require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-frontend.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/class-commons-booking-admin-settings.php' );
+
 
 
 // Class for Codes
@@ -67,6 +69,19 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/class-cb-codes-csv.p
  * Load template system
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
+
+/*
+ * Load Fake Page class
+ */
+// require_once( plugin_dir_path( __FILE__ ) . 'includes/fake-page.php' );
+
+// new Fake_Page(
+//     array(
+//   'slug' => 'faker',
+//   'post_title' => 'Fake Page Title',
+//   'post content' => 'This is the fake page content'
+//     )
+// );
 
 /*
  * Load Widget boilerplate
