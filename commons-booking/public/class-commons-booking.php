@@ -134,7 +134,7 @@ class Commons_Booking {
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js_vars' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
         /* 
          * Filter: Add main items list to page selected in settings.
@@ -150,13 +150,6 @@ class Commons_Booking {
          */
         add_action( 'the_content', array( $this, 'page_booking_review' ) ); 
 
-        /* 
-         * Define custom functionality.
-         * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters // @TODO: cleanup
-         */
-        // add_action( '@TODO', array( $this, 'action_method_name' ) );
-        // add_filter( '@TODO', array( $this, 'filter_method_name' ) );
-        // add_shortcode( '@TODO', array( $this, 'shortcode_method_name' ) );
     }
 
     /**
@@ -483,11 +476,11 @@ class Commons_Booking {
         }
     }
     /**
-     * Print the PHP var in the HTML of the frontend for access by JavaScript
+     * For calendar page: Print the PHP vars in the HTML of the frontend for access by JavaScript
      *
      * @since    0.0.1
      */
-    public function enqueue_js_vars() {
+    public function enqueue_calendar_js_vars() {
 
         $s_bookings = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
         $maxdays = $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
