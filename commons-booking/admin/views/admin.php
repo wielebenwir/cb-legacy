@@ -45,7 +45,7 @@ function pages_dropdown() {
 		<div id="tabs-main">
 			<?php
 
-			$option_fields = array(
+			$option_fields_main = array(
 				'id' => $this->plugin_slug . '_options',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -66,13 +66,13 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings' );
+			cmb2_metabox_form( $option_fields_main, $this->plugin_slug . '-settings' );
 			?>
 		</div>
 		<div id="tabs-display">
 			<?php
 
-			$option_fields = array(
+			$option_fields_display = array(
 				'id' => $this->plugin_slug . '_options_display',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -113,13 +113,13 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings-display' );
+			cmb2_metabox_form( $option_fields_display, $this->plugin_slug . '-settings-display' );
 			?>
 		</div>
 		<div id="tabs-bookingsettings">
 			<?php
 
-			$option_fields = array(
+			$option_fields_bookingsettings = array(
 				'id' => $this->plugin_slug . '_options_bookingsettings',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -141,13 +141,13 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields, $this->plugin_slug . '-settings-bookings' );
+			cmb2_metabox_form( $option_fields_bookingsettings, $this->plugin_slug . '-settings-bookings' );
 			?>
 		</div>
 		<div id="tabs-codes">
 			<?php
 
-			$option_fields_second = array(
+			$option_fields_codes = array(
 				'id' => $this->plugin_slug . '_options-codes',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -161,14 +161,14 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
+			cmb2_metabox_form( $option_fields_codes, $this->plugin_slug . '-settings-codes' );
 			?>
 
 		</div>		
 		<div id="tabs-messages">
 			<?php
 
-			$option_fields_second = array(
+			$option_fields_messages = array(
 				'id' => $this->plugin_slug . '_options-messages',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -190,14 +190,14 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
+			cmb2_metabox_form( $option_fields_messages, $this->plugin_slug . '-settings-messages' );
 			?>
 
 		</div>	
 		<div id="tabs-mail">
 			<?php
 
-			$option_fields_second = array(
+			$option_fields_mail = array(
 				'id' => $this->plugin_slug . '_options-mail',
 				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
 				'show_names' => true,
@@ -227,7 +227,7 @@ function pages_dropdown() {
 				),
 			);
 
-			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-mail' );
+			cmb2_metabox_form( $option_fields_mail, $this->plugin_slug . '-settings-mail' );
 			?>
 
 		</div>
