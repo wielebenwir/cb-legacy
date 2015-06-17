@@ -320,6 +320,8 @@ public function get_booked_days( $item_id ) {
     public function render_bookingreview( ) {
           if (is_user_logged_in() ) {
 
+            $current_user = wp_get_current_user();
+
             $messages = $this->settings->get( 'messages' ); // get messages from settings page
 
             if ( !empty($_REQUEST['create']) && $_REQUEST['create'] == 1) { // we create a new booking
@@ -351,8 +353,8 @@ public function get_booked_days( $item_id ) {
                     $msg = ( $messages['messages_booking_pleaseconfirm'] );  // get message part
                     echo $this->settings->replace_template_tags ( $msg, array( 
                         'item' => get_the_title ( $item_id ),
-                        'username' => $user['name'],
-                        'email' => $user['email'],
+                        'username' => $current_user->display_name,
+                        'email' => $current_user->user_email,
                         )); // replace template tags
 
                     include (commons_booking_get_template_part( 'booking', 'item', FALSE )); // Item: include the template
