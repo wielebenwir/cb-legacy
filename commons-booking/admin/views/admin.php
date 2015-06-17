@@ -176,7 +176,7 @@ function pages_dropdown() {
 					array(
 						'name' => __( 'Message Booking Review', $this->plugin_slug ),
 						'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. HTML is ok. ', $this->plugin_slug ),
-						'default' => __( '<h2>Just one more step...</h2><br><br> Please review your order and Click "confirm" to finalise.', $this->plugin_slug ),
+						'default' => __( '<h2>Just one more step...	</h2><p> Please review your order and Click "confirm" to finalise.</p>', $this->plugin_slug ),
 						'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
 						'type' => 'textarea',
 					),
