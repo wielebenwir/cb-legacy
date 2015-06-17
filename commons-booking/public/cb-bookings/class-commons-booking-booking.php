@@ -359,7 +359,6 @@ public function get_booked_days( $item_id ) {
 
                 } else { // not all needed vars available 
                     echo "Error";
-                    die();
               }
             } else if ( !empty($_REQUEST['confirm']) && $_REQUEST['confirm'] == 1 ) { // we confirm the booking 
 
