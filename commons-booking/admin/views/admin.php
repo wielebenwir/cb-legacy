@@ -176,14 +176,14 @@ function pages_dropdown() {
 					array(
 						'name' => __( 'Message Booking Review', $this->plugin_slug ),
 						'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. HTML is ok. ', $this->plugin_slug ),
-						'default' => __( 'Just one more step... <br><br> Please review your order and Click "confirm" to finalise.', $this->plugin_slug ),
+						'default' => __( '<h2>Just one more step...</h2><br><br> Please review your order and Click "confirm" to finalise.', $this->plugin_slug ),
 						'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
 						'type' => 'textarea',
 					),
 					array(
 						'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
-						'desc' => __( 'The message that appears after the user has completed the booking. HTML is ok. ', $this->plugin_slug ),
-						'default' => __( 'Booking confirmed! <br><br> You´ve successfully booked. An email has been sent to your address.', $this->plugin_slug ),
+						'desc' => __( 'The message that appears after the user has completed the booking. HTML is ok. You can use the following Template tags: {USERNAME} {USEREMAIL}, {ITEM}', $this->plugin_slug ),
+						'default' => __( '<h2>Great success, {USERNAME}!</h2> <p>You´ve successfully booked {ITEM}. An email has been sent to your address {USEREMAIL}. </p>', $this->plugin_slug ),
 						'id' => $this->plugin_slug . '_messages_booking_confirmed',
 						'type' => 'textarea',
 					),
