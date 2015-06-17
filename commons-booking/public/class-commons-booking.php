@@ -186,7 +186,7 @@ class Commons_Booking {
      */
     public function page_booking_review( $pageID ) {
         $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
-            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) ) ) {
+            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) ) ) {
 
                 $bookingpage = new Commons_Booking_Booking;
                 $review = $bookingpage->render_bookingreview();
@@ -489,8 +489,11 @@ class Commons_Booking {
      */
     public function enqueue_js_vars() {
 
-        $s = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
-        $maxdays = $s[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
+        $s_bookings = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
+        $maxdays = $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
+        
+        $s_display = get_option( $this->get_plugin_slug() . '-settings-display' ); 
+        $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select'] );
         
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
         if ( isset( $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
@@ -500,6 +503,7 @@ class Commons_Booking {
 
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => $maxdays,
+            'setting_booking_review_page' => $bookingpage,
             'setting_allowclosed' => $allowclosed,
             'text_start_booking' => __( 'Book here:', $this->get_plugin_slug() ),
             'text_choose' => __( 'Click pickup and return date(s):', $this->get_plugin_slug() ),

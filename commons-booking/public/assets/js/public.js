@@ -94,6 +94,8 @@
 
         function update( index, tf_id ) {
 
+          console.log (booking_review_page);
+
           var clickedIndexes = [];
 
           var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
@@ -258,12 +260,10 @@
            * @param   startdate, endDate: timestamps
            * @return  array (timestamps)
            */
-          function getDaysBetween(startdate, endDate) { // todo: enddate can be smaller than startdate then it fails
+          function getDaysBetween(startdate, endDate) { 
 
             var dates = [startdate, endDate];
             dates.sort();
-            console.log ("dates: "+dates);
-            console.log ("sorted: "+dates.sort());
 
             // convert timestamps to date js object
             var start = new Date( dates[0] * 1000 ),
