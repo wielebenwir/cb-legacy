@@ -62,7 +62,6 @@ class Commons_Booking_Admin_Settings {
  *@return string
  */
   public function replace_template_tags( $string, $tags_array ) {
-    var_dump( $tags_array);
     foreach($tags_array as $key => $value){
         $string = str_replace('{'.strtoupper($key).'}', $value, $string);
     }
