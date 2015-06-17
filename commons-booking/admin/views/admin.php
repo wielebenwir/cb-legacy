@@ -38,6 +38,7 @@ function pages_dropdown() {
 			<li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
 			<li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
 			<li><a href="#tabs-mail"><?php _e( 'Mail Settings', $this->plugin_slug ); ?></a></li>
+			<li><a href="#tabs-messages"><?php _e( 'Messages Settings', $this->plugin_slug ); ?></a></li>
 			<li><a href="#tabs-importexport"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
 		</ul>
 
@@ -164,6 +165,35 @@ function pages_dropdown() {
 			?>
 
 		</div>		
+		<div id="tabs-messages">
+			<?php
+
+			$option_fields_second = array(
+				'id' => $this->plugin_slug . '_options-messages',
+				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
+				'show_names' => true,
+				'fields' => array(
+					array(
+						'name' => __( 'Message Booking Review', $this->plugin_slug ),
+						'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. HTML is ok. ', $this->plugin_slug ),
+						'default' => __( 'Just one more step... <br><br> Please review your order and Click "confirm" to finalise.', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
+						'type' => 'textarea',
+					),
+					array(
+						'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
+						'desc' => __( 'The message that appears after the user has completed the booking. HTML is ok. ', $this->plugin_slug ),
+						'default' => __( 'Booking confirmed! <br><br> You´ve successfully booked. An email has been sent to your address.', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_messages_booking_confirmed',
+						'type' => 'textarea',
+					),
+				),
+			);
+
+			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
+			?>
+
+		</div>	
 		<div id="tabs-mail">
 			<?php
 
@@ -174,7 +204,7 @@ function pages_dropdown() {
 				'fields' => array(
 					array(
 						'name' => __( 'Email address', $this->plugin_slug ),
-						'desc' => __( 'The reply to address (Make sure this exists)', $this->plugin_slug ),
+						'desc' => __( 'The reply to address (make sure this exists)', $this->plugin_slug ),
 						'id' => $this->plugin_slug . '_mail_confirmation_sender',
 						'default' => __( 'recipient@domain.com', $this->plugin_slug ),
 						'type' => 'text',
