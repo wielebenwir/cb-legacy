@@ -328,7 +328,7 @@ public function get_booked_days( $item_id ) {
 
                   if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-review-nonce') ) die("Security check");
 
-
+                    // DATA FROM FORM
                      $date_start = ( $_REQUEST['date_start'] );  
                      $date_end = ( $_REQUEST['date_end'] );  
 
@@ -338,8 +338,16 @@ public function get_booked_days( $item_id ) {
                      $location_id = ( $_REQUEST['location_id'] );  
                      $item_id = ( $_REQUEST['item_id'] );  
                      $timeframe_id = ( $_REQUEST['timeframe_id'] );  
-                    echo ( "NO MESSAGE YET" ); 
-                    // @TODO
+
+                     // DATA FROM DB
+                    $data = new Commons_Booking_Data;
+
+                    $user_id = get_current_user_id();
+
+                    $item = $data->get_item( $item_id );
+                    $location = $data->get_location( $location_id );
+                    $user = $data->get_user( $user_id );
+
                     $msg = ( $messages['messages_booking_pleaseconfirm'] );  // get message part
                     echo $this->settings->replace_template_tags ( $msg, array( 
                         'item' => get_the_title ( $item_id ),
@@ -347,15 +355,18 @@ public function get_booked_days( $item_id ) {
                         'email' => $user['email'],
                         )); // replace template tags
 
+                    include (commons_booking_get_template_part( 'booking', 'item', FALSE )); // Item: include the template
 
-                    include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // include the template
+                    include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // B Review: include the template
 
+                    include (commons_booking_get_template_part( 'booking', 'location', FALSE )); // Location: include the template
+                    
+                    include (commons_booking_get_template_part( 'booking', 'user', FALSE )); // Location: include the template
+                    
                     // write to DB
                     $booking_id = $this->create_booking( date( 'Y-m-d', $date_start), date( 'Y-m-d', $date_end ), $item_id );
                     
                     include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
-
-                    echo ("<h2>". $booking_id ."</h2>");
 
                 } else { // not all needed vars available 
                     echo "Error";
@@ -390,7 +401,7 @@ public function get_booked_days( $item_id ) {
                     echo $this->settings->replace_template_tags ( $msg, array( 
                         'item' => get_the_title ( $item_id ),
                         'username' => $user['name'],
-                        'email' => $user['email'],
+                        'useremail' => $user['email'],
                         )); // replace template tags
 
                     include (commons_booking_get_template_part( 'booking', 'item', FALSE )); // Item: include the template
