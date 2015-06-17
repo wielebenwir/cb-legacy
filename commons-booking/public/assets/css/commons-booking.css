@@ -14,7 +14,10 @@
   font-weight: bold; }
 
 .cb-box {
-  border: 1px solid #efefef;
+  background: #E1E9F1;
+  margin-bottom: 1em;
+  overflow: hidden;
+  border: 1px solid #b9c8f1;
   display: block; }
 
 .cb-booking-code strong {
@@ -22,8 +25,7 @@
   display: block;
   font-family: Courier, monospaced;
   color: green;
-  font-weight: normal;
-  background: #efefef; }
+  font-weight: normal; }
 
 .gradient {
   background: #cfcfcf;

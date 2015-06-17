@@ -1,6 +1,6 @@
 /* Typo general */
 
-$grey: #EFEFEF;
+$grey: #B9C8F1;
 $blue: #6AB5EF;
 
 .padding {
@@ -11,7 +11,10 @@ $blue: #6AB5EF;
   .cb-big { font-size: 1.2em; font-weight: bold;}
   .cb-headline { font-size: 1.2em; font-weight: bold;}
   .cb-box { 
+    background: #E1E9F1;
     @extend .padding;
+    margin-bottom: 1em;
+    overflow: hidden; 
     border: 1px solid $grey; display: block; 
   }
 
@@ -21,7 +24,6 @@ $blue: #6AB5EF;
   font-family: Courier, monospaced;
   color: green;
   font-weight: normal;
-  background: $grey;
 
 }
 
