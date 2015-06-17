@@ -115,8 +115,10 @@ function cb_timeframes_table_form_page_handler()
     </form>
 
     <?php 
-        if ($item['item_id']) {
-        cb_timeframes_table_form_render_codes($item);
+        //if ($item['item_id']) {
+        if ( isset($_REQUEST['id']) )
+        {
+            cb_timeframes_table_form_render_codes($item);
         }
          ?>
 </div>
@@ -131,9 +133,24 @@ function cb_timeframes_table_form_page_handler()
  */
 function cb_timeframes_table_form_render_codes($item)
 {
+    
+    // define date start
+    if ( isset($_REQUEST['date_start'])) {
+        $date_start = $_REQUEST['date_start'];
+    } else {
+        $date_start = $item['date_start'];
+    }
 
-    $date_start = $item['date_start'];
-    $date_end = $item['date_end'];
+
+    // define date start
+    if ( isset($_REQUEST['date_end'])) {
+        $date_end = $_REQUEST['date_end'];
+    } else {
+        $date_end = $item['date_end'];
+    }
+
+    //$date_start = $_REQUEST['date_start']; //$item['date_start'];
+    //$date_end = $_REQUEST['date_end']; //$item['date_end'];
     $codes = new Commons_Booking_Codes_CSV ( $item['id'], $item['item_id'], $date_start, $date_end);
 
     $codes->compare();
