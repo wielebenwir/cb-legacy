@@ -37,6 +37,7 @@ function pages_dropdown() {
 			<li><a href="#tabs-display"><?php _e( 'Appearance', $this->plugin_slug  ); ?></a></li>
 			<li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
 			<li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
+			<li><a href="#tabs-mail"><?php _e( 'Mail Settings', $this->plugin_slug ); ?></a></li>
 			<li><a href="#tabs-importexport"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
 		</ul>
 
@@ -160,6 +161,43 @@ function pages_dropdown() {
 			);
 
 			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-codes' );
+			?>
+
+		</div>		
+		<div id="tabs-mail">
+			<?php
+
+			$option_fields_second = array(
+				'id' => $this->plugin_slug . '_options-mail',
+				'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
+				'show_names' => true,
+				'fields' => array(
+					array(
+						'name' => __( 'Email address', $this->plugin_slug ),
+						'desc' => __( 'The reply to address (Make sure this exists)', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_mail_confirmation_sender',
+						'default' => __( 'recipient@domain.com', $this->plugin_slug ),
+						'type' => 'text',
+					),					
+					array(
+						'name' => __( 'Confirmation email subject', $this->plugin_slug ),
+						'desc' => __( 'The subject of the confirmation Email. ', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_mail_confirmation_subject',
+						'default' => __( 'Your booking', $this->plugin_slug ),
+						'type' => 'text',
+					),						
+					array(
+						'name' => __( 'Confirmation email body', $this->plugin_slug ),
+						'desc' => __( 'Write a nice introduction. The booking page will be attached. ', $this->plugin_slug ),
+						'id' => $this->plugin_slug . '_mail_confirmation_body',
+						'default' => __( 'Hello %username%, and thanks for booking. <br> ', $this->plugin_slug ),
+
+						'type' => 'textarea',
+					),
+				),
+			);
+
+			cmb2_metabox_form( $option_fields_second, $this->plugin_slug . '-settings-mail' );
 			?>
 
 		</div>
