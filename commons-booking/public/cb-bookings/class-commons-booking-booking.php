@@ -380,6 +380,8 @@ public function get_booked_days( $item_id ) {
                     $booking_id = ( $_REQUEST['booking_id'] );  
                     $booking = $this->get_booking( $booking_id );
 
+                    $this->set_booking_status( $booking_id, 'confirmed' ); // set booking status to confirmed
+
                     $date_start = ( $booking['date_start'] );  
                     $date_end = ( $booking['date_end'] ); 
 
