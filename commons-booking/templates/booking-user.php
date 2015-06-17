@@ -10,5 +10,4 @@
   <div><?php echo __( ' Email: ' ) ?><strong><?php echo $user['email']; ?></strong></div>
   <div><?php echo __( ' Address: ' ) ?><strong><?php echo $user['address']; ?></strong></div>
   <div><?php echo __( ' Phone number: ' ) ?><strong><?php echo $user['phone']; ?></strong></div>
-  </div>
 </div>
