@@ -188,7 +188,7 @@ class Commons_Booking {
         $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
             if ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingreview_page_select' ] ) ) ) {
 
-                $bookingpage = new Commons_Booking_Frontend;
+                $bookingpage = new Commons_Booking_Booking;
                 $review = $bookingpage->render_bookingreview();
                 return $review;
             } else {
@@ -463,8 +463,9 @@ class Commons_Booking {
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );
+
         if ( is_singular ( 'cb_items' )) {
-            wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );
             wp_enqueue_style( $this->get_plugin_slug() . '-tooltip-css', plugins_url( 'assets/css/tooltipster.css', __FILE__ ), array(), self::VERSION );
         }       
     }
