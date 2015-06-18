@@ -37,6 +37,7 @@ class Commons_Booking_Data {
   public function __construct() {
     $this->prefix = 'commons-booking';
     $this->daystoshow = 30; //@TODO make a backend setting
+    $this->current_date = date('Y-m-d');
 }
 
 
@@ -45,8 +46,8 @@ class Commons_Booking_Data {
  *
  */
   public function gather_data() {
-
-    $this->timeframes = $this->get_timeframes();
+    $item_id = $this->item_id;
+    $this->timeframes = $this->get_timeframes( $item_id );
     $this->codes = $this->get_codes();
     $this->dates = $this->get_dates();
 
@@ -97,20 +98,24 @@ class Commons_Booking_Data {
     return $codesDB;
   } 
 /**
- * Get all timeframes.
- * @TODO: restrict to current 
+ * Get timeframes by item_id
+ * 
  *
  * @return array
  */
-  private function get_timeframes() {
+  public function get_timeframes( $item_id, $date_start = '' ) {
 
     $return = '';
 
-    if ($this->item_id) {
-      global $wpdb;
+    if ( empty($date_start) ) {
+      $date_start = $this->current_date;
+    }
 
+    if ( $item_id ) {
+      global $wpdb;
+      // @TODO: Fix start date not being honored by function -> maybe change data format
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s ORDER BY date_start ASC', $this->item_id );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s AND date_start > ' . $date_start . ' ORDER BY date_start ASC', $item_id );
       $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
 
       if ( $this->timeframes ) {
@@ -122,6 +127,9 @@ class Commons_Booking_Data {
       return __(' Something went wrong ' );
     }
   }
+
+
+
 
 /**
  * Get Location & metadata 
@@ -201,7 +209,7 @@ class Commons_Booking_Data {
   }
 
 /**
- * Main function, called from the outside. Renders the complete timeframe
+ * Single item, all calendars.  
  *
  *@param $id item id
  *
@@ -230,6 +238,50 @@ class Commons_Booking_Data {
       
       }
     }
+
+  }
+
+/**
+ * List of items, list of calendar entries.  
+ *
+ *@param $id item id
+ *
+*/
+
+  public function show_item_list_timeframes( $item_id  ) {
+
+    $this->item_id = $item_id;
+
+    // get a list of all dates that should be shown (config setting)
+    $this->date_range_start = date('Y-m-d');
+    $this->date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' ));
+
+    // get Data
+    $this->gather_data();
+
+
+    $tf = $this->timeframes;
+
+    foreach ( $this->timeframes as $tf) {
+      if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
+        
+        $location = $this->get_location ( $tf['location_id'] );
+        $this->render_single_item_timeframe_list( $tf, $codes, $location, $item_id );
+      
+      }
+    }
+
+  }
+
+
+  public function render_single_item_timeframe_list( $tf, $location, $item_id ) {
+
+    $timeframe_comment = $tf['timeframe_title'];
+    $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
+
+    echo ( '<div class="cb-timeframe-list" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
+
+    var_dump ( $tf );
 
   }
 
