@@ -2,6 +2,9 @@
 .padding, .cb-box, #cb-bookingbar-msg, #cb-bookingbar .inner {
   padding: 1em; }
 
+.align-right {
+  float: right; }
+
 .cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
   font-size: 0.8em; }
 
@@ -26,16 +29,14 @@
   color: green;
   font-weight: normal; }
 
-.gradient {
-  background: #cfcfcf;
-  background: -moz-linear-gradient(top, #cfcfcf 0%, white 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #cfcfcf), color-stop(100%, white));
-  background: -webkit-linear-gradient(top, #cfcfcf 0%, white 100%);
-  background: -o-linear-gradient(top, #cfcfcf 0%, white 100%);
-  background: -ms-linear-gradient(top, #cfcfcf 0%, white 100%);
-  background: linear-gradient(to bottom, #cfcfcf 0%, white 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 ); }
-
+/*****************
+ * ITEMS LIST
+ *
+ */
+/*****************
+* CALENDAR
+*
+*/
 #cb-bookingbar-msg.error {
   background: red;
   color: #fff; }

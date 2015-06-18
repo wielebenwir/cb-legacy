@@ -7,36 +7,45 @@ $blue: #6AB5EF;
   padding: 1em;
 }
 
-  .cb-small { font-size: 0.8em; }
-  .cb-big { font-size: 1.2em; font-weight: bold;}
-  .cb-headline { font-size: 1.2em; font-weight: bold;}
-  .cb-box { 
+.align-right { float: right; }
+
+.cb-small { font-size: 0.8em; }
+.cb-big { font-size: 1.2em; font-weight: bold;}
+.cb-headline { font-size: 1.2em; font-weight: bold;}
+
+.cb-box { 
     @extend .padding;
     margin-bottom: 1em;
     overflow: hidden; 
     border: 1px solid $grey; display: block; 
   }
-
 .cb-booking-code  strong{
     padding: 5px;
     display:block;
   font-family: Courier, monospaced;
   color: green;
   font-weight: normal;
+}
+
+
+
+
+
+
+/*****************
+ * ITEMS LIST
+ *
+ */
+
+.cb-list {
 
 }
 
-.gradient {
-   background: rgba(207,207,207,1);
-  background: -moz-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(207,207,207,1)), color-stop(100%, rgba(255,255,255,1)));
-  background: -webkit-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
-  background: -o-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
-  background: -ms-linear-gradient(top, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
-  background: linear-gradient(to bottom, rgba(207,207,207,1) 0%, rgba(255,255,255,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#ffffff', GradientType=0 );   
-  }
 
+ /*****************
+ * CALENDAR
+ *
+ */
 
 #cb-bookingbar-msg {
   @extend .padding;
