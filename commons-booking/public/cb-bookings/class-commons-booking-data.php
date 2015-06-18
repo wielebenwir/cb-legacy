@@ -105,7 +105,6 @@ class Commons_Booking_Data {
   private function get_timeframes() {
 
     $return = '';
-    $end = $this->date_range_end; 
 
     if ($this->item_id) {
       global $wpdb;
@@ -208,7 +207,7 @@ class Commons_Booking_Data {
  *
 */
 
-  public function show_by_item( $item_id  ) {
+  public function show_single_item_timeframes( $item_id  ) {
 
     $this->item_id = $item_id;
 
@@ -227,7 +226,7 @@ class Commons_Booking_Data {
       if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
         
         $location = $this->get_location ( $tf['location_id'] );
-        $this->render_timeframe( $tf, $codes, $location, $item_id );
+        $this->render_timeframe_calendar( $tf, $codes, $location, $item_id );
       
       }
     }
@@ -238,7 +237,7 @@ class Commons_Booking_Data {
 
 
 
-  public function render_timeframe( $tf, $codes, $location, $item_id ) {
+  public function render_timeframe_calendar( $tf, $codes, $location, $item_id ) {
 
     $booked = new Commons_Booking_Booking;
     $booke_days = $booked->get_booked_days( $item_id );

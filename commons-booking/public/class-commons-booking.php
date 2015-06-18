@@ -200,7 +200,7 @@ class Commons_Booking {
         if (  is_singular( 'cb_items' ) ) {                             
             $item_id = get_the_ID();
             $timeframes = new Commons_Booking_Data();
-            $timeframes_display = $timeframes->show_by_item($item_id);
+            $timeframes_display = $timeframes->show_single_item_timeframes($item_id);
             $bookingbar_display = $timeframes->show_booking_bar(); 
 
             return get_the_content( $postID ) . $timeframes_display . $bookingbar_display;
@@ -401,8 +401,10 @@ class Commons_Booking {
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
 
+        // @TODO: Move Bookings Table installation here
 
-        // @TODO: check roles 
+
+        // @TODO: Add cb_user role 
         // global $wp_roles;
         // if ( !isset( $wp_roles ) ) {
         //     $wp_roles = new WP_Roles;
@@ -523,7 +525,7 @@ class Commons_Booking {
     }
 
     /**
-     * Example for override the template system on the frontend
+     * Example for override the template system on the frontend @TODO: Cleanup
      *
      * @since    0.0.1
      */
