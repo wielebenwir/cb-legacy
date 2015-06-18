@@ -81,7 +81,7 @@
             touchDevices: false,
           });
 
-          formButton.click(function() {
+          formButton.click(function( event ) {
             event.preventDefault();
             formEl.submit();
           });
