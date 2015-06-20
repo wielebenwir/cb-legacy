@@ -1,7 +1,14 @@
 # Commons Booking 
 ![Logo](./commons-booking/assets/cb-logo.png)
 
-The WordPress Commons Booking Plugin.
+Florian Egermann / wielebenwir e.V. 
+
+## Currently: 
+
+No installer provided. You may peek at the source code. 
+
+
+
 
 Built with [The WordPress Plugin Boilerplate Powered ](https://github.com/sudar/wp-plugin-in-github/wiki) 
    
