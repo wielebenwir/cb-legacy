@@ -1,10 +1,13 @@
 # Commons Booking 
 ![Logo](./commons-booking/assets/cb-logo.png)
 
+Wordpress plugin for managing and booking of common goods. 
+
 Florian Egermann / wielebenwir e.V. 
 
 ## Currently: 
 
+Alpha.
 No installer provided. You may peek at the source code. 
 
 
