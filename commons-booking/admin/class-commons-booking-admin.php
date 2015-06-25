@@ -110,7 +110,7 @@ class Commons_Booking_Admin {
 		// $settings->show();
 
 		/*
-		 * Add location metaboxes
+		 * Add location & items metaboxes
 		 */
 		add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
 
