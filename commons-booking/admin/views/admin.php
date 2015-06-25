@@ -14,17 +14,6 @@
  * @copyright 2015 wielebenwir
  */
 
-
-function pages_dropdown() {
-	// dropdown for page select
-	$pages = get_pages();
-	$dropdown = array();
-	
-	foreach ( $pages as $page ) {
-		$dropdown[$page->ID] = $page->post_title;
-	}
-	return $dropdown;
-}
 ?>
 
 <div class="wrap">
