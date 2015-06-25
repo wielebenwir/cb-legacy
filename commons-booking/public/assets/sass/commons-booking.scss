@@ -1,7 +1,10 @@
 /* Typo general */
 
-$grey: #B9C8F1;
+$grey: #E1E1E1;
+$light-grey: #F6F6F6;
 $blue: #6AB5EF;
+$black: #000;
+$white: #fff;
 
 .padding {
   padding: 1em;
@@ -11,10 +14,11 @@ $blue: #6AB5EF;
 
 .cb-small { font-size: 0.8em; }
 .cb-big { font-size: 1.2em; font-weight: bold;}
-.cb-headline { font-size: 1.2em; font-weight: bold;}
+.cb-headline { font-size: 1.2em; font-weight: bold; margin-bottom: 1em; }
 
 .cb-box { 
     @extend .padding;
+    background: $light-grey;
     margin-bottom: 1em;
     overflow: hidden; 
     border: 1px solid $grey; display: block; 
@@ -41,6 +45,10 @@ $blue: #6AB5EF;
 
 }
 
+.cb-date {
+  color: $black;
+}
+
 
  /*****************
  * CALENDAR
@@ -60,23 +68,26 @@ $blue: #6AB5EF;
 }
 
 #cb-bookingbar {
-  padding: 30px;
-  font-family: Helvetica, Arial, sans-serif;
   z-index: 99;
   .inner {
-    @extend .padding;
-        background: lighten(#207B1C, 60%);
+    @extend .cb-box;
+    margin: 0;
+    border-top: 1px solid darken(#207B1C, 10%);
+    background: lighten(#207B1C, 60%);
+
   overflow: hidden;
   }
   .cb-userinfo {
     display: block;
+  }
+  #intro {
+    display:none;
   }
 
   #date-start, #date-end, #cb-submit {
     @extend .cb-big;
     span {
       font-weight: bold;
-      color: green;
     }
     float: left;
     margin-right: 20px;
@@ -90,15 +101,47 @@ $blue: #6AB5EF;
 
 }
 
+/* LiSTS */
+
+.cb-list-item {
+  @extend .cb-box;
+
+  .cb-item {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 1em;
+  }
+
+  ul.cb-list-item-timeframe {
+    overflow: hidden;
+    border-top: 1px solid $grey;
+    margin: 0;
+    li {
+      margin: 0;
+      padding: .2em 0 .2em 0;
+      border-top: 1px solid #fff;
+
+      border-bottom: 1px solid $grey;
+      span.cb-action a {
+        float: right;
+      }
+      &:hover {
+        background: #fff;
+      }
+    }
+  }
+}
+
+
 
 /* Timeframes */
 .cb-timeframe {
 
+  @extend .cb-box;
+
   $width: 100%;
   $cellwidth: $width / 7;
 
-  margin-bottom: 1em;
-  border-bottom: 1px solid #000;
 
   .pusher {
       &.Mon {margin-left: 0; }
@@ -153,8 +196,9 @@ $blue: #6AB5EF;
       padding: 10px;
       float: left;
       text-align: center;
-      background: #F2F2F2;
-      border: 1px solid #fff;
+      background: #ffffff;
+      color: $grey;
+      border: 1px solid $light-grey;
     
       &.bookable { // selectable dates
         cursor: pointer;

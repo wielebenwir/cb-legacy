@@ -1,5 +1,5 @@
 /* Typo general */
-.padding, .cb-box, #cb-bookingbar-msg, #cb-bookingbar .inner {
+.padding, .cb-box, #cb-bookingbar .inner, .cb-list-item, .cb-timeframe, #cb-bookingbar-msg {
   padding: 1em; }
 
 .align-right {
@@ -14,12 +14,14 @@
 
 .cb-headline {
   font-size: 1.2em;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-bottom: 1em; }
 
-.cb-box {
+.cb-box, #cb-bookingbar .inner, .cb-list-item, .cb-timeframe {
+  background: #f6f6f6;
   margin-bottom: 1em;
   overflow: hidden;
-  border: 1px solid #b9c8f1;
+  border: 1px solid #e1e1e1;
   display: block; }
 
 .cb-booking-code strong {
@@ -33,6 +35,9 @@
  * ITEMS LIST
  *
  */
+.cb-date {
+  color: black; }
+
 /*****************
 * CALENDAR
 *
@@ -45,8 +50,6 @@
   color: #fff; }
 
 #cb-bookingbar {
-  padding: 30px;
-  font-family: Helvetica, Arial, sans-serif;
   z-index: 99;
   position: fixed;
   height: auto;
@@ -55,21 +58,41 @@
   right: 0;
   bottom: 0; }
   #cb-bookingbar .inner {
+    margin: 0;
+    border-top: 1px solid #155113;
     background: #d5f5d4;
     overflow: hidden; }
   #cb-bookingbar .cb-userinfo {
     display: block; }
+  #cb-bookingbar #intro {
+    display: none; }
   #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit {
     float: left;
     margin-right: 20px; }
     #cb-bookingbar #date-start span, #cb-bookingbar #date-end span, #cb-bookingbar #cb-submit span {
-      font-weight: bold;
-      color: green; }
+      font-weight: bold; }
+
+/* LiSTS */
+.cb-list-item .cb-item {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 1em; }
+.cb-list-item ul.cb-list-item-timeframe {
+  overflow: hidden;
+  border-top: 1px solid #e1e1e1;
+  margin: 0; }
+  .cb-list-item ul.cb-list-item-timeframe li {
+    margin: 0;
+    padding: .2em 0 .2em 0;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e1e1e1; }
+    .cb-list-item ul.cb-list-item-timeframe li span.cb-action a {
+      float: right; }
+    .cb-list-item ul.cb-list-item-timeframe li:hover {
+      background: #fff; }
 
 /* Timeframes */
 .cb-timeframe {
-  margin-bottom: 1em;
-  border-bottom: 1px solid #000;
   /* Calendar */ }
   .cb-timeframe .pusher.Mon, .cb-timeframe ul.cb-calendar li.Mon:first-child {
     margin-left: 0; }
@@ -106,8 +129,9 @@
       padding: 10px;
       float: left;
       text-align: center;
-      background: #F2F2F2;
-      border: 1px solid #fff; }
+      background: #ffffff;
+      color: #e1e1e1;
+      border: 1px solid #f6f6f6; }
       .cb-timeframe ul.cb-calendar li.bookable {
         cursor: pointer;
         color: #207B1C;
