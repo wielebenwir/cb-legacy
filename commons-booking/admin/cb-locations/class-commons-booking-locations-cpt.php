@@ -17,14 +17,14 @@ class Commons_Booking_Locations_CPT extends CPT_Core {
     /**
      * Register Location Post Type. 
      */
-    public function __construct() {
+    public function __construct( $slug ) {
 
         // Register this cpt
         // First parameter should be an array with Singular, Plural, and Registered name
         parent::__construct(
             array( 
-                __( 'Location', 'your-text-domain' ), 
-                __( 'locations', 'your-text-domain' ), 
+                __( 'Location', $slug ), 
+                __( 'locations', $slug ), 
                 'cb_locations' 
                 ),
             array( 

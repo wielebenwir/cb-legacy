@@ -16,13 +16,15 @@ class Commons_Booking_Items_CPT extends CPT_Core {
     /**
      * Register the Item post type
      */
-    public function __construct() {
+    public function __construct( $slug ) {
+
+        $this->slug = $slug;
 
         // Register this cpt
         parent::__construct(
             array( 
-                __( 'Item', 'your-text-domain' ), 
-                __( 'Items', 'your-text-domain' ), 
+                __( 'Item', $this->slug ), 
+                __( 'Items', $this->slug ), 
                 'cb_items' 
                 ),
             array( 
@@ -41,8 +43,8 @@ class Commons_Booking_Items_CPT extends CPT_Core {
     public function register_taxonomy() {
 
         $cb_item_cat_names = array(
-            __( 'Category', 'your-text-domain' ),       // Singular
-            __( 'Categories', 'your-text-domain' ),     // Plural
+            __( 'Category', $this->slug ),       // Singular
+            __( 'Categories', $this->slug ),     // Plural
             'cb_item_cat'                                // Registered name
         );
 
@@ -58,7 +60,7 @@ class Commons_Booking_Items_CPT extends CPT_Core {
      */
     public function columns( $columns ) {
         $new_column = array(
-            'image' => sprintf( __( '%s image', 'your-text-domain' ), $this->post_type( 'singular' ) ),
+            'image' => sprintf( __( '%s image', $this->slug ), $this->post_type( 'singular' ) ),
         );
         return array_merge( $new_column, $columns );
     }

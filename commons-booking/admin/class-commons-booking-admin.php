@@ -91,6 +91,11 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
 
+		// include Helper functions
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/cb-helpers.php' );
+	
+
+
 		// add custom metabox for items
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metabox-timeframes.php' );
 
@@ -106,9 +111,6 @@ class Commons_Booking_Admin {
 		
 		// Settings 
 
-		// $settings = new Commons_Booking_Settings;
-		// $settings->show();
-
 		/*
 		 * Add location & items metaboxes
 		 */
@@ -118,7 +120,7 @@ class Commons_Booking_Admin {
 		 * Add item metaboxes
 		 */
 		// add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
-		new Commons_Booking_Items_Metabox;
+		new Commons_Booking_Items_Metabox ( $this->plugin_slug );
 
 		/*
 		 * Define custom functionality.
@@ -155,6 +157,7 @@ class Commons_Booking_Admin {
 			require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Contextual-Help/wp-contextual-help.php' );
 		}
 		add_action( 'init', array( $this, 'contextual_help' ) );
+
 
 	  /*
 	   * Load Wp_Admin_Notice for the notices in the backend
@@ -298,64 +301,6 @@ class Commons_Booking_Admin {
 	}
 
 	/**
-	 * Register the menues Timeframes, Codes & Bookings. 1-2 are Items & Locations
-	 *
-	 * @TODO add bookings
-	 * @since    0.0.1
-	 */
-	public function add_plugin_admin_menu() {
-
-		$capability = 'manage_options'; // Restrict access to whole menu to users with this capabilty
-
-		/*
-		 * 3. Timeframes
-		 */
-    $this->plugin_screen_hook_suffix = add_menu_page(
-        __( 'Timeframes', $this->plugin_slug ), 	// page_title
-        __( 'Timeframes', $this->plugin_slug ), 	// menu_title
-        $capability, 															// capability
-        'cb_timeframes', 														// menu_slug
-        'cb_timeframes_table_page_handler',				// function
-        'dashicons-calendar-alt', 								// icon_url
-        33 																				// position
-        );
-    
-    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
-    $this->plugin_screen_hook_suffix = add_submenu_page(
-        'cb_timeframes', 																			// parent_menu_slug
-        __( 'Add/Edit Timeframes', $this->plugin_slug ), 			// page_title
-        __( 'Add Timeframe', $this->plugin_slug ), 						// menu_title
-        $capability, 																					// capability
-        'cb_timeframes_edit', 																// menu_slug
-        'cb_timeframes_table_form_page_handler'								// function
-        );
-		/*
-		 * 4. Bookings
-		 */
-    $this->plugin_screen_hook_suffix = add_menu_page(
-        __( 'Bookings', $this->plugin_slug ), 				// page_title
-        __( 'Bookings', $this->plugin_slug ), 				// menu_title
-        $capability, 															// capability
-        'cb_bookings', 															// menu_slug
-        'cb_bookings_list_page_handler',						// function
-        'dashicons-tag', 								// icon_url
-        34 																				// position
-        );		/*
-		 * 5. Codes
-		 */
-    $this->plugin_screen_hook_suffix = add_menu_page(
-        __( 'Codes', $this->plugin_slug ), 				// page_title
-        __( 'Codes', $this->plugin_slug ), 				// menu_title
-        $capability, 															// capability
-        'cb_codes', 															// menu_slug
-        'cb_codes_table_page_handler',						// function
-        'dashicons-admin-network', 								// icon_url
-        35 																				// position
-        );
-	}
-
-
-	/**
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 *
 	 * @since    0.0.1
@@ -375,7 +320,7 @@ class Commons_Booking_Admin {
 	 * @since    0.0.1
 	 */
 	public function display_plugin_admin_page() {
-		include_once( 'views/admin.php' );
+		include_once( 'cb-settings/views/settings.php' );
 	}
 
 	/**
@@ -504,7 +449,66 @@ class Commons_Booking_Admin {
 		return false;
 	}
 
-	/**
+	 /**
+	 * NOTE:     Add Menus
+	 *
+	 * @since    0.0.1
+	 */	
+
+    public function add_plugin_admin_menu( ) {
+
+    $capability = 'manage_options'; // Restrict access to whole menu to users with this capabilty
+
+    /*
+     * 3. Timeframes
+     */
+	    $this->plugin_screen_hook_suffix = add_menu_page(
+	        __( 'Timeframes', $this->plugin_slug ),   // page_title
+	        __( 'Timeframes', $this->plugin_slug ),   // menu_title
+	        $capability,                              // capability
+	        'cb_timeframes',                            // menu_slug
+	        'cb_timeframes_table_page_handler',       // function
+	        'dashicons-calendar-alt',                 // icon_url
+	        33                                        // position
+	        );
+	    
+	    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
+	    $this->plugin_screen_hook_suffix = add_submenu_page(
+	        'cb_timeframes',                                      // parent_menu_slug
+	        __( 'Add/Edit Timeframes', $this->plugin_slug ),      // page_title
+	        __( 'Add Timeframe', $this->plugin_slug ),            // menu_title
+	        $capability,                                          // capability
+	        'cb_timeframes_edit',                                 // menu_slug
+	        'cb_timeframes_table_form_page_handler'               // function
+	        );
+	    /*
+	     * 4. Bookings
+	     */
+	    $this->plugin_screen_hook_suffix = add_menu_page(
+	        __( 'Bookings', $this->plugin_slug ),         // page_title
+	        __( 'Bookings', $this->plugin_slug ),         // menu_title
+	        $capability,                              // capability
+	        'cb_bookings',                              // menu_slug
+	        'cb_bookings_list_page_handler',            // function
+	        'dashicons-tag',                // icon_url
+	        34                                        // position
+	        );    
+	     /*
+	     * 5. Codes
+	     */
+	    $this->plugin_screen_hook_suffix = add_menu_page(
+	        __( 'Codes', $this->plugin_slug ),        // page_title
+	        __( 'Codes', $this->plugin_slug ),        // menu_title
+	        $capability,                              // capability
+	        'cb_codes',                               // menu_slug
+	        'cb_codes_table_page_handler',            // function
+	        'dashicons-admin-network',                // icon_url
+	        35                                        // position
+	        );
+	  }
+
+
+	 /**
 	 * NOTE:     Metaboxes for Locations @TODO: Move to another file
 	 *
 	 * @since    0.0.1

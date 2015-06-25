@@ -14,6 +14,7 @@
  * @package Commons_Booking_Data
  * @author  Florian Egermann <florian@macht-medien.de>
  */
+
 class Commons_Booking_Admin_Settings {
 
   public $setting_page;
