@@ -14,7 +14,7 @@
 /**
  * This class includes all frontend functions for bookings
  * *
- * @package Commons_Booking
+ * @package Commons_Booking_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  *
  */
