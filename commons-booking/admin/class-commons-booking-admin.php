@@ -119,7 +119,7 @@ class Commons_Booking_Admin {
     add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_descr_metaboxes' ) );
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
-    
+
     add_action( 'show_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
     add_action( 'edit_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
   	add_action( 'personal_options_update', array( $this, 'cb_save_extra_profile_fields' ) );
@@ -313,7 +313,7 @@ class Commons_Booking_Admin {
 	}
 
 	/**
-	 * Add settings action link to the plugins page.
+	 * Add settings action link to the plugins page. @TODO: Anpassen
 	 *
 	 * @since    0.0.1
 	 */
