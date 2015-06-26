@@ -55,40 +55,34 @@ class Commons_Booking_Public_Items {
           $item_id = get_the_ID();
 
           $content [$item_id]['permalink'] =  get_the_permalink();
-          $content [$item_id]['title'] =  the_title();
-          if ( has_post_thumbnail( $item_id ) ) { 
-           $content [$item_id]['thumb'] = get_the_post_thumbnail( $item_id, 'thumbnail' );
-         }
+          $content [$item_id]['title'] =  get_the_title();
+          if ( has_post_thumbnail( $item_id ) ) {  $content [$item_id]['thumb'] = get_the_post_thumbnail( $item_id, 'thumbnail' ); }
           $content [$item_id]['description'] =  get_post_meta( get_the_ID(), 'commons-booking_item_descr', true );
-
-          // echo ( '<div class="cb-list-item">' );          
-
-          // commons_booking_get_template_part( 'items', 'list'); // list template
 
           $timeframes = $this->data->get_timeframes( $item_id  );
 
           if ( $timeframes ) {
-            // echo ( '<ul class="cb-list-item-timeframe">');
             foreach ( $timeframes as $tf ) {
               $location = $this->data->get_location ( $tf ['location_id'] );
-
+    
               $content [$item_id]['location'][$tf ['location_id']] = $location;
-
-
-              // include (commons_booking_get_template_part( 'items', 'list-timeframes', FALSE )); 
-
+              $content [$item_id]['location'][$tf ['location_id']]['date_start'] = $tf ['date_start'];
+              $content [$item_id]['location'][$tf ['location_id']]['date_end'] = $tf ['date_end'];
             } // end foreach
-            // echo ( '</ul>');
           } 
-       return $content; 
         }
       } else {
-        echo __( ' Sorry, nothing found.');
+        return __( ' Sorry, nothing found.');
       }
-      /* Restore original Post Data */
-      wp_reset_postdata();
+       wp_reset_postdata();
+       return $content; 
     }
+
     public function items_render() {
+
+      $items = $this->get_Items();
+
+      include (commons_booking_get_template_part( 'items', 'list', FALSE ));
 
     }
   }

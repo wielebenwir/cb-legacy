@@ -119,9 +119,9 @@ class Commons_Booking {
 
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
-        $type_items = new Commons_Booking_Items_CPT();
+        $type_items = new Commons_Booking_Items_CPT( $this->get_plugin_slug() );
         $type_items->register_taxonomy();
-        $type_locations = new Commons_Booking_Locations_CPT();
+        $type_locations = new Commons_Booking_Locations_CPT( $this->get_plugin_slug() );
 
         $items = new Commons_Booking_Public_Items();
 
@@ -137,77 +137,46 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
         /* 
-         * Filter: Add main items list to page selected in settings.
+         * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'page_items_list' ) );             
+        add_action( 'the_content', array( $this, 'overwrite_page' ) );             
        
-        /* 
-         * Filter: Add main plugin overview output to page selected in settings.
-         */
-        add_action( 'the_content', array( $this, 'items_single' ) );
-        /* 
-         * Filter: Add bookings review to page selected in settings.
-         */
-        add_action( 'the_content', array( $this, 'page_booking_review' ) ); 
 
     }
 
     /**
-     * Add items list output to page selected in settings.
+     *   Add main items list to page selected in settings
+     *   Add bookings review to page selected in settings.
+     * Add main plugin overview output to page selected in settings.
      *
      * @since    0.0.1
      *
      * @return    Mixed 
      */
-    public function page_items_list( $pageID ) {
+    public function overwrite_page( $pageID ) {
         $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
             if ( !empty( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) ) ) {
                 
                 $items = new Commons_Booking_Public_Items;
+                return $items->items_render();
+            
+            } elseif ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) ) ) {
 
-                return get_the_content( $pageID ) . $items->show();
-            } else {
+                $bookingpage = new Commons_Booking_Booking;
+                return $bookingpage->render_bookingreview();
+
+            } elseif (  is_singular( 'cb_items' ) ) {                             
+                $item_id = get_the_ID();
+                $timeframes = new Commons_Booking_Data();
+
+                $timeframes_display = $timeframes->show_single_item_timeframes($item_id);
+                $bookingbar_display = $timeframes->show_booking_bar(); 
+
+            } else { 
                 return get_the_content( $pageID );
             }
         }    
-    /**
-     * Add items list output to page selected in settings.
-     *
-     * @since    0.0.1
-     *
-     * @return    Mixed 
-     */
-    public function page_booking_review( $pageID ) {
-        $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
-            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) ) ) {
 
-                $bookingpage = new Commons_Booking_Booking;
-                $review = $bookingpage->render_bookingreview();
-                return $review;
-            } else {
-                return get_the_content( $pageID );
-            }
-        }
-
-    /**
-     * Add Timeframes list to items single.
-     *
-     * @since    0.0.1
-     *
-     * @return    Mixed 
-     */
-    public function items_single( $postID ) {
-        if (  is_singular( 'cb_items' ) ) {                             
-            $item_id = get_the_ID();
-            $timeframes = new Commons_Booking_Data();
-            $timeframes_display = $timeframes->show_single_item_timeframes($item_id);
-            $bookingbar_display = $timeframes->show_booking_bar(); 
-
-            return get_the_content( $postID ) . $timeframes_display . $bookingbar_display;
-        } else {
-            return get_the_content( $postID );
-        }
-    }    
 
 
     /**
