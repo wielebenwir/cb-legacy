@@ -79,11 +79,7 @@ class Commons_Booking_Admin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 		/*
-		 * CMB 2 for metabox and many other cool things!
-		 * https://github.com/WebDevStudios/CMB2
-		 * Also CMB2 Shortcode support 
-		 * Check on the repo for the example and documentation 
-		 * https://github.com/jtsternberg/Shortcode_Button
+		 * CMB 2 library
 		 */
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2/init.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Shortcode/shortcode-button.php' );
@@ -91,45 +87,39 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
 
+		// Definition of Custom meta boxes for items & Locations
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metaboxes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-locations/includes/cb-locations-metaboxes.php' );
+
+
+
 		// include Helper functions
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/cb-helpers.php' );
 	
 
 
-		// add custom metabox for items
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metabox-timeframes.php' );
+
 
 
 
 		// the admin table for timeframes & codes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/cb-codes.php' );
-		// require_once( plugin_dir_path( __FILE__ ) . 'class-admin-table-filters.php' );
 
 		// Admin messages
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/class-admin-table-messages.php' );
 		
-		// Settings 
+		// add item metabox
+		$items_metabox = new Commons_Booking_Items_Metabox ();
+		// locations metabox
+		$locations_metabox = new Commons_Booking_Locations_Metaboxes ();
 
-		/*
-		 * Add location & items metaboxes
-		 */
-		add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
 
-		/*
-		 * Add item metaboxes
-		 */
-		// add_filter( 'cmb2_meta_boxes', array( $this, 'cb_location_metaboxes' ) );
-		new Commons_Booking_Items_Metabox ( $this->plugin_slug );
+    add_action( 'add_meta_boxes', array( $items_metabox, 'cb_items_add_timeframe_meta_box'));
+    add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_descr_metaboxes' ) );
+    add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
-		/*
-		 * Define custom functionality.
-		 *
-		 * Read more about actions and filters:
-		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		// add_action( '@TODO', array( $this, 'action_method_name' ) );
-		// add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+    
     add_action( 'show_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
     add_action( 'edit_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
   	add_action( 'personal_options_update', array( $this, 'cb_save_extra_profile_fields' ) );
@@ -214,7 +204,6 @@ class Commons_Booking_Admin {
         <table class="form-table">
             <tr>
                 <th><label for="phone"><?php _e ( 'Phone number', $this->plugin_slug ); ?></label></th>
-
                 <td>
                     <input type="text" name="phone" id="phone" value="<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="regular-text" /><br />
                 </td>
@@ -507,97 +496,6 @@ class Commons_Booking_Admin {
 	        );
 	  }
 
-
-	 /**
-	 * NOTE:     Metaboxes for Locations @TODO: Move to another file
-	 *
-	 * @since    0.0.1
-	 */
-	public function cb_location_metaboxes( array $meta_boxes ) {
-
-
-		$items = new Commons_Booking_Items();
-
-		$meta_boxes[ 'cb_location_metabox_adress' ] = array(
-			'id' => 'cb_location_metabox_adress',
-			'title' => __( 'Address', $this->plugin_slug ),
-			'object_types' => array( 'cb_locations', ), // Post type
-			'context' => 'normal',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left		
-	    'fields' => array(				
-				array(
-					'name' => __( 'Street', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_adress_street',
-					'type' => 'text',
-				),				
-				array(
-					'name' => __( 'City', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_adress_city',
-					'type' => 'text',
-				),				
-				array(
-					'name' => __( 'Zip Code', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_adress_zip',
-					'type' => 'text',
-				),					
-				array(
-					'name' => __( 'Country', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_adress_country',
-					'type' => 'text',
-				),	
-			),			
-		);
-
-		$meta_boxes[ 'cb_location_metabox_contactinfo' ] = array(
-			'id' => 'cb_location_metabox_contactinfo',
-			'title' => __( 'Contact Information', $this->plugin_slug ),
-			'object_types' => array( 'cb_locations', ), // Post type
-			'context' => 'normal',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left	
-	    'fields' => array(		
-				array(
-					'name' => __( 'Phone Number, Email, ...', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_contactinfo_text',
-					'type' => 'textarea',
-				),				
-				array(
-					'name' => __( 'Hide contact information (will be sent with booking)', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_contactinfo_hide',
-					'type' => 'checkbox',
-				),	
-			),							
-		);		
-
-		$meta_boxes[ 'cb_location_metabox_closeddays' ] = array(
-			'id' => 'cb_location_metabox_closeddays',
-			'title' => __( 'Closed Days', $this->plugin_slug ),
-			'object_types' => array( 'cb_locations', ), // Post type
-			'context' => 'normal',
-			'priority' => 'high',
-			'show_names' => true, // Show field names on the left	
-	    'fields' => array(					
-				array(
-					'name' => __( 'Location is closed on the following days, booking is prohibited. ', $this->plugin_slug ),
-					'id' => $this->plugin_slug . '_location_closeddays',
-					'type'    => 'multicheck',
-			    'options' => array(
-			        '1' => __( 'Monday', $this->plugin_slug ),
-			        '2' => __( 'Tuesday', $this->plugin_slug ),
-			        '3' => __( 'Wednesday', $this->plugin_slug ),
-			        '4' => __( 'Thursday', $this->plugin_slug ),
-			        '5' => __( 'Friday', $this->plugin_slug ),
-			        '6' => __( 'Saturday', $this->plugin_slug ),
-			        '7' => __( 'Sunday', $this->plugin_slug ),
-			    		),
-			    ),				
-			),							
-		);
-
-
-		return $meta_boxes;
-	}
 
 	/**
 	 * Process a settings export from config

@@ -16,13 +16,6 @@ class Commons_Booking_Items_Metabox extends Commons_Booking {
    */
   public function __construct() {
 
-    // timeframe meta box & messages
-    add_action('add_meta_boxes', array($this, 'cb_items_add_timeframe_meta_box'));
-    add_action('the_content', array($this, 'custom_message'));
-
-    // description meta box   
-    add_filter( 'cmb2_meta_boxes', array( $this, 'cb_item_descr_metaboxes' ) );
-
   }
 
   /**
