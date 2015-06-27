@@ -17,16 +17,19 @@
 
 class Commons_Booking_Admin_Settings {
 
+  public $prefix;
+
   public $setting_page;
   public $setting_name;
 
+
 /**
  * Constructor.
- *
  */
   public function __construct() {
+
     $this->prefix = 'commons-booking';
-}  
+  }  
 
 /**
  * Get settings from backend. Return either full array or specified setting
@@ -52,23 +55,6 @@ class Commons_Booking_Admin_Settings {
       return $clean_array;
     }
   }
-
-/**
- * Get settings from backend. Return either full array or specified setting
- * If array, remove the prefix for easier retrieval
- *
- *@param setting_page: name of the page (cmb metabox name)
- *@param (optional) name of the setting
- *
- *@return string
- */
-  public function replace_template_tags( $string, $tags_array ) {
-    foreach($tags_array as $key => $value){
-        $string = str_replace('{'.strtoupper($key).'}', $value, $string);
-    }
-    return $string;
-  }
-
 
 }
 

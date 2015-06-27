@@ -60,7 +60,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-bo
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/class-commons-booking-admin-settings.php' );
 
-
+// include Helper functions
+require_once( plugin_dir_path( __FILE__ ) . 'includes/commons-booking-helpers.php' );
 
 // Class for Codes
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/class-cb-codes-csv.php' );

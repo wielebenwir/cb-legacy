@@ -4,6 +4,8 @@
  * Commons Booking Helpers
  * 
  * Helper functions
+ *    Dropdown of Pages
+ *    Replace Template Tags    
  *
  * @package   Commons_Booking_Admin
  * @author    Florian Egermann <florian@macht-medien.de>
@@ -30,6 +32,20 @@ function pages_dropdown() {
   return $dropdown;
 }
 
+/**
+ * Replace template tags – {MYTAG} with tags array
+ *
+ *@param string to replace
+ *@param array of tags
+ *
+ *@return string
+ */
+ function replace_template_tags( $string, $tags_array ) {
+    foreach($tags_array as $key => $value){
+        $string = str_replace('{'.strtoupper($key).'}', $value, $string);
+    }
+    return $string;
+  }
 
 
 ?>
