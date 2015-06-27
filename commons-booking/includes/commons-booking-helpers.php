@@ -6,6 +6,7 @@
  * Helper functions
  *    Dropdown of Pages
  *    Replace Template Tags    
+ *    get_dates_between
  *
  * @package   Commons_Booking_Admin
  * @author    Florian Egermann <florian@macht-medien.de>
@@ -45,6 +46,19 @@ function pages_dropdown() {
         $string = str_replace('{'.strtoupper($key).'}', $value, $string);
     }
     return $string;
+  }
+
+/**
+ * Get a list of all dates within the defind range. 
+ *
+ * @return array dates
+ */
+ function get_dates_between( $date_start, $date_end ) {
+    $dates = array ( $date_start );
+    while(end($dates) < $date_end){
+        $dates[] = date('Y-m-d', strtotime(end($dates).' +1 day'));
+    }
+    return $dates;
   }
 
 

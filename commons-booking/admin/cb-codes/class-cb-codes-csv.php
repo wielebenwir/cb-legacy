@@ -83,7 +83,7 @@ class Commons_Booking_Codes_CSV {
     $this->get_settings();
     $codesDB = $this->get_codetable_entries();
 
-    $tfDates = $this->get_dates();
+    $tfDates = get_dates_between( $this->date_start, $this->date_end );
     $codeDates = array();
 
     foreach ( $codesDB as $entry ) {
@@ -121,7 +121,7 @@ public function render() {
   if ( $this->missingDates ) { 
     ?>
 
-    <?php  new Admin_Table_Message ( __('No codes generated or codes missing.', 'cb_timeframes_table'), 'error' ); ?>
+    <?php new Admin_Table_Message ( __('No codes generated or codes missing.', 'cb_timeframes_table'), 'error' ); ?>
     <form id="codes" method="POST">
       <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
       <input class="hidden" name="generate" value="generate">
