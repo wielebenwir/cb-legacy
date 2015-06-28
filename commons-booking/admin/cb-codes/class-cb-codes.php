@@ -142,26 +142,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  */
 public function render() {
 
-  echo ( '<h2>Codes: ' . get_the_title( $this->item_id ) . '</h2>');
-  // $dir = plugin_dir_url( __FILE__ ) . 'codes-generate.php';
-  // echo $dir;
-
-  // if ( $this->missing_dates ) { 
-  //   ?>
-  //   <?php new Admin_Table_Message ( __('No codes generated or codes missing.', $this->prefix), 'error' ); ?>
-  //   <form id="codes-generate" method="POST" action="<?php echo $dir ?>">
-  //     <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
-  //     <input class="hidden" name="generate" value="generate">
-  //     <input type="submit" value="<?php _e('Generate Codes', $this->prefix)?>" id="submit_generate" class="button-primary" name="submit_generate">
-  //   </form>
-
-  //   <?php
-  //   if (isset($_REQUEST['generate'])) {
-  //     $sql = $this->sql_insert( $this->item_id, $this->missing_dates, $this->codes_array );
-  //   }
-  // } else { // no Codes missing?>
-  //   <?php   
-  // } // end if $missing_dates
+  echo ( '<h2> '. __( 'Codes ', $this->prefix) . '</h2>');
 
   $allDates = array_merge ($this->missing_dates, $this->matched_dates);
   $this->render_table( $allDates );
