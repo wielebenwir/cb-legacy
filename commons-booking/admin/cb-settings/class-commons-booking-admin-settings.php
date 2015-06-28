@@ -44,10 +44,10 @@ class Commons_Booking_Admin_Settings {
   public function get( $setting_page, $setting_name = "") {
     global $wpdb;
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
+
     if ( $setting_name ) {
       return $page [ $this->prefix . '_'. $setting_name ];
-    } else { // grabbing all entries
-     
+    } else { // grabbing all entries     
       foreach($page as $key => $value) { // remove the prefix 
             $clean = str_replace( $this->prefix. '_', '', $key); 
             $clean_array[$clean] = $value; 
