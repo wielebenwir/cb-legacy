@@ -318,7 +318,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', $plugin_slug);
+       echo __( 'Something went wrong', $this->plugin_slug);
       }
       /* Restore original Post Data */
       wp_reset_postdata();
