@@ -149,24 +149,6 @@ class Commons_Booking_Booking {
 
     }
 
- /**
- * Get booking-userdata
- *
- * @return array
- */   
-    public function get_booking_user( $user_id ) {
-    	
-    	$userdata = get_userdata( $user_id );
-
-    	$user['name'] 			= $userdata->user_nicename;
-    	$user['email'] 			= $userdata->user_email;
-    	$user['address']		= "ADRESSFELD IN DATENBANK FEHLT"; //@TODO: Adresse in Userdaten integrieren
-    	$user['phone']			= "TELEFONNUMMER-FELD IN DATENBANK FEHLT"; //@TODO: Telefonnummer in Userdaten integrieren
-
-    	return $user;
-
-    }
-
 
  /**
  * Get a list of all booked days
@@ -219,7 +201,6 @@ public function get_booked_days( $item_id ) {
     	// get relevant data
     	$code_id = $this->get_booking_code_id( $date_start, $item_id );
     	$location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );
-        // $this->get_booking_location_id ( $date_start, $date_end, $item_id );
 
     	//@TODO: check if identical booking is already in database and cancel booking proucess if its true
 
@@ -351,7 +332,7 @@ public function get_booked_days( $item_id ) {
                     $user = $data->get_user( $user_id );
 
                     $msg = ( $messages['messages_booking_pleaseconfirm'] );  // get message part
-                    echo $this->settings->replace_template_tags ( $msg, array( 
+                    echo replace_template_tags ( $msg, array( 
                         'item' => get_the_title ( $item_id ),
                         'username' => $current_user->display_name,
                         'email' => $current_user->user_email,
