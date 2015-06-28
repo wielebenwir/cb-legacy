@@ -10,9 +10,9 @@
       $( this ).change(function(){
         var filterID = $(this).val();
         if( filterID != '' ){
-          document.location.href = 'admin.php?page=timeframes'+filterID;    
+          document.location.href = 'admin.php?page=cb_timeframes'+filterID;    
         } else {
-          document.location.href = 'admin.php?page=timeframes';    
+          document.location.href = 'admin.php?page=cb_timeframes';    
         }
       });    
     });
