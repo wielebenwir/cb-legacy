@@ -37,7 +37,6 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
   public function prepare( ) {
 
     if ( isset( $_REQUEST['item_id'] ) ) {
-        echo ("<h1>ITEM ID" . $_REQUEST['item_id'] . "</h1>" );
 
       $this->item_id = $_REQUEST['item_id'];
       $this->date_start = $_REQUEST['date_start'];
@@ -78,7 +77,6 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
 
     shuffle( $this->codes_array ); // randomize array
 
-    var_dump($this->missing_dates);
 
     if ( count( $this->codes_array ) < count( $this->missing_dates )) {
       new Admin_Table_Message ( __('No or not enough codes defined. Add them in Commons Booking Settings.', $this->prefix), 'error' );
@@ -96,7 +94,6 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
       array_push($sqlcontents, '("' . $this->item_id. '","' . $this->missing_dates[$i]['date'] . '","' . $this->codes_array[$i] . '")');
     }
     $sqlquery = 'INSERT INTO ' . $this->table_name . ' (' . $sqlcols . ') VALUES ' . implode (',', $sqlcontents ) . ';';
-        new Admin_Table_Message ( $sqlquery , 'updated' );
 
     $wpdb->query($sqlquery);
   }
