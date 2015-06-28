@@ -62,7 +62,7 @@ class Commons_Booking_Admin {
 		add_action( 'admin_head-index.php', array( $this, 'enqueue_admin_styles' ) );
 
 		// load the js for table filtering
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_table_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_table_filter' ) );
 
 		// At Glance Dashboard widget for your cpts
 		add_filter( 'dashboard_glance_items', array( $this, 'cpt_dashboard_support' ), 10, 1 );
@@ -104,6 +104,7 @@ class Commons_Booking_Admin {
 		// the admin table for timeframes & codes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/cb-codes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/includes/class-cb-codes-generate.php' );
 
 		// Admin messages
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/class-admin-table-messages.php' );
@@ -242,16 +243,15 @@ class Commons_Booking_Admin {
 	 * @since     0.0.1
 	 *
 	 */
-	public function enqueue_admin_table_scripts() {
-
+	public function enqueue_admin_table_filter() {
 
 		// @TODO: add this only at table screens
 		$screen = get_current_screen();
 
-		wp_enqueue_script( $this->plugin_slug . 'admin-table-script', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );
+		wp_enqueue_script( $this->plugin_slug . 'admin-table-filters', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );
 
+	}	
 
-	}
 
 	/**
 	 * Register and enqueue admin-specific style sheet.
@@ -468,7 +468,20 @@ class Commons_Booking_Admin {
 	        $capability,                                          // capability
 	        'cb_timeframes_edit',                                 // menu_slug
 	        'cb_timeframes_table_form_page_handler'               // function
-	        );
+	        );	    
+
+	    // Generate Codes $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
+	    // $this->plugin_screen_hook_suffix = add_submenu_page(
+	    //     'cb_timeframes',                                      // parent_menu_slug
+	    //     __( 'Add/Edit Timeframes', $this->plugin_slug ),      // page_title
+	    //     __( 'Add Timeframe', $this->plugin_slug ),            // menu_title
+	    //     $capability,                                          // capability
+	    //     'cb_timeframes_generate_code',                        // menu_slug
+	    //     array ( 																							// function
+	    //     	new Commons_Booking_Codes_Generate, 
+	    //     	'generate_code'     
+	    //     )
+	    //    );
 	    /*
 	     * 4. Bookings
 	     */
