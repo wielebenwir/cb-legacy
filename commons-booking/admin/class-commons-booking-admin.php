@@ -57,7 +57,8 @@ class Commons_Booking_Admin {
 
 		// Load admin style sheet and JavaScript.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_settings_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_helper_scripts' ) );
 		// Load admin style in dashboard for the At glance widget
 		add_action( 'admin_head-index.php', array( $this, 'enqueue_admin_styles' ) );
 
@@ -252,7 +253,6 @@ class Commons_Booking_Admin {
 
 	}	
 
-
 	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
@@ -278,7 +278,7 @@ class Commons_Booking_Admin {
 	 *
 	 * @return    null    Return early if no settings page is registered.
 	 */
-	public function enqueue_admin_scripts() {
+	public function enqueue_admin_settings_scripts() {
 		if ( !isset( $this->plugin_screen_hook_suffix ) ) {
 			return;
 		}
@@ -286,6 +286,17 @@ class Commons_Booking_Admin {
 		if ( $screen->id == 'settings_page_commons-booking' ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
+	}	
+	/**
+	 * Register and enqueue admin-specific JavaScript helpers.
+	 *
+	 * @since     0.0.1
+	 *
+	 * @return    null    Return early if no settings page is registered.
+	 */
+	public function enqueue_admin_helper_scripts() {
+
+			wp_enqueue_script( $this->plugin_slug . '-helper-script', plugins_url( 'assets/js/cb-helpers.js', __FILE__ ), array( 'jquery' ), Commons_Booking::VERSION );
 	}
 
 	/**
