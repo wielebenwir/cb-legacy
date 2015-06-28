@@ -21,6 +21,7 @@ class Commons_Booking_Codes {
   public $item_id;
   public $date_start;
   public $date_end;
+  public $timeframe_id;
 
 /**
  * Constructor.
