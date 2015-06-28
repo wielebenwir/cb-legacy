@@ -31,6 +31,11 @@ class Commons_Booking_Codes_CSV {
  *
  */
   public function __construct( $timeframe_id, $item_id, $date_start, $date_end) {
+ 
+    // get Codes from Settings page
+    $settings = new Commons_Booking_Admin_Settings;
+    $this->csv = $settings->get( 'codes', 'codes_pool' );
+    
      $this->timeframe_id = $timeframe_id;
      $this->item_id = $item_id;
      $this->date_start = $date_start;
@@ -39,12 +44,9 @@ class Commons_Booking_Codes_CSV {
 /**
  * Get settings from backend.
  */
-  public function get_settings() {
-    global $wpdb;
-    $settings = get_option( 'commons-booking-settings-codes' ); // @TODO: add Prefix;
-    $csv = $settings['commons-booking_codes_pool'];
+  public function split_csv() {
 
-    $singleCodes = explode(",", $csv);
+    $singleCodes = explode(",", $this->csv);
     $singleCodes = preg_grep('#S#', array_map('trim', $singleCodes)); // Remove Empty
     $this->csvcodes = $singleCodes;
 
@@ -80,7 +82,7 @@ class Commons_Booking_Codes_CSV {
  * Compare timeframe dates and entries in the codes db 
  * */
   public function compare() {
-    $this->get_settings();
+    $this->split_csv();
     $codesDB = $this->get_codetable_entries();
 
     $tfDates = get_dates_between( $this->date_start, $this->date_end );
