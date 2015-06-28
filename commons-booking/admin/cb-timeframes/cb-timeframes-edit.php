@@ -131,27 +131,26 @@ function cb_timeframes_table_form_page_handler()
  *
  * @param $item
  */
-function cb_timeframes_table_form_render_codes($item)
+function cb_timeframes_table_form_render_codes($timeframe)
 {
     
     // define date start
     if ( isset($_REQUEST['date_start'])) {
         $date_start = $_REQUEST['date_start'];
     } else {
-        $date_start = $item['date_start'];
+        $date_start = $timeframe['date_start'];
     }
 
 
-    // define date start
+    // define date end
     if ( isset($_REQUEST['date_end'])) {
         $date_end = $_REQUEST['date_end'];
     } else {
-        $date_end = $item['date_end'];
+        $date_end = $timeframe['date_end'];
     }
 
-    //$date_start = $_REQUEST['date_start']; //$item['date_start'];
-    //$date_end = $_REQUEST['date_end']; //$item['date_end'];
-    $codes = new Commons_Booking_Codes_CSV ( $item['id'], $item['item_id'], $date_start, $date_end);
+    // $codes = new Commons_Booking_Codes ( $timeframe['id'], $timeframe['item_id'], $date_start, $date_end);
+    $codes = new Commons_Booking_Codes ( $timeframe['id'], $timeframe['item_id'], $date_start, $date_end);
 
     $codes->compare();
     $codes->render();
