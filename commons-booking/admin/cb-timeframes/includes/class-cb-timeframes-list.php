@@ -110,8 +110,8 @@ class Commons_Booking_Timeframes_List {
         $field = ( '<strong>' . $this->table_fields_get_link( $value ) . '</strong>' );
           break;
         case 'edit':
-          $field = $this->table_fields_edit_button( $value ); 
-          break;         
+          $field = $this->table_fields_edit_button( $value ) . $this->table_fields_delete_button( $value ) ; 
+          break;                  
         default:
           $field = $value;
       }
@@ -126,6 +126,15 @@ class Commons_Booking_Timeframes_List {
    */ 
   private function table_fields_edit_button( $itemID ) {
     return '<a href="admin.php?page=cb_timeframes_edit&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
+ 
+  }   
+  /**
+   * Button to jump to timeframe table for delete
+   *   
+   * @return  html
+   */ 
+  private function table_fields_delete_button( $itemID ) {
+    return '<a href="admin.php?page=cb_timeframes&action=delete&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Delete', 'cb_timeframes_table') . '</a>';
  
   }
 
