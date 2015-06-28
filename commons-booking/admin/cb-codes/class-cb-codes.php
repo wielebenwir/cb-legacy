@@ -146,7 +146,7 @@ public function render() {
 
     <?php
     if (isset($_REQUEST['generate'])) {
-      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->csvcodes );
+      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->csv );
     }
   } else { // no Codes missing?>
     <?php   
