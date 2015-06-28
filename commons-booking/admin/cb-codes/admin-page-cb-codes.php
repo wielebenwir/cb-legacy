@@ -6,10 +6,10 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * cb_codes_table_List_Table class that will display our custom table
+ * Commons_Booking_Codes_Table class that will display our custom table
  * records in nice table
  */
-class cb_codes_table_List_Table extends WP_List_Table
+class Commons_Booking_Codes_Table extends WP_List_Table
 {
     /**
      * [REQUIRED] You must declare constructor and give some basic params
@@ -359,7 +359,7 @@ function cb_codes_table_page_handler()
 {
     global $wpdb;
 
-    $table = new cb_codes_table_List_Table();
+    $table = new Commons_Booking_Codes_Table();
     $table->prepare_items();
 
     $message = '';
