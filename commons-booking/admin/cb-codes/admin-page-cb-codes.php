@@ -8,6 +8,7 @@ if (!class_exists('WP_List_Table')) {
 /**
  * Commons_Booking_Codes_Table class that will display our custom table
  * records in nice table
+ * @TODO: Prefix
  */
 class Commons_Booking_Codes_Table extends WP_List_Table
 {
