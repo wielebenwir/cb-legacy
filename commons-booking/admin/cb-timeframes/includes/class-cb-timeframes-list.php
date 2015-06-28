@@ -19,6 +19,7 @@ class Commons_Booking_Timeframes_List {
   private $postID; 
   private $colDefinition;
   private $rows;
+  public $prefix;
 
    /**
    *
@@ -26,7 +27,7 @@ class Commons_Booking_Timeframes_List {
    */
   public function __construct( $postID ) {
     $this->postID = $postID;
-
+    $this->prefix = "commons-booking";
   }
 
   /**
@@ -74,18 +75,23 @@ class Commons_Booking_Timeframes_List {
 
     $columns = "";
 
-    foreach ($this->rows as $row => $cols) {
+    if ( count($this->rows) > 1 ) {
 
-      foreach ($this->colDefinition as $headerkey => $headerval) { // loop through defined fields
-        if ( isset($cols[$headerkey])) {  // check if col is in defined fields OR edit  
-            $columns .= $this->table_fields ($headerkey, $cols[$headerkey]); // get table fields
-        } elseif ($headerkey = "edit") {
-            $columns .= $this->table_fields ($headerkey, $cols['id']);
+      foreach ($this->rows as $row => $cols) {
+
+        foreach ($this->colDefinition as $headerkey => $headerval) { // loop through defined fields
+          if ( isset($cols[$headerkey])) {  // check if col is in defined fields OR edit  
+              $columns .= $this->table_fields ($headerkey, $cols[$headerkey]); // get table fields
+          } elseif ($headerkey = "edit") {
+              $columns .= $this->table_fields ($headerkey, $cols['id']);
+          }
         }
+        $columns = '<tr>' .$columns . '</tr>';
       }
-      $columns = '<tr>' .$columns . '</tr>';
+      return ($columns);
+    } else {
+      return '<p>' . __( 'No timeframes set up yet.', $this->prefix ) . '</p>';
     }
-    return ($columns);
   }
 
   /**
