@@ -35,11 +35,11 @@ class Commons_Booking_Codes_CSV {
     // get Codes from Settings page
     $settings = new Commons_Booking_Admin_Settings;
     $this->csv = $settings->get( 'codes', 'codes_pool' );
-    
-     $this->timeframe_id = $timeframe_id;
-     $this->item_id = $item_id;
-     $this->date_start = $date_start;
-     $this->date_end = $date_end;
+
+    $this->timeframe_id = $timeframe_id;
+    $this->item_id = $item_id;
+    $this->date_start = $date_start;
+    $this->date_end = $date_end;
 }
 /**
  * Get settings from backend.
@@ -52,18 +52,6 @@ class Commons_Booking_Codes_CSV {
 
   }
 
-/**
- * Get a list of all dates within the defind range. 
- *
- * @return array
- */
-  public function get_dates() {
-    $dates = array($this->date_start);
-    while(end($dates) < $this->date_end){
-        $dates[] = date('Y-m-d', strtotime(end($dates).' +1 day'));
-    }
-    return $dates;
-  }
 
 /**
  * Get all entries from the codes DB. Ignore dates earlier than 30 days 
