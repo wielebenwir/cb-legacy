@@ -26,7 +26,7 @@ function cb_timeframes_table_form_page_handler()
     );
 
     // here we are verifying does this request is post back and have correct nonce
-        if ( wp_verify_nonce( $_REQUEST['nonce'], 'edit-timeframe' )) { // if nonce is correct
+        if ( isset( $_REQUEST['timeframe_nonce']) && wp_verify_nonce( $_REQUEST['timeframe_nonce'], 'edit-timeframe' )) { // if nonce is correct
             // combine our default item with request params
             $item = shortcode_atts($default, $_REQUEST);
             // validate data, and if all ok save item to database
@@ -38,6 +38,8 @@ function cb_timeframes_table_form_page_handler()
                     $item['id'] = $wpdb->insert_id;
                     if ($result) {
                         new Admin_Table_Message ( __('Item saved', 'cb_timeframes_table'), 'updated' );
+                        $codes = new Commons_Booking_Codes_Generate;
+                        $codes->generate_codes( $item['id'] );
 
                     } else {
                         new Admin_Table_Message ( __('There was an error while saving item', 'cb_timeframes_table'), 'error' );
@@ -102,7 +104,7 @@ function cb_timeframes_table_form_page_handler()
     }
     ?>
     <form id="timeframes-edit" method="POST">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('edit-timeframe')?>"/>
+        <?php wp_nonce_field( 'edit-timeframe', 'timeframe_nonce' ); ?>
         <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
 
@@ -111,7 +113,7 @@ function cb_timeframes_table_form_page_handler()
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
+                    <input type="submit" value="<?php _e('Save & generate Codes', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
         </div>
@@ -244,12 +246,8 @@ function cb_timeframes_table_validate_entry($item)
     // @TODO validation
     $messages = array();
 
-    // if (empty($item['name'])) $messages[] = __('Name is required', 'cb_timeframes_table');
-    // if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'cb_timeframes_table');
-    // if (!ctype_digit($item['age'])) $messages[] = __('Age in wrong format', 'cb_timeframes_table');
-    //if(!empty($item['age']) && !absint(intval($item['age'])))  $messages[] = __('Age can not be less than zero');
-    //if(!empty($item['age']) && !preg_match('/[0-9]+/', $item['age'])) $messages[] = __('Age must be number');
-    //...
+    if ( $item['location_id'] == '-1' ) $messages[] = __('Location is required' );
+    if ( $item['item_id'] == '-1' ) $messages[] = __('Location is required' );
 
     if (empty($messages)) return true;
     return implode('<br />', $messages);
@@ -270,7 +268,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   if ( $the_query->have_posts() ) {
     echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
     if (!$selected) { $new = "selected disabled"; } else { $new = ""; } // if new entry, set pre-selected 
-    echo '<option '. $new  . '>'. __(" – Please select – ") . '</option>';
+    echo '<option '. $new  . ' value="-1">'. __(" – Please select – ") . '</option>';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 
