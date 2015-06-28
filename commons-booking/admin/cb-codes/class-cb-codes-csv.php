@@ -12,10 +12,10 @@
  * Plugin class. This class should ideally be used to work with the
  * administrative side of the WordPress site.
  *
- * @package Commons_Booking_Codes_CSV
+ * @package Commons_Booking_Codes
  * @author  Florian Egermann <email@example.com>
  */
-class Commons_Booking_Codes_CSV {
+class Commons_Booking_Codes {
 
   public $csv;
   public $item_id;
