@@ -150,7 +150,8 @@ function cb_timeframes_table_form_render_codes($timeframe)
     }
 
     // $codes = new Commons_Booking_Codes ( $timeframe['id'], $timeframe['item_id'], $date_start, $date_end);
-    $codes = new Commons_Booking_Codes ( $timeframe['id'], $timeframe['item_id'], $date_start, $date_end);
+    $codes = new Commons_Booking_Codes ( $timeframe['item_id'] );
+    $codes->set_timeframe( $timeframe['id'], $date_start, $date_end );
 
     $codes->compare();
     $codes->render();

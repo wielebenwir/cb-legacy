@@ -17,10 +17,14 @@
  */
 class Commons_Booking_Codes {
 
+  public $table_name;
+
   public $csv;
-  public $item_id;
+  public $item_id; // always set
   public $date_start;
   public $date_end;
+  public $date;
+  public $daterange_start;
   public $timeframe_id;
 
 /**
@@ -31,48 +35,69 @@ class Commons_Booking_Codes {
  * @param $date_end
  *
  */
-  public function __construct( $timeframe_id, $item_id, $date_start, $date_end) {
+  public function __construct( $item_id ) {
  
     // get Codes from Settings page
     $settings = new Commons_Booking_Admin_Settings;
     $this->csv = $settings->get( 'codes', 'codes_pool' );
 
-    $this->timeframe_id = $timeframe_id;
+    global $wpdb;
+    $this->table_name = $wpdb->prefix . 'cb_codes';
+
+    $this->prefix = "commons-booking";
+
+    $this->daterange_start = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
+
     $this->item_id = $item_id;
+
+}
+
+public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
+
+    $this->timeframe_id = $timeframe_id;
     $this->date_start = $date_start;
     $this->date_end = $date_end;
-}
+  }
+
 /**
  * Get settings from backend.
  */
-  public function split_csv() {
+  public function split_csv( $csv ) {
 
-    $singleCodes = explode(",", $this->csv);
-    $singleCodes = preg_grep('#S#', array_map('trim', $singleCodes)); // Remove Empty
-    $this->csvcodes = $singleCodes;
-
+    $splitted = explode(",", $this->csv);
+    $splitted = preg_grep('#S#', array_map('trim', $splitted)); // Remove Empty
+    return ($splitted);
   }
 
-
 /**
- * Get all entries from the codes DB. Ignore dates earlier than 30 days 
+ * Get all entries from the codes DB. Ignore dates earlier than daterange_start 
  *
  * @return array
  */
-  public function get_codetable_entries() {
+  public function get_codes( ) {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'cb_codes';
-    $dateRangeStart = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
-    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND booking_date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
+    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $this->table_name  WHERE item_id = %s AND booking_date > $this->daterange_start", $this->item_id ), ARRAY_A); // get dates from db
+    $single = $this->split_csv( $codesDB );
     return $codesDB;
-  } 
+  }
+
+ /**
+ * Get code for date / item 
+ *
+ * @return array
+ */
+  public function get_code( $date ) {
+    global $wpdb;
+    $code = $wpdb->get_results($wpdb->prepare("SELECT * FROM $this->table_name  WHERE item_id = %s AND booking_date > $this->$date", $this->item_id ), ARRAY_A); // get dates from db
+    return $code;
+  }
+
 
 /**
  * Compare timeframe dates and entries in the codes db 
  * */
   public function compare() {
-    $this->split_csv();
-    $codesDB = $this->get_codetable_entries();
+    $codesDB = $this->get_codes();
 
     $tfDates = get_dates_between( $this->date_start, $this->date_end );
     $codeDates = array();
@@ -112,11 +137,11 @@ public function render() {
   if ( $this->missingDates ) { 
     ?>
 
-    <?php new Admin_Table_Message ( __('No codes generated or codes missing.', 'cb_timeframes_table'), 'error' ); ?>
+    <?php new Admin_Table_Message ( __('No codes generated or codes missing.', $this->prefix), 'error' ); ?>
     <form id="codes" method="POST">
       <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
       <input class="hidden" name="generate" value="generate">
-      <input type="submit" value="<?php _e('Generate Codes', 'cb_timeframes_table')?>" id="submit_generate" class="button-primary" name="submit_generate">
+      <input type="submit" value="<?php _e('Generate Codes', $this->prefix)?>" id="submit_generate" class="button-primary" name="submit_generate">
     </form>
 
     <?php
@@ -145,7 +170,7 @@ public function render_table( $dates ) {
     </thead>
   <?php foreach ($dates as $row) {
       if ( !isset($row[ 'code' ])) { 
-        $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing! ') .'</span>'); 
+        $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing Code', $this->prefix) .'</span>'); 
       } ?>
     <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php _e( $row[ 'code' ] ); ?></td></tr>
   <?php } // end foreach ?>
@@ -170,7 +195,7 @@ private function sql_insert( $itemid, $array, $codes) {
   shuffle( $codes ); // randomize array
 
   if ( count( $codes ) < count( $array )) {
-    new Admin_Table_Message ( __('Not enough codes defined. Enter them in the Settings.', 'cb_timeframes_table'), 'error' );
+    new Admin_Table_Message ( __('Not enough codes defined. Enter them in the Settings.', $this->prefix), 'error' );
     return false;
 
   }
