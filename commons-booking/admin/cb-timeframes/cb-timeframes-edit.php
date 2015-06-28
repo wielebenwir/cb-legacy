@@ -38,6 +38,7 @@ function cb_timeframes_table_form_page_handler()
                     $item['id'] = $wpdb->insert_id;
                     if ($result) {
                         new Admin_Table_Message ( __('Item saved', 'cb_timeframes_table'), 'updated' );
+
                     } else {
                         new Admin_Table_Message ( __('There was an error while saving item', 'cb_timeframes_table'), 'error' );
                     }
@@ -45,6 +46,8 @@ function cb_timeframes_table_form_page_handler()
                     $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                     if ($result) {
                         new Admin_Table_Message( __('Item was successfully updated', 'cb_timeframes_table'), 'updated' );
+                        $codes = new Commons_Booking_Codes_Generate;
+                        $codes->generate_codes( $item['id'] );
 
                     } else {
                          new Admin_Table_Message ( __('There was an error while updating item!', 'cb_timeframes_table'), 'error' );
@@ -84,7 +87,7 @@ function cb_timeframes_table_form_page_handler()
         <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'cb_timeframes_table') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
         </h2>
     <?php } else { ?>
-        <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+        <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('Back to list', 'cb_timeframes_table')?></a>
         </h2>
     <?php } ?>
 
@@ -115,7 +118,6 @@ function cb_timeframes_table_form_page_handler()
     </form>
 
     <?php 
-        //if ($item['item_id']) {
         if ( isset($_REQUEST['id']) )
         {
             cb_timeframes_table_form_render_codes($item);
@@ -148,6 +150,7 @@ function cb_timeframes_table_form_render_codes($timeframe)
     } else {
         $date_end = $timeframe['date_end'];
     }
+
 
     // $codes = new Commons_Booking_Codes ( $timeframe['id'], $timeframe['item_id'], $date_start, $date_end);
     $codes = new Commons_Booking_Codes ( $timeframe['item_id'] );

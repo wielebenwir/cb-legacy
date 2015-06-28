@@ -22,9 +22,13 @@ class Commons_Booking_Codes {
   public $codes_array;
   public $csv;
 
-  public $item_id; // always set
+  public $item_id; 
   public $date_start;
   public $date_end;
+
+  public $missing_dates;
+  public $matched_dates;
+
 
   public $date;
   public $daterange_start;
@@ -129,8 +133,8 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
         array_push ($missing, $temp);
       }
     }
-    $this->matchedDates = $matched;
-    $this->missingDates = $missing;
+    $this->matched_dates = $matched;
+    $this->missing_dates = $missing;
   }
 
 /**
@@ -139,26 +143,27 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
 public function render() {
 
   echo ( '<h2>Codes: ' . get_the_title( $this->item_id ) . '</h2>');
+  // $dir = plugin_dir_url( __FILE__ ) . 'codes-generate.php';
+  // echo $dir;
 
-  if ( $this->missingDates ) { 
-    ?>
+  // if ( $this->missing_dates ) { 
+  //   ?>
+  //   <?php new Admin_Table_Message ( __('No codes generated or codes missing.', $this->prefix), 'error' ); ?>
+  //   <form id="codes-generate" method="POST" action="<?php echo $dir ?>">
+  //     <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
+  //     <input class="hidden" name="generate" value="generate">
+  //     <input type="submit" value="<?php _e('Generate Codes', $this->prefix)?>" id="submit_generate" class="button-primary" name="submit_generate">
+  //   </form>
 
-    <?php new Admin_Table_Message ( __('No codes generated or codes missing.', $this->prefix), 'error' ); ?>
-    <form id="codes" method="POST">
-      <input class="hidden" name="id" value="<?= $this->timeframe_id; ?>">  
-      <input class="hidden" name="generate" value="generate">
-      <input type="submit" value="<?php _e('Generate Codes', $this->prefix)?>" id="submit_generate" class="button-primary" name="submit_generate">
-    </form>
+  //   <?php
+  //   if (isset($_REQUEST['generate'])) {
+  //     $sql = $this->sql_insert( $this->item_id, $this->missing_dates, $this->codes_array );
+  //   }
+  // } else { // no Codes missing?>
+  //   <?php   
+  // } // end if $missing_dates
 
-    <?php
-    if (isset($_REQUEST['generate'])) {
-      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->codes_array );
-    }
-  } else { // no Codes missing?>
-    <?php   
-  } // end if $missingDates
-
-  $allDates = array_merge ($this->missingDates, $this->matchedDates);
+  $allDates = array_merge ($this->missing_dates, $this->matched_dates);
   $this->render_table( $allDates );
 }
 /**
@@ -167,7 +172,7 @@ public function render() {
  */
 public function render_table( $dates ) {
   ?>
-  <table class="widefat striped">
+  <table class="widefat striped" id="table-codes">
     <thead>
       <tr>
         <th><?php _e( 'Date' ); ?></th>
@@ -182,40 +187,6 @@ public function render_table( $dates ) {
   <?php } // end foreach ?>
   </table>
   <?php
-}
-/**
- * Add pointers.
- * @TODO: check for security / split into prepare_sql and do_sql
- *
- * @param $itemid 
- * @param $array list of dates
- * @param $array list of codes
- */
-private function sql_insert( $itemid, $array, $codes) {
-
-  new WP_Admin_Notice( __( 'Error Messages' ), 'error' );
-
-  global $wpdb;
-  $table_name = $wpdb->prefix . 'cb_codes'; 
-
-  shuffle( $codes ); // randomize array
-
-  if ( count( $codes ) < count( $array )) {
-    new Admin_Table_Message ( __('Not enough codes defined. Enter them in the Settings.', $this->prefix), 'error' );
-    return false;
-
   }
 
-  $sqlcols = "item_id,booking_date,bookingcode";
-  $sqlcontents = array();
-  $sqlquery = '';
-  $count = count( $array );
-
-  for ( $i=0; $i < $count; $i++ ) {
-    array_push($sqlcontents, '("' . $itemid. '","' . $array[$i]['date'] . '","' . $codes[$i] . '")');
-  }
-  $sqlquery = 'INSERT INTO ' . $table_name . ' (' . $sqlcols . ') VALUES ' . implode (',', $sqlcontents ) . ';';
-
-  $wpdb->query($sqlquery);
-  }
 }
