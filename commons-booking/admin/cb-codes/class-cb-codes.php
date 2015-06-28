@@ -19,10 +19,13 @@ class Commons_Booking_Codes {
 
   public $table_name;
 
+  public $codes_array;
   public $csv;
+
   public $item_id; // always set
   public $date_start;
   public $date_end;
+
   public $date;
   public $daterange_start;
   public $timeframe_id;
@@ -39,7 +42,6 @@ class Commons_Booking_Codes {
  
     // get Codes from Settings page
     $settings = new Commons_Booking_Admin_Settings;
-    $this->csv = $settings->get( 'codes', 'codes_pool' );
 
     global $wpdb;
     $this->table_name = $wpdb->prefix . 'cb_codes';
@@ -49,6 +51,10 @@ class Commons_Booking_Codes {
     $this->daterange_start = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
 
     $this->item_id = $item_id;
+
+    $csv = $settings->get( 'codes', 'codes_pool' ); // codes as csv 
+    $this->codes_array = $this->split_csv( $csv );  // codes as array
+
 
 }
 
@@ -64,7 +70,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  */
   public function split_csv( $csv ) {
 
-    $splitted = explode(",", $this->csv);
+    $splitted = explode(",", $csv);
     $splitted = preg_grep('#S#', array_map('trim', $splitted)); // Remove Empty
     return ($splitted);
   }
@@ -76,9 +82,9 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  */
   public function get_codes( ) {
     global $wpdb;
-    $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $this->table_name  WHERE item_id = %s AND booking_date > $this->daterange_start", $this->item_id ), ARRAY_A); // get dates from db
-    $single = $this->split_csv( $codesDB );
-    return $codesDB;
+    $codes = $wpdb->get_results($wpdb->prepare("SELECT * FROM $this->table_name  WHERE item_id = %s AND booking_date > $this->daterange_start", $this->item_id ), ARRAY_A); // get dates from db
+    // $single = $this->split_csv( $codes );
+    return $codes;
   }
 
  /**
@@ -97,12 +103,12 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  * Compare timeframe dates and entries in the codes db 
  * */
   public function compare() {
-    $codesDB = $this->get_codes();
+    $codes_db = $this->get_codes();
 
     $tfDates = get_dates_between( $this->date_start, $this->date_end );
     $codeDates = array();
 
-    foreach ( $codesDB as $entry ) {
+    foreach ( $codes_db as $entry ) {
       array_push ($codeDates, $entry['booking_date']);
     }
     
@@ -116,7 +122,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
       $temp = array();
       if ( ($index !== FALSE) ) {
         $temp[ 'date'] = $tfDates[ $i ];
-        $temp[ 'code'] = $codesDB[ $index ]['bookingcode'];
+        $temp[ 'code'] = $codes_db[ $index ]['bookingcode'];
         array_push ($matched, $temp);
       } else {
         $temp[ 'date'] = $tfDates[ $i ];
@@ -146,7 +152,7 @@ public function render() {
 
     <?php
     if (isset($_REQUEST['generate'])) {
-      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->csv );
+      $sql = $this->sql_insert( $this->item_id, $this->missingDates, $this->codes_array );
     }
   } else { // no Codes missing?>
     <?php   
