@@ -74,12 +74,12 @@
           bookingButton.hide();
 
 
-          $('.tooltip').tooltipster({
-            animation: 'grow',
-            delay: 0,
-            theme: 'tooltipster-default',
-            touchDevices: false,
-          });
+          // $('.tooltip').tooltipster({
+          //   animation: 'grow',
+          //   delay: 0,
+          //   theme: 'tooltipster-default',
+          //   touchDevices: false,
+          // });
 
           formButton.click(function( event ) {
             event.preventDefault();
