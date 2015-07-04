@@ -383,7 +383,7 @@ public function get_booked_days( $item_id ) {
                     $user = $data->get_user( $user_id );
 
                     $msg = ( $messages['messages_booking_confirmed'] );  // get message
-                    echo $this->settings->replace_template_tags ( $msg, array( 
+                    echo replace_template_tags ( $msg, array( 
                         'item' => get_the_title ( $item_id ),
                         'username' => $user['name'],
                         'useremail' => $user['email'],
