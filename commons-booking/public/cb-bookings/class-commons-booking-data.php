@@ -115,16 +115,16 @@ class Commons_Booking_Data {
       global $wpdb;
       // @TODO: Fix start date not being honored by function -> maybe change data format
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s AND date_start > ' . $date_start . ' ORDER BY date_start ASC', $item_id );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s AND date_start > DATE( %s ) ORDER BY date_start ASC', $item_id, $date_start   );
       $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
 
-      if ( $this->timeframes ) {
+      if ( !empty( $this->timeframes) ) {
           return $this->timeframes;
         } else { 
-          return __(' No Timeframes configured ' );
+          return FALSE;
         } 
     } else {
-      return __(' Something went wrong ' );
+      return FALSE;
     }
   }
 
@@ -227,18 +227,19 @@ class Commons_Booking_Data {
     $this->gather_data();
 
 
-    $tf = $this->timeframes;
+    $timeframes = $this->timeframes;
     $codes = $this->codes;
 
-    foreach ( $this->timeframes as $tf) {
-      if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
-        
-        $location = $this->get_location ( $tf['location_id'] );
-        $this->render_timeframe_calendar( $tf, $codes, $location, $item_id );
-      
+    if ($timeframes ) {
+      foreach ( $timeframes as $tf) {
+        if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range          
+          $location = $this->get_location ( $tf['location_id'] );
+          $this->render_timeframe_calendar( $tf, $codes, $location, $item_id );     
+        }
       }
+    } else {
+      echo __( 'This item can´t be booked at the moment.', $this->prefix );
     }
-
   }
 
 /**
