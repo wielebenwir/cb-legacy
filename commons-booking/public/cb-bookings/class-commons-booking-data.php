@@ -337,7 +337,7 @@ class Commons_Booking_Data {
  * @return string / false
  */
   private function get_code_by_date ( $date, $codes ) {
-      $needle = ( $this->searcharray( date('Y-m-d', $date ), 'booking_date', $codes ) );
+      $needle = ( search_array( date('Y-m-d', $date ), 'booking_date', $codes ) );
       if ( $needle ) {
          $code = ( $codes[ $needle ][ 'bookingcode' ] ); 
          return $code;    
@@ -380,5 +380,5 @@ class Commons_Booking_Data {
   public function show_booking_bar() {
     include (commons_booking_get_template_part( 'calendar', 'bookingbar', FALSE )); // include the template
   }
-
+}
 ?>

@@ -65,7 +65,7 @@ function pages_dropdown() {
  * Helper: search a 2-dim array for key, return value
  * 
  */
-  public function searcharray($value, $key, $array) {
+  function search_array($value, $key, $array) {
    foreach ($array as $k => $val) {
        if ($val[$key] == $value) {
            return $k;
@@ -73,8 +73,6 @@ function pages_dropdown() {
    }
    return null;
   }
-
-}
 
 
 ?>
