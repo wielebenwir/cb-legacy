@@ -381,25 +381,4 @@ class Commons_Booking_Data {
     include (commons_booking_get_template_part( 'calendar', 'bookingbar', FALSE )); // include the template
   }
 
-/**
- * Helper: search a 2-dim array for key, return value
- * 
- */
-  public function searcharray($value, $key, $array) {
-   foreach ($array as $k => $val) {
-       if ($val[$key] == $value) {
-           return $k;
-       }
-   }
-   return null;
-  }
-
-}
-
-
-
-
-
-
-
 ?>

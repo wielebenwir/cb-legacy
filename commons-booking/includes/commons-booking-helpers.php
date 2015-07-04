@@ -61,5 +61,20 @@ function pages_dropdown() {
     return $dates;
   }
 
+/**
+ * Helper: search a 2-dim array for key, return value
+ * 
+ */
+  public function searcharray($value, $key, $array) {
+   foreach ($array as $k => $val) {
+       if ($val[$key] == $value) {
+           return $k;
+       }
+   }
+   return null;
+  }
+
+}
+
 
 ?>
