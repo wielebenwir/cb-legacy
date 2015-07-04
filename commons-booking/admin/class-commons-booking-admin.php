@@ -93,8 +93,10 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-locations/includes/cb-locations-metaboxes.php' );
 
 
-
-
+		// BOOKINGS: Install/Update the database Tables
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-setup.php' );
+		// BOOKINGS Extend the Wordpress Admin Tables Interface
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-table.php' );
 	
 
 
@@ -501,7 +503,10 @@ class Commons_Booking_Admin {
 	        __( 'Bookings', $this->plugin_slug ),         // menu_title
 	        $capability,                              // capability
 	        'cb_bookings',                              // menu_slug
-	        'cb_bookings_list_page_handler',            // function
+	        function() {
+	        	 $bookings_table = new Commons_Booking_Bookings_Table; 
+   					 $bookings_table->table_handler();
+					},          // function
 	        'dashicons-tag',                // icon_url
 	        34                                        // position
 	        );    

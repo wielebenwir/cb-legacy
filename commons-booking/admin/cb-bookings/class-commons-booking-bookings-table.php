@@ -1,13 +1,19 @@
 <?php
 /**
- * PART 2. Defining Custom Table List
- * ============================================================================
  *
- * In this part you are going to define custom table list class,
- * that will display your database records in nice looking table
+ * @package   Commons_Booking_Bookings_Table
+ * @author    Florian Egermann <florian@macht-medien.de
+ * @author    Christian Wenzel <christian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Extends the list Table
  *
- * http://codex.wordpress.org/Class_Reference/WP_List_Table
- * http://wordpress.org/extend/plugins/custom-list-table-example/
+ * @package Commons_Booking_Bookings_Table
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 if (!class_exists('WP_List_Table')) {
@@ -331,7 +337,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     * @param $tableNav
     * @return html dropdown
     */    
-
     function extra_tablenav( $which ) {
 
         global $wpdb;
@@ -350,58 +355,22 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
          } 
     }
     
-    function add_tablenav( $var ) {
+    function add_tablenav( $var ) { //@TODO delete?
         // return $this->$myvar;
         echo ($var);
 
     }
 
+    /**
+    * Page handler 
+    *
+    */    
+    public function table_handler() {
+        // echo ("hello");
+        include ('views/bookings-table.php');
+    }
+
+
 } // end Commons_Booking_Bookings_Table
 
-/**
- * PART 3. Admin page
- * ============================================================================
- *
- * In this part you are going to add admin page for custom table
- *
- * http://codex.wordpress.org/Administration_Menus
- */
-
-/**
- * List page handler
- *
- * This function renders our custom table
- * Notice how we display message about successfull deletion
- * Actualy this is very easy, and you can add as many features
- * as you want.
- *
- * Look into /wp-admin/includes/class-wp-*-list-table.php for examples
- */
-function cb_bookings_list_page_handler()
-{
-
-    global $wpdb;
-
-    $table = new Commons_Booking_Bookings_Table();
-    $table->prepare_items();
-
-    $message = '';
-    if ('delete' === $table->current_action()) {
-        $message =  sprintf(__('Items deleted: %d', 'cb_timeframes_table'), count($_REQUEST['id']));
-    }
-    ?>
-
-<div class="wrap">
-
-    <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php echo get_admin_page_title(); ?></h2>
-
-    <?php new Admin_Table_Message ( $message, 'updated' ); ?>
-
-    <form id="timeframes-table" method="GET">
-        <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
-        <?php $table->display(); ?>
-    </form>
-</div>
-
-<?php } // end cb_bookings_list_page_handler  ?>
+?>

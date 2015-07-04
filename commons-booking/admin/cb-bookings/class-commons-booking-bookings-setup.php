@@ -19,11 +19,11 @@
 
 class Commons_Booking_Bookings_Setup {
 
-  public $table_db_version = '0.1'; // version changed from 1.0 to 0.1
+  public $table_db_version = '0.1'; 
 
   public function __construct () {
 
-    $this->table_db_version = '0.1'; // version changed from 1.0 to 0.1
+    $this->table_db_version = '0.1';
 
   }
 
