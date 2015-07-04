@@ -95,8 +95,8 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
+            'edit' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', $this->plugin_slug )),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
         );
 
         return $this->row_actions($actions);
@@ -127,16 +127,16 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'id' => __('ID', 'cb_timeframes_table'),
-            'item_id' => __('Item', 'cb_timeframes_table'),
-            'date_start' => __('Starting Date', 'cb_timeframes_table'),
-            'date_end' => __('End Date', 'cb_timeframes_table'),
-            'code_id' => __('Code', 'cb_timeframes_table'),
-            'user_id' => __('User', 'cb_timeframes_table'),
-            'location_id' => __('Location', 'cb_timeframes_table'),
-            'booking_time' => __('Booking time', 'cb_timeframes_table'),
-            'status' => __('Status', 'cb_timeframes_table'),
-            'edit_actions' => __('Edit', 'cb_timeframes_table'),
+            'id' => __('ID', $this->plugin_slug ),
+            'item_id' => __('Item', $this->plugin_slug ),
+            'date_start' => __('Starting Date', $this->plugin_slug ),
+            'date_end' => __('End Date', $this->plugin_slug ),
+            'code_id' => __('Code', $this->plugin_slug ),
+            'user_id' => __('User', $this->plugin_slug ),
+            'location_id' => __('Location', $this->plugin_slug ),
+            'booking_time' => __('Booking time', $this->plugin_slug ),
+            'status' => __('Status', $this->plugin_slug ),
+            'edit_actions' => __('Edit', $this->plugin_slug ),
         );
         return $columns;
     }
