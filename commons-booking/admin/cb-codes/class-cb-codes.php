@@ -38,8 +38,6 @@ class Commons_Booking_Codes {
  * Constructor.
  *
  * @param $item_id 
- * @param $date_start
- * @param $date_end
  *
  */
   public function __construct( $item_id ) {
@@ -62,6 +60,11 @@ class Commons_Booking_Codes {
 
 }
 
+/**
+ * Sets the timeframe basic variables
+ *
+ */
+
 public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
 
     $this->timeframe_id = $timeframe_id;
@@ -70,7 +73,10 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
   }
 
 /**
- * Get settings from backend.
+ * Split comma-seperated values.
+ *
+ *@param $csv string
+ *@return array
  */
   public function split_csv( $csv ) {
 
@@ -105,7 +111,8 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
 
 /**
  * Compare timeframe dates and entries in the codes db 
- * */
+ * 
+ */
   public function compare() {
     $codes_db = $this->get_codes();
 
