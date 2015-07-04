@@ -11,7 +11,7 @@
 <div class="cb-list-item">
 <div class="cb-item cb-list">
   <div class="cb-headline"><a href="<?php echo $item['permalink']; ?>"><?php echo $item['title']; ?></a></div>
-  <div class="align-right"><?php echo $item['thumb']; ?></div>
+  <?php if ( isset( $item['thumb'] )) { ?><div class="align-right"><?php echo $item['thumb']; ?></div><? } ?>
   <div class="right"><?php echo $item['description']; ?></div>
 </div>
   <ul class="cb-list-item-timeframe">
