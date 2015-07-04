@@ -73,7 +73,7 @@ class Commons_Booking_Items_CPT extends CPT_Core {
     public function columns_display( $column, $post_id ) {
         switch ( $column ) {
             case 'image':
-                the_post_thumbnail();
+                the_post_thumbnail( 'thumbnail' );
                 break;
         }
     }

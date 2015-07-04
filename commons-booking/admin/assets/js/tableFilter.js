@@ -1,3 +1,9 @@
+/*
+* Table Filter for Wordpress Backend Tables
+*
+*/
+
+
 (function($) {
   "use strict";
 
