@@ -3,8 +3,6 @@
 *
 */
 
-
-
 /*
 * Get Url Parameters in jQuery
 * http://www.jquerybyexample.net/2012/06/get-url-parameters-using-jquery.html
