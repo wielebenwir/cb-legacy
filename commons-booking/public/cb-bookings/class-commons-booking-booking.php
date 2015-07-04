@@ -294,8 +294,9 @@ public function get_booked_days( $item_id ) {
     }
 
 
-
-
+    private function validate ($id, $date_start, $date_end) {
+        
+    }
 
 
     public function render_bookingreview( ) {
@@ -338,14 +339,8 @@ public function get_booked_days( $item_id ) {
                         'email' => $current_user->user_email,
                         )); // replace template tags
 
-                    include (commons_booking_get_template_part( 'booking', 'item', FALSE )); // Item: include the template
-
-                    include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // B Review: include the template
-
-                    include (commons_booking_get_template_part( 'booking', 'location', FALSE )); // Location: include the template
-                    
-                    include (commons_booking_get_template_part( 'booking', 'user', FALSE )); // Location: include the template
-                    
+                    include ( 'views/booking-review.php' );
+                                        
                     // write to DB
                     $booking_id = $this->create_booking( date( 'Y-m-d', $date_start), date( 'Y-m-d', $date_end ), $item_id );
                     
@@ -389,15 +384,10 @@ public function get_booked_days( $item_id ) {
                         'useremail' => $user['email'],
                         )); // replace template tags
 
-                    include (commons_booking_get_template_part( 'booking', 'item', FALSE )); // Item: include the template
+                    include (commons_booking_get_template_part( 'booking', 'code', FALSE )); // include the template
+                  
+                    include ( 'views/booking-review.php' );
 
-                    include (commons_booking_get_template_part( 'booking', 'code', FALSE )); // Code: include the template
-
-                    include (commons_booking_get_template_part( 'booking', 'review', FALSE )); // B Review: include the template
-
-                    include (commons_booking_get_template_part( 'booking', 'location', FALSE )); // Location: include the template
-                    
-                    include (commons_booking_get_template_part( 'booking', 'user', FALSE )); // Location: include the template
 
             } // end if confirm
           
