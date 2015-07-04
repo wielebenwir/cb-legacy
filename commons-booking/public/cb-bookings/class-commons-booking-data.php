@@ -115,7 +115,7 @@ class Commons_Booking_Data {
       global $wpdb;
       // @TODO: Fix start date not being honored by function -> maybe change data format
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s AND date_start > DATE( %s ) ORDER BY date_start ASC', $item_id, $date_start   );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s and date_end > %s ORDER BY date_start ASC', $item_id, $date_start );
       $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
 
       if ( !empty( $this->timeframes) ) {
@@ -293,7 +293,7 @@ class Commons_Booking_Data {
   public function render_timeframe_calendar( $tf, $codes, $location, $item_id ) {
 
     $booked = new Commons_Booking_Booking;
-    $booke_days = $booked->get_booked_days( $item_id );
+    $booked_days = $booked->get_booked_days( $item_id );
 
 
     $timeframe_comment = $tf['timeframe_title'];
@@ -318,7 +318,7 @@ class Commons_Booking_Data {
       $display_date = date ('j.n.', $counter ); 
       $code = $this->get_code_by_date ( $counter, $codes ); 
 
-      $class= $this->set_day_status( $counter, $location, $booke_days );
+      $class= $this->set_day_status( $counter, $location, $booked_days );
 
       include (commons_booking_get_template_part( 'calendar', 'cell', FALSE )); // include the template
 
@@ -357,12 +357,15 @@ class Commons_Booking_Data {
  * @return array statuses
  */
   private function set_day_status( $date, $location, $booked_days ) {
-    // first: check if it´s in the locations´ closed days array
     $status = '';
-    if ( in_array( date( 'N', $date ), $location[ 'closed_days'] )) {
-      $status = 'closed';
-    } else if ( in_array( $date, $booked_days )) {
-      $status = 'booked';
+
+    // first: check if the date is in the locations´ closed days array
+    if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
+       $status = 'closed';
+    // second: check if day is booked
+    } elseif ( is_array( $booked_days) && in_array( $date, $booked_days )) {
+        $status = 'booked'; 
+    // you may book
     } else {
       $status = 'bookable';
     }
