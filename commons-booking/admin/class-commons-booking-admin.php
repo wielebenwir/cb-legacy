@@ -99,7 +99,8 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-table.php' );
 	
 
-
+		// CODES Extend the Wordpress Admin Tables Interface
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes.php' );
 
 
 

@@ -65,9 +65,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/class-commons-boo
 // include Helper functions
 require_once( plugin_dir_path( __FILE__ ) . 'includes/commons-booking-helpers.php' );
 
-// Class for Codes
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/class-cb-codes.php' );
-
 /*
  * Load template system
  */
