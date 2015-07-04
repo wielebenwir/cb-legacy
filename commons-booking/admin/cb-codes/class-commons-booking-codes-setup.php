@@ -11,7 +11,7 @@
 /**
  * Handles install & update of the Codes Table
  *
- * @package Commons_Booking_Timeframes_Setup
+ * @package Commons_Booking_Codes_Setup
  * @author  Florian Egermann <florian@macht-medien.de>
  */
 
