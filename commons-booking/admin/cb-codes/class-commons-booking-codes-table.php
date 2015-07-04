@@ -87,7 +87,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_codes_table')),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
         );
 
         return $this->row_actions($actions);
@@ -118,10 +118,10 @@ class Commons_Booking_Codes_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'item_id' => __('Item', 'cb_codes_table'),
-            'bookingcode' => __('Code', 'cb_codes_table'),
-            'booking_date' => __('Date', 'cb_codes_table'),
-            'edit_actions' => __('Edit', 'cb_codes_table'),
+            'item_id' => __('Item', $this->plugin_slug ),
+            'bookingcode' => __('Code', $this->plugin_slug ),
+            'booking_date' => __('Date', $this->plugin_slug ),
+            'edit_actions' => __('Edit', $this->plugin_slug ),
         );
         return $columns;
     }
