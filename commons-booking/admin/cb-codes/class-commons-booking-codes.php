@@ -9,8 +9,6 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
  *
  * @package Commons_Booking_Codes
  * @author  Florian Egermann <email@example.com>
@@ -145,7 +143,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
   }
 
 /**
- * Handle the display of the dates/codes interface
+ * Handle the display of the dates/codes interface on the timeframe edit screen
  */
 public function render() {
 
@@ -155,9 +153,8 @@ public function render() {
   $this->render_table( $allDates );
 }
 /**
- * Render the dates/codes-table.
- *
- */
+ * Render the dates/codes-table on the timeframe edit screen
+  */
 public function render_table( $dates ) {
   ?>
   <table class="widefat striped" id="table-codes">
