@@ -98,8 +98,11 @@ class Commons_Booking_Admin {
 		// BOOKINGS Extend the Wordpress Admin Tables Interface
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-table.php' );
 	
-
+		// CODES: Install/Update the database Tables
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-setup.php' );
 		// CODES Extend the Wordpress Admin Tables Interface
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-table.php' );
+		// CODES: Functions
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes.php' );
 
 
@@ -107,7 +110,6 @@ class Commons_Booking_Admin {
 
 		// the admin table for timeframes & codes
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/cb-codes.php' );
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/includes/class-cb-codes-generate.php' );
 
 		// Admin messages
@@ -504,11 +506,8 @@ class Commons_Booking_Admin {
 	        __( 'Bookings', $this->plugin_slug ),         // menu_title
 	        $capability,                              // capability
 	        'cb_bookings',                              // menu_slug
-	        function() {
-	        	 $bookings_table = new Commons_Booking_Bookings_Table; 
-   					 $bookings_table->table_handler();
-					},          // function
-	        'dashicons-tag',                // icon_url
+	        'commons_booking_bookins_table_handler', 	// function
+	        'dashicons-tag',                						// icon_url
 	        34                                        // position
 	        );    
 	     /*
@@ -519,7 +518,7 @@ class Commons_Booking_Admin {
 	        __( 'Codes', $this->plugin_slug ),        // menu_title
 	        $capability,                              // capability
 	        'cb_codes',                               // menu_slug
-	        'cb_codes_table_page_handler',            // function
+	        'commons_booking_codes_table_handler',    // function
 	        'dashicons-admin-network',                // icon_url
 	        35                                        // position
 	        );

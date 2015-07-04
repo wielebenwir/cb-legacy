@@ -1,15 +1,37 @@
 <?php
+/**
+ *
+ * @package   Commons_Booking_Codes_Table
+ * @author    Florian Egermann <florian@macht-medien.de
+ * @author    Christian Wenzel <christian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
 
+/**
+ * Extends the list Table
+ *
+ * @package Commons_Booking_Codes_Table
+ * @author  Florian Egermann <florian@macht-medien.de>
+ */
 
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 /**
- * Commons_Booking_Codes_Table class that will display our custom table
- * records in nice table
- * @TODO: Prefix
- */
+* Page handler: Table
+*
+*/    
+function commons_booking_codes_table_handler() {
+    // echo ("hello");
+    include ('views/codes-table.php');
+}
+
+
+
+
 class Commons_Booking_Codes_Table extends WP_List_Table
 {
     /**
@@ -332,261 +354,6 @@ class Commons_Booking_Codes_Table extends WP_List_Table
 
     }
 
-
-
-
-}
-
-/**
- * PART 3. Admin page
- * ============================================================================
- *
- * In this part you are going to add admin page for custom table
- *
- * http://codex.wordpress.org/Administration_Menus
- */
-
-/**
- * List page handler
- *
- * This function renders our custom table
- * Notice how we display message about successfull deletion
- * Actualy this is very easy, and you can add as many features
- * as you want.
- *
- * Look into /wp-admin/includes/class-wp-*-list-table.php for examples
- */
-function cb_codes_table_page_handler()
-{
-    global $wpdb;
-
-    $table = new Commons_Booking_Codes_Table();
-    $table->prepare_items();
-
-    $message = '';
-    if ('delete' === $table->current_action()) {
-        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'cb_codes_table'), count($_REQUEST['id'])) . '</p></div>';
-    }
-    ?>
-<div class="wrap">
-
-    <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('codes', 'cb_codes_table')?></h2>
-    <?php echo $message; ?>
-
-    <form id="codes-table" method="GET">
-        <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
-        <?php $table->display() ?>
-    </form>
-
-</div>
-<?php
-}
-
-/**
- * PART 4. Form for adding andor editing row
- * ============================================================================
- *
- * In this part you are going to add admin page for adding andor editing items
- * You cant put all form into this function, but in this example form will
- * be placed into meta box, and if you want you can split your form into
- * as many meta boxes as you want
- *
- * http://codex.wordpress.org/Data_Validation
- * http://codex.wordpress.org/Function_Reference/selected
- */
-
-/**
- * Form page handler checks is there some data posted and tries to save it
- * Also it renders basic wrapper in which we are callin meta box render
- */
-function cb_codes_table_form_page_handler()
-{
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'cb_codes'; // do not forget about tables prefix
-
-    $message = '';
-    $notice = '';
-
-    // this is default $item which will be used for new records
-    $default = array(
-        'id' => 0,
-        'item_id' => null,
-        'bookingcode' => null,        
-        'booking_date' => '',
-    );
-
-    // here we are verifying does this request is post back and have correct nonce
-    if (wp_verify_nonce($_REQUEST['nonce'], 'basename(__FILE__)')) {
-        // combine our default item with request params
-        $item = shortcode_atts($default, $_REQUEST);
-        // validate data, and if all ok save item to database
-        // if id is zero insert otherwise update
-        $item_valid = cb_codes_table_validate_entry($item);
-        if ($item_valid === true) {
-            if ($item['id'] == 0) {
-                $result = $wpdb->insert($table_name, $item);
-                $item['id'] = $wpdb->insert_id;
-                if ($result) {
-                    $message = __('Item was successfully saved', 'cb_codes_table');
-                } else {
-                    $notice = __('There was an error while saving item', 'cb_codes_table');
-                }
-            } else {
-                $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
-                if ($result) {
-                    $message = __('Item was successfully updated', 'cb_codes_table');
-                } else {
-                    $notice = __('There was an error while updating item', 'cb_codes_table');
-                }
-            }
-        } else {
-            // if $item_valid not true it contains error message(s)
-            $notice = $item_valid;
-        }
-    }
-    else {
-        // if this is not post back we load item to edit or give new one to create
-        $item = $default;
-        if (isset($_REQUEST['id'])) {
-            $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
-            if (!$item) {
-                $item = $default;
-                $notice = __('Item not found', 'cb_codes_table');
-            }
-        }
-    }
-
-    // here we adding our custom meta box
-    add_meta_box('codes_form_meta_box', __('Edit'), 'cb_codes_table_form_meta_box_handler', 'codes_form_meta_box', 'normal', 'default');
-
-    ?>
-<div class="wrap">
-    <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('Edit Timeframe', 'cb_codes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=codes');?>"><?php _e('back to list', 'cb_codes_table')?></a>
-    </h2>
-    <?php if (!empty($notice)): ?>
-    <div id="notice" class="error"><p><?php echo $notice ?></p></div>
-    <?php endif;?>
-    <?php if (!empty($message)): ?>
-    <div id="message" class="updated"><p><?php echo $message ?></p></div>
-    <?php endif;?>
-
-    <form id="form" method="POST">
-        <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('basename(__FILE__)')?>"/>
-        <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
-        <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
-
-        <div class="metabox-holder" id="poststuff">
-            <div id="post-body">
-                <div id="post-body-content">
-                    <?php /* And here we call our custom meta box */ ?>
-                    <?php do_meta_boxes('codes_form_meta_box', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save', 'cb_codes_table')?>" id="submit" class="button-primary" name="submit">
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<?php
-}
-
-/**
- * This function renders our custom meta box
- * $item is row
- *
- * @param $item
- */
-function cb_codes_table_form_meta_box_handler($item)
-{
-    ?>
-
-
-<table cellspacing="2" cellpadding="5" style="width: 100%;" class="form-table">
-    <tbody>
-    <tr class="form-field">
-        <th valign="top" scope="row">
-            <label for="bookingcode"><?php _e('bookingcode', 'cb_codes_table')?></label>
-        </th>
-        <td>
-            <input id="bookingcode" name="bookingcode" type="bookingcode" style="width: 95%" value="<?php echo esc_attr($item['bookingcode'])?>"
-                   size="50" class="bookingcode" placeholder="<?php _e('bookingcode', 'cb_codes_table')?>" required>
-        </td>
-    </tr> 
-
-    <tr class="form-field">
-        <th valign="top" scope="row">
-            <label for="item_id"><?php _e('Item', 'cb_codes_table')?></label>
-        </th>
-        <td>
-          <?php cb_codes_table_edit_dropdown( 'cb_items', 'item_id', esc_attr($item['item_id']) ); ?>
-        </td>
-    </tr>    
-    <tr class="form-field">
-        <th valign="top" scope="row">
-            <label for="date"><?php _e('Date', 'cb_codes_table')?></label>
-        </th>
-        <td>
-            <input id="booking_date" name="booking_date" type="date" style="width: 95%" value="<?php echo esc_attr($item['booking_date'])?>"
-                   size="50" class="date" placeholder="<?php _e('Date', 'cb_codes_table')?>" required>
-        </td>
-    </tr>       
-   
-    </tbody>
-</table>
-<?php
-}
-
-/**
- * Simple function that validates data and retrieve bool on success
- * and error message(s) on error
- *
- * @param $item
- * @return bool|string
- */
-function cb_codes_table_validate_entry($item)
-{
-    $messages = array();
-
-    // if (empty($item['name'])) $messages[] = __('Name is required', 'cb_codes_table');
-    // if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'cb_codes_table');
-    // if (!ctype_digit($item['age'])) $messages[] = __('Age in wrong format', 'cb_codes_table');
-    //if(!empty($item['age']) && !absint(intval($item['age'])))  $messages[] = __('Age can not be less than zero');
-    //if(!empty($item['age']) && !preg_match('/[0-9]+/', $item['age'])) $messages[] = __('Age must be number');
-    //...
-
-    if (empty($messages)) return true;
-    return implode('<br />', $messages);
-}
-
-/**
-* Renders a dropdown menu for items and locations
-*
-* @param @TODO
-* @return html dropdown
-*/
-function cb_codes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
-
-  $args = array( 'posts_per_page' => -1, 'post_type' => $posttype );
-  $the_query = new WP_Query( $args );
-
-  if ( $the_query->have_posts() ) {
-
-    echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
-    if (!$selected) { $new = "selected disabled"; } else { $new = ""; } // if new entry, set pre-selected 
-    echo '<option '. $new  . '>'. __(" – Please select – ") . '</option>';
-    while ( $the_query->have_posts() ) {
-      $the_query->the_post();
-      $id = get_the_ID(); 
-      if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
-      echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
-    }
-    echo '</select>';
-  } else {
-   echo __( 'Something went wrong', $plugin_slug);
-  }
-  /* Restore original Post Data */
-  wp_reset_postdata();
 }
 
 ?>

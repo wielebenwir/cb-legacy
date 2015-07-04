@@ -21,6 +21,17 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
+* Page handler: Table
+*
+*/    
+function commons_booking_bookins_table_handler() {
+    // echo ("hello");
+    include ('views/bookings-table.php');
+}
+
+
+
+/**
  * Commons_Booking_Bookings_Table class that will display our custom table
  * records in nice table
  */
@@ -360,16 +371,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         echo ($var);
 
     }
-
-    /**
-    * Page handler 
-    *
-    */    
-    public function table_handler() {
-        // echo ("hello");
-        include ('views/bookings-table.php');
-    }
-
 
 } // end Commons_Booking_Bookings_Table
 
