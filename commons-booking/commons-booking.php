@@ -69,19 +69,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/commons-booking-helpers.ph
 require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
 
 /*
- * Load Fake Page class
- */
-// require_once( plugin_dir_path( __FILE__ ) . 'includes/fake-page.php' );
-
-// new Fake_Page(
-//     array(
-//   'slug' => 'faker',
-//   'post_title' => 'Fake Page Title',
-//   'post content' => 'This is the fake page content'
-//     )
-// );
-
-/*
  * Load Widget boilerplate
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/Widgets-Helper/wph-widget-class.php' );
