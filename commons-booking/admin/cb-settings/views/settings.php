@@ -163,14 +163,14 @@
         'fields' => array(
           array(
             'name' => __( 'Message Booking Review', $this->plugin_slug ),
-            'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. HTML is ok. ', $this->plugin_slug ),
+            'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings#Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
             'default' => __( '<h2>Just one more step... </h2><p> Please review your order and Click "confirm" to finalise.</p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
             'type' => 'textarea',
           ),
           array(
             'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
-            'desc' => __( 'The message that appears after the user has completed the booking. HTML is ok. You can use the following Template tags: {USERNAME} {USEREMAIL}, {ITEM}', $this->plugin_slug ),
+            'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings#Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
             'default' => __( '<h2>Great success, {USERNAME}!</h2> <p>You´ve successfully booked {ITEM}. An email has been sent to your address {USEREMAIL}. </p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_confirmed',
             'type' => 'textarea',
@@ -199,16 +199,16 @@
           ),          
           array(
             'name' => __( 'Confirmation email subject', $this->plugin_slug ),
-            'desc' => __( 'The subject of the confirmation Email. ', $this->plugin_slug ),
+            'desc' => __( 'The subject of the confirmation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings#Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_subject',
             'default' => __( 'Your booking', $this->plugin_slug ),
             'type' => 'text',
           ),            
           array(
             'name' => __( 'Confirmation email body', $this->plugin_slug ),
-            'desc' => __( 'Write a nice introduction. The booking page will be attached. ', $this->plugin_slug ),
+            'desc' => __( 'The body of the confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings#Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_body',
-            'default' => __( 'Hello %username%, and thanks for booking. <br> ', $this->plugin_slug ),
+            'default' => __( 'Hello {{USER_NAME}}, and thanks for booking. <br> ', $this->plugin_slug ),
 
             'type' => 'textarea',
           ),
