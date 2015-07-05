@@ -19,7 +19,7 @@
  *
  */
 
-class Commons_Booking_Booking {
+class Commons_Booking_Booking { 
 
     /**
      * Plugin version, used for cache-busting of style and script file references.
@@ -33,6 +33,7 @@ class Commons_Booking_Booking {
     public function __construct() {
 
         $this->settings = new Commons_Booking_Admin_Settings();
+        $this->prefix = 'commons-booking';
 
     	global $wpdb;
     	$this->user_id = get_current_user_id();  // get user id
@@ -287,17 +288,18 @@ public function get_booked_days( $item_id ) {
  *@param $to, $subject, $message
  * @return array
  */   
-    private function send_mail( $to, $subject ) {
+    public function send_mail( $to ) {
+
+        $body_template = ( $this->email_messages['mail_confirmation_body'] );  // get template
+        $subject_template = ( $this->email_messages['mail_confirmation_subject'] );  // get template
     	
         $headers = array('Content-Type: text/html; charset=UTF-8');
 
-        ob_start();
+        echo $body_template;
 
-        include (commons_booking_get_template_part( 'booking', 'code', FALSE )); // include the template
-        include (commons_booking_get_template_part( 'booking', 'mail', FALSE )); // include the template
-        
-        $body = ob_get_contents();
-        ob_end_clean();
+        $body = replace_template_tags( $body_template, $this->b_vars);
+        $subject = replace_template_tags( $subject_template, $this->b_vars);
+        var_dump($this->b_vars);
 
         wp_mail( $to, $subject, $body, $headers );
 
@@ -314,7 +316,14 @@ public function get_booked_days( $item_id ) {
     }
 
 
-    private function set_booking_vars() {
+    private function set_booking_vars( $include_code = FALSE ) {
+
+        $data = new Commons_Booking_Data;
+
+        $this->item = $data->get_item( $this->item_id );
+        $this->location = $data->get_location( $this->location_id );
+        $this->user = $data->get_user( $this->user_id );
+
 
         $b_vars['date_start'] = date_i18n( get_option( 'date_format' ), strtotime( $this->date_start ) );
         $b_vars['date_end'] = date_i18n( get_option( 'date_format' ), strtotime( $this->date_end ) );
@@ -323,15 +332,20 @@ public function get_booked_days( $item_id ) {
         $b_vars['item_content'] = get_the_content( $this->item_id );
         $b_vars['location_name'] = get_the_title ($this->location_id );
         $b_vars['location_content'] = get_the_content( $this->location_id  );
-        $b_vars['location_adress'] = implode(', ', $this->location['address']);
+        $b_vars['location_address'] = implode(', ', $this->location['address']);
         $b_vars['location_thumb'] = get_thumb( $this->location_id ); 
         $b_vars['location_contact'] = $this->location['contact']; 
+        $b_vars['location_openinghours'] = $this->location['openinghours']; 
+        
+        $b_vars['site_email'] = $this->email_messages['mail_confirmation_sender']; 
 
         $b_vars['user_name'] = $this->user['name'];
         $b_vars['user_email'] = $this->user['email'];    
         $b_vars['user_address'] = $this->user['address'];    
         $b_vars['user_phone'] = $this->user['phone'];    
-        $b_vars['code'] = $this->get_code( $this->booking['code_id'] ); 
+        if ( $include_code ) {
+            $b_vars['code'] = $this->get_code( $this->booking['code_id'] ); 
+        }
         $this->b_vars = $b_vars;
 
     }
@@ -341,48 +355,37 @@ public function get_booked_days( $item_id ) {
 
             $current_user = wp_get_current_user();
 
-            $messages = $this->settings->get( 'messages' ); // get messages from settings page
+            $booking_messages = $this->settings->get( 'messages' ); // get messages templates from settings page
+            $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
 
             if ( !empty($_REQUEST['create']) && $_REQUEST['create'] == 1) { // we create a new booking
 
                if ( !empty($_REQUEST['date_start']) && !empty($_REQUEST['date_end']) && !empty($_REQUEST['timeframe_id']) && !empty($_REQUEST['item_id']) && !empty($_REQUEST['location_id']) && !empty($_REQUEST['_wpnonce']) ) { // all needed vars available
 
-                  if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-review-nonce') ) die("Security check");
+                  if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
 
                     // DATA FROM FORM
+                    $this->date_start = ( $_REQUEST['date_start'] );  
+                    $this->date_end = ( $_REQUEST['date_end'] );  
+                    $this->location_id = ( $_REQUEST['location_id'] );  
+                    $this->item_id = ( $_REQUEST['item_id'] );  
+                    $this->timeframe_id = ( $_REQUEST['timeframe_id'] );  
+                    $this->user_id = get_current_user_id();
 
-                     $this->date_start = ( $_REQUEST['date_start'] );  
-                     $this->date_end = ( $_REQUEST['date_end'] );  
-
-                     $this->location_id = ( $_REQUEST['location_id'] );  
-                     $this->item_id = ( $_REQUEST['item_id'] );  
-                     $this->timeframe_id = ( $_REQUEST['timeframe_id'] );  
-
-                    $user_id = get_current_user_id();
-
-
-                     // DATA FROM DB
-                    $data = new Commons_Booking_Data;
-                    $this->user = $data->get_user( $user_id );
-
-                    // $user_id = get_current_user_id();
-
-                    // $item = $data->get_item( $item_id );
-                    // $location = $data->get_location( $location_id );
-                    // $user = $data->get_user( $user_id );
-
+                    // Set Variable for Template
                     $this->set_booking_vars();
 
+                    // check if validated
                     if ( $this->validate_booking( $this->item_id, $this->date_start, $this->date_end )) {
 
-                        $msg = ( $messages['messages_booking_pleaseconfirm'] );  // get message part
+                        $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
                         echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
-
+                        // include the template
                         include ( 'views/booking-review.php' );
                                             
                         // write to DB
-                        $booking_id = $this->create_booking( date( 'Y-m-d', $this->date_start), date( 'Y-m-d', $this->date_end ), $$this->item_id );
-                        
+                        $booking_id = $this->create_booking( date( 'Y-m-d', $this->date_start), date( 'Y-m-d', $this->date_end ), $this->item_id );
+                        // Include the submit button
                         include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
 
                     } // end if validated
@@ -394,31 +397,23 @@ public function get_booked_days( $item_id ) {
 
                 if (! wp_verify_nonce($_REQUEST['_wpnonce'], 'booking-confirm-nonce') ) die("Security check");
 
+                    // DATA FROM FORM
                     $booking_id = ( $_REQUEST['booking_id'] );  
+
+                    // DATA FROM DB
                     $this->booking = $this->get_booking( $booking_id );
-
-                    $this->set_booking_status( $booking_id, 'confirmed' ); // set booking status to confirmed
-
                     $this->date_start = ( $this->booking['date_start'] );  
                     $this->date_end = ( $this->booking['date_end'] ); 
-
                     $this->location_id = ( $this->booking['location_id'] );  
                     $this->item_id = ( $this->booking['item_id'] ); 
-                    $this->user_id = get_current_user_id();
+                    $this->user_id = ( $this->booking['user_id'] );
  
-
-                    $data = new Commons_Booking_Data;
-
-                    // $user_id = get_current_user_id();
-
-                    $this->item = $data->get_item( $this->item_id );
-                    $this->location = $data->get_location( $this->location_id );
-                    $this->user = $data->get_user( $this->user_id );
-
-
-                    $this->set_booking_vars();
-
-                    $msg = ( $messages['messages_booking_confirmed'] );  // get message
+                    // Finalise the booking
+                    $this->set_booking_status( $booking_id, 'confirmed' ); // set booking status to confirmed
+                    // Set Variable for Template
+                    $this->set_booking_vars( TRUE );
+                    // Display the Message
+                    $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message
                     
                     echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
@@ -426,7 +421,7 @@ public function get_booked_days( $item_id ) {
                   
                     include ( 'views/booking-review.php' );
 
-                    $this->send_mail( $this->user['email'], 'Hello there' );
+                    $this->send_mail( $this->user['email'] );
 
 
             } // end if confirm
