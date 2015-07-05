@@ -7,6 +7,6 @@
 <div class="cb-headline"><?php echo  __( ' Your Booking Code' ); ?></div>
 <div class="cb-booking-code cb-box">
   <div class="cb-big cb-booking-code">
-    <strong><?php echo $code ; ?></strong>
+    <strong><?php echo $this->b_vars['code'] ; ?></strong>
   </div>
 </div>
