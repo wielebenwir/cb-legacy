@@ -29,7 +29,7 @@
 </div>
 
 <?php //LOCATION ?>
-<div class="cb-headline"><?php echo  __( ' Location information: ' ); ?><?php echo $this->b_vars['location_adress']; ?></div>
+<div class="cb-headline"><?php echo  __( ' Location information: ' ); ?></div>
 <div class="cb-booking-location cb-box">
   <div class="img" style="float:right;">
     <?php echo $this->b_vars['location_thumb'];  ?>
