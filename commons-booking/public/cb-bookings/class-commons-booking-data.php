@@ -155,6 +155,7 @@ class Commons_Booking_Data {
         'contact' => get_post_meta( $id, 'commons-booking_location_contactinfo_text', true ),
         'contact_hide' => get_post_meta( $id, 'commons-booking_location_contactinfo_hide', true ),
         'closed_days' => get_post_meta( $id, 'commons-booking_location_closeddays', true ),
+        'openinghours' => get_post_meta( $id, 'commons-booking_location_openinghours', true ),
         );
       return $location;
     } else {

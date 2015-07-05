@@ -73,10 +73,25 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
           'type' => 'textarea',
         ),        
         array(
-          'name' => __( 'Hide contact information (will be sent with booking)', parent::$plugin_slug ),
+          'name' => __( 'Hide contact information until user has confirmed the booking.', parent::$plugin_slug ),
           'id' => parent::$plugin_slug . '_location_contactinfo_hide',
           'type' => 'checkbox',
         ),  
+      ),              
+    );      
+    $meta_boxes[ 'cb_location_metabox_openinghours' ] = array(
+      'id' => 'cb_location_metabox_openinghours',
+      'title' => __( 'Opening hours', parent::$plugin_slug ),
+      'object_types' => array( 'cb_locations', ), // Post type
+      'context' => 'normal',
+      'priority' => 'high',
+      'show_names' => true, // Show field names on the left 
+      'fields' => array(    
+        array(
+          'name' => __( 'Enter the opening hours here. E.g.: Mon-Fri, 8:00 - 18:00', parent::$plugin_slug ),
+          'id' => parent::$plugin_slug . '_location_openinghours',
+          'type' => 'textarea',
+        ),         
       ),              
     );    
 
