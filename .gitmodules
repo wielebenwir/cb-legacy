@@ -31,3 +31,6 @@
 [submodule "commons-booking/admin/includes/CMB2-GoogleMaps"]
 	path = commons-booking/admin/includes/CMB2-GoogleMaps
 	url = git@github.com:mustardBees/cmb_field_map.git
+[submodule "commons-booking/includes/Virtual-WP-Pages"]
+	path = commons-booking/includes/Virtual-WP-Pages
+	url = git@github.com:LightboxDev/Virtual-WP-Pages.git
