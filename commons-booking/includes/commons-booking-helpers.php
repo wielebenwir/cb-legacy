@@ -73,6 +73,20 @@ function pages_dropdown() {
    }
    return null;
   }
+/**
+ * Helper: Check if Thumbmail exists, if so, return it.  
+ * 
+ */
+  function get_thumb( $post_id ) {
+    if ( has_post_thumbnail( $post_id ) ) {
+      $thumb = get_the_post_thumbnail( $post_id, 'thumbnail' );
+    } else {
+      $thumb = "";
+    }
+  }
+
+
+
 
 
 ?>
