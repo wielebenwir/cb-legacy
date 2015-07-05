@@ -43,7 +43,7 @@ function pages_dropdown() {
  */
  function replace_template_tags( $string, $tags_array ) {
     foreach($tags_array as $key => $value){
-        $string = str_replace('{'.strtoupper($key).'}', $value, $string);
+        $string = str_replace('{{'.strtoupper($key).'}}', $value, $string);
     }
     return $string;
   }
