@@ -299,7 +299,6 @@ public function get_booked_days( $item_id ) {
 
         $body = replace_template_tags( $body_template, $this->b_vars);
         $subject = replace_template_tags( $subject_template, $this->b_vars);
-        var_dump($this->b_vars);
 
         wp_mail( $to, $subject, $body, $headers );
 
@@ -408,8 +407,8 @@ public function get_booked_days( $item_id ) {
                     $this->item_id = ( $this->booking['item_id'] ); 
                     $this->user_id = ( $this->booking['user_id'] );
  
-                    // Finalise the booking
-                    $this->set_booking_status( $booking_id, 'confirmed' ); // set booking status to confirmed
+
+
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
                     // Display the Message
@@ -421,7 +420,12 @@ public function get_booked_days( $item_id ) {
                   
                     include ( 'views/booking-review.php' );
 
-                    $this->send_mail( $this->user['email'] );
+                    // Finalise the booking
+                    if ( $this->booking['status'] == 'pending' ) { // check if it´s still pending
+                        $this->set_booking_status( $booking_id, 'confirmed' ); // set booking status to confirmed
+                        $this->send_mail( $this->user['email'] );
+                    }
+
 
 
             } // end if confirm
