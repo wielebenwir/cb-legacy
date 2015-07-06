@@ -3,20 +3,6 @@
 
   $(function() {
 
-    /* ========================================================================
-     * DOM-based Routing
-     * Based on http://goo.gl/EUTi53 by Paul Irish
-     *
-     * Only fires on body classes that match. If a body class contains a dash,
-     * replace the dash with an underscore when adding it to the object below.
-     *
-     * .noConflict()
-     * The routing is enclosed within an anonymous function so that you can
-     * always reference jQuery with $, even when in .noConflict() mode.
-     * ======================================================================== */
-
-    // Use this variable to set up the common and page specific functions. If you
-    // rename this variable, you will also need to rename the namespace below.
     var Commons_Booking = {
 
       // All pages
@@ -44,6 +30,8 @@
           var text_error_notbookable = cb_js_vars.text_error_notbookable;
           var text_error_closedforbidden = cb_js_vars.text_error_closedforbidden;
           var text_error_bookedday = cb_js_vars.text_error_bookedday;
+
+          console.log (allowclosed);
 
           var selectedIndexes = [];
           var currentTimeFrame;
@@ -140,7 +128,7 @@
           } else if ( daystatus < 0 ) { // between pickup date and return date is a booked date
               displayNotice ( text_error_bookedday, "error");
               return false;            
-          } else if ( ( daystatus > 0 ) && ( allowclosed != "on" ) ) { // booking over closed days, but not allowed
+          } else if ( ( daystatus > 0 ) && ( allowclosed != 1 ) ) { // booking over closed days, but not allowed
               displayNotice ( text_error_closedforbidden , "error");
               return false;       
           } else { // no errors
