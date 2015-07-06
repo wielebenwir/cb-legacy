@@ -287,8 +287,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 /**
  * Sends the confirm booking email.
  * 
- *@param $to, $subject, $message
- * @return array
+ *@param $to, 
  */   
     public function send_mail( $to ) {
 
@@ -304,7 +303,12 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
     }
 
-
+    /**
+    * Sends the confirm booking email.
+    * 
+    * @param $to, $subject, $message
+    * @return array
+    */  
     private function validate_days ( $item_id, $date_start, $date_end ) {
         $booked_days = $this->get_booked_days ( $item_id, 'confirmed' );
         $count_days = count ( get_dates_between( $date_start, $date_end ));
@@ -314,7 +318,12 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         } else {
             return TRUE;
         }
-    }    
+    } 
+    /**
+     * Check if entry already in database.
+     * 
+     * @return BOOL
+     */  
     private function validate_creation ( ) {
         $pending_days = $this->get_booked_days ( $this->item_id, 'pending' );
         if ( in_array( $this->date_start, $pending_days ) OR in_array( $this->date_end, $pending_days ) ) {
@@ -324,12 +333,26 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         }
     }
 
+    /**
+     * Encrypt the booking array.
+     * 
+     * @param array booking array
+     *
+     * @return string encoded
+     */ 
     public function encrypt( $array ) {
         $delimiter = '|';
         $s = implode ( $delimiter , $array);
         $s_ecoded  = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $this->secret ), $s, MCRYPT_MODE_CBC, md5( md5( $this->secret ) ) ) );
         return $s_ecoded;
-    }    
+    }  
+    /**
+     * Decrypt the booking array.
+     * 
+     * @param string encoded
+     *
+     * @return array decoded
+     */   
     public function decrypt( $s ) {
 
         $s_decoded  = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $this->secret ), base64_decode( $s  ), MCRYPT_MODE_CBC, md5( md5( $this->secret ) ) ), "\0");
@@ -339,8 +362,12 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         return $array;
 
     }
-
-
+    /**
+     * Set all needed variabls for template.
+     * 
+     * @param BOOL include code 
+     *
+     */
     private function set_booking_vars( $include_code = FALSE ) {
 
         $this->item = $this->data->get_item( $this->item_id );
@@ -371,7 +398,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $this->b_vars = $b_vars;
 
     }
-
+    /**
+     * Main Booking function. 
+     *
+     */
     public function render_bookingreview( ) {
           if (is_user_logged_in() ) {
 
@@ -405,26 +435,27 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
                         // include the template
 
-                        $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id );
-                        $encode_array = array( $booking_id, $this->user_id, $_POST['item_id'], $_POST['date_start'], $_POST['date_end'] );
-                        $encrypted = $this->encrypt( $encode_array );
+                        //write to DB
+                        if ( $this->validate_creation( )) {
+                            $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id );
+                            $encode_array = array( $booking_id, $this->user_id, $_POST['item_id'], $_POST['date_start'], $_POST['date_end'] );
+                            $encrypted = $this->encrypt( $encode_array );
+                            include ( 'views/booking-review.php' );
                         
-                        include ( 'views/booking-review.php' );
-                        
-                        include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
-                                          
-                        // write to DB
-                        // if ( $this->validate_creation( )) {
+                            include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
+                        } else {
 
+                            echo ('Error: Timed out');
+              
+                        } // end if validated - creation
 
-                        // }
-                        // Include the submit button
+                    } // end if validated - days
 
-                    } // end if validated
+                } else { // not all needed vars present  
+                   
+                    echo ("Error: Variables missing");
 
-                } else { // not all needed vars available 
-                    echo "Error";
-              }
+              } // end if all variables present
             } else if ( !empty($_GET['booking']) ) { // we confirm the booking 
 
 
@@ -437,8 +468,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                     $this->booking = $this->get_booking( $this->booking_id );
 
-
-
                     if ( ( $this->booking['user_id'] ==  $this->user_id ) || is_admin() ) { // user that booked or admin
 
                         $this->date_start = ( $this->booking['date_start'] ); 
@@ -450,7 +479,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         // Set Variable for Template
                         $this->set_booking_vars( TRUE );
 
-
                         // Finalise the booking
                         if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { // check if it is pending
 
@@ -461,14 +489,14 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $this->set_booking_status( $this->booking_id, 'confirmed' ); // set booking status to confirmed
                             $this->send_mail( $this->user['email'] );
                             include ( 'views/booking-review.php' );                            
-                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); // include the template
+                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
 
 
                         } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
 
-                            include (commons_booking_get_template_part( 'booking', 'code', FALSE )); // include the template
+                            include (commons_booking_get_template_part( 'booking', 'code', FALSE )); 
                             include ( 'views/booking-review.php' );                            
-                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); // include the template
+                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
   
 
                         } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
@@ -485,24 +513,17 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         die ('You have no right to view this page');
                     }
 
-                    
-
-
-
 
             } // end if confirm
           
 
           } else { // not logged in     
-            echo "You have to be logged in to book.";
+            
+            echo ("Error: You have to be logged in to access this page.");
+        
         } // end if logged in 
 
-
-
-
     }
-
-
 
 }
 ?>
