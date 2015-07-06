@@ -43,6 +43,8 @@ class Commons_Booking_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
     	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
+        $this->secret = 'kdsidsabnrewrew';
+
 		if (!$this->user_id) {
             die ( ' No user id' );
     		// error message and exit
@@ -194,7 +196,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
  /**
  * Store all booking relevant data into booking-table, set status pending. Return booking_id
  *
- * @return array
+ * @return id
  */   
     public function create_booking( $date_start, $date_end, $item_id ) {
     	
@@ -204,33 +206,47 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $code_id = $this->get_booking_code_id( $date_start, $item_id );
         $location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );    	
 
-        //@TODO: check if identical booking is already in database and cancel booking proucess if its true
+        // check if identical booking is already in database and 
+        $sqlresult = $wpdb->get_results($wpdb->prepare(
+        "
+        SELECT id, date_start, date_end
+        FROM " . $this->table_bookings . " 
+        WHERE item_id = '%s' AND date_start = '%s' AND  date_start = '%s'
+        ", 
+        $item_id, $date_start, $date_end), ARRAY_A); 
 
-    	$wpdb->insert( 
-			$this->table_bookings, 
-			array( 
-				'date_start' 	=> $date_start , 
-				'date_end' 		=> $date_end,
-				'item_id' 		=> $item_id,
-				'user_id' 		=> $this->user_id, 
-				'code_id' 		=> $code_id,
-				'location_id' 	=> $location_id,
-				'booking_time' 	=> date('Y-m-d H:i:s'),
-				'status' => 'pending'
-			), 
-				array( 
-				'%s', 
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%s',
-				'%s' 
-			) 
-		);
+        if ( $sqlresult ) {
 
-		return $wpdb->insert_id;
+            return $sqlresult[0]['id'];
+
+        } else {
+
+        	$wpdb->insert( 
+    			$this->table_bookings, 
+    			array( 
+    				'date_start' 	=> $date_start , 
+    				'date_end' 		=> $date_end,
+    				'item_id' 		=> $item_id,
+    				'user_id' 		=> $this->user_id, 
+    				'code_id' 		=> $code_id,
+    				'location_id' 	=> $location_id,
+    				'booking_time' 	=> date('Y-m-d H:i:s'),
+    				'status' => 'pending'
+    			), 
+    				array( 
+    				'%s', 
+    				'%s',
+    				'%s',
+    				'%s',
+    				'%s',
+    				'%s',
+    				'%s',
+    				'%s' 
+    			) 
+    		);
+
+    		return $wpdb->insert_id;
+        }
 	}
 
 
@@ -266,7 +282,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
  *
  * @return array
  */   
-    public function set_booking_status( $booking_id, $status ) {
+    private function set_booking_status( $booking_id, $status ) {
         
         global $wpdb;
         $table_bookings = $wpdb->prefix . 'cb_bookings';
@@ -275,6 +291,28 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             "
             UPDATE $table_bookings 
             SET status = '" . $status . "'
+            WHERE id = $booking_id
+            "
+        );
+
+        return;
+
+    }  
+ /**
+ * set hash in booking table.
+ * parameter: booking_id (id), hash
+ *
+ * @return array
+ */   
+    private function set_booking_hash( $booking_id, $hash ) {
+        
+        global $wpdb;
+        $table_bookings = $wpdb->prefix . 'cb_bookings';
+
+        $wpdb->query(
+            "
+            UPDATE $table_bookings 
+            SET hash = '" . $hash . "'
             WHERE id = $booking_id
             "
         );
@@ -432,19 +470,13 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
                         echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
 
-                        //write to DB
-                        if ( $this->validate_creation( )) {
-                            $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id );
+                            $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                             $encode_array = array( $booking_id, $this->user_id, $_POST['item_id'], $_POST['date_start'], $_POST['date_end'] );
                             $encrypted = $this->encrypt( $encode_array );
+
                             include ( 'views/booking-review.php' );
                         
                             include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
-                        } else {
-
-                            echo ('Error: Timed out');
-              
-                        } // end if validated - creation
 
                     } // end if validated - days
 
@@ -484,6 +516,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
                             $this->set_booking_status( $this->booking_id, 'confirmed' ); // set booking status to confirmed
+                            $this->set_booking_hash( $this->booking_id,  $encrypted ); // set booking hash
                             $this->send_mail( $this->user['email'] );
                             include ( 'views/booking-review.php' );                            
                             include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
