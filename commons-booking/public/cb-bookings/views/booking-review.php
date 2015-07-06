@@ -16,6 +16,9 @@
   </div>
   <div>
     <?php echo __( ' Return date: ' ) ?><span class="cb-date"><?php echo $this->b_vars['date_end']; ?></span>
+  </div>  
+  <div>
+    <?php echo __( ' Opening hours: ' ) ?><span class="cb-date"><?php echo $this->b_vars['location_openinghours']; ?></span>
   </div>
 </div>
 
@@ -35,7 +38,7 @@
     <?php echo $this->b_vars['location_thumb'];  ?>
   </div>
   <div class="cb-adress">
-    <?php echo $this->b_vars['location_adress']; ?>
+    <?php echo $this->b_vars['location_address']; ?>
   </div>
   <div class="cb-contactinfo">
     <?php echo $this->b_vars['location_contact']; ?>
