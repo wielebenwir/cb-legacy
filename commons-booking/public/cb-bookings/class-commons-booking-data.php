@@ -360,11 +360,13 @@ class Commons_Booking_Data {
   private function set_day_status( $date, $location, $booked_days ) {
     $status = '';
 
+    $timestamp = array_map( 'convert_to_timestamp', $booked_days);
+
     // first: check if the date is in the locations´ closed days array
     if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
        $status = 'closed';
     // second: check if day is booked
-    } elseif ( is_array( $booked_days) && in_array( $date, $booked_days )) {
+    } elseif ( is_array( $timestamp) && in_array( $date, $timestamp )) {
         $status = 'booked'; 
     // you may book
     } else {
