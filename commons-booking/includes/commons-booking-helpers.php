@@ -84,6 +84,13 @@ function pages_dropdown() {
       $thumb = "";
     }
   }
+/**
+ * Convert to timestamp.  
+ * 
+ */
+  function convert_to_timestamp( $date ) {
+    return strtotime($date);
+  }
 
 
 
