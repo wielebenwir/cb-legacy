@@ -171,8 +171,15 @@
           array(
             'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<h2>Great success, {{USER_NAME}}!</h2> <p>You´ve successfully booked {ITEM–NAME}. An email has been sent to your address {{USER_EMAIL}}. </p>', $this->plugin_slug ),
+            'default' => __( '<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked {ITEM_NAME}. An email has been sent to your address {{USER_EMAIL}}. </p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_confirmed',
+            'type' => 'textarea',
+          ),          
+          array(
+            'name' => __( 'Message Booking Canceled', $this->plugin_slug ),
+            'desc' => __( 'The message that appears after the user has canceled the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'default' => __( '<h2>Booking canceled!</h2>', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_messages_booking_canceled',
             'type' => 'textarea',
           ),
         ),
