@@ -43,8 +43,6 @@ class Commons_Booking_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
     	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $this->secret = 'kdsidsabnrewrew';
-
 		if (!$this->user_id) {
             die ( ' No user id' );
     		// error message and exit
