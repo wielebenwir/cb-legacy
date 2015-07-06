@@ -433,7 +433,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                         $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
                         echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
-                        // include the template
 
                         //write to DB
                         if ( $this->validate_creation( )) {
