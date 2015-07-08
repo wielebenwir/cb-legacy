@@ -1,7 +1,7 @@
 <?php
 /*
  * Registers a metabox for display of timeframe entries on the item edit screen
- * @package   Commons_Booking_Admin
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -9,9 +9,7 @@
  */
 class Commons_Booking_Users {
 
-  /**
-   * Hook into the appropriate actions when the class is constructed.
-   */
+
   public function __construct() {
 
     $this->plugin_slug = 'commons-booking';
@@ -22,16 +20,14 @@ class Commons_Booking_Users {
     // include Wordpress error class
     $this->reg_errors = new WP_Error;
 
-
     }
 
 
   /**
-   * Add items list output to page selected in settings.
+   * Backend: Show the extra profile fields
    *
-   * @since    0.0.1
+   * @since    0.2
    *
-   * @return    Mixed 
    */
   public function show_extra_profile_fields( $user ) { ?>
 
@@ -62,13 +58,11 @@ class Commons_Booking_Users {
     <?php }
 
   /**
-   * Add items list output to page selected in settings.
+   * Backend: Save extra profile fields
    *
-   * @since    0.0.1
+   * @since    0.2
    *
-   * @return    Mixed 
    */
-
     public function save_extra_profile_fields( $user_id ) {
 
       if ( !current_user_can( 'edit_user', $user_id ) )
@@ -79,41 +73,62 @@ class Commons_Booking_Users {
       update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
     }
 
-
+  /**
+   * Frontend: Include the registration form template
+   *
+   * @since    0.2
+   *
+   */
     public function registration_form() {
 
         include (commons_booking_get_template_part( 'user', 'registration', FALSE )); 
 
     }
 
-
+  /**
+   * Frontend: Include the registration form template
+   *
+   * @since    0.2
+   *
+   * @param $values array of submitted values
+   *
+   */
     public function registration_validation( $values )  {  
 
 
       $req = $this->registration_fields_required;
 
+      // check if required
       foreach ($values as $key => $value) {
         if ( in_array( $key, $req) && empty( $value ) ) {
           $this->reg_errors->add('field', 'Required form field is missing: ' . $key );
         }
       }
-
+      // check username length
       if ( 4 > strlen( $values['username'] ) ) {
         $this->reg_errors->add( 'username_length', 'Username too short. At least 4 characters is required' );
       }
 
+      // check username exists
       if ( username_exists( $values['username'] ) ) {
         $this->reg_errors->add('user_name', 'Sorry, that username already exists!');
+      }      
+      // check if email exists
+      if ( email_exists( $values['email'] ) ) {
+        $this->reg_errors->add('email', 'Sorry, that email already exists!');
       }
 
+      // check for needed username length
       if ( 5 > strlen( $values['password'] ) ) {
           $this->reg_errors->add( 'password', 'Password length must be greater than 5' );
       }
 
+      // check if checkbox is set
       if ( $values['terms_accepted'] != 'yes' ) {
           $this->reg_errors->add( 'terms_accepted', 'You must accept the terms' );
       } 
 
+      // error, so display message
       if ( is_wp_error( $this->reg_errors ) ) {
  
           foreach ( $this->reg_errors->get_error_messages() as $error ) {
@@ -126,7 +141,12 @@ class Commons_Booking_Users {
       }
 
     }
-
+  /**
+   * Frontend: Write to database
+   *
+   * @since    0.2
+   *
+   */
     public function complete_registration() {
 
         if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
@@ -144,10 +164,22 @@ class Commons_Booking_Users {
             echo 'Registration complete. Goto <a href="' . get_site_url() . '/wp-login.php">login page</a>.';   
         }
     }
-
+  /**
+   * Frontend: Main registration function
+   *
+   * @since    0.2
+   *
+   */
     public function custom_registration_function() {
 
         if ( isset($_POST['submit'] ) ) {
+
+          // check for nonce
+          if (! isset( $_POST['user_nonce'] ) || ! wp_verify_nonce( $_POST['user_nonce'], 'create_user' ) ) { 
+
+            die ('You shouldn´t be here');
+
+          } else { // register
 
             if ( isset( $_POST[ 'terms_accepted' ] ) ) {              
               $accepted = 'yes'; 
@@ -179,11 +211,10 @@ class Commons_Booking_Users {
             // call @function complete_registration to create the user
             // only when no WP_error is found
             $this->complete_registration();
-        }
-     
+          }
+        } else { 
+        
         $this->registration_form();
+      }
     }
-
-
-
 }
