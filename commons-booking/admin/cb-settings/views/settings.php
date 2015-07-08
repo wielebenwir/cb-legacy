@@ -251,6 +251,36 @@
             ', $this->plugin_slug ),
 
             'type' => 'textarea',
+          ),  
+          array(
+            'name' => __( 'Registration email subject', $this->plugin_slug ),
+            'desc' => __( 'The subject of the registration Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_mail_registration_subject',
+            'default' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', $this->plugin_slug ),
+            'type' => 'text',
+          ),         
+          array(
+            'name' => __( 'Registration email body', $this->plugin_slug ),
+            'desc' => __( 'The body of the registration confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_mail_registration_body',
+            'default' => __( 
+              '<h1>Hi {{USER_NAME}}, thanks for registering!</h1>
+
+              <p>You can sign in with the following: </p>
+
+              <p>Username: <strong>{{USER_NAME}}</strong></p>
+              <p>Password: <strong>{{PASSWORD}}</strong></p>
+
+              <h2>Your information</h2>
+
+              <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
+              <p>Address: {{ADDRESS}}</p>
+              <p>Phone: {{PHONE}}</p>
+
+              <p>Thanks, the Team. </p>
+            ', $this->plugin_slug ),
+
+            'type' => 'textarea',
           ),
         ),
       );
