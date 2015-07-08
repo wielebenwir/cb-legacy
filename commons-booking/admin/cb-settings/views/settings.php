@@ -91,6 +91,15 @@
             'show_option_none' => true,
             'default'          => 'none',
             'options'          => pages_dropdown(),
+          ),           
+          array(
+            'name'             => __( 'User Registration Page', $this->plugin_slug ),
+            'desc'             => __( 'The page where the Registration form will be displayed.', $this->plugin_slug ),
+            'id'               => $this->plugin_slug . '_registration_page_select',
+            'type'             => 'select',
+            'show_option_none' => true,
+            'default'          => 'none',
+            'options'          => pages_dropdown(),
           ),          
           array(
             'name'             => __( 'Show support', $this->plugin_slug ),
@@ -171,7 +180,7 @@
           array(
             'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked {ITEM_NAME}. An email has been sent to your address {{USER_EMAIL}}. </p>', $this->plugin_slug ),
+            'default' => __( '<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_confirmed',
             'type' => 'textarea',
           ),          
@@ -236,7 +245,7 @@
               <p>Name: {{USER_NAME}}.<br>
                 Address: {{USER_ADDRESS}}</p>
 
-              <p>If you must cancel your booking, please write an email to: {{SITE_EMAIL}}.</p>
+              <p>If you must cancel your booking, please click here: {{URL}}.</p>
 
               <p>Thanks, the Team. </p>
             ', $this->plugin_slug ),
