@@ -93,14 +93,23 @@
             'options'          => pages_dropdown(),
           ),           
           array(
-            'name'             => __( 'User Registration Page', $this->plugin_slug ),
-            'desc'             => __( 'The page where the Registration form will be displayed.', $this->plugin_slug ),
+            'name'             => __( 'Registration Page', $this->plugin_slug ),
+            'desc'             => __( 'The registration form.', $this->plugin_slug ),
             'id'               => $this->plugin_slug . '_registration_page_select',
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
             'options'          => pages_dropdown(),
           ),          
+          array(
+            'name'             => __( 'Login Page', $this->plugin_slug ),
+            'desc'             => __( 'The login form.', $this->plugin_slug ),
+            'id'               => $this->plugin_slug . '_login_page_select',
+            'type'             => 'select',
+            'show_option_none' => true,
+            'default'          => 'none',
+            'options'          => pages_dropdown(),
+          ),                     
         ),
       );
 
