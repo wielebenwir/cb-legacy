@@ -20,8 +20,35 @@ class Commons_Booking_Users {
     // include Wordpress error class
     $this->reg_errors = new WP_Error;
 
+    $this->settings = new Commons_Booking_Admin_Settings();
+
+    $this->r_vars = array();
+
+
+    }
+  /**
+   * Create the necessary pages
+   *
+   * @since    0.2
+   *
+   */
+  public function install() {
+    
+
+    $this->reg_page = create_page('Registration page');
+    $this->reg_conf_page = create_page('Registration Confirmation page');
+
     }
 
+    public function create_the_page () {
+       // $this->registration_page = create_page('Registration page - AAAAAAA');
+
+
+    $this->reg_page = create_page('Registration page');
+    $this->reg_conf_page = create_page('Registration Confirmation page'); 
+        echo ("<h1>HELLOOOO</h1>");
+    
+    }
 
   /**
    * Backend: Show the extra profile fields
@@ -71,6 +98,7 @@ class Commons_Booking_Users {
       update_user_meta( $user_id, 'phone', $_POST['phone'] );
       update_user_meta( $user_id, 'address', $_POST['address'] );
       update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
+      update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
     }
 
   /**
@@ -79,9 +107,14 @@ class Commons_Booking_Users {
    * @since    0.2
    *
    */
-    public function registration_form() {
+    public function registration_form( ) {
 
+      if ( is_user_logged_in() ) {
+          echo 'Welcome, registered user!';
+      } else {
         include (commons_booking_get_template_part( 'user', 'registration', FALSE )); 
+      }
+
 
     }
 
@@ -101,31 +134,31 @@ class Commons_Booking_Users {
       // check if required
       foreach ($values as $key => $value) {
         if ( in_array( $key, $req) && empty( $value ) ) {
-          $this->reg_errors->add('field', 'Required form field is missing: ' . $key );
+          $this->reg_errors->add('field', __('Required form field is missing: ', $this->plugin_slug ) . $key );
         }
       }
       // check username length
       if ( 4 > strlen( $values['username'] ) ) {
-        $this->reg_errors->add( 'username_length', 'Username too short. At least 4 characters is required' );
+        $this->reg_errors->add( 'username_length', __('Username too short. At least 4 characters is required', $this->plugin_slug ) );
       }
 
       // check username exists
       if ( username_exists( $values['username'] ) ) {
-        $this->reg_errors->add('user_name', 'Sorry, that username already exists!');
+        $this->reg_errors->add('user_name', __('Sorry, that username already exists!', $this->plugin_slug) );
       }      
       // check if email exists
       if ( email_exists( $values['email'] ) ) {
-        $this->reg_errors->add('email', 'Sorry, that email already exists!');
+        $this->reg_errors->add('email', __('Sorry, that email already exists!', $this->plugin_slug ) );
       }
 
       // check for needed username length
       if ( 5 > strlen( $values['password'] ) ) {
-          $this->reg_errors->add( 'password', 'Password length must be greater than 5' );
+          $this->reg_errors->add( 'password', __('Password length must be greater than 5', $this->plugin_slug ) );
       }
 
       // check if checkbox is set
       if ( $values['terms_accepted'] != 'yes' ) {
-          $this->reg_errors->add( 'terms_accepted', 'You must accept the terms' );
+          $this->reg_errors->add( 'terms_accepted', __('You must accept the terms', $this->plugin_slug ) );
       } 
 
       // error, so display message
@@ -151,17 +184,24 @@ class Commons_Booking_Users {
 
         if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
             $userdata = array(
-            'user_login'    =>   $this->username,
-            'user_email'    =>   $this->email,
-            'user_pass'     =>   $this->password,
-            'first_name'    =>   $this->first_name,
-            'last_name'     =>   $this->last_name,
-            'phone'         =>   $this->phone,
-            'address'       =>   $this->address,
+            'user_login'    =>   $this->r_vars['user_name'],
+            'user_email'    =>   $this->r_vars['email'],
+            'user_pass'     =>   $this->r_vars['password'],
+            'first_name'    =>   $this->r_vars['first_name'],
+            'last_name'     =>   $this->r_vars['last_name'],
+            'phone'         =>   $this->r_vars['phone'],
+            'address'       =>   $this->r_vars['address'],
             'terms_accepted'=>   'yes',
+            'confirmed'     =>   FALSE
             );
             $user = wp_insert_user( $userdata );
-            echo 'Registration complete. Goto <a href="' . get_site_url() . '/wp-login.php">login page</a>.';   
+
+            update_user_meta( $user, 'phone', $userdata['phone'] );
+            update_user_meta( $user, 'address', $userdata['address'] );
+            update_user_meta( $user, 'terms_accepted', $userdata['terms_accepted'] );
+            update_user_meta( $user, 'confirmed', $userdata['confirmed'] );
+
+            echo __( 'Thanks! Registration is complete. We´ve sent you an email with your Account information. ', $this->plugin_slug );
         }
     }
   /**
@@ -172,12 +212,12 @@ class Commons_Booking_Users {
    */
     public function custom_registration_function() {
 
-        if ( isset($_POST['submit'] ) ) {
+        if ( isset( $_POST['submit'] ) ) {
 
           // check for nonce
           if (! isset( $_POST['user_nonce'] ) || ! wp_verify_nonce( $_POST['user_nonce'], 'create_user' ) ) { 
 
-            die ('You shouldn´t be here');
+            die ('Error: Session expired.');
 
           } else { // register
 
@@ -199,22 +239,47 @@ class Commons_Booking_Users {
              );
 
             $this->registration_validation( $values );
-             
-            $this->username   =   sanitize_user( $_POST['username'] );
-            $this->password   =   esc_attr( $_POST['password'] );
-            $this->email      =   sanitize_email( $_POST['email'] );
-            $this->first_name =   sanitize_text_field( $_POST['first_name'] );
-            $this->last_name  =   sanitize_text_field( $_POST['last_name'] );
-            $this->phone      =   sanitize_text_field( $_POST['phone'] );
-            $this->address    =   sanitize_text_field( $_POST['address'] );
+            
+
+            $this->r_vars['user_name']   =   sanitize_user( $_POST['username'] );
+            $this->r_vars['password']   =   esc_attr( $_POST['password'] );
+            $this->r_vars['email']      =   sanitize_email( $_POST['email'] );
+            $this->r_vars['first_name'] =   sanitize_text_field( $_POST['first_name'] );
+            $this->r_vars['last_name']  =   sanitize_text_field( $_POST['last_name'] );
+            $this->r_vars['phone']      =   sanitize_text_field( $_POST['phone'] );
+            $this->r_vars['address']    =   sanitize_text_field( $_POST['address'] );
      
             // call @function complete_registration to create the user
             // only when no WP_error is found
             $this->complete_registration();
+            $this->send_mail( $this->r_vars['email'] );
           }
-        } else { 
-        
+        } elseif ( 1 > count( $this->reg_errors->get_error_messages() ) ) { 
+    
         $this->registration_form();
       }
     }
+    /**
+     * Sends the confirm booking email.
+     *
+     * @since    0.2
+     *
+     * @param $to email adress 
+     */   
+    public function send_mail( $to ) {
+
+        $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+
+        $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
+        $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
+      
+        $headers = array('Content-Type: text/html; charset=UTF-8');
+
+        $body = replace_template_tags( $body_template, $this->r_vars);
+        $subject = replace_template_tags( $subject_template, $this->r_vars);
+
+        wp_mail( $to, $subject, $body, $headers );
+
+    }
+
 }
