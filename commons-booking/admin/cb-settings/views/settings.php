@@ -22,7 +22,7 @@
   <div id="tabs">
     <ul>
       <li><a href="#tabs-main"><?php _e( 'Main Settings', $this->plugin_slug  ); ?></a></li>
-      <li><a href="#tabs-display"><?php _e( 'Appearance', $this->plugin_slug  ); ?></a></li>
+      <li><a href="#tabs-display"><?php _e( 'Pages', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-mail"><?php _e( 'Mail Settings', $this->plugin_slug ); ?></a></li>
