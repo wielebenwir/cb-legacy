@@ -29,7 +29,33 @@ class Commons_Booking_Admin_Settings {
   public function __construct() {
 
     $this->prefix = 'commons-booking';
+    $p =  $this->prefix; 
+
   }  
+
+  /**
+  * Set the default values for the settings. 
+  */
+  public function set_defaults() {
+    
+    foreach ($this->defaults as $page => $contents) { // get the option page / array
+      $option = get_option( $page );
+
+      foreach ($contents as $key => $value) {
+        
+        if ( empty( $option[$key] ) ) { // ignore if already set
+          $option[$key] = $this->defaults[ $page ][ $key ]; 
+        } 
+      }
+
+
+      update_option( $page, $option );
+
+      $option = get_option( $page );
+      var_dump($option);    
+  }
+
+}
 
 /**
  * Get settings from backend. Return either full array or specified setting
