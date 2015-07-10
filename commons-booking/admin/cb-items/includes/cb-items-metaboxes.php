@@ -1,12 +1,18 @@
 <?php
-
-/*
- * Registers a metabox for display of timeframe entries on the item edit screen
- * @package   Commons_Booking_Admin
- * @author    Florian Egermann <florian@macht-medien.de>
+/**
+ *
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Registers a metabox with timeframe list on the item edit screen
+ *
+ * @package Commons_Booking_Items_Metabox
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 class Commons_Booking_Items_Metabox extends Commons_Booking {

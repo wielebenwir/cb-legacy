@@ -1,14 +1,18 @@
 <?php
 /**
- * Define the custom post types
- * items
- *
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@macht-medien.de
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Registers the custom post type Items
+ *
+ * @package Commons_Booking_Items_CPT
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 class Commons_Booking_Items_CPT extends CPT_Core {

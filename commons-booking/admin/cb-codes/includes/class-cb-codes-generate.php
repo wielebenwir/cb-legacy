@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   Commons_Booking_Admin
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -9,8 +9,7 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
+ * Generate Codes 
  *
  * @package Commons_Booking_Codes
  * @author  Florian Egermann <email@example.com>
@@ -30,10 +29,10 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
   public function __construct() {
 
   }
-
-
-
-
+  /**
+   * Get all necessary variables.
+   *
+   */
   public function prepare( ) {
 
     if ( isset( $_REQUEST['item_id'] ) ) {
@@ -51,10 +50,9 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
     
   }
   /**
-   * Generates the codes.
+   * Generate the codes, display message
    *
    */
-
   public function generate_codes( ) {
 
     $this->prepare();
@@ -68,7 +66,7 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
 
 
   /**
-   * Inserts into Database.
+   * Insert into Database.
    *
    */
   private function sql_insert( ) {

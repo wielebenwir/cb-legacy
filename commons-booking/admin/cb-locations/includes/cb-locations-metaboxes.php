@@ -1,12 +1,18 @@
 <?php
-
-/*
- * Registers all metaboxes for the locations edit screen
- * @package   Commons_Booking_Admin
- * @author    Florian Egermann <florian@macht-medien.de>
+/**
+ *
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Registers all metaboxes for the locations edit screen
+ *
+ * @package Commons_Booking_Items
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 class Commons_Booking_Locations_Metaboxes extends Commons_Booking {

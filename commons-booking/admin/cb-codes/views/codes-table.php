@@ -1,7 +1,7 @@
 <?php 
 /**
  *
- * @package   Commons_Booking_Codes_Table
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -9,7 +9,7 @@
  */
 
 /**
- * Handles the display of the Bookings Table
+ * Handles the display of the Codes Table
  *
  * @package Commons_Booking_Codes_Table
  * @author  Florian Egermann <florian@macht-medien.de>

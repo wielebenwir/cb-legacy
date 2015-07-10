@@ -1,14 +1,18 @@
 <?php
 /**
- * Define the location custom post type
- * items
- *
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@macht-medien.de
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Register the custom post type: locations
+ *
+ * @package Commons_Booking_Items_Metabox
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 

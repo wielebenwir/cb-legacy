@@ -31,7 +31,10 @@ function commons_booking_codes_table_handler() {
 
 
 
-
+/**
+* Main Class: Table
+*
+*/ 
 class Commons_Booking_Codes_Table extends WP_List_Table
 {
     /**
