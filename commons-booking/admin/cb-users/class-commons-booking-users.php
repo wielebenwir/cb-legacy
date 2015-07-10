@@ -134,11 +134,6 @@ class Commons_Booking_Users {
         $this->reg_errors->add('email', __('Sorry, that email already exists!', $this->plugin_slug ) );
       }
 
-      // check for needed username length
-      if ( 5 > strlen( $values['password'] ) ) {
-          $this->reg_errors->add( 'password', __('Password length must be greater than 5', $this->plugin_slug ) );
-      }
-
       // check if checkbox is set
       if ( $values['terms_accepted'] != 'yes' ) {
           $this->reg_errors->add( 'terms_accepted', __('You must accept the terms', $this->plugin_slug ) );
@@ -264,7 +259,6 @@ class Commons_Booking_Users {
  
             $values = array (
               'username' => $_POST['username'],
-              'password' => $_POST['password'],
               'email' => $_POST['email'],
               'first_name' => $_POST['first_name'],
               'last_name' => $_POST['last_name'],
@@ -276,8 +270,8 @@ class Commons_Booking_Users {
             $this->registration_validation( $values );
             
 
-            $this->r_vars['user_name']   =   sanitize_user( $_POST['username'] );
-            $this->r_vars['password']   =   esc_attr( $_POST['password'] );
+            $this->r_vars['user_name']  =   sanitize_user( $_POST['username'] );
+            $this->r_vars['password']   =   wp_generate_password( 8, false );
             $this->r_vars['email']      =   sanitize_email( $_POST['email'] );
             $this->r_vars['first_name'] =   sanitize_text_field( $_POST['first_name'] );
             $this->r_vars['last_name']  =   sanitize_text_field( $_POST['last_name'] );
