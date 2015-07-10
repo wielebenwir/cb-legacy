@@ -26,29 +26,6 @@ class Commons_Booking_Users {
 
 
     }
-  /**
-   * Create the necessary pages
-   *
-   * @since    0.2
-   *
-   */
-  public function install() {
-    
-
-    $this->reg_page = create_page('Registration page');
-    $this->reg_conf_page = create_page('Registration Confirmation page');
-
-    }
-
-    public function create_the_page () {
-       // $this->registration_page = create_page('Registration page - AAAAAAA');
-
-
-    $this->reg_page = create_page('Registration page');
-    $this->reg_conf_page = create_page('Registration Confirmation page'); 
-        echo ("<h1>HELLOOOO</h1>");
-    
-    }
 
   /**
    * Backend: Show the extra profile fields
@@ -112,10 +89,16 @@ class Commons_Booking_Users {
       if ( is_user_logged_in() ) {
           echo 'Welcome, registered user!';
       } else {
-        include (commons_booking_get_template_part( 'user', 'registration', FALSE )); 
-      }
 
+        $registration_enabled = get_option('users_can_register');
 
+        if( $registration_enabled ) {
+          include (commons_booking_get_template_part( 'user', 'registration', FALSE )); 
+        } else {
+          echo __('Sorry, registration is not allowed', $this->plugin_slug );
+        } // end if enabled
+
+      } // end if is_logged_in
     }
 
   /**
@@ -204,6 +187,33 @@ class Commons_Booking_Users {
             echo __( 'Thanks! Registration is complete. We´ve sent you an email with your Account information. ', $this->plugin_slug );
         }
     }
+
+
+  /**
+   * Frontend: Main registration function
+   *
+   * @since    0.2
+   *
+   */
+    public function page_user() {
+      
+      if ( is_user_logged_in() ) {
+
+          $current_user = wp_get_current_user();
+          echo __ ('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
+
+      } else { // Login Form and registration link
+
+        include (commons_booking_get_template_part( 'user', 'login', FALSE )); 
+       
+      }
+   }
+
+
+
+
+
+
   /**
    * Frontend: Main registration function
    *
