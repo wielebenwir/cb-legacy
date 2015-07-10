@@ -200,11 +200,12 @@ class Commons_Booking_Users {
       if ( is_user_logged_in() ) {
 
           $current_user = wp_get_current_user();
-          echo __ ('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
+          echo __('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
+          echo '<span class="align-right"><a href="' . wp_logout_url( home_url() ) . '">' . __('Logout') . '</a></span>';
 
           $user_bookings = $this->get_user_bookings( $current_user->ID );
 
-          if ( $user_bookings ) {
+          if ( !empty ($user_bookings) ) {
 
             $review_page_id = $this->settings->get('pages', 'bookingconfirm_page_select');
             include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
