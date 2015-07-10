@@ -308,7 +308,7 @@ class Commons_Booking_Data {
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
-    $target_page_id = $this->get_settings( 'display', 'bookingconfirm_page_select' ); // get setting for bookings review page (id)
+    $target_page_id = $this->get_settings( 'pages', 'bookingconfirm_page_select' ); // get setting for bookings review page (id)
     $this->target_url = get_the_permalink( $target_page_id ); // get url from id
 
     echo (' <div id ="timeframe_' . $tf[ 'id' ] .'" class="cb_timeframe_form">');
