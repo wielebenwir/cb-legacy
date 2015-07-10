@@ -120,8 +120,7 @@ function cb_timeframes_table_form_page_handler()
     </form>
 
     <?php 
-        if ( isset($_REQUEST['id']) )
-        {
+        if ( isset($_REQUEST['id']) ) {
             cb_timeframes_table_form_render_codes($item);
         }
          ?>
