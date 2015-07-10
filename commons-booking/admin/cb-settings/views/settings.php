@@ -86,7 +86,7 @@
           array(
             'name'             => __( 'Booking Review Page', $this->plugin_slug ),
             'desc'             => __( 'Once you click "Book, you will be forwarded to this page', $this->plugin_slug ),
-            'id'               => $this->plugin_slug . '_bookingsubmit_page_select',
+            'id'               => $this->plugin_slug . '_bookingconfirm_page_select',
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
@@ -113,7 +113,7 @@
         ),
       );
 
-      cmb2_metabox_form( $option_fields_display, $this->plugin_slug . '-settings-display' );
+      cmb2_metabox_form( $option_fields_display, $this->plugin_slug . '-settings-pages' );
       ?>
     </div>
     <div id="tabs-bookingsettings">
