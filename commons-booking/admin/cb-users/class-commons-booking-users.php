@@ -202,6 +202,17 @@ class Commons_Booking_Users {
           $current_user = wp_get_current_user();
           echo __ ('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
 
+          $user_bookings = $this->get_user_bookings( $current_user->ID );
+
+          if ( $user_bookings ) {
+
+            $review_page_id = $this->settings->get('pages', 'bookingconfirm_page_select');
+            include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
+
+          } else {
+            echo __(' You haven´t booked anything yet.'); 
+          }
+
       } else { // Login Form and registration link
 
         include (commons_booking_get_template_part( 'user', 'login', FALSE )); 
@@ -209,7 +220,20 @@ class Commons_Booking_Users {
       }
    }
 
+/**
+ * get all booking-dataa as array
+ *
+ * @return array
+ */   
+    public function get_user_bookings( $user_id) {
+      
+      global $wpdb;
+      $table_bookings = $wpdb->prefix . 'cb_bookings';
 
+      $sqlresult = $wpdb->get_results("SELECT * FROM $table_bookings WHERE user_id = $user_id", ARRAY_A);          
+
+      return $sqlresult;
+    }
 
 
 
