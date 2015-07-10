@@ -8,11 +8,6 @@
     </div>
      
     <div class="cb-row">
-    <label for="password"><?php echo __( 'Password',  $this->plugin_slug ); ?></label>
-    <input type="password" name="password" value="<?php echo ( isset( $_POST['password'] ) ? $this->password : null ); ?>">
-    </div>
-     
-    <div class="cb-row">
     <label for="email"><?php echo __( 'Email', $this->plugin_slug ); ?> </label>
     <input type="text" name="email" value="<?php echo ( isset( $_POST['email']) ? $this->email : null ); ?>">
     </div>
