@@ -490,13 +490,15 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             } else if ( !empty($_GET['booking']) ) { // we confirm the booking 
 
 
-                    // DATA FROM FORM
+                    // DATA FROM URL
                     $this->hash = $_GET['booking'];
 
+                    if (! ctype_alnum( $this->hash ) ) {
+                        die ("Wrong Code");
+                    }
 
                     $user_id = get_current_user_id();
                     $b_id = $this->decrypt( $this->hash );
-                    echo ("ID:".$b_id);
 
                     $this->booking = $this->get_booking( $b_id );
 
