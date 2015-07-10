@@ -46,16 +46,18 @@ public function install()
     //    Like this: PRIMARY KEY[space][space](id)
     // otherwise dbDelta will not work
     $sql = "CREATE TABLE " . $table_name . " (
-      id int(11) NOT NULL AUTO_INCREMENT,
-      date_start date NOT NULL,
-      date_end date NOT NULL,
-      item_id int(11) NOT NULL,
-      user_id int(11) NOT NULL,
-      code_id int(11) NOT NULL,
-      location_id int(11) NOT NULL,
-      booking_time datetime NOT NULL,
-      status varchar(50) NOT NULL,
-      PRIMARY KEY  (id)
+        id int(11) NOT NULL AUTO_INCREMENT,
+        date_start date NOT NULL,
+        date_end date NOT NULL,
+        item_id int(11) NOT NULL,
+        user_id int(11) NOT NULL,
+        code_id int(11) NOT NULL,
+        location_id int(11) NOT NULL,
+        booking_time datetime NOT NULL,
+        status varchar(50) NOT NULL,
+        hash varchar(50) NOT NULL,
+        comment text,
+        PRIMARY KEY  (id)
       );";
 
     // we do not execute sql directly
@@ -92,6 +94,8 @@ public function install()
         location_id int(11) NOT NULL,
         booking_time datetime NOT NULL,
         status varchar(50) NOT NULL,
+        hash varchar(50) NOT NULL,
+        comment text,
         PRIMARY KEY  (id)
         );";
 
