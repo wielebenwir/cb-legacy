@@ -177,9 +177,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
 
      foreach ($sqlresult as $date) {
-        // var_dump( $date ) ;
+
         $datediff = strtotime( $date['date_end'] ) - strtotime( $date['date_start'] );
         $datediff = floor( $datediff / ( 60*60*24 ));
+  
         for($i = 0; $i < $datediff + 1; $i++){
             $thedate = date("Y-m-d", strtotime( $date['date_start'] . ' + ' . $i . 'day'));
             array_push( $booked_days,  date( 'Y-m-d', strtotime($thedate)) );
@@ -398,37 +399,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
         return $data;
 
-    }    
-    /**
-     * Generate hash
-     *
-     * @return string hash
-     */   
-    public function generate_hash( ) {
-        $hash = uniqid();
-        return $hash;
-
-    }    
-    /**
-     * Generate hash
-     *
-     * @return string id
-     */   
-    public function get_booking_by_hash( $hash ) {
-
-        global $wpdb;
-
-        $sqlresult = $wpdb->get_row( $wpdb->prepare(
-        "
-        SELECT *
-        FROM " . $this->table_bookings . " 
-        WHERE hash = '%s'
-        ", 
-        $hash), ARRAY_A); 
-        echo $sqlresult;
-        return $sqlresult;
-
-    }
+    }     
     /**
      * Set all needed variabls for template.
      * 
