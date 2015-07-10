@@ -1,6 +1,7 @@
 <?php  ?>
 
     <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
+    <div class="cb-box cb-register">
     <div class="cb-row">
     <label for="username"><?php echo __( 'Username', $this->plugin_slug ); ?></label>
     <input type="text" name="username" value="<?php echo ( isset( $_POST['username'] ) ? $this->username : null ); ?>">
@@ -42,5 +43,6 @@
     <?php wp_nonce_field( 'create_user', 'user_nonce' ); ?>
     <div class="cb-row">
     <input type="submit" name="submit" value="<?php echo __('Register', $this->plugin_slug ); ?>"/>
+    </div>
     </div>
     </form>
