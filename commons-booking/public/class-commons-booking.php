@@ -133,6 +133,11 @@ class Commons_Booking {
         add_filter( 'register_url', array( $this, 'cb_register_url' ) );
         add_filter( 'login_url', array( $this, 'cb_user_url' ) );
 
+        // show admin bar only for admins and editors
+        if (!current_user_can('edit_posts')) {
+            add_filter('show_admin_bar', '__return_false');
+        }
+
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -142,8 +147,6 @@ class Commons_Booking {
          * Filter: Overwrite pages.
          */
         add_action( 'the_content', array( $this, 'overwrite_page' ) );   
-        // add_action( 'the_content', array( $this, 'tester' ) );   
-
 
 
 
@@ -185,8 +188,7 @@ public function tester() {
         // // check if setting is set, otherwise set it. 
         
         // $settings->set_defaults( $defaults );
-}
-
+    }
     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
@@ -540,7 +542,7 @@ public function tester() {
         
         $s_display = get_option( $this->get_plugin_slug() . '-settings-pages' ); 
         $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingconfirm_page_select'] );
-        
+
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
         if ( isset( $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
             $allowclosed = 1;
