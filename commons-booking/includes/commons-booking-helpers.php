@@ -92,7 +92,40 @@ function pages_dropdown() {
     return strtotime($date);
   }
 
+  /**
+   * Create page.
+   *
+   * @since    0.2
+   *
+   * @param     $title page title
+   * @param     $option_name the name of the option in the settings-pages array
+   * @return    Page ID
+   */
+  function create_page( $title, $option_name ) {
 
+    $option_page = get_option ( 'commons-booking-settings-pages' );
+    $option = $option_page[ $option_name ];
+
+    if ( !empty ( $option ) ) {
+
+      return $option;
+
+    } else {
+
+      $my_page = array(
+        'post_title'    =>  $title,
+        'post_content'  => '',
+        'post_status'   => 'publish',
+        'post_type'     => 'page',
+        'post_author'   => 1
+      );
+      // Insert the post into the database
+      $id = wp_insert_post( $my_page );
+      return $id;
+ 
+    }
+   
+  }
 
 
 
