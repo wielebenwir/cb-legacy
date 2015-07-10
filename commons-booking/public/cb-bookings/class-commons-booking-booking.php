@@ -520,8 +520,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message                      
                             echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
-                            echo ("bookig id:" . $this->booking['id'] . " HASH:" . $this->hash);
-
                             $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                             $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
                             $this->send_mail( $this->user['email'] );
