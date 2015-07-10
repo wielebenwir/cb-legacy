@@ -93,13 +93,10 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-locations/includes/cb-locations-metaboxes.php' );
 
 
-		// BOOKINGS: Install/Update the database Tables
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-setup.php' );
 		// BOOKINGS Extend the Wordpress Admin Tables Interface
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-table.php' );
 	
-		// CODES: Install/Update the database Tables
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-setup.php' );
+
 		// CODES Extend the Wordpress Admin Tables Interface
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-table.php' );
 		// CODES: Functions
@@ -120,16 +117,18 @@ class Commons_Booking_Admin {
 		// locations metabox
 		$locations_metabox = new Commons_Booking_Locations_Metaboxes ();
 
+		$cb_users = new Commons_Booking_Users ();
+
 
     add_action( 'add_meta_boxes', array( $items_metabox, 'cb_items_add_timeframe_meta_box'));
     add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_descr_metaboxes' ) );
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
 
-    add_action( 'show_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
-    add_action( 'edit_user_profile', array( $this, 'cb_show_extra_profile_fields' ) );
-  	add_action( 'personal_options_update', array( $this, 'cb_save_extra_profile_fields' ) );
-		add_action( 'edit_user_profile_update', array( $this, 'cb_save_extra_profile_fields' ) );
+    add_action( 'show_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
+    add_action( 'edit_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
+  	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ) );
+		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ) );
 
 
 		//Add the export settings method
@@ -194,53 +193,6 @@ class Commons_Booking_Admin {
 
 		return self::$instance;
 	}
-
-
-/**
- * Add items list output to page selected in settings.
- *
- * @since    0.0.1
- *
- * @return    Mixed 
- */
-  public function cb_show_extra_profile_fields( $user ) { ?>
-
-        <h3><?php _e ( ' Extra Fields', $this->plugin_slug ); ?> </h3>
-
-        <table class="form-table">
-            <tr>
-                <th><label for="phone"><?php _e ( 'Phone number', $this->plugin_slug ); ?></label></th>
-                <td>
-                    <input type="text" name="phone" id="phone" value="<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="regular-text" /><br />
-                </td>
-            </tr>               
-            <tr>
-                <th><label for="address"><?php _e ( 'Address', $this->plugin_slug ); ?></label></th>
-
-                <td>
-                    <input type="textarea" name="address" id="address" value="<?php echo esc_attr( get_the_author_meta( 'address', $user->ID ) ); ?>" class="regular-text" /><br />
-                </td>
-            </tr>
-
-        </table>
-    <?php }
-
-	/**
-	 * Add items list output to page selected in settings.
-	 *
-	 * @since    0.0.1
-	 *
-	 * @return    Mixed 
-	 */
-
-		public function cb_save_extra_profile_fields( $user_id ) {
-
-			if ( !current_user_can( 'edit_user', $user_id ) )
-				return false;
-
-			update_user_meta( $user_id, 'phone', $_POST['phone'] );
-			update_user_meta( $user_id, 'address', $_POST['address'] );
-		}
 
 
 	/**
