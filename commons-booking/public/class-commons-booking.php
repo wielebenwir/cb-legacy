@@ -129,6 +129,9 @@ class Commons_Booking {
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
+        add_filter( 'registration_redirect', 'cb_registration_redirect' );
+        add_filter( 'register_url', array( $this, 'cb_register_url' ) );
+        add_filter( 'login_url', array( $this, 'cb_user_url' ) );
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -140,6 +143,10 @@ class Commons_Booking {
          */
         add_action( 'the_content', array( $this, 'overwrite_page' ) );   
         // add_action( 'the_content', array( $this, 'tester' ) );   
+
+
+
+
                 
 
     }
@@ -192,7 +199,6 @@ public function tester() {
     public function overwrite_page( $pageID ) {
 
         $settings_display = $this->settings->get('pages');
-        var_dump($settings_display);
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
@@ -204,12 +210,17 @@ public function tester() {
                 $bookingpage = new Commons_Booking_Booking;
                 return $bookingpage->render_bookingreview();
 
+            } elseif ( !empty( $settings_display[ 'user_page_select' ] ) && ( is_page( $settings_display[ 'user_page_select' ] ) ) ) {
+
+                $cb_user = new Commons_Booking_Users;
+                // return $cb_user->custom_registration_function();
+                return $cb_user->page_user();            
 
             } elseif ( !empty( $settings_display[ 'registration_page_select' ] ) && ( is_page( $settings_display[ 'registration_page_select' ] ) ) ) {
 
                 $cb_user = new Commons_Booking_Users;
+                // return $cb_user->custom_registration_function();
                 return $cb_user->custom_registration_function();
-
 
             } elseif (  is_singular( 'cb_items' ) ) {                             
                 $item_id = get_the_ID();
@@ -422,6 +433,7 @@ public function tester() {
 
         // create the necessary pages 
         $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
+        $user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
         $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
         $user_login_page = create_page(__( 'Login', $p ), $p.'_login_page_select');
         $booking_confirm_page = create_page(__( 'Booking Confirmation', $p ), $p.'_bookingconfirm_page_select');
@@ -432,9 +444,10 @@ public function tester() {
         $defaults = array(
             $p. '-settings-pages' => array(
               $p.'_item_page_select' => $item_page,
-              $p.'_bookingconfirm_page_select' => $booking_confirm_page,
-              $p.'_registration_page_select' => $user_reg_page,
+              $p.'_user_page_select' => $user_page,
               $p.'_login_page_select' => $user_login_page,
+              $p.'_registration_page_select' => $user_reg_page,
+              $p.'_bookingconfirm_page_select' => $booking_confirm_page,
             ),
             $p.'-settings-bookings' => array(
               $p.'_bookingsettings_maxdays' => 3,
@@ -589,16 +602,37 @@ public function tester() {
     }
 
     /**
-     * NOTE:  Filters are points of execution in which WordPress modifies data
-     *        before saving it or sending it to the browser.
+     * Redirect: Registration page
      *
-     *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-     *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-     *
-     * @since    0.0.1
+     * @since    0.2
      */
-    public function filter_method_name() {
-        // @TODO: Define your filter hook callback here
+    public function cb_registration_redirect() {
+
+       $id = $this->settings->get('pages', 'user_page_select');
+       $url = get_permalink( $id );
+       return $url;
+    }     
+    /**
+     * Redirect: User page
+     *
+     * @since    0.2
+     */
+    public function cb_user_url() {
+
+       $id = $this->settings->get('pages', 'user_page_select');
+       $url = get_permalink( $id );
+       return $url;
+    }    
+    /**
+     * Redirect: After registration
+     *
+     * @since    0.2
+     */
+    public function cb_register_url() {
+
+       $id = $this->settings->get('pages', 'registration_page_select');
+       $url = get_permalink( $id );
+       return $url;
     }
 
     /**
