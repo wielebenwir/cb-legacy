@@ -33,7 +33,7 @@
     </div>   
 
     <div class="cb-row">
-    <label for="address"><?php echo __( 'Adress', $this->plugin_slug ); ?></label>
+    <label for="address"><?php echo __( 'Address', $this->plugin_slug ); ?></label>
     <input type="text" name="address" value="<?php echo ( isset( $_POST['address']) ? $this->address : null ); ?>">
     </div>    
     <div class="cb-row">
