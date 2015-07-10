@@ -60,8 +60,8 @@
     <div id="tabs-display">
       <?php
 
-      $option_fields_display = array(
-        'id' => $this->plugin_slug . '_options_display',
+      $option_fields_pages = array(
+        'id' => $this->plugin_slug . '_options_pages',
         'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
         'show_names' => true,
         'fields' => array(
@@ -93,6 +93,15 @@
             'options'          => pages_dropdown(),
           ),           
           array(
+            'name'             => __( 'User Page', $this->plugin_slug ),
+            'desc'             => __( 'The User page.', $this->plugin_slug ),
+            'id'               => $this->plugin_slug . '_user_page_select',
+            'type'             => 'select',
+            'show_option_none' => true,
+            'default'          => 'none',
+            'options'          => pages_dropdown(),
+          ),          
+          array(
             'name'             => __( 'Registration Page', $this->plugin_slug ),
             'desc'             => __( 'The registration form.', $this->plugin_slug ),
             'id'               => $this->plugin_slug . '_registration_page_select',
@@ -113,7 +122,7 @@
         ),
       );
 
-      cmb2_metabox_form( $option_fields_display, $this->plugin_slug . '-settings-pages' );
+      cmb2_metabox_form( $option_fields_pages, $this->plugin_slug . '-settings-pages' );
       ?>
     </div>
     <div id="tabs-bookingsettings">
@@ -228,11 +237,13 @@
             'desc' => __( 'The body of the confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_body',
             'default' => __( 
-              '<h1>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h1>
+              '<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
+
+              <p>Click here to see or cancel you booking: {{URL}}.</p>
 
               <p>Here´s your booking code: <strong>{{CODE}}</strong></p>
 
-              <h2>Pick up information</h2>
+              <h3>Pick up information</h3>
 
               <em>Please make sure you are on time.</em>
 
@@ -241,14 +252,12 @@
               Address: {{LOCATION_ADDRESS}}<br>
               Opening hours: {{LOCATION_OPENINGHOURS}}.</p>
 
-              <h2>Your information</h2>
+              <h3>Your information</h3>
 
               <em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>
 
               <p>Name: {{USER_NAME}}.<br>
                 Address: {{USER_ADDRESS}}</p>
-
-              <p>If you must cancel your booking, please click here: {{URL}}.</p>
 
               <p>Thanks, the Team. </p>
             ', $this->plugin_slug ),
