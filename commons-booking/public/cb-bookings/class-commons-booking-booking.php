@@ -43,12 +43,9 @@ class Commons_Booking_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
     	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $this->secret = 'kdsidsabnrewrew';
+        $this->secret = '8L1i92OaxcnbNbveOLR6MWs3CUJ22e4P';
 
-		if (!$this->user_id) {
-            die ( ' No user id' );
-    		// error message and exit
-    	}
+
 
     }
 
@@ -256,25 +253,25 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
  *
  * @return array
  */   
-    public function get_booking( $booking_id ) {
-    	
-    	global $wpdb;
-    	$table_bookings = $wpdb->prefix . 'cb_bookings';
+    public function get_booking( $booking_id) {
+        
+        global $wpdb;
+        $table_bookings = $wpdb->prefix . 'cb_bookings';
 
-    	$sqlresult = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);
+        $sqlresult = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);          
 
-    	$booking_data['id']				= $sqlresult['id'];
-    	$booking_data['date_start']		= $sqlresult['date_start'];
-    	$booking_data['date_end']		= $sqlresult['date_end'];
-    	$booking_data['item_id']			= $sqlresult['item_id'];
-    	$booking_data['code_id']			= $sqlresult['code_id'];
-    	$booking_data['user_id']			= $sqlresult['user_id'];
-    	$booking_data['location_id']		= $sqlresult['location_id'];
-    	$booking_data['booking_time']	= $sqlresult['booking_time'];
-    	$booking_data['status']			= $sqlresult['status'];
+        $booking_data['id']             = $sqlresult['id'];
+        $booking_data['date_start']     = $sqlresult['date_start'];
+        $booking_data['date_end']       = $sqlresult['date_end'];
+        $booking_data['item_id']            = $sqlresult['item_id'];
+        $booking_data['code_id']            = $sqlresult['code_id'];
+        $booking_data['user_id']            = $sqlresult['user_id'];
+        $booking_data['location_id']        = $sqlresult['location_id'];
+        $booking_data['booking_time']   = $sqlresult['booking_time'];
+        $booking_data['status']         = $sqlresult['status'];
 
-    	return $booking_data;
-    }
+        return $booking_data;
+    } 
 
  /**
  * set status in booking table.
@@ -320,11 +317,11 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         return;
 
     } 
-/**
- * Sends the confirm booking email.
- * 
- *@param $to, 
- */   
+    /**
+     * Sends the confirm booking email.
+     * 
+     *@param $to, 
+     */   
     public function send_mail( $to ) {
 
         $body_template = ( $this->email_messages['mail_confirmation_body'] );  // get template
@@ -342,6 +339,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     /**
     * Sends the confirm booking email.
     * 
+    *
+    *
     * @param $to, $subject, $message
     * @return array
     */  
@@ -376,11 +375,13 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
      *
      * @return string encoded
      */ 
-    public function encrypt( $array ) {
-        $delimiter = '|';
-        $s = implode ( $delimiter , $array);
-        $s_ecoded  = base64_encode( mcrypt_encrypt( MCRYPT_RIJNDAEL_256, md5( $this->secret ), $s, MCRYPT_MODE_CBC, md5( md5( $this->secret ) ) ) );
-        return $s_ecoded;
+    public function encrypt( $id ) {
+
+        $id = base_convert($id, 10, 36); // Save some space
+        $data = mcrypt_encrypt(MCRYPT_BLOWFISH, $this->secret, $id, 'ecb');
+        $data = bin2hex($data);
+
+        return $data;
     }  
     /**
      * Decrypt the booking array.
@@ -389,13 +390,43 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
      *
      * @return array decoded
      */   
-    public function decrypt( $s ) {
+    public function decrypt( $encrypted_id ) {
 
-        $s_decoded  = rtrim( mcrypt_decrypt( MCRYPT_RIJNDAEL_256, md5( $this->secret ), base64_decode( $s  ), MCRYPT_MODE_CBC, md5( md5( $this->secret ) ) ), "\0");
+        $data = pack('H*', $encrypted_id); // Translate back to binary
+        $data = mcrypt_decrypt(MCRYPT_BLOWFISH, $this->secret, $data, 'ecb');
+        $data = base_convert($data, 36, 10);
 
-        $delimiter = '|';
-        $array = explode ($delimiter, $s_decoded);
-        return $array;
+        return $data;
+
+    }    
+    /**
+     * Generate hash
+     *
+     * @return string hash
+     */   
+    public function generate_hash( ) {
+        $hash = uniqid();
+        return $hash;
+
+    }    
+    /**
+     * Generate hash
+     *
+     * @return string id
+     */   
+    public function get_booking_by_hash( $hash ) {
+
+        global $wpdb;
+
+        $sqlresult = $wpdb->get_row( $wpdb->prepare(
+        "
+        SELECT *
+        FROM " . $this->table_bookings . " 
+        WHERE hash = '%s'
+        ", 
+        $hash), ARRAY_A); 
+        echo $sqlresult;
+        return $sqlresult;
 
     }
     /**
@@ -430,6 +461,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $b_vars['user_phone'] = $this->user['phone'];    
         if ( $include_code ) {
             $b_vars['code'] = $this->get_code( $this->booking['code_id'] ); 
+            $b_vars['url'] = get_the_permalink() . '?booking=' . $this->hash; 
         }
         $this->b_vars = $b_vars;
 
@@ -471,8 +503,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
 
                             $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
-                            $encode_array = array( $booking_id, $this->user_id, $_POST['item_id'], $_POST['date_start'], $_POST['date_end'] );
-                            $encrypted = $this->encrypt( $encode_array );
+                            $this->hash = $this->encrypt( $booking_id );
 
                             include ( 'views/booking-review.php' );
                         
@@ -489,15 +520,16 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
 
                     // DATA FROM FORM
-                    $encrypted = $_GET['booking'];
-                    $decrypted = $this->decrypt( $encrypted );
+                    $this->hash = $_GET['booking'];
 
-                    $this->booking_id = ( $decrypted[0] );
-                    $this->user_id = ( $decrypted[1] ); 
 
-                    $this->booking = $this->get_booking( $this->booking_id );
+                    $user_id = get_current_user_id();
+                    $b_id = $this->decrypt( $this->hash );
+                    echo ("ID:".$b_id);
 
-                    if ( ( $this->booking['user_id'] ==  $this->user_id ) || is_admin() ) { // user that booked or admin
+                    $this->booking = $this->get_booking( $b_id );
+
+                    if ( ( $this->booking['user_id'] ==  $user_id ) || is_admin() ) { // user that booked or admin
 
                         $this->date_start = ( $this->booking['date_start'] ); 
                         $this->date_end = ( $this->booking['date_end'] ); 
@@ -515,8 +547,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message                      
                             echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
-                            $this->set_booking_status( $this->booking_id, 'confirmed' ); // set booking status to confirmed
-                            $this->set_booking_hash( $this->booking_id,  $encrypted ); // set booking hash
+                            echo ("bookig id:" . $this->booking['id'] . " HASH:" . $this->hash);
+
+                            $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
+                            $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
                             $this->send_mail( $this->user['email'] );
                             include ( 'views/booking-review.php' );                            
                             include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
@@ -534,7 +568,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
                             echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
-                            $this->set_booking_status( $this->booking_id, 'canceled' ); // set booking status to confirmed
+                            $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
                         } else {
                             echo ('You haven´t booked anything.');
                         }
