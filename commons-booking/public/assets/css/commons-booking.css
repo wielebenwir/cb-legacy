@@ -1,11 +1,12 @@
-/* Typo general */
-.padding, .cb-box, #cb-bookingbar .inner, .cb-list-item, .cb-timeframe, #cb-bookingbar-msg {
+/* Variables */
+/* mixins */
+.padding, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar-msg {
   padding: 1em; }
 
-.align-right {
+.align-right, .cb-list ul li span.cb-action {
   float: right; }
 
-.cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
+.cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
   font-size: 0.8em; }
 
 .cb-big, #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit, .cb-timeframe .cb-location .cb-location-name {
@@ -17,12 +18,18 @@
   font-weight: bold;
   margin-bottom: 1em; }
 
-.cb-box, #cb-bookingbar .inner, .cb-list-item, .cb-timeframe {
-  background: #f6f6f6;
-  margin-bottom: 1em;
-  overflow: hidden;
+.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, .cb-list ul li {
   border: 1px solid #e1e1e1;
   display: block; }
+
+.cb-row {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 0.5em; }
+
+.cb-box, #cb-bookingbar .inner, .cb-timeframe {
+  background: #f6f6f6;
+  margin-bottom: 1em;
+  overflow: hidden; }
 
 .cb-booking-code strong {
   padding: 5px;
@@ -31,23 +38,23 @@
   color: green;
   font-weight: normal; }
 
+.confirmed {
+  color: #13c40e; }
+
 /*****************
  * ITEMS LIST
  *
  */
-.cb-date {
-  color: black; }
-
 /*****************
 * CALENDAR
 *
 */
 #cb-bookingbar-msg.error {
   background: red;
-  color: #fff; }
+  color: white; }
 #cb-bookingbar-msg.notice {
   background: green;
-  color: #fff; }
+  color: white; }
 
 #cb-bookingbar {
   z-index: 99;
@@ -73,25 +80,23 @@
       font-weight: bold; }
 
 /* LiSTS */
-.cb-list-item .cb-item {
+.cb-list .cb-list-item {
+  margin-bottom: 1em;
   display: block;
+  overflow: hidden; }
+.cb-list ul {
   overflow: hidden;
-  margin-bottom: 1em; }
-.cb-list-item ul.cb-list-item-timeframe {
-  overflow: hidden;
-  border-top: 1px solid #e1e1e1;
+  display: block;
+  list-style: none;
+  padding: 0;
   margin: 0; }
-  .cb-list-item ul.cb-list-item-timeframe li {
-    margin: 0;
-    padding: .2em 0 .2em 0;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #e1e1e1; }
-    .cb-list-item ul.cb-list-item-timeframe li span.cb-action a {
-      float: right; }
-    .cb-list-item ul.cb-list-item-timeframe li:hover {
+  .cb-list ul li {
+    list-style: none;
+    background: #fff; }
+    .cb-list ul li:hover {
       background: #fff; }
 
-/* Timeframes */
+/* Timeframes & Calendar */
 .cb-timeframe {
   /* Calendar */ }
   .cb-timeframe .pusher.Mon, .cb-timeframe ul.cb-calendar li.Mon:first-child {
@@ -109,9 +114,8 @@
   .cb-timeframe .cb-location {
     display: block;
     overflow: hidden; }
-    .cb-timeframe .cb-location .cb-contact, .cb-timeframe .cb-location .cb-address {
-      width: 50%;
-      float: left; }
+    .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
+      padding-left: 0; }
   .cb-timeframe ul.cb-calendar {
     list-style: none;
     clear: both;
@@ -129,23 +133,23 @@
       padding: 10px;
       float: left;
       text-align: center;
-      background: #ffffff;
+      background: white;
       color: #e1e1e1;
       border: 1px solid #f6f6f6; }
       .cb-timeframe ul.cb-calendar li.bookable {
         cursor: pointer;
-        color: #207B1C;
+        color: #207b1c;
         background: #adecaa; }
         .cb-timeframe ul.cb-calendar li.bookable:hover {
           background: #155113;
-          color: #fff; }
+          color: white; }
       .cb-timeframe ul.cb-calendar li.selected {
-        border: 1px solid #207B1C;
-        background: #207B1C;
-        color: #fff; }
+        border: 1px solid #207b1c;
+        background: #207b1c;
+        color: white; }
       .cb-timeframe ul.cb-calendar li.booked {
         background: red;
-        color: #fff; }
+        color: white; }
     .cb-timeframe ul.cb-calendar .cb-day {
       display: block;
       font-size: 0.8em; }
