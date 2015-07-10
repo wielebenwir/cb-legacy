@@ -45,11 +45,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-bo
 
 // Classes for the individual content types - not sure if it belongs here. @TODO
 require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
-
-// Class for Timeframes functionality
-//require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/includes/class-cb-timeframes-list.php' );
-
-
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
 
 
@@ -60,13 +55,26 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-bo
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/class-commons-booking-admin-settings.php' );
 
+
+  // CODES: Install/Update functionality for database Tables
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-codes/class-commons-booking-codes-setup.php' );
+
+// BOOKINGS: Install/Update the database Tables
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-bookings/class-commons-booking-bookings-setup.php' );
+
+// BOOKINGS: Install/Update the database Tables
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-users/class-commons-booking-users.php' );
+
 // include Helper functions
 require_once( plugin_dir_path( __FILE__ ) . 'includes/commons-booking-helpers.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'includes/array_column.php' );
 
 /*
  * Load template system
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'includes/fake-page.php' );
+
 
 /*
  * Load Widget boilerplate
@@ -89,9 +97,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' )
  *
  */
 
-register_activation_hook( __FILE__, array( 'Commons_Booking', 'activate' ) );
+register_activation_hook( __FILE__, array( 'Commons_Booking', 'single_activate' ) );
 register_deactivation_hook( __FILE__, array( 'Commons_Booking', 'deactivate' ) );
-
 
 add_action( 'plugins_loaded', array( 'Commons_Booking', 'get_instance' ) );
 
