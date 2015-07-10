@@ -115,8 +115,7 @@ class Commons_Booking {
 
         // Activate plugin when new blog is added
         add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
-
-
+        
 
         // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
         $type_items = new Commons_Booking_Items_CPT( $this->get_plugin_slug() );
@@ -124,12 +123,11 @@ class Commons_Booking {
         $type_locations = new Commons_Booking_Locations_CPT( $this->get_plugin_slug() );
 
         $items = new Commons_Booking_Public_Items();
+        $this->users = new Commons_Booking_Users();
 
-
+        // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
-        //Override the template hierarchy for load /templates/content-demo.php
-        add_filter( 'template_include', array( $this, 'load_content_demo' ) ); //@TODO: delete
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -139,8 +137,8 @@ class Commons_Booking {
         /* 
          * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'overwrite_page' ) );             
-       
+        add_action( 'the_content', array( $this, 'overwrite_page' ) );   
+                
 
     }
 
@@ -154,16 +152,25 @@ class Commons_Booking {
      * @return    Mixed 
      */
     public function overwrite_page( $pageID ) {
-        $settings_display = get_option( $this->get_plugin_slug() .'-settings-display' );
-            if ( !empty( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_item_page_select' ] ) ) ) {
+
+        $settings_display = $this->settings->get('display');
+
+            if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
                 $items = new Commons_Booking_Public_Items;
                 return $items->items_render();
             
-            } elseif ( !empty( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) AND ( is_page( $settings_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select' ] ) ) ) {
+            } elseif ( !empty( $settings_display[ 'bookingconfirm_page_select' ] ) && ( is_page( $settings_display[ 'bookingconfirm_page_select' ] ) ) ) {
 
                 $bookingpage = new Commons_Booking_Booking;
                 return $bookingpage->render_bookingreview();
+
+
+            } elseif ( !empty( $settings_display[ 'registration_page_select' ] ) && ( is_page( $settings_display[ 'registration_page_select' ] ) ) ) {
+
+                $cb_user = new Commons_Booking_Users;
+                return $cb_user->custom_registration_function();
+
 
             } elseif (  is_singular( 'cb_items' ) ) {                             
                 $item_id = get_the_ID();
@@ -188,7 +195,7 @@ class Commons_Booking {
      */
     public function get_plugin_slug() {
         return self::$plugin_slug;
-    }
+    }    
 
     /**
      * Return the plugin name.
@@ -324,7 +331,7 @@ class Commons_Booking {
         switch_to_blog( $blog_id );
         self::single_activate();
         restore_current_blog();
-    }
+    }    
 
     /**
      * Get all blog ids of blogs in the current network that are:
@@ -353,7 +360,7 @@ class Commons_Booking {
      *
      * @since    0.0.1
      */
-    private static function single_activate() {
+    public static function single_activate() {
         //Requirements Detection System - read the doc in the library file
         require_once( plugin_dir_path( __FILE__ ) . 'includes/requirements.php' );
         new Plugin_Requirements( self::$Commons_Booking, self::$plugin_slug, array(
@@ -370,27 +377,50 @@ class Commons_Booking {
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
 
-        // @TODO: Move Bookings Table installation here
+        $settings = new Commons_Booking_Admin_Settings; 
+
+        $p = self::$plugin_slug;
+
+        // create the necessary pages 
+        $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
 
 
-        // @TODO: Add cb_user role 
-        // global $wp_roles;
-        // if ( !isset( $wp_roles ) ) {
-        //     $wp_roles = new WP_Roles;
-        // }
+        // insert the default settings array
 
-        // foreach ( $wp_roles->role_names as $role => $label ) {
-        //     //if the role is a standard role, map the default caps, otherwise, map as a subscriber
-        //     $caps = ( array_key_exists( $role, self::$plugin_roles ) ) ? self::$plugin_roles[ $role ] : self::$plugin_roles[ 'subscriber' ];
+          $defaults = array(
+            $p. '-settings-display' => array(
+              $p.'_item_page_select' => $item_page,
+              $p.'_location_page_select' => 'this should be set',
+              $p.'_bookingconfirm_page_select' => 'hnny',
+              $p.'_registration_page_select' => $user_reg_page,
+            ),
+            $p.'-settings-bookings' => array(
+              $p.'_bookingsettings_maxdays' => '',
+              $p.'_bookingsettings_allowclosed' => ''
+            ),        
+            $p.'-settings-codes' => array(
+              $p.'_codes_pool' => '',
+            ),
+            $p.'-settings-messages' => array(
+              $p.'_messages_booking_pleaseconfirm' => '',
+              $p.'_messages_booking_confirmed' => '',
+              $p.'_messages_booking_canceled' => '',
+            ),         
+            $p.'-settings-mail' => array(
+              $p.'_mail_confirmation_sender' => '',
+              $p.'_mail_confirmation_subject' => '',
+              $p.'_mail_confirmation_body' => '',
+              $p.'_mail_registration_subject' => '',
+              $p.'_mail_registration_body' => '',
+            ), 
+        );
 
-        //     //loop and assign
-        //     foreach ( $caps as $cap => $grant ) {
-        //         //check to see if the user already has this capability, if so, don't re-add as that would override grant
-        //         if ( !isset( $wp_roles->roles[ $role ][ 'capabilities' ][ $cap ] ) ) {
-        //             $wp_roles->add_cap( $role, $cap, $grant );
-        //         }
-        //     }
-        // }
+
+
+        // check if setting is set, otherwise set it. 
+
+
+
         //Clear the permalinks
         flush_rewrite_rules();
     }
@@ -401,7 +431,6 @@ class Commons_Booking {
      * @since    0.0.1
      */
     private static function single_deactivate() {
-        // @TODO: Define deactivation functionality here
         
         //Clear the permalinks
         flush_rewrite_rules();
@@ -446,7 +475,7 @@ class Commons_Booking {
         }
     }
     /**
-     * For calendar page: Print the PHP vars in the HTML of the frontend for access by JavaScript
+     * For calendar page: Print the PHP vars in the HTML of the frontend for access by JavaScript @TODO use settings api
      *
      * @since    0.0.1
      */
@@ -456,11 +485,11 @@ class Commons_Booking {
         $maxdays = $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
         
         $s_display = get_option( $this->get_plugin_slug() . '-settings-display' ); 
-        $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingsubmit_page_select'] );
+        $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingconfirm_page_select'] );
         
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
-        if ( isset( $s[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
-            $allowclosed = "on";
+        if ( isset( $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
+            $allowclosed = 1;
         }
         
 
@@ -504,7 +533,7 @@ class Commons_Booking {
             return $original_template;
         }
     }
-
+   
     /**
      * NOTE:  Actions are points in the execution of a page or process
      *        lifecycle that WordPress fires.
