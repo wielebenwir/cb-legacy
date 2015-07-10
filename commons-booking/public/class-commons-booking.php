@@ -124,6 +124,7 @@ class Commons_Booking {
 
         $items = new Commons_Booking_Public_Items();
         $this->users = new Commons_Booking_Users();
+        $this->settings = new Commons_Booking_Admin_Settings;
 
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
@@ -138,9 +139,46 @@ class Commons_Booking {
          * Filter: Overwrite pages.
          */
         add_action( 'the_content', array( $this, 'overwrite_page' ) );   
+        // add_action( 'the_content', array( $this, 'tester' ) );   
                 
 
     }
+
+public function tester() {
+        // $settings = new Commons_Booking_Admin_Settings; 
+        // $p = "commons-booking";
+
+        // $defaults = array(
+        //     $p. '-settings-display' => array(
+        //       $p.'_item_page_select' => 59,
+        //       $p.'_bookingconfirm_page_select' => 'hnny',
+        //       $p.'_registration_page_select' => $user_reg_page,
+        //     ),
+        //     $p.'-settings-bookings' => array(
+        //       $p.'_bookingsettings_maxdays' => '',
+        //       $p.'_bookingsettings_allowclosed' => ''
+        //     ),        
+        //     $p.'-settings-codes' => array(
+        //       $p.'_codes_pool' => 'Dies ist der Codes Pool',
+        //     ),
+        //     $p.'-settings-messages' => array(
+        //       $p.'_messages_booking_pleaseconfirm' => '',
+        //       $p.'_messages_booking_confirmed' => '',
+        //       $p.'_messages_booking_canceled' => '',
+        //     ),         
+        //     $p.'-settings-mail' => array(
+        //       $p.'_mail_confirmation_sender' => '',
+        //       $p.'_mail_confirmation_subject' => '',
+        //       $p.'_mail_confirmation_body' => '',
+        //       $p.'_mail_registration_subject' => '',
+        //       $p.'_mail_registration_body' => '',
+        //     ), 
+        // );
+
+        // // check if setting is set, otherwise set it. 
+        
+        // $settings->set_defaults( $defaults );
+}
 
     /**
      *   Add main items list to page selected in settings
@@ -154,6 +192,7 @@ class Commons_Booking {
     public function overwrite_page( $pageID ) {
 
         $settings_display = $this->settings->get('display');
+        var_dump($settings_display);
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
@@ -383,19 +422,20 @@ class Commons_Booking {
 
         // create the necessary pages 
         $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
+        $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
+        $booking_confirm_page = create_page(__( 'Booking Confirmation', $p ), $p.'_bookingconfirm_page_select');
 
 
         // insert the default settings array
 
-          $defaults = array(
+        $defaults = array(
             $p. '-settings-display' => array(
               $p.'_item_page_select' => $item_page,
-              $p.'_location_page_select' => 'this should be set',
-              $p.'_bookingconfirm_page_select' => 'hnny',
+              $p.'_bookingconfirm_page_select' => $booking_confirm_page,
               $p.'_registration_page_select' => $user_reg_page,
             ),
             $p.'-settings-bookings' => array(
-              $p.'_bookingsettings_maxdays' => '',
+              $p.'_bookingsettings_maxdays' => 3,
               $p.'_bookingsettings_allowclosed' => ''
             ),        
             $p.'-settings-codes' => array(
@@ -415,10 +455,9 @@ class Commons_Booking {
             ), 
         );
 
-
-
         // check if setting is set, otherwise set it. 
-
+        
+        $settings->set_defaults( $defaults );
 
 
         //Clear the permalinks

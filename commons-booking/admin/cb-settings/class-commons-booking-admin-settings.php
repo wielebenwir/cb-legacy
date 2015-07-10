@@ -36,23 +36,17 @@ class Commons_Booking_Admin_Settings {
   /**
   * Set the default values for the settings. 
   */
-  public function set_defaults() {
+  public function set_defaults($defaults) {
     
-    foreach ($this->defaults as $page => $contents) { // get the option page / array
-      $option = get_option( $page );
-
-      foreach ($contents as $key => $value) {
-        
-        if ( empty( $option[$key] ) ) { // ignore if already set
-          $option[$key] = $this->defaults[ $page ][ $key ]; 
+    foreach ($defaults as $d_page => $d_contents) { // get the option d_page / array
+      $option = get_option( $d_page );
+      foreach ($d_contents as $d_key => $d_value) {
+        if ( empty( $option[$d_key] ) ) { // ignore if already set
+          $option[$d_key] = $d_value; 
         } 
       }
 
-
-      update_option( $page, $option );
-
-      $option = get_option( $page );
-      var_dump($option);    
+      update_option( $d_page, $option );
   }
 
 }
