@@ -149,7 +149,7 @@ public function tester() {
         // $p = "commons-booking";
 
         // $defaults = array(
-        //     $p. '-settings-display' => array(
+        //     $p. '-settings-pages' => array(
         //       $p.'_item_page_select' => 59,
         //       $p.'_bookingconfirm_page_select' => 'hnny',
         //       $p.'_registration_page_select' => $user_reg_page,
@@ -191,7 +191,7 @@ public function tester() {
      */
     public function overwrite_page( $pageID ) {
 
-        $settings_display = $this->settings->get('display');
+        $settings_display = $this->settings->get('pages');
         var_dump($settings_display);
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
@@ -423,16 +423,18 @@ public function tester() {
         // create the necessary pages 
         $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
         $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
+        $user_login_page = create_page(__( 'Login', $p ), $p.'_login_page_select');
         $booking_confirm_page = create_page(__( 'Booking Confirmation', $p ), $p.'_bookingconfirm_page_select');
 
 
         // insert the default settings array
 
         $defaults = array(
-            $p. '-settings-display' => array(
+            $p. '-settings-pages' => array(
               $p.'_item_page_select' => $item_page,
               $p.'_bookingconfirm_page_select' => $booking_confirm_page,
               $p.'_registration_page_select' => $user_reg_page,
+              $p.'_login_page_select' => $user_login_page,
             ),
             $p.'-settings-bookings' => array(
               $p.'_bookingsettings_maxdays' => 3,
@@ -523,7 +525,7 @@ public function tester() {
         $s_bookings = get_option( $this->get_plugin_slug() . '-settings-bookings' ); 
         $maxdays = $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
         
-        $s_display = get_option( $this->get_plugin_slug() . '-settings-display' ); 
+        $s_display = get_option( $this->get_plugin_slug() . '-settings-pages' ); 
         $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingconfirm_page_select'] );
         
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
