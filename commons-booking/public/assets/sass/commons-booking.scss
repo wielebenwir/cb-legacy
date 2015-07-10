@@ -1,28 +1,39 @@
-/* Typo general */
+
+/* Variables */
 
 $grey: #E1E1E1;
 $light-grey: #F6F6F6;
 $blue: #6AB5EF;
 $black: #000;
 $white: #fff;
+$green: #13C40E;
 
-.padding {
-  padding: 1em;
-}
+$light-green: #207B1C;
+$dark-red: #7F0E1F;
 
+/* mixins */
+
+.padding { padding: 1em; }
 .align-right { float: right; }
-
 .cb-small { font-size: 0.8em; }
 .cb-big { font-size: 1.2em; font-weight: bold;}
 .cb-headline { font-size: 1.2em; font-weight: bold; margin-bottom: 1em; }
+.border { border: 1px solid $grey; display: block; }
+
+.cb-row {
+  border-bottom: 1px solid $grey;
+  padding: 0.5em;
+}
 
 .cb-box { 
+    @extend .border;
     @extend .padding;
     background: $light-grey;
     margin-bottom: 1em;
     overflow: hidden; 
-    border: 1px solid $grey; display: block; 
   }
+
+
 .cb-booking-code  strong{
     padding: 5px;
     display:block;
@@ -33,6 +44,9 @@ $white: #fff;
 
 
 
+.confirmed {
+  color: $green;
+}
 
 
 
@@ -46,9 +60,6 @@ $white: #fff;
 
 }
 
-.cb-date {
-  color: $black;
-}
 
 
  /*****************
@@ -60,11 +71,11 @@ $white: #fff;
   @extend .padding;
   &.error {
     background: red;
-    color: #fff;
+    color: $white;
   }
   &.notice {
     background: green;
-    color: #fff;
+    color: $white;
   }
 }
 
@@ -104,27 +115,26 @@ $white: #fff;
 
 /* LiSTS */
 
-.cb-list-item {
-  @extend .cb-box;
+.cb-list {
 
-  .cb-item {
+.cb-list-item {
+    margin-bottom: 1em;
     display: block;
     overflow: hidden;
-    margin-bottom: 1em;
   }
-
-  ul.cb-list-item-timeframe {
+  ul {
     overflow: hidden;
-    border-top: 1px solid $grey;
+    display: block;
+    list-style: none;
+    padding: 0;
     margin: 0;
     li {
-      margin: 0;
-      padding: .2em 0 .2em 0;
-      border-top: 1px solid #fff;
+      list-style: none;
+      @extend .border;
+      background: #fff;
 
-      border-bottom: 1px solid $grey;
-      span.cb-action a {
-        float: right;
+      span.cb-action {
+        @extend .align-right;
       }
       &:hover {
         background: #fff;
@@ -134,8 +144,7 @@ $white: #fff;
 }
 
 
-
-/* Timeframes */
+/* Timeframes & Calendar */
 .cb-timeframe {
 
   @extend .cb-box;
@@ -157,19 +166,14 @@ $white: #fff;
   .cb-location {
     display: block;
     overflow: hidden; 
-    .cb-date {
+    .cb-date, .cb-address, .cb-contact {
       @extend .cb-small;
+      padding-left: 0;
     }
     .cb-location-name {
       @extend .cb-big;
     }
 
-    .cb-contact, .cb-address {
-        width: 50%;
-        float: left;
-        @extend .cb-small;
-
-    }
 
   }
 
@@ -197,27 +201,27 @@ $white: #fff;
       padding: 10px;
       float: left;
       text-align: center;
-      background: #ffffff;
+      background: $white;
       color: $grey;
       border: 1px solid $light-grey;
     
       &.bookable { // selectable dates
         cursor: pointer;
-        color: #207B1C;
-        background: lighten(#207B1C, 50%);
+        color: $light-green;
+        background: lighten($light-green, 50%);
         &:hover {
-          background: darken(#207B1C, 10%);
-          color: #fff;
+          background: darken($light-green, 10%);
+          color: $white;
         }
       }
       &.selected {
-        border: 1px solid #207B1C;
-        background: #207B1C;
-        color: #fff;
+        border: 1px solid $light-green;
+        background: $light-green;
+        color: $white;
       }      
       &.booked {
         background: red;
-        color: #fff;
+        color: $white;
       }
       &:hover {
       }  
