@@ -171,7 +171,7 @@
           array(
             'name' => __( 'Message Booking Review', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<h2>Just one more step... </h2><p> Please review your booking and click "confirm".</p>', $this->plugin_slug ),
+            'default' => __( '<p> Please review your booking and click "confirm".</p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
             'type' => 'textarea',
           ),
