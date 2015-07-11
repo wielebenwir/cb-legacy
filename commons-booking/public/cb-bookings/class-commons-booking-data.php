@@ -247,7 +247,7 @@ class Commons_Booking_Data {
  *
 */
 
-  public function show_single_item_timeframes( $item_id  ) {
+  public function render_item_single_timeframes( $item_id  ) {
 
 
     $item_descr_short = get_post_meta( $item_id, 'commons-booking_item_descr', TRUE  );
@@ -272,7 +272,7 @@ class Commons_Booking_Data {
       foreach ( $timeframes as $tf) {
         if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range          
           $location = $this->get_location ( $tf['location_id'] );
-          $this->render_timeframe_calendar( $tf, $codes, $location, $item_id );     
+          $this->render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id );     
         }
       }
     } else {
@@ -305,7 +305,7 @@ class Commons_Booking_Data {
       if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
         
         $location = $this->get_location ( $tf['location_id'] );
-        $this->render_single_item_timeframe_list( $tf, $codes, $location, $item_id );
+        $this->render_item_single_timeframe_list( $tf, $codes, $location, $item_id );
       
       }
     }
@@ -313,7 +313,7 @@ class Commons_Booking_Data {
   }
 
 
-  public function render_single_item_timeframe_list( $tf, $location, $item_id ) {
+  public function render_item_single_timeframe_list( $tf, $location, $item_id ) {
 
     $timeframe_comment = $tf['timeframe_title'];
     $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
@@ -330,7 +330,7 @@ class Commons_Booking_Data {
  * @param $location array location data
  * @param $item_id  int   id of the item
  */
-  public function render_timeframe_calendar( $tf, $codes, $location, $item_id ) {
+  public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) {
     
 
     $booked = new Commons_Booking_Booking;
