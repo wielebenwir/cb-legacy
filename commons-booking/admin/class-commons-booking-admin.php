@@ -264,7 +264,7 @@ class Commons_Booking_Admin {
 		 * Menu in Plugin Settings
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Commons Booking Settings', $this->plugin_slug ), __( 'CB Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Commons Booking Settings', $this->plugin_slug ), __( 'Commons Booking Settings', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
 	}
 
