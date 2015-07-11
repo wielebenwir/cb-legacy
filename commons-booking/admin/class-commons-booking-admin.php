@@ -71,8 +71,7 @@ class Commons_Booking_Admin {
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_settings' ) );		
 		// Add the Entrys for Items, Timeframes, Codes, ...
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-		//Add bubble notification for cpt pending
-		add_action( 'admin_menu', array( $this, 'pending_cpt_bubble' ), 999 );
+
 
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
@@ -82,10 +81,6 @@ class Commons_Booking_Admin {
 		 * CMB 2 library
 		 */
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2/init.php' );
-		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Shortcode/shortcode-button.php' );
-		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Post-Search-Field/cmb2_post_search_field.php' );
-		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-Attached-Posts-Field/cmb2-attached-posts-field.php' );
-		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-GoogleMaps/cmb-field-map.php' );
 
 		// Definition of Custom meta boxes for items & Locations
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metaboxes.php' );
@@ -146,10 +141,6 @@ class Commons_Booking_Admin {
 		 */
 		add_filter( 'wp_contextual_help_docs_dir', array( $this, 'help_docs_dir' ) );
 		add_filter( 'wp_contextual_help_docs_url', array( $this, 'help_docs_url' ) );
-		if ( !class_exists( 'WP_Contextual_Help' ) ) {
-			require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Contextual-Help/wp-contextual-help.php' );
-		}
-		add_action( 'init', array( $this, 'contextual_help' ) );
 
 
 	  /*
@@ -161,18 +152,6 @@ class Commons_Booking_Admin {
 	    require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Admin-Notice/WP_Admin_Notice.php' );
 	  }
 			
-		/*
-		 * Load PointerPlus for the Wp Pointer
-		 * 
-		 * Unique paramter is the prefix
-		 */
-		if ( !class_exists( 'PointerPlus' ) ) {
-			require_once( plugin_dir_path( __FILE__ ) . 'includes/PointerPlus/class-pointerplus.php' );
-		}
-		$pointerplus = new PointerPlus( array( 'prefix' => $this->plugin_slug ) );
-		//With this you can reset all the pointer with your prefix
-		//$pointerplus->reset_pointer();
-		add_filter( 'pointerplus_list', array( $this, 'custom_initial_pointers' ), 10, 2 );
 	}
 
 	/**
@@ -347,61 +326,6 @@ class Commons_Booking_Admin {
 		return $items;
 	}
 
-	/**
-	 * Bubble Notification for pending cpt<br>
-	 * NOTE: add in $post_types your cpts<br>
-	 *
-	 *        Reference:  http://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items/95058
-	 *
-	 * @since    0.0.1
-	 */
-	function pending_cpt_bubble() {
-		global $menu;
-
-		$post_types = $this->cpts;
-		foreach ( $post_types as $type ) {
-			if ( !post_type_exists( $type ) ) {
-				continue;
-			}
-			// Count posts
-			$cpt_count = wp_count_posts( $type );
-
-			if ( $cpt_count->pending ) {
-				// Menu link suffix, Post is different from the rest
-				$suffix = ( 'post' == $type ) ? '' : "?post_type=$type";
-
-				// Locate the key of 
-				$key = self::recursive_array_search_php( "edit.php$suffix", $menu );
-
-				// Not found, just in case 
-				if ( !$key ) {
-					return;
-				}
-
-				// Modify menu item
-				$menu[ $key ][ 0 ] .= sprintf(
-						'<span class="update-plugins count-%1$s"><span class="plugin-count">%1$s</span></span>', $cpt_count->pending
-				);
-			}
-		}
-	}
-
-	/**
-	 * Required for the bubble notification<br>
-	 *
-	 *        Reference:  http://wordpress.stackexchange.com/questions/89028/put-update-like-notification-bubble-on-multiple-cpts-menus-for-pending-items/95058
-	 *
-	 * @since    0.0.1
-	 */
-	private function recursive_array_search_php( $needle, $haystack ) {
-		foreach ( $haystack as $key => $value ) {
-			$current_key = $key;
-			if ( $needle === $value OR ( is_array( $value ) && self::recursive_array_search_php( $needle, $value ) !== false) ) {
-				return $current_key;
-			}
-		}
-		return false;
-	}
 
 	 /**
 	 * NOTE:     Add Menus
@@ -558,53 +482,6 @@ class Commons_Booking_Admin {
 	public function help_docs_url( $paths ) {
 		$paths[] = plugin_dir_path( __FILE__ ) . '../help-docs/img';
 		return $paths;
-	}
-
-	/**
-	 * Contextual Help, docs in /help-docs folter
-	 * Documentation https://github.com/voceconnect/wp-contextual-help
-	 * 
-	 * @since    0.0.1 
-	 */
-	public function contextual_help() {
-		if ( !class_exists( 'WP_Contextual_Help' ) ) {
-			return;
-		}
-
-		// Only display on the pages - post.php and post-new.php, but only on the `demo` post_type
-		WP_Contextual_Help::register_tab( 'demo-example', __( 'Demo Management', $this->plugin_slug ), array(
-			'page' => array( 'post.php', 'post-new.php' ),
-			'post_type' => 'demo',
-			'wpautop' => true
-		) );
-
-		// Add to a custom plugin settings page
-		WP_Contextual_Help::register_tab( 'pn_settings', __( 'Boilerplate Settings', $this->plugin_slug ), array(
-			'page' => 'settings_page_' . $this->plugin_slug,
-			'wpautop' => true
-		) );
-	}
-
-	/**
-	 * Add pointers.
-	 * Check on https://github.com/Mte90/pointerplus/blob/master/pointerplus.php for examples
-	 *
-	 * @param $pointers
-	 * @param $prefix for your pointers
-	 *
-	 * @return mixed
-	 */
-	function custom_initial_pointers( $pointers, $prefix ) {
-		return array_merge( $pointers, array(
-			$prefix . '_contextual_tab' => array(
-				'selector' => '#contextual-help-link',
-				'title' => __( 'PBoilerplate Help', $this->plugin_slug ),
-				'text' => __( 'A pointer for help tab.<br>Go to Posts, Pages or Users for other pointers.', $this->plugin_slug ),
-				'edge' => 'top',
-				'align' => 'right',
-				'icon_class' => 'dashicons-welcome-learn-more',
-			)
-				) );
 	}
 
 }
