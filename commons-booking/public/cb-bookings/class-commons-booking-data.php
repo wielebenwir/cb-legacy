@@ -343,8 +343,7 @@ class Commons_Booking_Data {
     echo ( '<div class="cb-timeframe" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
     
-
-    include (commons_booking_get_template_part( 'locations', 'detailed', FALSE )); // include the location template
+    include (commons_booking_get_template_part( 'item_single', 'location_detailed', FALSE )); // include the location template
 
     $start = strtotime( $tf['date_start'] );
     $counter = $start;
