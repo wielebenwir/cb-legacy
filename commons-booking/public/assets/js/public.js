@@ -31,8 +31,6 @@
           var text_error_closedforbidden = cb_js_vars.text_error_closedforbidden;
           var text_error_bookedday = cb_js_vars.text_error_bookedday;
 
-          console.log (allowclosed);
-
           var selectedIndexes = [];
           var currentTimeFrame;
 
@@ -313,9 +311,6 @@
     };
 
     $(document).ready(UTIL.loadEvents);
-
-    // Write in console log the PHP value passed in enqueue_js_vars in public/class-commons-booking.php
-    console.log( cb_js_vars.text_pickup );
     
     // Place your public-facing JavaScript here
 
