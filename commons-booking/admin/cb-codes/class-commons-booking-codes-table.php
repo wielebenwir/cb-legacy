@@ -25,8 +25,10 @@ if (!class_exists('WP_List_Table')) {
 *
 */    
 function commons_booking_codes_table_handler() {
-    // echo ("hello");
+
+    // include the view: list 
     include ('views/codes-table.php');
+
 }
 
 
