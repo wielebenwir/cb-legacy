@@ -3,22 +3,21 @@
 .padding, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar-msg {
   padding: 1em; }
 
-.align-right, .cb-list ul li span.cb-action {
+.align-right, #cb-bookingbar .booking #cb-submit, .cb-list ul li span.cb-action {
   float: right; }
 
 .cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
   font-size: 0.8em; }
 
-.cb-big, #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit, .cb-timeframe .cb-location .cb-location-name {
-  font-size: 1.2em;
-  font-weight: bold; }
-
-.cb-headline {
+.cb-big, .cb-headline, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit, .cb-timeframe .cb-location .cb-location-name {
   font-size: 1.2em;
   font-weight: bold;
+  color: #3356a4; }
+
+.cb-headline {
   margin-bottom: 1em; }
 
-.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, .cb-list ul li {
+.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar .booking #date-start span, #cb-bookingbar .booking #date-end span, #cb-bookingbar .booking #cb-submit span, .cb-list ul li {
   border: 1px solid #e1e1e1;
   display: block; }
 
@@ -39,7 +38,7 @@
   font-weight: normal; }
 
 .confirmed {
-  color: #13c40e; }
+  color: #56a820; }
 
 /*****************
  * ITEMS LIST
@@ -73,18 +72,23 @@
   bottom: 0; }
   #cb-bookingbar .inner {
     margin: 0;
-    border-top: 1px solid #155113;
-    background: #d5f5d4;
+    background: white;
     overflow: hidden; }
   #cb-bookingbar .cb-userinfo {
     display: block; }
-  #cb-bookingbar #intro {
+  #cb-bookingbar .booking #intro {
     display: none; }
-  #cb-bookingbar #date-start, #cb-bookingbar #date-end, #cb-bookingbar #cb-submit {
+  #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
+    color: #56a820;
     float: left;
     margin-right: 20px; }
-    #cb-bookingbar #date-start span, #cb-bookingbar #date-end span, #cb-bookingbar #cb-submit span {
-      font-weight: bold; }
+    #cb-bookingbar .booking #date-start span, #cb-bookingbar .booking #date-end span, #cb-bookingbar .booking #cb-submit span {
+      font-weight: bold;
+      color: #3356a4;
+      display: inline;
+      padding: 0 0.2em; }
+      #cb-bookingbar .booking #date-start span.cb-day, #cb-bookingbar .booking #date-end span.cb-day, #cb-bookingbar .booking #cb-submit span.cb-day {
+        display: none; }
 
 /*****************
  * LISTS
@@ -151,18 +155,18 @@
       border: 1px solid #f6f6f6; }
       .cb-timeframe ul.cb-calendar li.bookable {
         cursor: pointer;
-        color: #207b1c;
-        background: #adecaa; }
+        color: white;
+        background: #56a820; }
         .cb-timeframe ul.cb-calendar li.bookable:hover {
           background: #155113;
           color: white; }
       .cb-timeframe ul.cb-calendar li.selected {
-        border: 1px solid #207b1c;
-        background: #207b1c;
+        border: 1px solid #3356a4;
+        background: #3356a4;
         color: white; }
       .cb-timeframe ul.cb-calendar li.booked {
-        background: red;
-        color: white; }
+        background: #e1e1e1;
+        color: #a70001; }
     .cb-timeframe ul.cb-calendar .cb-day {
       display: block;
       font-size: 0.8em; }

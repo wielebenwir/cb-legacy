@@ -3,21 +3,25 @@
 
 $grey: #E1E1E1;
 $light-grey: #F6F6F6;
-$blue: #6AB5EF;
+$blue: #3356A4;
 $black: #000;
 $white: #fff;
-$green: #13C40E;
+$green: #56A820;
 
 $light-green: #207B1C;
-$dark-red: #7F0E1F;
+$dark-red: #A70001;
+$red: #FF0002;
 
 /* mixins */
 
 .padding { padding: 1em; }
 .align-right { float: right; }
 .cb-small { font-size: 0.8em; }
-.cb-big { font-size: 1.2em; font-weight: bold;}
-.cb-headline { font-size: 1.2em; font-weight: bold; margin-bottom: 1em; }
+.cb-big { font-size: 1.2em; font-weight: bold; color: $blue }
+.cb-headline { 
+  @extend .cb-big;
+  margin-bottom: 1em;  
+}
 .border { border: 1px solid $grey; display: block; }
 
 .cb-row {
@@ -93,25 +97,37 @@ $dark-red: #7F0E1F;
   .inner {
     @extend .cb-box;
     margin: 0;
-    border-top: 1px solid darken(#207B1C, 10%);
-    background: lighten(#207B1C, 60%);
+    background: $white;
 
   overflow: hidden;
   }
   .cb-userinfo {
     display: block;
   }
-  #intro {
-    display:none;
-  }
-
-  #date-start, #date-end, #cb-submit {
-    @extend .cb-big;
-    span {
-      font-weight: bold;
+  .booking {
+    #intro {
+      display:none;
     }
-    float: left;
-    margin-right: 20px;
+
+    #date-start, #date-end, #cb-submit {
+      @extend .cb-big;
+      color: $green;
+      span {
+        font-weight: bold;
+        color: $blue;
+         @extend .border;
+         display: inline;
+         padding: 0 0.2em;
+         &.cb-day {
+          display:none;
+         }
+      }
+      float: left;
+      margin-right: 20px;
+    }
+    #cb-submit {
+      @extend .align-right;
+    }
   }
   position: fixed;
   height: auto;
@@ -223,21 +239,21 @@ $dark-red: #7F0E1F;
     
       &.bookable { // selectable dates
         cursor: pointer;
-        color: $light-green;
-        background: lighten($light-green, 50%);
+        color: $white;
+        background: $green;
         &:hover {
           background: darken($light-green, 10%);
           color: $white;
         }
       }
       &.selected {
-        border: 1px solid $light-green;
-        background: $light-green;
+        border: 1px solid $blue;
+        background: $blue;
         color: $white;
       }      
       &.booked {
-        background: red;
-        color: $white;
+        background: $grey;
+        color: $dark-red;
       }
       &:hover {
       }  
