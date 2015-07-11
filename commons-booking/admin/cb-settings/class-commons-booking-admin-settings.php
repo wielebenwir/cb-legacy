@@ -2,7 +2,7 @@
 /**
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
@@ -12,7 +12,7 @@
  * Get the admin defined settings from backend.  
  *
  * @package Commons_Booking_Admin_Settings
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 class Commons_Booking_Admin_Settings {

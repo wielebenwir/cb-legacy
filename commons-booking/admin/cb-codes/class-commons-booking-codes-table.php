@@ -13,7 +13,7 @@
  * Extends the list Table
  *
  * @package Commons_Booking_Codes_Table
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 if (!class_exists('WP_List_Table')) {
@@ -30,7 +30,6 @@ function commons_booking_codes_table_handler() {
     include ('views/codes-table.php');
 
 }
-
 
 
 /**

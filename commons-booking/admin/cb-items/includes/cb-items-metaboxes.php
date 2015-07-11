@@ -12,7 +12,7 @@
  * Registers a metabox with timeframe list on the item edit screen
  *
  * @package Commons_Booking_Items_Metabox
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 class Commons_Booking_Items_Metabox extends Commons_Booking {

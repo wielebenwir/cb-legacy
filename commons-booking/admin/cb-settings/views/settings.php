@@ -11,7 +11,7 @@
 /**
  * Template for the settings screen (Admin -> Commons Booking settings)
  *
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 ?>

@@ -2,18 +2,17 @@
 /**
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
+ * This class handles the display of calendar & timeframes
  *
  * @package Commons_Booking_Data
- * @author  Florian Egermann <email@example.com>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  */
 class Commons_Booking_Data {
 

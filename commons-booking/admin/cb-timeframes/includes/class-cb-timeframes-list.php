@@ -2,7 +2,7 @@
 /**
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
@@ -12,7 +12,7 @@
  * Display the list of configured Timeframes in a metabox on the item edit screen.
  *
  * @package Commons_Booking_Timeframes_List
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 class Commons_Booking_Timeframes_List {
 

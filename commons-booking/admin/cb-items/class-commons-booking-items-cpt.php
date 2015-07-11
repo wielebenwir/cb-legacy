@@ -12,7 +12,7 @@
  * Registers the custom post type Items
  *
  * @package Commons_Booking_Items_CPT
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 class Commons_Booking_Items_CPT extends CPT_Core {

@@ -4,7 +4,7 @@
  * Commons Booking Bookings Class
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @author    Christian Wenzel <christian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -15,7 +15,7 @@
  * This class includes all frontend functions for bookings
  * *
  * @package Commons_Booking_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  *
  */
 

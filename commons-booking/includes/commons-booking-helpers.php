@@ -9,7 +9,7 @@
  *    get_dates_between
  *
  * @package   Commons_Booking_Admin
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir

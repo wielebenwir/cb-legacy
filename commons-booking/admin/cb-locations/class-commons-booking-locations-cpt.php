@@ -12,7 +12,7 @@
  * Register the custom post type: locations
  *
  * @package Commons_Booking_Items_Metabox
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 

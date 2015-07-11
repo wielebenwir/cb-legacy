@@ -12,7 +12,7 @@
  * Handles the display of the Codes Table
  *
  * @package Commons_Booking_Codes_Table
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
     global $wpdb;
 

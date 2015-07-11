@@ -13,7 +13,7 @@
  * Admin messages
  *
  * @package Commons Booking Admin Messages
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 

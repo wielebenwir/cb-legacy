@@ -13,7 +13,7 @@
  * Handles install & update of the Bookings Table
  *
  * @package Commons_Booking_Booking_Setup
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 

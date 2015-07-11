@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Commons Booking Items
+ * Commons Booking 
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @author    Christian Wenzel <christian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -14,8 +14,8 @@
 /**
  * This class includes display of items
  * *
- * @package Commons_Booking
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @package Commons_Booking_items
+ * @author    Florian Egermann <florian@wielebenwir.de>
  *
  */
 

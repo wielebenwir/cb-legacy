@@ -12,7 +12,7 @@
  * Registers all metaboxes for the locations edit screen
  *
  * @package Commons_Booking_Items
- * @author  Florian Egermann <florian@macht-medien.de>
+ * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
 class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
