@@ -44,7 +44,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-items/class-commons-bookin
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-booking-locations-cpt.php' );
 
 // Classes for the individual content types - not sure if it belongs here. @TODO
-require_once( plugin_dir_path( __FILE__ ) . 'admin/class-commons-booking-items.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
 
 
