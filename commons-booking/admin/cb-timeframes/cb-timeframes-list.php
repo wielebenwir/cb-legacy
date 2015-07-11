@@ -1,13 +1,18 @@
 <?php
 /**
- * PART 2. Defining Custom Table List
- * ============================================================================
  *
- * In this part you are going to define custom table list class,
- * that will display your database records in nice looking table
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Extend the Wordpress Table
  *
- * http://codex.wordpress.org/Class_Reference/WP_List_Table
- * http://wordpress.org/extend/plugins/custom-list-table-example/
+ * @package Commons_Booking_Timeframes_Table
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 
 if (!class_exists('WP_List_Table')) {

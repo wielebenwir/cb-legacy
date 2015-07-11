@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   Commons_Booking_Admin
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -11,8 +11,8 @@
 /**
  * Display the list of configured Timeframes in a metabox on the item edit screen.
  *
- * @package Commons_Booking_Timeframes
- * @author  Your Name <email@example.com>
+ * @package Commons_Booking_Timeframes_List
+ * @author  Florian Egermann <florian@macht-medien.de>
  */
 class Commons_Booking_Timeframes_List {
 

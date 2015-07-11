@@ -10,7 +10,7 @@
 function cb_timeframes_table_form_page_handler()
 {
     global $wpdb;
-    $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
+    $table_name = $wpdb->prefix . 'cb_timeframes'; 
 
     $message = '';
     $notice = '';

@@ -1,6 +1,21 @@
 <?php
 
-// @TODO Move this to another file
+/**
+ *
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@macht-medien.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+/**
+ * Include all necessary files for Timeframes
+ *
+ * @author  Florian Egermann <florian@macht-medien.de>
+ */
+
+// @TODO Re-Organize.
 
 // Install
 require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes-setup.php' );
