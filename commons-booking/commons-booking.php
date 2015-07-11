@@ -12,11 +12,11 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Commons Booking
- * Plugin URI:        @TODO
- * Description:       @TODO
- * Version:           0.0.1
+ * Plugin URI:        http://dein-lastenrad.de/index.php?title=Commons_Booking_Software
+ * Description:       A wordpress plugin for management and booking of commons. 
+ * Version:           0.3
  * Author:            Florian Egermann
- * Author URI:        @TODO
+ * Author URI:        http://www.wielebenwir.de
  * Text Domain:       commons-booking
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
