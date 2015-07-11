@@ -46,7 +46,14 @@
  *
  */
 /*****************
-* CALENDAR
+ * ITEMS SINGLE
+ *
+ */
+.cb-description {
+  margin-bottom: 2em; }
+
+/*****************
+* ITEMS SINGLE: Bookingbar
 *
 */
 #cb-bookingbar-msg.error {
@@ -79,7 +86,10 @@
     #cb-bookingbar #date-start span, #cb-bookingbar #date-end span, #cb-bookingbar #cb-submit span {
       font-weight: bold; }
 
-/* LiSTS */
+/*****************
+ * LISTS
+ *
+ */
 .cb-list .cb-list-item {
   margin-bottom: 1em;
   display: block;
@@ -96,7 +106,10 @@
     .cb-list ul li:hover {
       background: #fff; }
 
-/* Timeframes & Calendar */
+/*****************
+ * ITEMS SINGLE Timeframes
+ *
+ */
 .cb-timeframe {
   /* Calendar */ }
   .cb-timeframe .pusher.Mon, .cb-timeframe ul.cb-calendar li.Mon:first-child {

@@ -61,9 +61,18 @@ $dark-red: #7F0E1F;
 }
 
 
+/*****************
+ * ITEMS SINGLE
+ *
+ */
+
+.cb-description {
+  margin-bottom: 2em;
+}
+
 
  /*****************
- * CALENDAR
+ * ITEMS SINGLE: Bookingbar
  *
  */
 
@@ -113,7 +122,10 @@ $dark-red: #7F0E1F;
 
 }
 
-/* LiSTS */
+/*****************
+ * LISTS
+ *
+ */
 
 .cb-list {
 
@@ -144,7 +156,11 @@ $dark-red: #7F0E1F;
 }
 
 
-/* Timeframes & Calendar */
+/*****************
+ * ITEMS SINGLE Timeframes
+ *
+ */
+
 .cb-timeframe {
 
   @extend .cb-box;
@@ -152,7 +168,7 @@ $dark-red: #7F0E1F;
   $width: 100%;
   $cellwidth: $width / 7;
 
-
+  // this class pushes the calendar cells into the right position
   .pusher {
       &.Mon {margin-left: 0; }
       &.Tue {margin-left: $cellwidth; }
