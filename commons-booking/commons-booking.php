@@ -43,11 +43,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/CPT_Core/CPT_Core.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-items/class-commons-booking-items-cpt.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-booking-locations-cpt.php' );
 
-// Classes for the individual content types - not sure if it belongs here. @TODO
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
-
-
-
 // CLasses for Frontend-Booking
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
@@ -64,6 +59,10 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-bookings/class-commons-boo
 // BOOKINGS: Install/Update the database Tables
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-users/class-commons-booking-users.php' );
 
+// TIMEFRAMES
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-timeframes/cb-timeframes.php' );
+
+
 // include Helper functions
 require_once( plugin_dir_path( __FILE__ ) . 'includes/commons-booking-helpers.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'includes/array_column.php' );
@@ -72,7 +71,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/array_column.php' );
  * Load template system
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/fake-page.php' );
 
 
 /*
