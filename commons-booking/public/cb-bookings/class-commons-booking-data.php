@@ -282,14 +282,16 @@ class Commons_Booking_Data {
 
     echo ( '<div class="cb-timeframe-list" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
-    var_dump ( $tf );
-
   }
 
-
-
-
-
+/**
+ * Item Single: Render the timeframe (item info, location, calendar)
+ *
+ * @param $tf       array   timeframe data 
+ * @param $codes    array   of codes
+ * @param $location array location data
+ * @param $item_id  int   id of the item
+ */
   public function render_timeframe_calendar( $tf, $codes, $location, $item_id ) {
 
     $booked = new Commons_Booking_Booking;
