@@ -1,3 +1,6 @@
+# 0.3.1
+* Fixed some typos, updated readme 
+
 # 0.3
 * A fresh new look
 * Major cleanup (functions and files)

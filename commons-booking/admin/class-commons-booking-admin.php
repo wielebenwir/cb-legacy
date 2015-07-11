@@ -286,7 +286,7 @@ class Commons_Booking_Admin {
 		return array_merge(
 				array(
 			'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings' ) . '</a>',
-			'donate' => '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=danielemte90@alice.it&item_name=Donation">' . __( 'Donate', $this->plugin_slug ) . '</a>'
+			'manual' => '<a href="http://dein-lastenrad.de/index.php?title=Introduction" target="_blank">' . __( 'Manual' ) . '</a>'
 				), $links
 		);
 	}
