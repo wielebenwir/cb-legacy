@@ -18,6 +18,12 @@ Unique features:
 * Auto-accept bookings: A registered user can book items without the need for administration. 
 * Simple booking process with a beautiful calendar: Click a day to book an item. 
 
+* Official Website: http://www.wielebenwir.de/projekte/gemeingutsoftware
+* Manual: http://dein-lastenrad.de/index.php?title=Introduction
+* Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
+* Forum (Ask questions here): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+
+
 == Installation ==
 
 = Using The WordPress Dashboard (Note: Plugin is not yet available on the Wordpress Plugins Directory) =
