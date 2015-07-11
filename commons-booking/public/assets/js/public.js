@@ -16,6 +16,25 @@
 
         init: function() {
 
+          /*
+          * Item description toggle functionality 
+          */
+
+          var togglebutton = $( '.cb-toggle' );
+          var toggleEl =  $( '.showhide' );
+          toggleEl.hide();
+
+          togglebutton.click( function( event ) {
+            event.preventDefault();
+            toggleEl.slideToggle( "slow", function() {
+                // Animation complete.
+            });
+          });
+
+          /*
+          * Booking Calendar functionality 
+          */
+
           // js vars from php
           var maxDays = cb_js_vars.setting_maxdays;
           var allowclosed = cb_js_vars.setting_allowclosed;
