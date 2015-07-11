@@ -1,6 +1,6 @@
 <?php
 /*
- * Registers a metabox for display of timeframe entries on the item edit screen
+ * Handles the user registration & login process. 
  * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de>
  * @license   GPL-2.0+
