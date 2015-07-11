@@ -1,21 +1,20 @@
 <?php
 
 /**
- * Plugin Name.
+ * Commons Booking
  *
- * @package   Commons_Booking_Admin
- * @author    Florian Egermann <florian@macht-medien.de>
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * administrative side of the WordPress site.
+ * Admin related functions
  *
  * @package Commons_Booking_Admin
- * @author  Your Name <email@example.com>
+ * @author    Florian Egermann <florian@wielebenwir.de>
  */
 class Commons_Booking_Admin {
 
@@ -101,30 +100,29 @@ class Commons_Booking_Admin {
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-table.php' );
 		// CODES: Functions
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes.php' );
-
-
-
-
-		// the admin table for timeframes & codes
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
+		// CODES: Generator
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/includes/class-cb-codes-generate.php' );
+
+
+		// TIMEFRAMES the admin table for timeframes & codes
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-timeframes/cb-timeframes.php' );
 
 		// Admin messages
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/class-admin-table-messages.php' );
 		
-		// add item metabox
+		//  item metabox
 		$items_metabox = new Commons_Booking_Items_Metabox ();
 		// locations metabox
 		$locations_metabox = new Commons_Booking_Locations_Metaboxes ();
-
+		// Call users
 		$cb_users = new Commons_Booking_Users ();
 
-
+		// add meta boxes
     add_action( 'add_meta_boxes', array( $items_metabox, 'cb_items_add_timeframe_meta_box'));
     add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_descr_metaboxes' ) );
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
-
+    // add user profile fields 
     add_action( 'show_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
     add_action( 'edit_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
   	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ) );
@@ -438,18 +436,6 @@ class Commons_Booking_Admin {
 	        'cb_timeframes_table_form_page_handler'               // function
 	        );	    
 
-	    // Generate Codes $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
-	    // $this->plugin_screen_hook_suffix = add_submenu_page(
-	    //     'cb_timeframes',                                      // parent_menu_slug
-	    //     __( 'Add/Edit Timeframes', $this->plugin_slug ),      // page_title
-	    //     __( 'Add Timeframe', $this->plugin_slug ),            // menu_title
-	    //     $capability,                                          // capability
-	    //     'cb_timeframes_generate_code',                        // menu_slug
-	    //     array ( 																							// function
-	    //     	new Commons_Booking_Codes_Generate, 
-	    //     	'generate_code'     
-	    //     )
-	    //    );
 	    /*
 	     * 4. Bookings
 	     */
