@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   Commons_Booking_Admin
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@macht-medien.de
  * @author    Christian Wenzel <christian@wielebenwir.de>
  * @license   GPL-2.0+
