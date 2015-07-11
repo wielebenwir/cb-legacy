@@ -182,6 +182,38 @@ class Commons_Booking_Data {
     }
   }
 /**
+ * Get all items
+ *
+ *
+ * @return array 
+ *
+ */
+ public function get_items( ) {
+
+    $return = '';
+
+    $args['post_type']    = 'cb_items';
+    $args['post_status']  = 'publish';
+    // $args['order_by']     = $params['order'];
+    // $args['posts_per_page'] = $params['quantity'];
+
+    $query = new WP_Query( $args );
+
+    if ( 0 == $query->found_posts ) {
+
+      $return = __( 'None found' ) ;
+
+    } else {
+
+      $return = $query;
+
+    }
+
+    return $return;
+
+  }
+
+/**
  * Get User info and meta outside the loop
  *
  *@param $id user id
@@ -216,6 +248,12 @@ class Commons_Booking_Data {
 */
 
   public function show_single_item_timeframes( $item_id  ) {
+
+
+    $item_descr_short = get_post_meta( $item_id, 'commons-booking_item_descr', TRUE  );
+    $item_descr_full = get_the_content();
+
+    include (commons_booking_get_template_part( 'item_single', 'item_info', FALSE )); // include the item info template
 
     $this->item_id = $item_id;
 
@@ -293,6 +331,7 @@ class Commons_Booking_Data {
  * @param $item_id  int   id of the item
  */
   public function render_timeframe_calendar( $tf, $codes, $location, $item_id ) {
+    
 
     $booked = new Commons_Booking_Booking;
     $booked_days = $booked->get_booked_days( $item_id );
@@ -303,7 +342,9 @@ class Commons_Booking_Data {
 
     echo ( '<div class="cb-timeframe" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
-    include (commons_booking_get_template_part( 'locations', 'detailed', FALSE )); // include the template
+    
+
+    include (commons_booking_get_template_part( 'locations', 'detailed', FALSE )); // include the location template
 
     $start = strtotime( $tf['date_start'] );
     $counter = $start;
