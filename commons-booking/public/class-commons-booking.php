@@ -406,21 +406,21 @@ class Commons_Booking {
               $p.'_bookingsettings_maxdays' => 3,
               $p.'_bookingsettings_allowclosed' => ''
             ),        
-            $p.'-settings-codes' => array(
-              $p.'_codes_pool' => '',
-            ),
-            $p.'-settings-messages' => array(
-              $p.'_messages_booking_pleaseconfirm' => '',
-              $p.'_messages_booking_confirmed' => '',
-              $p.'_messages_booking_canceled' => '',
-            ),         
-            $p.'-settings-mail' => array(
-              $p.'_mail_confirmation_sender' => '',
-              $p.'_mail_confirmation_subject' => '',
-              $p.'_mail_confirmation_body' => '',
-              $p.'_mail_registration_subject' => '',
-              $p.'_mail_registration_body' => '',
-            ), 
+            // $p.'-settings-codes' => array(
+            //   $p.'_codes_pool' => '',
+            // ),
+            // $p.'-settings-messages' => array(
+            //   $p.'_messages_booking_pleaseconfirm' => '',
+            //   $p.'_messages_booking_confirmed' => '',
+            //   $p.'_messages_booking_canceled' => '',
+            // ),         
+            // $p.'-settings-mail' => array(
+            //   $p.'_mail_confirmation_sender' => '',
+            //   $p.'_mail_confirmation_subject' => '',
+            //   $p.'_mail_confirmation_body' => '',
+            //   $p.'_mail_registration_subject' => '',
+            //   $p.'_mail_registration_body' => '',
+            // ), 
         );
 
         // check if setting is set, otherwise set it. 
