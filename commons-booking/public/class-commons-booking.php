@@ -11,11 +11,6 @@
  */
 
 /**
- * Plugin class. This class should ideally be used to work with the
- * public-facing side of the WordPress site.
- *
- * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-commons-booking-admin.php`
  * *
  * @package Commons_Booking
  * @author    Florian Egermann <florian@wielebenwir.de>
@@ -32,9 +27,6 @@ class Commons_Booking {
     const VERSION = '0.0.1';
 
     /**
-     * @TODO - Rename "commons-booking" to the name of your plugin
-     *
-     * Unique identifier for your plugin.
      *
      *
      * The variable name is used as the text domain when internationalizing strings
@@ -48,7 +40,6 @@ class Commons_Booking {
     protected static $plugin_slug = 'commons-booking';
 
     /**
-     * @TODO - Rename "Plugin Name" to the name of your plugin
      *
      * Unique identifier for your plugin.
      *
@@ -147,48 +138,8 @@ class Commons_Booking {
          * Filter: Overwrite pages.
          */
         add_action( 'the_content', array( $this, 'overwrite_page' ) );   
-
-
-
-                
-
     }
 
-public function tester() {
-        // $settings = new Commons_Booking_Admin_Settings; 
-        // $p = "commons-booking";
-
-        // $defaults = array(
-        //     $p. '-settings-pages' => array(
-        //       $p.'_item_page_select' => 59,
-        //       $p.'_bookingconfirm_page_select' => 'hnny',
-        //       $p.'_registration_page_select' => $user_reg_page,
-        //     ),
-        //     $p.'-settings-bookings' => array(
-        //       $p.'_bookingsettings_maxdays' => '',
-        //       $p.'_bookingsettings_allowclosed' => ''
-        //     ),        
-        //     $p.'-settings-codes' => array(
-        //       $p.'_codes_pool' => 'Dies ist der Codes Pool',
-        //     ),
-        //     $p.'-settings-messages' => array(
-        //       $p.'_messages_booking_pleaseconfirm' => '',
-        //       $p.'_messages_booking_confirmed' => '',
-        //       $p.'_messages_booking_canceled' => '',
-        //     ),         
-        //     $p.'-settings-mail' => array(
-        //       $p.'_mail_confirmation_sender' => '',
-        //       $p.'_mail_confirmation_subject' => '',
-        //       $p.'_mail_confirmation_body' => '',
-        //       $p.'_mail_registration_subject' => '',
-        //       $p.'_mail_registration_body' => '',
-        //     ), 
-        // );
-
-        // // check if setting is set, otherwise set it. 
-        
-        // $settings->set_defaults( $defaults );
-    }
     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
