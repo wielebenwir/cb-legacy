@@ -1,52 +1,26 @@
-=== @TODO: Plugin Name ===
+=== Commons Booking ===
 
-Hier schreib ich was rein
-
-Contributors: (this should be a list of wordpress.org userids)
-Donate link: http://example.com/
-Tags: comments, spam
+Contributors: floflofloflo, Christian Wenzel
+Donate link: https://www.wielebenwir.de/verein/unterstutzen
+Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 3.9
-Stable tag: 0.0.1
+Tested up to: 4.2.2
+Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+A Wordpress plugin for management and booking of commons. Brought you by wielebenwir.de
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
-
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
-
-A few notes about the sections above:
-
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
-
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+Unique features:
+* Items, locations and timeframes: Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
+* Auto-accept bookings: A registered user can book items without the need for administration. 
+* Simple booking process with a beautiful calendar: Click a day to book an item. 
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
-
-= Using The WordPress Dashboard =
+= Using The WordPress Dashboard (Note: Plugin is not yet available on the Wordpress Plugins Directory) =
 
 1. Navigate to the 'Add New' in the plugins dashboard
 2. Search for 'commons-booking'
@@ -71,13 +45,10 @@ e.g.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Where can i find help/report bugs? =
 
-An answer to that question.
+Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
 
-= What about foo bar? =
-
-Answer to foo bar dilemma.
 
 == Screenshots ==
 
@@ -89,26 +60,31 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+= 0.3 =
+* A fresh new look
+* Major cleanup (functions and files)
+* User page
+* Custom registration page
+* Custom Login page
+* Feature: Users can cancel bookings
 
-== Upgrade Notice ==
+= 0.2 =
+* Booking calendar 
+* Mailing functionality
+* Settings for messages and mail
+* Template-tags for messages and mails
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+= 0.1 =
+* Basic booking functionality
+* Timeframes
+* Bookings
+* Custom post types
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+== Known Bugs ==
 
-== Arbitrary section ==
+See: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
 
 == Updates ==
 
