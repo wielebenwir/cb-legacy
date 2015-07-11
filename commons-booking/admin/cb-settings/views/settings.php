@@ -22,7 +22,7 @@
 
   <div id="tabs">
     <ul>
-      <li><a href="#tabs-main"><?php _e( 'Main Settings', $this->plugin_slug  ); ?></a></li>
+      <li><a href="#tabs-welcome"><?php _e( 'Welcome', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-display"><?php _e( 'Pages', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
@@ -31,32 +31,17 @@
       <li><a href="#tabs-importexport"><?php _e( 'Import/Export', $this->plugin_slug ); ?></a></li>
     </ul>
 
-    <div id="tabs-main">
-      <?php
+    <div id="tabs-welcome">
 
-      $option_fields_main = array(
-        'id' => $this->plugin_slug . '_options',
-        'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
-        'show_names' => true,
-        'fields' => array(
-          array(
-            'name' => __( 'Text', $this->plugin_slug ),
-            'desc' => __( 'field description (optional)', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_text',
-            'type' => 'text',
-          ),
-          array(
-            'name' => __( 'Color Picker', $this->plugin_slug ),
-            'desc' => __( 'field description (optional)', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_colorpicker',
-            'type' => 'colorpicker',
-            'default' => '#ffffff'
-          ),
-        ),
-      );
+      
+    <?php echo '<img src="' . plugins_url( 'commons-booking/assets/cb-logo.png' ) . '" > '; ?>
 
-      cmb2_metabox_form( $option_fields_main, $this->plugin_slug . '-settings' );
-      ?>
+      <h1>Aloha!</h1>
+      <p> Good to see you!</p>
+      <p> Commons Booking Version 0.3 </p>
+      <p>For first steps, see the <a href="http://dein-lastenrad.de/index.php?title=First_Steps">Wiki</a>, if you find bugs, please  <a href="http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software">report them here</a>, and <a href="http://www.wielebenwir.de/verein/unterstutzen">donate</a></p>
+      <p>All the best, Florian & <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a></p>
+
     </div>
     <div id="tabs-display">
       <?php
