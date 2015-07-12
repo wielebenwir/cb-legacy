@@ -1,0 +1,1699 @@
+# Copyright (C) 2013 TODO
+# This file is distributed under the same license as the TODO package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Commons Booking 0.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
+"POT-Creation-Date: 2015-07-12 17:48+0100\n"
+"PO-Revision-Date: 2015-07-12 18:19+0100\n"
+"Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
+"Language-Team: wielebenwir <florian@wielebenwir.de>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
+"esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:48
+#: public/class-commons-booking.php:392
+msgid "Booking"
+msgstr "Buchung"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:49
+#: admin/class-commons-booking-admin.php:349
+#: admin/class-commons-booking-admin.php:350
+msgid "Bookings"
+msgstr "Buchungen"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:98
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:139
+#: admin/cb-codes/class-commons-booking-codes-table.php:128
+#: admin/cb-timeframes/cb-timeframes-edit.php:78
+#: admin/cb-timeframes/cb-timeframes-list.php:86
+#: admin/cb-timeframes/cb-timeframes-list.php:123
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:53
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:128
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:99
+#: admin/cb-codes/class-commons-booking-codes-table.php:94
+#: admin/cb-timeframes/cb-timeframes-list.php:87
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:137
+msgid "Delete"
+msgstr "Löschen"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:130
+msgid "ID"
+msgstr ""
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:131
+#: admin/cb-codes/class-commons-booking-codes-table.php:125
+#: admin/cb-items/class-commons-booking-items-cpt.php:30
+#: admin/cb-timeframes/cb-timeframes-edit.php:181
+#: admin/cb-timeframes/cb-timeframes-list.php:119
+msgid "Item"
+msgstr "Artikel"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:132
+#: admin/cb-timeframes/cb-timeframes-list.php:120
+msgid "Starting Date"
+msgstr "Anfangsdatum"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:133
+#: admin/cb-timeframes/cb-timeframes-edit.php:214
+#: admin/cb-timeframes/cb-timeframes-edit.php:218
+#: admin/cb-timeframes/cb-timeframes-list.php:121
+msgid "End Date"
+msgstr "Enddatum"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:134
+#: admin/cb-codes/class-commons-booking-codes-table.php:49
+#: admin/cb-codes/class-commons-booking-codes-table.php:126
+#: admin/cb-codes/class-commons-booking-codes.php:164
+msgid "Code"
+msgstr "Code"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:135
+msgid "User"
+msgstr "Benutzer"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:136
+#: admin/cb-locations/class-commons-booking-locations-cpt.php:30
+#: admin/cb-timeframes/cb-timeframes-edit.php:197
+#: admin/cb-timeframes/cb-timeframes-list.php:118
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
+msgid "Location"
+msgstr "Standort"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:137
+msgid "Booking time"
+msgstr "Buchungs Zeit"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:138
+msgid "Status"
+msgstr "Status"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:337
+#: admin/cb-codes/class-commons-booking-codes-table.php:323
+#: admin/cb-timeframes/cb-timeframes-edit.php:281
+#: admin/cb-timeframes/cb-timeframes-list.php:326
+msgid "Something went wrong"
+msgstr "Etwas ist schief gelaufen"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:359
+#: admin/cb-codes/class-commons-booking-codes-table.php:346
+#: admin/cb-timeframes/cb-timeframes-list.php:349
+msgid "Filter by: "
+msgstr "Filtern nach:"
+
+#: admin/cb-bookings/views/bookings-table.php:26
+#: admin/cb-codes/views/codes-table.php:24
+#: admin/cb-timeframes/cb-timeframes-list.php:397
+#, php-format
+msgid "Items deleted: %d"
+msgstr "Artikel gelöscht: %d"
+
+#: admin/cb-codes/class-commons-booking-codes-table.php:50
+#: admin/cb-settings/views/settings.php:28
+#: admin/cb-settings/views/settings.php:148
+#: admin/class-commons-booking-admin.php:361
+#: admin/class-commons-booking-admin.php:362
+msgid "Codes"
+msgstr "Codes"
+
+#: admin/cb-codes/class-commons-booking-codes-table.php:127
+#: admin/cb-codes/class-commons-booking-codes.php:163
+msgid "Date"
+msgstr "Datum"
+
+#: admin/cb-codes/class-commons-booking-codes.php:150
+msgid "Codes "
+msgstr "Codes"
+
+#: admin/cb-codes/class-commons-booking-codes.php:169
+msgid " Missing Code"
+msgstr "Fehlender Code"
+
+#: admin/cb-codes/includes/class-cb-codes-generate.php:48
+msgid "No id!"
+msgstr "Keine id!"
+
+#: admin/cb-codes/includes/class-cb-codes-generate.php:62
+msgid "Codes already in Database."
+msgstr "Codes sind bereits in der Datenbank. "
+
+#: admin/cb-codes/includes/class-cb-codes-generate.php:80
+msgid "No or not enough codes defined. Add them in Commons Booking Settings."
+msgstr ""
+"Keine oder nicht genügend Codes definiert. Füge diese in den Commons Booking "
+"Settings hinzu. "
+
+#: admin/cb-codes/includes/class-cb-codes-generate.php:83
+msgid "New booking codes have been generated."
+msgstr "Neue Buchungs-Codes wurden generiert"
+
+#: admin/cb-codes/views/codes-table.php:30
+msgid "codes"
+msgstr "Codes"
+
+#: admin/cb-items/class-commons-booking-items-cpt.php:31
+#: public/class-commons-booking.php:388
+msgid "Items"
+msgstr "Artikel"
+
+#: admin/cb-items/class-commons-booking-items-cpt.php:50
+msgid "Category"
+msgstr "Kategorie"
+
+#: admin/cb-items/class-commons-booking-items-cpt.php:51
+msgid "Categories"
+msgstr "Kategorien"
+
+#: admin/cb-items/class-commons-booking-items-cpt.php:67
+#, php-format
+msgid "%s image"
+msgstr "%s Bild"
+
+#: admin/cb-items/includes/cb-items-metaboxes.php:36
+#: admin/cb-timeframes/cb-timeframes-list.php:37
+#: admin/class-commons-booking-admin.php:326
+#: admin/class-commons-booking-admin.php:327
+msgid "Timeframes"
+msgstr "Zeiträume"
+
+#: admin/cb-items/includes/cb-items-metaboxes.php:67
+msgid "Short description of the item, displayed in the list."
+msgstr "Kurze Beschriftung des Artikels, wird in der Liste angezeigt."
+
+#: admin/cb-items/includes/cb-items-metaboxes.php:74
+msgid "Short description"
+msgstr "Kurz-Beschreibung"
+
+#: admin/cb-locations/class-commons-booking-locations-cpt.php:31
+msgid "locations"
+msgstr "Standorte"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:41
+#: admin/cb-users/class-commons-booking-users.php:48
+#: templates/user-registration.php:31
+msgid "Address"
+msgstr "Adresse"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:48
+msgid "Street"
+msgstr "Strasse"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:53
+msgid "City"
+msgstr "Ort"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:58
+msgid "Zip Code"
+msgstr "PLZ"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:63
+msgid "Country"
+msgstr "Land"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:72
+msgid "Contact Information"
+msgstr "Kontakt-Informationen"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:79
+msgid "Phone Number, Email, ..."
+msgstr "Telefonnummer, Email, ..."
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:84
+msgid "Hide contact information until user has confirmed the booking."
+msgstr ""
+"Kontaktinformationen verstecken, bis der Benutzer die Buchung bestätigt hat. "
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:92
+msgid "Opening hours"
+msgstr "Öffnungszeiten"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:99
+msgid "Enter the opening hours here. E.g.: Mon-Fri, 8:00 - 18:00"
+msgstr "Gib hier die Öffnungszeiten an. Beispiel: Mo-Fr, 8:00 - 18:00"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:108
+msgid "Closed Days"
+msgstr "Geschlossene Tage"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:115
+msgid "Location is closed on the following days, booking is prohibited. "
+msgstr ""
+"Der Standort ist an diesen Tagen geschlossen, Buchen ist nicht erlaubt. "
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:119
+msgid "Monday"
+msgstr "Montag"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:120
+msgid "Tuesday"
+msgstr "Dienstag"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:121
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:122
+msgid "Thursday"
+msgstr "Donnerstag"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:123
+msgid "Friday"
+msgstr "Freitag"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:124
+msgid "Saturday"
+msgstr "Samstag"
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:125
+msgid "Sunday"
+msgstr "Sonntag"
+
+#: admin/cb-settings/views/settings.php:25
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: admin/cb-settings/views/settings.php:26
+msgid "Pages"
+msgstr "Seiten"
+
+#: admin/cb-settings/views/settings.php:27
+msgid "Booking Settings"
+msgstr "Buchungs-Einstallungen"
+
+#: admin/cb-settings/views/settings.php:29
+msgid "Mail Settings"
+msgstr "Mail-Einstellungen"
+
+#: admin/cb-settings/views/settings.php:30
+msgid "Messages Settings"
+msgstr "Nachrichten-Einstellungen"
+
+#: admin/cb-settings/views/settings.php:54
+msgid "Items Page"
+msgstr "Artikel-Seite"
+
+#: admin/cb-settings/views/settings.php:55
+msgid "Display list of items on this page"
+msgstr "Auf dieser Seite wird die Artikel-Liste gezeigt. "
+
+#: admin/cb-settings/views/settings.php:72
+msgid "Booking Review Page"
+msgstr "Seite Buchung Bestätigen"
+
+#: admin/cb-settings/views/settings.php:73
+msgid "Once you click \"Book, you will be forwarded to this page"
+msgstr ""
+"Wenn der Benutzer auf \"Buchen\" klickt, wird er auf diese Seite "
+"weitergeleitet"
+
+#: admin/cb-settings/views/settings.php:81
+#: public/class-commons-booking.php:389
+msgid "User Page"
+msgstr "Benutzer Seite"
+
+#: admin/cb-settings/views/settings.php:82
+msgid "The User page."
+msgstr "Die Benutzer Seite."
+
+#: admin/cb-settings/views/settings.php:90
+msgid "Registration Page"
+msgstr "Seite: Registrieren"
+
+#: admin/cb-settings/views/settings.php:91
+msgid "The registration form."
+msgstr "Das Registrierungs-Formular"
+
+#: admin/cb-settings/views/settings.php:99
+msgid "Login Page"
+msgstr "Login-Seite"
+
+#: admin/cb-settings/views/settings.php:100
+msgid "The login form."
+msgstr "Das Login-Formular."
+
+#: admin/cb-settings/views/settings.php:122
+msgid "Maximum booking days"
+msgstr "Maximal buchbare Tage"
+
+#: admin/cb-settings/views/settings.php:123
+msgid "Users can only book this many days at once"
+msgstr "Benutzer können nur maximal so viele Tage buchen"
+
+#: admin/cb-settings/views/settings.php:128
+msgid "Allow booking over closed days"
+msgstr "Buchung über \"geschlossene\" Tage erlauben"
+
+#: admin/cb-settings/views/settings.php:129
+msgid ""
+"Any number of closed days just counts as one booked day. <br>E.g. If you "
+"have a weekend specified as \"closed\" in the location editor, user will "
+"still be able book from friday till monday."
+msgstr ""
+"Zusammenhängende, nicht-buchbare Tage gelten als nur ein buchbarer Tag. <br> "
+"Beispiel: Wenn ein Wochenende im Artikel-Editor als \"geschlossen\" markiert "
+"ist, können Nutzer trotzdem von Freitag bis Montag buchen. "
+
+#: admin/cb-settings/views/settings.php:149
+msgid ""
+"Enter comma-seperated Codes here. For examples see <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons "
+"Booking Plugin manual</a>"
+msgstr ""
+"Komma-getrennte Codes hier einfügen. Beispiele: <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">Commons "
+"Booking Plugin manual</a>"
+
+#: admin/cb-settings/views/settings.php:169
+msgid "Message Booking Review"
+msgstr "Nachricht: Buchung überprüfen"
+
+#: admin/cb-settings/views/settings.php:170
+msgid ""
+"The message that appears after the user clicks \"Book now\" on the calendar. "
+"You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?"
+"title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr ""
+"Die Nachricht, die nach Klick auf \"Jetzt buchen\" erscheint. Du kannst HTML "
+"& <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags"
+"\" target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:175
+msgid "Message Booking Submitted"
+msgstr "Nachricht: Buchung übermittelt"
+
+#: admin/cb-settings/views/settings.php:176
+msgid ""
+"The message that appears after the user has confirmed the booking. You can "
+"use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
+"Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr ""
+"Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & "
+"<a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" "
+"target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:181
+msgid "Message Booking Canceled"
+msgstr "Nachricht: Buchung abgebrochen. "
+
+#: admin/cb-settings/views/settings.php:182
+msgid ""
+"The message that appears after the user has canceled the booking. You can "
+"use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
+"Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr ""
+"Diese Nachricht erscheint, wenn ein Benutzer die Buchung abgebrochen hat. Du "
+"kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
+"Template_Tags\" target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:202
+msgid "Email address"
+msgstr "Email-Adresse"
+
+#: admin/cb-settings/views/settings.php:203
+msgid "The reply to address (make sure this exists)"
+msgstr "Die Absender-Adresse (bitte stelle sicher, dass diese existiert)"
+
+#: admin/cb-settings/views/settings.php:208
+msgid "Confirmation email subject"
+msgstr "Buchungs-Bestätigungs Email Betreff"
+
+#: admin/cb-settings/views/settings.php:209
+msgid ""
+"The subject of the confirmation Email. You can use <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>"
+msgstr ""
+"Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:214
+msgid "Confirmation email body"
+msgstr "Buchung Bestätigung Email Inhalt"
+
+#: admin/cb-settings/views/settings.php:215
+msgid ""
+"The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>. "
+msgstr ""
+"Der Inhalt. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?"
+"title=Settings:Template_Tags\" target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:220
+msgid "Registration email subject"
+msgstr "Registrierung Email Betreff"
+
+#: admin/cb-settings/views/settings.php:221
+msgid ""
+"The subject of the registration Email. You can use <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target="
+"\"_blank\">Template tags</a>"
+msgstr ""
+"Der Betreff. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?"
+"title=Settings:Template_Tags\" target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:226
+msgid "Registration email body"
+msgstr "Registrierung Email Inhalt"
+
+#: admin/cb-settings/views/settings.php:227
+msgid ""
+"The body of the registration confirmation email. You can use HTML & <a href="
+"\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
+"target=\"_blank\">Template tags</a>. "
+msgstr ""
+"Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
+"Template_Tags\" target=\"_blank\">Template tags</a> benutzen"
+
+#: admin/cb-settings/views/settings.php:240
+msgid "Export Settings"
+msgstr "Einstellungen exportieren"
+
+#: admin/cb-settings/views/settings.php:242
+msgid ""
+"Export the plugin settings for this site as a .json file. This allows you to "
+"easily import the configuration into another site."
+msgstr "Exportiere die Einstellungen als .json-Datei"
+
+#: admin/cb-settings/views/settings.php:247
+msgid "Export"
+msgstr "Export"
+
+#: admin/cb-settings/views/settings.php:254
+msgid "Import Settings"
+msgstr ""
+
+#: admin/cb-settings/views/settings.php:256
+msgid ""
+"Import the plugin settings from a .json file. This file can be obtained by "
+"exporting the settings on another site using the form above."
+msgstr ""
+
+#: admin/cb-settings/views/settings.php:264
+msgid "Import"
+msgstr ""
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:40
+msgid "Item saved"
+msgstr "Artikel gespeichert"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:45
+msgid "There was an error while saving item"
+msgstr "Beim Speichern ist ein Fehler aufgetreten"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:50
+msgid "Item was successfully updated"
+msgstr "Artikel wurde erfolgreich aktualisiert"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:55
+msgid "There was an error while updating item!"
+msgstr "Bei der Aktualisierung ist ein Fehler aufgetreten"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:70
+msgid "Item not found"
+msgstr "Artikel nicht gefunden"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:89
+msgid "Edit Timeframe"
+msgstr "Buchungszeitraum bearbeiten"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:89
+msgid "back to list"
+msgstr "zurück zur Liste"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:92
+#: admin/cb-timeframes/cb-timeframes-list.php:405
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:159
+msgid "Add new Timeframe"
+msgstr "Neuen Buchungszeitraum anlegen"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:92
+msgid "Back to list"
+msgstr "Zurück zur Liste"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:116
+msgid "Save & generate Codes"
+msgstr "Speichen & Code erzeugen"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:205
+#: admin/cb-timeframes/cb-timeframes-edit.php:209
+msgid "Start Date"
+msgstr "Start Datum"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:223
+#: admin/cb-timeframes/cb-timeframes-edit.php:227
+#: admin/cb-timeframes/cb-timeframes-list.php:122
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:52
+msgid "Note"
+msgstr "Notiz"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:247
+msgid "Location is required"
+msgstr "Standort ist erforderlich"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:248
+msgid "Item is required"
+msgstr "Artikel ist erforderlich"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:249
+msgid "Start Date is not valid"
+msgstr "Start Datum ist im falschen Format"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:250
+msgid "End Date is not valid"
+msgstr "End-Datum ist im falschen Format"
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:272
+msgid " – Please select – "
+msgstr "- Bitte auswählen -"
+
+#: admin/cb-timeframes/cb-timeframes-list.php:36
+msgid "Timeframe"
+msgstr ""
+
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:50
+msgid "Start Date "
+msgstr ""
+
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:51
+#, fuzzy
+msgid "End Date "
+msgstr "Enddatum"
+
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:93
+msgid "No timeframes set up yet."
+msgstr ""
+
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:186
+#, fuzzy
+msgid " Something went wrong "
+msgstr "Etwas ist schief gelaufen"
+
+#: admin/cb-users/class-commons-booking-users.php:38
+msgid " Extra Fields"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:42
+#, fuzzy
+msgid "Phone number"
+msgstr "Telefonnummer, Email, ..."
+
+#: admin/cb-users/class-commons-booking-users.php:54
+msgid "Terms and conditions"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:56
+msgid " Accepted Terms & Conditions"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:98
+msgid "Sorry, registration is not allowed"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:120
+msgid "Required form field is missing: "
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:125
+msgid "Username too short. At least 4 characters is required"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:130
+msgid "Sorry, that username already exists!"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:134
+msgid "Sorry, that email already exists!"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:139
+msgid "You must accept the terms"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:147
+msgid "<strong>Error:</strong> "
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:182
+msgid ""
+"Thanks! Registration is complete. We´ve sent you an email with your Account "
+"information. "
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:198
+#, fuzzy
+msgid "Welcome, "
+msgstr "Willkommen"
+
+#: admin/cb-users/class-commons-booking-users.php:199
+msgid "Logout"
+msgstr ""
+
+#: admin/cb-users/class-commons-booking-users.php:209
+msgid " You haven´t booked anything yet."
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:140
+msgid "Plugin Loaded"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:254
+msgid "Commons Booking Settings"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:275
+#, fuzzy
+msgid "Settings"
+msgstr "Mail-Einstellungen"
+
+#: admin/class-commons-booking-admin.php:276
+msgid "Manual"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:299
+#, php-format
+msgid "%s "
+msgid_plural "%s "
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-commons-booking-admin.php:338
+msgid "Add/Edit Timeframes"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:339
+msgid "Add Timeframe"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:426
+msgid "Please upload a valid .json file"
+msgstr ""
+
+#: admin/class-commons-booking-admin.php:432
+msgid "Please upload a file to import"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:82
+msgid "Test Metabox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:93
+#: admin/includes/CMB2/example-functions.php:380
+msgid "Test Text"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:94
+#: admin/includes/CMB2/example-functions.php:106
+#: admin/includes/CMB2/example-functions.php:114
+#: admin/includes/CMB2/example-functions.php:122
+#: admin/includes/CMB2/example-functions.php:131
+#: admin/includes/CMB2/example-functions.php:139
+#: admin/includes/CMB2/example-functions.php:153
+#: admin/includes/CMB2/example-functions.php:160
+#: admin/includes/CMB2/example-functions.php:168
+#: admin/includes/CMB2/example-functions.php:185
+#: admin/includes/CMB2/example-functions.php:194
+#: admin/includes/CMB2/example-functions.php:202
+#: admin/includes/CMB2/example-functions.php:209
+#: admin/includes/CMB2/example-functions.php:216
+#: admin/includes/CMB2/example-functions.php:230
+#: admin/includes/CMB2/example-functions.php:243
+#: admin/includes/CMB2/example-functions.php:256
+#: admin/includes/CMB2/example-functions.php:268
+#: admin/includes/CMB2/example-functions.php:277
+#: admin/includes/CMB2/example-functions.php:285
+#: admin/includes/CMB2/example-functions.php:294
+#: admin/includes/CMB2/example-functions.php:301
+#: admin/includes/CMB2/example-functions.php:315
+#: admin/includes/CMB2/example-functions.php:381
+#: admin/includes/CMB2/example-functions.php:475
+#: admin/includes/CMB2/example-functions.php:483
+#: admin/includes/CMB2/example-functions.php:490
+#: admin/includes/CMB2/example-functions.php:497
+#: admin/includes/CMB2/example-functions.php:504
+#: admin/includes/CMB2/example-functions.php:511
+#: admin/includes/CMB2/example-functions.php:518
+#: admin/includes/CMB2/example-functions.php:556
+msgid "field description (optional)"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:105
+msgid "Test Text Small"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:113
+msgid "Test Text Medium"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:121
+msgid "Website URL"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:130
+msgid "Test Text Email"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:138
+msgid "Test Time"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:145
+#: admin/includes/CMB2/example-functions.php:146
+msgid "Time zone"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:152
+msgid "Test Date Picker"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:159
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:167
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:184
+msgid "Test Money"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:193
+msgid "Test Color Picker"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:201
+msgid "Test Text Area"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:208
+msgid "Test Text Area Small"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:215
+msgid "Test Text Area for Code"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:222
+msgid "Test Title Weeeee"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:223
+msgid "This is a title description"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:229
+msgid "Test Select"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:235
+#: admin/includes/CMB2/example-functions.php:248
+#: admin/includes/CMB2/example-functions.php:260
+msgid "Option One"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:236
+#: admin/includes/CMB2/example-functions.php:249
+#: admin/includes/CMB2/example-functions.php:261
+msgid "Option Two"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:237
+#: admin/includes/CMB2/example-functions.php:250
+#: admin/includes/CMB2/example-functions.php:262
+msgid "Option Three"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:242
+msgid "Test Radio inline"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:255
+msgid "Test Radio"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:267
+msgid "Test Taxonomy Radio"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:276
+msgid "Test Taxonomy Select"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:284
+msgid "Test Taxonomy Multi Checkbox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:293
+msgid "Test Checkbox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:300
+msgid "Test Multi Checkbox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:306
+msgid "Check One"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:307
+msgid "Check Two"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:308
+msgid "Check Three"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:314
+msgid "Test wysiwyg"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:322
+msgid "Test Image"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:323
+msgid "Upload an image or enter a URL."
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:329
+msgid "Multiple Files"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:330
+msgid "Upload or add multiple images/attachments."
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:337
+msgid "oEmbed"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:338
+msgid ""
+"Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
+"Embeds</a>."
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:371
+msgid "About Page Metabox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:402
+msgid "Repeating Field Group"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:410
+msgid "Generates reusable form entries"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:412
+msgid "Entry {#}"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:413
+msgid "Add Another Entry"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:414
+msgid "Remove Entry"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:426
+msgid "Entry Title"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:433
+#, fuzzy
+msgid "Description"
+msgstr "Kurz-Beschreibung"
+
+#: admin/includes/CMB2/example-functions.php:434
+msgid "Write a short description for this entry"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:440
+msgid "Entry Image"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:446
+msgid "Image Caption"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:467
+msgid "User Profile Metabox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:474
+msgid "Extra Info"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:482
+msgid "Avatar"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:489
+msgid "Facebook URL"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:496
+msgid "Twitter URL"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:503
+msgid "Google+ URL"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:510
+msgid "Linkedin URL"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:517
+msgid "User Field"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:540
+msgid "Theme Options Metabox"
+msgstr ""
+
+#: admin/includes/CMB2/example-functions.php:555
+msgid "Site Background Color"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2.php:120
+msgid "Metabox configuration is required to have an ID parameter"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2.php:326
+msgid "Click to toggle"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Ajax.php:40
+msgid "Please Try Again"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Ajax.php:135
+msgid "Remove Embed"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Ajax.php:139
+#, php-format
+msgid "No oEmbed Results Found for %s. View more info at"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Field.php:891
+msgid "Add Group"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Field.php:892
+msgid "Remove Group"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Field.php:914
+#: admin/includes/CMB2/includes/CMB2_Field.php:918
+msgid "None"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:86
+#: admin/includes/CMB2/includes/CMB2_JS.php:119
+msgid "Clear"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:87
+msgid "Default"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:88
+msgid "Select Color"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:89
+msgid "Current Color"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:109
+msgctxt "Valid formatDate string for jquery-ui datepicker"
+msgid "mm/dd/yy"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:110
+msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:111
+msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:112
+msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:113
+msgid ""
+"January, February, March, April, May, June, July, August, September, "
+"October, November, December"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:114
+msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:115
+msgid "Next"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:116
+msgid "Prev"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:117
+msgid "Today"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:118
+#: admin/includes/CMB2/includes/CMB2_JS.php:128
+msgid "Done"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:122
+msgid "Choose Time"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:123
+#, fuzzy
+msgid "Time"
+msgstr " Keine Veranstaltungen in diesem Zeitraum"
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:124
+msgid "Hour"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:125
+msgid "Minute"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:126
+msgid "Second"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:127
+msgid "Now"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:129
+msgctxt ""
+"Valid formatting string, as per http://trentrichardson.com/examples/"
+"timepicker/"
+msgid "hh:mm TT"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:135
+msgid "Use this file"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:136
+#: admin/includes/CMB2/includes/CMB2_Types.php:983
+msgid "Remove Image"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:137
+#: admin/includes/CMB2/includes/CMB2_Types.php:356
+#: admin/includes/CMB2/includes/CMB2_Types.php:1002
+msgid "Remove"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:138
+#: admin/includes/CMB2/includes/CMB2_Types.php:997
+msgid "File:"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:139
+#: admin/includes/CMB2/includes/CMB2_Types.php:1000
+msgid "Download"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_JS.php:140
+msgid "Select / Deselect All"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Types.php:297
+msgid "Add Row"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Types.php:734
+#: admin/includes/CMB2/includes/CMB2_Types.php:782
+msgid "No terms"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Types.php:847
+msgid "Add or Upload Files"
+msgstr ""
+
+#: admin/includes/CMB2/includes/CMB2_Types.php:907
+msgid "Add or Upload File"
+msgstr ""
+
+#: admin/includes/CMB2/includes/helper-functions.php:249
+msgid "Save"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:77 includes/CPT_Core/CPT_Core.php:81
+#: includes/CPT_Core/CPT_Core.php:85
+msgid "It is required to pass a single, plural and slug string to CPT_Core"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:134 includes/CPT_Core/CPT_Core.php:135
+#: includes/Taxonomy_Core/Taxonomy_Core.php:131
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:136
+#: includes/Taxonomy_Core/Taxonomy_Core.php:128
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:137
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:138
+#: includes/Taxonomy_Core/Taxonomy_Core.php:127
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:139
+#: includes/Taxonomy_Core/Taxonomy_Core.php:129
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:140
+#: includes/Taxonomy_Core/Taxonomy_Core.php:126
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:141
+#: includes/Taxonomy_Core/Taxonomy_Core.php:134
+#, fuzzy, php-format
+msgid "No %s"
+msgstr "%s Bild"
+
+#: includes/CPT_Core/CPT_Core.php:142
+#, php-format
+msgid "No %s found in Trash"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:143
+#: includes/Taxonomy_Core/Taxonomy_Core.php:138
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:194
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:195
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:196 includes/CPT_Core/CPT_Core.php:213
+#, php-format
+msgid "%1$s updated."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:198
+#, php-format
+msgid "%1$s restored to revision from %2$s"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:199
+#, php-format
+msgid "%1$s saved."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:204
+#, php-format
+msgid "%1$s updated. <a href=\"%2$s\">View %1$s</a>"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:205
+#, php-format
+msgid "%1$s published. <a href=\"%2$s\">View %1$s</a>"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:206
+#, php-format
+msgid "%1$s submitted. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:208
+#, php-format
+msgid ""
+"%1$s scheduled for: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s"
+"\">Preview %1$s</a>"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:208 includes/CPT_Core/CPT_Core.php:217
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:209
+#, php-format
+msgid "%1$s draft updated. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:214
+#, php-format
+msgid "%1$s published."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:215
+#, php-format
+msgid "%1$s submitted."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:217
+#, php-format
+msgid "%1$s scheduled for: <strong>%2$s</strong>."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:218
+#, php-format
+msgid "%1$s draft updated."
+msgstr ""
+
+#: includes/CPT_Core/CPT_Core.php:267
+#, fuzzy, php-format
+msgid "%s Title"
+msgstr "%s Bild"
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:84
+#: includes/Taxonomy_Core/Taxonomy_Core.php:88
+#: includes/Taxonomy_Core/Taxonomy_Core.php:92
+msgid ""
+"It is required to pass a single, plural and slug string to Taxonomy_Core"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:130
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:132
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:133
+#, php-format
+msgid "No %s found."
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:137
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:141
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:142
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:143
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: includes/Taxonomy_Core/Taxonomy_Core.php:144
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:32 includes/widgets/sample.php:13
+msgid "My Recent Posts"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:34 includes/widgets/sample.php:14
+msgid "My Recent Posts Widget Description"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:46 includes/widgets/sample.php:23
+msgid "Title"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:48 includes/widgets/sample.php:25
+msgid "Enter the widget title."
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:56 includes/widgets/sample.php:33
+msgid "Recent Posts"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:108
+#: includes/widgets/sample.php:80
+msgid "Amount"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:109
+#: includes/widgets/sample.php:81
+msgid "Select how many posts to show."
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:116
+#: includes/widgets/sample.php:88
+msgid "1 Post"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:121
+#: includes/widgets/sample.php:93
+msgid "2 Posts"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:125
+#: includes/widgets/sample.php:97
+msgid "3 Posts"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:137
+#: includes/widgets/sample.php:108
+msgid "Output as list"
+msgstr ""
+
+#: includes/Widgets-Helper/widget-sample.php:138
+#: includes/widgets/sample.php:109
+msgid "Wraps posts with the <li> tag."
+msgstr ""
+
+#: public/cb-bookings/class-commons-booking-data.php:204
+msgid "None found"
+msgstr ""
+
+#: public/cb-bookings/class-commons-booking-data.php:279
+msgid "This item can´t be booked at the moment."
+msgstr ""
+
+#: public/cb-bookings/class-commons-booking-public-items.php:75
+msgid " Sorry, nothing found."
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:2 templates/booking-mail.php:2
+msgid " Your Booking: "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:9 templates/booking-mail.php:9
+msgid " Pickup & Return "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:12
+#: templates/booking-mail.php:12
+msgid " Pickup at: "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:15
+#: templates/booking-mail.php:15
+msgid " Pickup date:"
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:18
+#: templates/booking-mail.php:18
+msgid " Return date: "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:21
+#, fuzzy
+msgid " Opening hours: "
+msgstr "Öffnungszeiten"
+
+#: public/cb-bookings/views/booking-review.php:26
+#: templates/booking-mail.php:23
+msgid " Your information "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:28
+#: templates/booking-mail.php:25
+msgid " Full name: "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:29
+#: templates/booking-mail.php:26
+msgid " Email: "
+msgstr ""
+
+#: public/cb-bookings/views/booking-review.php:30
+#: templates/booking-mail.php:27
+#, fuzzy
+msgid " Address: "
+msgstr "Adresse"
+
+#: public/cb-bookings/views/booking-review.php:31
+#: templates/booking-mail.php:28
+#, fuzzy
+msgid " Phone number: "
+msgstr "Telefonnummer, Email, ..."
+
+#: public/cb-bookings/views/booking-review.php:35
+#: templates/booking-mail.php:32
+msgid " Location information: "
+msgstr ""
+
+#: public/class-commons-booking.php:390
+msgid "User Registration"
+msgstr ""
+
+#: public/class-commons-booking.php:391 templates/calendar-bookingbar.php:63
+msgid "Login"
+msgstr ""
+
+#: public/class-commons-booking.php:413
+msgid "<p> Please review your booking and click \"confirm\".</p>"
+msgstr ""
+
+#: public/class-commons-booking.php:414
+msgid ""
+"<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked "
+"{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
+msgstr ""
+
+#: public/class-commons-booking.php:415
+msgid ""
+"<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>"
+msgstr ""
+
+#: public/class-commons-booking.php:419
+msgid "Your booking"
+msgstr ""
+
+#: public/class-commons-booking.php:420
+msgid ""
+"<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
+"\n"
+"              <p>Click here to see or cancel you booking: {{URL}}.</p>\n"
+"\n"
+"              <p>Here´s your booking code: <strong>{{CODE}}</strong></p>\n"
+"\n"
+"              <h3>Pick up information</h3>\n"
+"\n"
+"              <em>Please make sure you are on time.</em>\n"
+"\n"
+"              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on "
+"{{DATE_START}}.<br>\n"
+"              Return it there on {{DATE_END}}.<br>\n"
+"              Address: {{LOCATION_ADDRESS}}<br>\n"
+"              Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
+"\n"
+"              <h3>Your information</h3>\n"
+"\n"
+"              <em>Please make sure you have entered the correct name and "
+"adress from your ID - otherwise you will not be able to pick up the item</"
+"em>\n"
+"\n"
+"              <p>Name: {{USER_NAME}}.<br>\n"
+"                Address: {{USER_ADDRESS}}</p>\n"
+"\n"
+"              <p>Thanks, the Team. </p>\n"
+"            "
+msgstr ""
+
+#: public/class-commons-booking.php:444
+msgid "Welcome, {{USER_NAME}} – here´s your account information."
+msgstr ""
+
+#: public/class-commons-booking.php:445
+msgid ""
+"<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
+"\n"
+"              <p>You can sign in with the following: </p>\n"
+"\n"
+"              <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
+"              <p>Password: <strong>{{PASSWORD}}</strong></p>\n"
+"\n"
+"              <h3>Your information</h3>\n"
+"\n"
+"              <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
+"              <p>Address: {{ADDRESS}}</p>\n"
+"              <p>Phone: {{PHONE}}</p>\n"
+"\n"
+"              <p>Thanks, the Team. </p>\n"
+"            "
+msgstr ""
+
+#: public/class-commons-booking.php:544
+msgid "Book here:"
+msgstr ""
+
+#: public/class-commons-booking.php:545
+msgid "Click pickup and return date(s):"
+msgstr ""
+
+#: public/class-commons-booking.php:546
+msgid "Pickup date:"
+msgstr ""
+
+#: public/class-commons-booking.php:547
+msgid "Return date:"
+msgstr ""
+
+#: public/class-commons-booking.php:548
+msgid "Pickup and return date:"
+msgstr ""
+
+#: public/class-commons-booking.php:549
+msgid "Sorry, To many days between pickup and return, the maximum is: "
+msgstr ""
+
+#: public/class-commons-booking.php:550
+msgid "Sorry, you can only book at one station."
+msgstr ""
+
+#: public/class-commons-booking.php:551
+msgid "Sorry, this day is not bookable."
+msgstr ""
+
+#: public/class-commons-booking.php:552
+msgid "Sorry, there must be no booked day between pickup and return."
+msgstr ""
+
+#: public/class-commons-booking.php:553
+msgid "Sorry, you can´t book over closed days."
+msgstr ""
+
+#: public/includes/requirements.php:178 public/includes/requirements.php:227
+msgid " Required, Detected "
+msgstr ""
+
+#: public/includes/requirements.php:291
+msgid "PHP Extensions Not Found: "
+msgstr ""
+
+#: public/includes/requirements.php:356
+msgid " Required"
+msgstr ""
+
+#: public/includes/requirements.php:461
+msgid "Minimum System Requirements not satisfied for: "
+msgstr ""
+
+#: templates/booking-cancel.php:9
+msgid "Cancel my booking"
+msgstr ""
+
+#: templates/booking-code.php:7
+msgid " Your Booking Code"
+msgstr ""
+
+#: templates/booking-submit.php:9
+msgid "Confirm my booking"
+msgstr ""
+
+#: templates/calendar-bookingbar.php:29
+msgid "Logged in as:"
+msgstr ""
+
+#: templates/calendar-bookingbar.php:35
+msgid "Book this item:"
+msgstr ""
+
+#: templates/calendar-bookingbar.php:45
+msgid "Book"
+msgstr ""
+
+#: templates/calendar-bookingbar.php:62
+msgid "You have to be registered to book."
+msgstr ""
+
+#: templates/calendar-bookingbar.php:63 templates/user-registration.php:40
+msgid "Register"
+msgstr ""
+
+#: templates/item_single-item_info.php:10
+msgid "Read more"
+msgstr ""
+
+#: templates/items-list.php:24
+msgid "Book here "
+msgstr ""
+
+#: templates/user-bookings.php:3
+msgid "My Bookings"
+msgstr ""
+
+#: templates/user-bookings.php:10
+msgid "Details"
+msgstr ""
+
+#: templates/user-login.php:3
+msgid "Welcome, stranger!"
+msgstr ""
+
+#: templates/user-login.php:4
+msgid "If you don´t have an account, please register here: "
+msgstr ""
+
+#: templates/user-registration.php:6
+msgid "Username"
+msgstr ""
+
+#: templates/user-registration.php:11
+msgid "Email"
+msgstr ""
+
+#: templates/user-registration.php:16
+msgid "First Name"
+msgstr ""
+
+#: templates/user-registration.php:21
+msgid "Last Name"
+msgstr ""
+
+#: templates/user-registration.php:26
+msgid "Phone"
+msgstr ""
+
+#: templates/user-registration.php:35
+msgid "I accept the terms"
+msgstr ""
