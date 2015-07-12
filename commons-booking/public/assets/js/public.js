@@ -217,8 +217,14 @@
               ready = 0;
             } 
 
+            startContainer.fadeOut(200);
             startContainer.html ( textFirst );
+            startContainer.fadeIn(500);
+
+            endContainer.fadeOut(200);
             endContainer.html ( textSecond );  
+            endContainer.fadeIn(500);
+
 
             if ( ready == 1 ) {
 
@@ -235,16 +241,16 @@
               form_item_id.val( dataContainer.data ("item_id") );
               form_location_id.val( dataContainer.data ("location_id") );      
 
-              bookingButton.show(); 
+              bookingButton.fadeIn(800); 
             } else {
-              bookingButton.hide();           
+              bookingButton.fadeOut(300);           
             }
 
           } // setselected
 
           function updateData ( ds ) {
-            dataContainer.data( "ds", ds )
-            dataContainer.data( "de", de )
+            dataContainer.data( "ds", ds );
+            dataContainer.data( "de", de );
 
           }
 
