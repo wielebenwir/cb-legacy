@@ -235,7 +235,7 @@
       ?>
 
     </div>
-    <div id="tabs-importexport" class="metabox-holder">
+    <div id="tabs-importexport" class="metabox-holder" style="display:none">
       <div class="postbox">
         <h3 class="hndle"><span><?php _e( 'Export Settings', $this->plugin_slug ); ?></span></h3>
         <div class="inside">
