@@ -205,8 +205,8 @@ function cb_timeframes_table_form_meta_box_handler($item)
             <label for="date_start"><?php _e('Start Date', 'cb_timeframes_table')?></label>
         </th>
         <td>
-            <input id="date_start" name="date_start" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
-                   size="50" class="date" placeholder="<?php _e('Start Date', 'cb_timeframes_table')?>" required>
+            <input id="date_start" name="date_start" type="date"  style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
+                   size="50" class="cb-datepicker" placeholder="<?php _e('Start Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>    
     <tr class="form-field">
@@ -215,7 +215,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
         </th>
         <td>
             <input id="date_end" name="date_end" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
-                   size="50" class="date" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
+                   size="50" class="cb-datepicker" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>
     <tr class="form-field">
@@ -224,7 +224,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
         </th>
         <td>
             <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
-                   size="50" class="code" placeholder="<?php _e('Note', 'cb_timeframes_table')?>" required>
+                   size="50" class="code" placeholder="<?php _e('Note', 'cb_timeframes_table')?>">
         </td>
     </tr>
     </tbody>
@@ -242,11 +242,13 @@ function cb_timeframes_table_form_meta_box_handler($item)
 function cb_timeframes_table_validate_entry($item)
 {
 
-    // @TODO validation
     $messages = array();
 
     if ( $item['location_id'] == '-1' ) $messages[] = __('Location is required' );
-    if ( $item['item_id'] == '-1' ) $messages[] = __('Location is required' );
+    if ( $item['item_id'] == '-1' ) $messages[] = __('Item is required' );
+    if ( !is_valid_date( $item['date_start']) ) $messages[] = __('Start Date is not valid' );
+    if ( !is_valid_date( $item['date_end']) ) $messages[] = __('End Date is not valid' );
+
 
     if (empty($messages)) return true;
     return implode('<br />', $messages);
