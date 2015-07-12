@@ -46,4 +46,12 @@
     margin-bottom: 10px;
     display: block; }
 
+/* dirty fix for missing background in time picker */
+.ui-datepicker-header {
+  background: red !important; }
+
+#ui-datepicker-div div {
+  color: red;
+  background: red !important; }
+
 /*# sourceMappingURL=admin.css.map */
