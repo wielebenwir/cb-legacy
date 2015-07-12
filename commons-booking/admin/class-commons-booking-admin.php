@@ -272,7 +272,7 @@ class Commons_Booking_Admin {
 	}
 
 	/**
-	 * Add settings action link to the plugins page. @TODO: Anpassen
+	 * Add settings action link to the plugins page. 
 	 *
 	 * @since    0.0.1
 	 */
@@ -283,32 +283,6 @@ class Commons_Booking_Admin {
 			'manual' => '<a href="http://dein-lastenrad.de/index.php?title=Introduction" target="_blank">' . __( 'Manual' ) . '</a>'
 				), $links
 		);
-	}
-
-	/**
-	 * NOTE:     Actions are points in the execution of a page or process
-	 *           lifecycle that WordPress fires.
-	 *
-	 *           Actions:    http://codex.wordpress.org/Plugin_API#Actions
-	 *           Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-	 *
-	 * @since    0.0.1
-	 */
-	public function action_method_name() {
-		// @TODO: Define your action hook callback here
-	}
-
-	/**
-	 * NOTE:     Filters are points of execution in which WordPress modifies data
-	 *           before saving it or sending it to the browser.
-	 *
-	 *           Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *           Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 * @since    0.0.1
-	 */
-	public function filter_method_name() {
-		// @TODO: Define your filter hook callback here
 	}
 
 	/**
