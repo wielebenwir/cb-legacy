@@ -91,7 +91,17 @@ function pages_dropdown() {
   function convert_to_timestamp( $date ) {
     return strtotime($date);
   }
-
+  /**
+   * Check if string is valid date.
+   *
+   * @since    0.3
+   *
+   * @param     $string string to check
+   * @param     Bool
+   */
+  function is_valid_date( $string ) {
+    return (bool)strtotime( $string );
+  }
   /**
    * Create page.
    *
