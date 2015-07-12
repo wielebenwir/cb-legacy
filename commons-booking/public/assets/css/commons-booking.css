@@ -130,6 +130,8 @@
     margin-left: 57.14286%; }
   .cb-timeframe .pusher.Sat, .cb-timeframe ul.cb-calendar li.Sat:first-child {
     margin-left: 71.42857%; }
+  .cb-timeframe .pusher.Sun, .cb-timeframe ul.cb-calendar li.Sun:first-child {
+    margin-left: 85.71429%; }
   .cb-timeframe .cb-location {
     display: block;
     overflow: hidden; }
