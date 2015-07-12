@@ -75,7 +75,7 @@ class Commons_Booking_Timeframes_List {
 
     $columns = "";
 
-    if ( count($this->rows) > 1 ) {
+    if ( ($this->rows) ) {
 
       foreach ($this->rows as $row => $cols) {
 
@@ -180,7 +180,7 @@ class Commons_Booking_Timeframes_List {
       if ( $this->items ) {
           return $this->items;
         } else { 
-          return __(' No Timeframes configured ' );
+          return FALSE;
         } 
     } else {
       return __(' Something went wrong ' );
