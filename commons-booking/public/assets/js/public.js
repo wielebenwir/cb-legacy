@@ -229,7 +229,6 @@
               dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
               dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
 
-
               // set inputs
               form_date_start.val( dataContainer.data ("ds") );
               form_date_end.val( dataContainer.data ("de") );
@@ -249,6 +248,7 @@
             dataContainer.data( "ds", ds )
             dataContainer.data( "de", de )
             debug.text( dataContainer.data( "go" ) );
+            startContainer.fadeOut(100).fadeIn(100);
 
           }
 
