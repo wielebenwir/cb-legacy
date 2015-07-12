@@ -456,11 +456,11 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                   if (! wp_verify_nonce($_POST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
 
                     // DATA FROM FORM
-                    $this->date_start = date( 'Y-m-d', ( $_POST['date_start'] ));  
-                    $this->date_end = date( 'Y-m-d', ( $_POST['date_end'] ));  
-                    $this->location_id = ( $_POST['location_id'] );  
-                    $this->item_id = ( $_POST['item_id'] );  
-                    $this->timeframe_id = ( $_POST['timeframe_id'] );  
+                    $this->date_start = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_start'] ) ) );  
+                    $this->date_end = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_end'] ) ) );  
+                    $this->location_id = sanitize_text_field( $_POST['location_id'] );  
+                    $this->item_id = sanitize_text_field( $_POST['item_id'] );  
+                    $this->timeframe_id = sanitize_text_field( $_POST['timeframe_id'] );  
                     
                     $this->user_id = get_current_user_id();
 
@@ -491,7 +491,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
 
                     // DATA FROM URL
-                    $this->hash = $_GET['booking'];
+                    $this->hash = sanitize_text_field ( $_GET['booking'] );
 
                     if (! ctype_alnum( $this->hash ) ) {
                         die ("Wrong Code");
