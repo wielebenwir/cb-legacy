@@ -139,13 +139,6 @@ class Commons_Booking_Admin {
 		$debug = new Pn_Debug( $this );
 		$debug->log( __( 'Plugin Loaded', $this->plugin_slug ) );
 
-		/*
-		 * Load Wp_Contextual_Help for the help tabs
-		 */
-		add_filter( 'wp_contextual_help_docs_dir', array( $this, 'help_docs_dir' ) );
-		add_filter( 'wp_contextual_help_docs_url', array( $this, 'help_docs_url' ) );
-
-
 	  /*
 	   * Load Wp_Admin_Notice for the notices in the backend
 	   * 
