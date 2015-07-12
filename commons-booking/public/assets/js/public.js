@@ -99,8 +99,6 @@
 
         function update( index, tf_id ) {
 
-          console.log (booking_review_page);
-
           var clickedIndexes = [];
 
           var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
@@ -247,8 +245,6 @@
           function updateData ( ds ) {
             dataContainer.data( "ds", ds )
             dataContainer.data( "de", de )
-            debug.text( dataContainer.data( "go" ) );
-            startContainer.fadeOut(100).fadeIn(100);
 
           }
 
