@@ -16,9 +16,11 @@
 
 .cb-headline {
   margin-bottom: 1em; }
+  .cb-headline a {
+    color: #3356a4; }
 
-.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar .booking #date-start span, #cb-bookingbar .booking #date-end span, #cb-bookingbar .booking #cb-submit span, .cb-list ul li {
-  border: 1px solid #e1e1e1;
+.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, .cb-list ul li {
+  border-top: 1px solid #e1e1e1;
   display: block; }
 
 .cb-row {
