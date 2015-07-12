@@ -66,6 +66,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 0.4.1 =
+* Fix: Timeframes starting on sundays now correctly indented
+* Fix: If only a single timeframe was configured, it was not shown at the item edit screen
+
 = 0.4. "Surfin´Safari" =
 * Auto-Setup: All necessary Settings fields will be set on activation
 * Added form input sanitization
