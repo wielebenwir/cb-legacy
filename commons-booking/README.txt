@@ -66,6 +66,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+== 0.4.1.1 =
+* Fix: Now compatible with PHP Version 5.3.26
+
 = 0.4.1 =
 * Fix: Timeframes starting on sundays now correctly indented
 * Fix: If only a single timeframe was configured, it was not shown at the item edit screen
