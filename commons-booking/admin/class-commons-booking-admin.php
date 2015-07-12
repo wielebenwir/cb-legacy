@@ -63,6 +63,9 @@ class Commons_Booking_Admin {
 
 		// load the js for table filtering
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_table_filter' ) );
+		// load the js for timepicker in timeframe edit screen
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_timeframe_edit_datepicker' ) );
+
 
 		// At Glance Dashboard widget for your cpts
 		add_filter( 'dashboard_glance_items', array( $this, 'cpt_dashboard_support' ), 10, 1 );
@@ -181,10 +184,22 @@ class Commons_Booking_Admin {
 	public function enqueue_admin_table_filter() {
 
 		// @TODO: add this only at table screens
-		$screen = get_current_screen();
 
 		wp_enqueue_script( $this->plugin_slug . 'admin-table-filters', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );
 
+	}		
+	/**
+	 * Register and enqueue the date picker for the timeframe edit sceen
+	 *
+	 * @since     0.0.1
+	 *
+	 */
+	public function enqueue_timeframe_edit_datepicker() {
+
+		$screen = get_current_screen();
+		if ( $screen->base = 'timeframes_page_cb_timeframes_edit' ) {
+			wp_enqueue_script( $this->plugin_slug . 'timeframe_edit_datepicker', plugins_url( 'assets/js/datePicker.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), Commons_Booking::VERSION, true );
+		}
 	}	
 
 	/**
