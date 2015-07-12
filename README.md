@@ -1,4 +1,4 @@
-# Commons Booking – 0.3.1
+# Commons Booking – 0.4
 ![Logo](./commons-booking/assets/cb-logo.png)
 
 Wordpress plugin for managing and booking of common goods. 

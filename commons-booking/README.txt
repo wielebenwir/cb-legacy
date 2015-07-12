@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 0.3.1
+Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,8 +66,22 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 0.4. "Surfin´Safari" =
+* Auto-Setup: All necessary Settings fields will be set on activation
+* Added form input sanitization
+* New animations for the booking bar
+* If timeframe note is empty, hide the "-" delimiter
+* Now checking for date validity
+* Codes list: Titles of songs by the Beach Boys
 
-= 0.3 =
+
+= 0.3.2 = 
+* Disable the settungs import/export function (not working right now)
+
+= 0.3.1 =
+* Fixed dependecies
+
+= 0.3 "Aloha" =
 * A fresh new look
 * Major cleanup (functions and files)
 * User page
@@ -75,7 +89,8 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 * Custom Login page
 * Feature: Users can cancel bookings
 
-= 0.2 =
+= 0.2 "Fab Four" =
+* Codes list: Titles of songs by the Beatles
 * Booking calendar 
 * Mailing functionality
 * Settings for messages and mail
