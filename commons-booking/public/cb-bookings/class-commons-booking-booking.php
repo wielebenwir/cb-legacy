@@ -173,7 +173,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         ", 
         $currentdate , $item_id, $status), ARRAY_A); // get dates from 
      
-     $booked_days = [];
+     $booked_days = array();
 
 
      foreach ($sqlresult as $date) {
