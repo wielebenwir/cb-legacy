@@ -123,14 +123,12 @@
             'desc' => __( 'Users can only book this many days at once', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_bookingsettings_maxdays',
             'type' => 'text_small',
-            'default' => "3",
           ),          
           array(
             'name' => __( 'Allow booking over closed days', $this->plugin_slug ),
             'desc' => __( 'Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as "closed" in the location editor, user will still be able book from friday till monday.', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_bookingsettings_allowclosed',
             'type' => 'checkbox',
-            'default' => '',
           ),
         ),
       );
@@ -170,21 +168,18 @@
           array(
             'name' => __( 'Message Booking Review', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<p> Please review your booking and click "confirm".</p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
             'type' => 'textarea',
           ),
           array(
             'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_confirmed',
             'type' => 'textarea',
           ),          
           array(
             'name' => __( 'Message Booking Canceled', $this->plugin_slug ),
             'desc' => __( 'The message that appears after the user has canceled the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
-            'default' => __( '<h2>Booking canceled!</h2>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_messages_booking_canceled',
             'type' => 'textarea',
           ),
@@ -207,76 +202,30 @@
             'name' => __( 'Email address', $this->plugin_slug ),
             'desc' => __( 'The reply to address (make sure this exists)', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_sender',
-            'default' => __( 'recipient@domain.com', $this->plugin_slug ),
             'type' => 'text',
           ),          
           array(
             'name' => __( 'Confirmation email subject', $this->plugin_slug ),
             'desc' => __( 'The subject of the confirmation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_subject',
-            'default' => __( 'Your booking', $this->plugin_slug ),
             'type' => 'text',
           ),            
           array(
             'name' => __( 'Confirmation email body', $this->plugin_slug ),
             'desc' => __( 'The body of the confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_confirmation_body',
-            'default' => __( 
-              '<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
-
-              <p>Click here to see or cancel you booking: {{URL}}.</p>
-
-              <p>Here´s your booking code: <strong>{{CODE}}</strong></p>
-
-              <h3>Pick up information</h3>
-
-              <em>Please make sure you are on time.</em>
-
-              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}.<br>
-              Return it there on {{DATE_END}}.<br>
-              Address: {{LOCATION_ADDRESS}}<br>
-              Opening hours: {{LOCATION_OPENINGHOURS}}.</p>
-
-              <h3>Your information</h3>
-
-              <em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>
-
-              <p>Name: {{USER_NAME}}.<br>
-                Address: {{USER_ADDRESS}}</p>
-
-              <p>Thanks, the Team. </p>
-            ', $this->plugin_slug ),
-
             'type' => 'textarea',
           ),  
           array(
             'name' => __( 'Registration email subject', $this->plugin_slug ),
             'desc' => __( 'The subject of the registration Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_registration_subject',
-            'default' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', $this->plugin_slug ),
             'type' => 'text',
           ),         
           array(
             'name' => __( 'Registration email body', $this->plugin_slug ),
             'desc' => __( 'The body of the registration confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_mail_registration_body',
-            'default' => __( 
-              '<h1>Hi {{USER_NAME}}, thanks for registering!</h1>
-
-              <p>You can sign in with the following: </p>
-
-              <p>Username: <strong>{{USER_NAME}}</strong></p>
-              <p>Password: <strong>{{PASSWORD}}</strong></p>
-
-              <h2>Your information</h2>
-
-              <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
-              <p>Address: {{ADDRESS}}</p>
-              <p>Phone: {{PHONE}}</p>
-
-              <p>Thanks, the Team. </p>
-            ', $this->plugin_slug ),
-
             'type' => 'textarea',
           ),
         ),
