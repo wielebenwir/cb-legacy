@@ -114,6 +114,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 See: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
 
 
-== Updates ==
+== Credits == 
 
-The basic structure of this plugin was cloned from the [WordPress-Plugin-Boilerplate](https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate) project.
+* Built with [The WordPress Plugin Boilerplate Powered ](https://github.com/sudar/wp-plugin-in-github/wiki) 
+* Uses [ CMB2 ] (https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
+* Uses [ CPT_Core ] (https://github.com/WebDevStudios/CPT_Core)
+* Uses [ Taxonomy_Core ] ( https://github.com/WebDevStudios/Taxonomy_Core )
