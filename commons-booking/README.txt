@@ -117,6 +117,6 @@ See: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=
 == Credits == 
 
 * Built with [The WordPress Plugin Boilerplate Powered ](https://github.com/sudar/wp-plugin-in-github/wiki) 
-* Uses [ CMB2 ] (https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
-* Uses [ CPT_Core ] (https://github.com/WebDevStudios/CPT_Core)
-* Uses [ Taxonomy_Core ] ( https://github.com/WebDevStudios/Taxonomy_Core )
+* Uses [CMB2](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
+* Uses [CPT_Core](https://github.com/WebDevStudios/CPT_Core)
+* Uses [Taxonomy_Core ]( https://github.com/WebDevStudios/Taxonomy_Core )
