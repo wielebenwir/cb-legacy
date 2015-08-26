@@ -64,9 +64,9 @@ class Commons_Booking_Data {
     global $wpdb;
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
     if ( $setting_name ) {
-     return $page [ $this->prefix . '_'. $setting_name ];
+     return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
     } else {
-      return $page;
+      return esc_attr( $page );
     }
   }
 
@@ -356,8 +356,8 @@ class Commons_Booking_Data {
     echo ('<ul class="cb-calendar">');
 
     while( $counter <= $last ) { // loop through days
-      $display_day = date ('D', $counter );
-      $display_date = date ('j.n.', $counter ); 
+      $display_day = date_i18n ('D', $counter );
+      $display_date = date_i18n ('j.n.', $counter ); 
       $code = $this->get_code_by_date ( $counter, $codes ); 
 
       $class= $this->set_day_status( $counter, $location, $booked_days );
