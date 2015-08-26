@@ -1,10 +1,10 @@
 === Commons Booking ===
 
-Contributors: floflofloflo, Christian Wenzel
+Contributors: floflofloflo, Christian Wenzel, Sven Baier
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.2.2
+Tested up to: 4.3.
 Stable tag: 0.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -65,6 +65,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+== 0.4.2 =
+* Added German translation
 
 == 0.4.1.1 =
 * Fix: Now compatible with PHP Version 5.3.26
