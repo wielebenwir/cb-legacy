@@ -28,7 +28,6 @@ class Commons_Booking_Booking {
      *
      * @var     string
      */
-    const VERSION = '0.0.1';
 
     public function __construct() {
 
