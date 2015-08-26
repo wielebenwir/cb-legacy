@@ -14,7 +14,7 @@
  * Plugin Name:       Commons Booking
  * Plugin URI:        http://dein-lastenrad.de/index.php?title=Commons_Booking_Software
  * Description:       A wordpress plugin for management and booking of commons. 
- * Version:           0.4.1.1
+ * Version:           0.4.2
  * Author:            Florian Egermann
  * Author URI:        http://www.wielebenwir.de
  * Text Domain:       commons-booking
