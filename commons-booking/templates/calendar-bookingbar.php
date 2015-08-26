@@ -40,7 +40,7 @@
       </div>
       <div id="cb-submit">
         <a href="#" class="button cb-button">
-          <?php echo __( 'Book now' ); ?>
+          <?php echo __( 'Book now', 'commons-booking' ); ?>
         </a>
       </div>
   </div>
