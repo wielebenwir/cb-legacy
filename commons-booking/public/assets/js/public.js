@@ -86,6 +86,8 @@
           //   touchDevices: false,
           // });
 
+          console.log (allowclosed);
+
           formButton.click(function( event ) {
             event.preventDefault();
             formEl.submit();
@@ -130,6 +132,14 @@
 
           }
 
+          // if setting allowclosed is set, add the closed days to the max days to allow booking           
+          var theDays;
+          if ( allowclosed == 1 ) {
+            theDays = maxDays + daystatus;
+          } else {
+            theDays = maxDays;
+          }
+
           // VALIDATION
           if ( selectedIndexes.length > 0 && currentTimeFrame != tf_id ) { // within current timeframe
               displayNotice (text_error_timeframes,  "error");
@@ -137,13 +147,13 @@
           } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
               displayNotice (text_error_notbookable,  "error");
               return false;       
-          } else if ( distance >= maxDays ) { // max days is not exceeded
+          } else if ( distance >= theDays ) { // max days is not exceeded
               displayNotice (text_error_days + maxDays, "error");
               return false;              
           } else if ( daystatus < 0 ) { // between pickup date and return date is a booked date
               displayNotice ( text_error_bookedday, "error");
               return false;            
-          } else if ( ( daystatus > 0 ) && ( allowclosed != 1 ) ) { // booking over closed days, but not allowed
+          } else if ( ( daystatus > 0 ) && ( allowclosed = 0 ) ) { // booking over closed days, but not allowed
               displayNotice ( text_error_closedforbidden , "error");
               return false;       
           } else { // no errors
