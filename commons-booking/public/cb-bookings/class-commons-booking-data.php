@@ -331,7 +331,6 @@ class Commons_Booking_Data {
  * @param $item_id  int   id of the item
  */
   public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) {
-    
 
     $booked = new Commons_Booking_Booking;
     $booked_days = $booked->get_booked_days( $item_id );
