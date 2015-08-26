@@ -206,11 +206,7 @@ class Commons_Booking_Admin {
 		if ( !isset( $this->plugin_screen_hook_suffix ) ) {
 			return;
 		}
-
-		$screen = get_current_screen();
-		if ( $screen->id == 'settings_page_commons-booking' || strpos( $_SERVER[ 'REQUEST_URI' ], 'index.php' ) || strpos( $_SERVER[ 'REQUEST_URI' ], get_bloginfo( 'wpurl' ) . '/wp-admin/' ) ) {
-			wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
-		}
+		wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
 	}
 
 	/**
