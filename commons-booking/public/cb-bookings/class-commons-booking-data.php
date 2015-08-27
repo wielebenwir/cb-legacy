@@ -34,11 +34,16 @@ class Commons_Booking_Data {
  *
  */
   public function __construct() {
+
     $this->prefix = 'commons-booking';
-    $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow');
-    if ( empty( $this->daystoshow ) ) {
+    $daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    
+    if ( empty( $daystoshow ) ) {
+      $this->daystoshow = $daystoshow;
+    } else {
       $this->daystoshow = 30;
     }
+    
     $this->current_date = date('Y-m-d');
 }
 
@@ -64,12 +69,17 @@ class Commons_Booking_Data {
  *@return array
  */
   public function get_settings( $setting_page, $setting_name = "") {
+    
     global $wpdb;
+
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
-    if ( $setting_name ) {
-     return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
-    } else {
-      return esc_attr( $page );
+
+    if ( ! get_option( $this->prefix . '-settings-' .$setting_page ) ) {
+      if ( $setting_name ) {
+       return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
+      } else {
+        return esc_attr( $page );
+      }
     }
   }
 
