@@ -366,6 +366,7 @@ class Commons_Booking_Data {
     while( $counter <= $last ) { // loop through days
       $display_day = date_i18n ('D', $counter );
       $display_date = date_i18n ('j.n.', $counter ); 
+      $weekdaycode = 'day' . date('N', $counter);
       $code = $this->get_code_by_date ( $counter, $codes ); 
 
       $class= $this->set_day_status( $counter, $location, $booked_days );

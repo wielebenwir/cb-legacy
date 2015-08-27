@@ -185,13 +185,13 @@ $red: #FF0002;
 
   // this class pushes the calendar cells into the right position
   .pusher {
-      &.Mon {margin-left: 0; }
-      &.Tue {margin-left: $cellwidth; }
-      &.Wed {margin-left: $cellwidth * 2; }
-      &.Thu {margin-left: $cellwidth * 3; }
-      &.Fri {margin-left: $cellwidth * 4; }
-      &.Sat {margin-left: $cellwidth * 5; }
-      &.Sun {margin-left: $cellwidth * 6; }
+      &.day1 {margin-left: 0; }
+      &.day2 {margin-left: $cellwidth; }
+      &.day3 {margin-left: $cellwidth * 2; }
+      &.day4 {margin-left: $cellwidth * 3; }
+      &.day5 {margin-left: $cellwidth * 4; }
+      &.day6 {margin-left: $cellwidth * 5; }
+      &.day7 {margin-left: $cellwidth * 6; }
 
   }
 
