@@ -80,6 +80,8 @@ class Commons_Booking_Data {
       } else {
         return esc_attr( $page );
       }
+    } else { // setting wasn´t found
+      return "At least one required value was not set. Please check the settings in the backend.";
     }
   }
 
