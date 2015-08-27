@@ -35,7 +35,10 @@ class Commons_Booking_Data {
  */
   public function __construct() {
     $this->prefix = 'commons-booking';
-    $this->daystoshow = 30; //@TODO make a backend setting
+    $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow');
+    if ( empty( $this->daystoshow ) ) {
+      $this->daystoshow = 30;
+    }
     $this->current_date = date('Y-m-d');
 }
 
@@ -344,7 +347,13 @@ class Commons_Booking_Data {
     
     include (commons_booking_get_template_part( 'item_single', 'location_detailed', FALSE )); // include the location template
 
-    $start = strtotime( $tf['date_start'] );
+    // don´t show any days before today
+    if ( date ('Y-m-d') >= $tf['date_start'] ) {
+      $start = strtotime( date ('Y-m-d') );
+    } else {
+      $start = strtotime( $tf['date_start'] );
+    }
+
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
