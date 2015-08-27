@@ -123,6 +123,12 @@
             'desc' => __( 'Users can only book this many days at once', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_bookingsettings_maxdays',
             'type' => 'text_small',
+          ),           
+          array(
+            'name' => __( 'Days to show', $this->plugin_slug ),
+            'desc' => __( 'Set how many days are displayed on the booking calendar (starting form today)', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_bookingsettings_daystoshow',
+            'type' => 'text_small',
           ),          
           array(
             'name' => __( 'Allow booking over closed days', $this->plugin_slug ),
