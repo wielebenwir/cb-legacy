@@ -1,3 +1,6 @@
+# 0.4.2
+* German translation
+
 # 0.4.1.1
 * Fix: Now compatible with PHP Version 5.3.26
 

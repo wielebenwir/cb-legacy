@@ -173,7 +173,7 @@ class Commons_Booking_Timeframes_List {
 
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
       $today = date('Y-m-d');
-      $sql = $wpdb->prepare( "SELECT * FROM ". $table_name ." WHERE item_id = %d AND date_start > %s ORDER BY date_start ASC", $this->postID, $today );
+      $sql = $wpdb->prepare( "SELECT * FROM ". $table_name ." WHERE item_id = %d AND date_end > %s ORDER BY date_start ASC", $this->postID, $today );
 
       $this->items = $wpdb->get_results($sql, ARRAY_A);
 

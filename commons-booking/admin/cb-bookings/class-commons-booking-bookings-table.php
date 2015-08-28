@@ -79,6 +79,13 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     function column_item_id($item)
     {
       return '<strong>' .get_the_title( $item['item_id'] ). '</strong>';
+    }    
+    function column_user_id($item)
+    {
+        $user = get_user_by( 'id', $item['user_id'] ); 
+        $profile_edit_url = admin_url( 'user-edit.php?user_id=' . $user->ID );
+
+        return '<strong><a href="' . $profile_edit_url . '">' .$user->first_name . ' ' . $user->last_name . '</a></strong>';
     }
 
     /**
@@ -95,7 +102,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', $this->plugin_slug )),
+            // 'edit' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', $this->plugin_slug )),
             'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
         );
 

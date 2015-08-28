@@ -34,8 +34,16 @@ class Commons_Booking_Data {
  *
  */
   public function __construct() {
+
     $this->prefix = 'commons-booking';
-    $this->daystoshow = 30; //@TODO make a backend setting
+    $daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    
+    if ( empty( $daystoshow ) ) {
+      $this->daystoshow = $daystoshow;
+    } else {
+      $this->daystoshow = 30;
+    }
+    
     $this->current_date = date('Y-m-d');
 }
 
@@ -61,12 +69,19 @@ class Commons_Booking_Data {
  *@return array
  */
   public function get_settings( $setting_page, $setting_name = "") {
+    
     global $wpdb;
+
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
-    if ( $setting_name ) {
-     return $page [ $this->prefix . '_'. $setting_name ];
-    } else {
-      return $page;
+
+    if ( ! get_option( $this->prefix . '-settings-' .$setting_page ) ) {
+      if ( $setting_name ) {
+       return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
+      } else {
+        return esc_attr( $page );
+      }
+    } else { // setting wasn´t found
+      return "At least one required value was not set. Please check the settings in the backend.";
     }
   }
 
@@ -331,7 +346,6 @@ class Commons_Booking_Data {
  * @param $item_id  int   id of the item
  */
   public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) {
-    
 
     $booked = new Commons_Booking_Booking;
     $booked_days = $booked->get_booked_days( $item_id );
@@ -345,7 +359,13 @@ class Commons_Booking_Data {
     
     include (commons_booking_get_template_part( 'item_single', 'location_detailed', FALSE )); // include the location template
 
-    $start = strtotime( $tf['date_start'] );
+    // don´t show any days before today
+    if ( date ('Y-m-d') >= $tf['date_start'] ) {
+      $start = strtotime( date ('Y-m-d') );
+    } else {
+      $start = strtotime( $tf['date_start'] );
+    }
+
     $counter = $start;
     $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
 
@@ -356,8 +376,9 @@ class Commons_Booking_Data {
     echo ('<ul class="cb-calendar">');
 
     while( $counter <= $last ) { // loop through days
-      $display_day = date ('D', $counter );
-      $display_date = date ('j.n.', $counter ); 
+      $display_day = date_i18n ('D', $counter );
+      $display_date = date_i18n ('j.n.', $counter ); 
+      $weekdaycode = 'day' . date('N', $counter);
       $code = $this->get_code_by_date ( $counter, $codes ); 
 
       $class= $this->set_day_status( $counter, $location, $booked_days );

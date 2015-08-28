@@ -5,8 +5,13 @@ msgstr ""
 "Project-Id-Version: Commons Booking 0.3\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
 "POT-Creation-Date: 2015-08-26 23:18+0100\n"
+<<<<<<< HEAD
+"PO-Revision-Date: 2015-08-26 23:18+0100\n"
+"Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
+=======
 "PO-Revision-Date: 2015-08-28 13:42+0100\n"
 "Last-Translator: Stefan Meretz <stefan@meretz.de>\n"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 "Language-Team: wielebenwir <florian@wielebenwir.de>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +296,11 @@ msgstr "Seiten"
 
 #: admin/cb-settings/views/settings.php:27
 msgid "Booking Settings"
+<<<<<<< HEAD
+msgstr "Buchungs-Einstellungen"
+=======
 msgstr "Buchungen"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-settings/views/settings.php:29
 msgid "Mail Settings"
@@ -498,7 +507,11 @@ msgstr "Export"
 
 #: admin/cb-settings/views/settings.php:254
 msgid "Import Settings"
+<<<<<<< HEAD
+msgstr "Import Einstellungen"
+=======
 msgstr "Import-Einstellungen"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-settings/views/settings.php:256
 msgid ""
@@ -593,11 +606,15 @@ msgstr "Zeitrahmen"
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:50
 msgid "Start Date "
+<<<<<<< HEAD
+msgstr "Start Datum"
+=======
 msgstr "Anfangsdatum"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:51
 msgid "End Date "
-msgstr "Enddatum"
+msgstr "End-Datum"
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:93
 msgid "No timeframes set up yet."
@@ -633,6 +650,17 @@ msgstr "Folgende Felder müssen ausgefüllt werden:"
 
 #: admin/cb-users/class-commons-booking-users.php:125
 msgid "Username too short. At least 4 characters is required"
+<<<<<<< HEAD
+msgstr "Benutzername zu kurz. Mind. 4 Zeichen sind erforderlich!"
+
+#: admin/cb-users/class-commons-booking-users.php:130
+msgid "Sorry, that username already exists!"
+msgstr "Sorry, dieser Benutzername ist schon vorhanden!"
+
+#: admin/cb-users/class-commons-booking-users.php:134
+msgid "Sorry, that email already exists!"
+msgstr "Sorry, diese E-Mail ist schon vorhanden!"
+=======
 msgstr "Nutzer/in-Name zu kurz, mindestens 4 Zeichen erforderlich"
 
 #: admin/cb-users/class-commons-booking-users.php:130
@@ -642,6 +670,7 @@ msgstr "Sorry, dieser Nutzer/in-Name ist schon vorhanden!"
 #: admin/cb-users/class-commons-booking-users.php:134
 msgid "Sorry, that email already exists!"
 msgstr "Sorry, diese E-Mailadresse existiert bereits!"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-users/class-commons-booking-users.php:139
 msgid "You must accept the terms"
@@ -657,7 +686,11 @@ msgid ""
 "information. "
 msgstr ""
 "Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben dir eine E-Mail "
+<<<<<<< HEAD
+"mit deinen Account-Informationen geschickt. "
+=======
 "mit deinen Zugangsinformationen geschickt. "
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-users/class-commons-booking-users.php:198
 msgid "Welcome, "
@@ -677,7 +710,11 @@ msgstr "Plugin geladen"
 
 #: admin/class-commons-booking-admin.php:250
 msgid "Commons Booking Settings"
+<<<<<<< HEAD
+msgstr "Commons Booking Einstellungen"
+=======
 msgstr "Commons-Buchung"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/class-commons-booking-admin.php:271
 msgid "Settings"
@@ -704,7 +741,11 @@ msgstr "Zeitabschnitt hinzufügen"
 
 #: admin/class-commons-booking-admin.php:422
 msgid "Please upload a valid .json file"
+<<<<<<< HEAD
+msgstr "Bitte eine gültige .jason-Datei hochladen"
+=======
 msgstr "Bitte eine gültige .json-Datei hochladen"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/class-commons-booking-admin.php:428
 msgid "Please upload a file to import"
@@ -911,12 +952,20 @@ msgid ""
 "href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
 "Embeds</a>."
 msgstr ""
+<<<<<<< HEAD
+"Youtube, Twitter, or Instagram URL. Unterstützte Services unter <a href="
+=======
 "URL von Youtube, Twitter oder Instagram. Unterstützte Services unter <a href="
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 "\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/Embeds</a>."
 
 #: admin/includes/CMB2/example-functions.php:371
 msgid "About Page Metabox"
+<<<<<<< HEAD
+msgstr "About Page Metabox"
+=======
 msgstr "Über Page Metabox"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/includes/CMB2/example-functions.php:402
 msgid "Repeating Field Group"
@@ -948,7 +997,11 @@ msgstr "Beschreibung"
 
 #: admin/includes/CMB2/example-functions.php:434
 msgid "Write a short description for this entry"
+<<<<<<< HEAD
+msgstr "Schreibe eine kurze Beschreibung für den Beitrag"
+=======
 msgstr "Verfasse eine kurze Beschreibung für den Beitrag"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/includes/CMB2/example-functions.php:440
 msgid "Entry Image"
@@ -1179,7 +1232,11 @@ msgstr "Speichern"
 #: includes/CPT_Core/CPT_Core.php:77 includes/CPT_Core/CPT_Core.php:81
 #: includes/CPT_Core/CPT_Core.php:85
 msgid "It is required to pass a single, plural and slug string to CPT_Core"
+<<<<<<< HEAD
+msgstr "Bitte gib einen Single, Plural und Slug-String für CPT_Core"
+=======
 msgstr "Bitte gib einen Single-, Plural- und Slug-String für CPT_Core ein"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: includes/CPT_Core/CPT_Core.php:134 includes/CPT_Core/CPT_Core.php:135
 #: includes/Taxonomy_Core/Taxonomy_Core.php:131
@@ -1321,7 +1378,11 @@ msgstr "%s Titel"
 #: includes/Taxonomy_Core/Taxonomy_Core.php:92
 msgid ""
 "It is required to pass a single, plural and slug string to Taxonomy_Core"
+<<<<<<< HEAD
+msgstr "Bitte gib einen Single, Plural und Slug-String für Taxonomy_Core"
+=======
 msgstr "Bitte gib einen Single-, Plural- und Slug-String für Taxonomy_Core ein"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:130
 #, php-format
@@ -1416,7 +1477,11 @@ msgstr "Ausgabe als Liste"
 #: includes/Widgets-Helper/widget-sample.php:138
 #: includes/widgets/sample.php:109
 msgid "Wraps posts with the <li> tag."
+<<<<<<< HEAD
+msgstr "Umschliesst Beiträge mit dem <li>-tag."
+=======
 msgstr "Umschließt Beiträge mit dem <li>-Tag."
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/cb-bookings/class-commons-booking-data.php:204
 msgid "None found"
@@ -1424,7 +1489,11 @@ msgstr "Keine Einträge"
 
 #: public/cb-bookings/class-commons-booking-data.php:279
 msgid "This item can´t be booked at the moment."
+<<<<<<< HEAD
+msgstr "Dieser Artikel kann momentan nicht gebucht werden."
+=======
 msgstr "Dieser Artikel kann zur Zeit nicht gebucht werden."
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/cb-bookings/class-commons-booking-public-items.php:75
 msgid " Sorry, nothing found."
@@ -1489,6 +1558,17 @@ msgstr " Standortinformation: "
 
 #: public/class-commons-booking.php:390
 msgid "User Registration"
+<<<<<<< HEAD
+msgstr "Benutzer Registrierung"
+
+#: public/class-commons-booking.php:391 templates/calendar-bookingbar.php:61
+msgid "Login"
+msgstr "Login"
+
+#: public/class-commons-booking.php:413
+msgid "<p> Please review your booking and click \"confirm\".</p>"
+msgstr "<p> Bitte prüfe deine Angaben und klicke \"confirm\".</p>"
+=======
 msgstr "Nutzer/in-Registrierung"
 
 #: public/class-commons-booking.php:391 templates/calendar-bookingbar.php:61
@@ -1498,6 +1578,7 @@ msgstr "Anmeldung"
 #: public/class-commons-booking.php:413
 msgid "<p> Please review your booking and click \"confirm\".</p>"
 msgstr "<p> Bitte prüfe deine Angaben und klicke dann \"Bestätigung\".</p>"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/class-commons-booking.php:414
 msgid ""
@@ -1505,8 +1586,12 @@ msgid ""
 "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
 msgstr ""
 "<h2>Glückwunsch, {{USER_NAME}}!</h2> <p>Du hast {{ITEM_NAME}} erfolgreich "
+<<<<<<< HEAD
+"gebucht. Eine E-Mail wurde soeben an {{USER_EMAIL}} geschickt. </p>"
+=======
 "gebucht. Eine E-Mail wurde soeben an deine Adresse {{USER_EMAIL}} gesendet. "
 "</p>"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/class-commons-booking.php:415
 msgid ""
@@ -1579,7 +1664,11 @@ msgstr ""
 
 #: public/class-commons-booking.php:444
 msgid "Welcome, {{USER_NAME}} – here´s your account information."
+<<<<<<< HEAD
+msgstr "Willkommen, {{USER_NAME}} – hier sind deine Account-Informationen."
+=======
 msgstr "Willkommen, {{USER_NAME}} – hier sind deine Zugangs-Informationen."
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/class-commons-booking.php:445
 msgid ""
@@ -1601,9 +1690,16 @@ msgid ""
 msgstr ""
 "<h2>Hallo {{USER_NAME}}, danke für deine Registrierung!</h2>\n"
 "\n"
+<<<<<<< HEAD
+"              <p>Du kannst dich jetzt mit den folgenden Daten anmelden: </"
+"p>\n"
+"\n"
+"              <p>Benutzername: <strong>{{USER_NAME}}</strong></p>\n"
+=======
 "              <p>Mit den folgenden Angaben kannst du dich anmelden: </p>\n"
 "\n"
 "              <p>Nutzer/in-Name: <strong>{{USER_NAME}}</strong></p>\n"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 "              <p>Passwort: <strong>{{PASSWORD}}</strong></p>\n"
 "\n"
 "              <h3>Deine Angaben</h3>\n"
@@ -1637,11 +1733,19 @@ msgstr "Abhol- und Rückgabedatum:"
 
 #: public/class-commons-booking.php:549
 msgid "Sorry, To many days between pickup and return, the maximum is: "
+<<<<<<< HEAD
+msgstr "Sorry, der Zeitraum ist zu lang. Max. Tage: "
+
+#: public/class-commons-booking.php:550
+msgid "Sorry, you can only book at one station."
+msgstr "Sorry, du kannst nur an einer Station buchen."
+=======
 msgstr "Sorry, der Zeitraum ist zu lang. Maximale Anzahl der buchbaren Tage: "
 
 #: public/class-commons-booking.php:550
 msgid "Sorry, you can only book at one station."
 msgstr "Sorry, du kannst nur bei einer Station buchen."
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/class-commons-booking.php:551
 msgid "Sorry, this day is not bookable."
@@ -1649,6 +1753,25 @@ msgstr "Sorry, dieser Tag ist nicht buchbar."
 
 #: public/class-commons-booking.php:552
 msgid "Sorry, there must be no booked day between pickup and return."
+<<<<<<< HEAD
+msgstr "Sorry, bitte wählen einen Zeitraum ohne Überschneidungen."
+
+#: public/class-commons-booking.php:553
+msgid "Sorry, you can´t book over closed days."
+msgstr "Sorry, du kannst diese Tage nicht buchen."
+
+#: public/includes/requirements.php:178 public/includes/requirements.php:227
+msgid " Required, Detected "
+msgstr " erforderlich, erkannt"
+
+#: public/includes/requirements.php:291
+msgid "PHP Extensions Not Found: "
+msgstr "PHP Erweiterung nicht gefunden:"
+
+#: public/includes/requirements.php:356
+msgid " Required"
+msgstr " erforderlich"
+=======
 msgstr "Sorry, bitte wähle einen Zeitraum ohne Überschneidungen."
 
 #: public/class-commons-booking.php:553
@@ -1666,6 +1789,7 @@ msgstr "PHP-Erweiterungen nicht gefunden:"
 #: public/includes/requirements.php:356
 msgid " Required"
 msgstr " Erforderlich"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/includes/requirements.php:461
 msgid "Minimum System Requirements not satisfied for: "
@@ -1697,7 +1821,11 @@ msgstr "Jetzt buchen"
 
 #: templates/calendar-bookingbar.php:60
 msgid "You have to be registered to book."
+<<<<<<< HEAD
+msgstr "Um zu buchen musst du angemeldet sein."
+=======
 msgstr "Um zu buchen, musst du angemeldet sein."
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: templates/calendar-bookingbar.php:61 templates/user-registration.php:40
 msgid "Register"
@@ -1725,7 +1853,11 @@ msgstr "Willkommen!"
 
 #: templates/user-login.php:4
 msgid "If you don´t have an account, please register here: "
+<<<<<<< HEAD
+msgstr "Wenn du noch keinen Account hast, registriere dich bitte hier:"
+=======
 msgstr "Wenn du noch keinen Zugang hast, registriere dich bitte hier:"
+>>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: templates/user-registration.php:6
 msgid "Username"

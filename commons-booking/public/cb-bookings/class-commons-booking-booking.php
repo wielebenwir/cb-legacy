@@ -28,7 +28,6 @@ class Commons_Booking_Booking {
      *
      * @var     string
      */
-    const VERSION = '0.0.1';
 
     public function __construct() {
 
@@ -346,9 +345,16 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     * @return array
     */  
     private function validate_days ( $item_id, $date_start, $date_end ) {
+
         $booked_days = $this->get_booked_days ( $item_id, 'confirmed' );
         $count_days = count ( get_dates_between( $date_start, $date_end ));
         $max_days = $this->data->get_settings( 'bookings', 'bookingsettings_maxdays');
+        $allow_closed = $this->data->get_settings( 'bookings', 'bookingsettings_allowclosed');
+        
+        if ( $allow_closed  == "on" ) {
+            $max_days = $max_days + 5; // @TODO this should be a calculated number of days instead of a fixed 
+        }  
+
         if ( in_array( $date_start, $booked_days ) OR in_array( $date_end, $booked_days ) OR $count_days > $max_days  ) {
             die ('Error: There was an error with your request.');
         } else {
@@ -484,7 +490,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                 } else { // not all needed vars present  
                    
-                    echo ("Error: Variables missing");
+                    echo __( 'Error: Variables missing', 'commons-booking' );
 
               } // end if all variables present
             } else if ( !empty($_GET['booking']) ) { // we confirm the booking 

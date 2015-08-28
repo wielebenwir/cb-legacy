@@ -12,7 +12,6 @@
  * Display the booking bar
  *
  * @package Commons_Booking_Bookingbar
- * @author  Your Name <email@example.com>
  */
 
 
@@ -24,15 +23,14 @@
 
    <?php if ( is_user_logged_in() ) { ?>
       <?php 
-      global $current_user;
-        get_currentuserinfo();
-        echo ( __( 'Logged in as:' ));
-        echo $current_user->display_name;
+        global $current_user;
+        // get_currentuserinfo();
+        echo __( 'Logged in as', 'commons-booking' ) . ': ' . $current_user->display_name;
       ?>
     </div>
   <div class="booking">
     <div id="intro">
-    <?php _e ( 'Book this item:') ?>
+    <?php echo __( 'Book this item:', 'commons-booking' ); ?>
     </div>
     <div id="date-start">
         from
@@ -42,7 +40,7 @@
       </div>
       <div id="cb-submit">
         <a href="#" class="button cb-button">
-          <?php _e( 'Book'); ?>
+          <?php echo __( 'Book now', 'commons-booking' ); ?>
         </a>
       </div>
   </div>
@@ -59,7 +57,7 @@
     <div id="data"></div>
     <div id="debug"></div>
     <?php } else { ?>
-      <p class="cb-big"><?php echo __( 'You have to be registered to book.' ); ?></p>
+      <p class="cb-big"><?php echo __( 'You have to be registered to book.', 'commons-booking' ); ?></p>
       <a href="<?php echo wp_login_url(); ?>"><?php echo __( 'Login' ); ?></a> | <a href="<?php echo wp_registration_url(); ?>"><?php echo __( 'Register' ); ?></a>
     <?php } ?>
   </div>

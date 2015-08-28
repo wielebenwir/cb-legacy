@@ -118,19 +118,19 @@
  */
 .cb-timeframe {
   /* Calendar */ }
-  .cb-timeframe .pusher.Mon, .cb-timeframe ul.cb-calendar li.Mon:first-child {
+  .cb-timeframe .pusher.day1, .cb-timeframe ul.cb-calendar li.day1:first-child {
     margin-left: 0; }
-  .cb-timeframe .pusher.Tue, .cb-timeframe ul.cb-calendar li.Tue:first-child {
+  .cb-timeframe .pusher.day2, .cb-timeframe ul.cb-calendar li.day2:first-child {
     margin-left: 14.28571%; }
-  .cb-timeframe .pusher.Wed, .cb-timeframe ul.cb-calendar li.Wed:first-child {
+  .cb-timeframe .pusher.day3, .cb-timeframe ul.cb-calendar li.day3:first-child {
     margin-left: 28.57143%; }
-  .cb-timeframe .pusher.Thu, .cb-timeframe ul.cb-calendar li.Thu:first-child {
+  .cb-timeframe .pusher.day4, .cb-timeframe ul.cb-calendar li.day4:first-child {
     margin-left: 42.85714%; }
-  .cb-timeframe .pusher.Fri, .cb-timeframe ul.cb-calendar li.Fri:first-child {
+  .cb-timeframe .pusher.day5, .cb-timeframe ul.cb-calendar li.day5:first-child {
     margin-left: 57.14286%; }
-  .cb-timeframe .pusher.Sat, .cb-timeframe ul.cb-calendar li.Sat:first-child {
+  .cb-timeframe .pusher.day6, .cb-timeframe ul.cb-calendar li.day6:first-child {
     margin-left: 71.42857%; }
-  .cb-timeframe .pusher.Sun, .cb-timeframe ul.cb-calendar li.Sun:first-child {
+  .cb-timeframe .pusher.day7, .cb-timeframe ul.cb-calendar li.day7:first-child {
     margin-left: 85.71429%; }
   .cb-timeframe .cb-location {
     display: block;

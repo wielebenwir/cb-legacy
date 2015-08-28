@@ -21,7 +21,7 @@
           <span class="cb-date"><?php echo date ('d.m.', strtotime($location['date_start']) ); ?></span> - <span class="cb-date"> 
           <?php echo date ( 'd.m.', strtotime( $location[ 'date_end' ]) ); ?> </span>: 
           <?php echo $location[ 'name' ]; ?>,  <?php echo $location['address']['street']; ?>, <?php echo $location['address']['city'];  ?>
-          <span class="cb-action"><a href="<?php echo ( $item['permalink'] . '#timeframe' . $location[ 'name' ] );  ?>"> <?php echo __( 'Book here '); ?></a></span>
+          <span class="cb-action"><a href="<?php echo ( $item['permalink'] . '#timeframe' . $location[ 'name' ] );  ?>"> <?php echo __( 'Book here', 'commons-booking'); ?></a></span>
         </li>
       <? } // end foreach location ?>
     </ul>
