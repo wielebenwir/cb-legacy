@@ -5,7 +5,7 @@
  * @since   0.0.1
  */
 ?>
-<li id="<?php echo $counter; ?>" class="tooltip <?php echo $weekdaycode . ' '. $class ; ?>" title="This is my image tooltip message!">
+<li id="<?php echo $counter; ?>" class="cb-tooltip <?php echo $weekdaycode . ' '. $class ; ?>" title="This is my image tooltip message!">
   <span class="cb-date"><?php echo $display_date; ?></span>
   <span class="cb-day"><?php echo $display_day; ?></span>
 </li>
