@@ -79,6 +79,13 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     function column_item_id($item)
     {
       return '<strong>' .get_the_title( $item['item_id'] ). '</strong>';
+    }    
+    function column_user_id($item)
+    {
+        $user = get_user_by( 'id', $item['user_id'] ); 
+        $profile_edit_url = admin_url( 'user-edit.php?user_id=' . $user->ID );
+
+        return '<strong><a href="' . $profile_edit_url . '">' .$user->first_name . ' ' . $user->last_name . '</a></strong>';
     }
 
     /**
