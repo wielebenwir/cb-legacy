@@ -10,7 +10,7 @@
 <?php foreach ( $items as $item ) { ?>
 <div class="cb-list cb-box">
   <div class="cb-list-item">
-      <?php if ( isset( $item['thumb'] )) { ?><div class="align-right"><?php echo $item['thumb']; ?></div><? } ?>
+      <?php if ( isset( $item['thumb'] )) { ?><div class="align-right"><?php echo $item['thumb']; ?></div><?php } ?>
     <div class="cb-headline"><a href="<?php echo $item['permalink']; ?>"><?php echo $item['title']; ?></a></div>
     <div class="right"><?php echo $item['description']; ?></div>
   </div>
@@ -23,10 +23,10 @@
           <?php echo $location[ 'name' ]; ?>,  <?php echo $location['address']['street']; ?>, <?php echo $location['address']['city'];  ?>
           <span class="cb-action"><a href="<?php echo ( $item['permalink'] . '#timeframe' . $location[ 'name' ] );  ?>"> <?php echo __( 'Book here', 'commons-booking'); ?></a></span>
         </li>
-      <? } // end foreach location ?>
+      <?php } // end foreach location ?>
     </ul>
   <?php } // end if isset location ?>
   </div>
-<? } // end foreach ?>
+<?php } // end foreach ?>
 </div>
 
