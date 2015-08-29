@@ -74,7 +74,7 @@ class Commons_Booking_Data {
 
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
 
-    if ( ! get_option( $this->prefix . '-settings-' .$setting_page ) ) {
+    if ( get_option( $this->prefix . '-settings-' .$setting_page ) ) {
       if ( $setting_name ) {
        return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
       } else {
