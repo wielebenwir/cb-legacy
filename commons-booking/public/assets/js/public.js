@@ -86,7 +86,6 @@
           //   touchDevices: false,
           // });
 
-          console.log (allowclosed);
 
           formButton.click(function( event ) {
             event.preventDefault();
