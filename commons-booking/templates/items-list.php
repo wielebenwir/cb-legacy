@@ -6,8 +6,8 @@
  */
 ?>
 
-
 <?php foreach ( $items as $item ) { ?>
+
 <div class="cb-list cb-box">
   <div class="cb-list-item">
       <?php if ( isset( $item['thumb'] )) { ?><div class="align-right"><?php echo $item['thumb']; ?></div><?php } ?>
@@ -21,7 +21,7 @@
           <span class="cb-date"><?php echo date ('d.m.', strtotime($location['date_start']) ); ?></span> - <span class="cb-date"> 
           <?php echo date ( 'd.m.', strtotime( $location[ 'date_end' ]) ); ?> </span>: 
           <?php echo $location[ 'name' ]; ?>,  <?php echo $location['address']['street']; ?>, <?php echo $location['address']['city'];  ?>
-          <span class="cb-action"><a href="<?php echo ( $item['permalink'] . '#timeframe' . $location[ 'name' ] );  ?>"> <?php echo __( 'Book here', 'commons-booking'); ?></a></span>
+          <span class="cb-action"><a href="<?php echo ( $item['permalink'] . '#timeframe' . $location[ 'name' ] );  ?>"> <?php echo __( 'Book here', Commons_Booking::$plugin_slug ); ?></a></span>
         </li>
       <?php } // end foreach location ?>
     </ul>
