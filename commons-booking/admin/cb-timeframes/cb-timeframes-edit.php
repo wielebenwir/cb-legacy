@@ -174,8 +174,8 @@ function cb_timeframes_table_form_meta_box_handler($item)
     ?>
 
 
-<table cellspacing="2" cellpadding="5" class="form-table">
-    <tbody>
+<table cellspacing="2" cellpadding="5" class="form-table cmb_metabox">
+    <tbody class="cmb2-wrap">
     <tr class="form-field">
         <th valign="top" scope="row">
             <label for="item_id"><?php _e('Item', 'cb_timeframes_table')?></label>
@@ -205,7 +205,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
             <label for="date_start"><?php _e('Start Date', 'cb_timeframes_table')?></label>
         </th>
         <td>
-            <input id="date_start" name="date_start" type="date"  style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
+            <input id="date_start" name="date_start" type="text"  style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
                    size="50" class="cb-datepicker" placeholder="<?php _e('Start Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>    
@@ -214,7 +214,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
             <label for="date_end"><?php _e('End Date', 'cb_timeframes_table')?></label>
         </th>
         <td>
-            <input id="date_end" name="date_end" type="date" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
+            <input id="date_end" name="date_end" type="text" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
                    size="50" class="cb-datepicker" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
         </td>
     </tr>

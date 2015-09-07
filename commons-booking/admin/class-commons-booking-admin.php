@@ -191,9 +191,8 @@ class Commons_Booking_Admin {
 
 		$screen = get_current_screen();
 		if ( $screen->base = 'timeframes_page_cb_timeframes_edit' ) {
-			// wp_enqueue_style( $this->plugin_slug . '-cmb2-styles', plugins_url( 'includes/CMB2/css/cmb2.css', __FILE__ ), Commons_Booking::VERSION );
-			
-			//	wp_enqueue_script( $this->plugin_slug . 'timeframe_edit_datepicker', plugins_url( 'assets/js/datePicker.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), Commons_Booking::VERSION, true );
+			wp_enqueue_style( $this->plugin_slug . '-datePicker-styles', plugins_url( 'assets/css/datePicker.css', __FILE__ ), Commons_Booking::VERSION );
+			wp_enqueue_script( $this->plugin_slug . 'timeframe_edit_datePicker', plugins_url( 'assets/js/datePicker.js', __FILE__ ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker'), Commons_Booking::VERSION, true );
 		}
 	}	
 
