@@ -25,7 +25,6 @@ if (!class_exists('WP_List_Table')) {
 *
 */    
 function commons_booking_bookins_table_handler() {
-    // echo ("hello");
     include ('views/bookings-table.php');
 }
 
@@ -262,7 +261,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         global $wpdb;
         $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
-        $per_page = 5; // constant, how much records will be shown per page
+        $per_page = 30; // constant, how much records will be shown per page
 
         $columns = $this->get_columns();
         $hidden = array();
