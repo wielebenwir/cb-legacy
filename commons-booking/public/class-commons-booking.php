@@ -137,7 +137,7 @@ class Commons_Booking {
         /* 
          * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'overwrite_page' ) );  
+        add_action( 'the_content', array( $this, 'cb_content' ) );  
     }
 
     /**
@@ -149,7 +149,7 @@ class Commons_Booking {
      *
      * @return    Mixed 
      */
-    public function overwrite_page( $page_content ) {
+    public function cb_content( $page_content ) {
 
         $settings_display = $this->settings->get('pages');
 
