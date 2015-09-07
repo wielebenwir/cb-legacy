@@ -15,7 +15,6 @@
 
     $( '.cb-datepicker' ).each(function( ) { 
       $(this).datepicker( { dateFormat: "yy-mm-dd" } );
-      console.log (this);
     
     });
   });
