@@ -31,11 +31,11 @@ class Commons_Booking_Public_Items {
     const VERSION = '0.0.1';
     public $items;
 
+
     public function __construct() {
 
       // get timeframe data 
       $this->data = new Commons_Booking_Data;
-      $this->plugin_slug = 'commons-booking';
 
       // get list of items
       $args = array( 'posts_per_page' => 10, 'post_type' => 'cb_items', 'orderby' => 'title', 'order' => 'DESC' );

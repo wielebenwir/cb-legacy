@@ -37,7 +37,7 @@ class Commons_Booking {
      *
      * @var      string
      */
-    protected static $plugin_slug = 'commons-booking';
+    static $plugin_slug = 'commons-booking';
 
     /**
      *
@@ -137,7 +137,7 @@ class Commons_Booking {
         /* 
          * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'overwrite_page' ) );   
+        add_action( 'the_content', array( $this, 'overwrite_page' ) );  
     }
 
     /**
@@ -608,7 +608,6 @@ class Commons_Booking {
      * @since    0.2
      */
     public function cb_user_url() {
-
        $id = $this->settings->get('pages', 'user_page_select');
        $url = get_permalink( $id );
        return $url;
@@ -627,16 +626,16 @@ class Commons_Booking {
 
     /**
      * NOTE:  Shortcode simple set of functions for creating macro codes for use
-     * 		  in post content.
+     *        in post content.
      *
      *        Reference:  http://codex.wordpress.org/Shortcode_API
      *
-     * @since    0.0.1
+     * @since    1.0.0
      */
     public function shortcode_method_name() {
         // @TODO: Define your shortcode here
-		// Check for the CMB2 Shortcode Button
-		// In bundle with the boilerplate https://github.com/jtsternberg/Shortcode_Button
+        // Check for the CMB2 Shortcode Button
+        // In bundle with the boilerplate https://github.com/jtsternberg/Shortcode_Button
     }
 
 }
