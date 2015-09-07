@@ -149,7 +149,7 @@ class Commons_Booking {
      *
      * @return    Mixed 
      */
-    public function overwrite_page( $pageID ) {
+    public function overwrite_page( $page_content ) {
 
         $settings_display = $this->settings->get('pages');
 
@@ -183,7 +183,7 @@ class Commons_Booking {
                 $bookingbar_display = $timeframes->show_booking_bar(); 
 
             } else { 
-                return get_the_content( $pageID );
+                return $page_content;
             }
         }    
 
