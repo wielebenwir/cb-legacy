@@ -28,5 +28,3 @@
   <?php } // end if isset location ?>
   </div>
 <?php } // end foreach ?>
-</div>
-
