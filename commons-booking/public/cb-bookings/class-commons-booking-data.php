@@ -272,7 +272,6 @@ class Commons_Booking_Data {
     $plugin = Commons_Booking::get_instance();
     $plugin_slug = $plugin->get_plugin_slug().'/';
 
-
     ob_start();
 
     include commons_booking_get_template_part( 'item_single', 'item_info', false ); // include the item info template
