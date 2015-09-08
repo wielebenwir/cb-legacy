@@ -19,15 +19,12 @@
 <div id="cb-bookingbar">
   <div id="cb-bookingbar-msg"></div>
   <div class="inner">
-    <div class="cb-userinfo cb-small">
-
    <?php if ( is_user_logged_in() ) { ?>
       <?php 
         global $current_user;
         // get_currentuserinfo();
-        echo __( 'Logged in as', 'commons-booking' ) . ': ' . $current_user->display_name;
+        echo '<div class="cb-userinfo cb-small">' . __( 'Logged in as', 'commons-booking' ) . ': ' . $current_user->display_name . '</div>';
       ?>
-    </div>
   <div class="booking">
     <div id="intro">
     <?php echo __( 'Book this item:', 'commons-booking' ); ?>
