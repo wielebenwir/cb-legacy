@@ -104,7 +104,7 @@ class Commons_Booking_Data {
  *
  * @return array
  */
-  public function get_codes() {
+  public function get_codes( $scope = '-30 days' ) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_codes';
     $dateRangeStart = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
@@ -268,7 +268,7 @@ class Commons_Booking_Data {
     $item_descr_short = get_post_meta( $item_id, 'commons-booking_item_descr', TRUE  );
     $item_descr_full = get_the_content();
 
-    include (commons_booking_get_template_part( 'item_single', 'item_info', FALSE )); // include the item info template
+    include commons_booking_get_template_part( 'item_single', 'item_info', false ); // include the item info template
 
     $this->item_id = $item_id;
 
