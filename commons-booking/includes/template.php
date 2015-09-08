@@ -15,8 +15,6 @@ function commons_booking_get_template_part( $slug, $name = '', $include = true )
 	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
 	$plugin = Commons_Booking::get_instance();
 	$plugin_slug = $plugin->get_plugin_slug().'/';
-
-	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
 	
 	// Look in yourtheme/slug-name.php and yourtheme/commons-booking/slug-name.php
 	if ( $name ) {
