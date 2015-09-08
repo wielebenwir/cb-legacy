@@ -178,7 +178,7 @@ class Commons_Booking {
 
         $item_id = get_the_ID();
         $timeframes = new Commons_Booking_Data();
-        return $page_content.$timeframes->render_item_single_timeframes($item_id);
+        return $page_content . $timeframes->render_item_single_timeframes($item_id) . $timeframes->show_booking_bar(); ;
 
             } else { 
                 return $page_content;
