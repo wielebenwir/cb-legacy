@@ -292,7 +292,6 @@ class Commons_Booking_Data {
     if ($timeframes ) {
       foreach ( $timeframes as $tf) {
         if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range  
-        echo ("hello");        
           $location = $this->get_location ( $tf['location_id'] );
           $this->render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id );     
         }
