@@ -1,4 +1,4 @@
-# Commons Booking – 0.4.2
+# Commons Booking – 0.5 beta
 ![Logo](./commons-booking/assets/cb-logo.png)
 
 Wordpress plugin for managing and booking of common goods. 
@@ -25,6 +25,7 @@ Florian Egermann / wielebenwir e.V.
 * Uses [CMB2](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
 * Uses [CPT_Core](https://github.com/WebDevStudios/CPT_Core)
 * Uses [Taxonomy_Core ]( https://github.com/WebDevStudios/Taxonomy_Core )
+* German translation by Sven Baier & Stefan Meretz
    
 
 ##License

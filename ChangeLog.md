@@ -1,5 +1,20 @@
+# 0.5
+* Feature: Issue #34  Shortcode for items implemented
+* Feature: Days to show: Set the days to 
+* Feature: Single Items: "More…" button is only shown if description is entered (item edit main text field)
+* Fix: User info (first & last name) now correctly displayed in booking admin table.
+* Fix: Issue #31: content will now display on functional pages
+* Fix: Compatibility with Page Builder  
+* Fix: Calendar was not rendered
+* Fix: Backend tables now show 30 entries instead of 5
+* Fix: Datepicker now showing correctly
+* Fix: HTML Tags on pages were filtered by plugin
+* Fix: Issue #30 renamed css class to solve the issue that calendar was not rendered in wordpress themes with bootstrap-tooltip.
+* Fix: #36 fixed the issue that the timeframes with a start date later than today weren´t shown correctly in the item edit screen.
+* + many more…
+
 # 0.4.2
-* German translation
+* German translation (Thanks Sven, thanks )
 
 # 0.4.1.1
 * Fix: Now compatible with PHP Version 5.3.26
