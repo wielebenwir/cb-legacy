@@ -66,6 +66,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+== 0.5.0.1 == 
+* Fixed div tag not closed
+
 == 0.5 ==
 * Feature: Issue #34  Shortcode for items implemented
 * Feature: Days to show: Set the days to 

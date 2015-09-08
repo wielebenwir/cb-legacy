@@ -1,6 +1,6 @@
 # 0.5
 * Feature: Issue #34  Shortcode for items implemented
-* Feature: Days to show: Set the days to 
+* Feature: Days to show: Set the days to show in calendar 
 * Feature: Single Items: "More…" button is only shown if description is entered (item edit main text field)
 * Fix: User info (first & last name) now correctly displayed in booking admin table.
 * Fix: Issue #31: content will now display on functional pages
