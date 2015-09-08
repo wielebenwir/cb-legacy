@@ -16,8 +16,7 @@ function commons_booking_get_template_part( $slug, $name = '', $include = true )
 	$plugin = Commons_Booking::get_instance();
 	$plugin_slug = $plugin->get_plugin_slug().'/';
 
-	// echo 	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
-
+	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
 	
 	// Look in yourtheme/slug-name.php and yourtheme/commons-booking/slug-name.php
 	if ( $name ) {
@@ -37,10 +36,11 @@ function commons_booking_get_template_part( $slug, $name = '', $include = true )
 	}
 
 	// Allow 3rd party plugin filter template file from their plugin
-	$template = apply_filters( 'pn_get_template_part', $template, $slug, $name );
+	//$template = apply_filters( 'pn_get_template_part', $template, $slug, $name );
 
 	if ( $template && $include === true ) {
 		load_template( $template, false );
+		// include ($template);
 	} else if($template && $include === false ) {
 		return $template;
 	}

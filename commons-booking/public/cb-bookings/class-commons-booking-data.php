@@ -38,7 +38,7 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     $daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     
-    if ( empty( $daystoshow ) ) {
+    if ( ! empty( $daystoshow ) ) {
       $this->daystoshow = $daystoshow;
     } else {
       $this->daystoshow = 30;
@@ -268,7 +268,19 @@ class Commons_Booking_Data {
     $item_descr_short = get_post_meta( $item_id, 'commons-booking_item_descr', TRUE  );
     $item_descr_full = get_the_content();
 
-    include commons_booking_get_template_part( 'item_single', 'item_info', false ); // include the item info template
+    $path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
+    $plugin = Commons_Booking::get_instance();
+    $plugin_slug = $plugin->get_plugin_slug().'/';
+
+
+    $path =  $plugin->get_plugin_dir();
+
+    ob_start();
+    include ($path . 'templates/item_single-item_info.php');
+
+    // // commons_booking_get_template_part( 'item_single', 'item_info', true ); // include the item info template
+
+
 
     $this->item_id = $item_id;
 
@@ -285,7 +297,8 @@ class Commons_Booking_Data {
 
     if ($timeframes ) {
       foreach ( $timeframes as $tf) {
-        if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range          
+        if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range  
+        echo ("hello");        
           $location = $this->get_location ( $tf['location_id'] );
           $this->render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id );     
         }
@@ -293,10 +306,13 @@ class Commons_Booking_Data {
     } else {
       echo __( 'This item can´t be booked at the moment.', $this->prefix );
     }
+
+    return ob_get_clean();
+
   }
 
 /**
- * List of items, list of calendar entries.  
+ * Calendar .  
  *
  *@param $id item id
  *

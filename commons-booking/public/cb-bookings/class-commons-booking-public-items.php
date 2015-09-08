@@ -80,6 +80,8 @@ class Commons_Booking_Public_Items {
 
     public function items_render() {
 
+      echo ("hello");
+
       $items = $this->get_Items();
       include (commons_booking_get_template_part( 'items', 'list', FALSE ));
 

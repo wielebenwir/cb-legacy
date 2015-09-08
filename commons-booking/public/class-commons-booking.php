@@ -37,8 +37,7 @@ class Commons_Booking {
      *
      * @var      string
      */
-    static $plugin_slug = 'commons-booking';
-
+    static $plugin_slug = 'commons-booking';    
     /**
      *
      * Unique identifier for your plugin.
@@ -176,15 +175,20 @@ class Commons_Booking {
                 return $cb_user->custom_registration_function();
 
             } elseif (  is_singular( 'cb_items' ) ) {                             
-                $item_id = get_the_ID();
-                $timeframes = new Commons_Booking_Data();
-                return $timeframes->render_item_single_timeframes($item_id) . $timeframes->show_booking_bar();
+
+        $item_id = get_the_ID();
+        $timeframes = new Commons_Booking_Data();
+        return $page_content.$timeframes->render_item_single_timeframes($item_id);
 
             } else { 
                 return $page_content;
             }
         }    
 
+    public function show_dings( $c ) {
+
+
+    }
 
     /**
      * Return the plugin slug.
@@ -246,6 +250,19 @@ class Commons_Booking {
 
         return self::$instance;
     }
+    /**
+     * Return path to plugin base.
+     *
+     * @since     0.4.5
+     *
+     * @return    string    
+     */
+    public function get_plugin_dir() {
+
+        $path = plugin_dir_path( __FILE__ ) . '../';
+        return $path;
+    }
+
 
     /**
      * Fired when the plugin is activated.
@@ -401,6 +418,7 @@ class Commons_Booking {
             ),
             $p.'-settings-bookings' => array(
               $p.'_bookingsettings_maxdays' => 3,
+              $p.'bookingsettings_daystoshow' => 30,
               $p.'_bookingsettings_allowclosed' => ''
             ),   
              $p.'-settings-codes' => array(
