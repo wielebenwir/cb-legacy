@@ -107,7 +107,7 @@ class Commons_Booking_Data {
   public function get_codes( $scope = '-30 days' ) {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_codes';
-    $dateRangeStart = date('Y-m-d', strtotime( '-30 days' )); // currentdate - 30 days
+    $dateRangeStart = date('Y-m-d', strtotime( $scope )); // currentdate - 30 days
     $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND booking_date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
     return $codesDB;
   } 
