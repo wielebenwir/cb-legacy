@@ -133,6 +133,9 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
+        add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
+
+
         /* 
          * Filter: Overwrite pages.
          */
@@ -647,10 +650,18 @@ class Commons_Booking {
      *
      * @since    1.0.0
      */
-    public function shortcode_method_name() {
-        // @TODO: Define your shortcode here
-        // Check for the CMB2 Shortcode Button
-        // In bundle with the boilerplate https://github.com/jtsternberg/Shortcode_Button
+    function item_shortcode( $atts ) {
+        $a = shortcode_atts( array(
+            'p' => '',
+            'cat' => '',
+            'posts_per_page' => 10, 
+            'post_type' => 'cb_items', 
+            'orderby' => 'title', 
+            'order' => 'DESC'
+        ), $atts );
+
+        $items = new Commons_Booking_Public_Items;
+        return  $items->output( $a );
     }
 
 }
