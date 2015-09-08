@@ -157,41 +157,36 @@ class Commons_Booking {
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
-
                 $items = new Commons_Booking_Public_Items;
-                return  $items->items_render();
+                $args = array ();
+                return  $page_content.$items->output( $args );
             
             } elseif ( !empty( $settings_display[ 'bookingconfirm_page_select' ] ) && ( is_page( $settings_display[ 'bookingconfirm_page_select' ] ) ) ) {
 
                 $bookingpage = new Commons_Booking_Booking;
-                return $bookingpage->render_bookingreview();
+                return $page_content.$bookingpage->render_bookingreview();
 
             } elseif ( !empty( $settings_display[ 'user_page_select' ] ) && ( is_page( $settings_display[ 'user_page_select' ] ) ) ) {
 
                 $cb_user = new Commons_Booking_Users;
-                return $cb_user->page_user();            
+                return $page_content.$cb_user->page_user();            
 
             } elseif ( !empty( $settings_display[ 'registration_page_select' ] ) && ( is_page( $settings_display[ 'registration_page_select' ] ) ) ) {
 
                 $cb_user = new Commons_Booking_Users;
                 // return $cb_user->custom_registration_function();
-                return $cb_user->custom_registration_function();
+                return $page_content.$cb_user->custom_registration_function();
 
             } elseif (  is_singular( 'cb_items' ) ) {                             
 
-        $item_id = get_the_ID();
-        $timeframes = new Commons_Booking_Data();
-        return $page_content . $timeframes->render_item_single_timeframes($item_id) . $timeframes->show_booking_bar(); ;
+                $item_id = get_the_ID();
+                $timeframes = new Commons_Booking_Data();
+                return $page_content . $timeframes->render_item_single_timeframes($item_id) . $timeframes->show_booking_bar();
 
             } else { 
                 return $page_content;
             }
         }    
-
-    public function show_dings( $c ) {
-
-
-    }
 
     /**
      * Return the plugin slug.
