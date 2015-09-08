@@ -124,7 +124,9 @@ class Commons_Booking_Public_Items {
 
 
     if ( is_array ($items) ) { // if result
-      include (commons_booking_get_template_part( 'items', 'list', FALSE ));
+      ob_start();
+      include ( commons_booking_get_template_part( 'items', 'list', false ) );
+      return ob_get_clean();
       }
 
   }
