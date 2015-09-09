@@ -66,6 +66,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+== 0.5.0.2 == 
+* removed "info/more" button (normal WP page content is rendered now)
+
 == 0.5.0.1 == 
 * Fixed div tag not closed
 

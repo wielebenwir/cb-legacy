@@ -1,3 +1,9 @@
+# 0.5.0.2 
+* removed "info/more" button (normal WP page content is rendered now)
+
+# 0.5.0.1
+* Fixed div tag not closed
+
 # 0.5
 * Feature: Issue #34  Shortcode for items implemented
 * Feature: Days to show: Set the days to show in calendar 
