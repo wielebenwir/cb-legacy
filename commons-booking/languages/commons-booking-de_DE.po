@@ -2,43 +2,93 @@
 # This file is distributed under the same license as the TODO package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Commons Booking 0.3\n"
+"Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-08-26 23:18+0100\n"
-<<<<<<< HEAD
-"PO-Revision-Date: 2015-08-26 23:18+0100\n"
-"Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
-=======
-"PO-Revision-Date: 2015-08-28 13:42+0100\n"
-"Last-Translator: Stefan Meretz <stefan@meretz.de>\n"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
-"Language-Team: wielebenwir <florian@wielebenwir.de>\n"
-"Language: de\n"
+"POT-Creation-Date: 2015-09-29 20:58+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
-"esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
-"X-Poedit-Basepath: ../\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\\\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:48
-#: public/class-commons-booking.php:392
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:47
+#: public/class-commons-booking.php:404
 msgid "Booking"
 msgstr "Buchung"
 
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:49
-#: admin/class-commons-booking-admin.php:345
-#: admin/class-commons-booking-admin.php:346
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:48
+#: admin/class-commons-booking-admin.php:343
+#: admin/class-commons-booking-admin.php:344
 msgid "Bookings"
 msgstr "Buchungen"
 
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:98
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:105
+#: admin/cb-codes/class-commons-booking-codes-table.php:94
+#: admin/cb-timeframes/cb-timeframes-list.php:87
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:137
+msgid "Delete"
+msgstr "Löschen"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:136
+msgid "ID"
+msgstr "ID"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:137
+#: admin/cb-codes/class-commons-booking-codes-table.php:125
+#: admin/cb-items/class-commons-booking-items-cpt.php:30
+#: admin/cb-timeframes/cb-timeframes-edit.php:181
+#: admin/cb-timeframes/cb-timeframes-list.php:119
+msgid "Item"
+msgstr "Artikel"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:138
+#: admin/cb-timeframes/cb-timeframes-list.php:120
+msgid "Starting Date"
+msgstr "Anfangsdatum"
+
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:139
+#: admin/cb-timeframes/cb-timeframes-edit.php:214
+#: admin/cb-timeframes/cb-timeframes-edit.php:218
+#: admin/cb-timeframes/cb-timeframes-list.php:121
+msgid "End Date"
+msgstr "Enddatum"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:140
+#: admin/cb-codes/class-commons-booking-codes-table.php:49
+#: admin/cb-codes/class-commons-booking-codes-table.php:126
+#: admin/cb-codes/class-commons-booking-codes.php:164
+msgid "Code"
+msgstr "Code"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:141
+msgid "User"
+msgstr "Nutzer*in"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:142
+#: admin/cb-locations/class-commons-booking-locations-cpt.php:30
+#: admin/cb-timeframes/cb-timeframes-edit.php:197
+#: admin/cb-timeframes/cb-timeframes-list.php:118
+#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
+msgid "Location"
+msgstr "Standort"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:143
+msgid "Booking time"
+msgstr "Buchungszeit"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:144
+msgid "Status"
+msgstr "Status"
+
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:145
 #: admin/cb-codes/class-commons-booking-codes-table.php:128
 #: admin/cb-timeframes/cb-timeframes-edit.php:78
 #: admin/cb-timeframes/cb-timeframes-list.php:86
@@ -48,76 +98,18 @@ msgstr "Buchungen"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:99
-#: admin/cb-codes/class-commons-booking-codes-table.php:94
-#: admin/cb-timeframes/cb-timeframes-list.php:87
-#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:137
-msgid "Delete"
-msgstr "Löschen"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:130
-msgid "ID"
-msgstr "ID"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:131
-#: admin/cb-codes/class-commons-booking-codes-table.php:125
-#: admin/cb-items/class-commons-booking-items-cpt.php:30
-#: admin/cb-timeframes/cb-timeframes-edit.php:181
-#: admin/cb-timeframes/cb-timeframes-list.php:119
-msgid "Item"
-msgstr "Artikel"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:132
-#: admin/cb-timeframes/cb-timeframes-list.php:120
-msgid "Starting Date"
-msgstr "Anfangsdatum"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:133
-#: admin/cb-timeframes/cb-timeframes-edit.php:214
-#: admin/cb-timeframes/cb-timeframes-edit.php:218
-#: admin/cb-timeframes/cb-timeframes-list.php:121
-msgid "End Date"
-msgstr "Enddatum"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:134
-#: admin/cb-codes/class-commons-booking-codes-table.php:49
-#: admin/cb-codes/class-commons-booking-codes-table.php:126
-#: admin/cb-codes/class-commons-booking-codes.php:164
-msgid "Code"
-msgstr "Code"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:135
-msgid "User"
-msgstr "Nutzer/in"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:136
-#: admin/cb-locations/class-commons-booking-locations-cpt.php:30
-#: admin/cb-timeframes/cb-timeframes-edit.php:197
-#: admin/cb-timeframes/cb-timeframes-list.php:118
-#: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
-msgid "Location"
-msgstr "Standort"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:137
-msgid "Booking time"
-msgstr "Buchungszeit"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:138
-msgid "Status"
-msgstr "Status"
-
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:337
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:343
 #: admin/cb-codes/class-commons-booking-codes-table.php:323
 #: admin/cb-timeframes/cb-timeframes-edit.php:281
 #: admin/cb-timeframes/cb-timeframes-list.php:326
 msgid "Something went wrong"
 msgstr "Etwas ist schief gelaufen"
 
-#: admin/cb-bookings/class-commons-booking-bookings-table.php:359
+#: admin/cb-bookings/class-commons-booking-bookings-table.php:365
 #: admin/cb-codes/class-commons-booking-codes-table.php:346
 #: admin/cb-timeframes/cb-timeframes-list.php:349
 msgid "Filter by: "
-msgstr "Filtern nach:"
+msgstr "Filtern nach: "
 
 #: admin/cb-bookings/views/bookings-table.php:26
 #: admin/cb-codes/views/codes-table.php:24
@@ -128,9 +120,9 @@ msgstr "Artikel gelöscht: %d"
 
 #: admin/cb-codes/class-commons-booking-codes-table.php:50
 #: admin/cb-settings/views/settings.php:28
-#: admin/cb-settings/views/settings.php:148
-#: admin/class-commons-booking-admin.php:357
-#: admin/class-commons-booking-admin.php:358
+#: admin/cb-settings/views/settings.php:154
+#: admin/class-commons-booking-admin.php:355
+#: admin/class-commons-booking-admin.php:356
 msgid "Codes"
 msgstr "Codes"
 
@@ -141,7 +133,7 @@ msgstr "Datum"
 
 #: admin/cb-codes/class-commons-booking-codes.php:150
 msgid "Codes "
-msgstr "Codes"
+msgstr "Codes "
 
 #: admin/cb-codes/class-commons-booking-codes.php:169
 msgid " Missing Code"
@@ -149,28 +141,28 @@ msgstr "Fehlender Code"
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:48
 msgid "No id!"
-msgstr "Keine id!"
+msgstr "Keine ID!"
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:62
 msgid "Codes already in Database."
-msgstr "Codes sind bereits in der Datenbank. "
+msgstr "Codes sind bereits in der Datenbank."
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:80
 msgid "No or not enough codes defined. Add them in Commons Booking Settings."
 msgstr ""
-"Keine oder nicht genügend Codes definiert. Füge diese in den Commons-"
-"Buchungs-Einstellungen hinzu. "
+"Keine oder nicht genügend Codes definiert. Füge diese in den Commons-Booking-"
+"Einstellungen hinzu."
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:83
 msgid "New booking codes have been generated."
-msgstr "Neue Buchungs-Codes wurden generiert"
+msgstr "Neue Buchungs-Codes wurden generiert."
 
 #: admin/cb-codes/views/codes-table.php:30
 msgid "codes"
 msgstr "Codes"
 
 #: admin/cb-items/class-commons-booking-items-cpt.php:31
-#: public/class-commons-booking.php:388
+#: public/class-commons-booking.php:400
 msgid "Items"
 msgstr "Artikel"
 
@@ -189,18 +181,18 @@ msgstr "%s Bild"
 
 #: admin/cb-items/includes/cb-items-metaboxes.php:36
 #: admin/cb-timeframes/cb-timeframes-list.php:37
-#: admin/class-commons-booking-admin.php:322
-#: admin/class-commons-booking-admin.php:323
+#: admin/class-commons-booking-admin.php:320
+#: admin/class-commons-booking-admin.php:321
 msgid "Timeframes"
 msgstr "Zeiträume"
 
 #: admin/cb-items/includes/cb-items-metaboxes.php:67
 msgid "Short description of the item, displayed in the list."
-msgstr "Kurze Beschriftung des Artikels, wird in der Liste angezeigt."
+msgstr "Kurzbeschreibung des Artikels, wird in der Liste angezeigt."
 
 #: admin/cb-items/includes/cb-items-metaboxes.php:74
 msgid "Short description"
-msgstr "Kurz-Beschreibung"
+msgstr "Kurzbeschreibung"
 
 #: admin/cb-locations/class-commons-booking-locations-cpt.php:31
 msgid "locations"
@@ -214,7 +206,7 @@ msgstr "Adresse"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:48
 msgid "Street"
-msgstr "Strasse"
+msgstr "Straße"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:53
 msgid "City"
@@ -230,7 +222,7 @@ msgstr "Land"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:72
 msgid "Contact Information"
-msgstr "Kontakt-Informationen"
+msgstr "Kontaktdaten"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:79
 msgid "Phone Number, Email, ..."
@@ -239,7 +231,7 @@ msgstr "Telefonnummer, E-Mail, ..."
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:84
 msgid "Hide contact information until user has confirmed the booking."
 msgstr ""
-"Kontaktinformationen verstecken, bis der Benutzer die Buchung bestätigt hat. "
+"Kontaktdaten verstecken, bis die/der Nutzer*in die Buchung bestätigt hat."
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:92
 msgid "Opening hours"
@@ -296,62 +288,57 @@ msgstr "Seiten"
 
 #: admin/cb-settings/views/settings.php:27
 msgid "Booking Settings"
-<<<<<<< HEAD
 msgstr "Buchungs-Einstellungen"
-=======
-msgstr "Buchungen"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-settings/views/settings.php:29
 msgid "Mail Settings"
-msgstr "Mails"
+msgstr "E-Mail-Einstellungen"
 
 #: admin/cb-settings/views/settings.php:30
 msgid "Messages Settings"
-msgstr "Nachrichten"
+msgstr "Nachrichten-Einstellungen"
 
 #: admin/cb-settings/views/settings.php:54
 msgid "Items Page"
-msgstr "Artikel"
+msgstr "Artikel-Seite"
 
 #: admin/cb-settings/views/settings.php:55
 msgid "Display list of items on this page"
-msgstr "Auf dieser Seite wird die Artikel-Liste gezeigt. "
+msgstr "Auf dieser Seite werden die Artikel aufgeführt."
 
 #: admin/cb-settings/views/settings.php:72
 msgid "Booking Review Page"
-msgstr "Buchungsbestätigung"
+msgstr "Buchungsbestätigung-Seite"
 
 #: admin/cb-settings/views/settings.php:73
 msgid "Once you click \"Book, you will be forwarded to this page"
 msgstr ""
-"Wenn der Benutzer auf \"Buchen\" klickt, wird er auf diese Seite "
+"Wenn ein*e Nutzer*in auf \"Jetzt buchen\" klickt, wird sie/er auf diese Seite "
 "weitergeleitet."
 
-#: admin/cb-settings/views/settings.php:81
-#: public/class-commons-booking.php:389
+#: admin/cb-settings/views/settings.php:81 public/class-commons-booking.php:401
 msgid "User Page"
-msgstr "Nutzer/in"
+msgstr "Nutzer*in-Seite"
 
 #: admin/cb-settings/views/settings.php:82
 msgid "The User page."
-msgstr "Die Nutzer/in-Seite."
+msgstr "Auf dieser Seite kann ein*e Nutzer*in die eigenen Buchungen einsehen."
 
 #: admin/cb-settings/views/settings.php:90
 msgid "Registration Page"
-msgstr "Registrierung"
+msgstr "Registrierungs-Seite"
 
 #: admin/cb-settings/views/settings.php:91
 msgid "The registration form."
-msgstr "Das Registrierungs-Formular"
+msgstr "Diese Seite ist das Registrierungs-Formular für neue Nutzer*innen."
 
 #: admin/cb-settings/views/settings.php:99
 msgid "Login Page"
-msgstr "Login"
+msgstr "Anmelde-Seite"
 
 #: admin/cb-settings/views/settings.php:100
 msgid "The login form."
-msgstr "Das Login-Formular."
+msgstr "Auf dieser Seite kann ein*e Nutzer*in sich anmelden."
 
 #: admin/cb-settings/views/settings.php:122
 msgid "Maximum booking days"
@@ -359,23 +346,32 @@ msgstr "Maximal buchbare Tage"
 
 #: admin/cb-settings/views/settings.php:123
 msgid "Users can only book this many days at once"
-msgstr "Benutzer können nur maximal so viele Tage buchen"
+msgstr "Nutzer*innen können nur so viele Tage auf einmal buchen"
 
 #: admin/cb-settings/views/settings.php:128
-msgid "Allow booking over closed days"
-msgstr "Buchung über \"geschlossene\" Tage erlauben"
+msgid "Days to show"
+msgstr "Angezeigte Tage"
 
 #: admin/cb-settings/views/settings.php:129
 msgid ""
-"Any number of closed days just counts as one booked day. <br>E.g. If you "
-"have a weekend specified as \"closed\" in the location editor, user will "
-"still be able book from friday till monday."
-msgstr ""
-"Zusammenhängende, nicht-buchbare Tage gelten als nur ein buchbarer Tag. <br> "
-"Beispiel: Wenn ein Wochenende im Artikel-Editor als \"geschlossen\" markiert "
-"ist, können Nutzer trotzdem von Freitag bis Montag buchen. "
+"Set how many days are displayed on the booking calendar (starting form today)"
+msgstr "Anzahl der Tage, die im Buchungskalender angezeigt werden."
 
-#: admin/cb-settings/views/settings.php:149
+#: admin/cb-settings/views/settings.php:134
+msgid "Allow booking over closed days"
+msgstr "Buchung über \"geschlossene\" Tage erlauben"
+
+#: admin/cb-settings/views/settings.php:135
+msgid ""
+"Any number of closed days just counts as one booked day. <br>E.g. If you have "
+"a weekend specified as \"closed\" in the location editor, user will still be "
+"able book from friday till monday."
+msgstr ""
+"Zusammenhängende, nicht-buchbare Tage gelten als ein buchbarer Tag. <br> "
+"Beispiel: Wenn ein Standort am Wochenende geschlossen ist, können Nutzer "
+"trotzdem von Freitag bis Montag buchen."
+
+#: admin/cb-settings/views/settings.php:155
 msgid ""
 "Enter comma-seperated Codes here. For examples see <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons "
@@ -383,27 +379,28 @@ msgid ""
 msgstr ""
 "Komma-getrennte Codes hier einfügen. Beispiele: <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">Commons "
-"Booking Plugin manual</a>"
+"Booking Software Manual</a>."
 
-#: admin/cb-settings/views/settings.php:169
+#: admin/cb-settings/views/settings.php:175
 msgid "Message Booking Review"
 msgstr "Nachricht: Buchung überprüfen"
 
-#: admin/cb-settings/views/settings.php:170
+#: admin/cb-settings/views/settings.php:176
 msgid ""
 "The message that appears after the user clicks \"Book now\" on the calendar. "
 "You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?"
 "title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
 msgstr ""
-"Die Nachricht, die nach Klick auf \"Jetzt buchen\" erscheint. Du kannst HTML "
-"& <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags"
-"\" target=\"_blank\">Template tags</a> benutzen"
+"Diese Nachricht escheint nach Klick auf \"Jetzt buchen\" mit der "
+"Zusammenfassung aller Buchungsdetails. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:175
+#: admin/cb-settings/views/settings.php:181
 msgid "Message Booking Submitted"
 msgstr "Nachricht: Buchung übermittelt"
 
-#: admin/cb-settings/views/settings.php:176
+#: admin/cb-settings/views/settings.php:182
 msgid ""
 "The message that appears after the user has confirmed the booking. You can "
 "use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
@@ -411,35 +408,35 @@ msgid ""
 msgstr ""
 "Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & "
 "<a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" "
-"target=\"_blank\">Template tags</a> benutzen"
+"target=\"_blank\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:181
+#: admin/cb-settings/views/settings.php:187
 msgid "Message Booking Canceled"
 msgstr "Nachricht: Buchung storniert"
 
-#: admin/cb-settings/views/settings.php:182
+#: admin/cb-settings/views/settings.php:188
 msgid ""
-"The message that appears after the user has canceled the booking. You can "
-"use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
+"The message that appears after the user has canceled the booking. You can use "
+"HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
 "Template_Tags\" target=\"_blank\">Template tags</a>"
 msgstr ""
-"Diese Nachricht erscheint, wenn ein/e Nutzer/in die Buchung storniert hat. "
+"Diese Nachricht erscheint, wenn ein*e Nutzer*in eine Buchung storniert hat. "
 "Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
-"Template_Tags\" target=\"_blank\">Template tags</a> benutzen"
-
-#: admin/cb-settings/views/settings.php:202
-msgid "Email address"
-msgstr "E-Mailadresse"
-
-#: admin/cb-settings/views/settings.php:203
-msgid "The reply to address (make sure this exists)"
-msgstr "Die Absender-Adresse (bitte stelle sicher, dass diese existiert)"
+"Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:208
-msgid "Confirmation email subject"
-msgstr "Betreff (Buchungsbestätigung)"
+msgid "Email address"
+msgstr "E-Mail-Adresse"
 
 #: admin/cb-settings/views/settings.php:209
+msgid "The reply to address (make sure this exists)"
+msgstr "Die Absender-Adresse (bitte stelle sicher, dass diese existiert)."
+
+#: admin/cb-settings/views/settings.php:214
+msgid "Confirmation email subject"
+msgstr "Buchungsbestätigung: Betreff"
+
+#: admin/cb-settings/views/settings.php:215
 msgid ""
 "The subject of the confirmation Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
@@ -447,13 +444,13 @@ msgid ""
 msgstr ""
 "Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a> benutzen"
+"\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:214
+#: admin/cb-settings/views/settings.php:220
 msgid "Confirmation email body"
-msgstr "Inhalt (Buchungsbestätigung)"
+msgstr "Buchungsbestätigung: Inhalt"
 
-#: admin/cb-settings/views/settings.php:215
+#: admin/cb-settings/views/settings.php:221
 msgid ""
 "The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
@@ -461,27 +458,27 @@ msgid ""
 msgstr ""
 "Der Inhalt der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a> benutzen"
+"\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:220
+#: admin/cb-settings/views/settings.php:226
 msgid "Registration email subject"
-msgstr "Betreff (Registrierung)"
+msgstr "Registrierung: Betreff"
 
-#: admin/cb-settings/views/settings.php:221
+#: admin/cb-settings/views/settings.php:227
 msgid ""
 "The subject of the registration Email. You can use <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target="
-"\"_blank\">Template tags</a>"
+"lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank"
+"\">Template tags</a>"
 msgstr ""
 "Der Betreff der Registrierung. Du kannst HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a> benutzen"
+"\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:226
+#: admin/cb-settings/views/settings.php:232
 msgid "Registration email body"
-msgstr "Inhalt (Registrierung)"
+msgstr "Registrierung: Inhalt"
 
-#: admin/cb-settings/views/settings.php:227
+#: admin/cb-settings/views/settings.php:233
 msgid ""
 "The body of the registration confirmation email. You can use HTML & <a href="
 "\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
@@ -489,40 +486,38 @@ msgid ""
 msgstr ""
 "Der Inhalt der Registrierung. Du kannst HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a> benutzen"
+"\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:240
+#: admin/cb-settings/views/settings.php:246
 msgid "Export Settings"
 msgstr "Einstellungen exportieren"
 
-#: admin/cb-settings/views/settings.php:242
+#: admin/cb-settings/views/settings.php:248
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
-msgstr "Exportiere die Einstellungen als .json-Datei"
+msgstr ""
+"Exportiere die Einstellungen als .json-Datei, um sie später hier oder an "
+"anderer Stelle importieren zu können."
 
-#: admin/cb-settings/views/settings.php:247
+#: admin/cb-settings/views/settings.php:253
 msgid "Export"
 msgstr "Export"
 
-#: admin/cb-settings/views/settings.php:254
+#: admin/cb-settings/views/settings.php:260
 msgid "Import Settings"
-<<<<<<< HEAD
-msgstr "Import Einstellungen"
-=======
-msgstr "Import-Einstellungen"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Einstellungen importieren"
 
-#: admin/cb-settings/views/settings.php:256
+#: admin/cb-settings/views/settings.php:262
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
 msgstr ""
-"Plugin-Einstellungen aus .json-Datei importieren. Diese Datei kann durch den "
-"Export der Einstellungen auf einer anderen Website mit dem Formular oben "
-"erhalten werden."
+"Plugin-Einstellungen aus einer .json-Datei importieren. Diese Datei kann "
+"durch den Export der Einstellungen auf einer anderen Website mit dem Formular "
+"oben erstellt werden."
 
-#: admin/cb-settings/views/settings.php:264
+#: admin/cb-settings/views/settings.php:270
 msgid "Import"
 msgstr "Import"
 
@@ -532,15 +527,15 @@ msgstr "Artikel gespeichert"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:45
 msgid "There was an error while saving item"
-msgstr "Beim Speichern ist ein Fehler aufgetreten"
+msgstr "Beim Speichern des Artikels ist ein Fehler aufgetreten."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:50
 msgid "Item was successfully updated"
-msgstr "Artikel wurde erfolgreich aktualisiert"
+msgstr "Der Artikel wurde erfolgreich aktualisiert."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:55
 msgid "There was an error while updating item!"
-msgstr "Bei der Aktualisierung ist ein Fehler aufgetreten"
+msgstr "Bei der Aktualisierung des Artikels ist ein Fehler aufgetreten."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:70
 msgid "Item not found"
@@ -548,7 +543,7 @@ msgstr "Artikel nicht gefunden"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:89
 msgid "Edit Timeframe"
-msgstr "Buchungszeitraum bearbeiten"
+msgstr "Zeitraum bearbeiten"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:89
 msgid "back to list"
@@ -558,7 +553,7 @@ msgstr "zurück zur Liste"
 #: admin/cb-timeframes/cb-timeframes-list.php:405
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:159
 msgid "Add new Timeframe"
-msgstr "Neuen Buchungszeitraum anlegen"
+msgstr "Neuen Zeitraum anlegen"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:92
 msgid "Back to list"
@@ -566,7 +561,7 @@ msgstr "Zurück zur Liste"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:116
 msgid "Save & generate Codes"
-msgstr "Speichen & Code erzeugen"
+msgstr "Speichen & Codes erzeugen"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:205
 #: admin/cb-timeframes/cb-timeframes-edit.php:209
@@ -598,31 +593,27 @@ msgstr "Enddatum ist ungültig"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:272
 msgid " – Please select – "
-msgstr "– Bitte auswählen –"
+msgstr " – Bitte auswählen – "
 
 #: admin/cb-timeframes/cb-timeframes-list.php:36
 msgid "Timeframe"
-msgstr "Zeitrahmen"
+msgstr "Zeitraum"
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:50
 msgid "Start Date "
-<<<<<<< HEAD
-msgstr "Start Datum"
-=======
 msgstr "Anfangsdatum"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:51
 msgid "End Date "
-msgstr "End-Datum"
+msgstr "Enddatum"
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:93
 msgid "No timeframes set up yet."
-msgstr "Noch kein Zeitrahmen angelegt."
+msgstr "Noch kein Zeitraum angelegt."
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:186
 msgid " Something went wrong "
-msgstr "Etwas ist schief gelaufen"
+msgstr " Etwas ist schief gelaufen "
 
 #: admin/cb-users/class-commons-booking-users.php:38
 msgid " Extra Fields"
@@ -642,39 +633,27 @@ msgstr " Nutzungsbedingungen akzeptiert"
 
 #: admin/cb-users/class-commons-booking-users.php:98
 msgid "Sorry, registration is not allowed"
-msgstr "Sorry, Registrierung nicht erlaubt"
+msgstr "Sorry, Registrierung ist nicht erlaubt"
 
 #: admin/cb-users/class-commons-booking-users.php:120
 msgid "Required form field is missing: "
-msgstr "Folgende Felder müssen ausgefüllt werden:"
+msgstr "Folgende Felder müssen ausgefüllt werden: "
 
 #: admin/cb-users/class-commons-booking-users.php:125
 msgid "Username too short. At least 4 characters is required"
-<<<<<<< HEAD
-msgstr "Benutzername zu kurz. Mind. 4 Zeichen sind erforderlich!"
+msgstr "Der Benutzername muss aus mind. 4 Zeichen bestehen."
 
 #: admin/cb-users/class-commons-booking-users.php:130
 msgid "Sorry, that username already exists!"
-msgstr "Sorry, dieser Benutzername ist schon vorhanden!"
+msgstr "Sorry, dieser Nutzer*in-Name wierd bereits verwendet."
 
 #: admin/cb-users/class-commons-booking-users.php:134
 msgid "Sorry, that email already exists!"
-msgstr "Sorry, diese E-Mail ist schon vorhanden!"
-=======
-msgstr "Nutzer/in-Name zu kurz, mindestens 4 Zeichen erforderlich"
-
-#: admin/cb-users/class-commons-booking-users.php:130
-msgid "Sorry, that username already exists!"
-msgstr "Sorry, dieser Nutzer/in-Name ist schon vorhanden!"
-
-#: admin/cb-users/class-commons-booking-users.php:134
-msgid "Sorry, that email already exists!"
-msgstr "Sorry, diese E-Mailadresse existiert bereits!"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Sorry, diese E-Mail-Adresse wird bereits verwendet."
 
 #: admin/cb-users/class-commons-booking-users.php:139
 msgid "You must accept the terms"
-msgstr "Du musst die Nutzungsbedingungen akzeptieren"
+msgstr "Du musst die Nutzungsbedingungen akzeptieren!"
 
 #: admin/cb-users/class-commons-booking-users.php:147
 msgid "<strong>Error:</strong> "
@@ -685,16 +664,12 @@ msgid ""
 "Thanks! Registration is complete. We´ve sent you an email with your Account "
 "information. "
 msgstr ""
-"Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben dir eine E-Mail "
-<<<<<<< HEAD
-"mit deinen Account-Informationen geschickt. "
-=======
-"mit deinen Zugangsinformationen geschickt. "
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+"Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben Dir eine E-Mail "
+"mit Deinen Daten zugesendet. "
 
 #: admin/cb-users/class-commons-booking-users.php:198
 msgid "Welcome, "
-msgstr "Willkommen,"
+msgstr "Willkommen, "
 
 #: admin/cb-users/class-commons-booking-users.php:199
 msgid "Logout"
@@ -702,52 +677,37 @@ msgstr "Abmelden"
 
 #: admin/cb-users/class-commons-booking-users.php:209
 msgid " You haven´t booked anything yet."
-msgstr "Du hast bisher keine Buchungen."
+msgstr "Du hast noch nichts gebucht."
 
 #: admin/class-commons-booking-admin.php:140
 msgid "Plugin Loaded"
 msgstr "Plugin geladen"
 
-#: admin/class-commons-booking-admin.php:250
+#: admin/class-commons-booking-admin.php:248
 msgid "Commons Booking Settings"
-<<<<<<< HEAD
-msgstr "Commons Booking Einstellungen"
-=======
-msgstr "Commons-Buchung"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Commons Booking-Einstellungen"
 
-#: admin/class-commons-booking-admin.php:271
+#: admin/class-commons-booking-admin.php:269
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin/class-commons-booking-admin.php:272
+#: admin/class-commons-booking-admin.php:270
 msgid "Manual"
 msgstr "Handbuch"
 
-#: admin/class-commons-booking-admin.php:295
-#, php-format
-msgid "%s "
-msgid_plural "%s "
-msgstr[0] "%s "
-msgstr[1] "%s "
-
-#: admin/class-commons-booking-admin.php:334
+#: admin/class-commons-booking-admin.php:332
 msgid "Add/Edit Timeframes"
-msgstr "Zeitabschnitt hinzufügen/bearbeiten"
+msgstr "Zeitraum hinzufügen/bearbeiten"
 
-#: admin/class-commons-booking-admin.php:335
+#: admin/class-commons-booking-admin.php:333
 msgid "Add Timeframe"
-msgstr "Zeitabschnitt hinzufügen"
+msgstr "Zeittraum hinzufügen"
 
-#: admin/class-commons-booking-admin.php:422
+#: admin/class-commons-booking-admin.php:420
 msgid "Please upload a valid .json file"
-<<<<<<< HEAD
-msgstr "Bitte eine gültige .jason-Datei hochladen"
-=======
 msgstr "Bitte eine gültige .json-Datei hochladen"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
-#: admin/class-commons-booking-admin.php:428
+#: admin/class-commons-booking-admin.php:426
 msgid "Please upload a file to import"
 msgstr "Bitte Datei zum Import hochladen"
 
@@ -797,23 +757,23 @@ msgstr "Feldbeschreibung (optional)"
 
 #: admin/includes/CMB2/example-functions.php:105
 msgid "Test Text Small"
-msgstr "Test Text Small"
+msgstr "Test Text klein"
 
 #: admin/includes/CMB2/example-functions.php:113
 msgid "Test Text Medium"
-msgstr "Test Text Medium"
+msgstr "Test Text mittel"
 
 #: admin/includes/CMB2/example-functions.php:121
 msgid "Website URL"
-msgstr "Website URL"
+msgstr "Website-URL"
 
 #: admin/includes/CMB2/example-functions.php:130
 msgid "Test Text Email"
-msgstr "Test Text Email"
+msgstr "Test Text E-Mail"
 
 #: admin/includes/CMB2/example-functions.php:138
 msgid "Test Time"
-msgstr "Test Time"
+msgstr "Test Zeit"
 
 #: admin/includes/CMB2/example-functions.php:145
 #: admin/includes/CMB2/example-functions.php:146
@@ -822,39 +782,39 @@ msgstr "Zeitzone"
 
 #: admin/includes/CMB2/example-functions.php:152
 msgid "Test Date Picker"
-msgstr "Test Date Picker"
+msgstr "Test Datum-Picker"
 
 #: admin/includes/CMB2/example-functions.php:159
 msgid "Test Date Picker (UNIX timestamp)"
-msgstr "Test Date Picker (UNIX timestamp)"
+msgstr "Test Datum-Picker (UNIX Zeitstempel)"
 
 #: admin/includes/CMB2/example-functions.php:167
 msgid "Test Date/Time Picker Combo (UNIX timestamp)"
-msgstr "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr "Test Datum-/Zeit-Picker-Combo (UNIX Zeitstempel)"
 
 #: admin/includes/CMB2/example-functions.php:184
 msgid "Test Money"
-msgstr "Test Money"
+msgstr "Test Geld"
 
 #: admin/includes/CMB2/example-functions.php:193
 msgid "Test Color Picker"
-msgstr "Test Color Picker"
+msgstr "Test Farb-Picker"
 
 #: admin/includes/CMB2/example-functions.php:201
 msgid "Test Text Area"
-msgstr "Test Text Area"
+msgstr "Test Text Bereich"
 
 #: admin/includes/CMB2/example-functions.php:208
 msgid "Test Text Area Small"
-msgstr "Test Text Area Small"
+msgstr "Test Text Bereich klein"
 
 #: admin/includes/CMB2/example-functions.php:215
 msgid "Test Text Area for Code"
-msgstr "Test Text Area for Code"
+msgstr "Test Text Bereich für Code"
 
 #: admin/includes/CMB2/example-functions.php:222
 msgid "Test Title Weeeee"
-msgstr "Test Title Weeeee"
+msgstr "Test Titel Weeeee"
 
 #: admin/includes/CMB2/example-functions.php:223
 msgid "This is a title description"
@@ -862,25 +822,25 @@ msgstr "Dies ist die Titel-Beschreibung"
 
 #: admin/includes/CMB2/example-functions.php:229
 msgid "Test Select"
-msgstr "Test Select"
+msgstr "Test Auswahl"
 
 #: admin/includes/CMB2/example-functions.php:235
 #: admin/includes/CMB2/example-functions.php:248
 #: admin/includes/CMB2/example-functions.php:260
 msgid "Option One"
-msgstr "Option One"
+msgstr "Option Eins"
 
 #: admin/includes/CMB2/example-functions.php:236
 #: admin/includes/CMB2/example-functions.php:249
 #: admin/includes/CMB2/example-functions.php:261
 msgid "Option Two"
-msgstr "Option Two"
+msgstr "Option Zwei"
 
 #: admin/includes/CMB2/example-functions.php:237
 #: admin/includes/CMB2/example-functions.php:250
 #: admin/includes/CMB2/example-functions.php:262
 msgid "Option Three"
-msgstr "Option Three"
+msgstr "Option Drei"
 
 #: admin/includes/CMB2/example-functions.php:242
 msgid "Test Radio inline"
@@ -892,15 +852,15 @@ msgstr "Test Radio"
 
 #: admin/includes/CMB2/example-functions.php:267
 msgid "Test Taxonomy Radio"
-msgstr "Test Taxonomy Radio"
+msgstr "Test Taxonomie Radio"
 
 #: admin/includes/CMB2/example-functions.php:276
 msgid "Test Taxonomy Select"
-msgstr "Test Taxonomy Select"
+msgstr "Test Taxonomie Auswahl"
 
 #: admin/includes/CMB2/example-functions.php:284
 msgid "Test Taxonomy Multi Checkbox"
-msgstr "Test Taxonomy Multi Checkbox"
+msgstr "Test Taxonomie Mehrfachcheckbox"
 
 #: admin/includes/CMB2/example-functions.php:293
 msgid "Test Checkbox"
@@ -908,27 +868,27 @@ msgstr "Test Checkbox"
 
 #: admin/includes/CMB2/example-functions.php:300
 msgid "Test Multi Checkbox"
-msgstr "Test Multi Checkbox"
+msgstr "Test Mehrfachcheckbox"
 
 #: admin/includes/CMB2/example-functions.php:306
 msgid "Check One"
-msgstr "Check One"
+msgstr "Check Eins"
 
 #: admin/includes/CMB2/example-functions.php:307
 msgid "Check Two"
-msgstr "Check Two"
+msgstr "Check Zwei"
 
 #: admin/includes/CMB2/example-functions.php:308
 msgid "Check Three"
-msgstr "Check Three"
+msgstr "Check Drei"
 
 #: admin/includes/CMB2/example-functions.php:314
 msgid "Test wysiwyg"
-msgstr "Test wysiwyg"
+msgstr "Test WYSIWYG"
 
 #: admin/includes/CMB2/example-functions.php:322
 msgid "Test Image"
-msgstr "Test Image"
+msgstr "Test Bild"
 
 #: admin/includes/CMB2/example-functions.php:323
 msgid "Upload an image or enter a URL."
@@ -940,7 +900,7 @@ msgstr "Mehrere Dateien"
 
 #: admin/includes/CMB2/example-functions.php:330
 msgid "Upload or add multiple images/attachments."
-msgstr "Bilder/Anhänge hinzufügen/hochladen"
+msgstr "Mehrere Bilder/Anhänge hochladen oder hinzufügen."
 
 #: admin/includes/CMB2/example-functions.php:337
 msgid "oEmbed"
@@ -949,23 +909,16 @@ msgstr "oEmbed"
 #: admin/includes/CMB2/example-functions.php:338
 msgid ""
 "Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
-"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
-"Embeds</a>."
+"href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/Embeds</"
+"a>."
 msgstr ""
-<<<<<<< HEAD
-"Youtube, Twitter, or Instagram URL. Unterstützte Services unter <a href="
-=======
-"URL von Youtube, Twitter oder Instagram. Unterstützte Services unter <a href="
->>>>>>> remotes/StefanMz/stefanmz-fork/master
-"\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/Embeds</a>."
+"Gib eine youtube, twitter oder instagram URL ein. Die unter <a href=\"http://"
+"codex.wordpress.org/Embeds\">http://codex.wordpress.org/Embeds</a> "
+"aufgeführten Dienste werden unterstützt."
 
 #: admin/includes/CMB2/example-functions.php:371
 msgid "About Page Metabox"
-<<<<<<< HEAD
-msgstr "About Page Metabox"
-=======
 msgstr "Über Page Metabox"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: admin/includes/CMB2/example-functions.php:402
 msgid "Repeating Field Group"
@@ -973,23 +926,23 @@ msgstr "Feldgruppe wiederholen"
 
 #: admin/includes/CMB2/example-functions.php:410
 msgid "Generates reusable form entries"
-msgstr "Generiere wiederverwendbare Formulare"
+msgstr "Generiert wiederverwendbare Formulareinträge"
 
 #: admin/includes/CMB2/example-functions.php:412
 msgid "Entry {#}"
-msgstr "Beitrag {#}"
+msgstr "Eintrag {#}"
 
 #: admin/includes/CMB2/example-functions.php:413
 msgid "Add Another Entry"
-msgstr "Beitrag hinzufügen"
+msgstr "Füge einen weiteren Eintrag hinzu"
 
 #: admin/includes/CMB2/example-functions.php:414
 msgid "Remove Entry"
-msgstr "Beitrag entfernen"
+msgstr "Eintrag entfernen"
 
 #: admin/includes/CMB2/example-functions.php:426
 msgid "Entry Title"
-msgstr "Beitrags-Titel"
+msgstr "Eintragstitel"
 
 #: admin/includes/CMB2/example-functions.php:433
 msgid "Description"
@@ -997,15 +950,11 @@ msgstr "Beschreibung"
 
 #: admin/includes/CMB2/example-functions.php:434
 msgid "Write a short description for this entry"
-<<<<<<< HEAD
-msgstr "Schreibe eine kurze Beschreibung für den Beitrag"
-=======
-msgstr "Verfasse eine kurze Beschreibung für den Beitrag"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Schreibe eine kurze Beschreibung für diesen Eintrag"
 
 #: admin/includes/CMB2/example-functions.php:440
 msgid "Entry Image"
-msgstr "Beitragsbild"
+msgstr "Eintragsbild"
 
 #: admin/includes/CMB2/example-functions.php:446
 msgid "Image Caption"
@@ -1013,7 +962,7 @@ msgstr "Bildunterschrift"
 
 #: admin/includes/CMB2/example-functions.php:467
 msgid "User Profile Metabox"
-msgstr "Benutzer-Profil Metabox"
+msgstr "Nutzer*in-Profil Metabox"
 
 #: admin/includes/CMB2/example-functions.php:474
 msgid "Extra Info"
@@ -1037,15 +986,15 @@ msgstr "Google+ URL"
 
 #: admin/includes/CMB2/example-functions.php:510
 msgid "Linkedin URL"
-msgstr "Linkedin URL"
+msgstr "LinkedIn URL"
 
 #: admin/includes/CMB2/example-functions.php:517
 msgid "User Field"
-msgstr "User Field"
+msgstr "Nutzer*in-Feld"
 
 #: admin/includes/CMB2/example-functions.php:540
 msgid "Theme Options Metabox"
-msgstr "Theme Options Metabox"
+msgstr "Theme-Optionen Metabox"
 
 #: admin/includes/CMB2/example-functions.php:555
 msgid "Site Background Color"
@@ -1053,11 +1002,11 @@ msgstr "Wähle Hintergrundfarbe"
 
 #: admin/includes/CMB2/includes/CMB2.php:120
 msgid "Metabox configuration is required to have an ID parameter"
-msgstr "Die Metabox Konfiguration wird für den ID-Parameter benötigt"
+msgstr "Die Metabox Konfiguration benötigt einen ID-Parameter"
 
 #: admin/includes/CMB2/includes/CMB2.php:326
 msgid "Click to toggle"
-msgstr "Ansicht wechseln"
+msgstr "Klicken, um zu wechseln"
 
 #: admin/includes/CMB2/includes/CMB2_Ajax.php:40
 msgid "Please Try Again"
@@ -1070,7 +1019,7 @@ msgstr "Einbettung entfernen"
 #: admin/includes/CMB2/includes/CMB2_Ajax.php:139
 #, php-format
 msgid "No oEmbed Results Found for %s. View more info at"
-msgstr "Keine oEmbed Ergebnisse für %s gefunden. Mehr Info hier"
+msgstr "Keine oEmbed Ergebnisse für %s gefunden. Mehr Info unter"
 
 #: admin/includes/CMB2/includes/CMB2_Field.php:891
 msgid "Add Group"
@@ -1102,11 +1051,6 @@ msgstr "Farbe wählen"
 msgid "Current Color"
 msgstr "Aktuelle Farbe"
 
-#: admin/includes/CMB2/includes/CMB2_JS.php:109
-msgctxt "Valid formatDate string for jquery-ui datepicker"
-msgid "mm/dd/yy"
-msgstr "dd.mm.yy"
-
 #: admin/includes/CMB2/includes/CMB2_JS.php:110
 msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
 msgstr "Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag"
@@ -1121,23 +1065,23 @@ msgstr "So, Mo, Di, Mi, Do, Fr, Sa"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:113
 msgid ""
-"January, February, March, April, May, June, July, August, September, "
-"October, November, December"
+"January, February, March, April, May, June, July, August, September, October, "
+"November, December"
 msgstr ""
 "Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, "
 "November, Dezember"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:114
 msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
-msgstr "Jan, Feb, Mar, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez"
+msgstr "Jan, Feb, Mrz, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:115
 msgid "Next"
-msgstr "Nächtes"
+msgstr "Weiter"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:116
 msgid "Prev"
-msgstr "Vorheriges"
+msgstr "Zurück"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:117
 msgid "Today"
@@ -1172,13 +1116,6 @@ msgstr "Sekunde"
 msgid "Now"
 msgstr "Jetzt"
 
-#: admin/includes/CMB2/includes/CMB2_JS.php:129
-msgctxt ""
-"Valid formatting string, as per http://trentrichardson.com/examples/"
-"timepicker/"
-msgid "hh:mm TT"
-msgstr "hh:mm TT"
-
 #: admin/includes/CMB2/includes/CMB2_JS.php:135
 msgid "Use this file"
 msgstr "Benutze diese Datei"
@@ -1206,7 +1143,7 @@ msgstr "Download"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:140
 msgid "Select / Deselect All"
-msgstr "Alle Aus- / Abwählen"
+msgstr "Alle aus-/abwählen"
 
 #: admin/includes/CMB2/includes/CMB2_Types.php:297
 msgid "Add Row"
@@ -1219,11 +1156,11 @@ msgstr "Keine Bedingungen"
 
 #: admin/includes/CMB2/includes/CMB2_Types.php:847
 msgid "Add or Upload Files"
-msgstr "Dateien Hinzufügen/Hochladen"
+msgstr "Dateien hinzufügen oder hochladen"
 
 #: admin/includes/CMB2/includes/CMB2_Types.php:907
 msgid "Add or Upload File"
-msgstr "Datei Hinzufügen/Hochladen"
+msgstr "Datei hinzufügen oder hochladen"
 
 #: admin/includes/CMB2/includes/helper-functions.php:249
 msgid "Save"
@@ -1232,23 +1169,19 @@ msgstr "Speichern"
 #: includes/CPT_Core/CPT_Core.php:77 includes/CPT_Core/CPT_Core.php:81
 #: includes/CPT_Core/CPT_Core.php:85
 msgid "It is required to pass a single, plural and slug string to CPT_Core"
-<<<<<<< HEAD
-msgstr "Bitte gib einen Single, Plural und Slug-String für CPT_Core"
-=======
-msgstr "Bitte gib einen Single-, Plural- und Slug-String für CPT_Core ein"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Bitte gib einen Single, Plural und Slug-String für CPT_Core an"
 
 #: includes/CPT_Core/CPT_Core.php:134 includes/CPT_Core/CPT_Core.php:135
 #: includes/Taxonomy_Core/Taxonomy_Core.php:131
 #, php-format
 msgid "Add New %s"
-msgstr "%s Hinzufügen"
+msgstr "%s hinzufügen"
 
 #: includes/CPT_Core/CPT_Core.php:136
 #: includes/Taxonomy_Core/Taxonomy_Core.php:128
 #, php-format
 msgid "Edit %s"
-msgstr "Bearbeiten %s"
+msgstr "%s bearbeiten "
 
 #: includes/CPT_Core/CPT_Core.php:137
 #, php-format
@@ -1277,7 +1210,7 @@ msgstr "Suche %s"
 #: includes/Taxonomy_Core/Taxonomy_Core.php:134
 #, php-format
 msgid "No %s"
-msgstr "Kein %s"
+msgstr "Keine %s"
 
 #: includes/CPT_Core/CPT_Core.php:142
 #, php-format
@@ -1288,15 +1221,15 @@ msgstr "Keine %s im Papierkorb gefunden"
 #: includes/Taxonomy_Core/Taxonomy_Core.php:138
 #, php-format
 msgid "Parent %s:"
-msgstr "In: %s:"
+msgstr "Vorgänger %s:"
 
 #: includes/CPT_Core/CPT_Core.php:194
 msgid "Custom field updated."
-msgstr "Custom field aktualisiert."
+msgstr "Spezialfeld aktualisiert."
 
 #: includes/CPT_Core/CPT_Core.php:195
 msgid "Custom field deleted."
-msgstr "Custom field erkannt."
+msgstr "Spezialfeld erkannt."
 
 #: includes/CPT_Core/CPT_Core.php:196 includes/CPT_Core/CPT_Core.php:213
 #, php-format
@@ -1321,7 +1254,7 @@ msgstr "%1$s aktualisiert. <a href=\"%2$s\">Ansehen %1$s</a>"
 #: includes/CPT_Core/CPT_Core.php:205
 #, php-format
 msgid "%1$s published. <a href=\"%2$s\">View %1$s</a>"
-msgstr "%1$s veröffentlicht. <a href=\"%2$s\">Ansehen %1$s</a>"
+msgstr "%1$s veröffentlicht. <a href=\"%2$s\">%1$s ansehen</a>"
 
 #: includes/CPT_Core/CPT_Core.php:206
 #, php-format
@@ -1376,13 +1309,8 @@ msgstr "%s Titel"
 #: includes/Taxonomy_Core/Taxonomy_Core.php:84
 #: includes/Taxonomy_Core/Taxonomy_Core.php:88
 #: includes/Taxonomy_Core/Taxonomy_Core.php:92
-msgid ""
-"It is required to pass a single, plural and slug string to Taxonomy_Core"
-<<<<<<< HEAD
-msgstr "Bitte gib einen Single, Plural und Slug-String für Taxonomy_Core"
-=======
-msgstr "Bitte gib einen Single-, Plural- und Slug-String für Taxonomy_Core ein"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgid "It is required to pass a single, plural and slug string to Taxonomy_Core"
+msgstr "Bitte gib einen Single, Plural und Slug-String für Taxonomy_Core an"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:130
 #, php-format
@@ -1402,12 +1330,12 @@ msgstr "Keine %s gefunden."
 #: includes/Taxonomy_Core/Taxonomy_Core.php:137
 #, php-format
 msgid "Parent %s"
-msgstr "In %s"
+msgstr "Vorgänger %s"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:141
 #, php-format
 msgid "Popular %s"
-msgstr "Benliebt %s"
+msgstr "Beliebt %s"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:142
 #, php-format
@@ -1422,7 +1350,7 @@ msgstr "%s hinzufügen oder entfernen"
 #: includes/Taxonomy_Core/Taxonomy_Core.php:144
 #, php-format
 msgid "Choose from the most used %s"
-msgstr "Wähle aus den meist gebuchten %s"
+msgstr "Wähle aus den meist genutzten %s"
 
 #: includes/Widgets-Helper/widget-sample.php:32 includes/widgets/sample.php:13
 msgid "My Recent Posts"
@@ -1444,28 +1372,23 @@ msgstr "Widget-Titel eingeben."
 msgid "Recent Posts"
 msgstr "Neueste Artikel"
 
-#: includes/Widgets-Helper/widget-sample.php:108
-#: includes/widgets/sample.php:80
+#: includes/Widgets-Helper/widget-sample.php:108 includes/widgets/sample.php:80
 msgid "Amount"
 msgstr "Menge"
 
-#: includes/Widgets-Helper/widget-sample.php:109
-#: includes/widgets/sample.php:81
+#: includes/Widgets-Helper/widget-sample.php:109 includes/widgets/sample.php:81
 msgid "Select how many posts to show."
 msgstr "Wähle, wieviele Artikel gezeigt werden sollen."
 
-#: includes/Widgets-Helper/widget-sample.php:116
-#: includes/widgets/sample.php:88
+#: includes/Widgets-Helper/widget-sample.php:116 includes/widgets/sample.php:88
 msgid "1 Post"
 msgstr "1 Artikel"
 
-#: includes/Widgets-Helper/widget-sample.php:121
-#: includes/widgets/sample.php:93
+#: includes/Widgets-Helper/widget-sample.php:121 includes/widgets/sample.php:93
 msgid "2 Posts"
 msgstr "2 Artikel"
 
-#: includes/Widgets-Helper/widget-sample.php:125
-#: includes/widgets/sample.php:97
+#: includes/Widgets-Helper/widget-sample.php:125 includes/widgets/sample.php:97
 msgid "3 Posts"
 msgstr "3 Artikel"
 
@@ -1477,134 +1400,106 @@ msgstr "Ausgabe als Liste"
 #: includes/Widgets-Helper/widget-sample.php:138
 #: includes/widgets/sample.php:109
 msgid "Wraps posts with the <li> tag."
-<<<<<<< HEAD
-msgstr "Umschliesst Beiträge mit dem <li>-tag."
-=======
 msgstr "Umschließt Beiträge mit dem <li>-Tag."
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
-#: public/cb-bookings/class-commons-booking-data.php:204
+#: public/cb-bookings/class-commons-booking-booking.php:493
+msgid "Error: Variables missing"
+msgstr "Fehler: Variablen fehlen"
+
+#: public/cb-bookings/class-commons-booking-data.php:219
 msgid "None found"
-msgstr "Keine Einträge"
+msgstr "Nichts gefunden"
 
-#: public/cb-bookings/class-commons-booking-data.php:279
+#: public/cb-bookings/class-commons-booking-data.php:300
 msgid "This item can´t be booked at the moment."
-<<<<<<< HEAD
-msgstr "Dieser Artikel kann momentan nicht gebucht werden."
-=======
-msgstr "Dieser Artikel kann zur Zeit nicht gebucht werden."
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Der Artikel kann derzeit nicht gebucht werden."
 
-#: public/cb-bookings/class-commons-booking-public-items.php:75
+#: public/cb-bookings/class-commons-booking-public-items.php:85
 msgid " Sorry, nothing found."
 msgstr " Sorry, nichts gefunden."
 
 #: public/cb-bookings/views/booking-review.php:2 templates/booking-mail.php:2
 msgid " Your Booking: "
-msgstr " Deine Buchung:"
+msgstr " Deine Buchung: "
 
 #: public/cb-bookings/views/booking-review.php:9 templates/booking-mail.php:9
 msgid " Pickup & Return "
 msgstr " Abholung & Rückgabe"
 
-#: public/cb-bookings/views/booking-review.php:12
-#: templates/booking-mail.php:12
+#: public/cb-bookings/views/booking-review.php:12 templates/booking-mail.php:12
 msgid " Pickup at: "
-msgstr " Abholung bei:"
+msgstr " Abholung bei: "
 
-#: public/cb-bookings/views/booking-review.php:15
-#: templates/booking-mail.php:15
+#: public/cb-bookings/views/booking-review.php:15 templates/booking-mail.php:15
 msgid " Pickup date:"
-msgstr " Abholdatum:"
+msgstr " Abholdatum: "
 
-#: public/cb-bookings/views/booking-review.php:18
-#: templates/booking-mail.php:18
+#: public/cb-bookings/views/booking-review.php:18 templates/booking-mail.php:18
 msgid " Return date: "
-msgstr " Rückgabedatum:"
+msgstr " Rückgabedatum: "
 
 #: public/cb-bookings/views/booking-review.php:21
 msgid " Opening hours: "
-msgstr "Öffnungszeiten:"
+msgstr " Öffnungszeiten: "
 
-#: public/cb-bookings/views/booking-review.php:26
-#: templates/booking-mail.php:23
+#: public/cb-bookings/views/booking-review.php:26 templates/booking-mail.php:23
 msgid " Your information "
 msgstr " Deine Angaben"
 
-#: public/cb-bookings/views/booking-review.php:28
-#: templates/booking-mail.php:25
+#: public/cb-bookings/views/booking-review.php:28 templates/booking-mail.php:25
 msgid " Full name: "
 msgstr "Vollständiger Name:"
 
-#: public/cb-bookings/views/booking-review.php:29
-#: templates/booking-mail.php:26
+#: public/cb-bookings/views/booking-review.php:29 templates/booking-mail.php:26
 msgid " Email: "
 msgstr "E-Mail:"
 
-#: public/cb-bookings/views/booking-review.php:30
-#: templates/booking-mail.php:27
+#: public/cb-bookings/views/booking-review.php:30 templates/booking-mail.php:27
 msgid " Address: "
 msgstr "Adresse:"
 
-#: public/cb-bookings/views/booking-review.php:31
-#: templates/booking-mail.php:28
+#: public/cb-bookings/views/booking-review.php:31 templates/booking-mail.php:28
 msgid " Phone number: "
 msgstr "Telefonnummer:"
 
-#: public/cb-bookings/views/booking-review.php:35
-#: templates/booking-mail.php:32
+#: public/cb-bookings/views/booking-review.php:35 templates/booking-mail.php:32
 msgid " Location information: "
 msgstr " Standortinformation: "
 
-#: public/class-commons-booking.php:390
+#: public/class-commons-booking.php:402
 msgid "User Registration"
-<<<<<<< HEAD
-msgstr "Benutzer Registrierung"
+msgstr "Nutzer*in-Registrierung"
 
-#: public/class-commons-booking.php:391 templates/calendar-bookingbar.php:61
-msgid "Login"
-msgstr "Login"
-
-#: public/class-commons-booking.php:413
-msgid "<p> Please review your booking and click \"confirm\".</p>"
-msgstr "<p> Bitte prüfe deine Angaben und klicke \"confirm\".</p>"
-=======
-msgstr "Nutzer/in-Registrierung"
-
-#: public/class-commons-booking.php:391 templates/calendar-bookingbar.php:61
+#: public/class-commons-booking.php:403 templates/calendar-bookingbar.php:58
 msgid "Login"
 msgstr "Anmeldung"
 
-#: public/class-commons-booking.php:413
+#: public/class-commons-booking.php:426
 msgid "<p> Please review your booking and click \"confirm\".</p>"
-msgstr "<p> Bitte prüfe deine Angaben und klicke dann \"Bestätigung\".</p>"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr ""
+"<p> Bitte prüfe Deine Angaben und klicke dann \"Buchung bestätigen\".</p>"
 
-#: public/class-commons-booking.php:414
+#: public/class-commons-booking.php:427
 msgid ""
 "<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked "
 "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
 msgstr ""
-"<h2>Glückwunsch, {{USER_NAME}}!</h2> <p>Du hast {{ITEM_NAME}} erfolgreich "
-<<<<<<< HEAD
-"gebucht. Eine E-Mail wurde soeben an {{USER_EMAIL}} geschickt. </p>"
-=======
-"gebucht. Eine E-Mail wurde soeben an deine Adresse {{USER_EMAIL}} gesendet. "
-"</p>"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+"<h2>Herzlichen Glückwunsch, {{USER_NAME}}!</h2> <p>Du hast {{ITEM_NAME}} "
+"erfolgreich gebucht. Eine entsprechende E-Mail wurde an Deine Adresse "
+"{{USER_EMAIL}} gesendet. </p>"
 
-#: public/class-commons-booking.php:415
+#: public/class-commons-booking.php:428
 msgid ""
 "<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>"
 msgstr ""
-"<h2>Deine Buchung wurde storniert!</h2><p>Danke, dass du uns informiert hast."
+"<h2>Deine Buchung wurde storniert!</h2><p>Danke, dass Du uns informiert hast."
 "</p>"
 
-#: public/class-commons-booking.php:419
+#: public/class-commons-booking.php:432
 msgid "Your booking"
 msgstr "Deine Buchung"
 
-#: public/class-commons-booking.php:420
+#: public/class-commons-booking.php:433
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
 "\n"
@@ -1616,8 +1511,8 @@ msgid ""
 "\n"
 "              <em>Please make sure you are on time.</em>\n"
 "\n"
-"              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on "
-"{{DATE_START}}.<br>\n"
+"              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}."
+"<br>\n"
 "              Return it there on {{DATE_END}}.<br>\n"
 "              Address: {{LOCATION_ADDRESS}}<br>\n"
 "              Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
@@ -1634,27 +1529,28 @@ msgid ""
 "              <p>Thanks, the Team. </p>\n"
 "            "
 msgstr ""
-"<h2>Hallo {{USER_NAME}}, danke für die Buchung von {{ITEM_NAME}}!</h2>\n"
+"<h2>Hallo {{USER_NAME}}, danke für das Buchen von {{ITEM_NAME}}!</h2>\n"
 "\n"
-"              <p>Deine Buchung ansehen oder stornieren: {{URL}}.</p>\n"
+"              <p>Klicke hier, um Deine Buchung zu sehen oder zu stornieren: "
+"{{URL}}.</p>\n"
 "\n"
-"              <p>Dein Buchungscode: <strong>{{CODE}}</strong></p>\n"
+"              <p>Hier ist Dein Buchungscode: <strong>{{CODE}}</strong></p>\n"
 "\n"
 "              <h3>Informationen zur Abholung</h3>\n"
 "\n"
-"              <em>Bitte sei punktlich.</em>\n"
+"              <em>Sei bitte pünktlich.</em>\n"
 "\n"
-"              <p>Du kannst {{ITEM_NAME}} bei {{LOCATION_NAME}} am "
-"{{DATE_START}} abholen.<br>\n"
-"              Rückgabedatum: {{DATE_END}}.<br>\n"
+"              <p>Hole {{ITEM_NAME}} am {{DATE_START}} bei {{LOCATION_NAME}} "
+"ab.<br>\n"
+"              Bring es dort am {{DATE_END}} zurück.<br>\n"
 "              Adresse: {{LOCATION_ADDRESS}}<br>\n"
 "              Öffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
 "\n"
-"              <h3>Deine Angaben:</h3>\n"
+"              <h3>Deine persönlichen Angaben</h3>\n"
 "\n"
-"              <em>Bitte stell sicher, dass du den richtigen Namen und "
-"Adresse aus deinem Personalausweis eingegeben hast - die Übergabe kann sonst "
-"nicht stattfinden.</em>\n"
+"              <em>Stelle bitte sicher, dass Du hier die gleichen Angaben wie "
+"aus Deinem Personalausweis verwendest, sonst kannst Du den Artikel nicht "
+"ausleihen.</em>\n"
 "\n"
 "              <p>Name: {{USER_NAME}}.<br>\n"
 "                Adresse: {{USER_ADDRESS}}</p>\n"
@@ -1662,15 +1558,11 @@ msgstr ""
 "              <p>Danke, das Team. </p>\n"
 "            "
 
-#: public/class-commons-booking.php:444
+#: public/class-commons-booking.php:457
 msgid "Welcome, {{USER_NAME}} – here´s your account information."
-<<<<<<< HEAD
-msgstr "Willkommen, {{USER_NAME}} – hier sind deine Account-Informationen."
-=======
-msgstr "Willkommen, {{USER_NAME}} – hier sind deine Zugangs-Informationen."
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Willkommen, {{USER_NAME}} – hier sind Deine Kontodaten."
 
-#: public/class-commons-booking.php:445
+#: public/class-commons-booking.php:458
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
 "\n"
@@ -1688,95 +1580,61 @@ msgid ""
 "              <p>Thanks, the Team. </p>\n"
 "            "
 msgstr ""
-"<h2>Hallo {{USER_NAME}}, danke für deine Registrierung!</h2>\n"
+"<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
 "\n"
-<<<<<<< HEAD
-"              <p>Du kannst dich jetzt mit den folgenden Daten anmelden: </"
-"p>\n"
+"              <p>You can sign in with the following: </p>\n"
 "\n"
-"              <p>Benutzername: <strong>{{USER_NAME}}</strong></p>\n"
-=======
-"              <p>Mit den folgenden Angaben kannst du dich anmelden: </p>\n"
+"              <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
+"              <p>Password: <strong>{{PASSWORD}}</strong></p>\n"
 "\n"
-"              <p>Nutzer/in-Name: <strong>{{USER_NAME}}</strong></p>\n"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
-"              <p>Passwort: <strong>{{PASSWORD}}</strong></p>\n"
-"\n"
-"              <h3>Deine Angaben</h3>\n"
+"              <h3>Your information</h3>\n"
 "\n"
 "              <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
-"              <p>Adresse: {{ADDRESS}}</p>\n"
-"              <p>Telefon: {{PHONE}}</p>\n"
+"              <p>Address: {{ADDRESS}}</p>\n"
+"              <p>Phone: {{PHONE}}</p>\n"
 "\n"
-"              <p>Danke, das Team. </p>\n"
+"              <p>Thanks, the Team. </p>\n"
 "            "
 
-#: public/class-commons-booking.php:544
+#: public/class-commons-booking.php:557
 msgid "Book here:"
 msgstr "Hier buchen:"
 
-#: public/class-commons-booking.php:545
+#: public/class-commons-booking.php:558
 msgid "Click pickup and return date(s):"
 msgstr "Wähle Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:546
+#: public/class-commons-booking.php:559
 msgid "Pickup date:"
-msgstr "Abholung:"
+msgstr "Abholdatum:"
 
-#: public/class-commons-booking.php:547
+#: public/class-commons-booking.php:560
 msgid "Return date:"
-msgstr "Rückgabe:"
+msgstr "Rückgabedatum:"
 
-#: public/class-commons-booking.php:548
+#: public/class-commons-booking.php:561
 msgid "Pickup and return date:"
 msgstr "Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:549
+#: public/class-commons-booking.php:562
 msgid "Sorry, To many days between pickup and return, the maximum is: "
-<<<<<<< HEAD
 msgstr "Sorry, der Zeitraum ist zu lang. Max. Tage: "
 
-#: public/class-commons-booking.php:550
+#: public/class-commons-booking.php:563
 msgid "Sorry, you can only book at one station."
-msgstr "Sorry, du kannst nur an einer Station buchen."
-=======
-msgstr "Sorry, der Zeitraum ist zu lang. Maximale Anzahl der buchbaren Tage: "
+msgstr "Sorry, Du kannst nur bei einer Station buchen."
 
-#: public/class-commons-booking.php:550
-msgid "Sorry, you can only book at one station."
-msgstr "Sorry, du kannst nur bei einer Station buchen."
->>>>>>> remotes/StefanMz/stefanmz-fork/master
-
-#: public/class-commons-booking.php:551
+#: public/class-commons-booking.php:564
 msgid "Sorry, this day is not bookable."
 msgstr "Sorry, dieser Tag ist nicht buchbar."
 
-#: public/class-commons-booking.php:552
+#: public/class-commons-booking.php:565
 msgid "Sorry, there must be no booked day between pickup and return."
-<<<<<<< HEAD
-msgstr "Sorry, bitte wählen einen Zeitraum ohne Überschneidungen."
-
-#: public/class-commons-booking.php:553
-msgid "Sorry, you can´t book over closed days."
-msgstr "Sorry, du kannst diese Tage nicht buchen."
-
-#: public/includes/requirements.php:178 public/includes/requirements.php:227
-msgid " Required, Detected "
-msgstr " erforderlich, erkannt"
-
-#: public/includes/requirements.php:291
-msgid "PHP Extensions Not Found: "
-msgstr "PHP Erweiterung nicht gefunden:"
-
-#: public/includes/requirements.php:356
-msgid " Required"
-msgstr " erforderlich"
-=======
 msgstr "Sorry, bitte wähle einen Zeitraum ohne Überschneidungen."
 
-#: public/class-commons-booking.php:553
+#: public/class-commons-booking.php:566
 msgid "Sorry, you can´t book over closed days."
-msgstr "Sorry, du kannst geschlossene Tage nicht buchen."
+msgstr "Sorry, Du kannst an geschlossenen Tagen nicht buchen."
 
 #: public/includes/requirements.php:178 public/includes/requirements.php:227
 msgid " Required, Detected "
@@ -1789,11 +1647,10 @@ msgstr "PHP-Erweiterungen nicht gefunden:"
 #: public/includes/requirements.php:356
 msgid " Required"
 msgstr " Erforderlich"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
 
 #: public/includes/requirements.php:461
 msgid "Minimum System Requirements not satisfied for: "
-msgstr "Minimale Systemanforderungen für nicht ausreichend für:"
+msgstr "Minimale Systemanforderungen nicht ausreichend für:"
 
 #: templates/booking-cancel.php:9
 msgid "Cancel my booking"
@@ -1801,39 +1658,31 @@ msgstr "Buchung stornieren"
 
 #: templates/booking-code.php:7
 msgid " Your Booking Code"
-msgstr "Dein Buchungscode"
+msgstr " Dein Buchungscode"
 
 #: templates/booking-submit.php:9
 msgid "Confirm my booking"
-msgstr "Buchungsanfrage bestätigen"
+msgstr "Buchung bestätigen"
 
-#: templates/calendar-bookingbar.php:28
+#: templates/calendar-bookingbar.php:26
 msgid "Logged in as"
 msgstr "Angemeldet als"
 
-#: templates/calendar-bookingbar.php:33
+#: templates/calendar-bookingbar.php:30
 msgid "Book this item:"
-msgstr "Jetzt buchen:"
+msgstr "Buche diesen Artikel:"
 
-#: templates/calendar-bookingbar.php:43
+#: templates/calendar-bookingbar.php:40
 msgid "Book now"
 msgstr "Jetzt buchen"
 
-#: templates/calendar-bookingbar.php:60
+#: templates/calendar-bookingbar.php:57
 msgid "You have to be registered to book."
-<<<<<<< HEAD
-msgstr "Um zu buchen musst du angemeldet sein."
-=======
-msgstr "Um zu buchen, musst du angemeldet sein."
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Um zu buchen, musst Du angemeldet sein."
 
-#: templates/calendar-bookingbar.php:61 templates/user-registration.php:40
+#: templates/calendar-bookingbar.php:58 templates/user-registration.php:40
 msgid "Register"
 msgstr "Registrierung"
-
-#: templates/item_single-item_info.php:10
-msgid "Info..."
-msgstr "Info..."
 
 #: templates/items-list.php:24
 msgid "Book here"
@@ -1849,15 +1698,11 @@ msgstr "Details"
 
 #: templates/user-login.php:3
 msgid "Welcome, stranger!"
-msgstr "Willkommen!"
+msgstr "Willkommen, Fremder!"
 
 #: templates/user-login.php:4
 msgid "If you don´t have an account, please register here: "
-<<<<<<< HEAD
-msgstr "Wenn du noch keinen Account hast, registriere dich bitte hier:"
-=======
-msgstr "Wenn du noch keinen Zugang hast, registriere dich bitte hier:"
->>>>>>> remotes/StefanMz/stefanmz-fork/master
+msgstr "Falls Du noch kein Nutzer*in-Konto hast, registriere Dich hier: "
 
 #: templates/user-registration.php:6
 msgid "Username"
@@ -1882,6 +1727,117 @@ msgstr "Telefon"
 #: templates/user-registration.php:35
 msgid "I accept the terms"
 msgstr "Ich akzeptiere die Nutzungsbedingungen"
+
+#~ msgid " â Please select â "
+#~ msgstr "â Bitte auswÃ¤hlen â"
+
+#~ msgid ""
+#~ "Thanks! Registration is complete. WeÂ´ve sent you an email with your "
+#~ "Account information. "
+#~ msgstr ""
+#~ "Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben dir eine E-"
+#~ "Mail "
+
+#~ msgid " You havenÂ´t booked anything yet."
+#~ msgstr "Du hast bisher keine Buchungen."
+
+#~ msgid "%s "
+#~ msgid_plural "%s "
+#~ msgstr[0] "%s "
+#~ msgstr[1] "%s "
+
+#~ msgctxt "Valid formatDate string for jquery-ui datepicker"
+#~ msgid "mm/dd/yy"
+#~ msgstr "dd.mm.yy"
+
+#~ msgctxt ""
+#~ "Valid formatting string, as per http://trentrichardson.com/examples/"
+#~ "timepicker/"
+#~ msgid "hh:mm TT"
+#~ msgstr "hh:mm TT"
+
+#~ msgid "This item canÂ´t be booked at the moment."
+#~ msgstr "Dieser Artikel kann momentan nicht gebucht werden."
+
+#~ msgid ""
+#~ "<h2>Congratulations, {{USER_NAME}}!</h2> <p>YouÂ´ve successfully booked "
+#~ "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
+#~ msgstr ""
+#~ "<h2>GlÃ¼ckwunsch, {{USER_NAME}}!</h2> <p>Du hast {{ITEM_NAME}} erfolgreich "
+
+#~ msgid ""
+#~ "<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
+#~ "\n"
+#~ "              <p>Click here to see or cancel you booking: {{URL}}.</p>\n"
+#~ "\n"
+#~ "              <p>HereÂ´s your booking code: <strong>{{CODE}}</strong></p>\n"
+#~ "\n"
+#~ "              <h3>Pick up information</h3>\n"
+#~ "\n"
+#~ "              <em>Please make sure you are on time.</em>\n"
+#~ "\n"
+#~ "              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on "
+#~ "{{DATE_START}}.<br>\n"
+#~ "              Return it there on {{DATE_END}}.<br>\n"
+#~ "              Address: {{LOCATION_ADDRESS}}<br>\n"
+#~ "              Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
+#~ "\n"
+#~ "              <h3>Your information</h3>\n"
+#~ "\n"
+#~ "              <em>Please make sure you have entered the correct name and "
+#~ "adress from your ID - otherwise you will not be able to pick up the item</"
+#~ "em>\n"
+#~ "\n"
+#~ "              <p>Name: {{USER_NAME}}.<br>\n"
+#~ "                Address: {{USER_ADDRESS}}</p>\n"
+#~ "\n"
+#~ "              <p>Thanks, the Team. </p>\n"
+#~ "            "
+#~ msgstr ""
+#~ "<h2>Hallo {{USER_NAME}}, danke fÃ¼r die Buchung von {{ITEM_NAME}}!</h2>\n"
+#~ "\n"
+#~ "              <p>Deine Buchung ansehen oder stornieren: {{URL}}.</p>\n"
+#~ "\n"
+#~ "              <p>Dein Buchungscode: <strong>{{CODE}}</strong></p>\n"
+#~ "\n"
+#~ "              <h3>Informationen zur Abholung</h3>\n"
+#~ "\n"
+#~ "              <em>Bitte sei punktlich.</em>\n"
+#~ "\n"
+#~ "              <p>Du kannst {{ITEM_NAME}} bei {{LOCATION_NAME}} am "
+#~ "{{DATE_START}} abholen.<br>\n"
+#~ "              RÃ¼ckgabedatum: {{DATE_END}}.<br>\n"
+#~ "              Adresse: {{LOCATION_ADDRESS}}<br>\n"
+#~ "              Ãffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
+#~ "\n"
+#~ "              <h3>Deine Angaben:</h3>\n"
+#~ "\n"
+#~ "              <em>Bitte stell sicher, dass du den richtigen Namen und "
+#~ "Adresse aus deinem Personalausweis eingegeben hast - die Ãbergabe kann "
+#~ "sonst nicht stattfinden.</em>\n"
+#~ "\n"
+#~ "              <p>Name: {{USER_NAME}}.<br>\n"
+#~ "                Adresse: {{USER_ADDRESS}}</p>\n"
+#~ "\n"
+#~ "              <p>Danke, das Team. </p>\n"
+#~ "            "
+
+#~ msgid "Welcome, {{USER_NAME}} â hereÂ´s your account information."
+#~ msgstr "Willkommen, {{USER_NAME}} â hier sind deine Account-Informationen."
+
+#, fuzzy
+#~ msgid "Sorry, you canÂ´t book over closed days."
+#~ msgstr ""
+#~ "#-#-#-#-#  0catalog.po (Commons Booking 0.3)  #-#-#-#-#\n"
+#~ "Sorry, du kannst diese Tage nicht buchen.\n"
+#~ "#-#-#-#-#  0catalog.po (Commons Booking 0.3)  #-#-#-#-#\n"
+#~ "Sorry, du kannst geschlossene Tage nicht buchen."
+
+#~ msgid "Info..."
+#~ msgstr "Info..."
+
+#~ msgid "If you donÂ´t have an account, please register here: "
+#~ msgstr "Wenn du noch keinen Account hast, registriere dich bitte hier:"
 
 #~ msgid "Book here "
 #~ msgstr "Jetzt buchen"
