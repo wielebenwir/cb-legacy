@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-09-30 18:55+0100\n"
+"POT-Creation-Date: 2015-09-30 22:23+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -64,7 +64,7 @@ msgstr "Enddatum"
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:140
 #: admin/cb-codes/class-commons-booking-codes-table.php:49
 #: admin/cb-codes/class-commons-booking-codes-table.php:126
-#: admin/cb-codes/class-commons-booking-codes.php:164
+#: admin/cb-codes/class-commons-booking-codes.php:166
 msgid "Code"
 msgstr "Code"
 
@@ -127,15 +127,15 @@ msgid "Codes"
 msgstr "Codes"
 
 #: admin/cb-codes/class-commons-booking-codes-table.php:127
-#: admin/cb-codes/class-commons-booking-codes.php:163
+#: admin/cb-codes/class-commons-booking-codes.php:165
 msgid "Date"
 msgstr "Datum"
 
-#: admin/cb-codes/class-commons-booking-codes.php:150
+#: admin/cb-codes/class-commons-booking-codes.php:152
 msgid "Codes "
 msgstr "Codes "
 
-#: admin/cb-codes/class-commons-booking-codes.php:169
+#: admin/cb-codes/class-commons-booking-codes.php:171
 msgid " Missing Code"
 msgstr "Fehlender Code"
 
@@ -1406,7 +1406,7 @@ msgstr "Ausgabe als Liste"
 msgid "Wraps posts with the <li> tag."
 msgstr "Umschließt Beiträge mit dem <li>-Tag."
 
-#: public/cb-bookings/class-commons-booking-booking.php:493
+#: public/cb-bookings/class-commons-booking-booking.php:491
 msgid "Error: Variables missing"
 msgstr "Fehler: Variablen fehlen"
 
@@ -1422,48 +1422,50 @@ msgstr "Der Artikel kann derzeit nicht gebucht werden."
 msgid " Sorry, nothing found."
 msgstr " Sorry, nichts gefunden."
 
-#: public/cb-bookings/views/booking-review.php:2 templates/booking-mail.php:2
-msgid " Your Booking: "
-msgstr " Deine Buchung: "
+#: public/cb-bookings/views/booking-review.php:2
+msgid "Your Booking:"
+msgstr "Deine Buchung:"
 
 #: public/cb-bookings/views/booking-review.php:9 templates/booking-mail.php:9
 msgid " Pickup & Return "
 msgstr " Abholung & Rückgabe"
 
-#: public/cb-bookings/views/booking-review.php:12 templates/booking-mail.php:12
-msgid " Pickup at: "
-msgstr " Abholung bei: "
+#: public/cb-bookings/views/booking-review.php:12
+msgid "Pickup at:"
+msgstr "Abholung bei:"
 
-#: public/cb-bookings/views/booking-review.php:15 templates/booking-mail.php:15
-msgid " Pickup date:"
-msgstr " Abholdatum: "
+#: public/cb-bookings/views/booking-review.php:15
+#: public/class-commons-booking.php:559
+msgid "Pickup date:"
+msgstr "Abholdatum:"
 
-#: public/cb-bookings/views/booking-review.php:18 templates/booking-mail.php:18
-msgid " Return date: "
-msgstr " Rückgabedatum: "
+#: public/cb-bookings/views/booking-review.php:18
+#: public/class-commons-booking.php:560
+msgid "Return date:"
+msgstr "Rückgabedatum:"
 
 #: public/cb-bookings/views/booking-review.php:21
-msgid " Opening hours: "
-msgstr " Öffnungszeiten: "
+msgid "Opening hours:"
+msgstr "Öffnungszeiten:"
 
 #: public/cb-bookings/views/booking-review.php:26 templates/booking-mail.php:23
 msgid " Your information "
-msgstr " Deine Angaben"
+msgstr "Deine Angaben"
 
-#: public/cb-bookings/views/booking-review.php:28 templates/booking-mail.php:25
-msgid " Full name: "
+#: public/cb-bookings/views/booking-review.php:28
+msgid "Full name:"
 msgstr "Vollständiger Name:"
 
-#: public/cb-bookings/views/booking-review.php:29 templates/booking-mail.php:26
-msgid " Email: "
+#: public/cb-bookings/views/booking-review.php:29
+msgid "Email:"
 msgstr "E-Mail:"
 
-#: public/cb-bookings/views/booking-review.php:30 templates/booking-mail.php:27
-msgid " Address: "
+#: public/cb-bookings/views/booking-review.php:30
+msgid "Address:"
 msgstr "Adresse:"
 
-#: public/cb-bookings/views/booking-review.php:31 templates/booking-mail.php:28
-msgid " Phone number: "
+#: public/cb-bookings/views/booking-review.php:31
+msgid "Phone number:"
 msgstr "Telefonnummer:"
 
 #: public/cb-bookings/views/booking-review.php:35 templates/booking-mail.php:32
@@ -1608,14 +1610,6 @@ msgstr "Hier buchen:"
 msgid "Click pickup and return date(s):"
 msgstr "Wähle Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:559
-msgid "Pickup date:"
-msgstr "Abholdatum:"
-
-#: public/class-commons-booking.php:560
-msgid "Return date:"
-msgstr "Rückgabedatum:"
-
 #: public/class-commons-booking.php:561
 msgid "Pickup and return date:"
 msgstr "Abhol- und Rückgabedatum:"
@@ -1664,6 +1658,38 @@ msgstr "Buchung stornieren"
 msgid " Your Booking Code"
 msgstr " Dein Buchungscode"
 
+#: templates/booking-mail.php:2
+msgid " Your Booking: "
+msgstr " Deine Buchung: "
+
+#: templates/booking-mail.php:12
+msgid " Pickup at: "
+msgstr " Abholung bei: "
+
+#: templates/booking-mail.php:15
+msgid " Pickup date:"
+msgstr " Abholdatum: "
+
+#: templates/booking-mail.php:18
+msgid " Return date: "
+msgstr " Rückgabedatum: "
+
+#: templates/booking-mail.php:25
+msgid " Full name: "
+msgstr "Vollständiger Name:"
+
+#: templates/booking-mail.php:26
+msgid " Email: "
+msgstr "E-Mail:"
+
+#: templates/booking-mail.php:27
+msgid " Address: "
+msgstr "Adresse:"
+
+#: templates/booking-mail.php:28
+msgid " Phone number: "
+msgstr "Telefonnummer:"
+
 #: templates/booking-submit.php:9
 msgid "Confirm my booking"
 msgstr "Buchung bestätigen"
@@ -1684,7 +1710,8 @@ msgstr "Jetzt buchen"
 msgid "You have to be registered to book."
 msgstr "Um zu buchen, musst Du angemeldet sein."
 
-#: templates/calendar-bookingbar.php:58 templates/user-registration.php:40
+#: templates/calendar-bookingbar.php:58 templates/user-login.php:4
+#: templates/user-registration.php:40
 msgid "Register"
 msgstr "Registrierung"
 
@@ -1696,9 +1723,17 @@ msgstr "Hier buchen"
 msgid "My Bookings"
 msgstr "Meine Buchungen"
 
-#: templates/user-bookings.php:10
+#: templates/user-bookings.php:9
+msgid "Confirmed"
+msgstr "Bestätigt"
+
+#: templates/user-bookings.php:11
 msgid "Details"
 msgstr "Details"
+
+#: templates/user-bookings.php:14
+msgid "Pending"
+msgstr "Wartend"
 
 #: templates/user-login.php:3
 msgid "Welcome, stranger!"
@@ -1731,6 +1766,12 @@ msgstr "Telefon"
 #: templates/user-registration.php:35
 msgid "I accept the terms"
 msgstr "Ich akzeptiere die Nutzungsbedingungen"
+
+#~ msgid " Pickup date: "
+#~ msgstr " Abholdatum: "
+
+#~ msgid " Opening hours: "
+#~ msgstr " Öffnungszeiten: "
 
 #~ msgid " â Please select â "
 #~ msgstr "â Bitte auswÃ¤hlen â"
