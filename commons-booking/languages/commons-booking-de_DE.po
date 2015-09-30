@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-09-30 22:23+0100\n"
+"POT-Creation-Date: 2015-09-30 23:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -1742,6 +1742,14 @@ msgstr "Willkommen, Fremder!"
 #: templates/user-login.php:4
 msgid "If you don´t have an account, please register here: "
 msgstr "Falls Du noch kein Nutzer*in-Konto hast, registriere Dich hier: "
+
+#: templates/user-login.php:5
+msgid "If you have lost your password, click here: "
+msgstr "Wenn Du dein Passwort verloren hast, klick hier:"
+
+#: templates/user-login.php:5
+msgid "Lost Password"
+msgstr "Passwort vergessen"
 
 #: templates/user-registration.php:6
 msgid "Username"
