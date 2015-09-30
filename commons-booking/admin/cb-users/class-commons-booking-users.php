@@ -281,12 +281,15 @@ class Commons_Booking_Users {
             if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
               $this->complete_registration();
               $this->send_mail( $this->r_vars['email'] );
+            } else { // errors, so add registration form 
+              $this->registration_form();
+
             }
           }
-        } elseif ( 1 > count( $this->reg_errors->get_error_messages() ) ) { 
-    
-        $this->registration_form();
-      }
+        } else { // not submitting, showing the registration form
+
+           $this->registration_form();       
+        }
     }
     /**
      * Sends the confirm booking email.
