@@ -1,3 +1,17 @@
+# 0.5.2 
+* Removed login page backend setting & creation by plugin (all handled by user page)
+
+# 0.5.1
+* New translation file (Thanks, Albert!)
+* Enhancement: Added link to WP Passwort recovery page. 
+* Enhancement: If registration submit was not successful, the following page will include the form now. 
+* Fix: Removed dummy tooltip message
+* Fix: for an issue when the code generation module picked only elements with upper case "S".
+* Fix: a bug where days with multi-page bookings were not correctly rendered as "non-bookable" if the booking start date had passed
+* Fix: No emails will be send if there are any errors in the registration process
+* Fix: Fixed a bug where days with multi-page bookings were not correctly rendered as "non-bookable" if the booking start date had passed.
+* Fix: Pagination in codes table: offset is calculated correctly now.
+
 # 0.5.0.2 
 * removed "info/more" button (normal WP page content is rendered now)
 

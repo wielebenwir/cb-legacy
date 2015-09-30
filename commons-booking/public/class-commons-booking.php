@@ -24,7 +24,7 @@ class Commons_Booking {
      *
      * @var     string
      */
-    const VERSION = '0.5.0.2';
+    const VERSION = '0.5.2';
 
     /**
      *
@@ -400,7 +400,6 @@ class Commons_Booking {
         $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
         $user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
         $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
-        $user_login_page = create_page(__( 'Login', $p ), $p.'_login_page_select');
         $booking_confirm_page = create_page(__( 'Booking', $p ), $p.'_bookingconfirm_page_select');
 
 
@@ -410,7 +409,6 @@ class Commons_Booking {
             $p. '-settings-pages' => array(
               $p.'_item_page_select' => $item_page,
               $p.'_user_page_select' => $user_page,
-              $p.'_login_page_select' => $user_login_page,
               $p.'_registration_page_select' => $user_reg_page,
               $p.'_bookingconfirm_page_select' => $booking_confirm_page,
             ),
