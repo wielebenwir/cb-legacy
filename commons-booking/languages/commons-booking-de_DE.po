@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-09-30 23:08+0100\n"
+"POT-Creation-Date: 2015-09-30 23:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -120,7 +120,7 @@ msgstr "Artikel gelöscht: %d"
 
 #: admin/cb-codes/class-commons-booking-codes-table.php:50
 #: admin/cb-settings/views/settings.php:28
-#: admin/cb-settings/views/settings.php:154
+#: admin/cb-settings/views/settings.php:145
 #: admin/class-commons-booking-admin.php:355
 #: admin/class-commons-booking-admin.php:356
 msgid "Codes"
@@ -332,36 +332,28 @@ msgstr "Registrierungs-Seite"
 msgid "The registration form."
 msgstr "Diese Seite ist das Registrierungs-Formular für neue Nutzer*innen."
 
-#: admin/cb-settings/views/settings.php:99
-msgid "Login Page"
-msgstr "Anmelde-Seite"
-
-#: admin/cb-settings/views/settings.php:100
-msgid "The login form."
-msgstr "Auf dieser Seite kann ein*e Nutzer*in sich anmelden."
-
-#: admin/cb-settings/views/settings.php:122
+#: admin/cb-settings/views/settings.php:113
 msgid "Maximum booking days"
 msgstr "Maximal buchbare Tage"
 
-#: admin/cb-settings/views/settings.php:123
+#: admin/cb-settings/views/settings.php:114
 msgid "Users can only book this many days at once"
 msgstr "Nutzer*innen können nur so viele Tage auf einmal buchen"
 
-#: admin/cb-settings/views/settings.php:128
+#: admin/cb-settings/views/settings.php:119
 msgid "Days to show"
 msgstr "Angezeigte Tage"
 
-#: admin/cb-settings/views/settings.php:129
+#: admin/cb-settings/views/settings.php:120
 msgid ""
 "Set how many days are displayed on the booking calendar (starting form today)"
 msgstr "Anzahl der Tage, die im Buchungskalender angezeigt werden."
 
-#: admin/cb-settings/views/settings.php:134
+#: admin/cb-settings/views/settings.php:125
 msgid "Allow booking over closed days"
 msgstr "Buchung über \"geschlossene\" Tage erlauben"
 
-#: admin/cb-settings/views/settings.php:135
+#: admin/cb-settings/views/settings.php:126
 msgid ""
 "Any number of closed days just counts as one booked day. <br>E.g. If you have "
 "a weekend specified as \"closed\" in the location editor, user will still be "
@@ -371,7 +363,7 @@ msgstr ""
 "Beispiel: Wenn ein Standort am Wochenende geschlossen ist, können Nutzer "
 "trotzdem von Freitag bis Montag buchen."
 
-#: admin/cb-settings/views/settings.php:155
+#: admin/cb-settings/views/settings.php:146
 msgid ""
 "Enter comma-seperated Codes here. For examples see <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons "
@@ -381,11 +373,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">Commons "
 "Booking Software Manual</a>."
 
-#: admin/cb-settings/views/settings.php:175
+#: admin/cb-settings/views/settings.php:166
 msgid "Message Booking Review"
 msgstr "Nachricht: Buchung überprüfen"
 
-#: admin/cb-settings/views/settings.php:176
+#: admin/cb-settings/views/settings.php:167
 msgid ""
 "The message that appears after the user clicks \"Book now\" on the calendar. "
 "You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?"
@@ -396,11 +388,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:181
+#: admin/cb-settings/views/settings.php:172
 msgid "Message Booking Submitted"
 msgstr "Nachricht: Buchung übermittelt"
 
-#: admin/cb-settings/views/settings.php:182
+#: admin/cb-settings/views/settings.php:173
 msgid ""
 "The message that appears after the user has confirmed the booking. You can "
 "use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
@@ -410,11 +402,11 @@ msgstr ""
 "<a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" "
 "target=\"_blank\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:187
+#: admin/cb-settings/views/settings.php:178
 msgid "Message Booking Canceled"
 msgstr "Nachricht: Buchung storniert"
 
-#: admin/cb-settings/views/settings.php:188
+#: admin/cb-settings/views/settings.php:179
 msgid ""
 "The message that appears after the user has canceled the booking. You can use "
 "HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
@@ -424,19 +416,19 @@ msgstr ""
 "Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
 "Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:208
+#: admin/cb-settings/views/settings.php:199
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: admin/cb-settings/views/settings.php:209
+#: admin/cb-settings/views/settings.php:200
 msgid "The reply to address (make sure this exists)"
 msgstr "Die Absender-Adresse (bitte stelle sicher, dass diese existiert)."
 
-#: admin/cb-settings/views/settings.php:214
+#: admin/cb-settings/views/settings.php:205
 msgid "Confirmation email subject"
 msgstr "Buchungsbestätigung: Betreff"
 
-#: admin/cb-settings/views/settings.php:215
+#: admin/cb-settings/views/settings.php:206
 msgid ""
 "The subject of the confirmation Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
@@ -446,11 +438,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:220
+#: admin/cb-settings/views/settings.php:211
 msgid "Confirmation email body"
 msgstr "Buchungsbestätigung: Inhalt"
 
-#: admin/cb-settings/views/settings.php:221
+#: admin/cb-settings/views/settings.php:212
 msgid ""
 "The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
@@ -460,11 +452,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:226
+#: admin/cb-settings/views/settings.php:217
 msgid "Registration email subject"
 msgstr "Registrierung: Betreff"
 
-#: admin/cb-settings/views/settings.php:227
+#: admin/cb-settings/views/settings.php:218
 msgid ""
 "The subject of the registration Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank"
@@ -474,11 +466,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:232
+#: admin/cb-settings/views/settings.php:223
 msgid "Registration email body"
 msgstr "Registrierung: Inhalt"
 
-#: admin/cb-settings/views/settings.php:233
+#: admin/cb-settings/views/settings.php:224
 msgid ""
 "The body of the registration confirmation email. You can use HTML & <a href="
 "\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
@@ -488,11 +480,11 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:246
+#: admin/cb-settings/views/settings.php:237
 msgid "Export Settings"
 msgstr "Einstellungen exportieren"
 
-#: admin/cb-settings/views/settings.php:248
+#: admin/cb-settings/views/settings.php:239
 msgid ""
 "Export the plugin settings for this site as a .json file. This allows you to "
 "easily import the configuration into another site."
@@ -500,15 +492,15 @@ msgstr ""
 "Exportiere die Einstellungen als .json-Datei, um sie später hier oder an "
 "anderer Stelle importieren zu können."
 
-#: admin/cb-settings/views/settings.php:253
+#: admin/cb-settings/views/settings.php:244
 msgid "Export"
 msgstr "Export"
 
-#: admin/cb-settings/views/settings.php:260
+#: admin/cb-settings/views/settings.php:251
 msgid "Import Settings"
 msgstr "Einstellungen importieren"
 
-#: admin/cb-settings/views/settings.php:262
+#: admin/cb-settings/views/settings.php:253
 msgid ""
 "Import the plugin settings from a .json file. This file can be obtained by "
 "exporting the settings on another site using the form above."
@@ -517,7 +509,7 @@ msgstr ""
 "durch den Export der Einstellungen auf einer anderen Website mit dem Formular "
 "oben erstellt werden."
 
-#: admin/cb-settings/views/settings.php:270
+#: admin/cb-settings/views/settings.php:261
 msgid "Import"
 msgstr "Import"
 
@@ -1744,7 +1736,7 @@ msgid "If you don´t have an account, please register here: "
 msgstr "Falls Du noch kein Nutzer*in-Konto hast, registriere Dich hier: "
 
 #: templates/user-login.php:5
-msgid "If you have lost your password, click here: "
+msgid "If you have lost your password, click here:"
 msgstr "Wenn Du dein Passwort verloren hast, klick hier:"
 
 #: templates/user-login.php:5
@@ -1774,6 +1766,12 @@ msgstr "Telefon"
 #: templates/user-registration.php:35
 msgid "I accept the terms"
 msgstr "Ich akzeptiere die Nutzungsbedingungen"
+
+#~ msgid "Login Page"
+#~ msgstr "Anmelde-Seite"
+
+#~ msgid "The login form."
+#~ msgstr "Auf dieser Seite kann ein*e Nutzer*in sich anmelden."
 
 #~ msgid " Pickup date: "
 #~ msgstr " Abholdatum: "
