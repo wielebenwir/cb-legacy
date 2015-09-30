@@ -161,16 +161,14 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     
     global $wpdb;
 
-    $currentdate = date( 'Y-m-d');
-
     // get booking_code-id fromt codes database
      $sqlresult = $wpdb->get_results($wpdb->prepare(
         "
         SELECT date_start, date_end
         FROM " . $this->table_bookings . " 
-        WHERE date_start >= '%s' AND item_id = '%s' AND status = '%s'
+        WHERE item_id = '%s' AND status = '%s'
         ", 
-        $currentdate , $item_id, $status), ARRAY_A); // get dates from 
+        $item_id, $status), ARRAY_A); // get dates from 
      
      $booked_days = array();
 
