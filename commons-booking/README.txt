@@ -58,13 +58,21 @@ Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
 == Changelog ==
+
+== 0.5.2 == 
+* Removed login page backend setting & creation by plugin (all handled by user page)
+
+== 0.5.1 ==
+* New translation file (Thanks, Albert!)
+* Enhancement: Added link to WP Passwort recovery page. 
+* Enhancement: If registration submit was not successful, the following page will include the form now. 
+* Fix: Removed dummy tooltip message
+* Fix: for an issue when the code generation module picked only elements with upper case "S".
+* Fix: a bug where days with multi-page bookings were not correctly rendered as "non-bookable" if the booking start date had passed
+* Fix: No emails will be send if there are any errors in the registration process
+* Fix: Fixed a bug where days with multi-page bookings were not correctly rendered as "non-bookable" if the booking start date had passed.
+* Fix: Pagination in codes table: offset is calculated correctly now.
 
 == 0.5.0.2 == 
 * removed "info/more" button (normal WP page content is rendered now)
