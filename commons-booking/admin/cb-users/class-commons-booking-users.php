@@ -160,7 +160,6 @@ class Commons_Booking_Users {
    */
     public function complete_registration() {
 
-        if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
             $userdata = array(
             'user_login'    =>   $this->r_vars['user_name'],
             'user_email'    =>   $this->r_vars['email'],
@@ -180,7 +179,6 @@ class Commons_Booking_Users {
             update_user_meta( $user, 'confirmed', $userdata['confirmed'] );
 
             echo __( 'Thanks! Registration is complete. We´ve sent you an email with your Account information. ', $this->plugin_slug );
-        }
     }
 
 
@@ -280,8 +278,10 @@ class Commons_Booking_Users {
      
             // call @function complete_registration to create the user
             // only when no WP_error is found
-            $this->complete_registration();
-            $this->send_mail( $this->r_vars['email'] );
+            if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
+              $this->complete_registration();
+              $this->send_mail( $this->r_vars['email'] );
+            }
           }
         } elseif ( 1 > count( $this->reg_errors->get_error_messages() ) ) { 
     
