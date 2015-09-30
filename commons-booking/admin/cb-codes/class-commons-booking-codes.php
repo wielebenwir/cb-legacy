@@ -79,7 +79,9 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
   public function split_csv( $csv ) {
 
     $splitted = explode(",", $csv);
-    $splitted = preg_grep('#S#', array_map('trim', $splitted)); // Remove Empty
+    $splitted = array_filter($splitted); // Remove empty
+    $splitted = array_map('trim', $splitted); // Remove white space
+    
     return ($splitted);
   }
 
