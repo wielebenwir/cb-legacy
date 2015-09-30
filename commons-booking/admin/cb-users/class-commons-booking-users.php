@@ -87,7 +87,7 @@ class Commons_Booking_Users {
     public function registration_form( ) {
 
       if ( is_user_logged_in() ) {
-          echo 'Welcome, registered user!';
+          echo __('Welcome, registered user!', $this->plugin_slug);
       } else {
 
         $registration_enabled = get_option('users_can_register');
@@ -144,7 +144,7 @@ class Commons_Booking_Users {
  
           foreach ( $this->reg_errors->get_error_messages() as $error ) {
             echo ('<p class="cb-error">');
-            echo __( '<strong>Error:</strong> ' .$error );
+            echo __( '<strong>Error:</strong> ', $this->plugin_slug ) . $error;
             echo ('</p>');
                
           }
@@ -204,7 +204,7 @@ class Commons_Booking_Users {
             include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
 
           } else {
-            echo __(' You haven´t booked anything yet.'); 
+            echo __(' You haven´t booked anything yet.', $this->plugin_slug); 
           }
 
       } else { // Login Form and registration link
@@ -245,7 +245,7 @@ class Commons_Booking_Users {
           // check for nonce
           if (! isset( $_POST['user_nonce'] ) || ! wp_verify_nonce( $_POST['user_nonce'], 'create_user' ) ) { 
 
-            die ('Error: Session expired.');
+            die ( 'Error: Session expired.' );
 
           } else { // register
 
