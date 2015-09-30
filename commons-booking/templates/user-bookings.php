@@ -1,15 +1,17 @@
 
 
-  <div class="cb-headline"><?php echo __('My Bookings'); ?></div>
+  <div class="cb-headline"><?php echo __('My Bookings', 'commons-booking'); ?></div>
   <div class="cb-box">
     <?php foreach ($user_bookings as $booking) { ?>
       
       <?php 
         if ($booking['status'] == 'confirmed') {
+          $d_status = __('Confirmed', 'commons-booking' );
           $d_link = get_the_permalink ( $review_page_id ) . '?booking=' .$booking['hash']; 
-          $d_button = '| <a href="'. $d_link .'">' . __( 'Details' ) . '</a>';
+          $d_button = '&nbsp; | <a href="'. $d_link .'">' . __( 'Details' ) . '</a>';
         } else {
           $d_button = '';
+          $d_status = __('Pending', 'commons-booking' );
         }
           ?>
 
@@ -19,7 +21,7 @@
      <span class="cb-date"><?php echo date( 'd.m.y', strtotime($booking['date_end'])); ?></span>
           <span class="align-right"><?php echo $d_button; ?></span>
 
-    <span class="align-right <?php echo $booking['status']; ?>"><?php echo $booking['status']; ?></span>
+    <span class="align-right <?php echo $booking['status']; ?>"><?php echo $d_status; ?></span>
 
     </div>
 <?php } ?>
