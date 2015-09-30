@@ -94,16 +94,7 @@
             'show_option_none' => true,
             'default'          => 'none',
             'options'          => pages_dropdown(),
-          ),          
-          array(
-            'name'             => __( 'Login Page', $this->plugin_slug ),
-            'desc'             => __( 'The login form.', $this->plugin_slug ),
-            'id'               => $this->plugin_slug . '_login_page_select',
-            'type'             => 'select',
-            'show_option_none' => true,
-            'default'          => 'none',
-            'options'          => pages_dropdown(),
-          ),                     
+          ),                             
         ),
       );
 
