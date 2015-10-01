@@ -60,6 +60,10 @@ Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-
 
 == Changelog ==
 
+== 0.5.2.1 == 
+* fixed missing translation strings ("Confirm Booking" & "Cancel")
+* Now printing the address fields in item single view as comma-seperated
+
 == 0.5.2 == 
 * Removed login page backend setting & creation by plugin (all handled by user page)
 
