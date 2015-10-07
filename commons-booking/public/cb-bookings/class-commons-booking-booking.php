@@ -201,21 +201,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $code_id = $this->get_booking_code_id( $date_start, $item_id );
         $location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );    	
 
-        // check if identical booking is already in database and 
-        $sqlresult = $wpdb->get_results($wpdb->prepare(
-        "
-        SELECT id, date_start, date_end
-        FROM " . $this->table_bookings . " 
-        WHERE item_id = '%s' AND date_start = '%s' AND  date_start = '%s'
-        ", 
-        $item_id, $date_start, $date_end), ARRAY_A); 
-
-        if ( $sqlresult ) {
-
-            return $sqlresult[0]['id'];
-
-        } else {
-
         	$wpdb->insert( 
     			$this->table_bookings, 
     			array( 
@@ -241,7 +226,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     		);
 
     		return $wpdb->insert_id;
-        }
 	}
 
 
@@ -503,10 +487,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                     $user_id = get_current_user_id();
                     $b_id = $this->decrypt( $this->hash );
-
+                    
                     $this->booking = $this->get_booking( $b_id );
 
-                    if ( ( $this->booking['user_id'] ==  $user_id ) || is_admin() ) { // user that booked or admin
+                    if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
 
                         $this->date_start = ( $this->booking['date_start'] ); 
                         $this->date_end = ( $this->booking['date_end'] ); 
@@ -549,7 +533,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         }
 
                     } else {
-                        die ('You have no right to view this page');
+                        // die ('You have no right to view this page');
                     }
 
 
