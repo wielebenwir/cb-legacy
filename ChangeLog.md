@@ -1,3 +1,12 @@
+# 0.5.3 
+
+* added missing translation strings
+* Fix user names / first_name / last_name in Email template
+* Fixed status string: canceled bookings are shown as canceled on the user page
+* Issue #74, Issue #71 Fix: A day that was booked couldn´t be booked again.
+* Fix: Replaced user_name with first_name & last_name
+
+
 # 0.5.2.1
 * fixed missing translation strings ("Confirm Booking" & "Cancel")
 * Now printing the address fields in item single view as comma-seperated
