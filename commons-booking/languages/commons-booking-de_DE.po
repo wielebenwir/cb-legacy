@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-09-30 23:48+0100\n"
+"POT-Creation-Date: 2015-10-01 19:11+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:47
-#: public/class-commons-booking.php:404
+#: public/class-commons-booking.php:403
 msgid "Booking"
 msgstr "Buchung"
 
@@ -1427,12 +1427,12 @@ msgid "Pickup at:"
 msgstr "Abholung bei:"
 
 #: public/cb-bookings/views/booking-review.php:15
-#: public/class-commons-booking.php:559
+#: public/class-commons-booking.php:557
 msgid "Pickup date:"
 msgstr "Abholdatum:"
 
 #: public/cb-bookings/views/booking-review.php:18
-#: public/class-commons-booking.php:560
+#: public/class-commons-booking.php:558
 msgid "Return date:"
 msgstr "Rückgabedatum:"
 
@@ -1468,16 +1468,12 @@ msgstr " Standortinformation: "
 msgid "User Registration"
 msgstr "Nutzer*in-Registrierung"
 
-#: public/class-commons-booking.php:403 templates/calendar-bookingbar.php:58
-msgid "Login"
-msgstr "Anmeldung"
-
-#: public/class-commons-booking.php:426
+#: public/class-commons-booking.php:424
 msgid "<p> Please review your booking and click \"confirm\".</p>"
 msgstr ""
 "<p> Bitte prüfe Deine Angaben und klicke dann \"Buchung bestätigen\".</p>"
 
-#: public/class-commons-booking.php:427
+#: public/class-commons-booking.php:425
 msgid ""
 "<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked "
 "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
@@ -1486,18 +1482,18 @@ msgstr ""
 "erfolgreich gebucht. Eine entsprechende E-Mail wurde an Deine Adresse "
 "{{USER_EMAIL}} gesendet. </p>"
 
-#: public/class-commons-booking.php:428
+#: public/class-commons-booking.php:426
 msgid ""
 "<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>"
 msgstr ""
 "<h2>Deine Buchung wurde storniert!</h2><p>Danke, dass Du uns informiert hast."
 "</p>"
 
-#: public/class-commons-booking.php:432
+#: public/class-commons-booking.php:430
 msgid "Your booking"
 msgstr "Deine Buchung"
 
-#: public/class-commons-booking.php:433
+#: public/class-commons-booking.php:431
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
 "\n"
@@ -1556,11 +1552,11 @@ msgstr ""
 "              <p>Danke, das Team. </p>\n"
 "            "
 
-#: public/class-commons-booking.php:457
+#: public/class-commons-booking.php:455
 msgid "Welcome, {{USER_NAME}} – here´s your account information."
 msgstr "Willkommen, {{USER_NAME}} – hier sind Deine Kontodaten."
 
-#: public/class-commons-booking.php:458
+#: public/class-commons-booking.php:456
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
 "\n"
@@ -1594,35 +1590,35 @@ msgstr ""
 "              <p>Thanks, the Team. </p>\n"
 "            "
 
-#: public/class-commons-booking.php:557
+#: public/class-commons-booking.php:555
 msgid "Book here:"
 msgstr "Hier buchen:"
 
-#: public/class-commons-booking.php:558
+#: public/class-commons-booking.php:556
 msgid "Click pickup and return date(s):"
 msgstr "Wähle Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:561
+#: public/class-commons-booking.php:559
 msgid "Pickup and return date:"
 msgstr "Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:562
+#: public/class-commons-booking.php:560
 msgid "Sorry, To many days between pickup and return, the maximum is: "
 msgstr "Sorry, der Zeitraum ist zu lang. Max. Tage: "
 
-#: public/class-commons-booking.php:563
+#: public/class-commons-booking.php:561
 msgid "Sorry, you can only book at one station."
 msgstr "Sorry, Du kannst nur bei einer Station buchen."
 
-#: public/class-commons-booking.php:564
+#: public/class-commons-booking.php:562
 msgid "Sorry, this day is not bookable."
 msgstr "Sorry, dieser Tag ist nicht buchbar."
 
-#: public/class-commons-booking.php:565
+#: public/class-commons-booking.php:563
 msgid "Sorry, there must be no booked day between pickup and return."
 msgstr "Sorry, bitte wähle einen Zeitraum ohne Überschneidungen."
 
-#: public/class-commons-booking.php:566
+#: public/class-commons-booking.php:564
 msgid "Sorry, you can´t book over closed days."
 msgstr "Sorry, Du kannst an geschlossenen Tagen nicht buchen."
 
@@ -1701,6 +1697,10 @@ msgstr "Jetzt buchen"
 #: templates/calendar-bookingbar.php:57
 msgid "You have to be registered to book."
 msgstr "Um zu buchen, musst Du angemeldet sein."
+
+#: templates/calendar-bookingbar.php:58
+msgid "Login"
+msgstr "Anmeldung"
 
 #: templates/calendar-bookingbar.php:58 templates/user-login.php:4
 #: templates/user-registration.php:40
