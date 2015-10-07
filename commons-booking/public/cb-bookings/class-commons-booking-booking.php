@@ -415,7 +415,11 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $b_vars['site_email'] = $this->email_messages['mail_confirmation_sender']; 
 
         $b_vars['user_name'] = $this->user['name'];
-        $b_vars['user_email'] = $this->user['email'];    
+        $b_vars['user_email'] = $this->user['email']; 
+
+        $b_vars['first_name'] = $this->user['first_name']; 
+        $b_vars['last_name'] = $this->user['last_name']; 
+
         $b_vars['user_address'] = $this->user['address'];    
         $b_vars['user_phone'] = $this->user['phone'];    
         if ( $include_code ) {
@@ -533,7 +537,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         }
 
                     } else {
-                        // die ('You have no right to view this page');
+                        die ('You have no right to view this page');
                     }
 
 

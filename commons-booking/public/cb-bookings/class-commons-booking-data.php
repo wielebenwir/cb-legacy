@@ -243,7 +243,9 @@ class Commons_Booking_Data {
  
       $user = array ( 
         'id' => $id ,
-        'name' => $userdb->first_name . ' ' .  $userdb->last_name,
+        'first_name' => $userdb->first_name,
+        'last_name' => $userdb->last_name,
+        'name' => $userdb->userdb_login,
         'login' => $userdb->userdb_login,
         'email' => $userdb->user_email,
         'phone' => get_user_meta( $id, 'phone', true ),
