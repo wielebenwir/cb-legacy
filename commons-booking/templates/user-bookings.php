@@ -9,10 +9,14 @@
           $d_status = __('Confirmed', 'commons-booking' );
           $d_link = get_the_permalink ( $review_page_id ) . '?booking=' .$booking['hash']; 
           $d_button = '&nbsp; | <a href="'. $d_link .'">' . __( 'Details' ) . '</a>';
-        } else {
+        } elseif ( $booking['status'] == 'canceled' ) {
+          $d_button = '';
+          $d_status = __('Canceled', 'commons-booking' );
+        }  else {
           $d_button = '';
           $d_status = __('Pending', 'commons-booking' );
         }
+     
           ?>
 
      <div class="cb-row">
