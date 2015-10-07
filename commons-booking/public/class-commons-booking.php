@@ -422,13 +422,13 @@ class Commons_Booking {
         ),
         $p.'-settings-messages' => array(
           $p.'_messages_booking_pleaseconfirm' => __( '<p> Please review your booking and click "confirm".</p>', $p ),
-          $p.'_messages_booking_confirmed' => __( '<h2>Congratulations, {{USER_NAME}}!</h2> <p>You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>', $p ),
+          $p.'_messages_booking_confirmed' => __( '<h2>Congratulations, {{FIRST_NAME}}!</h2> <p>You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>', $p ),
           $p.'_messages_booking_canceled' => __( '<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>', $p ),
         ),         
         $p.'-settings-mail' => array(
           $p.'_mail_confirmation_sender' => 'recipient@domain.com',
           $p.'_mail_confirmation_subject' => __( 'Your booking', $p ),
-          $p.'_mail_confirmation_body' => __('<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
+          $p.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
 
               <p>Click here to see or cancel you booking: {{URL}}.</p>
 
@@ -447,7 +447,7 @@ class Commons_Booking {
 
               <em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>
 
-              <p>Name: {{USER_NAME}}.<br>
+              <p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>
                 Address: {{USER_ADDRESS}}</p>
 
               <p>Thanks, the Team. </p>
