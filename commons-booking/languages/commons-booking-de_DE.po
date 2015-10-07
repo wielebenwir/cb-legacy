@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2015-10-01 19:11+0100\n"
+"POT-Creation-Date: 2015-10-07 19:19+0330\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -1398,7 +1398,7 @@ msgstr "Ausgabe als Liste"
 msgid "Wraps posts with the <li> tag."
 msgstr "Umschließt Beiträge mit dem <li>-Tag."
 
-#: public/cb-bookings/class-commons-booking-booking.php:491
+#: public/cb-bookings/class-commons-booking-booking.php:475
 msgid "Error: Variables missing"
 msgstr "Fehler: Variablen fehlen"
 
@@ -1724,6 +1724,10 @@ msgid "Details"
 msgstr "Details"
 
 #: templates/user-bookings.php:14
+msgid "Canceled"
+msgstr "Storniert"
+
+#: templates/user-bookings.php:17
 msgid "Pending"
 msgstr "Wartend"
 
