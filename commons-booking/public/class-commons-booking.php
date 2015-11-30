@@ -116,12 +116,20 @@ class Commons_Booking {
         $this->users = new Commons_Booking_Users();
         $this->settings = new Commons_Booking_Admin_Settings;
 
+        $this->user_fields = $this->users->get_fields();
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
         add_filter( 'registration_redirect', 'cb_registration_redirect' );
         add_filter( 'register_url', array( $this, 'cb_register_url' ) );
         add_filter( 'login_url', array( $this, 'cb_user_url' ) );
+        // Form fields 
+        add_action( 'register_form', array( $this, 'cb_register_add_fields' ) );
+        // validation
+        add_filter( 'registration_errors', array ( $this, 'cb_registration_errors' ), 10, 3 );
+        // write meta
+        add_action( 'user_register', array ( $this, 'cb_user_register' ) );
+
 
         // show admin bar only for admins and editors
         if (!current_user_can('edit_posts')) {
@@ -142,6 +150,75 @@ class Commons_Booking {
         add_action( 'the_content', array( $this, 'cb_content' ) );  
     }
 
+    /*
+    *   Adds the fields to the wordpress registration page
+    *
+    * @since    0.6
+    *
+    */
+
+    public function cb_register_add_fields() {
+
+      foreach ($this->user_fields as $field) {
+
+            $row = ( ! empty( $_POST[ $field['field_name'] ] ) ) ? trim( $_POST[ $field['field_name'] ] ) : '';
+            
+            ?>
+            <p>
+                <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
+                <?php if ( $field['type'] == 'checkbox' ) { ?>
+                    <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'] ) ?><br />
+                    <?php } else { ?>
+                    <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'] ) ?>
+                    <? } ?>
+                </label>
+            </p>
+            <?php
+
+         }
+
+        }
+
+    /*
+    *   Adds error handling
+    *
+    * @since    0.6
+    *
+    * @return    object 
+    */
+    public function cb_registration_errors( $errors, $username, $email) {
+
+        foreach ($this->user_fields as $field) {
+
+            if ( $field['type'] == 'checkbox' ) {
+                if ( !isset( $_POST[ $field[ 'field_name' ]]) ) {
+                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
+                }
+            } else {
+                if ( empty( $_POST[ $field[ 'field_name' ] ] ) || ! empty( $_POST[ $field[ 'field_name' ] ] ) && trim( $_POST[ $field[ 'field_name' ] ] ) == '' ) {
+                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
+                }
+            }
+        }
+        return $errors;
+    }
+
+    /*
+    *   Write user meta 
+    *
+    * @since    0.6
+    *
+    * @return    object 
+    */
+    public function cb_user_register( $user_id ) {
+
+        foreach ($this->user_fields as $field) {
+            // var_dump($_POST[ $field[ 'field_name' ]]);
+            if ( !empty( $_POST[ $field[ 'field_name' ]] ) ) {
+                update_user_meta( $user_id, $field[ 'field_name' ], trim( $_POST[ $field[ 'field_name' ]] ) );
+                }
+        }
+    }
     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
