@@ -14,7 +14,57 @@ class Commons_Booking_Users {
 
     $this->plugin_slug = 'commons-booking';
 
-    $this->registration_fields = array ( 'username', 'password', 'email', 'first_name', 'last_name', 'phone', 'address', 'terms_accepted' );
+    $this->registration_fields = array ( 
+      'username', 
+      'password', 
+      'email', 
+      'first_name', 
+      'last_name', 
+      'phone', 
+      'address', 
+      'terms_accepted' 
+      );    
+
+    $this->user_fields = array (       
+       'first_name' => array ( 
+          'field_name' => 'first_name', 
+          'title' => __( 'First Name', $this->plugin_slug ), 
+          'type' => 'input', 
+          'description' => '', 
+          'errormessage' => __('Please enter your first name', $this->plugin_slug ) 
+          ),       
+       'last_name' => array ( 
+          'field_name' => 'last_name',
+          'title' => __( 'Last Name', $this->plugin_slug ),  
+          'type' => 'input', 
+          'description' => '', 
+          'errormessage' => __('Please enter your last name', $this->plugin_slug ) 
+          ),       
+       'phone' => array ( 
+          'field_name' => 'phone', 
+          'title' => __( 'Phone Number', $this->plugin_slug ), 
+          'type' => 'input', 
+          'description' => '', 
+          'errormessage' => __('Please enter your phone number', $this->plugin_slug ) 
+          ),       
+       'address' => array ( 
+          'field_name' => 'address', 
+          'title' => __( 'Addresss', $this->plugin_slug ), 
+          'type' => 'input', 
+          'description' => '', 
+          'errormessage' => __('Please enter your Address', $this->plugin_slug ) 
+          ),       
+      'terms_accepted' => array ( 
+          'title' => __( 'Terms and Conditions', $this->plugin_slug ), 
+          'field_name' => 'terms_accepted', 
+          'type' => 'checkbox', 
+          'description' => __( 'I accept the terms & conditions' ), 
+          'errormessage' => __('Please accept the terms & conditions', $this->plugin_slug ) 
+          )
+      );
+
+
+    
     $this->registration_fields_required = $this->registration_fields;
 
     // include Wordpress error class
@@ -26,6 +76,11 @@ class Commons_Booking_Users {
 
 
     }
+
+
+  public function get_fields() {
+    return $this->user_fields;
+  }
 
   /**
    * Backend: Show the extra profile fields
