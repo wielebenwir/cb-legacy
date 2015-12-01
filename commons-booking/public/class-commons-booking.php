@@ -117,12 +117,22 @@ class Commons_Booking {
         $this->settings = new Commons_Booking_Admin_Settings;
 
         $this->user_fields = $this->users->get_fields();
+
+        // var_dump($fields);
+
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
-        add_filter( 'registration_redirect', 'cb_registration_redirect' );
-        add_filter( 'register_url', array( $this, 'cb_register_url' ) );
-        add_filter( 'login_url', array( $this, 'cb_user_url' ) );
+        // Redirects after registration
+        // add_filter( 'registration_redirect', 'cb_registration_redirect' );
+        // add_filter( 'register_url', array( $this, 'cb_register_url' ) );
+        // add_filter( 'login_url', array( $this, 'cb_user_url' ) );
+
+
+            $user = get_user_by( 'id', '21' );
+            $user_meta = get_user_meta( '21');
+
+
         // Form fields 
         add_action( 'register_form', array( $this, 'cb_register_add_fields' ) );
         // validation
@@ -142,6 +152,8 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
         add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
+
+        add_action('user_register', array($this, 'send_register_mail'));
 
 
         /* 
@@ -213,13 +225,52 @@ class Commons_Booking {
     public function cb_user_register( $user_id ) {
 
         foreach ($this->user_fields as $field) {
-            // var_dump($_POST[ $field[ 'field_name' ]]);
             if ( !empty( $_POST[ $field[ 'field_name' ]] ) ) {
                 update_user_meta( $user_id, $field[ 'field_name' ], trim( $_POST[ $field[ 'field_name' ]] ) );
                 }
         }
     }
     /**
+     *   Add main items list to page selected in settings
+     *   Add bookings review to page selected in settings.
+     * Add main plugin overview output to page selected in settings.
+     *
+     * @since    0.0.1
+     *
+     * @return    Mixed 
+     */    
+        public function send_register_mail( $user_id ) {
+
+            $user_basic = get_user_by( 'id', $user_id );
+            $user_meta = get_user_meta( $user_id );
+
+            $user_basic_array =  object_to_array ($user_basic);
+            $user_meta_array =  object_to_array ($user_meta);
+
+            $uservars = array_merge($user_basic_array, $user_meta_array);
+
+            print_r( $uservars );
+
+
+            $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+            $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
+            $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
+      
+            $headers = array('Content-Type: text/html; charset=UTF-8'); 
+
+            $to = $uservars['user_email'];
+
+            echo ("email:" . $uservars['user_email']);
+
+            $body = replace_template_tags( $body_template, $uservars);
+            $subject = replace_template_tags( $subject_template, $uservars);
+
+            wp_mail( 'hallo@fleg.de', $subject, $body, $headers );
+
+        }
+
+
+     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
      * Add main plugin overview output to page selected in settings.
@@ -679,12 +730,12 @@ class Commons_Booking {
      *
      * @since    0.2
      */
-    public function cb_register_url() {
+    // public function cb_register_url() {
 
-       $id = $this->settings->get('pages', 'registration_page_select');
-       $url = get_permalink( $id );
-       return $url;
-    }
+    //    $id = $this->settings->get('pages', 'registration_page_select');
+    //    $url = get_permalink( $id );
+    //    return $url;
+    // }
 
     /**
      * NOTE:  Shortcode simple set of functions for creating macro codes for use
