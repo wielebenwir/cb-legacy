@@ -116,9 +116,8 @@ class Commons_Booking {
         $this->users = new Commons_Booking_Users();
         $this->settings = new Commons_Booking_Admin_Settings;
 
-        $this->user_fields = $this->users->get_fields();
+        $this->user_fields = $this->users->get_extra_profile_fields();
 
-        // var_dump($fields);
 
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
@@ -160,6 +159,11 @@ class Commons_Booking {
          * Filter: Overwrite pages.
          */
         add_action( 'the_content', array( $this, 'cb_content' ) );  
+
+
+
+
+
     }
 
     /*
@@ -239,35 +243,37 @@ class Commons_Booking {
      *
      * @return    Mixed 
      */    
-        public function send_register_mail( $user_id ) {
+        // public function send_register_mail( $user_id ) {
 
-            $user_basic = get_user_by( 'id', $user_id );
-            $user_meta = get_user_meta( $user_id );
-
-            $user_basic_array =  object_to_array ($user_basic);
-            $user_meta_array =  object_to_array ($user_meta);
-
-            $uservars = array_merge($user_basic_array, $user_meta_array);
-
-            print_r( $uservars );
+        //     $user_basic = get_user_by( 'id', $user_id );
+        //     $user_meta = get_user_meta( $user_id );
 
 
-            $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
-            $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
-            $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
+        //     // transform from object to an array that the replace_template_tags functions expects
+        //     $user_basic_array =  object_to_array ($user_basic);
+            
+        //     $user_meta_array = array();
+        //     foreach ($user_meta as $key => $value) {
+        //         $user_meta_array[$key] = $value[0];
+        //     }
+
+        //     // merge the arrays
+        //     $uservars = array_merge($user_basic_array['data'], $user_meta_array);
+
+        //     $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+        //     $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
+        //     $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
       
-            $headers = array('Content-Type: text/html; charset=UTF-8'); 
+        //     $headers = array('Content-Type: text/html; charset=UTF-8'); 
 
-            $to = $uservars['user_email'];
+        //     $to = $uservars['user_email'];
 
-            echo ("email:" . $uservars['user_email']);
+        //     $body = replace_template_tags( $body_template, $uservars);
+        //     $subject = replace_template_tags( $subject_template, $uservars);
 
-            $body = replace_template_tags( $body_template, $uservars);
-            $subject = replace_template_tags( $subject_template, $uservars);
+        //     wp_mail( 'hallo@fleg.de', $subject, $body, $headers );
 
-            wp_mail( 'hallo@fleg.de', $subject, $body, $headers );
-
-        }
+        // }
 
 
      /**
