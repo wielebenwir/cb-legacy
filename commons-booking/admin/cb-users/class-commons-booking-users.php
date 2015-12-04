@@ -155,7 +155,7 @@ class Commons_Booking_Users {
             <tr>
                 <th><label for="terms_accepted"><?php _e ( 'Terms and conditions', $this->plugin_slug ); ?></label></th>
                 <td>
-                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php echo __(' Accepted Terms & Conditions', $this->plugin_slug); ?><br />
+                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " disabled value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php echo __(' Accepted Terms & Conditions', $this->plugin_slug); ?><br />
 
                 </td>
             </tr>
@@ -176,7 +176,7 @@ class Commons_Booking_Users {
 
       update_user_meta( $user_id, 'phone', $_POST['phone'] );
       update_user_meta( $user_id, 'address', $_POST['address'] );
-      update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
+      // update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
       update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
     }
 
