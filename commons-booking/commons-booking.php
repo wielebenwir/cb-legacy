@@ -41,8 +41,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/Taxonomy_Core/Taxonomy_Cor
 require_once( plugin_dir_path( __FILE__ ) . 'includes/CPT_Core/CPT_Core.php' );
 
 // Custom Post Type and Taxonomy Definitions
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-items/class-commons-booking-items-cpt.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-booking-locations-cpt.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-items/cb-items-cpt.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/cb-locations-cpt.php' );
 
 // CLasses for Frontend-Booking
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
