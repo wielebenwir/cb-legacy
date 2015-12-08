@@ -105,14 +105,7 @@ class Commons_Booking {
 
         // Activate plugin when new blog is added
         add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
-
-        // 
         
-
-        // Create all needed custom post types defined in class-commons-booking-cpt.php @TODO: find better place for this
-        $type_items = new CB_Items_CPT( $this->get_plugin_slug() );
-        $type_items->register_taxonomy();
-        $type_locations = new Commons_Booking_Locations_CPT( $this->get_plugin_slug() );
 
         $items = new Commons_Booking_Public_Items();
         $this->users = new Commons_Booking_Users();
@@ -518,6 +511,12 @@ class Commons_Booking {
             'WP' => new WordPress_Requirement( '3.9.0' ),
                 ) );
 
+        // Create all needed custom post types defined in class-commons-booking-cpt.php
+        $type_items = new CB_Items_CPT( self::$plugin_slug );
+        $type_items->register_taxonomy();
+        $type_locations = new CB_Locations_CPT( self::$plugin_slug );
+
+
         // install the database tables 
         $timeframe_table = new Commons_Booking_Timeframes_Setup;
         $timeframe_table->install();        
@@ -528,20 +527,22 @@ class Commons_Booking {
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
 
-        $settings = new CB_Admin_Settings; 
 
         $p = self::$plugin_slug;
 
         // create the default pages 
+        $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
+        $user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
+        $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
+        $booking_confirm_page = create_page(__( 'Booking', $p ), $p.'_bookingconfirm_page_select');
 
-        $this->item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
-        $this->user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
-        $this->user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
-        $this->booking_confirm_page = create_page(__( 'Booking', $p ), $p.'_bookingconfirm_page_select');
+        $settings = new CB_Admin_Settings(); 
+
 
         // check if setting is set, otherwise set it. 
         // $settings->set_pages( $item_page, $user_page , $user_reg_page,  $booking_confirm_page );
-        $settings->set_defaults();
+        $settings->set_defaults( $item_page, $user_page , $user_reg_page,  $booking_confirm_page );
+        $settings->apply_defaults();
 
         //Clear the permalinks
         flush_rewrite_rules();
