@@ -27,15 +27,10 @@ class CB_Admin_Settings extends Commons_Booking {
  */
   public function __construct() {
 
-    echo parent::$plugin_slug;
-
-    $this->prefix = 'commons-booking';
-
-
+    $this->prefix = parent::$plugin_slug;
     $p =  $this->prefix; 
 
-        // insert the default settings array
-
+    // Default Settings
     $this->defaults = array(
         $p. '-settings-pages' => array(
           $p.'_item_page_select' => $item_page,
