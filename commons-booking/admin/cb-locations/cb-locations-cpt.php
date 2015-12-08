@@ -16,7 +16,7 @@
  */
 
 
-class Commons_Booking_Locations_CPT extends CPT_Core {
+class CB_Locations_CPT extends CPT_Core {
 
     /**
      * Register Location Post Type. 
