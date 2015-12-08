@@ -114,7 +114,7 @@ class Commons_Booking {
 
         $items = new Commons_Booking_Public_Items();
         $this->users = new Commons_Booking_Users();
-        $this->settings = new Commons_Booking_Admin_Settings;
+        $this->settings = new CB_Admin_Settings;
 
         $this->user_fields = $this->users->get_extra_profile_fields();
 
@@ -527,6 +527,7 @@ class Commons_Booking {
         $bookings_table->install();
 
         $settings = new Commons_Booking_Admin_Settings; 
+        $settings = new CB_Admin_Settings; 
 
         $p = self::$plugin_slug;
 

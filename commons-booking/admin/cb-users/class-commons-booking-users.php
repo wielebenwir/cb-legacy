@@ -70,7 +70,7 @@ class Commons_Booking_Users {
     // include Wordpress error class
     $this->reg_errors = new WP_Error;
 
-    $this->settings = new Commons_Booking_Admin_Settings();
+    $this->settings = new CB_Admin_Settings();
 
     $this->r_vars = array();
 

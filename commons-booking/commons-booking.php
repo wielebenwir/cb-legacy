@@ -47,7 +47,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-bo
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/class-commons-booking-admin-settings.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/admin-settings.php' );
 
 
   // CODES: Install/Update functionality for database Tables
