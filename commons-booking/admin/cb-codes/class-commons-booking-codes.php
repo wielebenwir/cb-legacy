@@ -41,7 +41,7 @@ class Commons_Booking_Codes {
   public function __construct( $item_id ) {
  
     // get Codes from Settings page
-    $settings = new Commons_Booking_Admin_Settings;
+    $settings = new CB_Admin_Settings;
 
     global $wpdb;
     $this->table_name = $wpdb->prefix . 'cb_codes';
