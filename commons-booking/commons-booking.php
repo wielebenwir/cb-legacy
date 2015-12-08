@@ -36,6 +36,7 @@ if ( !defined( 'WPINC' ) ) {
  * Load library for simple and fast creation of Taxonomy and Custom Post Type
  *
  */
+require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'includes/Taxonomy_Core/Taxonomy_Core.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'includes/CPT_Core/CPT_Core.php' );
 
@@ -47,7 +48,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-locations/class-commons-bo
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/admin-settings.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/cb-admin-settings.php' );
 
 
   // CODES: Install/Update functionality for database Tables
@@ -84,8 +85,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/widgets/sample.php' );
  */
 require_once( plugin_dir_path( __FILE__ ) . 'includes/language.php' );
 
-
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-commons-booking.php' );
 
 
 /*

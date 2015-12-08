@@ -11,11 +11,11 @@
 /**
  * Registers the custom post type Items
  *
- * @package Commons_Booking_Items_CPT
+ * @package CB_Items_CPT
  * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
-class Commons_Booking_Items_CPT extends CPT_Core {
+class CB_Items_CPT extends CPT_Core {
 
     /**
      * Register the Item post type
