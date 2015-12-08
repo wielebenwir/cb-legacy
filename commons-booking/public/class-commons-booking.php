@@ -548,7 +548,7 @@ class Commons_Booking {
             ),
             $p.'-settings-bookings' => array(
               $p.'_bookingsettings_maxdays' => 3,
-              $p.'bookingsettings_daystoshow' => 30,
+              $p.'_bookingsettings_daystoshow' => 30,
               $p.'_bookingsettings_allowclosed' => ''
             ),   
              $p.'-settings-codes' => array(
@@ -649,7 +649,7 @@ class Commons_Booking {
 
         if ( is_singular ( 'cb_items' )) {
             wp_enqueue_style( $this->get_plugin_slug() . '-tooltip-css', plugins_url( 'assets/css/tooltipster.css', __FILE__ ), array(), self::VERSION );
-        }       
+        }         
     }
 
     /**

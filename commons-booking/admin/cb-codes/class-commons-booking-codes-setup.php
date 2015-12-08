@@ -64,11 +64,11 @@ public function install()
     $installed_ver = get_option('cb_codes_$this->table_db_version');
     if ($installed_ver != $this->table_db_version) {
     $sql = "CREATE TABLE " . $table_name . " (
-      code_id int(11) AUTO_INCREMENT,
+      id int(11) AUTO_INCREMENT,
       bookingcode text CHARACTER SET utf8,        
       item_id int(11) DEFAULT NULL,
       booking_date date DEFAULT NULL,
-      PRIMARY KEY  (code_id)
+      PRIMARY KEY  (id)
     );";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

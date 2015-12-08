@@ -38,12 +38,6 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     $daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     
-    if ( ! empty( $daystoshow ) ) {
-      $this->daystoshow = $daystoshow;
-    } else {
-      $this->daystoshow = 30;
-    }
-    
     $this->current_date = date('Y-m-d');
 }
 
