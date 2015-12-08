@@ -9,7 +9,7 @@
  */
 
 /**
- * Get the admin defined settings from backend.  
+ * Settings module: Interaction with the Wordpress Admin Settings API 
  *
  * @package CB_Admin_Settings
  * @author  Florian Egermann <florian@wielebenwir.de>
@@ -23,7 +23,7 @@ class CB_Admin_Settings extends Commons_Booking {
 
 
 /**
- * Constructor.
+ * Constructor & Defaults
  */
   public function __construct() {
 
