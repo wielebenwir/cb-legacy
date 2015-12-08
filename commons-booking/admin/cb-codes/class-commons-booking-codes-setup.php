@@ -51,7 +51,7 @@ public function install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('cb_codes_$this->table_db_version', $this->table_db_version);
+    add_option('commons_booking_codes_table_db_version', $this->table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 0.1 version
@@ -75,7 +75,7 @@ public function install()
         dbDelta($sql);
 
        // notice that we are updating option, rather than adding it
-        update_option('cb_codes_table_db_version', $this->table_db_version);
+        update_option('commons_booking_codes_table_db_version', $this->table_db_version);
     }
 }
 

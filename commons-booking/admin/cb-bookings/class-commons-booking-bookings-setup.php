@@ -66,7 +66,7 @@ public function install()
     dbDelta($sql);
 
     // save current database version for later use (on upgrade)
-    add_option('cb_bookings_table_db_version', $this->table_db_version);
+    add_option('commons_booking_bookings_table_db_version', $this->table_db_version);
 
     /**
      * [OPTIONAL] Example of updating to 0.1 version
@@ -82,7 +82,7 @@ public function install()
      * we are using dbDelta to migrate table changes
      */
     
-    $installed_ver = get_option('cb_bookings_table_db_version');
+    $installed_ver = get_option('commons_booking_bookings_table_db_version');
     if ($installed_ver != $this->table_db_version) {
       $sql = "CREATE TABLE " . $table_name . " (
         id int(11) NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ public function install()
         dbDelta($sql);
 
         // notice that we are updating option, rather than adding it
-        update_option('cb_bookings_table_db_version', $this->table_db_version);
+        update_option('commons_booking_bookings_table_db_version', $this->table_db_version);
     }
 }
 
