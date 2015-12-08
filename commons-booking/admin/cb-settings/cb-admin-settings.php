@@ -101,7 +101,7 @@ class CB_Admin_Settings extends Commons_Booking {
 
   /**
   * Set the default values for the settings. 
-  * Loop through each setting, if set, keep it otherwise write defaults
+  * Loop through each setting, if set, keep it otherwise write defaults to wp_options 
   */
   public function set_defaults() {
     
@@ -112,7 +112,6 @@ class CB_Admin_Settings extends Commons_Booking {
           $option[$d_key] = $d_value; 
         } 
       }
-
       update_option( $d_page, $option );
     }
   }
