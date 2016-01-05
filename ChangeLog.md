@@ -1,3 +1,7 @@
+# 0.6 
+* FIX: Corrected Database Table Version Option names
+* FIX: Installation / Code Table creation. Corrected Primary column (id). Removed legacy if empty. 
+
 # 0.5.3 
 
 * added missing translation strings
