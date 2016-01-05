@@ -433,7 +433,6 @@ class Commons_Booking_Users {
       $headers = array('Content-Type: text/html; charset=UTF-8'); 
 
       $to = $vars['user_email'];
-      var_dump($vars);
       $body = replace_template_tags( $body_template, $vars );
       $subject = replace_template_tags( $subject_template, $vars );
 
@@ -496,7 +495,7 @@ if ( !function_exists('wp_new_user_notification') ) {
 
 
         // User Message 
-        
+
         $cb_user->set_basic_user_vars( $user_id );
         $activation_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
 
