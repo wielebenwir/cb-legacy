@@ -122,9 +122,14 @@ class Commons_Booking_Admin {
 
     // add user profile fields 
     add_action( 'show_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
-    add_action( 'edit_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
+    add_action( 'edit_user_profile', array( $this , 'test' ) );
   	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ) );
 		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ) );
+
+
+
+		// Remove Wordpress styles
+		add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
 
 
 		//Add the export settings method
@@ -148,6 +153,10 @@ class Commons_Booking_Admin {
 	    require_once( plugin_dir_path( __FILE__ ) . 'includes/WP-Admin-Notice/WP_Admin_Notice.php' );
 	  }
 			
+	}
+
+	public function test() {
+		echo "<h1>test</h1>";
 	}
 
 	/**
@@ -201,10 +210,21 @@ class Commons_Booking_Admin {
 	 * @return    null    Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_styles() {
+
+		// enque css cleanup for profile screen
+    $currentScreen = get_current_screen();
+    if ( $currentScreen->id === "profile" ) {     
+        wp_enqueue_style( $this->plugin_slug . '-profile-cleanup', plugins_url( 'assets/css/user-profile.css', __FILE__ ), array(), Commons_Booking::VERSION );
+    }  
+
 		if ( !isset( $this->plugin_screen_hook_suffix ) ) {
 			return;
 		}
 		wp_enqueue_style( $this->plugin_slug . '-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array( 'dashicons' ), Commons_Booking::VERSION );
+	}
+
+	function deregister_styles() {
+		wp_deregister_style( 'wp-pagenavi' );
 	}
 
 	/**
