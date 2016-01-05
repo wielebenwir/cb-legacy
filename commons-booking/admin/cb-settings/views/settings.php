@@ -37,7 +37,7 @@
 
       <h1>Aloha!</h1>
       <p> Good to see you!</p>
-      <p> Commons Booking Version 0.5.3 - Teheran Hotfix Edition</p>
+      <p> Commons Booking Version 0.5.3.1</p>
       <p>For first steps, see the <a href="http://dein-lastenrad.de/index.php?title=First_Steps">Wiki</a>, if you find bugs, please  <a href="http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software">report them here</a>, and <a href="http://www.wielebenwir.de/verein/unterstutzen">donate</a></p>
       <p>All the best, Florian & <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a></p>
 
