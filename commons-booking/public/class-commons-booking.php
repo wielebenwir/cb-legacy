@@ -113,6 +113,10 @@ class Commons_Booking {
 
         $this->user_fields = $this->users->get_extra_profile_fields();
 
+        // Create all needed custom post types
+        $type_locations = new CB_Locations_CPT( self::$plugin_slug );
+        $type_items = new CB_items_CPT( self::$plugin_slug );
+
 
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
@@ -511,12 +515,6 @@ class Commons_Booking {
             'WP' => new WordPress_Requirement( '3.9.0' ),
                 ) );
 
-        // Create all needed custom post types defined in class-commons-booking-cpt.php
-        $type_items = new CB_Items_CPT( self::$plugin_slug );
-        $type_items->register_taxonomy();
-        $type_locations = new CB_Locations_CPT( self::$plugin_slug );
-
-
         // install the database tables 
         $timeframe_table = new Commons_Booking_Timeframes_Setup;
         $timeframe_table->install();        
@@ -526,7 +524,6 @@ class Commons_Booking {
        
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
-
 
         $p = self::$plugin_slug;
 

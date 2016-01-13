@@ -25,21 +25,25 @@ class CB_Items_CPT extends CPT_Core {
         $this->slug = $slug;
 
         // Register this cpt
+        // First parameter should be an array with Singular, Plural, and Registered name
         parent::__construct(
             array( 
                 __( 'Item', $this->slug ), 
-                __( 'Items', $this->slug ), 
+                __( 'items', $this->slug ), 
                 'cb_items' 
                 ),
             array( 
                 'supports' => array( 'title', 'editor', 'thumbnail' ), 
                 'show_in_menu' => true,
-                'menu_position' => 31,
-                'menu_icon' => 'dashicons-carrot'
+                'menu_position' => 32,
+                'menu_icon' => 'dashicons-location-alt'
                 )
         );
 
     }
+
+
+
     /**
      * Registers the cb_category taxonomy. Hooked in via Taxomony_Core.
      * @since  0.1.0

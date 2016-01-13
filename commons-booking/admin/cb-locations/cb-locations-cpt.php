@@ -23,12 +23,14 @@ class CB_Locations_CPT extends CPT_Core {
      */
     public function __construct( $slug ) {
 
+        $this->slug = $slug;
+
         // Register this cpt
         // First parameter should be an array with Singular, Plural, and Registered name
         parent::__construct(
             array( 
-                __( 'Location', $slug ), 
-                __( 'locations', $slug ), 
+                __( 'Location', $this->slug ), 
+                __( 'Locations', $this->slug ), 
                 'cb_locations' 
                 ),
             array( 
@@ -37,10 +39,11 @@ class CB_Locations_CPT extends CPT_Core {
                 'menu_position' => 32,
                 'menu_icon' => 'dashicons-location-alt'
                 )
-
         );
+
 
     }
 
 }
+
 ?>
