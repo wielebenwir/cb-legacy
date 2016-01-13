@@ -36,7 +36,7 @@ class Commons_Booking_Data {
   public function __construct() {
 
     $this->prefix = 'commons-booking';
-    $daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     
     $this->current_date = date('Y-m-d');
 }
