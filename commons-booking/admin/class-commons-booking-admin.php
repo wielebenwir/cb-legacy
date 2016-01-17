@@ -121,8 +121,6 @@ class Commons_Booking_Admin {
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
     // add user profile fields 
-    add_action( 'show_user_profile', array( $cb_users , 'show_extra_profile_fields' ) );
-    add_action( 'edit_user_profile', array( $this , 'test' ) );
   	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ) );
 		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ) );
 
