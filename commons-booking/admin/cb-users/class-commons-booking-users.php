@@ -98,7 +98,6 @@ class Commons_Booking_Users extends Commons_Booking {
    * 
    * @return array
    */
-
   public function get_extra_profile_fields() {
     return $this->extra_profile_fields;
   }
@@ -126,17 +125,34 @@ class Commons_Booking_Users extends Commons_Booking {
       $this->user_vars = array_merge($user_basic_array['data'], $user_meta_array);
   }
 
+  /**
+   * Add addiotinal key/value pairs to the user_vars array  
+   *
+   * @since    0.5.3
+   * 
+   */
   public function add_user_vars( $key, $value ) {
       
       $this->user_vars[$key] = $value;
   }
 
-
+  /**
+   * Get the user_vars array  
+   *
+   * @since    0.5.3
+   * 
+   */
   public function get_user_vars( ) {
 
       return $this->user_vars;
   }
 
+  /**
+   * Set the activation url   
+   *
+   * @since    0.5.3
+   * 
+   */
   public function set_activation_url($key, $login) {
 
       $activation_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($login), 'login');
@@ -176,116 +192,116 @@ class Commons_Booking_Users extends Commons_Booking {
     <?php }
 
   /**
-   * Backend: Update dte extra profile fields
-   *
-   * @since    0.2
-   *
-   */
-    public function save_extra_profile_fields( $user_id ) {
+  * Backend: Update dte extra profile fields
+  *
+  * @since    0.2
+  *
+  */
+  public function save_extra_profile_fields( $user_id ) {
 
-      if ( !current_user_can( 'edit_user', $user_id ) )
-        return false;
+    if ( !current_user_can( 'edit_user', $user_id ) )
+      return false;
 
-      update_user_meta( $user_id, 'phone', $_POST['phone'] );
-      update_user_meta( $user_id, 'address', $_POST['address'] );
-      // update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
-      update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
-    }
+    update_user_meta( $user_id, 'phone', $_POST['phone'] );
+    update_user_meta( $user_id, 'address', $_POST['address'] );
+    // update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
+    update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
+  }
 
 
   /**
-   * Frontend: User Page
-   *
-   * @since    0.2
-   *
-   */
-    public function page_user() {
-      
-      if ( is_user_logged_in() ) {
+  * Frontend: User Page
+  *
+  * @since    0.2
+  *
+  */
+  public function page_user() {
+    
+    if ( is_user_logged_in() ) {
 
-          $current_user = wp_get_current_user();
-          echo __('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
-          echo '<span class="align-right"><a href="' . wp_logout_url( home_url() ) . '">' . __('Logout') . '</a></span>';
+        $current_user = wp_get_current_user();
+        echo __('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
+        echo '<span class="align-right"><a href="' . wp_logout_url( home_url() ) . '">' . __('Logout') . '</a></span>';
 
-          $user_bookings = $this->get_user_bookings( $current_user->ID );
+        $user_bookings = $this->get_user_bookings( $current_user->ID );
 
-          if ( !empty ($user_bookings) ) {
+        if ( !empty ($user_bookings) ) {
 
-            $review_page_id = $this->settings->get('pages', 'bookingconfirm_page_select');
-            include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
+          $review_page_id = $this->settings->get('pages', 'bookingconfirm_page_select');
+          include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
 
-          } else {
-            echo __( 'You haven´t booked anything yet.', $this->plugin_slug); 
-          }
+        } else {
+          echo __( 'You haven´t booked anything yet.', $this->plugin_slug); 
+        }
 
-      } else { // Login Form and registration link
+    } else { // Login Form and registration link
 
-        include (commons_booking_get_template_part( 'user', 'login', FALSE )); 
-       
-      }
-   }
+      include (commons_booking_get_template_part( 'user', 'login', FALSE )); 
+     
+    }
+ }
 
 /**
- * get all booking-dataa as array
+ * Get all booking-data as array
  *
  * @return array
  */   
-    public function get_user_bookings( $user_id) {
-      
-      global $wpdb;
-      $table_bookings = $wpdb->prefix . 'cb_bookings';
+ public function get_user_bookings( $user_id) {
+   
+   global $wpdb;
+   $table_bookings = $wpdb->prefix . 'cb_bookings';
 
-      $sqlresult = $wpdb->get_results("SELECT * FROM $table_bookings WHERE user_id = $user_id", ARRAY_A);          
+   $sqlresult = $wpdb->get_results("SELECT * FROM $table_bookings WHERE user_id = $user_id", ARRAY_A);          
 
-      return $sqlresult;
-    }
+   return $sqlresult;
+ }
 
-    /**
-     * Sends the confirm booking email.
-     *
-     * @since    0.2
-     *
-     * @param $to email adress 
-     */   
-    public function send_mail( $to ) {
-
-        $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
-
-        $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
-        $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
-      
-        $headers = array('Content-Type: text/html; charset=UTF-8');
-
-        $body = replace_template_tags( $body_template, $this->r_vars);
-        $subject = replace_template_tags( $subject_template, $this->r_vars);
-
-        wp_mail( $to, $subject, $body, $headers );
-
-    }    
-
-    /**
-     * Sends the registration email.
-     *
-     * @since    0.2
-     *
-     * @param $to email adress 
-     */   
-    public function send_registration_mail() {
+  /**
+   * Sends the confirm booking email.
+   *
+   * @since    0.2
+   *
+   * @param $to email adress 
+   */   
+  public function send_mail( $to ) {
 
       $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
+
       $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
       $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
+    
+      $headers = array('Content-Type: text/html; charset=UTF-8');
 
-      $vars = $this->user_vars;
-      $headers = array('Content-Type: text/html; charset=UTF-8'); 
+      $body = replace_template_tags( $body_template, $this->r_vars);
+      $subject = replace_template_tags( $subject_template, $this->r_vars);
 
-      $to = $vars['user_email'];
-      $body = replace_template_tags( $body_template, $vars );
-      $subject = replace_template_tags( $subject_template, $vars );
+      wp_mail( $to, $subject, $body, $headers );
 
-      wp_mail( 'hallo@fleg.de', $subject, $body, $headers );
+  }    
 
-    }
+  /**
+   * Sends the registration email.
+   *
+   * @since    0.2
+   *
+   * @param $to email adress 
+   */   
+  public function send_registration_mail() {
+
+    $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
+    $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
+    $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
+
+    $vars = $this->user_vars;
+    $headers = array('Content-Type: text/html; charset=UTF-8'); 
+
+    $to = $vars['user_email'];
+    $body = replace_template_tags( $body_template, $vars );
+    $subject = replace_template_tags( $subject_template, $vars );
+
+    wp_mail( $to, $subject, $body, $headers ); 
+
+  }
 
 }
 
@@ -347,6 +363,7 @@ if ( !function_exists('wp_new_user_notification') ) {
         $activation_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
 
         $cb_user->add_user_vars( 'ACTIVATION_URL', $activation_url );
+        $cb_user->add_user_vars( 'USER_NAME', $user_login );
         $registered_user = $cb_user->get_user_vars();
 
         $cb_user->send_registration_mail( $registrated_user );
