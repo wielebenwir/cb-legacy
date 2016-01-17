@@ -94,6 +94,13 @@
             'show_option_none' => true,
             'default'          => 'none',
             'options'          => pages_dropdown(),
+          ),           
+          array(
+            'name'             => __( 'Link to terms & services', $this->plugin_slug ),
+            'desc'             => __( 'Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)', $this->plugin_slug ),
+            'id'               => $this->plugin_slug . '_termsservices_url',
+            'type'             => 'text',
+            'default'          => ''
           ),                             
         ),
       );
