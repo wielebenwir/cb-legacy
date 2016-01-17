@@ -138,7 +138,7 @@ class CB_Admin_Settings extends Commons_Booking {
  *
  *@return string / array
  */
-  public function get( $setting_page, $setting_name = "") {
+  public function get_settings( $setting_page, $setting_name = "") {
     global $wpdb;
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
 
