@@ -137,7 +137,7 @@ class Commons_Booking_Users {
    */
   public function show_extra_profile_fields( $user ) { ?>
 
-        <h3><?php _e ( ' Extra Fields', $this->plugin_slug ); ?> </h3>
+        <h3><?php _e ( 'Extra Fields', $this->plugin_slug ); ?> </h3>
 
         <table class="form-table">
             <tr>
@@ -306,7 +306,7 @@ class Commons_Booking_Users {
             include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
 
           } else {
-            echo __(' You haven´t booked anything yet.', $this->plugin_slug); 
+            echo __( 'You haven´t booked anything yet.', $this->plugin_slug); 
           }
 
       } else { // Login Form and registration link
