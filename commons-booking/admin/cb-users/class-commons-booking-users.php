@@ -7,12 +7,15 @@
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
-class Commons_Booking_Users {
+class Commons_Booking_Users extends Commons_Booking {
 
 
-  public function __construct() {
+  public function __construct( ) {
 
-    $this->plugin_slug = 'commons-booking';
+
+    $this->plugin_slug = parent::$plugin_slug;
+    $settings = new CB_Admin_Settings;
+    $this->termsservices_url = $settings->get_settings('pages', 'termsservices_url');
 
     $this->registration_fields = array ( 
       'username', 
@@ -63,8 +66,7 @@ class Commons_Booking_Users {
           )
       );
     $this->mail_vars = array();
-
-    
+ 
     $this->registration_fields_required = $this->registration_fields;
 
     // include Wordpress error class
@@ -78,7 +80,7 @@ class Commons_Booking_Users {
     }
 
   /**
-   * Set terms & services String (Wrapped in URL)
+   * Registration Form: Set terms & services String (Wrapped in URL)
    *
    * @since    0.6
    * 
@@ -172,16 +174,14 @@ class Commons_Booking_Users {
             <tr>
                 <th><label for="terms_accepted"><?php _e ( 'Terms and conditions', $this->plugin_slug ); ?></label></th>
                 <td>
-                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " disabled value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php echo __(' Accepted Terms & Conditions', $this->plugin_slug); ?><br />
-
+                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " disabled value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php __( 'Accepted Terms & Conditions', $this->plugin_slug); ?><br />
                 </td>
             </tr>
-
         </table>
     <?php }
 
   /**
-   * Backend: Save extra profile fields
+   * Backend: Update dte extra profile fields
    *
    * @since    0.2
    *
