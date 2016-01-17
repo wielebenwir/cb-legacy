@@ -147,6 +147,7 @@ class Commons_Booking {
 
         // Editing User Profile: Form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
+        add_action( 'profile_update', array( $this, 'cb_user_profile_redirect' ), 12 );
 
 
         // Load public-facing style sheet and JavaScript.
@@ -161,13 +162,23 @@ class Commons_Booking {
         /* 
          * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'cb_content' ) );  
-
-
-
-
+        add_action( 'the_content', array( $this, 'cb_content' ) ); 
 
     }
+
+    /*
+    * Redirects User after Profile update
+    *
+    * @since    0.6
+    *
+    */
+    function cb_user_profile_redirect() {
+        
+        wp_redirect( trailingslashit( home_url() ) );
+        exit;
+        
+    }
+
 
     /*
     *   Adds the fields to the wordpress registration page
