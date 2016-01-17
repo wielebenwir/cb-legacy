@@ -127,22 +127,27 @@ class Commons_Booking {
         // add_filter( 'login_url', array( $this, 'cb_user_url' ) );
 
 
-            $user = get_user_by( 'id', '21' );
-            $user_meta = get_user_meta( '21');
+        /* 
+         * USER REGISTRATION, PROFILE FIELDS AND EDITING.
+         */ 
 
-
-        // Form fields 
+        // Registration: Form fields 
         add_action( 'register_form', array( $this, 'cb_register_add_fields' ) );
-        // validation
-        add_filter( 'registration_errors', array ( $this, 'cb_registration_errors' ), 10, 3 );
-        // write meta
-        add_action( 'user_register', array ( $this, 'cb_user_register' ) );
-
+        // Registration: Validation
+        add_filter( 'registration_errors', array( $this, 'cb_registration_errors' ), 10, 3 );
+        // Registration: Write meta
+        add_action( 'user_register', array( $this, 'cb_user_register' ) );
+        // Registration: Send Email
+        add_action('user_register', array( $this, 'send_register_mail' ) );
 
         // show admin bar only for admins and editors
         if (!current_user_can('edit_posts')) {
             add_filter('show_admin_bar', '__return_false');
         }
+
+        // Editing User Profile: Form fields 
+        add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
+
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
@@ -151,7 +156,6 @@ class Commons_Booking {
 
         add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
 
-        add_action('user_register', array($this, 'send_register_mail'));
 
 
         /* 
