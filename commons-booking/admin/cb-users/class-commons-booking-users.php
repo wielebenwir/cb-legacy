@@ -70,9 +70,78 @@ class Commons_Booking_Users extends Commons_Booking {
     $this->registration_fields_required = $this->registration_fields;
 
     $this->r_vars = array();
-
+    
+    $this->user_fields = $this->get_extra_profile_fields();
 
     }
+
+    /*
+    *   Adds the fields to the wordpress registration
+    *
+    * @since    0.6
+    *
+    */
+    public function registration_add_fields() {
+
+      foreach ($this->user_fields as $field) {
+
+            $row = ( ! empty( $_POST[ $field['field_name'] ] ) ) ? trim( $_POST[ $field['field_name'] ] ) : '';
+            
+            ?>
+            <p>
+                <?php if ( $field['type'] == 'checkbox' ) { ?>
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
+                        <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'] ) ?><br />
+                    </label>
+                    <?php // TODO: TERMS AND CONDITIONS einfügen ?>
+                <?php } else { ?>
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
+                        <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'] ) ?>
+                    </label>
+                <? } ?>
+            </p>
+            <?php
+         }
+    }
+
+    /*
+    *   Adds error handling
+    *
+    * @since    0.6
+    *
+    * @return    object 
+    */
+    public function registration_set_errors( $errors, $username, $email) {
+
+        foreach ($this->user_fields as $field) {
+
+            if ( $field['type'] == 'checkbox' ) {
+                if ( !isset( $_POST[ $field[ 'field_name' ]]) ) {
+                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
+                }
+            } else {
+                if ( empty( $_POST[ $field[ 'field_name' ] ] ) || ! empty( $_POST[ $field[ 'field_name' ] ] ) && trim( $_POST[ $field[ 'field_name' ] ] ) == '' ) {
+                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
+                }
+            }
+        }
+        return $errors;
+    }
+
+   /*
+   *   Write user meta 
+   *
+   * @since    0.6
+   *
+   */
+   public function registration_add_meta( $user_id ) {
+
+       foreach ($this->user_fields as $field) {
+           if ( !empty( $_POST[ $field[ 'field_name' ]] ) ) {
+               update_user_meta( $user_id, $field[ 'field_name' ], trim( $_POST[ $field[ 'field_name' ]] ) );
+               }
+       }
+   }
 
   /**
    * Registration Form: Set terms & services String (Wrapped in URL)
@@ -257,42 +326,19 @@ class Commons_Booking_Users extends Commons_Booking {
  }
 
   /**
-   * Sends the confirm booking email.
-   *
-   * @since    0.2
-   *
-   * @param $to email adress 
-   */   
-  public function send_mail( $to ) {
-
-      $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
-
-      $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
-      $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
-    
-      $headers = array('Content-Type: text/html; charset=UTF-8');
-
-      $body = replace_template_tags( $body_template, $this->r_vars);
-      $subject = replace_template_tags( $subject_template, $this->r_vars);
-
-      wp_mail( $to, $subject, $body, $headers );
-
-  }    
-
-  /**
    * Sends the registration email.
    *
    * @since    0.2
    *
    * @param $to email adress 
    */   
-  public function send_registration_mail() {
+  public function send_registration_mail( ) {
 
     $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
     $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
     $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
 
-    $vars = $this->user_vars;
+    $vars = $this->get_user_vars();
     $headers = array('Content-Type: text/html; charset=UTF-8'); 
 
     $to = $vars['user_email'];
@@ -311,62 +357,63 @@ class Commons_Booking_Users extends Commons_Booking {
 if ( !function_exists('wp_new_user_notification') ) {
     function wp_new_user_notification( $user_id, $deprecated = null, $notify = '' ) {
 
-        if ( $deprecated !== null ) {
-          _deprecated_argument( __FUNCTION__, '4.3.1' );
-        }        
+      if ( $deprecated !== null ) {
+        _deprecated_argument( __FUNCTION__, '4.3.1' );
+      }        
 
-        $user = new WP_User( $user_id );
-        $cb_user = new Commons_Booking_Users();
+      $user = new WP_User( $user_id );
+      $cb_user = new Commons_Booking_Users();
 
-        global $wpdb, $wp_hasher;
+      global $wpdb, $wp_hasher;
 
-        // The blogname option is escaped with esc_html on the way into the database in sanitize_option
-        // we want to reverse this for the plain text arena of emails.
-        $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
+      // The blogname option is escaped with esc_html on the way into the database in sanitize_option
+      // we want to reverse this for the plain text arena of emails.
+      $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
 
-        // Admin Message
- 
-        $user_login = stripslashes($user->user_login);
-        $user_email = stripslashes($user->user_email);
- 
-        $message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "<br>";
-        $message .= sprintf(__('Username: %s'), $user_login) . "<br>";
-        $message .= sprintf(__('E-mail: %s'), $user_email) . "<br>";
- 
-        @wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
- 
-        // if notification disabled, return.
-        if ( 'admin' === $notify || empty( $notify ) ) {
-            return;
-          }
- 
-        // Generate something random for a password reset key.
-        $key = wp_generate_password( 20, false );
+      // Admin Message
 
-        /** This action is documented in wp-login.php */
-        do_action( 'retrieve_password_key', $user->user_login, $key );
+      $user_login = stripslashes($user->user_login);
+      $user_email = stripslashes($user->user_email);
 
-        // Now insert the key, hashed, into the DB.
-        if ( empty( $wp_hasher ) ) {
-          require_once ABSPATH . WPINC . '/class-phpass.php';
-          $wp_hasher = new PasswordHash( 8, true );
+      $message  = sprintf(__('New user registration on your blog %s:'), get_option('blogname')) . "<br>";
+      $message .= sprintf(__('Username: %s'), $user_login) . "<br>";
+      $message .= sprintf(__('E-mail: %s'), $user_email) . "<br>";
+
+      @wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), get_option('blogname')), $message);
+
+      // if notification disabled, return.
+      if ( 'admin' === $notify || empty( $notify ) ) {
+          return;
         }
-        $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
-        $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user->user_login ) );
+
+      // Generate something random for a password reset key.
+      $key = wp_generate_password( 20, false );
+
+      /** This action is documented in wp-login.php */
+      do_action( 'retrieve_password_key', $user->user_login, $key );
+
+      // Now insert the key, hashed, into the DB.
+      if ( empty( $wp_hasher ) ) {
+        require_once ABSPATH . WPINC . '/class-phpass.php';
+        $wp_hasher = new PasswordHash( 8, true );
+      }
+      $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
+      $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user->user_login ) );
 
 
 
-        // User Message 
+      // User Message 
 
-        $cb_user->set_basic_user_vars( $user_id );
-        $activation_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
+      $cb_user->set_basic_user_vars( $user_id );
+      $activation_url = network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user->user_login), 'login');
 
-        $cb_user->add_user_vars( 'ACTIVATION_URL', $activation_url );
-        $cb_user->add_user_vars( 'USER_NAME', $user_login );
-        $registered_user = $cb_user->get_user_vars();
+      $cb_user->add_user_vars( 'ACTIVATION_URL', $activation_url );
+      $cb_user->add_user_vars( 'USER_NAME', $user_login );
 
-        $cb_user->send_registration_mail( $registrated_user );
+      // var_dump($registered_user );
+
+      $cb_user->send_registration_mail( );
 
  
     }

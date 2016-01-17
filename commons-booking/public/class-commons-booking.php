@@ -93,6 +93,8 @@ class Commons_Booking {
         // ),
     );
 
+    public $settings; 
+
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
@@ -109,9 +111,9 @@ class Commons_Booking {
 
         $items = new Commons_Booking_Public_Items();
         $this->users = new Commons_Booking_Users();
-        $this->settings = new CB_Admin_Settings;
+        $this->settings = new CB_Admin_Settings();
 
-        $this->user_fields = $this->users->get_extra_profile_fields();
+        
 
         // Create all needed custom post types
         $type_locations = new CB_Locations_CPT( self::$plugin_slug );
@@ -132,13 +134,13 @@ class Commons_Booking {
          */ 
 
         // Registration: Form fields 
-        add_action( 'register_form', array( $this, 'cb_register_add_fields' ) );
+        add_action( 'register_form', array( $this->users, 'registration_add_fields' ) );
         // Registration: Validation
-        add_filter( 'registration_errors', array( $this, 'cb_registration_errors' ), 10, 3 );
+        add_filter( 'registration_errors', array( $this->users, 'registration_set_errors' ), 10, 3 );
         // Registration: Write meta
-        add_action( 'user_register', array( $this, 'cb_user_register' ) );
+        add_action( 'user_register', array( $this->users, 'registration_add_meta' ) );
         // Registration: Send Email
-        add_action('user_register', array( $this, 'send_register_mail' ) );
+        // add_action('user_register', array( $this->users, 'send_register_mail' ) );
 
         // show admin bar only for admins and editors
         if (!current_user_can('edit_posts')) {
@@ -179,75 +181,6 @@ class Commons_Booking {
         
     }
 
-
-    /*
-    *   Adds the fields to the wordpress registration page
-    *
-    * @since    0.6
-    *
-    */
-
-    public function cb_register_add_fields() {
-
-      foreach ($this->user_fields as $field) {
-
-            $row = ( ! empty( $_POST[ $field['field_name'] ] ) ) ? trim( $_POST[ $field['field_name'] ] ) : '';
-            
-            ?>
-            <p>
-                <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
-                <?php if ( $field['type'] == 'checkbox' ) { ?>
-                    <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'] ) ?><br />
-                    <?php } else { ?>
-                    <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'] ) ?>
-                    <? } ?>
-                </label>
-            </p>
-            <?php
-
-         }
-
-        }
-
-    /*
-    *   Adds error handling
-    *
-    * @since    0.6
-    *
-    * @return    object 
-    */
-    public function cb_registration_errors( $errors, $username, $email) {
-
-        foreach ($this->user_fields as $field) {
-
-            if ( $field['type'] == 'checkbox' ) {
-                if ( !isset( $_POST[ $field[ 'field_name' ]]) ) {
-                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
-                }
-            } else {
-                if ( empty( $_POST[ $field[ 'field_name' ] ] ) || ! empty( $_POST[ $field[ 'field_name' ] ] ) && trim( $_POST[ $field[ 'field_name' ] ] ) == '' ) {
-                    $errors->add( $field[ 'field_name' ] . '_error', $field[ 'errormessage' ]);
-                }
-            }
-        }
-        return $errors;
-    }
-
-    /*
-    *   Write user meta 
-    *
-    * @since    0.6
-    *
-    * @return    object 
-    */
-    public function cb_user_register( $user_id ) {
-
-        foreach ($this->user_fields as $field) {
-            if ( !empty( $_POST[ $field[ 'field_name' ]] ) ) {
-                update_user_meta( $user_id, $field[ 'field_name' ], trim( $_POST[ $field[ 'field_name' ]] ) );
-                }
-        }
-    }
     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
@@ -408,8 +341,6 @@ class Commons_Booking {
         $path = plugin_dir_path( __FILE__ ) . '../';
         return $path;
     }
-
-
     /**
      * Fired when the plugin is activated.
      *
