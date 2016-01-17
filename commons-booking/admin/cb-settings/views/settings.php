@@ -85,16 +85,7 @@
             'show_option_none' => true,
             'default'          => 'none',
             'options'          => pages_dropdown(),
-          ),          
-          array(
-            'name'             => __( 'Registration Page', $this->plugin_slug ),
-            'desc'             => __( 'The registration form.', $this->plugin_slug ),
-            'id'               => $this->plugin_slug . '_registration_page_select',
-            'type'             => 'select',
-            'show_option_none' => true,
-            'default'          => 'none',
-            'options'          => pages_dropdown(),
-          ),           
+          ),                     
           array(
             'name'             => __( 'Link to terms & services', $this->plugin_slug ),
             'desc'             => __( 'Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)', $this->plugin_slug ),
