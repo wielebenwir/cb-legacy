@@ -14,8 +14,8 @@ class Commons_Booking_Users extends Commons_Booking {
 
 
     $this->plugin_slug = parent::$plugin_slug;
-    $settings = new CB_Admin_Settings;
-    $this->termsservices_url = $settings->get_settings('pages', 'termsservices_url');
+    $this->settings = new CB_Admin_Settings;
+    $this->termsservices_url = $this->settings->get_settings('pages', 'termsservices_url');
 
     $this->registration_fields = array ( 
       'username', 
@@ -71,8 +71,6 @@ class Commons_Booking_Users extends Commons_Booking {
 
     // include Wordpress error class
     $this->reg_errors = new WP_Error;
-
-    $this->settings = new CB_Admin_Settings();
 
     $this->r_vars = array();
 
@@ -302,7 +300,7 @@ class Commons_Booking_Users extends Commons_Booking {
 
 
   /**
-   * Frontend: Main registration function
+   * Frontend: User Page
    *
    * @since    0.2
    *
@@ -419,7 +417,7 @@ class Commons_Booking_Users extends Commons_Booking {
      */   
     public function send_mail( $to ) {
 
-        $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+        $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
 
         $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
         $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
@@ -442,7 +440,7 @@ class Commons_Booking_Users extends Commons_Booking {
      */   
     public function send_registration_mail() {
 
-      $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+      $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
       $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
       $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
 
