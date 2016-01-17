@@ -78,6 +78,23 @@ class Commons_Booking_Users {
     }
 
   /**
+   * Set terms & services String (Wrapped in URL)
+   *
+   * @since    0.6
+   * 
+   * @return string
+   */
+  public function get_termsservices_string() {
+    if ( !empty ( $this->termsservices_url ) ) {
+      $string = '<a href="' . $this->termsservices_url . '" target=_blank">' . __( 'Link to terms and services', $this->plugin_slug ) . '</a>';
+    } else {
+      $string = __( 'Accepted Terms & Conditions', $this->plugin_slug);      
+    }
+    return $string;
+  }
+
+
+  /**
    * Get the additional User fields
    *
    * @since    0.6.
