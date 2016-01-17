@@ -69,9 +69,6 @@ class Commons_Booking_Users extends Commons_Booking {
  
     $this->registration_fields_required = $this->registration_fields;
 
-    // include Wordpress error class
-    $this->reg_errors = new WP_Error;
-
     $this->r_vars = array();
 
 
@@ -195,109 +192,6 @@ class Commons_Booking_Users extends Commons_Booking {
       update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
     }
 
-  /**
-   * Frontend: Include the registration form template
-   *
-   * @since    0.2
-   *
-   */
-    public function registration_form( ) {
-
-      if ( is_user_logged_in() ) {
-          echo __('Welcome, registered user!', $this->plugin_slug);
-      } else {
-
-        $registration_enabled = get_option('users_can_register');
-
-        if( $registration_enabled ) {
-          include (commons_booking_get_template_part( 'user', 'registration', FALSE )); 
-        } else {
-          echo __('Sorry, registration is not allowed', $this->plugin_slug );
-        } // end if enabled
-
-      } // end if is_logged_in
-    }
-
-  /**
-   * Frontend: Include the registration form template
-   *
-   * @since    0.2
-   *
-   * @param $values array of submitted values
-   *
-   */
-    public function registration_validation( $values )  {  
-
-
-      $req = $this->registration_fields_required;
-
-      // check if required
-      foreach ($values as $key => $value) {
-        if ( in_array( $key, $req) && empty( $value ) ) {
-          $this->reg_errors->add('field', __('Required form field is missing: ', $this->plugin_slug ) . $key );
-        }
-      }
-      // check username length
-      if ( 4 > strlen( $values['username'] ) ) {
-        $this->reg_errors->add( 'username_length', __('Username too short. At least 4 characters is required', $this->plugin_slug ) );
-      }
-
-      // check username exists
-      if ( username_exists( $values['username'] ) ) {
-        $this->reg_errors->add('user_name', __('Sorry, that username already exists!', $this->plugin_slug) );
-      }      
-      // check if email exists
-      if ( email_exists( $values['email'] ) ) {
-        $this->reg_errors->add('email', __('Sorry, that email already exists!', $this->plugin_slug ) );
-      }
-
-      // check if checkbox is set
-      if ( $values['terms_accepted'] != 'yes' ) {
-          $this->reg_errors->add( 'terms_accepted', __('You must accept the terms', $this->plugin_slug ) );
-      } 
-
-      // error, so display message
-      if ( is_wp_error( $this->reg_errors ) ) {
- 
-          foreach ( $this->reg_errors->get_error_messages() as $error ) {
-            echo ('<p class="cb-error">');
-            echo __( '<strong>Error:</strong> ', $this->plugin_slug ) . $error;
-            echo ('</p>');
-               
-          }
-       
-      }
-
-    }
-  /**
-   * Frontend: Write to database
-   *
-   * @since    0.2
-   *
-   */
-    public function complete_registration() {
-
-            $userdata = array(
-            'user_login'    =>   $this->r_vars['user_name'],
-            'user_email'    =>   $this->r_vars['email'],
-            'user_pass'     =>   $this->r_vars['password'],
-            'first_name'    =>   $this->r_vars['first_name'],
-            'last_name'     =>   $this->r_vars['last_name'],
-            'phone'         =>   $this->r_vars['phone'],
-            'address'       =>   $this->r_vars['address'],
-            'terms_accepted'=>   'yes',
-            'confirmed'     =>   FALSE
-            );
-            $user = wp_insert_user( $userdata );
-
-            update_user_meta( $user, 'phone', $userdata['phone'] );
-            update_user_meta( $user, 'address', $userdata['address'] );
-            update_user_meta( $user, 'terms_accepted', $userdata['terms_accepted'] );
-            update_user_meta( $user, 'confirmed', $userdata['confirmed'] );
-
-            echo __( 'Thanks! Registration is complete. We´ve sent you an email with your Account information. ', $this->plugin_slug );
-    }
-
 
   /**
    * Frontend: User Page
@@ -346,68 +240,6 @@ class Commons_Booking_Users extends Commons_Booking {
       return $sqlresult;
     }
 
-
-
-
-  /**
-   * Frontend: Main registration function
-   *
-   * @since    0.2
-   *
-   */
-    public function custom_registration_function() {
-
-        if ( isset( $_POST['submit'] ) ) {
-
-          // check for nonce
-          if (! isset( $_POST['user_nonce'] ) || ! wp_verify_nonce( $_POST['user_nonce'], 'create_user' ) ) { 
-
-            die ( 'Error: Session expired.' );
-
-          } else { // register
-
-            if ( isset( $_POST[ 'terms_accepted' ] ) ) {              
-              $accepted = 'yes'; 
-              } else {
-                $accepted = 'no'; 
-              }
- 
-            $values = array (
-              'username' => $_POST['username'],
-              'email' => $_POST['email'],
-              'first_name' => $_POST['first_name'],
-              'last_name' => $_POST['last_name'],
-              'phone' => $_POST['phone'],
-              'address' => $_POST['address'],
-              'terms_accepted' => $accepted
-             );
-
-            $this->registration_validation( $values );
-            
-
-            $this->r_vars['user_name']  =   sanitize_user( $_POST['username'] );
-            $this->r_vars['password']   =   wp_generate_password( 8, false );
-            $this->r_vars['email']      =   sanitize_email( $_POST['email'] );
-            $this->r_vars['first_name'] =   sanitize_text_field( $_POST['first_name'] );
-            $this->r_vars['last_name']  =   sanitize_text_field( $_POST['last_name'] );
-            $this->r_vars['phone']      =   sanitize_text_field( $_POST['phone'] );
-            $this->r_vars['address']    =   sanitize_text_field( $_POST['address'] );
-     
-            // call @function complete_registration to create the user
-            // only when no WP_error is found
-            if ( 1 > count( $this->reg_errors->get_error_messages() ) ) {
-              $this->complete_registration();
-              $this->send_mail( $this->r_vars['email'] );
-            } else { // errors, so add registration form 
-              $this->registration_form();
-
-            }
-          }
-        } else { // not submitting, showing the registration form
-
-           $this->registration_form();       
-        }
-    }
     /**
      * Sends the confirm booking email.
      *
