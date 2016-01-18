@@ -386,8 +386,10 @@ class Commons_Booking_Users extends Commons_Booking {
     if ( is_user_logged_in() ) {
 
         $current_user = wp_get_current_user();
-        echo __('Welcome, ', $this->plugin_slug  ) . $current_user->user_firstname . '!';
-        echo '<span class="align-right"><a href="' . wp_logout_url( home_url() ) . '">' . __('Logout') . '</a></span>';
+        printf(__('Welcome, %s! ', $this->plugin_slug ), $current_user->user_firstname);
+        echo ('<span class="align-right">');
+          printf(__('<a href="%s">Logout</a>', $this->plugin_slug ), wp_logout_url( home_url() ) );
+        echo ('</span>');
 
         $user_bookings = $this->get_user_bookings( $current_user->ID );
 
@@ -467,7 +469,6 @@ if ( !function_exists('wp_new_user_notification') ) {
       // we want to reverse this for the plain text arena of emails.
       $blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-
       // Admin Message
 
       $user_login = stripslashes($user->user_login);
@@ -497,7 +498,6 @@ if ( !function_exists('wp_new_user_notification') ) {
       }
       $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
       $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user->user_login ) );
-
 
 
       // User Message 
