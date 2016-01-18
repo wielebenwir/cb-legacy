@@ -13,7 +13,7 @@ class Commons_Booking_Users extends Commons_Booking {
   public function __construct( ) {
 
 
-    $this->plugin_slug = parent::$plugin_slug;
+    $this->plugin_slug = Commons_Booking::get_plugin_slug(); // TODO: Fix PHP strict warning
     $this->settings = new CB_Admin_Settings;
     $this->termsservices_url = $this->settings->get_settings('pages', 'termsservices_url');
 
