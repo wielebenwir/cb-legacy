@@ -1,0 +1,27 @@
+/*
+ * Hides some options from the user profile screen. 
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+.admin_head,
+.user-description-wrap,
+.user-display-name-wrap,
+.user-nickname-wrap,
+.user-admin-color-wrap,
+.user-admin-bar-front-wrap,
+.user-profile-picture,
+.user-sessions-wrap,
+.user-url-wrap,
+/*.user-admin-bar-front-wrap,*/
+h3, h2,
+#adminmenumain,
+#screen-meta-links {
+  display: none;
+}
+
+body { 
+}
