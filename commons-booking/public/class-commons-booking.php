@@ -123,12 +123,6 @@ class Commons_Booking {
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
 
-        // Redirects after registration
-        // add_filter( 'registration_redirect', 'cb_registration_redirect' );
-        // add_filter( 'register_url', array( $this, 'cb_register_url' ) );
-        // add_filter( 'login_url', array( $this, 'cb_user_url' ) );
-
-
         /* 
          * USER REGISTRATION, PROFILE FIELDS AND EDITING.
          */ 
@@ -139,24 +133,19 @@ class Commons_Booking {
         add_filter( 'registration_errors', array( $this->users, 'registration_set_errors' ), 10, 3 );
         // Registration: Write meta
         add_action( 'user_register', array( $this->users, 'registration_add_meta' ) );
-        // Registration: Send Email
-        // add_action('user_register', array( $this->users, 'send_register_mail' ) );
 
         // show admin bar only for admins and editors
         if (!current_user_can('edit_posts')) {
             add_filter('show_admin_bar', '__return_false');
         }
 
-
         add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  
         add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
         add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
         add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
 
-        // add_filter( 'login_redirect', create_function( '$url,$query,$user', 'return home_url();' ), 10, 3 );
 
-
-        // Editing User Profile: Form fields 
+        // Editing User Profile: Add extra form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
        
         add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
