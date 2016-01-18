@@ -188,9 +188,12 @@ class Commons_Booking_Users extends Commons_Booking {
     */
   public function cb_login_logo() {
     $logo_url = $this->settings->get_settings('customize', 'customize_logofile');
-    printf ('<style type="text/css">
-    h1 a { background-image: url(%s) !important; }
-    </style>', $logo_url );
+
+    if (!empty( $logo_url ) ) {
+      printf ('<style type="text/css">
+      h1 a { background-image: url(%s) !important; }
+      </style>', $logo_url );
+    }
   }
     /*
     * CUSTOMIZE - Inject custom css (set up under the customize-tab)
