@@ -83,19 +83,19 @@ class Commons_Booking_Users extends Commons_Booking {
     */
     public function registration_add_fields() {
 
+
       foreach ($this->user_fields as $field) {
 
             $row = ( ! empty( $_POST[ $field['field_name'] ] ) ) ? trim( $_POST[ $field['field_name'] ] ) : '';
-            
             ?>
             <p>
                 <?php if ( $field['type'] == 'checkbox' ) { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], $this->plugin_slug ) ?><br />
                         <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'] ) ?><br />
                     </label>
                     <?php echo $this->get_termsservices_string() ?>
                 <?php } else { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], $this->plugin_slug ) ?><br />
                         <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'] ) ?>
                     </label>
                 <? } ?>
