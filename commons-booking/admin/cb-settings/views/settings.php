@@ -78,9 +78,9 @@
             'options'          => pages_dropdown(),
           ),           
           array(
-            'name'             => __( 'User Page', $this->plugin_slug ),
-            'desc'             => __( 'The User page.', $this->plugin_slug ),
-            'id'               => $this->plugin_slug . '_user_page_select',
+            'name'             => __( 'My Bookings Page', $this->plugin_slug ),
+            'desc'             => __( 'Lists user´s bookings.', $this->plugin_slug ),
+            'id'               => $this->plugin_slug . '_user_bookings_page_select',
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
@@ -168,7 +168,7 @@
           ),
           array(
             'name' => __( 'Style Login and Registration pages', $this->plugin_slug ),
-            'desc' => __( 'If this setting is false, fields below are ignored.', $this->plugin_slug ),
+            'desc' => __( 'This setting loads basic styling.', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_customize_docustomize',
             'type' => 'checkbox',
           ),
