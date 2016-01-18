@@ -1,6 +1,3 @@
-
-
-  <div class="cb-headline"><?php echo __('My Bookings', 'commons-booking'); ?></div>
   <div class="cb-box">
     <?php foreach ($user_bookings as $booking) { ?>
       
