@@ -452,12 +452,10 @@ class Commons_Booking {
         $bookings_table = new Commons_Booking_Bookings_Setup;
         $bookings_table->install();
 
-        $p = self::$plugin_slug;
-
         // create the default pages 
-        $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
-        $user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
-        $booking_confirm_page = create_page(__( 'Booking', $p ), $p.'_bookingconfirm_page_select');
+        $item_page = create_page(__( 'Items', self::$plugin_slug ), self::$plugin_slug.'_item_page_select');
+        $user_page = create_page(__( 'My Bookings', self::$plugin_slug ), self::$plugin_slug.'_user_bookings_page_select');
+        $booking_confirm_page = create_page(__( 'Booking', self::$plugin_slug ), self::$plugin_slug.'_bookingconfirm_page_select');
 
         // set defaults, set pages, update wp_options
         $settings = new CB_Admin_Settings(); 
