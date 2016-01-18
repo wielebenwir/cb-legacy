@@ -439,7 +439,7 @@ class Commons_Booking {
         //Requirements Detection System - read the doc in the library file
         require_once( plugin_dir_path( __FILE__ ) . 'includes/requirements.php' );
         new Plugin_Requirements( self::$Commons_Booking, self::$plugin_slug, array(
-            'WP' => new WordPress_Requirement( '3.9.0' ),
+            'WP' => new WordPress_Requirement( '4.3.1' ),
                 ) );
 
         // install the database tables 
