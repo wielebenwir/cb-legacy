@@ -28,6 +28,7 @@
       <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-mail"><?php _e( 'Mail Settings', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-messages"><?php _e( 'Messages Settings', $this->plugin_slug ); ?></a></li>
+      <li><a href="#tabs-customize"><?php _e( 'Customization', $this->plugin_slug ); ?></a></li>
     </ul>
 
     <div id="tabs-welcome">
@@ -151,7 +152,40 @@
       cmb2_metabox_form( $option_fields_codes, $this->plugin_slug . '-settings-codes' );
       ?>
 
-    </div>    
+    </div>   
+    <div id="tabs-customize">
+      <?php
+
+      $option_fields_customize = array(
+        'id' => $this->plugin_slug . '_options-customize',
+        'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
+        'show_names' => true,
+        'fields' => array(
+          array(
+            'name' => __( 'Logo', $this->plugin_slug ),
+            'desc' => __( 'Upload your Logo (150x150px) here, it will be available as {{SITE_LOGO}} in the E-Mail templates<br> and displayed on your login page.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_customize_logofile',
+            'type' => 'file',
+          ),
+          array(
+            'name' => __( 'Style Login and Registration pages', $this->plugin_slug ),
+            'desc' => __( 'If this setting is false, fields below are ignored.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_customize_docustomize',
+            'type' => 'checkbox',
+          ),
+          array(
+            'name' => __( 'Custom CSS for Login & Registration pages', $this->plugin_slug ),
+            'desc' => __( 'Enter custom CSS styles here.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_customize_css',
+            'type' => 'textarea',
+          ),
+        ),
+      );
+
+      cmb2_metabox_form( $option_fields_customize, $this->plugin_slug . '-settings-customize' );
+      ?>
+
+    </div>       
     <div id="tabs-messages">
       <?php
 
