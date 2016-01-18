@@ -160,7 +160,7 @@ class Commons_Booking {
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
        
         add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
-        add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ), 12 );
+        add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
 
 
         // Load public-facing style sheet and JavaScript.

@@ -227,7 +227,7 @@ class Commons_Booking_Users extends Commons_Booking {
     * @since    0.6
     *
     */
-    public function cb_profile_update_redirect() {
+    public function cb_user_profile_redirect() {
         
         wp_redirect( trailingslashit( home_url() ) );
         exit;
