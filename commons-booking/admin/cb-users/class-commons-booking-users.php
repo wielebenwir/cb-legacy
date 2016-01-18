@@ -381,7 +381,7 @@ class Commons_Booking_Users extends Commons_Booking {
   * @since    0.2
   *
   */
-  public function page_user() {
+  public function render_user_bookings_page() {
     
     if ( is_user_logged_in() ) {
 

@@ -237,7 +237,7 @@ class Commons_Booking {
             } elseif ( !empty( $settings_display[ 'user_page_select' ] ) && ( is_page( $settings_display[ 'user_page_select' ] ) ) ) {
 
                 $cb_user = new Commons_Booking_Users;
-                return $page_content.$cb_user->page_user();            
+                return $page_content.$cb_user->render_user_bookings_page();            
 
             } elseif ( !empty( $settings_display[ 'registration_page_select' ] ) && ( is_page( $settings_display[ 'registration_page_select' ] ) ) ) {
 
