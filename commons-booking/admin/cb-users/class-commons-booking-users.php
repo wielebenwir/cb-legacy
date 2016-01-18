@@ -93,7 +93,7 @@ class Commons_Booking_Users extends Commons_Booking {
                     <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
                         <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'] ) ?><br />
                     </label>
-                    <?php // TODO: TERMS AND CONDITIONS einfügen ?>
+                    <?php echo $this->get_termsservices_string() ?>
                 <?php } else { ?>
                     <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'] ) ?><br />
                         <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'] ) ?>
@@ -152,9 +152,9 @@ class Commons_Booking_Users extends Commons_Booking {
    */
   public function get_termsservices_string() {
     if ( !empty ( $this->termsservices_url ) ) {
-      $string = '<a href="' . $this->termsservices_url . '" target=_blank">' . __( 'Link to terms and services', $this->plugin_slug ) . '</a>';
+      $string = '<p><a href="' . $this->termsservices_url . '" target=_blank">' . __( 'Link to terms and services', $this->plugin_slug ) . '</a><br /><br /></p>';
     } else {
-      $string = __( 'Accepted Terms & Conditions', $this->plugin_slug);      
+      $string = "";      
     }
     return $string;
   }
