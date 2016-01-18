@@ -239,12 +239,6 @@ class Commons_Booking {
                 $cb_user = new Commons_Booking_Users;
                 return $page_content.$cb_user->render_user_bookings_page();            
 
-            } elseif ( !empty( $settings_display[ 'registration_page_select' ] ) && ( is_page( $settings_display[ 'registration_page_select' ] ) ) ) {
-
-                $cb_user = new Commons_Booking_Users;
-                // return $cb_user->custom_registration_function();
-                return $page_content.$cb_user->custom_registration_function();
-
             } elseif (  is_singular( 'cb_items' ) ) {                             
 
                 $item_id = get_the_ID();
@@ -463,7 +457,6 @@ class Commons_Booking {
         // create the default pages 
         $item_page = create_page(__( 'Items', $p ), $p.'_item_page_select');
         $user_page = create_page(__( 'User Page', $p ), $p.'_user_page_select');
-        $user_reg_page = create_page(__( 'User Registration', $p ), $p.'_registration_page_select');
         $booking_confirm_page = create_page(__( 'Booking', $p ), $p.'_bookingconfirm_page_select');
 
         // set defaults, set pages, update wp_options
