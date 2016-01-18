@@ -125,9 +125,11 @@ class Commons_Booking_Admin {
 		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ) );
 
 
-
 		// Remove Wordpress styles
 		add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
+
+
+		add_action( 'admin_init', array( $cb_users, 'cb_redirect_to_profile' ) );
 
 
 		//Add the export settings method
@@ -152,11 +154,6 @@ class Commons_Booking_Admin {
 	  }
 			
 	}
-
-	public function test() {
-		echo "<h1>test</h1>";
-	}
-
 	/**
 	 * Return an instance of this class.
 	 *
@@ -208,6 +205,7 @@ class Commons_Booking_Admin {
 	 * @return    null    Return early if no settings page is registered.
 	 */
 	public function enqueue_admin_styles() {
+
 
 		// enque css cleanup for profile screen
     $currentScreen = get_current_screen();

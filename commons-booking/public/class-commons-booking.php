@@ -147,9 +147,20 @@ class Commons_Booking {
             add_filter('show_admin_bar', '__return_false');
         }
 
+
+        add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  
+        add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
+        add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
+        add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
+
+        // add_filter( 'login_redirect', create_function( '$url,$query,$user', 'return home_url();' ), 10, 3 );
+
+
         // Editing User Profile: Form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
-        add_action( 'profile_update', array( $this, 'cb_user_profile_redirect' ), 12 );
+       
+        add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
+        add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ), 12 );
 
 
         // Load public-facing style sheet and JavaScript.
@@ -166,19 +177,6 @@ class Commons_Booking {
          */
         add_action( 'the_content', array( $this, 'cb_content' ) ); 
 
-    }
-
-    /*
-    * Redirects User after Profile update
-    *
-    * @since    0.6
-    *
-    */
-    function cb_user_profile_redirect() {
-        
-        wp_redirect( trailingslashit( home_url() ) );
-        exit;
-        
     }
 
     /**
@@ -268,7 +266,7 @@ class Commons_Booking {
                 return $page_content;
             }
         }    
-
+        
     /**
      * Return the plugin slug.
      *

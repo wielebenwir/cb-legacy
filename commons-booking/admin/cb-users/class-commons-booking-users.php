@@ -160,6 +160,102 @@ class Commons_Booking_Users extends Commons_Booking {
     return $string;
   }
 
+    /*
+    * CUSTOMIZE - change link of logo on login page
+    *
+    * @since    0.6
+    *
+    */ 
+    ////   
+  public function cb_login_custom_site_url($url) {  
+    return get_bloginfo('url'); //return the current wp blog url  
+    }  
+
+    /*
+    * CUSTOMIZE - Change the title
+    *
+    * @since    0.6
+    *
+    */  
+    public function cb_login_header_title($message) {  
+      return False; /*return the description of current blog */  
+    }  
+    /*
+    * CUSTOMIZE - Set custom Logo
+    *
+    * @since    0.6
+    *
+    */
+  public function cb_login_logo() {
+    $logo_url = $this->settings->get_settings('customize', 'customize_logofile');
+    printf ('<style type="text/css">
+    h1 a { background-image: url(%s) !important; }
+    </style>', $logo_url );
+  }
+    /*
+    * CUSTOMIZE - Inject custom css (set up under the customize-tab)
+    *
+    * @since    0.6
+    *
+    */
+  public function cb_login_custom_css() {
+    $css = $this->settings->get_settings('customize', 'customize_css');
+    printf ('<style type="text/css">%s</style>', $css);
+  }
+    /*
+    * CUSTOMIZE - Redirects Non-Admin Users after Login
+    *
+    * @since    0.6
+    *
+    */
+  public function cb_login_redirect( $redirect_to, $request, $user ) {
+      //is there a user to check?
+      global $user;
+      if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+          //check for admins
+          if ( in_array( 'administrator', $user->roles ) ) {
+              // redirect them to the default place
+              return $redirect_to;
+          } 
+        }
+        return home_url();
+  }
+
+    /*
+    * CUSTOMIZE - Redirects User after Profile update
+    *
+    * @since    0.6
+    *
+    */
+    public function cb_profile_update_redirect() {
+        
+        wp_redirect( trailingslashit( home_url() ) );
+        exit;
+        
+    }    
+    /*
+    * CUSTOMIZE - Prevents Subscribers from accessing the Dashboard, redirect to Profile
+    *
+    * @since    0.6
+    *
+    */
+    public function cb_redirect_to_profile() {
+ 
+    if ( ! defined( 'DOING_AJAX' ) ) {
+ 
+      $current_user   = wp_get_current_user();
+      $role_name      = $current_user->roles[0];
+      global $pagenow;
+      
+      if( 'subscriber' === $role_name && $pagenow == 'index.php'){ // if subscriber & trying to access the dashboard
+          wp_redirect(admin_url('/profile.php', 'http'), 301);
+          exit;
+      }
+ 
+      } // if DOING_AJAX
+ 
+    }
+
 
   /**
    * Get the additional User fields
