@@ -61,7 +61,7 @@ class Commons_Booking_Users extends Commons_Booking {
           'title' => __( 'Terms and Conditions', $this->plugin_slug ), 
           'field_name' => 'terms_accepted', 
           'type' => 'checkbox', 
-          'description' => __( 'I accept the terms & conditions' ), // @TODO add settings here
+          'description' => __( 'I accept the terms & conditions' ),
           'errormessage' => __('Please accept the terms & conditions', $this->plugin_slug ) 
           )
       );
@@ -152,7 +152,8 @@ class Commons_Booking_Users extends Commons_Booking {
    */
   public function get_termsservices_string() {
     if ( !empty ( $this->termsservices_url ) ) {
-      $string = '<p><a href="' . $this->termsservices_url . '" target=_blank">' . __( 'Link to terms and services', $this->plugin_slug ) . '</a><br /><br /></p>';
+      $string = sprintf( __( '<a href="%s" target=_blank">Read the terms and services</a>', $this->plugin_slug ), 
+        $this->termsservices_url );
     } else {
       $string = "";      
     }
