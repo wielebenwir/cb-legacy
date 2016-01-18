@@ -570,7 +570,7 @@ class Commons_Booking {
      */
     public function cb_registration_redirect() {
 
-       $id = $this->settings->get('pages', 'user_page_select');
+       $id = $this->settings->get_settings('pages', 'user_bookings_page_select');
        $url = get_permalink( $id );
        return $url;
     }     
@@ -580,7 +580,7 @@ class Commons_Booking {
      * @since    0.2
      */
     public function cb_user_url() {
-       $id = $this->settings->get('pages', 'user_page_select');
+       $id = $this->settings->get_settings('pages', 'user_bookings_page_select');
        $url = get_permalink( $id );
        return $url;
     }    

@@ -52,7 +52,7 @@ class Commons_Booking_Codes {
 
     $this->item_id = $item_id;
 
-    $csv = $settings->get( 'codes', 'codes_pool' ); // codes as csv 
+    $csv = $settings->get_settings( 'codes', 'codes_pool' ); // codes as csv 
     $this->codes_array = $this->split_csv( $csv );  // codes as array
 
 

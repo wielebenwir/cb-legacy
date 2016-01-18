@@ -438,8 +438,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
             $current_user = wp_get_current_user();
 
-            $booking_messages = $this->settings->get( 'messages' ); // get messages templates from settings page
-            $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
+            $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
+            $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
 
             if ( !empty($_POST['create']) && $_POST['create'] == 1) { // we create a new booking
 
