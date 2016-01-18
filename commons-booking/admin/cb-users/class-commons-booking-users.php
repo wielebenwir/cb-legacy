@@ -400,10 +400,10 @@ class Commons_Booking_Users extends Commons_Booking {
           echo __( 'You haven´t booked anything yet.', $this->plugin_slug); 
         }
 
-    } else { // Login Form and registration link
+    } else { // Message and Login/Registration Links. 
 
-      include (commons_booking_get_template_part( 'user', 'login', FALSE )); 
-     
+      echo __( 'You need to be logged in to book items.', $this->plugin_slug );
+      printf (__( 'Please <a href="%s">Log in</a> or <a href="%s">register</a>.', $this->plugin_slug), wp_login_url(), wp_registration_url());     
     }
  }
 
