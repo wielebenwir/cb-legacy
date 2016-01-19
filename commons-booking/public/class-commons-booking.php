@@ -118,6 +118,7 @@ class Commons_Booking {
         // Create all needed custom post types
         $type_locations = new CB_Locations_CPT( self::$plugin_slug );
         $type_items = new CB_items_CPT( self::$plugin_slug );
+        $type_items->register_taxonomy();
 
 
         // add CSS class

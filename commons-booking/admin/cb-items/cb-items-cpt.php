@@ -51,8 +51,8 @@ class CB_Items_CPT extends CPT_Core {
     public function register_taxonomy() {
 
         $cb_item_cat_names = array(
-            __( 'Category', $this->slug ),       // Singular
-            __( 'Categories', $this->slug ),     // Plural
+            __( 'Item Category', $this->slug ),       // Singular
+            __( 'Item Categories', $this->slug ),     // Plural
             'cb_item_cat'                                // Registered name
         );
 
