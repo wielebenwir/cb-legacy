@@ -6,5 +6,7 @@
 </p>
 <div class="cb-login cb-box">
 
-   <?php wp_login_form( ); ?>
+   <?php 
+   $login_args = array ( 'redirect' => site_url( '/user-page/' ) );
+   wp_login_form( $login_args ); ?>
  </div>

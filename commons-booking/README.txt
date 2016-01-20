@@ -4,8 +4,7 @@ Contributors: Florian Egermann, Christian Wenzel, Sven Baier, Stefan Meretz
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.3.
-Stable tag: 0.3.2
+Tested up to: 4.4.
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -60,8 +59,10 @@ Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-
 
 == Changelog ==
 
-= 0.5.3 =
+== 0.5.3.1 == 
+* Fix Issue #96: Login redirect not working
 
+= 0.5.3 =
 * added missing translation strings
 * Fix user names / first_name / last_name in Email template
 * Fixed status string: canceled bookings are shown as canceled on the user page
