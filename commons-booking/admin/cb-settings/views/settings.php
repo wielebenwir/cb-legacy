@@ -161,16 +161,16 @@
         'show_names' => true,
         'fields' => array(
           array(
+            'name' => __( 'Customize Login and Registration pages', $this->plugin_slug ),
+            'desc' => __( 'Style the login/registration pages and handle redirects. <br />Disable if you want to use other plugins (e.g. "Theme my Login") to customize the Login/Registration process. E-Mail templates still apply.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_customize_docustomize',
+            'type' => 'checkbox',
+          ),
+          array(
             'name' => __( 'Logo', $this->plugin_slug ),
             'desc' => __( 'Upload your Logo (150x150px) here, it will be available as {{SITE_LOGO}} in the E-Mail templates<br> and displayed on your login page.', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_customize_logofile',
             'type' => 'file',
-          ),
-          array(
-            'name' => __( 'Style Login and Registration pages', $this->plugin_slug ),
-            'desc' => __( 'This setting loads basic styling.', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_customize_docustomize',
-            'type' => 'checkbox',
           ),
           array(
             'name' => __( 'Custom CSS for Login & Registration pages', $this->plugin_slug ),

@@ -140,17 +140,22 @@ class Commons_Booking {
             add_filter('show_admin_bar', '__return_false');
         }
 
-        add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  
-        add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
-        add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
-        add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
+        // Login/Registration Customization. Applied only if $settings->customize = TRUE
+        $docustomize = $this->settings->get_settings( 'customize', 'customize_docustomize');
+
+        if ( !empty ($docustomize) ) {
+            add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  
+            add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
+            add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
+            add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
+            add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
+            add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
+        }
 
 
         // Editing User Profile: Add extra form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
        
-        add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
-        add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
 
 
         // Load public-facing style sheet and JavaScript.

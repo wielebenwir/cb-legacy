@@ -105,6 +105,9 @@ class CB_Admin_Settings extends Commons_Booking {
           <p>Thanks, the Team. </p>
         ', $this->prefix ),
       ),
+    $this->prefix.'-settings-customize' => array(
+      $this->prefix.'_customize_docustomize' => 'ON',
+      ),  
     );
 
   }
