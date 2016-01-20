@@ -329,6 +329,19 @@ class Commons_Booking {
         return $path;
     }
     /**
+     * Return admin settings.
+     *
+     * @since     0.6
+     *
+     * @return    object    
+     */
+    public function get_plugin_settings() {
+
+        $settings = $this->settings;
+        return $settings;
+    }
+
+    /**
      * Fired when the plugin is activated.
      *
      * @since    0.0.1
