@@ -42,7 +42,7 @@ class Commons_Booking_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
     	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $this->secret = '8L1i92OaxcnbNbveOLR6MWs3CUJ22e4P';
+        $this->secret = '8L1i92OaxcnbNbveOLR6MWs3CUJ22e4P'; /* TODO */
 
 
 

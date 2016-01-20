@@ -7,7 +7,7 @@
  * Form page handler checks is there some data posted and tries to save it
  * Also it renders basic wrapper in which we are callin meta box render
  */
-function cb_timeframes_table_form_page_handler()
+function cb_timeframes_table_form_page_handler( )
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_timeframes'; 
@@ -278,7 +278,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
     }
     echo '</select>';
   } else {
-   echo __( 'Something went wrong', $plugin_slug);
+   echo __( 'Something went wrong', 'commons-booking'); // TODO
   }
   /* Restore original Post Data */
   wp_reset_postdata();
