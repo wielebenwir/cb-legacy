@@ -12,8 +12,6 @@ class Commons_Booking_Users extends Commons_Booking {
 
   public function __construct( ) {
 
-
-    $this->plugin_slug = Commons_Booking::get_plugin_slug(); // TODO: Fix PHP strict warning
     $this->settings = new CB_Admin_Settings;
     $this->termsservices_url = $this->settings->get_settings('pages', 'termsservices_url');
 
@@ -31,38 +29,38 @@ class Commons_Booking_Users extends Commons_Booking {
     $this->extra_profile_fields = array (       
        'first_name' => array ( 
           'field_name' => 'first_name', 
-          'title' => __( 'First Name', $this->plugin_slug ), 
+          'title' => __( 'First Name', Commons_Booking::$plugin_slug ), 
           'type' => 'input', 
           'description' => '', 
-          'errormessage' => __('Please enter your first name', $this->plugin_slug ) 
+          'errormessage' => __('Please enter your first name', Commons_Booking::$plugin_slug ) 
           ),       
        'last_name' => array ( 
           'field_name' => 'last_name',
-          'title' => __( 'Last Name', $this->plugin_slug ),  
+          'title' => __( 'Last Name', Commons_Booking::$plugin_slug ),  
           'type' => 'input', 
           'description' => '', 
-          'errormessage' => __('Please enter your last name', $this->plugin_slug ) 
+          'errormessage' => __('Please enter your last name', Commons_Booking::$plugin_slug ) 
           ),       
        'phone' => array ( 
           'field_name' => 'phone', 
-          'title' => __( 'Phone Number', $this->plugin_slug ), 
+          'title' => __( 'Phone Number', Commons_Booking::$plugin_slug ), 
           'type' => 'input', 
           'description' => '', 
-          'errormessage' => __('Please enter your phone number', $this->plugin_slug ) 
+          'errormessage' => __('Please enter your phone number', Commons_Booking::$plugin_slug ) 
           ),       
        'address' => array ( 
           'field_name' => 'address', 
-          'title' => __( 'Addresss', $this->plugin_slug ), 
+          'title' => __( 'Addresss', Commons_Booking::$plugin_slug ), 
           'type' => 'input', 
           'description' => '', 
-          'errormessage' => __('Please enter your Address', $this->plugin_slug ) 
+          'errormessage' => __('Please enter your Address', Commons_Booking::$plugin_slug ) 
           ),       
       'terms_accepted' => array ( 
-          'title' => __( 'Terms and Conditions', $this->plugin_slug ), 
+          'title' => __( 'Terms and Conditions', Commons_Booking::$plugin_slug ), 
           'field_name' => 'terms_accepted', 
           'type' => 'checkbox', 
           'description' => __( 'I accept the terms & conditions' ),
-          'errormessage' => __('Please accept the terms & conditions', $this->plugin_slug ) 
+          'errormessage' => __('Please accept the terms & conditions', Commons_Booking::$plugin_slug ) 
           )
       );
     $this->mail_vars = array();
@@ -90,13 +88,13 @@ class Commons_Booking_Users extends Commons_Booking {
             ?>
             <p>
                 <?php if ( $field['type'] == 'checkbox' ) { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], $this->plugin_slug ) ?><br />
-                        <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'], $this->plugin_slug ) ?><br />
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], Commons_Booking::$plugin_slug ) ?><br />
+                        <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $_POST[ $field['field_name'] ]  == "yes") echo "checked"; ?> /><?php _e( $field['description'], Commons_Booking::$plugin_slug ) ?><br />
                     </label>
                     <?php echo $this->get_termsservices_string() ?>
                 <?php } else { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], $this->plugin_slug ) ?><br />
-                        <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'], $this->plugin_slug ) ?>
+                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], Commons_Booking::$plugin_slug ) ?><br />
+                        <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $_POST[ $field['field_name'] ] ) ); ?>" size="25" /><?php _e( $field['description'], Commons_Booking::$plugin_slug ) ?>
                     </label>
                 <? } ?>
             </p>
@@ -152,7 +150,7 @@ class Commons_Booking_Users extends Commons_Booking {
    */
   public function get_termsservices_string() {
     if ( !empty ( $this->termsservices_url ) ) {
-      $string = sprintf( __( '<a href="%s" target=_blank">Read the terms and services</a>', $this->plugin_slug ), 
+      $string = sprintf( __( '<a href="%s" target=_blank">Read the terms and services</a>', Commons_Booking::$plugin_slug ), 
         $this->termsservices_url );
     } else {
       $string = "";      
@@ -336,25 +334,25 @@ class Commons_Booking_Users extends Commons_Booking {
    */
   public function show_extra_profile_fields( $user ) { ?>
 
-        <h3><?php _e ( 'Extra Fields', $this->plugin_slug ); ?> </h3>
+        <h3><?php _e ( 'Extra Fields', Commons_Booking::$plugin_slug ); ?> </h3>
 
         <table class="form-table">
             <tr>
-                <th><label for="phone"><?php _e ( 'Phone number', $this->plugin_slug ); ?></label></th>
+                <th><label for="phone"><?php _e ( 'Phone number', Commons_Booking::$plugin_slug ); ?></label></th>
                 <td>
                     <input type="text" name="phone" id="phone" value="<?php echo esc_attr( get_the_author_meta( 'phone', $user->ID ) ); ?>" class="regular-text" /><br />
                 </td>
             </tr>               
             <tr>
-                <th><label for="address"><?php _e ( 'Address', $this->plugin_slug ); ?></label></th>
+                <th><label for="address"><?php _e ( 'Address', Commons_Booking::$plugin_slug ); ?></label></th>
                 <td>
                     <input type="textarea" name="address" id="address" value="<?php echo esc_attr( get_the_author_meta( 'address', $user->ID ) ); ?>" class="regular-text" /><br />
                 </td>
             </tr>            
             <tr>
-                <th><label for="terms_accepted"><?php _e ( 'Terms and conditions', $this->plugin_slug ); ?></label></th>
+                <th><label for="terms_accepted"><?php _e ( 'Terms and conditions', Commons_Booking::$plugin_slug ); ?></label></th>
                 <td>
-                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " disabled value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php __( 'Accepted Terms & Conditions', $this->plugin_slug); ?><br />
+                    <input type="checkbox" name="terms_accepted" id=" terms_accepted " disabled value="yes" <?php if (esc_attr( get_the_author_meta( "terms_accepted", $user->ID )) == "yes") echo "checked"; ?> /><?php __( 'Accepted Terms & Conditions', Commons_Booking::$plugin_slug); ?><br />
                 </td>
             </tr>
         </table>
@@ -389,11 +387,11 @@ class Commons_Booking_Users extends Commons_Booking {
     if ( is_user_logged_in() ) {
 
         $current_user = wp_get_current_user();
-        printf(__('Welcome, %s! ', $this->plugin_slug ), $current_user->user_firstname);
+        printf(__('Welcome, %s! ', Commons_Booking::$plugin_slug ), $current_user->user_firstname);
         echo ('<span class="align-right">');
-          printf(__('<a href="%s">Profile</a>', $this->plugin_slug ),  get_edit_profile_url() );
+          printf(__('<a href="%s">Profile</a>', Commons_Booking::$plugin_slug ),  get_edit_profile_url() );
           echo ( ' | ');
-          printf(__('<a href="%s">Logout</a>', $this->plugin_slug ), wp_logout_url( home_url() ) );
+          printf(__('<a href="%s">Logout</a>', Commons_Booking::$plugin_slug ), wp_logout_url( home_url() ) );
         echo ('</span>');
 
         $user_bookings = $this->get_user_bookings( $current_user->ID );
@@ -404,12 +402,12 @@ class Commons_Booking_Users extends Commons_Booking {
           include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
 
         } else {
-          echo __( 'You haven´t booked anything yet.', $this->plugin_slug); 
+          echo __( 'You haven´t booked anything yet.', Commons_Booking::$plugin_slug); 
         }
 
     } else { // Message and Login/Registration Links. 
 
-      printf (__( 'You need to be logged in to book items. <br>Please <a href="%s">Log in</a> or <a href="%s">register</a>.', $this->plugin_slug), wp_login_url(), wp_registration_url());     
+      printf (__( 'You need to be logged in to book items. <br>Please <a href="%s">Log in</a> or <a href="%s">register</a>.', Commons_Booking::$plugin_slug), wp_login_url(), wp_registration_url());     
     }
  }
 
