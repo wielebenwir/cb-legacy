@@ -55,6 +55,7 @@ class Commons_Booking_Admin {
 		$this->cpts = $plugin->get_cpts();
 
 		$this->settings = $plugin->get_plugin_settings();
+		$this->users = $plugin->get_users();
 
 
 		// Load admin style sheet and JavaScript.
@@ -116,7 +117,7 @@ class Commons_Booking_Admin {
 		// locations metabox
 		$locations_metabox = new Commons_Booking_Locations_Metaboxes ();
 		// Call users
-		$cb_users = new Commons_Booking_Users ();
+		$cb_users = $this->users;
 
 		// add meta boxes
     add_action( 'add_meta_boxes', array( $items_metabox, 'cb_items_add_timeframe_meta_box'));
