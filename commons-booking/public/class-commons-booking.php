@@ -339,6 +339,19 @@ class Commons_Booking {
 
         $settings = $this->settings;
         return $settings;
+    }    
+
+    /**
+     * Return users.
+     *
+     * @since     0.6
+     *
+     * @return    object    
+     */
+    public function get_users() {
+
+        $users = $this->users;
+        return $users;
     }
 
     /**
