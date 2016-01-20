@@ -168,7 +168,7 @@
           ),
           array(
             'name' => __( 'Logo', $this->plugin_slug ),
-            'desc' => __( 'Upload your Logo (150x150px) here, it will be available as {{SITE_LOGO}} in the E-Mail templates<br> and displayed on your login page.', $this->plugin_slug ),
+            'desc' => __( 'Upload your Logo (150x150px) here. This replaces the logo on the login page.', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_customize_logofile',
             'type' => 'file',
           ),
