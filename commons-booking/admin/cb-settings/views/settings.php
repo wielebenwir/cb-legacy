@@ -24,10 +24,10 @@
     <ul>
       <li><a href="#tabs-welcome"><?php _e( 'Welcome', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-display"><?php _e( 'Pages', $this->plugin_slug  ); ?></a></li>
-      <li><a href="#tabs-bookingsettings"><?php _e( 'Booking Settings', $this->plugin_slug  ); ?></a></li>
+      <li><a href="#tabs-bookingsettings"><?php _e( 'Booking', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-mail"><?php _e( 'Mail Settings', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-messages"><?php _e( 'Messages Settings', $this->plugin_slug ); ?></a></li>
+      <li><a href="#tabs-mail"><?php _e( 'E-Mails', $this->plugin_slug ); ?></a></li>
+      <li><a href="#tabs-messages"><?php _e( 'Messages', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-customize"><?php _e( 'Customization', $this->plugin_slug ); ?></a></li>
     </ul>
 
