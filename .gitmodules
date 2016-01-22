@@ -1,6 +1,3 @@
-[submodule "commons-booking/includes/CPT_Core"]
-	path = commons-booking/includes/CPT_Core
-	url = git@github.com:WebDevStudios/CPT_Core.git
 [submodule "commons-booking/includes/Taxonomy_Core"]
 	path = commons-booking/includes/Taxonomy_Core
 	url = git@github.com:WebDevStudios/Taxonomy_Core.git
