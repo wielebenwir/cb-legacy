@@ -103,22 +103,17 @@ class Commons_Booking {
      */
     private function __construct() {
         // Load plugin text domain
-        add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+        add_action( 'init', array( $this, 'load_plugin_textdomain' ), 0 );
 
         // Activate plugin when new blog is added
-        add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
+        add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ), 0 );
         
-
-        $items = new Commons_Booking_Public_Items();
+        // Register items & locations custom post types
+        add_action( 'init', array( $this, 'register_cpts' ) );
+      
+        // $items = new Commons_Booking_Public_Items();
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
-
-        
-
-        // Create all needed custom post types
-        $type_locations = new CB_Locations_CPT( self::$plugin_slug );
-        $type_items = new CB_items_CPT( self::$plugin_slug );
-        $type_items->register_taxonomy();
 
 
         // add CSS class
@@ -173,7 +168,6 @@ class Commons_Booking {
         add_action( 'the_content', array( $this, 'cb_content' ) ); 
 
     }
-
     /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
@@ -215,7 +209,90 @@ class Commons_Booking {
 
         // }
 
+    public function register_cpts() {
 
+        $item_labels = array(
+            'name'               => __( 'Items', self::$plugin_slug ),
+            'singular_name'      => __( 'Item', self::$plugin_slug ),
+            'menu_name'          => __( 'Items', self::$plugin_slug ),
+            'name_admin_bar'     => __( 'Item', self::$plugin_slug ),
+            'add_new'            => __( 'Add New', self::$plugin_slug ),
+            'add_new_item'       => __( 'Add New Item', self::$plugin_slug ),
+            'new_item'           => __( 'New Item', self::$plugin_slug ),
+            'edit_item'          => __( 'Edit Item', self::$plugin_slug ),
+            'view_item'          => __( 'View Item', self::$plugin_slug ),
+            'all_items'          => __( 'All Items', self::$plugin_slug ),
+            'search_items'       => __( 'Search Items', self::$plugin_slug ),
+            'parent_item_colon'  => __( 'Parent Items:', self::$plugin_slug ),
+            'not_found'          => __( 'No Items found.', self::$plugin_slug ),
+            'not_found_in_trash' => __( 'No Items found in Trash.', self::$plugin_slug )
+        );
+
+        $item_args = array(
+            'labels'             => $item_labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'query_var'          => true,
+            'rewrite'            => array( 'slug' => 'cb-items' ),
+            'capability_type'    => 'post',
+            'has_archive'        => true,
+            'hierarchical'       => false,
+            'menu_position'      => null,
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+        );
+
+        register_post_type( 'cb_items', $item_args );
+
+        register_taxonomy(
+            'cb_items_category',
+            'cb_items',
+            array(
+                'label' => __( 'Category' ),
+                'rewrite' => array( 'slug' => 'category' ),
+                'hierarchical' => true,
+            )
+        );
+
+
+        $location_labels = array(
+            'name'               => __( 'Locations', self::$plugin_slug ),
+            'singular_name'      => __( 'Location', self::$plugin_slug ),
+            'menu_name'          => __( 'Locations', self::$plugin_slug ),
+            'name_admin_bar'     => __( 'Location', self::$plugin_slug ),
+            'add_new'            => __( 'Add New', self::$plugin_slug ),
+            'add_new_item'       => __( 'Add New Location', self::$plugin_slug ),
+            'new_item'           => __( 'New Location', self::$plugin_slug ),
+            'edit_item'          => __( 'Edit Location', self::$plugin_slug ),
+            'view_item'          => __( 'View Location', self::$plugin_slug ),
+            'all_items'          => __( 'All Location', self::$plugin_slug ),
+            'search_items'       => __( 'Search Locations', self::$plugin_slug ),
+            'parent_item_colon'  => __( 'Parent Locations:', self::$plugin_slug ),
+            'not_found'          => __( 'No Locations found.', self::$plugin_slug ),
+            'not_found_in_trash' => __( 'No Locations found in Trash.', self::$plugin_slug )
+        );
+
+        $location_args = array(
+            'labels'             => $location_labels,
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => true,
+            'query_var'          => true,
+            'rewrite'            => array( 'slug' => 'cb-locations' ),
+            'capability_type'    => 'post',
+            'has_archive'        => true,
+            'hierarchical'       => false,
+            'menu_position'      => null,
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+        );
+
+        register_post_type( 'cb_locations', $location_args );
+
+
+
+    }
      /**
      *   Add main items list to page selected in settings
      *   Add bookings review to page selected in settings.
