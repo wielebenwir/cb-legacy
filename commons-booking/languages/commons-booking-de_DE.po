@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/commons-booking\n"
-"POT-Creation-Date: 2016-01-20 14:25+0100\n"
+"POT-Creation-Date: 2016-01-22 19:49+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:47
-#: admin/cb-settings/views/settings.php:27 public/class-commons-booking.php:490
+#: admin/cb-settings/views/settings.php:27 public/class-commons-booking.php:567
 msgid "Booking"
 msgstr "Buchung"
 
@@ -43,9 +43,9 @@ msgstr "ID"
 
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:137
 #: admin/cb-codes/class-commons-booking-codes-table.php:125
-#: admin/cb-items/cb-items-cpt.php:31
 #: admin/cb-timeframes/cb-timeframes-edit.php:181
 #: admin/cb-timeframes/cb-timeframes-list.php:119
+#: public/class-commons-booking.php:216 public/class-commons-booking.php:218
 msgid "Item"
 msgstr "Artikel"
 
@@ -73,10 +73,10 @@ msgid "User"
 msgstr "Nutzer*in"
 
 #: admin/cb-bookings/class-commons-booking-bookings-table.php:142
-#: admin/cb-locations/cb-locations-cpt.php:32
 #: admin/cb-timeframes/cb-timeframes-edit.php:197
 #: admin/cb-timeframes/cb-timeframes-list.php:118
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
+#: public/class-commons-booking.php:261 public/class-commons-booking.php:263
 msgid "Location"
 msgstr "Standort"
 
@@ -161,23 +161,6 @@ msgstr "Neue Buchungs-Codes wurden generiert."
 msgid "codes"
 msgstr "Codes"
 
-#: admin/cb-items/cb-items-cpt.php:32
-msgid "items"
-msgstr "Artikel"
-
-#: admin/cb-items/cb-items-cpt.php:54
-msgid "Item Category"
-msgstr "Artikel-Kategorie"
-
-#: admin/cb-items/cb-items-cpt.php:55
-msgid "Item Categories"
-msgstr "Artikel-Kategorien"
-
-#: admin/cb-items/cb-items-cpt.php:71
-#, php-format
-msgid "%s image"
-msgstr "%s Bild"
-
 #: admin/cb-items/includes/cb-items-metaboxes.php:36
 #: admin/cb-timeframes/cb-timeframes-list.php:37
 #: admin/class-commons-booking-admin.php:356
@@ -192,10 +175,6 @@ msgstr "Kurzbeschreibung des Artikels, wird in der Liste angezeigt."
 #: admin/cb-items/includes/cb-items-metaboxes.php:74
 msgid "Short description"
 msgstr "Kurzbeschreibung"
-
-#: admin/cb-locations/cb-locations-cpt.php:33
-msgid "Locations"
-msgstr "Standorte"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:41
 #: admin/cb-users/class-commons-booking-users.php:347
@@ -1587,12 +1566,12 @@ msgid "Pickup at:"
 msgstr "Abholung bei:"
 
 #: public/cb-bookings/views/booking-review.php:15
-#: public/class-commons-booking.php:576
+#: public/class-commons-booking.php:653
 msgid "Pickup date:"
 msgstr "Abholdatum:"
 
 #: public/cb-bookings/views/booking-review.php:18
-#: public/class-commons-booking.php:577
+#: public/class-commons-booking.php:654
 msgid "Return date:"
 msgstr "Rückgabedatum:"
 
@@ -1624,43 +1603,138 @@ msgstr "Telefonnummer:"
 msgid " Location information: "
 msgstr " Standortinformation: "
 
-#: public/class-commons-booking.php:488
+#: public/class-commons-booking.php:215 public/class-commons-booking.php:217
+#: public/class-commons-booking.php:565
 msgid "Items"
 msgstr "Artikel"
 
-#: public/class-commons-booking.php:489
+#: public/class-commons-booking.php:219 public/class-commons-booking.php:264
+msgid "Add New"
+msgstr "Neuen Zeitraum anlegen"
+
+#: public/class-commons-booking.php:220
+msgid "Add New Item"
+msgstr "Neuen Artikel anlegen"
+
+#: public/class-commons-booking.php:221
+msgid "New Item"
+msgstr "Neuer Artikel"
+
+#: public/class-commons-booking.php:222
+msgid "Edit Item"
+msgstr "Artikel bearbeiten"
+
+#: public/class-commons-booking.php:223
+msgid "View Item"
+msgstr "Zeige Artikel"
+
+#: public/class-commons-booking.php:224
+msgid "All Items"
+msgstr "Alle Artikel"
+
+#: public/class-commons-booking.php:225
+msgid "Search Items"
+msgstr "Artikel durchsuchen"
+
+#: public/class-commons-booking.php:226
+msgid "Parent Items:"
+msgstr "Übergeordneter Artikel"
+
+#: public/class-commons-booking.php:227
+msgid "No Items found."
+msgstr "Keine Artikel gefunden."
+
+#: public/class-commons-booking.php:228
+msgid "No Items found in Trash."
+msgstr "Keine Artikel im Papierkorb."
+
+#: public/class-commons-booking.php:252
+#, fuzzy
+msgid "Category"
+msgstr "Kategorie"
+
+#: public/class-commons-booking.php:260 public/class-commons-booking.php:262
+msgid "Locations"
+msgstr "Standorte"
+
+#: public/class-commons-booking.php:265
+#, fuzzy
+msgid "Add New Location"
+msgstr "Standort"
+
+#: public/class-commons-booking.php:266
+#, fuzzy
+msgid "New Location"
+msgstr "Standort"
+
+#: public/class-commons-booking.php:267
+#, fuzzy
+msgid "Edit Location"
+msgstr "Standort"
+
+#: public/class-commons-booking.php:268
+#, fuzzy
+msgid "View Location"
+msgstr "Standort"
+
+#: public/class-commons-booking.php:269
+#, fuzzy
+msgid "All Location"
+msgstr "Standort"
+
+#: public/class-commons-booking.php:270
+#, fuzzy
+msgid "Search Locations"
+msgstr "Standorte"
+
+#: public/class-commons-booking.php:271
+#, fuzzy
+msgid "Parent Locations:"
+msgstr "Standorte"
+
+#: public/class-commons-booking.php:272
+#, fuzzy
+msgid "No Locations found."
+msgstr "Keine %s gefunden."
+
+#: public/class-commons-booking.php:273
+#, fuzzy
+msgid "No Locations found in Trash."
+msgstr "Keine Artikel im Papierkorb."
+
+#: public/class-commons-booking.php:566
 msgid "My Bookings"
 msgstr "Meine Buchungen"
 
-#: public/class-commons-booking.php:574
+#: public/class-commons-booking.php:651
 msgid "Book here:"
 msgstr "Hier buchen:"
 
-#: public/class-commons-booking.php:575
+#: public/class-commons-booking.php:652
 msgid "Click pickup and return date(s):"
 msgstr "Wähle Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:578
+#: public/class-commons-booking.php:655
 msgid "Pickup and return date:"
 msgstr "Abhol- und Rückgabedatum:"
 
-#: public/class-commons-booking.php:579
+#: public/class-commons-booking.php:656
 msgid "Sorry, To many days between pickup and return, the maximum is: "
 msgstr "Sorry, der Zeitraum ist zu lang. Max. Tage: "
 
-#: public/class-commons-booking.php:580
+#: public/class-commons-booking.php:657
 msgid "Sorry, you can only book at one station."
 msgstr "Sorry, Du kannst nur bei einer Station buchen."
 
-#: public/class-commons-booking.php:581
+#: public/class-commons-booking.php:658
 msgid "Sorry, this day is not bookable."
 msgstr "Sorry, dieser Tag ist nicht buchbar."
 
-#: public/class-commons-booking.php:582
+#: public/class-commons-booking.php:659
 msgid "Sorry, there must be no booked day between pickup and return."
 msgstr "Sorry, bitte wähle einen Zeitraum ohne Überschneidungen."
 
-#: public/class-commons-booking.php:583
+#: public/class-commons-booking.php:660
 msgid "Sorry, you can´t book over closed days."
 msgstr "Sorry, Du kannst an geschlossenen Tagen nicht buchen."
 
@@ -1801,6 +1875,62 @@ msgstr "Telefon"
 msgid "I accept the terms"
 msgstr "Ich akzeptiere die Nutzungsbedingungen"
 
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "Kategorien"
+
+#~ msgid "%s image"
+#~ msgstr "%s Bild"
+
+#, fuzzy
+#~ msgid "%s"
+#~ msgstr "Keine %s"
+
+#, fuzzy
+#~ msgid "No %s found"
+#~ msgstr "Keine %s gefunden."
+
+#, fuzzy
+#~ msgid "Seperate %s with commas"
+#~ msgstr "Trenne %s mit Kommas"
+
+#, fuzzy
+#~ msgid "Choose from most used %s"
+#~ msgstr "Wähle aus den meist genutzten %s"
+
+#, fuzzy
+#~ msgid "%s updated."
+#~ msgstr "%1$s aktualisiert."
+
+#, fuzzy
+#~ msgid "%2$s restored to revision from %1$s"
+#~ msgstr "%1$s wurde zur Version vom %2$s zurückgesetzt"
+
+#, fuzzy
+#~ msgid "%s saved."
+#~ msgstr "%1$s gespeichert."
+
+#, fuzzy
+#~ msgid "%s submitted."
+#~ msgstr "%1$s eingereicht."
+
+#, fuzzy
+#~ msgid "%2$s scheduled for: <strong>%1$s</strong>."
+#~ msgstr "%1$s geplant für: <strong>%2$s</strong>."
+
+#, fuzzy
+#~ msgid "%s draft updated."
+#~ msgstr "%1$s Entwurf aktualisiert."
+
+#~ msgid "Description."
+#~ msgstr "Beschreibung."
+
+#~ msgid "Sausages"
+#~ msgstr "Blutwurst"
+
+#~ msgid "items new"
+#~ msgstr "Artikelzzzzzzzz"
+
 #~ msgid "Booking Settings"
 #~ msgstr "Buchungs-Einstellungen"
 
@@ -1857,42 +1987,6 @@ msgstr "Ich akzeptiere die Nutzungsbedingungen"
 
 #~ msgid "User Registration"
 #~ msgstr "Nutzer*in-Registrierung"
-
-#, fuzzy
-#~ msgid "Add New Item"
-#~ msgstr "%s hinzufügen"
-
-#, fuzzy
-#~ msgid "New Item"
-#~ msgstr "Artikel"
-
-#, fuzzy
-#~ msgid "Edit Item"
-#~ msgstr "%s bearbeiten "
-
-#, fuzzy
-#~ msgid "View Item"
-#~ msgstr "Zeige %s"
-
-#, fuzzy
-#~ msgid "All Items"
-#~ msgstr "Artikel"
-
-#, fuzzy
-#~ msgid "Search Items"
-#~ msgstr "Suche %s"
-
-#, fuzzy
-#~ msgid "Parent Items:"
-#~ msgstr "Vorgänger %s:"
-
-#, fuzzy
-#~ msgid "No Items found."
-#~ msgstr "Keine %s gefunden."
-
-#, fuzzy
-#~ msgid "No Items found in Trash."
-#~ msgstr "Keine %s im Papierkorb gefunden"
 
 #~ msgid "The registration form."
 #~ msgstr "Diese Seite ist das Registrierungs-Formular für neue Nutzer*innen."
@@ -1955,11 +2049,6 @@ msgstr "Ich akzeptiere die Nutzungsbedingungen"
 
 #~ msgid " You havenÂ´t booked anything yet."
 #~ msgstr "Du hast bisher keine Buchungen."
-
-#~ msgid "%s "
-#~ msgid_plural "%s "
-#~ msgstr[0] "%s "
-#~ msgstr[1] "%s "
 
 #~ msgctxt "Valid formatDate string for jquery-ui datepicker"
 #~ msgid "mm/dd/yy"

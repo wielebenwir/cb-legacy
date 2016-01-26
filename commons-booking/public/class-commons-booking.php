@@ -143,7 +143,7 @@ class Commons_Booking {
             add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
             add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
             add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
-            add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect') );
+            add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect'), 10, 3 );
             add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
         }
 
