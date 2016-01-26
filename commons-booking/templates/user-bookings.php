@@ -1,7 +1,7 @@
   <div class="cb-box">
-    <?php foreach ($user_bookings as $booking) { ?>
-      
-      <?php 
+    <?php $bookingsindex = count($user_bookings);
+    while($bookingsindex) {
+        $booking = $user_bookings[--$bookingsindex];
         if ($booking['status'] == 'confirmed') {
           $d_status = __('Confirmed', 'commons-booking' );
           $d_link = get_the_permalink ( $review_page_id ) . '?booking=' .$booking['hash']; 
