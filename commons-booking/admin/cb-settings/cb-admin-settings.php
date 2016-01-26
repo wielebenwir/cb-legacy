@@ -106,6 +106,8 @@ class CB_Admin_Settings extends Commons_Booking {
       ),
     $this->prefix.'-settings-customize' => array(
       $this->prefix.'_customize_docustomize' => 'ON',
+      $this->prefix.'_customize_logofile' => '',
+      $this->prefix.'_customize_customize_css' => '',
       ),  
     );
 
