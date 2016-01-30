@@ -14,23 +14,14 @@
 /**
  * This class includes display of items
  * *
- * @package Commons_Booking_items
+ * @package   Commons_Booking_items
  * @author    Florian Egermann <florian@wielebenwir.de>
  *
  */
 
 class Commons_Booking_Public_Items {
 
-    public $plugin_slug;
-
-    /**
-     *
-     * @since   0.0.1
-     *
-     */
-    const VERSION = '0.0.1';
     public $items;
-
 
     public function __construct() {
 
