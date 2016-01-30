@@ -467,6 +467,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                             $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                             $this->hash = $this->encrypt( $booking_id );
+                            
+                            $page_confirmed = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
 
                             include ( 'views/booking-review.php' );
                         
