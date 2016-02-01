@@ -304,7 +304,7 @@ class Commons_Booking {
      */
     public function cb_content( $page_content ) {
 
-        $settings_display = $this->settings->get_settings('pages');
+        $settings_display = $this->settings->get_settings('pages'); // get array of page ids from settings
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
@@ -332,7 +332,7 @@ class Commons_Booking {
                 return $page_content;
             }
         }    
-        
+      
     /**
      * Return the plugin slug.
      *
