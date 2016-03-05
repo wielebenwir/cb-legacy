@@ -38,7 +38,7 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     
-    $this->current_date = date('Y-m-d');
+    $this->current_date = current_time('Y-m-d');
 }
 
 
