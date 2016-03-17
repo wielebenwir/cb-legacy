@@ -38,7 +38,7 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     
-    $this->current_date = date('Y-m-d');
+    $this->current_date = current_time('Y-m-d');
 }
 
 
@@ -123,7 +123,7 @@ class Commons_Booking_Data {
       global $wpdb;
       // @TODO: Fix start date not being honored by function -> maybe change data format
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
-      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s and date_end > %s ORDER BY date_start ASC', $item_id, $date_start );
+      $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s and date_end >= %s ORDER BY date_start ASC', $item_id, $date_start );
       $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
 
       if ( !empty( $this->timeframes) ) {

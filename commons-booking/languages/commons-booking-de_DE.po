@@ -226,7 +226,7 @@ msgstr "Geschlossene Tage"
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:115
 msgid "Location is closed on the following days, booking is prohibited. "
 msgstr ""
-"Der Standort ist an diesen Tagen geschlossen, Buchen ist nicht erlaubt. "
+"Der Standort ist an diesen Tagen geschlossen, buchen ist nicht erlaubt. "
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:119
 msgid "Monday"
@@ -844,7 +844,7 @@ msgstr "Zeitraum hinzufügen/bearbeiten"
 
 #: admin/class-commons-booking-admin.php:369
 msgid "Add Timeframe"
-msgstr "Zeittraum hinzufügen"
+msgstr "Zeitraum hinzufügen"
 
 #: admin/includes/CMB2/example-functions.php:82
 msgid "Test Metabox"
