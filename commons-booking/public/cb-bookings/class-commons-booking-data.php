@@ -313,21 +313,25 @@ class Commons_Booking_Data {
 
           $location = $this->get_location ( $tf['location_id'] ); // get location info
 
-          // Calculate the starting & end-dates for display of the timeframe 
+          // 5. Calculate the starting & end-dates for display of the timeframe 
           $cal_start = strtotime ( max( $date_range_start, $tf['date_start'] ) );
           $cal_end = strtotime( min( $date_range_end, $tf['date_end'] ) );
           $day_counter = $cal_start;
-         
-          $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
-          // 5. Loop through days
-          while ( $day_counter <= $cal_end ) { // loop through days
+          // 6. check if there are days to be displayed (honoring the settings-function days_to_show)
+          if ( $cal_start < $cal_end ) {
+           
+            $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
-            $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
-            $template_vars[ 'timeframes' ][ $tf[ 'id' ] ][ 'calendar' ][ $day_counter ] =  $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
+            // 7. Loop through days
+            while ( $day_counter <= $cal_end ) { // loop through days
 
-            $day_counter = strtotime('+1 day', $day_counter); // count up
-          }          
+              $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
+              $template_vars[ 'timeframes' ][ $tf[ 'id' ] ][ 'calendar' ][ $day_counter ] =  $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
+
+              $day_counter = strtotime('+1 day', $day_counter); // count up
+            }    
+          } 
       }
 
     } else { // no timeframes, item can´t be booked
