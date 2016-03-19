@@ -43,3 +43,27 @@ function commons_booking_get_template_part( $slug, $name = '', $include = true )
 		return $template;
 	}
 }
+
+function cb_get_template_part( $template = '', $attributes = null, $buffer = FALSE ) {
+	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
+	$plugin = Commons_Booking::get_instance();
+	$plugin_slug = $plugin->get_plugin_slug();
+	
+	// Look in yourtheme/slug-name.php and yourtheme/plugin-name/slug-name.php
+  if ( ! $attributes ) {
+    $attributes = array();
+  }
+
+  $attributes['plugin_slug'] = $plugin_slug; // add plugin-slug to the attributes
+
+  if ( $buffer ) { 
+  	ob_start(); 
+  	include( $path . $template . '.php');
+  	$content = ob_get_contents();
+		ob_end_clean();
+		return  $content;
+	} else {
+	  include ( $path . $template . '.php' );
+	}
+
+}

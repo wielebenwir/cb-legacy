@@ -71,7 +71,24 @@ class Commons_Booking_Booking {
     	 return $sqlresult[0]['location_id'];
 
      }
-    
+  
+ /**
+ * Create a hash for booking url
+ *
+ * @return string - hash
+ */   
+    public function create_hash( ) {
+
+    if ( empty( $wp_hasher ) ) {
+        require_once ABSPATH . WPINC . '/class-phpass.php';
+        $wp_hasher = new PasswordHash( 4, true );
+        }
+    $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
+    return $hashed;
+
+    }
+
+
  /**
  * Get booking-code based on start date and item-id
  *
@@ -411,6 +428,9 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $b_vars['location_thumb'] = get_thumb( $this->location_id ); 
         $b_vars['location_contact'] = $this->location['contact']; 
         $b_vars['location_openinghours'] = $this->location['openinghours']; 
+
+        $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
+        $b_vars['hash'] = $this->encrypt( $this->booking_id );
         
         $b_vars['site_email'] = $this->email_messages['mail_confirmation_sender']; 
 
@@ -457,22 +477,18 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                     $this->user_id = get_current_user_id();
 
                     // Set Variable for Template
-                    $this->set_booking_vars();
 
                     // check if days are not already booked, and count <  maxdays
                     if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end )) {
 
                         $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
-                        echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
 
-                            $booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
-                            $this->hash = $this->encrypt( $booking_id );
-                            
-                            $page_confirmed = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
+                            $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
+                            $this->set_booking_vars();
 
-                            include ( 'views/booking-review.php' );
-                        
-                            include (commons_booking_get_template_part( 'booking', 'submit', FALSE )); // include the template
+                            echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
+
+                            return cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
                     } // end if validated - days
 
@@ -482,7 +498,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
               } // end if all variables present
             } else if ( !empty($_GET['booking']) ) { // we confirm the booking 
-
 
                     // DATA FROM URL
                     $this->hash = sanitize_text_field ( $_GET['booking'] );
@@ -503,6 +518,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         $this->location_id = ( $this->booking['location_id'] );  
                         $this->item_id = ( $this->booking['item_id'] ); 
                         $this->user_id = ( $this->booking['user_id'] );
+                        $this->booking_id = ( $b_id );
 
                         // Set Variable for Template
                         $this->set_booking_vars( TRUE );
@@ -517,15 +533,14 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                             $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
                             $this->send_mail( $this->user['email'] );
-                            include ( 'views/booking-review.php' );                            
-                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
 
+                            // PRINT: Booking review, Cancel Button
+                            return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
                         } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
 
-                            include (commons_booking_get_template_part( 'booking', 'code', FALSE )); 
-                            include ( 'views/booking-review.php' );                            
-                            include (commons_booking_get_template_part( 'booking', 'cancel', FALSE )); 
+                            // PRINT: Code, Booking review, Cancel Button
+                            return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
   
 
                         } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
@@ -534,6 +549,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
 
                             $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
+                        
                         } else {
                             echo ('You haven´t booked anything.');
                         }

@@ -35,10 +35,16 @@ class Commons_Booking_Data {
  */
   public function __construct() {
 
+    // $this->settings = new CB_Admin_Settings();
+
     $this->prefix = 'commons-booking';
+    // from settings
     $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
-    
+    $this->target_url = $this->get_settings( 'pages', 'bookingconfirm_page_select' );
     $this->current_date = current_time('Y-m-d');
+
+    $this->codes = $this->get_codes();
+
 }
 
 
@@ -80,14 +86,27 @@ class Commons_Booking_Data {
   }
 
 /**
- * Get a list of all dates within the defind range. 
+ * Get a list of all dates within the defind range. @TODO retire this function 
  *
  * @return array
  */
   public function get_dates() {
-    $dates = array($this->date_start);
+    $dates = array( $this->date_start );
     while(end($dates) < $this->date_end){
-        $dates[] = date('Y-m-d', strtotime(end($dates).' +1 day'));
+        $dates[] = date('Y-m-d', strtotime( end( $dates ).' +1 day'));
+    }
+    return $dates;
+  }
+
+/**
+ * Return a list of all dates within the defined range. 
+ *
+ * @return array
+ */
+  public function get_dates_list( $start, $end ) {
+    $dates = array( $start );
+    while( end( $dates ) < $end ){
+        $dates[] = date('Y-m-d', strtotime( end( $dates ).' +1 day'));
     }
     return $dates;
   }
@@ -115,7 +134,7 @@ class Commons_Booking_Data {
 
     $return = '';
 
-    if ( empty($date_start) ) {
+    if ( empty( $date_start) ) {
       $date_start = $this->current_date;
     }
 
@@ -124,10 +143,10 @@ class Commons_Booking_Data {
       // @TODO: Fix start date not being honored by function -> maybe change data format
       $table_name = $wpdb->prefix . 'cb_timeframes'; 
       $sql = $wpdb->prepare( 'SELECT * FROM ' . $table_name . ' WHERE item_id = %s and date_end >= %s ORDER BY date_start ASC', $item_id, $date_start );
-      $this->timeframes = $wpdb->get_results($sql, ARRAY_A);
+      $timeframes = $wpdb->get_results($sql, ARRAY_A);
 
-      if ( !empty( $this->timeframes) ) {
-          return $this->timeframes;
+      if ( !empty( $timeframes) ) {
+          return $timeframes;
         } else { 
           return FALSE;
         } 
@@ -172,7 +191,7 @@ class Commons_Booking_Data {
   }
 
 /**
- * Get Item contents outside the loop
+ * Get Item post & meta outside the loop
  *
  *@param $id item id
  *
@@ -184,7 +203,9 @@ class Commons_Booking_Data {
     global $wpdb;
 
     if ( $id ) {
-      $item = get_post($id , ARRAY_A);
+      $post = get_post( $id , ARRAY_A );
+      $meta = get_post_meta ( $id );
+      $item = array_merge ( $post, $meta );
       return $item;
     } else {
       return false;
@@ -258,6 +279,154 @@ class Commons_Booking_Data {
  *
 */
 
+  public function render_item_single( $item_id  ) {
+
+    // 1. Get Item (Title & Description)
+    $item = $this->get_item( $item_id );
+    $codes = $this->codes;
+    
+    $booked = new Commons_Booking_Booking;
+    $booked_days = $booked->get_booked_days( $item_id );
+
+    // 2. Calculate start & end dates 
+    $date_range_start = date('Y-m-d'); // current date
+    $date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' )); // current date + configured daystoshow setting
+    $dates_list = $this->get_dates_list ( $date_range_start, $date_range_end );
+
+    // 3. Get timeframes from the db that: match the item_id + end_date is after today´s date
+    $timeframes = $this->get_timeframes( $item_id, $date_range_start );
+    
+    // ob_start(); // start buffering
+
+    $template_vars = array(
+      'item' => $item,
+      'timeframes' => array()
+      );
+    // 4. Loop through timeframes  
+    if ( $timeframes ) { // there are timeframes
+
+      foreach ( $timeframes as $tf) {
+
+          $location = $this->get_location ( $tf['location_id'] ); // get location info
+
+          // Calculate the starting & end-dates for display of the timeframe 
+          $cal_start = strtotime ( max( $date_range_start, $tf['date_start'] ) );
+          $cal_end = strtotime( min( $date_range_end, $tf['date_end'] ) );
+          $day_counter = $cal_start;
+         
+          $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
+
+          // 5. Loop through days
+          while ( $day_counter <= $cal_end ) { // loop through days
+
+            $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
+            $template_vars[ 'timeframes' ][ $tf[ 'id' ] ][ 'calendar' ][ $day_counter ] =  $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
+
+            $day_counter = strtotime('+1 day', $day_counter); // count up
+          }          
+      }
+
+    } else { // no timeframes, item can´t be booked
+      return '<span class="cb-error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
+    }
+
+    return cb_get_template_part( 'item-timeframes', $template_vars, true ); // include the template
+
+  }
+
+/**
+ * Prepare attributes for calendar-cell template
+ * Converts the timestamp to an array with 
+ * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")  
+ *
+ * @param $string timestamp
+ * @param array $location
+ * @param array $booked_days
+ * @return array
+*/
+
+public function prepare_template_vars_item ( $item ) {
+  
+  $attributes = array (
+    'id' => $item['id'],
+    'title' => $item['psot_title'],
+    'description_short' => $item['commons-booking_item_descr'],
+    'description_full' => $item['post_content']  
+    );
+  
+  return $attributes;
+}
+
+
+/**
+ * Prepare attributes for calendar-cell template
+ * Converts the timestamp to an array with 
+ * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")  
+ *
+ * @param $string timestamp
+ * @param array $location
+ * @param array $booked_days
+ * @return array
+*/
+
+public function prepare_template_vars_calendar_cell ( $timestamp, $location, $booked_days ) {
+  
+  $attributes = array (
+    'day_short' => date_i18n ('D', $timestamp ),
+    'date_short' => date_i18n ('j.n.', $timestamp ),
+    'weekday_code' => 'day' . date('N', $timestamp),
+    'id' => $timestamp,
+    'status' => $this->set_day_status( $timestamp, $location, $booked_days )    
+    );
+  
+  return $attributes;
+}
+
+/**
+ * Prepare attributes for calendar-location template
+ *
+ * @param array $location
+ * @param array $location, $timeframe
+ * @return array
+*/
+
+public function prepare_template_vars_timeframe ( $location, $timeframe ) {
+
+  $contact_string = $address_string = '';
+
+  if ( !empty( $location['contact_hide'] ) ) { // honor setting to hide contact info
+      $contact_string = $location[ 'contact' ];
+  }
+
+  $address_check = array_filter( $location[ 'address' ] );
+
+   if ( !empty ( $address_check ) ) { // format the adress
+      $address_string = implode( ', ', $location[ 'address' ] ); 
+  }
+
+  $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
+
+  $attributes = array (
+    'name' => $location['name'], 
+    'contact' => $contact_string,
+    'address' => $address_string,
+    'date_range' => $daterange_string,
+    'timeframe_title' =>  $timeframe['timeframe_title'],
+    'timeframe_id' =>  $timeframe['id'],
+    'location_id' =>  $location['id']
+    );
+  
+  return $attributes;
+}
+
+
+/**
+ * Single item, all calendars. @TODO: RETIRE ME 
+ *
+ *@param $id item id
+ *
+*/
+
   public function render_item_single_timeframes( $item_id  ) {
 
 
@@ -285,7 +454,7 @@ class Commons_Booking_Data {
     $timeframes = $this->timeframes;
     $codes = $this->codes;
 
-    if ($timeframes ) {
+    if ($timeframes ) { 
       foreach ( $timeframes as $tf) {
         if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range  
           $location = $this->get_location ( $tf['location_id'] );
@@ -301,7 +470,7 @@ class Commons_Booking_Data {
   }
 
 /**
- * Calendar .  
+ * Calendar .  @TODO: RETIRE ME
  *
  *@param $id item id
  *
@@ -350,7 +519,7 @@ class Commons_Booking_Data {
  * @param $location array location data
  * @param $item_id  int   id of the item
  */
-  public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) {
+  public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) { // @TODO: RETIRE ME
 
     $booked = new Commons_Booking_Booking;
     $booked_days = $booked->get_booked_days( $item_id );
@@ -447,8 +616,12 @@ class Commons_Booking_Data {
  * Include the booking bar
  *
  */
-  public function show_booking_bar() {
-    include (commons_booking_get_template_part( 'calendar', 'bookingbar', FALSE )); // include the template
+  public function render_booking_bar() {
+
+    $template_vars = array (
+      'target_url' => get_permalink( $this->target_url )
+      );
+    return cb_get_template_part( 'calendar-bookingbar', $template_vars , true );
   }
 }
 ?>
