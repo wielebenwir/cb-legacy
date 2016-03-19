@@ -524,7 +524,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         $this->set_booking_vars( TRUE );
 
                         // Finalise the booking
-                        if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { // check if it is pending
+                        if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { 
+                            // check if status is pending and confirm = 1 
 
                             // Display the Message
                             $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message                      
@@ -538,20 +539,26 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
                         } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
+                            // booking is confirmed and we are not cancelling
 
                             // PRINT: Code, Booking review, Cancel Button
                             return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
   
 
                         } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
-
+                            // booking is confirmed and we are cancelling
+                        
                             $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
-                            display_cb_message( $msg, $this->b_vars );
+                            display_cb_message( $msg, $this->b_vars, 'error' );
 
                             $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
                         
                         } else {
-                            display_cb_message( $msg, $this->b_vars );
+                            // canceled booking, page refresh
+
+                            $msg = __( 'Error: Booking not found', $this->prefix );
+                            display_cb_message( $msg, $success = FALSE );
+
                         }
 
                     } else {

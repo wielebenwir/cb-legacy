@@ -56,6 +56,11 @@ function pages_dropdown() {
  *@return html
  */
  function display_cb_message( $string, $replace = null, $success = TRUE ) {
+    
+    if ( ! $replace ) {
+      $replace = array();
+    }
+
     $msg = replace_template_tags( $string, $replace );
     $class = $success ? 'success' : 'error';
     echo sprintf (' <span class="cb-message %s">%s</span>', $class , $msg );
