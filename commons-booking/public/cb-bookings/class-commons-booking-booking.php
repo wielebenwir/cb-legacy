@@ -486,7 +486,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                             $this->set_booking_vars();
 
-                            echo replace_template_tags ( $msg, $this->b_vars); // replace template tags
+                            display_cb_message( $msg, $this->b_vars );
 
                             return cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
@@ -528,7 +528,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                             // Display the Message
                             $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message                      
-                            echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
+                            display_cb_message( $msg, $this->b_vars );
 
                             $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                             $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
@@ -546,12 +546,12 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
 
                             $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
-                            echo replace_template_tags ( $msg, $this->b_vars ); // replace template tags
+                            display_cb_message( $msg, $this->b_vars );
 
                             $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
                         
                         } else {
-                            echo ('You haven´t booked anything.');
+                            display_cb_message( $msg, $this->b_vars );
                         }
 
                     } else {
