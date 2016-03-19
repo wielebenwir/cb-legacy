@@ -329,7 +329,6 @@ class Commons_Booking_Data {
     } else { // no timeframes, item can´t be booked
       return '<span class="cb-error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
     }
-
     return cb_get_template_part( 'item-timeframes', $template_vars, true ); // include the template
 
   }
@@ -619,7 +618,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   public function render_booking_bar() {
 
     $template_vars = array (
-      'target_url' => get_permalink( $this->target_url )
+      'target_url' => get_permalink( $this->target_url ),
+      'plugin_slug' => $this->prefix
       );
     return cb_get_template_part( 'calendar-bookingbar', $template_vars , true );
   }
