@@ -49,6 +49,20 @@ function pages_dropdown() {
   }
 
 /**
+ * Format message
+ *
+ *@param $string, 
+ *
+ *@return html
+ */
+ function display_cb_message( $string, $replace = null, $success = TRUE ) {
+    $msg = replace_template_tags( $string, $replace );
+    $class = $success ? 'success' : 'error';
+    echo sprintf (' <span class="cb-message %s">%s</span>', $class , $msg );
+    // return $string;
+  }
+
+/**
  * Get a list of all dates within the defind range. 
  *
  * @return array dates

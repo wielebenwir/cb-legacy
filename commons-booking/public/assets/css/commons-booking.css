@@ -43,6 +43,17 @@
   color: #56a820; }
 
 /*****************
+ * MESSAGES
+ *
+ */
+.cb-message {
+  display: block; }
+  .cb-message.success {
+    color: #56a820; }
+  .cb-message.error {
+    color: #ff0002; }
+
+/*****************
  * ITEMS LIST
  *
  */
@@ -176,5 +187,3 @@
       font-size: 0.8em; }
     .cb-timeframe ul.cb-calendar .cb-date {
       display: block; }
-
-/*# sourceMappingURL=commons-booking.css.map */

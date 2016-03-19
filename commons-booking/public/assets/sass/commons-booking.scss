@@ -11,6 +11,8 @@ $light-green: #207B1C;
 $dark-red: #A70001;
 $red: #FF0002;
 
+$padding: 5px;
+
 /* mixins */
 
 .padding { padding: 1em; }
@@ -52,7 +54,21 @@ $red: #FF0002;
   color: $green;
 }
 
+/*****************
+ * MESSAGES
+ *
+ */
 
+.cb-message {
+  display: block;
+  &.success {
+    color: $green;
+  }
+  &.error {
+     color: $red;
+  }
+
+}
 
 /*****************
  * ITEMS LIST
