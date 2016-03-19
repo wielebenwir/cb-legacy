@@ -407,6 +407,18 @@ class Commons_Booking {
         return $path;
     }
     /**
+     * Return path to templates.
+     *
+     * @since     0.4.5
+     *
+     * @return    string    
+     */
+    public function get_template_dir() {
+
+        $path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
+        return $path;
+    }    
+    /**
      * Return admin settings.
      *
      * @since     0.6
