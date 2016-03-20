@@ -240,7 +240,7 @@ class Commons_Booking {
             'has_archive'        => true,
             'hierarchical'       => false,
             'menu_position'      => null,
-            'supports'           => array( 'title', 'editor', 'author', 'thumbnail' )
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' )
         );
 
         register_post_type( 'cb_items', $item_args );
@@ -305,6 +305,7 @@ class Commons_Booking {
     public function cb_content( $page_content ) {
 
         $settings_display = $this->settings->get_settings('pages'); // get array of page ids from settings
+        $post_id = get_the_ID();
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
@@ -326,10 +327,15 @@ class Commons_Booking {
 
                 $item_id = get_the_ID();
                 $timeframes = new Commons_Booking_Data();
-
                 return $page_content . $timeframes->render_item_single( $item_id ) . $timeframes->render_booking_bar() ;
 
+            } elseif ( ( is_post_type_archive ( 'cb_items' ) ) OR ( is_tax( 'cb_items_category' ) ) ) { // list of items 
+
+                $tf = new Commons_Booking_Data();
+                return $tf->render_item_list( );
+            
             } else { 
+
                 return $page_content;
             }
         }    
@@ -409,7 +415,7 @@ class Commons_Booking {
     /**
      * Return path to templates.
      *
-     * @since     0.4.5
+     * @since     0.6
      *
      * @return    string    
      */

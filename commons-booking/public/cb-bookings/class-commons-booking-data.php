@@ -195,6 +195,21 @@ class Commons_Booking_Data {
   }
 
 /**
+ * Get Item meta
+ *
+ *@param $id item id
+ *
+ *@return array 
+ *
+ */
+  public function get_item_meta ( $id ) {
+  
+    $meta = get_post_meta ( $id );
+
+  }
+
+
+/**
  * Get Item post & meta outside the loop
  *
  *@param $id item id
@@ -277,13 +292,27 @@ class Commons_Booking_Data {
   }
 
 /**
- * Single item, all calendars.  
+ * Single item, all calendars. @TODO: retire 
  *
  *@param $id item id
  *
 */
 
   public function render_item_single( $item_id  ) {
+
+    $template_vars = $this->get_timeframe_array( $item_id );
+    return cb_get_template_part( 'item-timeframes', $template_vars, true ); // include the template
+
+  }
+
+/**
+ * Single item, all calendars. 
+ *
+ *@param $id item id
+ *
+*/
+
+  public function get_timeframe_array( $item_id, $single = FALSE  ) {
 
     // 1. Get Item (Title & Description)
     $item = $this->get_item( $item_id );
@@ -295,7 +324,7 @@ class Commons_Booking_Data {
     // 2. Calculate start & end dates 
     $date_range_start = date('Y-m-d'); // current date
     $date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' )); // current date + configured daystoshow setting
-    $dates_list = $this->get_dates_list ( $date_range_start, $date_range_end );
+    $dates_list = $this->get_dates_list ( $date_range_start, $date_range_end, $single );
 
     // 3. Get timeframes from the db that: match the item_id + end_date is after today´s date
     $timeframes = $this->get_timeframes( $item_id, $date_range_start );
@@ -335,11 +364,31 @@ class Commons_Booking_Data {
       }
 
     } else { // no timeframes, item can´t be booked
-      return '<span class="cb-error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
+      return FALSE;
     }
-    return cb_get_template_part( 'item-timeframes', $template_vars, true ); // include the template
-
+    return $template_vars;
   }
+
+
+  public function render_item_list () {
+
+    $content = '';
+    $id = get_the_ID(); // get post id 
+
+    $attributes = get_post_meta( $id );
+    $content =  cb_get_template_part( 'item-list-item', $attributes );      
+
+    $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
+
+    if ( $timeframes ) {
+      $content .=  cb_get_template_part( 'item-list-timeframes', $timeframes );           
+    } else {
+      $content = '<span class="cb-message error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
+    }
+    
+    return $content;
+
+  }  
 
 /**
  * Prepare attributes for calendar-cell template

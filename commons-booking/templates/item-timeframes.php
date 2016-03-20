@@ -29,4 +29,5 @@
           <?php } // end foreach: cell ?>
         </ul>
     </div>
+  </div>
 <?php } // end foreach: timeframes ?>
