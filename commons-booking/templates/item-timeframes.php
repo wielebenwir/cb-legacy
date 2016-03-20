@@ -8,6 +8,7 @@
 
 <?php // timeframes ?>
 <?php foreach ( $attributes['timeframes'] as $tf ) { ?>
+  <a name="timeframe<?= $tf['timeframe_id'] ?>"></a>
    <div class="cb-timeframe" data-tfid="<?= $tf['timeframe_id'] ?>" data-itemid="<?=$attributes['item']['ID'] ?>" data-locid="<?= $tf['location_id'] ?>">   
     <div class="cb-location">
       <span class="cb-date"><?=$tf['date_range'] ?></span>
