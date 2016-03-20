@@ -486,9 +486,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                             $this->set_booking_vars();
 
-                            display_cb_message( $msg, $this->b_vars );
-
-                            return cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
+                            return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
                     } // end if validated - days
 
@@ -528,15 +526,16 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             // check if status is pending and confirm = 1 
 
                             // Display the Message
-                            $msg = ( $booking_messages['messages_booking_confirmed'] );  // get message                      
-                            display_cb_message( $msg, $this->b_vars );
-
+                            $msg = ( $booking_messages[ 'messages_booking_confirmed' ] );  // get message   
+                            
                             $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                             $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
                             $this->send_mail( $this->user['email'] );
 
                             // PRINT: Booking review, Cancel Button
-                            return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                            $message = display_cb_message( $msg, $this->b_vars );
+                            return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                                exit;
 
                         } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                             // booking is confirmed and we are not cancelling
@@ -549,15 +548,15 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             // booking is confirmed and we are cancelling
                         
                             $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
-                            display_cb_message( $msg, $this->b_vars, 'error' );
 
                             $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
+                            return display_cb_message( $msg, $this->b_vars );
                         
                         } else {
                             // canceled booking, page refresh
 
-                            $msg = __( 'Error: Booking not found', $this->prefix );
-                            display_cb_message( $msg, $success = FALSE );
+                            $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
+                            return display_cb_message( $msg, array(), FALSE );
 
                         }
 
