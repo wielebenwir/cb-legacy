@@ -63,8 +63,7 @@ function pages_dropdown() {
 
     $msg = replace_template_tags( $string, $replace );
     $class = $success ? 'success' : 'error';
-    echo sprintf (' <span class="cb-message %s">%s</span>', $class , $msg );
-    // return $string;
+    return sprintf (' <p class="cb-message %s">%s</p>', $class , $msg );
   }
 
 /**
