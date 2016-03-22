@@ -62,7 +62,7 @@
           var dataContainer = $( '#cb-bookingbar #data' );
 
           var wrapper = $( '.cb-timeframe' );
-          var calEl = $( '.cb-calendar li' );
+          var calEl = $( '.cb-timeframes-wrapper' );
           var msgEl = $( '#cb-bookingbar-msg' );
 
           var formEl = $( '#booking-selection');
@@ -72,6 +72,8 @@
           var form_location_id = $( 'input[name="location_id"]' ); 
           var form_timeframe_id = $( 'input[name="timeframe_id"]' ); 
           var formButton = $('#cb-submit a');
+
+          var allDates = calEl.find('li');
 
           // set starting text
           startContainer.html ( text_choose );
@@ -91,12 +93,194 @@
             event.preventDefault();
             formEl.submit();
           });
+              var temp = [];
 
-        wrapper.each( function( ) {
-          $( 'li', this).on( "click", function( index ) {
-              update ( $( this ).index(), $( this ).parents( '.cb_timeframe_form' ).attr( 'id' ) );
+          calEl.selectonic({
+            multi: true,
+            mouseMode: "toggle",
+            keyboard: false,
+            selectedClass: "selected",
+            filter: ".bookable",
+            select: function(event, ui) {
+
+              // set_neighbours( ui );
+              // update_neighbours(ui);
+              // temp = calEl.selectonic( 'getSelected');
+              // is_continous ( temp );
+              // temp.next().css( "background-color", "red" );
+
+              // do something cool, for expample enable actions buttons
+            },
+            stop: function(event, ui) {
+              update_selected();
+              // var validation_passed = validatebefore( ui );
+              // if( ! validation_passed ) {
+              //   this.selectonic("cancel"); // inside callback
+              // }
+
+
+            },
+            unselectAll: function(event, ui) {
+              // …and disable actions buttons
+            }
           });
-        });
+          
+          var selected; 
+          var allDates = calEl.find('li');
+          var parentCal = [];
+
+          function update_selected() {
+
+            selected = calEl.find('li.selected');
+            
+            // check if selection spans more than one timeframe 
+            if ( $(selected).parents('.cb-timeframe').length > 1 ) {
+              console.log ("2 selected");
+            }
+
+            if ( selected.length > 3) {
+              console.log ("more than 3 selected");
+            }
+
+            var indexes = [];
+            var sequential = [];
+
+            $(selected).each(function () {
+               indexes.push ( $(this).index());
+            } );
+
+            var neighbours = [
+              indexes[0] - 1,
+              indexes[indexes.length-1] + 1,
+            ]
+
+            console.log (neighbours);
+            sequential = checkSequential( indexes );
+            var neighbours = getNeighbours( indexes, sequential );
+            // setHighlights( indexes, sequential);
+            
+
+            if ( indexes.length > 0 ) {
+            }
+            // console.log (sequential);
+            var overbookable = true;
+
+            // check if selection is sequential
+            // return neighbours, 
+            function checkSequential( indexes ) {
+              var counter = 0;
+              var low = indexes[0];
+              var high = indexes[indexes.length-1];
+              var betweenIndexes = [];
+              for (var i = low; i < high; i++) {
+                if ( ( low + counter != indexes[counter] ) && ( overbookable = true )) { // date is not in indexes, check if over-bookable
+                  var el = $( allDates ).get( low + counter );
+                  var isClosed = $(el).hasClass('closed');
+                  if ( ! isClosed ) {
+                    return false;            
+                    } else {
+                      betweenIndexes.push( low + counter );
+                    }
+                  }           
+                counter++;   
+              }
+              return betweenIndexes;        
+            }
+
+
+            function getNeighbours( selectionIndexes, sequentialIndexes ) {
+              var merged = selectionIndexes.concat(sequentialIndexes); // Merges both arrays
+              merged.sort();
+              console.log(merged);
+            }
+
+            // console.log(indexes);
+
+            // parentCal = selected.parents('.cb-timeframe').attr("id");
+
+            // check if selection is in same calendar (timeframe)
+
+            // console.log(selected);
+            // console.log("-----");
+
+            // $(parentCal).each(function () {
+            //    console.log ( this.data('tfid'));
+            // } );
+           
+
+            // console.log (els);
+            allDates.each(function () {
+              // console.log ($(allDates).index(this));              
+            } );
+
+          }
+
+          function sort_by_index( els ) {
+            els.sort(function(a,b){
+                return parseInt(a.index) > parseInt(b.index);
+            });
+          }
+
+          function update_neighbours( el ) {
+            var next = $(el.target).next();
+            var prev = $(el.target).prev();
+
+            validate_el( next );
+            validate_el( prev );
+
+          }
+
+          function validate_el( el ) {
+            if ( ! el.hasClass('selected')) {
+              el.addClass( 'selectable-glow' );
+            }
+          }
+
+          function set_neighbours( el ) {
+            // temp = calEl.selectonic("getSelected");
+
+            // console.log (temp.length);
+            $(el).nextAll().slice(0,4).css( "background-color", "red" );
+            $(el).prevAll().slice(0,4).css( "background-color", "green" );    
+          }
+
+          function validatebefore( el ) {
+            var tempList = [];
+            tempList = calEl.selectonic( 'getSelected');
+            // console.log(tempList.length);
+            console.log ( el.target );
+            if ( tempList.length > 6 ) {
+              return false;
+            } else {
+              return true;
+            }
+
+          }
+
+        function get_selectable_elements( selection ) {
+
+        }
+
+        function is_continous( els ) {
+          var sorted = sort_by_id( els );
+          console.log (els);
+          console.log (sorted );
+
+          // console.log ( els ); 
+  
+        }
+
+        function sort_by_id ( els ) {
+            els.sort(function(a,b){
+              return parseInt(a.id) > parseInt(b.id);
+          });
+        }
+
+        // wrapper.each( function( ) {
+        //   $( 'li', this).on( "click", function( index ) {
+        //       update ( $( this ).index(), $( this ).parents( '.cb_timeframe_form' ).attr( 'id' ) );
+        //   });
+        // });
 
         function update( index, tf_id ) {
 
