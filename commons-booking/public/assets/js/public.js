@@ -44,6 +44,14 @@
           var text_pickup = cb_js_vars.text_pickup;
           var text_pickupreturn = cb_js_vars.text_pickupreturn;
           var text_choose = cb_js_vars.text_choose;
+
+          var text_errors = {
+            'maxDays': cb_js_vars.text_error_days + maxDays,
+            'timeframes': cb_js_vars.text_error_timeframes,
+            'closedforbidden': cb_js_vars.text_error_closedforbidden,
+            'sequential': cb_js_vars.text_error_sequential
+          };
+
           var text_error_days = cb_js_vars.text_error_days;
           var text_error_timeframes = cb_js_vars.text_error_timeframes;
           var text_error_notbookable = cb_js_vars.text_error_notbookable;
@@ -74,6 +82,8 @@
           var formButton = $('#cb-submit a');
 
           var allDates = calEl.find('li');
+
+          var errors = [];
 
           // set starting text
           startContainer.html ( text_choose );
@@ -112,12 +122,17 @@
               // do something cool, for expample enable actions buttons
             },
             stop: function(event, ui) {
-              update_selected();
-              // var validation_passed = validatebefore( ui );
-              // if( ! validation_passed ) {
-              //   this.selectonic("cancel"); // inside callback
-              // }
 
+              var msgErrors = update_selected();
+              console.log (errors.length);
+              if( errors.length > 0 ) {     
+                  this.selectonic("cancel"); // cancel selection
+                  for (var i = msgErrors.length - 1; i >= 0; i--) {
+                    displayErrorNotice( text_errors[ msgErrors[i] ] );
+                    // console.log( text_errors[ errors[i] ]);
+                  }
+
+              }
 
             },
             unselectAll: function(event, ui) {
@@ -128,18 +143,25 @@
           var selected; 
           var allDates = calEl.find('li');
           var parentCal = [];
+            // console.log (sequential);
+          var overbookable = true;
+
 
           function update_selected() {
 
-            selected = calEl.find('li.selected');
+            errors = [];
+
+            selected = calEl.find('li.selected'); // find selected elements
             
+            // VALIDATION
             // check if selection spans more than one timeframe 
             if ( $(selected).parents('.cb-timeframe').length > 1 ) {
-              console.log ("2 selected");
+              errors.push ("text_error_timeframes");
             }
 
+            // Check if selection is more than 3 days
             if ( selected.length > 3) {
-              console.log ("more than 3 selected");
+              errors.push ("maxDays");
             }
 
             var indexes = [];
@@ -149,21 +171,18 @@
                indexes.push ( $(this).index());
             } );
 
-            var neighbours = [
-              indexes[0] - 1,
-              indexes[indexes.length-1] + 1,
-            ]
-
-            console.log (neighbours);
             sequential = checkSequential( indexes );
-            var neighbours = getNeighbours( indexes, sequential );
-            // setHighlights( indexes, sequential);
-            
 
-            if ( indexes.length > 0 ) {
-            }
-            // console.log (sequential);
-            var overbookable = true;
+            // console.log (els);
+            allDates.each(function () {
+              // console.log ($(allDates).index(this));              
+            } );
+            console.log(errors);
+
+            return errors;
+
+          } // end update_selected()
+
 
             // check if selection is sequential
             // return neighbours, 
@@ -172,48 +191,30 @@
               var low = indexes[0];
               var high = indexes[indexes.length-1];
               var betweenIndexes = [];
+
+              // loop through days
               for (var i = low; i < high; i++) {
-                if ( ( low + counter != indexes[counter] ) && ( overbookable = true )) { // date is not in indexes, check if over-bookable
-                  var el = $( allDates ).get( low + counter );
-                  var isClosed = $(el).hasClass('closed');
-                  if ( ! isClosed ) {
-                    return false;            
-                    } else {
-                      betweenIndexes.push( low + counter );
-                    }
-                  }           
+                if ( ( low + counter != indexes[counter] ) ) { // date is not in indexes, check if over-bookable
+                  if ( overbookable === true ) { // booking over closed days is enabled
+                    var el = $( allDates ).get( low + counter );
+                    var isClosed = $(el).hasClass('closed');
+                    var isSelected = $(el).hasClass('selected');
+                    if ( ( isClosed)  ||  ( isSelected ) ) { // el in between is closed or selected
+                        betweenIndexes.push( low + counter );          
+                      }  else { // el in between is NOT a closed or selected day, abort selection with error
+                        errors.push ("sequential");
+                        return false;  
+                      }
+                  } else { // booking over closed days is NOT allowed
+                    errors.push ("closedforbidden");
+                    return false;
+                  }
+                }           
                 counter++;   
               }
-              return betweenIndexes;        
+              return true;  
             }
 
-
-            function getNeighbours( selectionIndexes, sequentialIndexes ) {
-              var merged = selectionIndexes.concat(sequentialIndexes); // Merges both arrays
-              merged.sort();
-              console.log(merged);
-            }
-
-            // console.log(indexes);
-
-            // parentCal = selected.parents('.cb-timeframe').attr("id");
-
-            // check if selection is in same calendar (timeframe)
-
-            // console.log(selected);
-            // console.log("-----");
-
-            // $(parentCal).each(function () {
-            //    console.log ( this.data('tfid'));
-            // } );
-           
-
-            // console.log (els);
-            allDates.each(function () {
-              // console.log ($(allDates).index(this));              
-            } );
-
-          }
 
           function sort_by_index( els ) {
             els.sort(function(a,b){
@@ -349,10 +350,19 @@
 
           }
 
+          // show error notice
+          function displayErrorNotice ( msg ) {
+            msgEl.html( msg );
+            msgEl.show();
+            msgEl.attr( 'class', 'error' );
+            msgEl.delay(3000).fadeOut();
+          }
+
+
           // show notices
           function displayNotice ( msg, theclass) {
             msgEl.html( msg );
-            msgEl.show();
+            msgEl.slideDown();
             msgEl.attr( 'class', theclass );
             msgEl.delay(3000).fadeOut();
           }
