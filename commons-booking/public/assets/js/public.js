@@ -63,11 +63,12 @@
 
           // DOM containers
           var debug = $( '#debug' );
+          var introContainer = $( '#intro' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
           var bookingButton = $( '#cb-submit .button' );
   
-          var dataContainer = $( '#cb-bookingbar #data' );
+          var dataContainer = $( '#cb-bookingbar #data' ); // @TODO: Retire me
 
           var wrapper = $( '.cb-timeframe' );
           var calEl = $( '.cb-timeframes-wrapper' );
@@ -85,8 +86,10 @@
 
           var errors = [];
 
+
           // set starting text
-          startContainer.html ( text_choose );
+          introContainer.html (text_choose);
+          startContainer.html ( '' );
           endContainer.html ( '' );
           bookingButton.hide();
 
@@ -123,15 +126,19 @@
             },
             stop: function(event, ui) {
 
-              var msgErrors = update_selected();
-              console.log (errors.length);
+              var indexes = update_selected();
+              var msgErrors = errors;
+
+              // console.log (errors);
               if( errors.length > 0 ) {     
                   this.selectonic("cancel"); // cancel selection
                   for (var i = msgErrors.length - 1; i >= 0; i--) {
                     displayErrorNotice( text_errors[ msgErrors[i] ] );
-                    // console.log( text_errors[ errors[i] ]);
                   }
 
+              } else {
+                  update_neighbours( indexes );
+                  update_bookingbar( indexes );
               }
 
             },
@@ -141,45 +148,54 @@
           });
           
           var selected; 
-          var allDates = calEl.find('li');
-          var parentCal = [];
-            // console.log (sequential);
+          var allDates = calEl.find('li.bookable');
+          var parentCalID = '';
           var overbookable = true;
 
 
           function update_selected() {
 
             errors = [];
+            var indexes = [];
 
             selected = calEl.find('li.selected'); // find selected elements
-            
-            // VALIDATION
+            var selectedCount = selected.length;
+
+            parentCalID = $(selected).parents('.cb-timeframe').attr('id');
+
+            // VALIDATION - Timeframe
             // check if selection spans more than one timeframe 
             if ( $(selected).parents('.cb-timeframe').length > 1 ) {
               errors.push ("text_error_timeframes");
             }
 
+            // VALIDATION - Day Count
             // Check if selection is more than 3 days
-            if ( selected.length > 3) {
+            if ( selectedCount > 3) {
               errors.push ("maxDays");
             }
 
-            var indexes = [];
+            // var indexes = [];
             var sequential = [];
 
-            $(selected).each(function () {
-               indexes.push ( $(this).index());
+            selected.each(function ( index, element ) {
+               // console.log( $(element).attr('id'));
+               indexes.push ( calEl.find(element).index( 'li.bookable') );
+               console.log ( calEl.find(element).index( 'li.bookable') );
             } );
 
+            var selectedIndexesTest = [];
+            var selectedIndexesTest = calEl.find('li.selected').index( 'li.bookable');
+            // console.log(selectedIndexesTest);
+
+            // VALIDATION - Overbookable days
+            // see function
             sequential = checkSequential( indexes );
 
-            // console.log (els);
-            allDates.each(function () {
-              // console.log ($(allDates).index(this));              
-            } );
-            console.log(errors);
+            // console.log(indexes);
 
-            return errors;
+            
+            return indexes;
 
           } // end update_selected()
 
@@ -215,140 +231,37 @@
               return true;  
             }
 
+            // highlight elements available for selection
+            function update_neighbours( indexes ) {
 
-          function sort_by_index( els ) {
-            els.sort(function(a,b){
-                return parseInt(a.index) > parseInt(b.index);
-            });
-          }
+              // remove Classnames 
+              $(allDates).each(function () {
+                 $(this).removeClass('selectable-happy');
+              } );
 
-          function update_neighbours( el ) {
-            var next = $(el.target).next();
-            var prev = $(el.target).prev();
+            if ( indexes.length < maxDays) {
 
-            validate_el( next );
-            validate_el( prev );
+              var low = indexes[0] -1;
+              if ( low < 0 ) { low = 0 }
+              var high = indexes[indexes.length-1] + 1;
 
-          }
+              var nextEl = $(allDates).eq(high);
 
-          function validate_el( el ) {
-            if ( ! el.hasClass('selected')) {
-              el.addClass( 'selectable-glow' );
+              if ( nextEl.hasClass('bookable') &&  ! ( nextEl.hasClass('selected' ))) {
+                nextEl.addClass('selectable-happy');
+                } else if ( nextEl.hasClass('closed') ) {
+                  nextEl.nextUntil('.bookable').last().next().addClass('selectable-happy');
+                }
+              var prevEl = $(allDates).eq(low);
+              if ( prevEl.hasClass('bookable') &&  ! ( prevEl.hasClass('selected' ))) {
+                prevEl.addClass('selectable-happy');
+                } else if ( prevEl.hasClass('booked') ) {
+
+                } else if ( prevEl.hasClass('closed') ) {
+                  prevEl.prevUntil('.bookable').last().prev().addClass('selectable-happy');
+                }
+              } 
             }
-          }
-
-          function set_neighbours( el ) {
-            // temp = calEl.selectonic("getSelected");
-
-            // console.log (temp.length);
-            $(el).nextAll().slice(0,4).css( "background-color", "red" );
-            $(el).prevAll().slice(0,4).css( "background-color", "green" );    
-          }
-
-          function validatebefore( el ) {
-            var tempList = [];
-            tempList = calEl.selectonic( 'getSelected');
-            // console.log(tempList.length);
-            console.log ( el.target );
-            if ( tempList.length > 6 ) {
-              return false;
-            } else {
-              return true;
-            }
-
-          }
-
-        function get_selectable_elements( selection ) {
-
-        }
-
-        function is_continous( els ) {
-          var sorted = sort_by_id( els );
-          console.log (els);
-          console.log (sorted );
-
-          // console.log ( els ); 
-  
-        }
-
-        function sort_by_id ( els ) {
-            els.sort(function(a,b){
-              return parseInt(a.id) > parseInt(b.id);
-          });
-        }
-
-        // wrapper.each( function( ) {
-        //   $( 'li', this).on( "click", function( index ) {
-        //       update ( $( this ).index(), $( this ).parents( '.cb_timeframe_form' ).attr( 'id' ) );
-        //   });
-        // });
-
-        function update( index, tf_id ) {
-
-          var clickedIndexes = [];
-
-          var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
-          var clickedIndexes = selectedIndexes.concat();
-
-          // De-Selection
-          if ( needle > -1 )  { // already selected, so de-select
-            clickedIndexes.splice( needle, 1 );              
-          } else {        
-            if (selectedIndexes.length > 1 ) { // 2 selected, so exchange first item with it
-              clickedIndexes[0] = index;   
-            } else {
-               clickedIndexes.push ( index );          
-            }
-          }
-
-
-          // Calculate Distance & get the classes of the days in between
-          var distance = 0;
-          var daystatus = 0;
-
-          if ( clickedIndexes.length > 1 ) { // if more than one clicked 
-            var firstEl = $( '#'+tf_id+' li').eq( clickedIndexes[0] ).attr('id');
-            var secondEl = $( '#'+tf_id+' li').eq( clickedIndexes[1] ).attr('id');
-            
-            var daysBetween = getDaysBetween (firstEl, secondEl);
-            daystatus = getDayStatus ( daysBetween );            
-            distance = daysBetween.length -1;
-
-          }
-
-          // if setting allowclosed is set, add the closed days to the max days to allow booking           
-          var theDays;
-          if ( allowclosed == 1 ) {
-            theDays = maxDays + daystatus;
-          } else {
-            theDays = maxDays;
-          }
-
-          // VALIDATION
-          if ( selectedIndexes.length > 0 && currentTimeFrame != tf_id ) { // within current timeframe
-              displayNotice (text_error_timeframes,  "error");
-              return false;
-          } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
-              displayNotice (text_error_notbookable,  "error");
-              return false;       
-          } else if ( distance >= theDays ) { // max days is not exceeded
-              displayNotice (text_error_days + maxDays, "error");
-              return false;              
-          } else if ( daystatus < 0 ) { // between pickup date and return date is a booked date
-              displayNotice ( text_error_bookedday, "error");
-              return false;            
-          } else if ( ( daystatus > 0 ) && ( allowclosed = 0 ) ) { // booking over closed days, but not allowed
-              displayNotice ( text_error_closedforbidden , "error");
-              return false;       
-          } else { // no errors
-            selectedIndexes = clickedIndexes;  
-            currentTimeFrame = tf_id;     
-          }
-
-          // set selected, show Booking Button
-          setSelected( selectedIndexes, tf_id );
-
-          }
 
           // show error notice
           function displayErrorNotice ( msg ) {
@@ -359,105 +272,113 @@
           }
 
 
-          // show notices
-          function displayNotice ( msg, theclass) {
-            msgEl.html( msg );
-            msgEl.slideDown();
-            msgEl.attr( 'class', theclass );
-            msgEl.delay(3000).fadeOut();
+          function setDataContainer( start, end, meta ) {
+
+              form_date_start.val( start );
+              form_date_end.val( end );
+              form_timeframe_id.val( meta['timeframe'] );
+              form_item_id.val( meta['item'] );
+              form_location_id.val( meta['location'] ); 
+
+          }
+
+          // return the timeframe-id, location-id & item-id of the timeframe containing the currently selected days  
+          function getCurrentTimeframeMeta( indexes ) {
+            var timeframe = allDates.eq(indexes[0]).parents('.cb-timeframe');
+            var tf_id = timeframe.attr('id');
+            var item_id = timeframe.data('itemid');
+            var loc_id = timeframe.data('locid');
+            var meta = {  
+              timeframe:  tf_id, 
+              item:       item_id, 
+              location:   loc_id
+            };
+            return meta; 
+          }
+
+
+          function bookingbar_set_text( target, content ) {
+
+            if (content) {
+              target.html(content);
+              target.fadeIn('slow');
+            } else {
+              target.fadeOut('fast');      
+            }
           }
 
           // set the selection & texts 
-          function setSelected( selected, id ) {
+          function update_bookingbar( indexes ) {
 
-            var tf_id = id;
-            var indexes = selected.concat();
-            var textFirst;
-            var textSecond;
+            var tf_meta = getCurrentTimeframeMeta( indexes );
+            var textFirst = '';
+            var textSecond = '';
 
-            var ready = 0;
+            var pickupIndex = indexes[0];
+            var returnIndex = indexes[ indexes.length -1 ];
 
-            var indexes = selected.sort(function(a,b){return a - b});
-            var targetli = $( '#'+tf_id+' li' );
+            var pickupDate = allDates.get([ pickupIndex ]);
+            var returnDate = allDates.get([ returnIndex ]);
 
-            targetli.each(function( myindex ) {
-              if ( $.inArray( myindex, indexes )  > -1 )  {
-                $( this ).addClass(' selected ');
-              } else {
-                $( this ).removeClass(' selected ');
+            if ( indexes.length > 0 ) { // there is a selection, show dates in bar
+
+              var dateStartID = $(pickupDate).attr('id');
+              var dateEndID = $(returnDate).attr('id');
+
+              introContainer.hide();
+
+              if ( pickupDate == returnDate ) { // one day selected
+
+                textFirst = text_pickupreturn + '<div class="bb-date">' + pickupDate.innerHTML + '</div>'; // set Text
+                textSecond = '';
+
+              } else { // at least two days selected
+
+                textFirst = text_pickup + '<div class="bb-date">' + pickupDate.innerHTML + '</div>'; // set Text
+                textSecond = text_return + '<div class="bb-date">' + returnDate.innerHTML + '</div>';
+
+              }
+
+              setDataContainer( dateStartID, dateEndID, tf_meta ); // update the form
+              bookingButton.fadeIn(800); // we show the booking button
+
+            } else { // no selection, reset the text to standard
+
+              introContainer.fadeIn ('fast');
+              bookingButton.fadeOut(200); 
+
             }
-            });   
+              bookingbar_set_text( startContainer, textFirst );
+              bookingbar_set_text( endContainer, textSecond );
+
+            // var ready = 1;
+            // startContainer.fadeOut(200);
+            // startContainer.html ( textFirst );
+            // startContainer.fadeIn(500);
+
+            // endContainer.fadeOut(200);
+            // endContainer.html ( textSecond );  
+            // endContainer.fadeIn(500);
 
 
-            if ( indexes.length == 1  ) { // 1 selected -> pickup & return same day 
+            // if ( ready == 1 ) {
+
+
+            //   // dataContainer.data( "tf_id", targetli.parents('.cb-timeframe').data('tfid') );  // get data from DOM data- attribute
+            //   // dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
+            //   // dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
+
+            //   // set inputs
               
-              textFirst = text_pickupreturn + targetli.get([ indexes[0] ]).innerHTML; // set Text
-              textSecond = '';
-
-              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') ); // write to Container
-              dataContainer.data( "de", targetli.eq([ indexes[0] ]).attr('id') ); 
-            
-              ready = 1;
-
-            } else if ( indexes.length == 2 ) { // 2 selected -> pickup & return different days 
-
-              textFirst = text_pickup + targetli.get([ indexes[0] ]).innerHTML; // set Text
-              textSecond = text_return + targetli.get([ indexes[1] ]).innerHTML;
-
-              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') );  // write to Container
-              dataContainer.data( "de", targetli.eq([ indexes[1] ]).attr('id') ); 
-
-              ready = 1;
-
-            } else { // None selected or error
-
-              form_date_start.val(''); // clear start & end input values
-              form_date_end.val('');  
-              
-              textFirst = text_choose;    // set texts
-              textSecond = "";
-
-              ready = 0;
-            } 
-
-            startContainer.fadeOut(200);
-            startContainer.html ( textFirst );
-            startContainer.fadeIn(500);
-
-            endContainer.fadeOut(200);
-            endContainer.html ( textSecond );  
-            endContainer.fadeIn(500);
-
-
-            if ( ready == 1 ) {
-
-
-              dataContainer.data( "tf_id", targetli.parents('.cb-timeframe').data('tfid') );  // get data from DOM data- attribute
-              dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
-              dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
-
-              // set inputs
-              form_date_start.val( dataContainer.data ("ds") );
-              form_date_end.val( dataContainer.data ("de") );
-
-              form_timeframe_id.val( dataContainer.data ("tf_id") );
-              form_item_id.val( dataContainer.data ("item_id") );
-              form_location_id.val( dataContainer.data ("location_id") );      
-
-              bookingButton.fadeIn(800); 
-            } else {
-              bookingButton.fadeOut(300);           
-            }
+            // } else {
+            //   bookingButton.fadeOut(300);           
+            // }
 
           } // setselected
 
           function updateData ( ds ) {
             dataContainer.data( "ds", ds );
             dataContainer.data( "de", de );
-
-          }
-
-          function setData () {
 
           }
 
