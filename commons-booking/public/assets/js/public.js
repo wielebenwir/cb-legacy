@@ -82,9 +82,10 @@
           var form_timeframe_id = $( 'input[name="timeframe_id"]' ); 
           var formButton = $('#cb-submit a');
 
-          var allDates = calEl.find('li');
+          var allCalendarDates = calEl.find('li');
 
           var errors = [];
+          var selectedCount;
 
 
           // set starting text
@@ -126,7 +127,7 @@
             },
             stop: function(event, ui) {
 
-              var indexes = update_selected();
+              var selectedIndexes = update_selected();
               var msgErrors = errors;
 
               // console.log (errors);
@@ -137,8 +138,8 @@
                   }
 
               } else {
-                  update_neighbours( indexes );
-                  update_bookingbar( indexes );
+                  update_neighbours( selectedIndexes, selectedCount );
+                  update_bookingbar( selectedIndexes );
               }
 
             },
@@ -148,8 +149,8 @@
           });
           
           var selected; 
-          var allDates = calEl.find('li.bookable');
-          var parentCalID = '';
+          var allBookableDates = calEl.find('li.bookable');
+          var parentCal = '';
           var overbookable = true;
 
 
@@ -157,11 +158,12 @@
 
             errors = [];
             var indexes = [];
+            var selectedIDs = [];
 
             selected = calEl.find('li.selected'); // find selected elements
-            var selectedCount = selected.length;
+            selectedCount = selected.length;
 
-            parentCalID = $(selected).parents('.cb-timeframe').attr('id');
+            parentCal = $(selected).parents('.cb-timeframe');
 
             // VALIDATION - Timeframe
             // check if selection spans more than one timeframe 
@@ -169,99 +171,128 @@
               errors.push ("text_error_timeframes");
             }
 
+            // var indexes = [];
+            var betweenDays = [];
+            var calIndexes = []; 
+
+            // add selected indexes to array
+            selected.each(function ( index, element ) {
+               indexes.push ( calEl.find(element).index( 'li.bookable') );
+               calIndexes.push ( parentCal.find(element).index() );
+            } );            
+
+            // check if there are days between the selection
+            betweenDays = getDaysBetween( calIndexes );
+
+            if ( betweenDays.length > 0 ) { // there are days between selected
+              if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes
+                var d = checkForClass ( betweenDays, 'closed' );
+                if ( d ) { // all days between are closed
+                  selectedCount++; // booking over closed days, which count as one day           
+                } else { // at least one day between is not closd
+                   errors.push ("sequential");                
+                }
+              } else { //booking over closed days not allowed, so return error
+                errors.push ("sequential");
+              }
+            }
+
             // VALIDATION - Day Count
-            // Check if selection is more than 3 days
-            if ( selectedCount > 3) {
+            // Check if selection is more than max days
+            if ( selectedCount > maxDays ) {
               errors.push ("maxDays");
             }
 
-            // var indexes = [];
-            var sequential = [];
-
-            selected.each(function ( index, element ) {
-               // console.log( $(element).attr('id'));
-               indexes.push ( calEl.find(element).index( 'li.bookable') );
-               console.log ( calEl.find(element).index( 'li.bookable') );
-            } );
-
-            var selectedIndexesTest = [];
-            var selectedIndexesTest = calEl.find('li.selected').index( 'li.bookable');
-            // console.log(selectedIndexesTest);
-
-            // VALIDATION - Overbookable days
-            // see function
-            sequential = checkSequential( indexes );
-
-            // console.log(indexes);
-
-            
             return indexes;
 
           } // end update_selected()
 
 
-            // check if selection is sequential
-            // return neighbours, 
-            function checkSequential( indexes ) {
+          function checkForClass( els, myClass ) {
+
+            var count = 0;
+            $(els).each( function ( ) {
+              $(this).css('border', '1px solid red');
+              if ( $(this).hasClass( myClass )) {
+                console.log ("has class");
+                count++;
+              } else {
+                console.log ("has not class");
+                return false;
+              }
+            });
+              return count;
+          }
+
+          function getNeighbours ( indexes ) {
+              var array = [];
+              var low = indexes[0] - 1;
+              var high = indexes[indexes.length];
+              return array [low, high];          
+          } 
+
+          // check if there are non-selected days between selection
+          function getDaysBetween( calIndexes ) {
               var counter = 0;
-              var low = indexes[0];
-              var high = indexes[indexes.length-1];
-              var betweenIndexes = [];
+              var low = calIndexes[0];
+              var high = calIndexes[calIndexes.length-1];
+              var daysBetween = [];
 
               // loop through days
-              for (var i = low; i < high; i++) {
-                if ( ( low + counter != indexes[counter] ) ) { // date is not in indexes, check if over-bookable
-                  if ( overbookable === true ) { // booking over closed days is enabled
-                    var el = $( allDates ).get( low + counter );
-                    var isClosed = $(el).hasClass('closed');
-                    var isSelected = $(el).hasClass('selected');
-                    if ( ( isClosed)  ||  ( isSelected ) ) { // el in between is closed or selected
-                        betweenIndexes.push( low + counter );          
-                      }  else { // el in between is NOT a closed or selected day, abort selection with error
-                        errors.push ("sequential");
-                        return false;  
-                      }
-                  } else { // booking over closed days is NOT allowed
-                    errors.push ("closedforbidden");
-                    return false;
-                  }
-                }           
-                counter++;   
+              for (var i = low; i < high; i++) { 
+                if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
+                  // daysBetween.push( calEl.eq(low + counter) );
+                  daysBetween.push( parentCal.find('li').eq(low + counter) );
+                }
+                counter++;
               }
-              return true;  
-            }
+              return daysBetween;    
+          }
 
             // highlight elements available for selection
-            function update_neighbours( indexes ) {
+            function update_neighbours( indexes, selectedCount ) {
 
               // remove Classnames 
-              $(allDates).each(function () {
+              $(allCalendarDates).each(function () {
                  $(this).removeClass('selectable-happy');
               } );
 
-            if ( indexes.length < maxDays) {
+            if ( selectedCount < maxDays ) {
 
-              var low = indexes[0] -1;
-              if ( low < 0 ) { low = 0 }
-              var high = indexes[indexes.length-1] + 1;
+              var currentHighEl = $(allBookableDates).eq(indexes[indexes.length-1]);
+              var currentLowEl = $(allBookableDates).eq(indexes[0]);
+              var nextEl = $(allBookableDates).eq( indexes[indexes.length-1] + 1 );
+              var prevEl = $(allBookableDates).eq( indexes[0] -1 );
+              var leftOverDays = maxDays - (selectedCount + 1);
 
-              var nextEl = $(allDates).eq(high);
+              var between = [];
 
-              if ( nextEl.hasClass('bookable') &&  ! ( nextEl.hasClass('selected' ))) {
-                nextEl.addClass('selectable-happy');
-                } else if ( nextEl.hasClass('closed') ) {
-                  nextEl.nextUntil('.bookable').last().next().addClass('selectable-happy');
-                }
-              var prevEl = $(allDates).eq(low);
-              if ( prevEl.hasClass('bookable') &&  ! ( prevEl.hasClass('selected' ))) {
-                prevEl.addClass('selectable-happy');
-                } else if ( prevEl.hasClass('booked') ) {
-
-                } else if ( prevEl.hasClass('closed') ) {
-                  prevEl.prevUntil('.bookable').last().prev().addClass('selectable-happy');
-                }
+              var nextNeighbours = checkBetween(  currentHighEl, nextEl );
+              var prevNeighbours = checkBetween(  prevEl, currentLowEl  );
               } 
             }
+
+          function checkBetween ( startEl, endEl ) {
+              var start;
+              var end;
+              start = startEl;
+              end = endEl;
+
+              if( startEl.parents( '.cb_timeframe_form').attr('id') != end.parents( '.cb_timeframe_form').attr('id')) {              
+                return false;
+              } 
+              var between = start.nextUntil( end, 'li' );
+              for (var i = 0; i < between.length; i ++) {
+                if ( $(between[i]).hasClass('booked') ) {
+                    return false;
+                  } else {
+                    $(between[i]).addClass('selectable-happy');
+                  }
+                }
+                  start.addClass('selectable-happy');
+                  end.addClass('selectable-happy');
+                return i;
+              };
 
           // show error notice
           function displayErrorNotice ( msg ) {
@@ -284,7 +315,7 @@
 
           // return the timeframe-id, location-id & item-id of the timeframe containing the currently selected days  
           function getCurrentTimeframeMeta( indexes ) {
-            var timeframe = allDates.eq(indexes[0]).parents('.cb-timeframe');
+            var timeframe = allBookableDates.eq(indexes[0]).parents('.cb-timeframe');
             var tf_id = timeframe.attr('id');
             var item_id = timeframe.data('itemid');
             var loc_id = timeframe.data('locid');
@@ -317,8 +348,8 @@
             var pickupIndex = indexes[0];
             var returnIndex = indexes[ indexes.length -1 ];
 
-            var pickupDate = allDates.get([ pickupIndex ]);
-            var returnDate = allDates.get([ returnIndex ]);
+            var pickupDate = allBookableDates.get([ pickupIndex ]);
+            var returnDate = allBookableDates.get([ returnIndex ]);
 
             if ( indexes.length > 0 ) { // there is a selection, show dates in bar
 
@@ -376,6 +407,12 @@
 
           } // setselected
 
+
+          // helper: create range array 
+          function range( start, end ){ 
+            start = start || 1; return end >= start ? range(start,end-1).concat(end) : []; 
+          }
+
           function updateData ( ds ) {
             dataContainer.data( "ds", ds );
             dataContainer.data( "de", de );
@@ -386,30 +423,7 @@
             $( "#target" ).submit();
           }
 
-          /* 
-           * Gets the days between two timestamps
-           * @param   startdate, endDate: timestamps
-           * @return  array (timestamps)
-           */
-          function getDaysBetween(startdate, endDate) { 
 
-            var dates = [startdate, endDate];
-            dates.sort();
-
-            // convert timestamps to date js object
-            var start = new Date( dates[0] * 1000 ),
-                end = new Date ( dates[1]  * 1000 ),
-                currentDate = start,
-                between = []
-            ;
-
-            while (currentDate <= end) {
-                var temp = new Date(currentDate);
-                between.push( temp.getTime()/1000 ); // convert back to timestamp and push into array
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            return between;
-          } // getDaysBetween
           
           /* 
            * Gets the relevant classes 
