@@ -641,7 +641,7 @@ class Commons_Booking {
     public function enqueue_scripts() {
         wp_enqueue_script( $this->get_plugin_slug() . '-plugin-script', plugins_url( 'assets/js/public.js', __FILE__ ), array( 'jquery' ), self::VERSION );
         if ( is_singular ( 'cb_items' )) {
-            wp_enqueue_script( $this->get_plugin_slug() . '-tooltip-lib', plugins_url( 'assets/js/jquery.tooltipster.min.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+            wp_enqueue_script( $this->get_plugin_slug() . '-tooltip-lib', plugins_url( 'assets/js/jquery.tooltipster.min.js', __FILE__ ), array( 'jquery' ), self::VERSION );           wp_enqueue_script( $this->get_plugin_slug() . '-selectonic-lib', plugins_url( 'assets/js/selectonic.min.js', __FILE__ ), array( 'jquery' ), self::VERSION );
         }
     }
     /**
@@ -668,13 +668,14 @@ class Commons_Booking {
             'setting_booking_review_page' => $bookingpage,
             'setting_allowclosed' => $allowclosed,
             'text_start_booking' => __( 'Book here:', $this->get_plugin_slug() ),
-            'text_choose' => __( 'Click pickup and return date(s):', $this->get_plugin_slug() ),
+            'text_choose' => __( 'Click the days you want to book', $this->get_plugin_slug() ),
             'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
             'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
             'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
-            'text_error_days' => __( 'Sorry, To many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
+            'text_error_days' => __( 'Sorry, too many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
             'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() ),
             'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() ),
+            'text_error_sequential' => __( 'Please select sequential days.', $this->get_plugin_slug() ),
             'text_error_bookedday' => __( 'Sorry, there must be no booked day between pickup and return.', $this->get_plugin_slug() ),
             'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', $this->get_plugin_slug() )
                 )
