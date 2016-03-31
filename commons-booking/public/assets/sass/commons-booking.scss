@@ -3,6 +3,7 @@
 $grey: #E1E1E1;
 $light-grey: #F6F6F6;
 $blue: #3356A4;
+$dark-blue: darken($blue, 10%);
 $black: #000;
 $white: #fff;
 $green: #56A820;
@@ -12,8 +13,102 @@ $dark-red: #A70001;
 $red: #FF0002;
 
 $padding: 5px;
+$radius: 10px;
+  $width: 100%;
+  $cellwidth: $width / 7;
+
+
+.test {
+  color: yellow;
+  background: yellow !important;
+  border: 10px solid yellow;
+}
 
 /* mixins */
+
+@mixin linearGradient($top, $bottom){
+    background: $top; /* Old browsers */
+    background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-radius ($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  border-radius:         $radius;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+@mixin border-radiuses ($topright: 0, $bottomright: 0, $bottomleft: 0, $topleft: 0) {
+  -webkit-border-top-right-radius:    $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius:  $bottomleft;
+  -webkit-border-top-left-radius:     $topleft;
+
+  -moz-border-radius-topright:        $topright;
+  -moz-border-radius-bottomright:     $bottomright;
+  -moz-border-radius-bottomleft:      $bottomleft;
+  -moz-border-radius-topleft:         $topleft;
+
+  border-top-right-radius:            $topright;
+  border-bottom-right-radius:         $bottomright;
+  border-bottom-left-radius:          $bottomleft;
+  border-top-left-radius:             $topleft;
+
+  -moz-background-clip:    padding; 
+  -webkit-background-clip: padding-box; 
+  background-clip:         padding-box; 
+}
+
+@mixin selection-end-round( $radius ) {
+  -webkit-border-top-right-radius:    $radius;
+  -webkit-border-bottom-right-radius: $radius;
+
+  -moz-border-radius-topright:        $radius;
+  -moz-border-radius-bottomright:     $radius;
+
+  border-top-right-radius:            $radius;
+  border-bottom-right-radius:         $radius;
+}
+
+@mixin selection-start-round( $radius ) {
+  -webkit-border-top-left-radius:    $radius;
+  -webkit-border-bottom-left-radius: $radius;
+
+  -moz-border-radius-topleft:        $radius;
+  -moz-border-radius-bottomleft:     $radius;
+
+  border-top-left-radius:            $radius;
+  border-bottom-left-radius:         $radius;
+}
+
+@mixin box-shadow( $horiz : .5em , $vert : .5em , $blur : 0px , $spread : 0px , $color : #000000 ){
+  -webkit-box-shadow: $horiz $vert $blur $spread $color;
+  -moz-box-shadow: $horiz $vert $blur $spread $color;
+  box-shadow: $horiz $vert $blur $spread $color;
+}
+
 
 .padding { padding: 1em; }
 .align-right { float: right; }
@@ -34,11 +129,28 @@ $padding: 5px;
 .cb-box { 
     @extend .border;
     @extend .padding;
-    background: $light-grey;
-    margin-bottom: 1em;
+    // background: $light-grey;
     overflow: hidden; 
   }
 
+.cb-timeframe-title {
+  display: block; 
+}
+
+.cb-button {
+  background: $green;
+  padding: $padding;
+  overflow: hidden;
+  color: $white;
+  position: relative;
+  @include rounded($radius);
+  &:hover {
+    background: darken($green, 10%);
+    color: $white;
+  }
+
+
+}
 
 .cb-booking-code  strong{
     padding: 5px;
@@ -61,13 +173,20 @@ $padding: 5px;
 
 .cb-message {
   display: block;
+  border: 1px solid $grey;
+  margin-bottom: $padding;
+  padding: $padding;
+  strong {
+    color: $black;
+  }
   &.success {
     color: $green;
+    border: 1px solid $green;
   }
   &.error {
      color: $red;
+     border: 1px solid $red;
   }
-
 }
 
 /*****************
@@ -98,6 +217,7 @@ $padding: 5px;
 
 #cb-bookingbar-msg {
   @extend .padding;
+  @include rounded($radius);
   &.error {
     background: red;
     color: $white;
@@ -110,46 +230,70 @@ $padding: 5px;
 
 #cb-bookingbar {
   z-index: 99;
+  position: fixed;
+  height: auto;
+  left: 10px;
+  right: 10px;
+  bottom: 10px; 
+
+
   .inner {
     @extend .cb-box;
+    @include rounded($radius);
+    // $horiz : .5em , $vert : .5em , $blur : 0px , $spread : 0px , $color : #000000 
+    @include box-shadow( 0, 0, 70px, 1px, #AFAFAF );
+
     margin: 0;
+    // background: darken($blue, 10%);
+    
+    // @include linearGradient($blue, $dark-blue);
     background: $white;
+    color: $blue;
 
   overflow: hidden;
   }
   .cb-userinfo {
     display: block;
+    margin-bottom: 10px;
+    a {
+
+    }
   }
   .booking {
-    #intro {
-      display:none;
-    }
-
-    #date-start, #date-end, #cb-submit {
-      @extend .cb-big;
-      color: $green;
-      span {
-        font-weight: bold;
-        color: $blue;
-         display: inline;
-         padding: 0 0.2em;
-         &.cb-day {
-          display:none;
-         }
-      }
+    #intro, #date-start, #date-end, #cb-submit {
+      font-weight: normal;
+      height: 40px;
+      line-height: 40px;
       float: left;
-      margin-right: 20px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+      div.bb-date {
+         display: inline-block;
+          background: $dark-blue;
+          color: $white;
+          padding-left: $padding;
+          padding-right: $padding;
+          margin: 0 $padding;
+          height: 40px;
+          @include rounded($radius);
+        .cb-cal-inner {
+          span.cb-day {
+            display: none;
+          }
+        }
     }
     #cb-submit {
-      @extend .align-right;
+      margin-right: 0;
+
+      .cb-button {
+        line-height: 40px;
+        height: 40px;
+      }
+      float: right;
     }
   }
-  position: fixed;
-  height: auto;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0; 
+
 
 }
 
@@ -192,12 +336,14 @@ $padding: 5px;
  *
  */
 
+.cb-timeframes-wrapper {
+}
+
 .cb-timeframe {
 
   @extend .cb-box;
 
-  $width: 100%;
-  $cellwidth: $width / 7;
+
 
   // this class pushes the calendar cells into the right position
   .pusher {
@@ -239,6 +385,8 @@ $padding: 5px;
     li:first-child {
       @extend .pusher; // add margin to push first entry. 
     }
+
+
     li {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -246,45 +394,115 @@ $padding: 5px;
       width: $cellwidth;
       height: 80px;
       overflow: hidden;
-      padding: 10px;
+      padding: 5px;
       float: left;
       text-align: center;
-      background: $white;
       color: $grey;
-      border: 1px solid $light-grey;
-    
+      border-bottom: 1px solid $grey;
+      @include transition(all .3s ease);
+      .cb-day {
+        display: block; 
+        font-size: 0.8em;
+      }
+      .cb-date {
+        display: block; 
+      }
+      .cb-cal-inner {
+        @include border-radius($radius);
+        height: 100%;
+        padding: 5px;
+        &:hover {
+        }
+      }
+
+  
       &.bookable { // selectable dates
         cursor: pointer;
-        color: $white;
-        background: $green;
-        &:hover {
-          background: darken($light-green, 10%);
+        color: $green;
+        background: $white;
+        .cb-cal-inner {
+        }
+
+        // border: 1px solid darken($green, 5%);
+        .cb-cal-inner:hover {
+          background: $dark-blue;
           color: $white;
         }
       }
       &.selected {
-        border: 1px solid $blue;
         background: $blue;
-        color: $white;
-      }      
-      &.booked {
-        background: $grey;
-        color: $dark-red;
-      }
+        color: mix(white, $blue, 60%);
+        border: 3px solid $blue;
+      }    
       &:hover {
+        // @include border-radius($radius);
       }  
-    }
-    .cb-day {
-      display: block; 
-        font-size: 0.8em;
+      &.selected-first {
+        @include selection-start-round($radius);
+        .cb-cal-inner {       
+          color: $white;
+          background: $dark-blue;
+        }
+      }      
+      &.selected-last {
+        @include selection-end-round($radius);
+        .cb-cal-inner {
+          color: $white;
+          background: $dark-blue;
+        }
+      }
 
-    }
-    .cb-date {
-      display: block; 
-    }
+      &.booked {
+        cursor: not-allowed;
+        background: transparent;
+        color: $dark-red;
+        .cb-cal-inner {
+          // background: $grey;
+          // color: $dark-red;
+          background: $dark-red;
+          color: $white;
+        }
+      }
+      &.closed {
+        cursor: not-allowed;
+        color: $white;
+        .cb-cal-inner {
+          background: $grey;
+        }
+          &.overbooking {
+            @extend .selected;
 
+        }
+      }
+    }
   }
 }
+
+.cb-tooltipster {
+  background: $dark-blue;
+}
+
+
+/*
+ * Flash animation
+*/
+@-webkit-keyframes flash {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0;}
+}
+@keyframes flash {
+    0%, 50%, 100% {opacity: 1;}
+    25%, 75% {opacity: 0;}
+}
+.flash {
+    -webkit-animation-name: flash;
+    animation-name: flash;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
 
 
 

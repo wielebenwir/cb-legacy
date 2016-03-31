@@ -14,7 +14,7 @@
 .cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
   font-size: 0.8em; }
 
-.cb-big, .cb-headline, #cb-bookingbar .booking #intro, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit, .cb-timeframe .cb-location .cb-location-name {
+.cb-big, .cb-headline, .cb-timeframe .cb-location .cb-location-name {
   font-size: 1.2em;
   font-weight: bold;
   color: #3356a4; }
@@ -43,7 +43,13 @@
   padding: 5px;
   overflow: hidden;
   color: white;
-  position: relative; }
+  position: relative;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; }
+  .cb-button:hover {
+    background: #407d18;
+    color: white; }
 
 .cb-booking-code strong {
   padding: 5px;
@@ -88,57 +94,64 @@
 * ITEMS SINGLE: Bookingbar
 *
 */
-#cb-bookingbar-msg.error {
-  background: red;
-  color: white; }
-#cb-bookingbar-msg.notice {
-  background: green;
-  color: white; }
+#cb-bookingbar-msg {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; }
+  #cb-bookingbar-msg.error {
+    background: red;
+    color: white; }
+  #cb-bookingbar-msg.notice {
+    background: green;
+    color: white; }
 
 #cb-bookingbar {
   z-index: 99;
   position: fixed;
   height: auto;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0; }
+  left: 10px;
+  right: 10px;
+  bottom: 10px; }
   #cb-bookingbar .inner {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 70px 1px #afafaf;
+    -moz-box-shadow: 0 0 70px 1px #afafaf;
+    box-shadow: 0 0 70px 1px #afafaf;
     margin: 0;
-    background: #27427d;
-    background: #3356a4;
-    /* Old browsers */
-    background: -moz-linear-gradient(top, #3356a4 0%, #27427d 100%);
-    /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3356a4), color-stop(100%, #27427d));
-    /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #3356a4 0%, #27427d 100%);
-    /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #3356a4 0%, #27427d 100%);
-    /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #3356a4 0%, #27427d 100%);
-    /* IE10+ */
-    background: linear-gradient(to bottom, #3356a4 0%, #27427d 100%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
-    /* IE6-9 */
-    color: white;
+    background: white;
+    color: #3356a4;
     overflow: hidden; }
   #cb-bookingbar .cb-userinfo {
-    display: block; }
+    display: block;
+    margin-bottom: 10px; }
   #cb-bookingbar .booking #intro, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
     font-weight: normal;
-    color: white;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin-right: 10px;
+    font-weight: bold; }
+  #cb-bookingbar .booking div.bb-date {
     display: inline-block;
-    float: left; }
-    #cb-bookingbar .booking #intro div.bb-date, #cb-bookingbar .booking #date-start div.bb-date, #cb-bookingbar .booking #date-end div.bb-date, #cb-bookingbar .booking #cb-submit div.bb-date {
-      padding: 5px;
-      display: inline-block;
-      color: white;
-      background: #3356a4;
-      margin-right: 20px; }
-      #cb-bookingbar .booking #intro div.bb-date span.cb-day, #cb-bookingbar .booking #date-start div.bb-date span.cb-day, #cb-bookingbar .booking #date-end div.bb-date span.cb-day, #cb-bookingbar .booking #cb-submit div.bb-date span.cb-day {
-        display: none; }
+    background: #27427d;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0 5px;
+    height: 40px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px; }
+    #cb-bookingbar .booking div.bb-date .cb-cal-inner span.cb-day {
+      display: none; }
+  #cb-bookingbar .booking #cb-submit {
+    margin-right: 0;
+    float: right; }
+    #cb-bookingbar .booking #cb-submit .cb-button {
+      line-height: 40px;
+      height: 40px; }
 
 /*****************
  * LISTS
@@ -164,9 +177,6 @@
  * ITEMS SINGLE Timeframes
  *
  */
-.cb-timeframes-wrapper {
-  position: relative; }
-
 .cb-timeframe {
   /* Calendar */ }
   .cb-timeframe .pusher.day1, .cb-timeframe ul.cb-calendar li.day1:first-child {
@@ -212,6 +222,11 @@
       -ms-transition: all 0.3s ease;
       -o-transition: all 0.3s ease;
       transition: all 0.3s ease; }
+      .cb-timeframe ul.cb-calendar li .cb-day {
+        display: block;
+        font-size: 0.8em; }
+      .cb-timeframe ul.cb-calendar li .cb-date {
+        display: block; }
       .cb-timeframe ul.cb-calendar li .cb-cal-inner {
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
@@ -228,12 +243,10 @@
         .cb-timeframe ul.cb-calendar li.bookable .cb-cal-inner:hover {
           background: #27427d;
           color: white; }
-      .cb-timeframe ul.cb-calendar li.selectable-happy {
-        background: #6c8bd1; }
       .cb-timeframe ul.cb-calendar li.selected, .cb-timeframe ul.cb-calendar li.closed.overbooking {
         background: #3356a4;
         color: #adbbda;
-        border: 5px solid #3356a4; }
+        border: 3px solid #3356a4; }
       .cb-timeframe ul.cb-calendar li.selected-first {
         -webkit-border-top-left-radius: 10px;
         -webkit-border-bottom-left-radius: 10px;
@@ -259,18 +272,16 @@
         background: transparent;
         color: #a70001; }
         .cb-timeframe ul.cb-calendar li.booked .cb-cal-inner {
-          background: #ff0002;
+          background: #a70001;
           color: white; }
       .cb-timeframe ul.cb-calendar li.closed {
         cursor: not-allowed;
         color: white; }
         .cb-timeframe ul.cb-calendar li.closed .cb-cal-inner {
           background: #e1e1e1; }
-    .cb-timeframe ul.cb-calendar .cb-day {
-      display: block;
-      font-size: 0.8em; }
-    .cb-timeframe ul.cb-calendar .cb-date {
-      display: block; }
+
+.cb-tooltipster {
+  background: #27427d; }
 
 /*
  * Flash animation
