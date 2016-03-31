@@ -336,12 +336,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     }
 
     /**
-    * Sends the confirm booking email.
-    * 
+    * Validation: The booked days.
     *
-    *
-    * @param $to, $subject, $message
-    * @return array
+    * @param $item_id, $date_start, $date_end
+    * @return bool
     */  
     private function validate_days ( $item_id, $date_start, $date_end ) {
 
@@ -535,7 +533,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             // PRINT: Booking review, Cancel Button
                             $message = display_cb_message( $msg, $this->b_vars );
                             return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
-                                exit;
 
                         } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                             // booking is confirmed and we are not cancelling
@@ -570,7 +567,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
           } else { // not logged in     
             
-            echo ("Error: You have to be logged in to access this page.");
+            return display_cb_message( "Error: You must be logged in to access this page.", array(), FALSE );
         
         } // end if logged in 
 
