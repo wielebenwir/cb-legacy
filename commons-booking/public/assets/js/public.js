@@ -66,7 +66,7 @@
           var introContainer = $( '#intro' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
-          var bookingButton = $( '#cb-submit .button' );
+          var bookingButton = $( '#cb-submit .cb-button' );
   
           var dataContainer = $( '#cb-bookingbar #data' ); // @TODO: Retire me
 
@@ -100,13 +100,36 @@
           bookingButton.hide();
 
 
-          // $('.cb-tooltip').tooltipster({
-          //   animation: 'grow',
-          //   delay: 500,
-          //   theme: 'tooltipster-default',
-          //   touchDevices: false,
-          // });
+          $('.cb-tooltip').tooltipster({
+            animation: 'fade',
+            delay: 0,
+            content:'test',
+            theme: 'cb-tooltipser',
+            touchDevices: false
+          });
 
+          function resize_bookingbar() {
+
+              var parentpos = $('.cb-timeframes-wrapper').offset();
+
+              // .outerWidth() takes into account border and padding.
+              var width = $('.cb-timeframes-wrapper').outerWidth();
+
+              $("#cb-bookingbar").css({
+                  width: width,
+                  // top: parentpos.top + "px",
+                  'margin-left': (parentpos.left) + "px"
+              })
+
+          }
+
+          $(window).on('resize', function(){
+
+            resize_bookingbar();
+
+          });
+
+          resize_bookingbar();
 
           formButton.click(function( event ) {
             event.preventDefault();
@@ -139,6 +162,8 @@
                 removeClasses();
                 addClasses();
                 update_bookingbar( selectedIndexes );
+                // showToolTips();
+                resize_bookingbar();
               }
 
             },
@@ -303,7 +328,7 @@
               target.html(content);
               target.fadeIn('slow');
             } else {
-              target.fadeOut('fast');      
+              target.hide();      
             }
           }
 
@@ -336,7 +361,6 @@
 
                 textFirst = text_pickup + '<div class="bb-date">' + pickupDate.innerHTML + '</div>'; // set Text
                 textSecond = text_return + '<div class="bb-date">' + returnDate.innerHTML + '</div>';
-
               }
 
               setDataContainer( dateStartID, dateEndID, tf_meta ); // update the form
@@ -356,6 +380,37 @@
           // submit the form
           function submitForm() {
             $( "#target" ).submit();
+          }
+
+          function showToolTips() {
+
+            // if in addition you want the tooltip to be displayed when the field gets focus, add these custom triggers :
+            
+            // $('.selected-first').tooltipster({
+            //   animation: 'fade',
+            //   content: 'Pickup',
+            //   delay: 500,
+            //   theme: 'cb-tooltipster',
+            //   touchDevices: false
+            // });            
+            // $('.selected-last').tooltipster({
+            //   animation: 'fade',
+            //   content: 'Return',
+            //   delay: 500,
+            //   theme: 'cb-tooltipster',
+            //   touchDevices: false
+            // });
+            // $('.selected-first').tooltipster('show');
+            // $('.selected-last').tooltipster('show');
+
+          //   $('.selected-first').tooltipster({
+          //   animation: 'fade',
+          //   content: 'Pickup',
+          //   delay: 500,
+          //   theme: 'tooltipster-default',
+          //   touchDevices: false,
+          // });
+
           }
 
           // helper: create range array 
