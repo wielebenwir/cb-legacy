@@ -86,7 +86,12 @@
 
           var errors = [];
           var selectedCount;
-
+          var overbookDays = [];
+          var betweenDays = [];
+          var allBookableDates = calEl.find('li.bookable');
+          $(allBookableDates).each( function() {
+            $(this).attr('title', 'you can Book');
+          })
 
           // set starting text
           introContainer.html (text_choose);
@@ -95,9 +100,9 @@
           bookingButton.hide();
 
 
-          // $('.tooltip').tooltipster({
+          // $('.cb-tooltip').tooltipster({
           //   animation: 'grow',
-          //   delay: 0,
+          //   delay: 500,
           //   theme: 'tooltipster-default',
           //   touchDevices: false,
           // });
@@ -107,8 +112,7 @@
             event.preventDefault();
             formEl.submit();
           });
-              var temp = [];
-
+          
           calEl.selectonic({
             multi: true,
             mouseMode: "toggle",
@@ -117,29 +121,24 @@
             filter: ".bookable",
             select: function(event, ui) {
 
-              // set_neighbours( ui );
-              // update_neighbours(ui);
-              // temp = calEl.selectonic( 'getSelected');
-              // is_continous ( temp );
-              // temp.next().css( "background-color", "red" );
-
-              // do something cool, for expample enable actions buttons
             },
             stop: function(event, ui) {
 
               var selectedIndexes = update_selected();
               var msgErrors = errors;
 
-              // console.log (errors);
+
               if( errors.length > 0 ) {     
                   this.selectonic("cancel"); // cancel selection
                   for (var i = msgErrors.length - 1; i >= 0; i--) {
                     displayErrorNotice( text_errors[ msgErrors[i] ] );
                   }
 
+
               } else {
-                  update_neighbours( selectedIndexes, selectedCount );
-                  update_bookingbar( selectedIndexes );
+                removeClasses();
+                addClasses();
+                update_bookingbar( selectedIndexes );
               }
 
             },
@@ -149,7 +148,7 @@
           });
           
           var selected; 
-          var allBookableDates = calEl.find('li.bookable');
+
           var parentCal = '';
           var overbookable = true;
 
@@ -157,10 +156,12 @@
           function update_selected() {
 
             errors = [];
+            overbookDays = [];
             var indexes = [];
             var selectedIDs = [];
 
             selected = calEl.find('li.selected'); // find selected elements
+
             selectedCount = selected.length;
 
             parentCal = $(selected).parents('.cb-timeframe');
@@ -172,7 +173,6 @@
             }
 
             // var indexes = [];
-            var betweenDays = [];
             var calIndexes = []; 
 
             // add selected indexes to array
@@ -185,12 +185,13 @@
             betweenDays = getDaysBetween( calIndexes );
 
             if ( betweenDays.length > 0 ) { // there are days between selected
-              if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes
-                var d = checkForClass ( betweenDays, 'closed' );
-                if ( d ) { // all days between are closed
+              if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes                
+                var allowedClasses = ['closed', 'selected'];
+                overbookDays = checkForClass ( betweenDays, allowedClasses);
+                if ( typeof overbookDays != 'undefined' ) { // all days between are closed
                   selectedCount++; // booking over closed days, which count as one day           
-                } else { // at least one day between is not closd
-                   errors.push ("sequential");                
+                } else { // at least one day between is not closed
+                   errors.push ("sequential");  
                 }
               } else { //booking over closed days not allowed, so return error
                 errors.push ("sequential");
@@ -207,29 +208,43 @@
 
           } // end update_selected()
 
-
-          function checkForClass( els, myClass ) {
-
-            var count = 0;
-            $(els).each( function ( ) {
-              $(this).css('border', '1px solid red');
-              if ( $(this).hasClass( myClass )) {
-                console.log ("has class");
-                count++;
-              } else {
-                console.log ("has not class");
-                return false;
-              }
-            });
-              return count;
+          // remove all Classes
+          function removeClasses() {
+            allCalendarDates.each(function() {
+              $(this).removeClass('selected-last');
+              $(this).removeClass('selected-first');
+              $(this).removeClass('overbooking');
+            })
+          }
+          // set classes
+          function addClasses() {
+            selected.first().addClass('selected-first');
+            selected.last().addClass('selected-last');
+            if ( overbookDays.length > 0 ) {
+              $.each(overbookDays, function (key ){
+                    $(betweenDays).get(key).addClass('overbooking');
+                  } );
+            }
           }
 
-          function getNeighbours ( indexes ) {
-              var array = [];
-              var low = indexes[0] - 1;
-              var high = indexes[indexes.length];
-              return array [low, high];          
-          } 
+          //check for classes
+          function checkForClass( els, classes ) {
+
+            var error = 0;
+            var betweenEls = [];
+
+            $(els).each( function ( element, index ) {
+              if ( $(this).hasClasses( classes )) {
+                betweenEls.push( $(this).index() );          
+              } else {
+                error++;
+              }
+            });
+
+            if (error == 0) {
+              return betweenEls;
+            } 
+          }
 
           // check if there are non-selected days between selection
           function getDaysBetween( calIndexes ) {
@@ -249,51 +264,6 @@
               return daysBetween;    
           }
 
-            // highlight elements available for selection
-            function update_neighbours( indexes, selectedCount ) {
-
-              // remove Classnames 
-              $(allCalendarDates).each(function () {
-                 $(this).removeClass('selectable-happy');
-              } );
-
-            if ( selectedCount < maxDays ) {
-
-              var currentHighEl = $(allBookableDates).eq(indexes[indexes.length-1]);
-              var currentLowEl = $(allBookableDates).eq(indexes[0]);
-              var nextEl = $(allBookableDates).eq( indexes[indexes.length-1] + 1 );
-              var prevEl = $(allBookableDates).eq( indexes[0] -1 );
-              var leftOverDays = maxDays - (selectedCount + 1);
-
-              var between = [];
-
-              var nextNeighbours = checkBetween(  currentHighEl, nextEl );
-              var prevNeighbours = checkBetween(  prevEl, currentLowEl  );
-              } 
-            }
-
-          function checkBetween ( startEl, endEl ) {
-              var start;
-              var end;
-              start = startEl;
-              end = endEl;
-
-              if( startEl.parents( '.cb_timeframe_form').attr('id') != end.parents( '.cb_timeframe_form').attr('id')) {              
-                return false;
-              } 
-              var between = start.nextUntil( end, 'li' );
-              for (var i = 0; i < between.length; i ++) {
-                if ( $(between[i]).hasClass('booked') ) {
-                    return false;
-                  } else {
-                    $(between[i]).addClass('selectable-happy');
-                  }
-                }
-                  start.addClass('selectable-happy');
-                  end.addClass('selectable-happy');
-                return i;
-              };
-
           // show error notice
           function displayErrorNotice ( msg ) {
             msgEl.html( msg );
@@ -302,9 +272,8 @@
             msgEl.delay(3000).fadeOut();
           }
 
-
+          // add dates to the form element
           function setDataContainer( start, end, meta ) {
-
               form_date_start.val( start );
               form_date_end.val( end );
               form_timeframe_id.val( meta['timeframe'] );
@@ -327,7 +296,7 @@
             return meta; 
           }
 
-
+          // set html text on the booking bar
           function bookingbar_set_text( target, content ) {
 
             if (content) {
@@ -338,7 +307,7 @@
             }
           }
 
-          // set the selection & texts 
+          // update the bookingbar 
           function update_bookingbar( indexes ) {
 
             var tf_meta = getCurrentTimeframeMeta( indexes );
@@ -382,72 +351,33 @@
               bookingbar_set_text( startContainer, textFirst );
               bookingbar_set_text( endContainer, textSecond );
 
-            // var ready = 1;
-            // startContainer.fadeOut(200);
-            // startContainer.html ( textFirst );
-            // startContainer.fadeIn(500);
+          } // update_bookingbar
 
-            // endContainer.fadeOut(200);
-            // endContainer.html ( textSecond );  
-            // endContainer.fadeIn(500);
-
-
-            // if ( ready == 1 ) {
-
-
-            //   // dataContainer.data( "tf_id", targetli.parents('.cb-timeframe').data('tfid') );  // get data from DOM data- attribute
-            //   // dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
-            //   // dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
-
-            //   // set inputs
-              
-            // } else {
-            //   bookingButton.fadeOut(300);           
-            // }
-
-          } // setselected
-
+          // submit the form
+          function submitForm() {
+            $( "#target" ).submit();
+          }
 
           // helper: create range array 
           function range( start, end ){ 
             start = start || 1; return end >= start ? range(start,end-1).concat(end) : []; 
           }
 
-          function updateData ( ds ) {
-            dataContainer.data( "ds", ds );
-            dataContainer.data( "de", de );
-
-          }
-
-          function submitForm() {
-            $( "#target" ).submit();
-          }
-
-
-          
-          /* 
-           * Gets the relevant classes 
-           * @param   array ids 
-           * @return  int closed days count 
-           */
-          function getDayStatus( ids ) {
-            var closed = 0;
-            for (var i = ids.length - 1; i >= 0; i--) {
-              if ( $( 'li#'+ids[i]).hasClass( 'booked' ) ) {
-                return -1;
-              } else if ( $( 'li#'+ids[i]).hasClass( 'closed' ) ) {
-                closed++;
+          // helper: has css classes 
+          $.fn.extend({
+              hasClasses: function (selectors) {
+                  var self = this;
+                  for (var i in selectors) {
+                      if ($(self).hasClass(selectors[i])) 
+                          return true;
+                  }
+                  return false;
               }
-            };
-            return closed;
-          } // getDaysBetween
+          });
 
         }
       }
     };
-
-
-
 
 
     // The routing fires all common scripts, followed by the page specific scripts.
