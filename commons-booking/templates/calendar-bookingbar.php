@@ -9,9 +9,9 @@
   <div id="cb-bookingbar-msg"></div>
   <div class="inner">
    <?php if ( is_user_logged_in() ) { ?>
-      <?php 
+        <?php 
         global $current_user;
-        echo '<div class="cb-userinfo cb-small">' . __( 'Logged in as', $attributes['plugin_slug'] ) . ': ' . $current_user->display_name . '</div>';
+        echo '<div class="cb-userinfo cb-small">' . __( 'Logged in as', $attributes['plugin_slug'] ) . ' <a href="'. get_edit_user_link( $current_user->ID ) .'">'. esc_attr( $current_user->user_nicename ) .'</a></div>';
       ?>
   <div class="booking">
     <div id="intro">
@@ -24,7 +24,7 @@
         date till
       </div>
       <div id="cb-submit">
-        <a href="#" class="button cb-button">
+        <a href="#" class="cb-button">
           <?php echo __( 'Book now', $attributes['plugin_slug'] ); ?>
         </a>
       </div>
