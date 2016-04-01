@@ -28,7 +28,7 @@
       <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-mail"><?php _e( 'E-Mails', $this->plugin_slug ); ?></a></li>
       <li><a href="#tabs-messages"><?php _e( 'Messages', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-customize"><?php _e( 'Customization', $this->plugin_slug ); ?></a></li>
+      <li><a href="#tabs-advanced"><?php _e( 'Advanced', $this->plugin_slug ); ?></a></li>
     </ul>
 
     <div id="tabs-welcome">
@@ -152,36 +152,30 @@
       ?>
 
     </div>   
-    <div id="tabs-customize">
+    <div id="tabs-advanced">
       <?php
 
-      $option_fields_customize = array(
-        'id' => $this->plugin_slug . '_options-customize',
+      $option_fields_advanced = array(
+        'id' => $this->plugin_slug . '_options-advanced',
         'show_on' => array( 'key' => 'options-page', 'value' => array( $this->plugin_slug ), ),
         'show_names' => true,
         'fields' => array(
           array(
             'name' => __( 'Customize Login and Registration pages', $this->plugin_slug ),
-            'desc' => __( 'Style the login/registration pages and handle redirects. <br />Disable if you want to use other plugins (e.g. "Theme my Login") to customize the Login/Registration process. E-Mail templates still apply.', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_customize_docustomize',
+            'desc' => __( 'Hide superfluous fields on login/registration pages.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_enable_customcss',
             'type' => 'checkbox',
-          ),
+          ),          
           array(
-            'name' => __( 'Logo', $this->plugin_slug ),
-            'desc' => __( 'Upload your Logo (150x150px) here. This replaces the logo on the login page.', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_customize_logofile',
-            'type' => 'file',
-          ),
-          array(
-            'name' => __( 'Custom CSS for Login & Registration pages', $this->plugin_slug ),
-            'desc' => __( 'Enter custom CSS styles here.', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_customize_css',
-            'type' => 'textarea',
+            'name' => __( 'Enable redirects', $this->plugin_slug ),
+            'desc' => __( 'Enable redirects after Registration & Login.', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_enable_redirect',
+            'type' => 'checkbox',
           ),
         ),
       );
 
-      cmb2_metabox_form( $option_fields_customize, $this->plugin_slug . '-settings-customize' );
+      cmb2_metabox_form( $option_fields_advanced, $this->plugin_slug . '-settings-advanced' );
       ?>
 
     </div>       
