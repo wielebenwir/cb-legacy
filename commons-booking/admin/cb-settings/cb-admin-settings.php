@@ -104,10 +104,9 @@ class CB_Admin_Settings extends Commons_Booking {
           <p>Thanks, the Team. </p>
         ', $this->prefix ),
       ),
-    $this->prefix.'-settings-customize' => array(
-      $this->prefix.'_customize_docustomize' => 'ON',
-      $this->prefix.'_customize_logofile' => '',
-      $this->prefix.'_customize_customize_css' => '',
+    $this->prefix.'-settings-advanced' => array(
+      $this->prefix.'_enable_customcss' => 'ON',
+      $this->prefix.'_enable_redirect' => 'ON'
       ),  
     );
 
@@ -145,7 +144,9 @@ class CB_Admin_Settings extends Commons_Booking {
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
 
     if ( $setting_name ) {
-      return $page [ $this->prefix . '_'. $setting_name ];
+      if ( !empty ( $page[ $this->prefix . '_'. $setting_name ] ) ) {
+        return $page [ $this->prefix . '_'. $setting_name ];
+        }
     } else { // grabbing all entries     
       foreach($page as $key => $value) { // remove the prefix 
             $clean = str_replace( $this->prefix. '_', '', $key); 
