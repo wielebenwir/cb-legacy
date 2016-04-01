@@ -111,10 +111,10 @@ class Commons_Booking {
         // Register items & locations custom post types
         add_action( 'init', array( $this, 'register_cpts' ) );
       
-        // $items = new Commons_Booking_Public_Items();
+        // $items = new Commons_Booking_Public_Items(); //@TODO: Retire me
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
-
+        $this->bookings = new Commons_Booking_Booking();
 
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
@@ -318,8 +318,10 @@ class Commons_Booking {
      */
     public function cb_content( $page_content ) {
 
+
         $settings_display = $this->settings->get_settings('pages'); // get array of page ids from settings
         $post_id = get_the_ID();
+
 
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
@@ -640,11 +642,15 @@ class Commons_Booking {
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
-        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );
-
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );   
         if ( is_singular ( 'cb_items' )) {
             wp_enqueue_style( $this->get_plugin_slug() . '-tooltip-css', plugins_url( 'assets/css/tooltipster.css', __FILE__ ), array(), self::VERSION );
         }         
+    }
+
+    public function enqueue_cleanup_styles() {
+        wp_enqueue_style( $this->get_plugin_slug() . '-profile-cleanup-tml', plugins_url( 'assets/css/profile-cleanup-tml.css', __FILE__ ), array(), self::VERSION );
+
     }
 
     /**
