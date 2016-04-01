@@ -370,8 +370,7 @@ class Commons_Booking_Users extends Commons_Booking {
 
     update_user_meta( $user_id, 'phone', $_POST['phone'] );
     update_user_meta( $user_id, 'address', $_POST['address'] );
-    // update_user_meta( $user_id, 'terms_accepted', $_POST['terms_accepted'] );
-    update_user_meta( $user_id, 'confirmed', $_POST['confirmed'] );
+
   }
 
 

@@ -129,6 +129,8 @@ class Commons_Booking {
         add_filter( 'registration_errors', array( $this->users, 'registration_set_errors' ), 10, 3 );
         // Registration: Write meta
         add_action( 'user_register', array( $this->users, 'registration_add_meta' ) );
+        add_action( 'personal_options_update', array( $this->users , 'save_extra_profile_fields' ));
+
 
         // show admin bar only for admins and editors
         if (!current_user_can('edit_posts')) {
