@@ -137,23 +137,26 @@ class Commons_Booking {
             add_filter('show_admin_bar', '__return_false');
         }
 
-        // Login/Registration Customization. Applied only if $settings->customize = TRUE
-        $docustomize = $this->settings->get_settings( 'customize', 'customize_docustomize');
+        // Redirect Customization. Applied only if $settings->enable_redirect = TRUE
+        $enable_redirect = $this->settings->get_settings( 'advanced', 'enable_redirect');
 
-        if ( !empty ($docustomize) ) {
-            add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  
+        if ( !empty ($enable_redirect) ) {
+            add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  // @TODO RETIRE ME
             add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
-            add_filter( 'login_head', array( $this->users, 'cb_login_logo' ) );  
-            add_action( 'login_head', array($this->users, 'cb_login_custom_css'));
             add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect'), 10, 3 );
             add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
         }
+        // Custom CSS. Applied only if $settings->enable_redirect = TRUE
+        $enable_customcss = $this->settings->get_settings( 'advanced', 'enable_customcss');
+
+        if ( !empty ($enable_customcss) ) {
+            add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cleanup_styles' ) );
+        }       
 
 
         // Editing User Profile: Add extra form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
-       
-
+ 
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
