@@ -50,7 +50,7 @@ class Commons_Booking_Users extends Commons_Booking {
           ),       
        'address' => array ( 
           'field_name' => 'address', 
-          'title' => __( 'Addresss', Commons_Booking::$plugin_slug ), 
+          'title' => __( 'Address', Commons_Booking::$plugin_slug ), 
           'type' => 'input', 
           'description' => '', 
           'errormessage' => __('Please enter your Address', Commons_Booking::$plugin_slug ) 
@@ -74,7 +74,7 @@ class Commons_Booking_Users extends Commons_Booking {
     }
 
     /*
-    *   Adds the fields to the wordpress registration
+    *   Adds the user fields to the wordpress registration
     *
     * @since    0.6
     *
@@ -192,22 +192,7 @@ class Commons_Booking_Users extends Commons_Booking {
       </style>', $logo_url );
     }
   }
-    /*
-    * CUSTOMIZE - Inject custom css (set up under the customize-tab)
-    *
-    * @since    0.6
-    *
-    */
-  public function cb_login_custom_css() {
-    $css = $this->settings->get_settings('customize', 'customize_css');
-    printf ('<style type="text/css">%s</style>', $css);
-  }
-    /*
-    * CUSTOMIZE - Redirects Non-Admin Users after Login
-    *
-    * @since    0.6
-    *
-    */
+
   public function cb_login_redirect( $redirect_to, $request, $user ) {
       //is there a user to check?
       global $user;
@@ -397,7 +382,15 @@ class Commons_Booking_Users extends Commons_Booking {
         if ( !empty ($user_bookings) ) {
 
           $review_page_id = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
-          include (commons_booking_get_template_part( 'user', 'bookings', FALSE )); 
+          $review_page_link = get_permalink( $review_page_id );
+
+            $template_vars = array(
+              'bookings' => $user_bookings,
+              'review_page_link' => $review_page_link
+            );
+
+
+          cb_get_template_part( 'user-bookings', $template_vars ); 
 
         } else {
           echo __( 'You haven´t booked anything yet.', Commons_Booking::$plugin_slug); 
@@ -414,12 +407,12 @@ class Commons_Booking_Users extends Commons_Booking {
  *
  * @return array
  */   
- public function get_user_bookings( $user_id) {
+ public function get_user_bookings( $user_id, $status = 'confirmed' ) {
    
    global $wpdb;
-   $table_bookings = $wpdb->prefix . 'cb_bookings';
+   $table_bookings = $wpdb->prefix . 'cb_bookings';         
 
-   $sqlresult = $wpdb->get_results("SELECT * FROM $table_bookings WHERE user_id = $user_id", ARRAY_A);          
+   $sqlresult = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $table_bookings WHERE user_id = %s AND status = %s ORDER BY date_start DESC", $user_id, $status), ARRAY_A );
 
    return $sqlresult;
  }
