@@ -226,7 +226,6 @@ class Commons_Booking_Admin {
 	 *
 	 * @since     0.6
 	 *
-	 * @return    null    Return early if no settings page is registered.
 	 */
 	public function enqueue_user_profile_styles() {
 
