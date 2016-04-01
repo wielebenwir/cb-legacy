@@ -369,6 +369,11 @@ class Commons_Booking_Data {
     return $template_vars;
   }
 
+/**
+ * Renders the list of items (Archive) 
+ *
+ * @return html
+*/
 
   public function render_item_list () {
 
@@ -497,7 +502,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     $item_descr_full = get_the_content();
 
     $path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
-    $plugin = Commons_Booking::get_instance();
+    $plugin = Commons_Booking::get_instance(); // @TODO
     $plugin_slug = $plugin->get_plugin_slug().'/';
 
     ob_start();
