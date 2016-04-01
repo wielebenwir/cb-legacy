@@ -1,3 +1,29 @@
+# 0.7 
+
+**FEATURES**
+
+* FEATURE: Complete rewrite of Javascript Validation
+* FEATURE: New Style! Redesigned Calendar.
+
+**FIXES**
+
+* FIX: Jumping to selected timeframe anchor when "Book here" was clicked in item list  
+* FIX: Javascript validation bug when booking over multiple days
+* FIX: Server-side booking validation (closed days are now correctly counted) 
+* FIX: Fix: Registration page extra fields were not properly defined ( if $_POST didn´t exist)
+* FIX: User meta data was not saved when editing the profile. 
+* FIX: Unchecked Checkboxes in settings don´t throw errors anymore. 
+* FIX: Bookings that are "pending" are no longer shown on the User Bookings page. 
+
+**ENHANCEMENTS**
+
+* ENHANCEMENT: Daily Cron job deletes all pending bookings older than one day 
+* ENHANCEMENT: Output of location address can now be formatted (Localisation in translation file) 
+
+**Known issues:** 
+
+* YOAST SEO: Booking Confirmation Message is not displayed. Possible Workaround: [Disabling WordPress SEO plugins on a page by page basis - MemberFindMe](https://memberfind.me/disabling-wordpress-seo-plugins-on-a-page-by-page-basis/) 
+
 # 0.6 
 * FIX: Corrected Database Table Version Option names
 * FIX: Installation / Code Table creation. Corrected Primary column (id). Removed legacy if empty. 
