@@ -239,7 +239,7 @@ class Commons_Booking_Users extends Commons_Booking {
     * @since    0.6
     *
     */
-    public function cb_redirect_to_profile() {
+    public function cb_redirect_prevent_dashboard() {
  
     if ( ! defined( 'DOING_AJAX' ) ) {
  
@@ -248,7 +248,7 @@ class Commons_Booking_Users extends Commons_Booking {
       global $pagenow;
       
       if( 'subscriber' === $role_name && $pagenow == 'index.php'){ // if subscriber & trying to access the dashboard
-          wp_redirect(admin_url('/profile.php', 'http'), 301);
+          wp_redirect(admin_url('/profile.php', 'http'));
           exit;
       }
  

@@ -125,23 +125,27 @@ class Commons_Booking_Admin {
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
     // add user profile fields 
-  	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ) );
-		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ) );
-
-
+  	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ));
+		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ));		
 
 
 		// Remove Wordpress styles
 		add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
 
     // Login/Registration Customization. Applied only if $settings->customize = TRUE
-    $docustomize = $this->settings->get_settings( 'customize', 'customize_docustomize');
+    $enable_redirect = $this->settings->get_settings( 'advanced', 'enable_redirect');
+    if ( !empty ($enable_redirect) ) {
+			add_action( 'admin_init', array( $cb_users, 'cb_redirect_prevent_dashboard' ) );
+    }    
 
-    if ( !empty ($docustomize) ) {
-			add_action( 'admin_init', array( $cb_users, 'cb_redirect_to_profile' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_user_profile_styles' ) );
-
+    // Login/Registration Customization. Applied only if $settings->customize = TRUE
+    $enable_customcss = $this->settings->get_settings( 'advanced', 'enable_customcss');
+    if ( !empty ($enable_customcss) ) {
+    	add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_user_profile_styles' ) );
     }
+
+
+
 
 		/*
 		 * Debug mode
@@ -229,7 +233,7 @@ class Commons_Booking_Admin {
 		// enque css cleanup for profile screen
     $currentScreen = get_current_screen();
     if ( $currentScreen->id === "profile") {     
-        wp_enqueue_style( $this->plugin_slug . '-profile-cleanup', plugins_url( 'assets/css/user-profile.css', __FILE__ ), array(), Commons_Booking::VERSION );
+        wp_enqueue_style( $this->plugin_slug . '-profile-cleanup', plugins_url( 'assets/css/profile-cleanup.css', __FILE__ ), array(), Commons_Booking::VERSION );
     }  
 
 		if ( !isset( $this->plugin_screen_hook_suffix ) ) {
