@@ -292,12 +292,11 @@ class Commons_Booking_Data {
   }
 
 /**
- * Single item, all calendars. @TODO: retire 
+ * Single item, all calendars. 
  *
  *@param $id item id
  *
 */
-
   public function render_item_single( $item_id  ) {
 
     $template_vars = $this->get_timeframe_array( $item_id );
@@ -487,88 +486,12 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   return $attributes;
 }
 
-
-/**
- * Single item, all calendars. @TODO: RETIRE ME 
- *
- *@param $id item id
- *
-*/
-
-  public function render_item_single_timeframes( $item_id  ) {
-
-
-    $item_descr_short = get_post_meta( $item_id, 'commons-booking_item_descr', TRUE  );
-    $item_descr_full = get_the_content();
-
-    $path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
-    $plugin = Commons_Booking::get_instance(); // @TODO
-    $plugin_slug = $plugin->get_plugin_slug().'/';
-
-    ob_start();
-
-    include commons_booking_get_template_part( 'item_single', 'item_info', false ); // include the item info template
-
-    $this->item_id = $item_id;
-
-    // get a list of all dates that should be shown (config setting)
-    $this->date_range_start = date('Y-m-d');
-    $this->date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' ));
-
-    // get Data
-    $this->gather_data();
-
-
-    $timeframes = $this->timeframes;
-    $codes = $this->codes;
-
-    if ($timeframes ) { 
-      foreach ( $timeframes as $tf) {
-        if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range  
-          $location = $this->get_location ( $tf['location_id'] );
-          $this->render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id );     
-        }
-      }
-    } else {
-      echo __( 'This item can´t be booked at the moment.', $this->prefix );
-    }
-
-    return ob_get_clean();
-
-  }
-
 /**
  * Calendar .  @TODO: RETIRE ME
  *
  *@param $id item id
  *
 */
-
-  public function show_item_list_timeframes( $item_id  ) {
-
-    $this->item_id = $item_id;
-
-    // get a list of all dates that should be shown (config setting)
-    $this->date_range_start = date('Y-m-d');
-    $this->date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' ));
-
-    // get Data
-    $this->gather_data();
-
-
-    $tf = $this->timeframes;
-
-    foreach ( $this->timeframes as $tf) {
-      if ( $tf['date_start'] <= $this->date_range_end ) { // check if start date is within the date range
-        
-        $location = $this->get_location ( $tf['location_id'] );
-        $this->render_item_single_timeframe_list( $tf, $codes, $location, $item_id );
-      
-      }
-    }
-
-  }
-
 
   public function render_item_single_timeframe_list( $tf, $location, $item_id ) {
 
@@ -577,61 +500,6 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
     echo ( '<div class="cb-timeframe-list" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
 
-  }
-
-/**
- * Item Single: Render the timeframe (item info, location, calendar)
- *
- * @param $tf       array   timeframe data 
- * @param $codes    array   of codes
- * @param $location array location data
- * @param $item_id  int   id of the item
- */
-  public function render_item_single_timeframe_calendar( $tf, $codes, $location, $item_id ) { // @TODO: RETIRE ME
-
-    $booked = new Commons_Booking_Booking;
-    $booked_days = $booked->get_booked_days( $item_id );
-
-
-    $timeframe_comment = $tf['timeframe_title'];
-    $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
-
-    echo ( '<div class="cb-timeframe" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
-
-    
-    include (commons_booking_get_template_part( 'item_single', 'location_detailed', FALSE )); // include the location template
-
-    // don´t show any days before today
-    if ( date ('Y-m-d') >= $tf['date_start'] ) {
-      $start = strtotime( date ('Y-m-d') );
-    } else {
-      $start = strtotime( $tf['date_start'] );
-    }
-
-    $counter = $start;
-    $last = min ( strtotime( $tf['date_end'] ), strtotime( $this->date_range_end ) ); // must be within range
-
-    $target_page_id = $this->get_settings( 'pages', 'bookingconfirm_page_select' ); // get setting for bookings review page (id)
-    $this->target_url = get_the_permalink( $target_page_id ); // get url from id
-
-    echo (' <div id ="timeframe_' . $tf[ 'id' ] .'" class="cb_timeframe_form">');
-    echo ('<ul class="cb-calendar">');
-
-    while( $counter <= $last ) { // loop through days
-      $display_day = date_i18n ('D', $counter );
-      $display_date = date_i18n ('j.n.', $counter ); 
-      $weekdaycode = 'day' . date('N', $counter);
-      $code = $this->get_code_by_date ( $counter, $codes ); 
-
-      $class= $this->set_day_status( $counter, $location, $booked_days );
-
-      include (commons_booking_get_template_part( 'calendar', 'cell', FALSE )); // include the template
-
-      $counter = strtotime('+1 day', $counter); // counter
-    }
-    echo ('</ul>' );
-    echo ( '</div>' );
-    echo ( '</div>');
   }
 
 /**
