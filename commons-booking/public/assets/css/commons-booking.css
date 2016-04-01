@@ -39,14 +39,14 @@
   display: block; }
 
 .cb-button {
-  background: #56a820;
-  padding: 5px;
+  padding: 2.5px 5px;
   overflow: hidden;
-  color: white;
+  color: #3356a4;
   position: relative;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  border: 1px solid #3356a4 !important; }
   .cb-button:hover {
     background: #407d18;
     color: white; }

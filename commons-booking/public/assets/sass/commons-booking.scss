@@ -138,12 +138,13 @@ $radius: 10px;
 }
 
 .cb-button {
-  background: $green;
-  padding: $padding;
+  // background: $green;
+  padding: $padding / 2 $padding;
   overflow: hidden;
-  color: $white;
+  color: $blue;
   position: relative;
   @include rounded($radius);
+  border: 1px solid $blue !important;
   &:hover {
     background: darken($green, 10%);
     color: $white;
