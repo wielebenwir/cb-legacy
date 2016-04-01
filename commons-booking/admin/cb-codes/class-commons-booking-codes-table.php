@@ -320,7 +320,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', $plugin_slug);
+        printf(__('You must create at least one %s', $this->plugin_slug), $posttype  );
       }
       /* Restore original Post Data */
       wp_reset_postdata();
