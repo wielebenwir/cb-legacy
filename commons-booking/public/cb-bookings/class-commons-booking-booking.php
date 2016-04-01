@@ -336,23 +336,33 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     }
 
     /**
-    * Validation: The booked days.
+    * Validation: Days already booked, allowed to book over closed days, max days
     *
-    * @param $item_id, $date_start, $date_end
+    * @param $item_id, $date_start, $date_end, $location_id
     * @return bool
     */  
-    private function validate_days ( $item_id, $date_start, $date_end ) {
+    private function validate_days ( $item_id, $date_start, $date_end, $location_id ) {
 
         $booked_days = $this->get_booked_days ( $item_id, 'confirmed' );
-        $count_days = count ( get_dates_between( $date_start, $date_end ));
+        $between = get_dates_between( $date_start, $date_end );
+        $count_days = count ( $between);
         $max_days = $this->data->get_settings( 'bookings', 'bookingsettings_maxdays');
         $allow_closed = $this->data->get_settings( 'bookings', 'bookingsettings_allowclosed');
-        
-        if ( $allow_closed  == "on" ) {
-            $max_days = $max_days + 5; // @TODO this should be a calculated number of days instead of a fixed 
-        }  
+        $location = $this->data->get_location( $location_id );
+        $closed_days = $location['closed_days'];
+        $closed_days_count = 0;
 
-        if ( in_array( $date_start, $booked_days ) OR in_array( $date_end, $booked_days ) OR $count_days > $max_days  ) {
+        // add the closed days to maxdays
+        foreach ( $between as $day ) {
+            $weekday = date( "N", strtotime( $day )); // convert date to weekday # 
+            if ( ( $allow_closed == "on" ) && ( in_array( $weekday, $closed_days ) ) ) {
+            $closed_days_count++;
+            }
+        }
+        $max_days = $max_days + max ($closed_days_count -1 , 0); // closed days count as 1 day
+
+        // if date is already booked, or too many days selected
+        if ( in_array( $between, $booked_days ) OR $count_days > $max_days  ) {
             die ('Error: There was an error with your request.');
         } else {
             return TRUE;
@@ -477,7 +487,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                     // Set Variable for Template
 
                     // check if days are not already booked, and count <  maxdays
-                    if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end )) {
+                    if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id )) {
 
                         $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
 
