@@ -272,6 +272,22 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         return $booking_data;
     } 
 
+     /**
+     * Triggered by Cron: Delete pending bookings that are older than one day.
+     *
+     */   
+    public function delete_pending_bookings() {
+
+        global $wpdb;
+        $wpdb->query(
+            "
+            DELETE
+            FROM wp_cb_bookings 
+            WHERE status = 'pending' AND DATEDIFF(NOW(), 'booking_time') > 1
+            ");      
+
+    }
+
  /**
  * set status in booking table.
  * parameter: booking_id (id), status = new statu (e.g. "confirmed")

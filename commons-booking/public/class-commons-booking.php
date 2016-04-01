@@ -162,7 +162,16 @@ class Commons_Booking {
 
         add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
 
+        /* 
+         * CRON.
+         */ 
 
+        // CRON: Run daily, delete pending bookings older than 1 day
+        if ( ! wp_next_scheduled( 'cron_delete_pending' ) ) {
+            wp_schedule_event( time(), 'daily', 'cron_delete_pending' );
+        }
+
+        add_action( 'cron_delete_pending', array( $this->bookings, 'delete_pending_bookings' ) );
 
         /* 
          * Filter: Overwrite pages.
