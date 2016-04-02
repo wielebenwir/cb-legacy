@@ -281,8 +281,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
-        var_dump($paged);
-
         // get filters
         $filters = $this->get_selected_Filters(); 
         $sqlfilter = "";
@@ -359,7 +357,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     function extra_tablenav( $which ) {
 
         global $wpdb;
-        // echo( "<h2>--- ".$this->$testing."</h2>" );
 
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
@@ -376,7 +373,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     
     function add_tablenav( $var ) { //@TODO delete?
         // return $this->$myvar;
-        echo ($var);
 
     }
 

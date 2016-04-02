@@ -24,7 +24,7 @@ class Commons_Booking {
      *
      * @var     string
      */
-    const VERSION = '0.5.3.1';
+    const VERSION = '0.7';
 
     /**
      *
@@ -303,9 +303,6 @@ class Commons_Booking {
         );
 
         register_post_type( 'cb_locations', $location_args );
-
-
-
     }
      /**
      *   Add main items list to page selected in settings
