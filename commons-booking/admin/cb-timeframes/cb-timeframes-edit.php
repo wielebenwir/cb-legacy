@@ -269,7 +269,6 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
   if ( $the_query->have_posts() ) {
     echo '<select name="' . $fieldname .'" size="1" class="'. $fieldname .'">';
     if (!$selected) { $new = "selected disabled"; } else { $new = ""; } // if new entry, set pre-selected 
-    echo '<option '. $new  . ' value="-1">'. __(" – Please select – ") . '</option>';
     while ( $the_query->have_posts() ) {
       $the_query->the_post();
       $id = get_the_ID(); 
@@ -278,7 +277,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
     }
     echo '</select>';
   } else {
-   echo __( 'Something went wrong', 'commons-booking'); // TODO
+   echo __( 'None found. Please create one.', 'commons-booking'); 
   }
   /* Restore original Post Data */
   wp_reset_postdata();
