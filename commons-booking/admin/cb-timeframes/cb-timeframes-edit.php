@@ -220,11 +220,11 @@ function cb_timeframes_table_form_meta_box_handler($item)
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="timeframe_title"><?php _e('Note', 'cb_timeframes_table')?></label>
+            <label for="timeframe_title"><?php _e('Timeframe Title', 'cb_timeframes_table')?></label>
         </th>
         <td>
             <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
-                   size="50" class="code" placeholder="<?php _e('Note', 'cb_timeframes_table')?>">
+                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'cb_timeframes_table')?>">
         </td>
     </tr>
     </tbody>
