@@ -51,8 +51,8 @@ function cb_timeframes_table_form_page_handler( )
                         $codes = new Commons_Booking_Codes_Generate;
                         $codes->generate_codes( $item['id'] );
 
-                    } else {
-                         new Admin_Table_Message ( __('There was an error while updating item!', 'cb_timeframes_table'), 'error' );
+                    } else { // nothing changed (-> Codes were already generated and no form-field input was changed.). We didn´t do anything, but send a happy message. 
+                         new Admin_Table_Message ( __('Timeframe updated.', 'commons-booking'), 'updated' );
                     }
                 }
             } else {
