@@ -37,17 +37,17 @@ function cb_timeframes_table_form_page_handler( )
                     $result = $wpdb->insert($table_name, $item);
                     $item['id'] = $wpdb->insert_id;
                     if ($result) {
-                        new Admin_Table_Message ( __('Item saved', 'cb_timeframes_table'), 'updated' );
+                        new Admin_Table_Message ( __('Item saved', 'commons-booking'), 'updated' );
                         $codes = new Commons_Booking_Codes_Generate;
                         $codes->generate_codes( $item['id'] );
 
                     } else {
-                        new Admin_Table_Message ( __('There was an error while saving item', 'cb_timeframes_table'), 'error' );
+                        new Admin_Table_Message ( __('There was an error while saving item', 'commons-booking'), 'error' );
                     }
                 } else {
                     $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                     if ($result) {
-                        new Admin_Table_Message( __('Item was successfully updated', 'cb_timeframes_table'), 'updated' );
+                        new Admin_Table_Message( __('Timeframe updated.', 'commons-booking'), 'updated' );
                         $codes = new Commons_Booking_Codes_Generate;
                         $codes->generate_codes( $item['id'] );
 
@@ -67,7 +67,7 @@ function cb_timeframes_table_form_page_handler( )
                 $item = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $_REQUEST['id']), ARRAY_A);
                 if (!$item) {
                     $item = $default;
-                    $notice = __('Item not found', 'cb_timeframes_table');
+                    $notice = __('Item not found', 'commons-booking');
                 }
             }
         }
@@ -86,10 +86,10 @@ function cb_timeframes_table_form_page_handler( )
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <?php 
     if (isset($_REQUEST['id'])) { ?> 
-        <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'cb_timeframes_table') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('back to list', 'cb_timeframes_table')?></a>
+        <h2><?php echo ( '<strong>' . get_the_title($item['item_id']) . '</strong>: ' . __('Edit Timeframe', 'commons-booking') ); ?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('back to list', 'commons-booking')?></a>
         </h2>
     <?php } else { ?>
-        <h2><?php _e('Add new Timeframe', 'cb_timeframes_table')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('Back to list', 'cb_timeframes_table')?></a>
+        <h2><?php _e('Add new Timeframe', 'commons-booking')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('Back to list', 'commons-booking')?></a>
         </h2>
     <?php } ?>
 
@@ -113,7 +113,7 @@ function cb_timeframes_table_form_page_handler( )
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save & generate Codes', 'cb_timeframes_table')?>" id="submit" class="button-primary" name="submit">
+                    <input type="submit" value="<?php _e('Save & generate Codes', 'commons-booking')?>" id="submit" class="button-primary" name="submit">
                 </div>
             </div>
         </div>
@@ -178,7 +178,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
     <tbody class="cmb2-wrap">
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="item_id"><?php _e('Item', 'cb_timeframes_table')?></label>
+            <label for="item_id"><?php _e('Item', 'commons-booking')?></label>
         </th>
         <td>
           <?php 
@@ -194,7 +194,7 @@ function cb_timeframes_table_form_meta_box_handler($item)
     </tr>    
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="location_id"><?php _e('Location', 'cb_timeframes_table')?></label>
+            <label for="location_id"><?php _e('Location', 'commons-booking')?></label>
         </th>
         <td>
           <?php cb_timeframes_table_edit_dropdown( 'cb_locations', 'location_id', esc_attr($item['location_id']) ); ?>
@@ -202,29 +202,29 @@ function cb_timeframes_table_form_meta_box_handler($item)
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="date_start"><?php _e('Start Date', 'cb_timeframes_table')?></label>
+            <label for="date_start"><?php _e('Start Date', 'commons-booking')?></label>
         </th>
         <td>
             <input id="date_start" name="date_start" type="text"  style="width: 95%" value="<?php echo esc_attr($item['date_start'])?>"
-                   size="50" class="cb-datepicker" placeholder="<?php _e('Start Date', 'cb_timeframes_table')?>" required>
+                   size="50" class="cb-datepicker" placeholder="<?php _e('Start Date', 'commons-booking')?>" required>
         </td>
     </tr>    
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="date_end"><?php _e('End Date', 'cb_timeframes_table')?></label>
+            <label for="date_end"><?php _e('End Date', 'commons-booking')?></label>
         </th>
         <td>
             <input id="date_end" name="date_end" type="text" style="width: 95%" value="<?php echo esc_attr($item['date_end'])?>"
-                   size="50" class="cb-datepicker" placeholder="<?php _e('End Date', 'cb_timeframes_table')?>" required>
+                   size="50" class="cb-datepicker" placeholder="<?php _e('End Date', 'commons-booking')?>" required>
         </td>
     </tr>
     <tr class="form-field">
         <th valign="top" scope="row">
-            <label for="timeframe_title"><?php _e('Timeframe Title', 'cb_timeframes_table')?></label>
+            <label for="timeframe_title"><?php _e('Timeframe Title', 'commons-booking')?></label>
         </th>
         <td>
             <input id="timeframe_title" name="timeframe_title" type="text" style="width: 95%" value="<?php echo esc_attr($item['timeframe_title'])?>"
-                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'cb_timeframes_table')?>">
+                   size="50" class="code" placeholder="<?php _e('Timeframe title', 'commons-booking')?>">
         </td>
     </tr>
     </tbody>
