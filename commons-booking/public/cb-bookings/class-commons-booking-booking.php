@@ -285,7 +285,6 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             FROM wp_cb_bookings 
             WHERE status = 'pending' AND DATEDIFF(NOW(), 'booking_time') > 1
             ");      
-
     }
 
  /**
@@ -564,7 +563,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             // booking is confirmed and we are not cancelling
 
                             // PRINT: Code, Booking review, Cancel Button
-                            return cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                            return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
   
 
                         } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
