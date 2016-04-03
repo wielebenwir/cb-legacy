@@ -8,16 +8,20 @@
 <div class="cb-timeframes-wrapper">
 <?php // timeframes ?>
 <?php foreach ( $attributes['timeframes'] as $tf ) { ?>
+
   <a name="timeframe<?= $tf['timeframe_id'] ?>"></a>
    <div class="cb-timeframe" id="<?= $tf['timeframe_id'] ?>" data-tfid="<?= $tf['timeframe_id'] ?>" data-itemid="<?=$attributes['item']['ID'] ?>" data-locid="<?= $tf['location_id'] ?>">   
-    <div class="cb-location">
-      <span class="cb-date"><?=$tf['date_range'] ?></span>
-      <div class="cb-location-name">
-        <?=$tf['name'] ?>
-        <span class="cb-timeframe-description"><?=$tf['timeframe_title'] ?></span>
+      <span class="cb-date"><?=$tf['date_range'] ?></span> <span class="cb-timeframe-title"><?=$tf['timeframe_title'] ?></span>
+      <div class="cb-location-name cb-big">
+        <?=$tf['name'] ?>   
       </div>
-      <div class="cb-address cb-row"><?=$tf['address'] ?></div>
-      <div class="cb-contact cb-row"><?=$tf['contact'] ?></div>
+      <div class="cb-table">
+      <div class="cb-address cb-row">
+        <a href="http://maps.google.com/?q=<?=$tf['address'] ?>" target="_blank" class="cb-button align-right cb-small">Show in Maps</a>
+        <span class="cb-row-title"><?=_e('Address', 'commons-booking'); ?></span>
+        <?=$tf['address'] ?></div>
+      <div class="cb-contact cb-row"><span class="cb-row-title"><?=_e('Opening hours', 'commons-booking'); ?></span><?=$tf['opening_hours'] ?></div>
+      <div class="cb-contact cb-row"><span class="cb-row-title"><?=_e('Contact', 'commons-booking'); ?></span><?=$tf['contact'] ?></div>
     </div>
     <div id ="timeframe_<?=$tf['timeframe_id'] ?>" class="cb_timeframe_form">
         <ul class="cb-calendar">

@@ -44,6 +44,7 @@ class Commons_Booking_Data {
     $this->current_date = current_time('Y-m-d');
 
     $this->codes = $this->get_codes();
+    $this->settings = new CB_Admin_Settings;
 
 }
 
@@ -455,7 +456,10 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   $contact_string = $address_string = '';
 
   if ( !empty( $location['contact_hide'] ) ) { // honor setting to hide contact info
-      $contact_string = $location[ 'contact' ];
+    $contact_string = __('You will recieve contact information after your booking.', 'commons-booking');
+  } else {
+    $contact_string = $location[ 'contact' ];
+
   }
 
   $address_check = array_filter( $location[ 'address' ] );
@@ -476,6 +480,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   $attributes = array (
     'name' => $location['name'], 
     'contact' => $contact_string,
+    'opening_hours' => $location['openinghours'],
     'address' => $address_string,
     'date_range' => $daterange_string,
     'timeframe_title' =>  $timeframe['timeframe_title'],

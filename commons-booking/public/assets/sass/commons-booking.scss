@@ -12,7 +12,7 @@ $light-green: #207B1C;
 $dark-red: #A70001;
 $red: #FF0002;
 
-$padding: 5px;
+$padding: 1em;
 $radius: 10px;
   $width: 100%;
   $cellwidth: $width / 7;
@@ -112,45 +112,92 @@ $radius: 10px;
 
 .padding { padding: 1em; }
 .align-right { float: right; }
+
+
 .cb-small { font-size: 0.8em; }
-.cb-big { font-size: 1.2em; font-weight: bold; color: $blue }
+.cb-big { font-size: 1.4em; font-weight: bold; color: $blue }
 .cb-headline { 
   @extend .cb-big;
-  margin-bottom: 1em;  
   a { color: $blue }
 }
 .border { border-top: 1px solid $grey; display: block; }
 
-.cb-row {
-  border-bottom: 1px solid $grey;
-  padding: 0.5em;
+.cb-table {
+  margin-bottom: $padding;
+  .cb-row {
+    border-top: 1px solid $white;
+    padding: 0.5em;
+    overflow: hidden;
+    background: $light-grey;
+    &:hover {
+      // background: $white;
+    }
+    &:first-child {
+      @include border-radiuses($radius, 0, 0, $radius);
+    }
+    &:last-child {
+      @include border-radiuses(0, $radius, $radius, 0);
+    }
+    .cb-row-title {
+      font-weight: bold;
+      margin-right: $padding;
+    }
+    .cb-big {
+      display: block;
+    }
+    .cb-button {
+        margin: 1em 0 1em 1em;
+    }
+  }
 }
 
+
+
 .cb-box { 
-    @extend .border;
     @extend .padding;
-    // background: $light-grey;
     overflow: hidden; 
   }
 
-.cb-timeframe-title {
-  display: block; 
+.cb-user-bar {
+  margin-bottom: $padding;
+  a.cb-button {
+    @extend .cb-small;
+    background: $blue;
+    border: 1px solid $blue;
+  }
 }
 
-.cb-button {
-  // background: $green;
-  padding: $padding / 2 $padding;
+.cb-timeframe-title  {
+  display: none;
+}
+
+.cb-list-item-description {
+  margin-bottom: $padding;
+}
+
+.cb-date {
+
+}
+
+a.cb-button {
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 5px 10px;
   overflow: hidden;
-  color: $blue;
-  position: relative;
+  background: $green;
+  color: $white;
   @include rounded($radius);
-  border: 1px solid $blue !important;
+  border: 1px solid $green;
   &:hover {
-    background: darken($green, 10%);
+    background: $blue;
+    border: 1px solid $green;
     color: $white;
   }
-
-
+  // &.cb-small {
+  //   background: $grey;
+  //   border: 1px solid $grey;
+  //   color: $black;
+  // } 
 }
 
 .cb-booking-code  strong{
@@ -362,8 +409,7 @@ $radius: 10px;
     display: block;
     overflow: hidden; 
     .cb-date, .cb-address, .cb-contact {
-      @extend .cb-small;
-      padding-left: 0;
+
     }
     .cb-location-name {
       @extend .cb-big;
@@ -398,6 +444,7 @@ $radius: 10px;
       padding: 5px;
       float: left;
       text-align: center;
+
       color: $grey;
       border-bottom: 1px solid $grey;
       @include transition(all .3s ease);
@@ -420,7 +467,7 @@ $radius: 10px;
       &.bookable { // selectable dates
         cursor: pointer;
         color: $green;
-        background: $white;
+
         .cb-cal-inner {
         }
 
@@ -466,9 +513,9 @@ $radius: 10px;
       }
       &.closed {
         cursor: not-allowed;
-        color: $white;
+        color: darken($grey, 20%);
         .cb-cal-inner {
-          background: $grey;
+          background: $light-grey;
         }
           &.overbooking {
             @extend .selected;

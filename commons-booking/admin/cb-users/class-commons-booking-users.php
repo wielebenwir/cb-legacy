@@ -370,12 +370,9 @@ class Commons_Booking_Users extends Commons_Booking {
     if ( is_user_logged_in() ) {
 
         $current_user = wp_get_current_user();
-        printf(__('Welcome, %s! ', Commons_Booking::$plugin_slug ), $current_user->user_firstname);
-        echo ('<span class="align-right">');
-          printf(__('<a href="%s">Profile</a>', Commons_Booking::$plugin_slug ),  get_edit_profile_url() );
-          echo ( ' | ');
-          printf(__('<a href="%s">Logout</a>', Commons_Booking::$plugin_slug ), wp_logout_url( home_url() ) );
-        echo ('</span>');
+        $template_vars = object_to_array ( $current_user );
+
+        cb_get_template_part( 'user-bar', $template_vars ); // include user bar
 
         $user_bookings = $this->get_user_bookings( $current_user->ID );
 
