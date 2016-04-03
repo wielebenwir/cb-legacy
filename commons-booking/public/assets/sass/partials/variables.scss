@@ -1,0 +1,26 @@
+/*
+ * Base colors etc.
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+$grey: #E1E1E1;
+$light-grey: #F6F6F6;
+$blue: #3356A4;
+$dark-blue: darken($blue, 10%);
+$black: #000;
+$white: #fff;
+$green: #56A820;
+
+$light-green: #207B1C;
+$dark-red: #A70001;
+$red: #FF0002;
+
+$padding: 1em;
+$radius: 10px;
+$width: 100%;
+$cellwidth: $width / 7;

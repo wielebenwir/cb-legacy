@@ -1,0 +1,74 @@
+/*
+ * Booking bar displayed on calendar pages
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+#cb-bookingbar {
+  z-index: 99;
+  position: fixed;
+  height: auto;
+  left: 10px;
+  right: 10px;
+  bottom: 10px; 
+
+
+  .inner {
+    @extend .cb-box;
+    @include rounded($radius);
+    @include box-shadow( 0, 0, 70px, 1px, #AFAFAF );
+    margin: 0;
+    background: $white;
+    color: $blue;
+    overflow: hidden;
+  }
+  .cb-userinfo {
+    display: block;
+    margin-bottom: 10px;
+    a {
+
+    }
+  }
+  .booking {
+    #intro, #date-start, #date-end, #cb-submit {
+      font-weight: normal;
+      height: 40px;
+      line-height: 40px;
+      float: left;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+      div.bb-date {
+         display: inline-block;
+          background: $dark-blue;
+          color: $white;
+          padding-left: $padding;
+          padding-right: $padding;
+          margin: 0 $padding;
+          height: 40px;
+          @include rounded($radius);
+        .cb-cal-inner {
+          span.cb-day {
+            display: none;
+          }
+        }
+    }
+    #cb-submit {
+      margin-right: 0;
+      .cb-button {
+        line-height: 40px;
+        height: 40px;
+      }
+      float: right;
+    }
+  }
+}
+
+#cb-bookingbar-msg {
+  @extend .cb-message;
+  margin-bottom: 0;
+}
