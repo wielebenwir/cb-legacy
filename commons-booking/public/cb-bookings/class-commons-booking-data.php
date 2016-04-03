@@ -301,7 +301,7 @@ class Commons_Booking_Data {
   public function render_item_single( $item_id  ) {
 
     $template_vars = $this->get_timeframe_array( $item_id );
-    return cb_get_template_part( 'item-timeframes', $template_vars, true ); // include the template
+    return cb_get_template_part( 'timeframes-full', $template_vars, true ); // include the template
 
   }
 
@@ -386,7 +386,7 @@ class Commons_Booking_Data {
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $content .=  cb_get_template_part( 'item-list-timeframes', $timeframes );           
+      $content .=  cb_get_template_part( 'timeframes-compact', $timeframes );           
     } else {
       $content = '<span class="cb-message error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
     }
