@@ -54,29 +54,13 @@ class Commons_Booking_Public_Items {
         
         $the_query->the_post();
         $item_id = get_the_ID();
-
-        $content [$item_id]['permalink'] =  get_the_permalink();
-        $content [$item_id]['title'] =  get_the_title();
-        if ( has_post_thumbnail( $item_id ) ) {  $content [$item_id]['thumb'] = get_the_post_thumbnail( $item_id, 'thumbnail' ); }
-        $content [$item_id]['description'] =  get_post_meta( get_the_ID(), 'commons-booking_item_descr', true );
-
-        $timeframes = $this->data->get_timeframes( $item_id  );
-
-        if ( $timeframes ) {
-          foreach ( $timeframes as $tf ) {
-            $location = $this->data->get_location ( $tf ['location_id'] );
-
-            $content [$item_id]['location'][$tf ['location_id']] = $location;
-            $content [$item_id]['location'][$tf ['location_id']]['date_start'] = $tf ['date_start'];
-            $content [$item_id]['location'][$tf ['location_id']]['date_end'] = $tf ['date_end'];
-          } // end foreach
-        }
+        array_push( $content, $item_id );
       }
     } else {
       return __( ' Sorry, nothing found.');
     }
      wp_reset_postdata();
-       return $content; 
+      return $content; 
     }
 
   /**
@@ -109,17 +93,22 @@ class Commons_Booking_Public_Items {
    */
   public function output( $args = array() ) {
    
+    $content = '';
     $queryargs = $this->merge_args($args);  
     $query = new WP_Query( $queryargs );
-    $items = $this->get_Items( $query );
+    wp_reset_postdata();
+    $item_ids = $this->get_Items( $query );
 
+    if ( is_array ($item_ids) ) { // if result
 
-    if ( is_array ($items) ) { // if result
-      ob_start();
-      // include ( commons_booking_get_template_part( 'items', 'list', false ) );
-      return ob_get_clean();
+      foreach ($item_ids as $item_id) {
+        $content .= $this->data->render_item_list( $item_id );
       }
 
+      } else {
+        $content = __('No items found', 'commons-booking');
+      }
+    return $content; 
   }
 }
 ?>

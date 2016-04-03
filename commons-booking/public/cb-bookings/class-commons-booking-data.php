@@ -375,23 +375,32 @@ class Commons_Booking_Data {
  * @return html
 */
 
-  public function render_item_list () {
+  public function render_item_list ( $id = false ) {
 
-    $content = '';
-    $id = get_the_ID(); // get post id 
+    $item_content = '';
+    if (! $id ) {
+      $id = get_the_ID(); // get post id 
+    }
 
-    $attributes = get_post_meta( $id );
-    $content =  cb_get_template_part( 'item-list-item', $attributes );      
+    $attributes = array (
+      'id' => $id,
+      'title' => get_the_title( $id ),
+      'permalink' => get_the_permalink( $id ),
+      'thumb' => get_post_thumbnail_id ( $id ), 
+      'meta' => get_post_meta( $id )
+      );
+
+    $item_content =  cb_get_template_part( 'item-list-item', $attributes, TRUE );      
 
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $content .=  cb_get_template_part( 'timeframes-compact', $timeframes );           
+      $item_content .=  cb_get_template_part( 'timeframes-compact', $timeframes, TRUE );           
     } else {
-      $content = '<span class="cb-message error">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
+      $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
     }
     
-    return $content;
+    return $item_content;
 
   }  
 
@@ -410,7 +419,7 @@ public function prepare_template_vars_item ( $item ) {
   
   $attributes = array (
     'id' => $item['id'],
-    'title' => $item['psot_title'],
+    'title' => $item['post_title'],
     'description_short' => $item['commons-booking_item_descr'],
     'description_full' => $item['post_content']  
     );
