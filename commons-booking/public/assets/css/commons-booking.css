@@ -5,7 +5,7 @@
   border: 10px solid yellow; }
 
 /* mixins */
-.padding, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar-msg {
+.padding, .cb-box, #cb-bookingbar .inner, .cb-timeframe {
   padding: 1em; }
 
 .align-right, .cb-list ul li span.cb-action {
@@ -77,7 +77,7 @@
   overflow: hidden; }
 
 .cb-user-bar {
-  margin-bottom: 1em; }
+  margin-bottom: 2em; }
   .cb-user-bar a.cb-button {
     background: #3356a4;
     border: 1px solid #3356a4; }
@@ -88,10 +88,15 @@
 .cb-list-item-description {
   margin-bottom: 1em; }
 
-a.cb-button {
+a.cb-button, input#wp-submit {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px 15px;
   overflow: hidden;
   background: #56a820;
   color: white;
@@ -99,10 +104,20 @@ a.cb-button {
   -moz-border-radius: 10px;
   border-radius: 10px;
   border: 1px solid #56a820; }
-  a.cb-button:hover {
+  a.cb-button:hover, input#wp-submit:hover {
     background: #3356a4;
-    border: 1px solid #56a820;
+    border: 1px solid #3356a4;
     color: white; }
+  a.cb-button.warning, input#wp-submit.warning {
+    background: #a70001;
+    border: 1px solid #a70001; }
+    a.cb-button.warning:hover, input#wp-submit.warning:hover {
+      background: #ff0002;
+      border: 1px solid #ff0002; }
+
+.cb-row a.cb-button,
+.cb-user-bar a.cb-button {
+  padding: 5px 10px; }
 
 .cb-booking-code strong {
   padding: 5px;
@@ -118,19 +133,22 @@ a.cb-button {
  * MESSAGES
  *
  */
-.cb-message {
+.cb-message, #cb-bookingbar-msg {
   display: block;
-  border: 1px solid #e1e1e1;
-  margin-bottom: 1em;
-  padding: 1em; }
-  .cb-message strong {
-    color: black; }
-  .cb-message.success {
-    color: #56a820;
-    border: 1px solid #56a820; }
-  .cb-message.error {
-    color: #ff0002;
-    border: 1px solid #ff0002; }
+  margin-bottom: 2em;
+  padding: 0.5em 1em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: white; }
+  .cb-message.success, .success#cb-bookingbar-msg {
+    color: #407d18;
+    background: #c3eea6; }
+  .cb-message.error, .error#cb-bookingbar-msg {
+    background: #ff0002; }
+
+#cb-bookingbar-msg {
+  margin-bottom: 0; }
 
 /*****************
  * ITEMS LIST
@@ -147,17 +165,6 @@ a.cb-button {
 * ITEMS SINGLE: Bookingbar
 *
 */
-#cb-bookingbar-msg {
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px; }
-  #cb-bookingbar-msg.error {
-    background: red;
-    color: white; }
-  #cb-bookingbar-msg.notice {
-    background: green;
-    color: white; }
-
 #cb-bookingbar {
   z-index: 99;
   position: fixed;

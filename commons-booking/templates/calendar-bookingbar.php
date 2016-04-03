@@ -43,7 +43,7 @@
     <div id="debug"></div>
     <?php } else { ?>
       <p class="cb-big"><?php echo __( 'You have to be registered to book.', $attributes['plugin_slug'] ); ?></p>
-      <a href="<?php echo wp_login_url(); ?>"><?php echo __( 'Login' ); ?></a> | <a href="<?php echo wp_registration_url(); ?>"><?php echo __( 'Register' ); ?></a>
+      <a href="<?php echo wp_login_url(); ?>" class="cb-button"><?php echo __( 'Login' ); ?></a> <a href="<?php echo wp_registration_url(); ?>" class="cb-button"><?php echo __( 'Register' ); ?></a><br><br>
     <?php } ?>
   </div>
 </div>

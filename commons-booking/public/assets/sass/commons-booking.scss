@@ -159,7 +159,7 @@ $radius: 10px;
   }
 
 .cb-user-bar {
-  margin-bottom: $padding;
+  margin-bottom: $padding * 2;
   a.cb-button {
     @extend .cb-small;
     background: $blue;
@@ -179,10 +179,11 @@ $radius: 10px;
 
 }
 
-a.cb-button {
+a.cb-button, input#wp-submit {
+  @include transition(all .3s ease);
   white-space: nowrap;
   text-decoration: none;
-  padding: 5px 10px;
+  padding: 10px 15px;
   overflow: hidden;
   background: $green;
   color: $white;
@@ -190,14 +191,30 @@ a.cb-button {
   border: 1px solid $green;
   &:hover {
     background: $blue;
-    border: 1px solid $green;
+    border: 1px solid $blue;
     color: $white;
+  }
+  &.warning {
+    background: $dark-red;
+    border: 1px solid $dark-red;
+    &:hover {
+      background: $red;
+        border: 1px solid $red;
+
+    }
   }
   // &.cb-small {
   //   background: $grey;
   //   border: 1px solid $grey;
   //   color: $black;
   // } 
+}
+
+.cb-row,
+.cb-user-bar {
+  a.cb-button {
+    padding: 5px 10px;
+  }
 }
 
 .cb-booking-code  strong{
@@ -221,20 +238,24 @@ a.cb-button {
 
 .cb-message {
   display: block;
-  border: 1px solid $grey;
-  margin-bottom: $padding;
-  padding: $padding;
+  margin-bottom: $padding * 2;
+  padding: $padding / 2 $padding ;
+  @include rounded($radius);
+  color: $white;
   strong {
-    color: $black;
   }
   &.success {
-    color: $green;
-    border: 1px solid $green;
+    color: darken( $green, 10%);
+    background: lighten( $green, 40%);
   }
   &.error {
-     color: $red;
-     border: 1px solid $red;
+    background: $red;
   }
+}
+
+#cb-bookingbar-msg {
+  @extend .cb-message;
+  margin-bottom: 0;
 }
 
 /*****************
@@ -263,18 +284,6 @@ a.cb-button {
  *
  */
 
-#cb-bookingbar-msg {
-  @extend .padding;
-  @include rounded($radius);
-  &.error {
-    background: red;
-    color: $white;
-  }
-  &.notice {
-    background: green;
-    color: $white;
-  }
-}
 
 #cb-bookingbar {
   z-index: 99;
@@ -463,7 +472,6 @@ a.cb-button {
         }
       }
 
-  
       &.bookable { // selectable dates
         cursor: pointer;
         color: $green;
