@@ -568,13 +568,21 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                         // PRINT: Booking review, Cancel Button
                         $message = display_cb_message( $msg, $this->b_vars );
+
                         return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
                     } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
 
+                        // display cancel button only if currentdate <= booking end date 
+                        if ( strtotime($this->b_vars['date_end'] . '+ 1 day') > time() ) {
+                            $cancel_button = cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );    
+                        } else {
+                            $cancel_button = '';                            
+                        }
+
                         // PRINT: Code, Booking review, Cancel Button
-                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
 
 
                     } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
