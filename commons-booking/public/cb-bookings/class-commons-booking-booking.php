@@ -374,8 +374,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         }
         $max_days = $max_days + max ($closed_days_count -1 , 0); // closed days count as 1 day
 
+        $matches = array_intersect( $between, $booked_days );
+
         // if date is already booked, or too many days selected
-        if ( in_array( $between, $booked_days ) OR $count_days > $max_days  ) {
+        if ( ! empty ( $matches ) OR $count_days > $max_days  ) {
             die ('Error: There was an error with your request.');
         } else {
             return TRUE;
