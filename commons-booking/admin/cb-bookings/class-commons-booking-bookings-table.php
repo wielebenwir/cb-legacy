@@ -39,6 +39,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     /**
      * [REQUIRED] You must declare constructor and give some basic params
      */
+
     function __construct()
     {
         global $status, $page;
@@ -46,11 +47,10 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         parent::__construct(array(
             'singular' => __( 'Booking' ),
             'plural' => __( 'Bookings' ),
-
             $this->plugin_slug
         ));
-    }
 
+    }
     /**
      * [REQUIRED] this is a default column renderer
      *
@@ -101,7 +101,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            // 'edit' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', $this->plugin_slug )),
+            // 'view' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('View', $this->plugin_slug )),
             'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
         );
 
@@ -157,7 +157,14 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     function get_sortable_columns()
     {
         $sortable_columns = array(
-
+            'item_id' => array('item_id', false),
+            'date_start' => array('date_start', false),
+            'date_end' => array('date_end', false),
+            'user_id' => array('user_id', false),
+            'booking_time' => array('booking_time', false),
+            'status' => array('status', false),
+            'location_id' => array('location_id', false),
+            'id' => array('ID', false),
         );
         return $sortable_columns;
     }
@@ -295,8 +302,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged * $per_page), ARRAY_A);
 
-        echo (count ($this->items) );
-
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
             'total_items' => $total_items, // total items defined above
@@ -341,7 +346,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', $this->plugin_slug);
+       echo __( 'You need to add some items.', $this->plugin_slug);
       }
       /* Restore original Post Data */
       wp_reset_postdata();
