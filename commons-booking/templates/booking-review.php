@@ -39,7 +39,7 @@
 </div>
 
 <?php //LOCATION ?>
-<div class="cb-headline"><?php echo  __( ' Location information: ', $attributes['plugin_slug'] ); ?></div>
+<div class="cb-headline"><?php echo  __( ' Location information ', $attributes['plugin_slug'] ); ?></div>
 <div class="cb-booking-location cb-table">
   <div class="cb-row">
     <span class="cb-row-title"><?php _e('Address:', 'commons-booking'); ?></span><?php echo $attributes['location_address']; ?>
