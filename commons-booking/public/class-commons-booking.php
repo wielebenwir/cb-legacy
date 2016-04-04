@@ -596,12 +596,13 @@ class Commons_Booking {
         // create the default pages 
         $item_page = create_page(__( 'Items', self::$plugin_slug ), self::$plugin_slug.'_item_page_select');
         $user_bookings_page = create_page(__( 'My Bookings', self::$plugin_slug ), self::$plugin_slug.'_user_bookings_page_select');
-        $booking_confirm_page = create_page(__( 'Booking', self::$plugin_slug ), self::$plugin_slug.'_bookingconfirm_page_select');
+        $booking_confirmed_page = create_page(__( 'Booking', self::$plugin_slug ), self::$plugin_slug.'_booking_confirmed_page_select');
+        $booking_view_page = create_page(__( 'Confirm booking', self::$plugin_slug ), self::$plugin_slug.'_booking_review_page_select');
 
         // set defaults, set pages, update wp_options
         $settings = new CB_Admin_Settings(); 
 
-        $settings->set_defaults( $item_page, $user_bookings_page , $booking_confirm_page );
+        $settings->set_defaults( $item_page, $user_bookings_page , $booking_confirmed_page, $booking_view_page );
         $settings->apply_defaults();
 
         //Clear the permalinks

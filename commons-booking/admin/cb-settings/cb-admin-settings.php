@@ -35,19 +35,21 @@ class CB_Admin_Settings extends Commons_Booking {
   * Set the default values for the settings. 
   * Loop through each setting, if set, keep it otherwise write defaults to wp_options 
   */
-  public function set_defaults( $item_page, $user_bookings_page, $booking_confirm_page  ) {
+  public function set_defaults( $item_page, $user_bookings_page, $booking_confirmed_page, $booking_review_page  ) {
 
     $this->item_page_id = $item_page;
     $this->user_bookings_page_id = $user_bookings_page;
-    $this->booking_confirm_page_id = $booking_confirm_page;
+    $this->booking_confirmed_page_id = $booking_confirmed_page;
+    $this->booking_review_page_id = $booking_review_page;
 
     // Default Settings
     $this->defaults = array(
         $this->prefix. '-settings-pages' => array(
           $this->prefix.'_item_page_select' => $this->item_page_id,
           $this->prefix.'_user_bookings_page_select' => $this->user_bookings_page_id,
-          $this->prefix.'_bookingconfirm_page_select' => $this->booking_confirm_page_id, 
-          $this->prefix.'_termsservices_url' => '', 
+          $this->prefix.'_booking_confirmed_page_select' => $this->booking_confirmed_page_id, 
+          $this->prefix.'_booking_review_page_select' => $this->booking_review_page_id, 
+          $this->prefix.'_termsservices_url' => '' 
         ),
         $this->prefix.'-settings-bookings' => array(
           $this->prefix.'_bookingsettings_maxdays' => 3,
