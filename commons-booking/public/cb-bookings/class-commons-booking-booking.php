@@ -254,7 +254,11 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         global $wpdb;
         $table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $sqlresult = $wpdb->get_row("SELECT * FROM $table_bookings WHERE id = $booking_id", ARRAY_A);          
+        $sqlresult = $wpdb->get_row("
+            SELECT * 
+            FROM $table_bookings 
+            WHERE id = $booking_id", 
+            ARRAY_A);          
 
         $booking_data['id']             = $sqlresult['id'];
         $booking_data['date_start']     = $sqlresult['date_start'];
@@ -477,14 +481,14 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         global $wpdb;
         $table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $id = $wpdb->get_results( $wpdb->prepare(
+        $result = $wpdb->get_results( $wpdb->prepare(
             "
             SELECT id
             FROM wp_cb_bookings
             WHERE HASH = '%s'
             ",  $hash), ARRAY_A        
         );
-        return $id;
+        return $result;
     }
 
 
@@ -552,33 +556,24 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
             $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
 
-            // if (! wp_verify_nonce($_POST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
-
             // 1. Confirm the booking / 2. view the booking / 3. cancel the booking 
             if ( !empty($_GET['booking']) ) { // we confirm the booking 
 
                 // DATA FROM URL
                 $this->hash = sanitize_text_field ( $_GET['booking'] );
 
-                // if (! ctype_alnum( $this->hash ) ) {
-                //     die ("Wrong Code");
-                // }
-
+                if (! ctype_alnum( $this->hash ) ) {
+                    die ("Wrong Code");
+                }
                 $temp = $this->get_booking_id_by_hash( $this->hash );
                 
-                if ( !empty( $temp ) ) {
-                    $b_id = $temp[0]['id'];
-                // } elseif ( ) { // provide compatibility with old system
+                if ( ( isset( $temp[0]['id'] ) && ! empty ( $temp[0]['id'] ) ) ) {
+                   $b_id = $temp[0]['id'];
                 } else {
                     return display_cb_message( "Error: Booking not found.", array(), FALSE );
                     die();
                 }
-
                 $user_id = get_current_user_id();
-
-                // $b_id = $this->decrypt( $this->hash );
-                // $b_id = $myid;
-
                 $this->booking = $this->get_booking( $b_id );
 
                 if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
