@@ -359,8 +359,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $booked_days = $this->get_booked_days ( $item_id, 'confirmed' );
         $between = get_dates_between( $date_start, $date_end );
         $count_days = count ( $between);
-        $max_days = $this->data->get_settings( 'bookings', 'bookingsettings_maxdays');
-        $allow_closed = $this->data->get_settings( 'bookings', 'bookingsettings_allowclosed');
+        $max_days = $this->settings->get_settings( 'bookings', 'bookingsettings_maxdays');
+        $allow_closed = $this->settings->get_settings( 'bookings', 'bookingsettings_allowclosed');
         $location = $this->data->get_location( $location_id );
         $closed_days = $location['closed_days'];
         $closed_days_count = 0;
@@ -368,16 +368,20 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         // add the closed days to maxdays
         foreach ( $between as $day ) {
             $weekday = date( "N", strtotime( $day )); // convert date to weekday # 
-            if ( ( $allow_closed == "on" ) && ( in_array( $weekday, $closed_days ) ) ) {
-            $closed_days_count++;
+            if ( in_array( $weekday, $closed_days ) ) { // a closed day found
+                if ( $allow_closed == "on" ) { // booking over closed days is allowed
+                    $closed_days_count++;
+                } else {
+                    die ('Error: You are not allowed to book over closed days.');
+                }
             }
         }
         $max_days = $max_days + max ($closed_days_count -1 , 0); // closed days count as 1 day
 
-        $matches = array_intersect( $between, $booked_days );
+        $matches = array_intersect( $between, $booked_days ); // 
 
         // if date is already booked, or too many days selected
-        if ( ! empty ( $matches ) OR $count_days > $max_days  ) {
+        if ( ! empty ( $matches ) OR $count_days > $max_days ) {
             die ('Error: There was an error with your request.');
         } else {
             return TRUE;
@@ -580,6 +584,14 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                         } else {
                             $cancel_button = '';                            
                         }
+
+                        $args =  array ('post_type'=> 'cb_items', 'p' => $this->item_id );
+                        $the_query = new WP_Query( $args );
+                        if ( $the_query->have_posts() ) :
+                                while ( $the_query->have_posts() ) : $the_query->the_post();
+                                comment_form();
+                        endwhile; endif;
+                        wp_reset_postdata();
 
                         // PRINT: Code, Booking review, Cancel Button
                         return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
