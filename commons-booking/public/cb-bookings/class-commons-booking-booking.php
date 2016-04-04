@@ -42,10 +42,6 @@ class Commons_Booking_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
     	$this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
-        $this->secret = '8L1i92OaxcnbNbveOLR6MWs3CUJ22e4P'; /* TODO */
-
-
-
     }
 
 /**
@@ -398,38 +394,7 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             return TRUE;
         }
     }
-
-    /**
-     * Encrypt the booking array.
-     * 
-     * @param array booking array
-     *
-     * @return string encoded
-     */ 
-    public function encrypt( $id ) {
-
-        $id = base_convert($id, 10, 36); // Save some space
-        $data = mcrypt_encrypt(MCRYPT_BLOWFISH, $this->secret, $id, 'ecb');
-        $data = bin2hex($data);
-
-        return $data;
-    }  
-    /**
-     * Decrypt the booking array.
-     * 
-     * @param string encoded
-     *
-     * @return array decoded
-     */   
-    public function decrypt( $encrypted_id ) {
-
-        $data = pack('H*', $encrypted_id); // Translate back to binary
-        $data = mcrypt_decrypt(MCRYPT_BLOWFISH, $this->secret, $data, 'ecb');
-        $data = base_convert($data, 36, 10);
-
-        return $data;
-
-    }     
+   
     /**
      * Set all needed variabls for template.
      * 
@@ -636,145 +601,5 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         
         }
     }
-
-    /**
-     * Main Booking function. 
-     *
-     */
-    public function render_bookingreview( ) {
-          if (is_user_logged_in() ) {
-
-            $current_user = wp_get_current_user();
-
-            $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
-            $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
-
-            if ( !empty($_POST['create']) && $_POST['create'] == 1) { // we create a new booking
-
-               if ( !empty($_POST['date_start']) && !empty($_POST['date_end']) && !empty($_POST['timeframe_id']) && !empty($_POST['item_id']) && !empty($_POST['location_id']) && !empty($_POST['_wpnonce']) ) { // all needed vars available
-
-                  if (! wp_verify_nonce($_POST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
-
-                    // DATA FROM FORM
-                    $this->date_start = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_start'] ) ) );  
-                    $this->date_end = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_end'] ) ) );  
-                    $this->location_id = sanitize_text_field( $_POST['location_id'] );  
-                    $this->item_id = sanitize_text_field( $_POST['item_id'] );  
-                    $this->timeframe_id = sanitize_text_field( $_POST['timeframe_id'] );  
-                    
-                    $this->user_id = get_current_user_id();
-
-                    // Set Variable for Template
-
-                    // check if days are not already booked, and count <  maxdays
-                    if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id )) {
-
-                        $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
-
-                        $this->hash = $this->create_hash();
-                        $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
-                        $this->set_booking_vars();
-
-                        return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
-
-                    } // end if validated - days
-
-                } else { // not all needed vars present  
-                   
-                    echo __( 'Error: Variables missing', 'commons-booking' );
-
-              } // end if all variables present
-            } else if ( !empty($_GET['booking']) ) { // we confirm the booking 
-
-                    // DATA FROM URL
-                    $this->hash = sanitize_text_field ( $_GET['booking'] );
-
-                    // if (! ctype_alnum( $this->hash ) ) {
-                    //     die ("Wrong Code");
-                    // }
-
-                    $temp = $this->get_booking_id_by_hash( $this->hash );
-                    
-                    if ( !empty( $temp ) ) {
-                        $b_id = $temp[0]['id'];
-                    // } elseif ( ) { // provide compatibility with old system
-                    } else {
-                        die ("Booking not found");
-                    }
-
-
-                    $user_id = get_current_user_id();
-
-
-                    // $b_id = $this->decrypt( $this->hash );
-                    // $b_id = $myid;
-
-                    $this->booking = $this->get_booking( $b_id );
-
-                    if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
-
-                        $this->date_start = ( $this->booking['date_start'] ); 
-                        $this->date_end = ( $this->booking['date_end'] ); 
-                        $this->location_id = ( $this->booking['location_id'] );  
-                        $this->item_id = ( $this->booking['item_id'] ); 
-                        $this->user_id = ( $this->booking['user_id'] );
-                        $this->booking_id = ( $b_id );
-
-                        // Set Variable for Template
-                        $this->set_booking_vars( TRUE );
-
-                        // Finalise the booking
-                        if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { 
-                            // check if status is pending and confirm = 1 
-
-                            // Display the Message
-                            $msg = ( $booking_messages[ 'messages_booking_confirmed' ] );  // get message   
-
-                            $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
-                            $this->send_mail( $this->user['email'] );
-
-                            // PRINT: Booking review, Cancel Button
-                            $message = display_cb_message( $msg, $this->b_vars );
-                            return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
-
-                        } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
-                            // booking is confirmed and we are not cancelling
-
-                            // PRINT: Code, Booking review, Cancel Button
-                            return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
-  
-
-                        } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
-                            // booking is confirmed and we are cancelling
-                        
-                            $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
-
-                            $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
-                            return display_cb_message( $msg, $this->b_vars );
-                        
-                        } else {
-                            // canceled booking, page refresh
-
-                            $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
-                            return display_cb_message( $msg, array(), FALSE );
-
-                        }
-
-                    } else {
-                        die ('You have no right to view this page');
-                    }
-
-
-            } // end if confirm
-          
-
-          } else { // not logged in     
-            
-            return display_cb_message( "Error: You must be logged in to access this page.", array(), FALSE );
-        
-        } // end if logged in 
-
-    }
-
 }
 ?>
