@@ -273,14 +273,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // [OPTIONAL] process bulk action if any
         $this->process_bulk_action();
 
-        // will be used in pagination settings
-        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
-
-        // prepare query params, as usual current page, order by and order direction
-        $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
-        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
- 
         // get filters
         $filters = $this->get_selected_Filters(); 
         $sqlfilter = "";
@@ -290,11 +282,20 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             // set query 
             $sqlfilter = 'WHERE ' . implode (' AND ', $filters);
         }
+        // will be used in pagination settings
+        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name $sqlfilter");
 
+        // prepare query params, as usual current page, order by and order direction
+        $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
+        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
+        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
+ 
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged * $per_page), ARRAY_A);
+
+        echo (count ($this->items) );
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
@@ -323,7 +324,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         $type = $filters[ $key ][ 'posttype' ];
         $name = $filters[ $key ][ 'name' ];
         $filter = $filters[ $key ][ 'filter' ];
-        $args = array( 'posts_per_page' => -1, 'post_type' => $type );
+        $args = array(  'post_type' => $type );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) {
 
