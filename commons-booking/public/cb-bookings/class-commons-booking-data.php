@@ -301,8 +301,11 @@ class Commons_Booking_Data {
   public function render_item_single( $item_id  ) {
 
     $template_vars = $this->get_timeframe_array( $item_id );
-    return cb_get_template_part( 'timeframes-full', $template_vars, true ); // include the template
-
+    if ($template_vars) {
+      return cb_get_template_part( 'timeframes-full', $template_vars, true ); // include the template
+    } else {
+      return '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
+    }
   }
 
 /**
