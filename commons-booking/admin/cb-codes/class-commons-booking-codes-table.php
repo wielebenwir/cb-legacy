@@ -253,14 +253,6 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         // [OPTIONAL] process bulk action if any
         $this->process_bulk_action();
 
-        // will be used in pagination settings
-        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
-
-        // prepare query params, as usual current page, order by and order direction
-        $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
-        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
- 
         // get filters
         $filters = $this->get_selected_Filters(); 
         $sqlfilter = "";
@@ -271,6 +263,14 @@ class Commons_Booking_Codes_Table extends WP_List_Table
             $sqlfilter = 'WHERE ' . implode (' AND ', $filters);
         }
 
+        // will be used in pagination settings
+        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name $sqlfilter");
+
+        // prepare query params, as usual current page, order by and order direction
+        $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
+        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
+        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
+ 
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
@@ -338,7 +338,6 @@ class Commons_Booking_Codes_Table extends WP_List_Table
     function extra_tablenav( $which ) {
 
         global $wpdb;
-        // echo( "<h2>--- ".$this->$testing."</h2>" );
 
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
