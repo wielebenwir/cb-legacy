@@ -6,7 +6,6 @@
  */
 ?>
 <div class="cb-timeframes-wrapper">
-<?php // timeframes ?>
 <?php foreach ( $attributes['timeframes'] as $tf ) { ?>
 
   <a name="timeframe<?= $tf['timeframe_id'] ?>"></a>
