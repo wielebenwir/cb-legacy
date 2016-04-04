@@ -435,7 +435,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $b_vars['user_phone'] = $this->user['phone'];    
         if ( $include_code ) {
             $b_vars['code'] = $this->get_code( $this->booking['code_id'] ); 
-            $b_vars['url'] = get_the_permalink() . '?booking=' . $this->hash; 
+            $b_vars['url'] = add_query_arg( 'booking', $this->hash, get_the_permalink() );
+
         }
         $this->b_vars = $b_vars;
 
