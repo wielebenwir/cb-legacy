@@ -570,7 +570,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                     $b_id = $temp[0]['id'];
                 // } elseif ( ) { // provide compatibility with old system
                 } else {
-                    die ("Booking not found");
+                    return display_cb_message( "Error: Booking not found.", array(), FALSE );
+                    die();
                 }
 
                 $user_id = get_current_user_id();
@@ -634,7 +635,10 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                 }
 
 
-                } // end if confirm
+            } // end if confirm
+        } else { // not logged in 
+            return display_cb_message( "Error: You must be logged in to access this page.", array(), FALSE );
+        
         }
     }
 
