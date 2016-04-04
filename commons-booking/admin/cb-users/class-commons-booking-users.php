@@ -378,7 +378,7 @@ class Commons_Booking_Users extends Commons_Booking {
 
         if ( !empty ($user_bookings) ) {
 
-          $review_page_id = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
+          $review_page_id = $this->settings->get_settings('pages', 'booking_confirmed_page_select');
           $review_page_link = get_permalink( $review_page_id );
 
             $template_vars = array(
