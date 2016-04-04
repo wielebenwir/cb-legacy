@@ -1,6 +1,7 @@
 <?php //print_r($attributes); ?>
-<div class="cb-items-list">
+<div class="cb-items-wrapper">
 <?php foreach ( $attributes as $item ) { ?>
+<div class="cb-box">
   <h2 class="cb-big"><a href="<?=$item['permalink'] ?>"><?=$item['title'] ?></a></h2>
   <div class="cb-list">
     <div class="cb-list-item">
@@ -19,5 +20,6 @@
       </div>
     <?php } // end if isset location ?>
     </div>
+  </div>
   <?php } ?>>
   </div>

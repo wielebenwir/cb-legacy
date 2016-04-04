@@ -10,7 +10,7 @@
 <?php foreach ( $attributes['timeframes'] as $tf ) { ?>
 
   <a name="timeframe<?= $tf['timeframe_id'] ?>"></a>
-   <div class="cb-timeframe" id="<?= $tf['timeframe_id'] ?>" data-tfid="<?= $tf['timeframe_id'] ?>" data-itemid="<?=$attributes['item']['ID'] ?>" data-locid="<?= $tf['location_id'] ?>">   
+   <div class="cb-timeframe cb-box" id="<?= $tf['timeframe_id'] ?>" data-tfid="<?= $tf['timeframe_id'] ?>" data-itemid="<?=$attributes['item']['ID'] ?>" data-locid="<?= $tf['location_id'] ?>">   
       <span class="cb-date"><?=$tf['date_range'] ?></span> <span class="cb-timeframe-title"><?=$tf['timeframe_title'] ?></span>
       <div class="cb-location-name cb-big">
         <?=$tf['name'] ?>   
