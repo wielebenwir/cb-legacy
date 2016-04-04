@@ -445,8 +445,8 @@ public function prepare_template_vars_item ( $item ) {
 public function prepare_template_vars_calendar_cell ( $timestamp, $location, $booked_days ) {
   
   $attributes = array (
-    'day_short' => date_i18n ('D', $timestamp ),
-    'date_short' => date_i18n ('j.n.', $timestamp ),
+    'day_short' => date_i18n ('M', $timestamp ),
+    'date_short' => date_i18n ('j.', $timestamp ),
     'weekday_code' => 'day' . date('N', $timestamp),
     'id' => $timestamp,
     'status' => $this->set_day_status( $timestamp, $location, $booked_days )    

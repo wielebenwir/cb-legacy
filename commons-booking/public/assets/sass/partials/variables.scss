@@ -8,19 +8,25 @@
  * @copyright 2015 wielebenwir
  */
 
+/* COLORS */
 $grey: #E1E1E1;
 $light-grey: #F6F6F6;
+$dark-grey: #414141;
+$black: 000;
+
 $blue: #3356A4;
 $dark-blue: darken($blue, 10%);
-$black: #000;
+
 $white: #fff;
+
 $green: #56A820;
-
 $light-green: #207B1C;
-$dark-red: #A70001;
-$red: #FF0002;
 
+$red: #FF0002;
+$dark-red: #A70001;
+
+/* COLORS */
 $padding: 1em;
-$radius: 10px;
+$radius: 7px;
 $width: 100%;
 $cellwidth: $width / 7;

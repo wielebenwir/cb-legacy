@@ -15,6 +15,7 @@
   left: 10px;
   right: 10px;
   bottom: 10px; 
+  @include transition(all .3s ease);
 
 
   .inner {
@@ -36,22 +37,23 @@
   .booking {
     #intro, #date-start, #date-end, #cb-submit {
       font-weight: normal;
-      height: 40px;
-      line-height: 40px;
       float: left;
-      margin-right: 10px;
-      font-weight: bold;
     }
       div.bb-date {
          display: inline-block;
-          background: $dark-blue;
-          color: $white;
-          padding-left: $padding;
-          padding-right: $padding;
-          margin: 0 $padding;
-          height: 40px;
+          background: $white;
+          color: $blue;
+          line-height: 0.8em;
           @include rounded($radius);
         .cb-cal-inner {
+          font-weight: bold;
+          margin: 0 10px 0 5px;
+          border: 0;
+          padding: 0;
+          span {
+            color: $blue;
+            padding: 0;
+          }
           span.cb-day {
             display: none;
           }
@@ -59,6 +61,7 @@
     }
     #cb-submit {
       margin-right: 0;
+      margin-top: 5px;
       .cb-button {
         line-height: 40px;
         height: 40px;

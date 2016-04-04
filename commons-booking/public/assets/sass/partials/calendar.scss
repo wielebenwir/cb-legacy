@@ -60,25 +60,31 @@
       box-sizing: border-box;
       width: $cellwidth;
       // height: 80px;
+      position: relative;
       overflow: hidden;
-      padding: 5px;
+      padding: 4px;
       float: left;
       text-align: center;
-
+      background: $white;
       color: $grey;
-      border-bottom: 1px solid $grey;
+      // border-bottom: 1px solid $grey;
       @include transition(all .3s ease);
-      .cb-day {
-        display: block; 
-        font-size: 0.8em;
-      }
-      .cb-date {
-        display: block; 
-      }
+
       .cb-cal-inner {
+        min-height: 40px;
+        span.cb-j {
+          margin-top:5px;
+          display: block;
+          line-height: 1em; 
+        }
+        span.cb-M {
+          margin-bottom:5px;
+           display: block;
+          font-size: 0.7em;
+        }
         @include border-radius($radius);
         height: 100%;
-        padding: 5px;
+        padding: 2px;
 
         &:hover {
         }
@@ -123,7 +129,6 @@
 
       &.booked {
         cursor: not-allowed;
-        background: transparent;
         color: $dark-red;
         .cb-cal-inner {
           // background: $grey;
