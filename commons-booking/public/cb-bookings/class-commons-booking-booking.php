@@ -79,13 +79,8 @@ class Commons_Booking_Booking {
  */   
     public function create_hash( ) {
 
-    if ( empty( $wp_hasher ) ) {
-        require_once ABSPATH . WPINC . '/class-phpass.php';
-        $wp_hasher = new PasswordHash( 4, true );
-        }
-    $hashed = time() . ':' . $wp_hasher->HashPassword( $key );
-    return $hashed;
-
+        $hash = uniqid();
+        return $hash; 
     }
 
 
@@ -216,7 +211,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
     	// get relevant dat
         $code_id = $this->get_booking_code_id( $date_start, $item_id );
-        $location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );    	
+        $location_id = $this->get_booking_location_id( $date_start, $date_end, $item_id );  
+        $hash = $this->create_hash();  	
 
         	$wpdb->insert( 
     			$this->table_bookings, 
@@ -228,7 +224,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
     				'code_id' 		=> $code_id,
     				'location_id' 	=> $location_id,
     				'booking_time' 	=> date('Y-m-d H:i:s'),
-    				'status' => 'pending'
+    				'status' => 'pending',
+                    'hash' => $this->hash
     			), 
     				array( 
     				'%s', 
@@ -283,7 +280,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
             "
             DELETE
             FROM wp_cb_bookings 
-            WHERE status = 'pending' AND DATEDIFF(NOW(), 'booking_time') > 1
+            WHERE STATUS = 'pending' 
+            AND booking_time < NOW() - INTERVAL 1 DAY
             ");      
     }
 
@@ -452,8 +450,9 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $b_vars['location_contact'] = $this->location['contact']; 
         $b_vars['location_openinghours'] = $this->location['openinghours']; 
 
-        $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'bookingconfirm_page_select');
-        $b_vars['hash'] = $this->encrypt( $this->booking_id );
+        $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'booking_confirmed_page_select');
+
+        $b_vars['hash'] = $this->hash; 
         
         $b_vars['site_email'] = $this->email_messages['mail_confirmation_sender']; 
 
@@ -472,6 +471,173 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         $this->b_vars = $b_vars;
 
     }
+
+    private function get_booking_id_by_hash ( $hash ) {
+
+        global $wpdb;
+        $table_bookings = $wpdb->prefix . 'cb_bookings';
+
+        $id = $wpdb->get_results( $wpdb->prepare(
+            "
+            SELECT id
+            FROM wp_cb_bookings
+            WHERE HASH = '%s'
+            ",  $hash), ARRAY_A        
+        );
+        return $id;
+    }
+
+
+    public function booking_review_page() {
+      
+      if (is_user_logged_in() ) {
+
+        $current_user = wp_get_current_user();
+
+        $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
+        $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
+
+        if ( !empty($_POST['create']) && $_POST['create'] == 1) { // we create a new booking
+
+           if ( !empty($_POST['date_start']) && !empty($_POST['date_end']) && !empty($_POST['timeframe_id']) && !empty($_POST['item_id']) && !empty($_POST['location_id']) && !empty($_POST['_wpnonce']) ) { // all needed vars available
+
+              if (! wp_verify_nonce($_POST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
+
+                // DATA FROM FORM
+                $this->date_start = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_start'] ) ) );  
+                $this->date_end = date( 'Y-m-d', ( sanitize_text_field( $_POST['date_end'] ) ) );  
+                $this->location_id = sanitize_text_field( $_POST['location_id'] );  
+                $this->item_id = sanitize_text_field( $_POST['item_id'] );  
+                $this->timeframe_id = sanitize_text_field( $_POST['timeframe_id'] );  
+                
+                $this->user_id = get_current_user_id();
+
+                // Set Variable for Template
+
+                // check if days are not already booked, and count <  maxdays
+                if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id )) {
+
+                    $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
+
+                    $this->hash = $this->create_hash();
+                    $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
+                    $this->set_booking_vars();
+
+                    return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
+
+                } // end if validated - days
+
+            } else { // not all needed vars present  
+               
+                echo __( 'Error: Page called with missing variables.', 'commons-booking' );
+            } 
+        } else { // page is called without flag "create booking"
+
+            echo __( 'Error: Page called without needed flag.', 'commons-booking' );   
+        }
+
+    } else {
+        echo __( 'Error: You have to be logged in to view this page!', 'commons-booking' );
+
+        }
+
+    }
+
+    public function booking_confirmed_page() {
+
+        if (is_user_logged_in() ) {
+
+            $current_user = wp_get_current_user();
+
+            $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
+            $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
+
+            // if (! wp_verify_nonce($_POST['_wpnonce'], 'booking-review-nonce') ) die ('Your session has expired');
+
+            // 1. Confirm the booking / 2. view the booking / 3. cancel the booking 
+            if ( !empty($_GET['booking']) ) { // we confirm the booking 
+
+                // DATA FROM URL
+                $this->hash = sanitize_text_field ( $_GET['booking'] );
+
+                // if (! ctype_alnum( $this->hash ) ) {
+                //     die ("Wrong Code");
+                // }
+
+                $temp = $this->get_booking_id_by_hash( $this->hash );
+                
+                if ( !empty( $temp ) ) {
+                    $b_id = $temp[0]['id'];
+                // } elseif ( ) { // provide compatibility with old system
+                } else {
+                    die ("Booking not found");
+                }
+
+                $user_id = get_current_user_id();
+
+                // $b_id = $this->decrypt( $this->hash );
+                // $b_id = $myid;
+
+                $this->booking = $this->get_booking( $b_id );
+
+                if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
+
+                    $this->date_start = ( $this->booking['date_start'] ); 
+                    $this->date_end = ( $this->booking['date_end'] ); 
+                    $this->location_id = ( $this->booking['location_id'] );  
+                    $this->item_id = ( $this->booking['item_id'] ); 
+                    $this->user_id = ( $this->booking['user_id'] );
+                    $this->booking_id = ( $b_id );
+
+                    // Set Variable for Template
+                    $this->set_booking_vars( TRUE );
+
+                    // Finalise the booking
+                    if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { 
+                        // check if status is pending and confirm = 1 
+
+                        // Display the Message
+                        $msg = ( $booking_messages[ 'messages_booking_confirmed' ] );  // get message   
+
+                        $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
+                        $this->send_mail( $this->user['email'] );
+
+                        // PRINT: Booking review, Cancel Button
+                        $message = display_cb_message( $msg, $this->b_vars );
+                        return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+
+                    } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
+                        // booking is confirmed and we are not cancelling
+
+                        // PRINT: Code, Booking review, Cancel Button
+                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+
+
+                    } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
+                        // booking is confirmed and we are cancelling
+                    
+                        $msg = ( $booking_messages['messages_booking_canceled'] );  // get message                      
+
+                        $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
+                        return display_cb_message( $msg, $this->b_vars );
+                    
+                    } else {
+                        // canceled booking, page refresh
+
+                        $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
+                        return display_cb_message( $msg, array(), FALSE );
+
+                    }
+
+                } else {
+                    die ('You have no right to view this page');
+                }
+
+
+                } // end if confirm
+        }
+    }
+
     /**
      * Main Booking function. 
      *
@@ -506,10 +672,11 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                         $msg = ( $booking_messages['messages_booking_pleaseconfirm'] );  // get message part
 
-                            $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
-                            $this->set_booking_vars();
+                        $this->hash = $this->create_hash();
+                        $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
+                        $this->set_booking_vars();
 
-                            return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
+                        return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
                     } // end if validated - days
 
@@ -523,13 +690,26 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                     // DATA FROM URL
                     $this->hash = sanitize_text_field ( $_GET['booking'] );
 
-                    if (! ctype_alnum( $this->hash ) ) {
-                        die ("Wrong Code");
+                    // if (! ctype_alnum( $this->hash ) ) {
+                    //     die ("Wrong Code");
+                    // }
+
+                    $temp = $this->get_booking_id_by_hash( $this->hash );
+                    
+                    if ( !empty( $temp ) ) {
+                        $b_id = $temp[0]['id'];
+                    // } elseif ( ) { // provide compatibility with old system
+                    } else {
+                        die ("Booking not found");
                     }
 
+
                     $user_id = get_current_user_id();
-                    $b_id = $this->decrypt( $this->hash );
-                    
+
+
+                    // $b_id = $this->decrypt( $this->hash );
+                    // $b_id = $myid;
+
                     $this->booking = $this->get_booking( $b_id );
 
                     if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
@@ -550,9 +730,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
 
                             // Display the Message
                             $msg = ( $booking_messages[ 'messages_booking_confirmed' ] );  // get message   
-                            
+
                             $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
-                            $this->set_booking_hash( $this->booking['id'],  $this->hash ); // set booking hash
                             $this->send_mail( $this->user['email'] );
 
                             // PRINT: Booking review, Cancel Button

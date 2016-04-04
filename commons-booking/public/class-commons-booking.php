@@ -326,10 +326,15 @@ class Commons_Booking {
                 $args = array ();
                 return  $page_content.$items->output( $args );
             
-            } elseif ( !empty( $settings_display[ 'bookingconfirm_page_select' ] ) && ( is_page( $settings_display[ 'bookingconfirm_page_select' ] ) ) ) {
+            } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
 
                 $bookingpage = new Commons_Booking_Booking;
-                return $page_content.$bookingpage->render_bookingreview();
+                return $page_content.$bookingpage->booking_review_page();            
+
+            } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
+
+                $bookingpage = new Commons_Booking_Booking;
+                return $page_content.$bookingpage->booking_confirmed_page();
 
             } elseif ( !empty( $settings_display[ 'user_bookings_page_select' ] ) && ( is_page( $settings_display[ 'user_bookings_page_select' ] ) ) ) {
 

@@ -40,7 +40,7 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     // from settings
     $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
-    $this->target_url = $this->get_settings( 'pages', 'bookingconfirm_page_select' );
+    $this->target_url = $this->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
 
     $this->codes = $this->get_codes();
