@@ -181,12 +181,6 @@
             'id' => $this->plugin_slug . '_enable_redirect',
             'type' => 'checkbox',
           ),          
-          array(
-            'name' => __( 'Show timeframe title', $this->plugin_slug ),
-            'desc' => __( 'Show the timeframe title on the items list and calendar.', $this->plugin_slug ),
-            'id' => $this->plugin_slug . '_show_timeframe_title',
-            'type' => 'checkbox',
-          ),
         ),
       );
 
