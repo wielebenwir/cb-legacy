@@ -43,6 +43,7 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/Taxonomy_Core/Taxonomy_Cor
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-public-items.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-data.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'public/cb-bookings/class-commons-booking-booking-comments.php' );
 require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-settings/cb-admin-settings.php' );
 
 

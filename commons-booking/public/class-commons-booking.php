@@ -254,7 +254,7 @@ class Commons_Booking {
             'has_archive'        => true,
             'hierarchical'       => false,
             'menu_position'      => null,
-            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' )
+            'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
         );
 
         register_post_type( 'cb_items', $item_args );

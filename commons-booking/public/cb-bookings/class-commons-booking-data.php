@@ -38,13 +38,13 @@ class Commons_Booking_Data {
     // $this->settings = new CB_Admin_Settings();
 
     $this->prefix = 'commons-booking';
+    $this->settings = new CB_Admin_Settings;
     // from settings
-    $this->daystoshow = $this->get_settings( 'bookings', 'bookingsettings_daystoshow' );
-    $this->target_url = $this->get_settings( 'pages', 'booking_review_page_select' );
+    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    $this->target_url = $this->settings->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
 
     $this->codes = $this->get_codes();
-    $this->settings = new CB_Admin_Settings;
 
 }
 
@@ -320,9 +320,11 @@ class Commons_Booking_Data {
     // 1. Get Item (Title & Description)
     $item = $this->get_item( $item_id );
     $codes = $this->codes;
-    
+
+    $booking_comments = new CB_Booking_Comments();
+    $comments = $booking_comments->get_booking_comments( $item_id );    
     $booked = new Commons_Booking_Booking;
-    $booked_days = $booked->get_booked_days( $item_id );
+    $booked_days = $booked->get_booked_days_array( $item_id, $comments );
 
     // 2. Calculate start & end dates 
     $date_range_start = date('Y-m-d'); // current date
@@ -358,7 +360,7 @@ class Commons_Booking_Data {
             // 7. Loop through days
             while ( $day_counter <= $cal_end ) { // loop through days
 
-              $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
+              // $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
               $template_vars[ 'timeframes' ][ $tf[ 'id' ] ][ 'calendar' ][ $day_counter ] =  $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
 
               $day_counter = strtotime('+1 day', $day_counter); // count up
@@ -370,6 +372,11 @@ class Commons_Booking_Data {
       return FALSE;
     }
     return $template_vars;
+  }
+
+
+  public function set_tooltip ( $day_counter ) {
+
   }
 
 /**
@@ -443,13 +450,16 @@ public function prepare_template_vars_item ( $item ) {
 */
 
 public function prepare_template_vars_calendar_cell ( $timestamp, $location, $booked_days ) {
+
+  $dates = array_keys($booked_days);
   
   $attributes = array (
     'day_short' => date_i18n ('M', $timestamp ),
     'date_short' => date_i18n ('j.', $timestamp ),
     'weekday_code' => 'day' . date('N', $timestamp),
     'id' => $timestamp,
-    'status' => $this->set_day_status( $timestamp, $location, $booked_days )    
+    'status' => $this->set_day_status( $timestamp, $location, $dates ),   
+    'comment' => $this->get_day_tooltip( $timestamp, $booked_days )    
     );
   
   return $attributes;
@@ -549,7 +559,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   private function set_day_status( $date, $location, $booked_days ) {
     $status = '';
 
-    $timestamp = array_map( 'convert_to_timestamp', $booked_days);
+    $timestamp = $booked_days;
 
     // first: check if the date is in the locations´ closed days array
     if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
@@ -563,6 +573,14 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     }
     return $status;
 
+  }
+
+  public function get_day_tooltip( $timestamp, $booked_days ) {
+    if ( array_key_exists( $timestamp, $booked_days ) ) {
+      return $booked_days[ $timestamp ];
+    } else {
+      return '';
+    }
   }
 
 /**
