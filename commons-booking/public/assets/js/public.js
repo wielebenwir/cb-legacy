@@ -89,9 +89,6 @@
           var overbookDays = [];
           var betweenDays = [];
           var allBookableDates = calEl.find('li.bookable');
-          $(allBookableDates).each( function() {
-            $(this).attr('title', 'you can Book');
-          })
 
           // set starting text
           introContainer.html (text_choose);
@@ -103,10 +100,9 @@
           $('.cb-tooltip').tooltipster({
             animation: 'fade',
             delay: 0,
-            content:'test',
-            theme: 'cb-tooltipser',
-            touchDevices: false
+            theme: 'tooltipster-cb',
           });
+          // $('.cb-tooltip').tooltipster();
 
           function resize_bookingbar() {
 

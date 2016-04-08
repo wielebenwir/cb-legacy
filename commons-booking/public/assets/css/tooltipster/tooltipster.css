@@ -1,12 +1,14 @@
 /* This is the default Tooltipster theme (feel free to modify or duplicate and create multiple themes!): */
-.cb-tooltipster {
+.tooltipster-default {
 	border-radius: 5px; 
+	border: 2px solid #000;
+	background: #4c4c4c;
 	color: #fff;
-	margin-top: 10px;
 }
 
 /* Use this next selector to style things like font-size and line-height: */
-.cb-tooltipster .tooltipster-content {
+.tooltipster-default .tooltipster-content {
+	font-family: Arial, sans-serif;
 	font-size: 14px;
 	line-height: 16px;
 	padding: 8px 10px;
@@ -14,7 +16,7 @@
 }
 
 /* This next selector defines the color of the border on the outside of the arrow. This will automatically match the color and size of the border set on the main tooltip styles. Set display: none; if you would like a border around the tooltip but no border around the arrow */
-.cb-tooltipster .tooltipster-arrow .tooltipster-arrow-border {
+.tooltipster-default .tooltipster-arrow .tooltipster-arrow-border {
 	/* border-color: ... !important; */
 }
 
