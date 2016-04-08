@@ -19,17 +19,11 @@ class CB_Booking_Comments {
   public $comments; 
   public $url;
 
-  public function __construct() {
+  public function __construct( ) {
 
-    // add_filter( 'comment_form_default_fields', array( $this, 'add_comment_fields' ) );
-    add_action('comment_form', array ( $this, 'add_comment_fields' ) );
-    
-    // add action to save the form args.
-    add_action( 'comment_post', array ($this, 'save_comment_meta_data' ) );
-
-    add_filter( 'comment_post_redirect', array( $this, 'after_comment_redirect' ) );
 
   }
+
 
   public function set_booking_hash( $booking_hash ) {
     $this->booking_hash = $booking_hash;
@@ -149,7 +143,9 @@ class CB_Booking_Comments {
 
   public function save_comment_meta_data( $comment_id ) {
 
-    add_comment_meta( $comment_id, 'booking_hash', $_POST['hash'], true );
+    if ( isset( $_POST['hash']) ) {
+      add_comment_meta( $comment_id, 'booking_hash', $_POST['hash'], true );
+    }
   
   }
 }
