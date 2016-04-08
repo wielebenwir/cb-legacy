@@ -454,8 +454,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $this->location = $this->data->get_location( $this->location_id );
         $this->user = $this->data->get_user( $this->user_id );
 
-        $b_vars['date_start'] = strtotime( $this->date_start );
-        $b_vars['date_end'] = strtotime( $this->date_end );
+        $b_vars['date_start'] = date_i18n( get_option( 'date_format' ), strtotime($this->date_start) );
+        $b_vars['date_end'] = date_i18n( get_option( 'date_format' ), strtotime($this->date_end) );
         $b_vars['item_name'] = get_the_title ($this->item_id );
         $b_vars['item_thumb'] = get_thumb( $this->item_id ); 
         $b_vars['item_content'] =  get_post_meta( $this->item_id, 'commons-booking_item_descr', TRUE  );
