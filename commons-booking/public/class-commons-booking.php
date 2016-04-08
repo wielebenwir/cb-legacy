@@ -115,9 +115,13 @@ class Commons_Booking {
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
         $this->bookings = new Commons_Booking_Booking();
+        $this->booking_comments = new CB_Booking_Comments();
 
         // add CSS class
         add_filter( 'body_class', array( $this, 'add_cb_class' ), 10, 3 );
+     
+        add_action( 'comment_post', array( $this->booking_comments, 'save_comment_meta_data' ) );
+        add_filter( 'comment_post_redirect', array( $this->booking_comments, 'after_comment_redirect' ) );   
 
         /* 
          * USER REGISTRATION, PROFILE FIELDS AND EDITING.
@@ -332,7 +336,6 @@ class Commons_Booking {
                 return $page_content.$bookingpage->booking_review_page();            
 
             } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
-
                 $bookingpage = new Commons_Booking_Booking;
                 return $page_content.$bookingpage->booking_confirmed_page();
 
