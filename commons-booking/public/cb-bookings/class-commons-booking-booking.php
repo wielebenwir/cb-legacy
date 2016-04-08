@@ -33,6 +33,7 @@ class Commons_Booking_Booking {
 
         $this->settings = new CB_Admin_Settings();
         $this->data = new Commons_Booking_Data;
+        $this->booking_comments = new CB_Booking_Comments;
 
         $this->prefix = 'commons-booking';
 
@@ -177,9 +178,8 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
         WHERE item_id = '%s' AND status = '%s'
         ", 
         $item_id, $status), ARRAY_A); // get dates from 
-     
+    
      $booked_days = array();
-
 
      foreach ($sqlresult as $date) {
 
@@ -188,11 +188,52 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
   
         for($i = 0; $i < $datediff + 1; $i++){
             $thedate = date("Y-m-d", strtotime( $date['date_start'] . ' + ' . $i . 'day'));
-            array_push( $booked_days,  date( 'Y-m-d', strtotime($thedate)) );
+            array_push( $booked_days,  date( 'Y-m-d', strtotime($thedate) ) );
         }
      }
      return $booked_days;
+}
 
+ /**
+ * Get an array of booked days including tooltips
+ *
+ * @return array
+ */  
+public function get_booked_days_array( $item_id, $comments, $status= 'confirmed' ) {
+    
+    global $wpdb;
+
+    // get booking_code-id fromt codes database
+     $sqlresult = $wpdb->get_results($wpdb->prepare(
+        "
+        SELECT date_start, date_end, hash
+        FROM " . $this->table_bookings . " 
+        WHERE item_id = '%s' AND status = '%s'
+        ", 
+        $item_id, $status), ARRAY_A); // get dates from 
+    
+     $booked_days = array();
+
+     foreach ($sqlresult as $date) {
+
+        $datediff = strtotime( $date['date_end'] ) - strtotime( $date['date_start'] );
+        $datediff = floor( $datediff / ( 60*60*24 ));
+  
+        for($i = 0; $i < $datediff + 1; $i++){
+
+            $comment = '';
+            if ( isset( $comments[ $date['hash'] ] ) ) {
+                $comment = $comments[ $date['hash'] ];
+            }
+            $day_comment = array_search( $date['hash'], $comments );
+            // echo('$day_hash ' . $date['hash'] . ' ');
+
+            $thedate = date("Y-m-d", strtotime( $date['date_start'] . ' + ' . $i . 'day'));
+            
+            $booked_days[ strtotime($thedate) ] = $comment;
+        }
+     }
+     return $booked_days;
 }
 
 
@@ -588,16 +629,13 @@ public function get_booked_days( $item_id, $status= 'confirmed' ) {
                             $cancel_button = '';                            
                         }
 
-                        $args =  array ('post_type'=> 'cb_items', 'p' => $this->item_id );
-                        $the_query = new WP_Query( $args );
-                        if ( $the_query->have_posts() ) :
-                                while ( $the_query->have_posts() ) : $the_query->the_post();
-                                comment_form();
-                        endwhile; endif;
-                        wp_reset_postdata();
+
+                        $this->booking_comments->set_post_id( $this->item_id );
+                        $this->booking_comments->set_booking_hash( $this->hash );
+                        $comments = $this->booking_comments->render_comments_form();
 
                         // PRINT: Code, Booking review, Cancel Button
-                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
+                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
 
 
                     } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
