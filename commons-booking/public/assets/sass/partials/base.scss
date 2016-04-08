@@ -78,6 +78,10 @@
   display: none;
 }
 
+.entry-content .cb-box h2 {
+    margin-top: 0;
+}
+
 .cb-list-item-description {
   margin-bottom: $padding;
   display:block;
@@ -88,7 +92,7 @@
   }
 }
 
-a.cb-button, input#wp-submit {
+a.cb-button, input#wp-submit, input#wp-submit-comment {
   @include transition(all .3s ease);
   white-space: nowrap;
   text-decoration: none;
@@ -163,3 +167,17 @@ a.cb-button, input#wp-submit {
   background: $dark-blue;
 }
 
+.cb-booking-comment {
+  background: $light-grey;
+  padding: $padding;
+  @include rounded($radius);
+  margin-bottom: $padding;
+  overflow: hidden;
+  form#cb-comment-form {
+  }
+  input {
+    margin-top: $padding; 
+    float: right;
+
+  }
+}

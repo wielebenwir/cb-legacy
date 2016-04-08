@@ -106,6 +106,9 @@
 .cb-timeframe-title {
   display: none; }
 
+.entry-content .cb-box h2, .entry-content .cb-timeframe h2, .entry-content #cb-bookingbar .inner h2, #cb-bookingbar .entry-content .inner h2 {
+  margin-top: 0; }
+
 .cb-list-item-description {
   margin-bottom: 1em;
   display: block;
@@ -116,7 +119,7 @@
     border-radius: 7px;
     margin-right: 1em; }
 
-a.cb-button, input#wp-submit {
+a.cb-button, input#wp-submit, input#wp-submit-comment {
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -132,17 +135,17 @@ a.cb-button, input#wp-submit {
   -moz-border-radius: 7px;
   border-radius: 7px;
   border: 1px solid #56a820; }
-  a.cb-button:hover, input#wp-submit:hover {
+  a.cb-button:hover, input#wp-submit:hover, input#wp-submit-comment:hover {
     background: #3356a4;
     border: 1px solid #3356a4;
     color: white; }
-  a.cb-button.cb-small, .cb-user-bar a.cb-button, input#wp-submit.cb-small {
+  a.cb-button.cb-small, .cb-user-bar a.cb-button, input#wp-submit.cb-small, input#wp-submit-comment.cb-small {
     background: #3356a4;
     border: 1px solid #e1e1e1; }
-  a.cb-button.warning, input#wp-submit.warning {
+  a.cb-button.warning, input#wp-submit.warning, input#wp-submit-comment.warning {
     background: #a70001;
     border: 1px solid #a70001; }
-    a.cb-button.warning:hover, input#wp-submit.warning:hover {
+    a.cb-button.warning:hover, input#wp-submit.warning:hover, input#wp-submit-comment.warning:hover {
       background: #ff0002;
       border: 1px solid #ff0002; }
 
@@ -180,6 +183,18 @@ a.cb-button, input#wp-submit {
 
 .cb-tooltipster {
   background: #27427d; }
+
+.cb-booking-comment {
+  background: #f6f6f6;
+  padding: 1em;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  margin-bottom: 1em;
+  overflow: hidden; }
+  .cb-booking-comment input {
+    margin-top: 1em;
+    float: right; }
 
 /* Calendar styles */
 /*

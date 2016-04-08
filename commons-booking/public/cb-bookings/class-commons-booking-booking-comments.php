@@ -89,11 +89,12 @@ class CB_Booking_Comments {
           'title_reply'=> __('Leave a comment', 'commons-booking'),
           'title_reply_before' => '<div class="cb-headline">',
           'title_reply_after' => '</div>',
+          'class_form' => 'cb-booking-comment',
           'id_submit'      => 'wp-submit-comment',
           // remove "Text or HTML to be displayed after the set of comment fields"
           'comment_notes_after' => '',
           // redefine your own textarea (the comment body)
-          'comment_field' => '<textarea id="comment" name="comment" aria-required="true"></textarea>' . $hash_field . $redirect_field,
+          'comment_field' => '<textarea id="cb-comment-form" name="comment" aria-required="true"></textarea>' . $hash_field . $redirect_field,
       );
 
        comment_form( $comments_args, $this->post_id );
