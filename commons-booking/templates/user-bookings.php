@@ -15,9 +15,6 @@
        <span class="cb-big"><?php echo get_the_title( $booking['item_id'] ); ?></span>
       <span class="cb-date"><?php echo date( 'd.m.y', strtotime($booking['date_start'])); ?></span> - 
       <span class="cb-date"><?php echo date( 'd.m.y', strtotime($booking['date_end'])); ?></span>
-
-
-
     </div>
 <?php } ?>
 </div>
