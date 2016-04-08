@@ -220,6 +220,12 @@
             'id' => $this->plugin_slug . '_messages_booking_canceled',
             'type' => 'textarea',
           ),
+          array(
+            'name' => __( 'Message: Invite users to leave a comment', $this->plugin_slug ),
+            'desc' => __( 'Appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'id' => $this->plugin_slug . '_messages_booking_comment_notice',
+            'type' => 'textarea',
+          ),
         ),
       );
 
