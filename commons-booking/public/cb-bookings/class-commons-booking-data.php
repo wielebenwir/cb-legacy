@@ -451,7 +451,22 @@ public function prepare_template_vars_item ( $item ) {
 
 public function prepare_template_vars_calendar_cell ( $timestamp, $location, $booked_days ) {
 
-  $dates = array_keys($booked_days);
+  $dates = array_keys( $booked_days );
+  $status = $this->set_day_status( $timestamp, $location, $dates );
+  $tooltip = '';
+
+  if ( $status == 'closed' ) {
+    $tooltip = __('This day is closed. No pick up or return.', 'commons-booking');
+  } elseif ( $status == 'bookable' ){
+    $tooltip = __('You can book on this day.', 'commons-booking');
+  } elseif ( $status == 'booked' ) {
+     if ( ! empty( $booked_days[ $timestamp ] ) ) { // booking comment available
+        $tooltip =  __('Booked by a user: ', 'commons-booking') . $booked_days[ $timestamp ];
+      } else {
+      $tooltip =  __('This day is booked', 'commons-booking');
+    }
+  }
+
   
   $attributes = array (
     'day_short' => date_i18n ('M', $timestamp ),
@@ -459,7 +474,7 @@ public function prepare_template_vars_calendar_cell ( $timestamp, $location, $bo
     'weekday_code' => 'day' . date('N', $timestamp),
     'id' => $timestamp,
     'status' => $this->set_day_status( $timestamp, $location, $dates ),   
-    'comment' => $this->get_day_tooltip( $timestamp, $booked_days )    
+    'tooltip' => $tooltip    
     );
   
   return $attributes;
@@ -573,14 +588,6 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     }
     return $status;
 
-  }
-
-  public function get_day_tooltip( $timestamp, $booked_days ) {
-    if ( array_key_exists( $timestamp, $booked_days ) ) {
-      return $booked_days[ $timestamp ];
-    } else {
-      return '';
-    }
   }
 
 /**
