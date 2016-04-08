@@ -564,6 +564,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         if (is_user_logged_in() ) {
 
+        
             $current_user = wp_get_current_user();
 
             $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
@@ -598,6 +599,11 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->user_id = ( $this->booking['user_id'] );
                     $this->booking_id = ( $b_id );
 
+                    $allow_booking_comments = $this->settings->get_settings( 'bookings', 'bookingsettings_allow_comments');
+                    $allow_booking_comments_message = $this->settings->get_settings( 'messages', 'messages_booking_comment_notice');
+                    $comments = '';
+                    $message_comments = '';
+
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
 
@@ -605,8 +611,12 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { 
                         // check if status is pending and confirm = 1 
 
-                        // Display the Message
-                        $msg = ( $booking_messages[ 'messages_booking_confirmed' ] );  // get message   
+                        
+                        $msg = ( $booking_messages[ 'messages_booking_confirmed' ] ); // Confirmation message
+
+                        if ( $allow_booking_comments ) {
+                            $message_comments = display_cb_message( $allow_booking_comments_message, $this->b_vars );
+                        }
 
                         $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                         $this->send_mail( $this->user['email'] );
@@ -614,7 +624,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         // PRINT: Booking review, Cancel Button
                         $message = display_cb_message( $msg, $this->b_vars );
 
-                        return $message . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                        return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
                     } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
@@ -629,10 +639,11 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                             $cancel_button = '';                            
                         }
 
-
-                        $this->booking_comments->set_post_id( $this->item_id );
-                        $this->booking_comments->set_booking_hash( $this->hash );
-                        $comments = $this->booking_comments->render_comments_form();
+                        if ( $allow_booking_comments ) {
+                            $this->booking_comments->set_post_id( $this->item_id );
+                            $this->booking_comments->set_booking_hash( $this->hash );
+                            $comments = $this->booking_comments->render_comments_form();
+                        }
 
                         // PRINT: Code, Booking review, Cancel Button
                         return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
