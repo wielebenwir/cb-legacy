@@ -75,7 +75,6 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
 
     shuffle( $this->codes_array ); // randomize array
 
-
     if ( count( $this->codes_array ) < count( $this->missing_dates )) {
       new Admin_Table_Message ( __('No or not enough codes defined. Add them in Commons Booking Settings.', $this->prefix), 'error' );
       return false;
