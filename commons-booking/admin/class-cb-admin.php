@@ -95,13 +95,13 @@ class Commons_Booking_Admin {
 
 
 		// BOOKINGS Extend the Wordpress Admin Tables Interface
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-commons-booking-bookings-table.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-bookings/class-cb-bookings-table.php' );
 	
 
 		// CODES Extend the Wordpress Admin Tables Interface
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes-table.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-cb-codes-table.php' );
 		// CODES: Functions
-		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-commons-booking-codes.php' );
+		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/class-cb-codes.php' );
 		// CODES: Generator
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-codes/includes/class-cb-codes-generate.php' );
 
@@ -190,7 +190,6 @@ class Commons_Booking_Admin {
 	 */
 	public function enqueue_admin_table_filter() {
 
-		// @TODO: add this only at table screens
 
 		wp_enqueue_script( $this->plugin_slug . 'admin-table-filters', plugins_url( 'assets/js/tableFilter.js', __FILE__ ), array( 'jquery'), Commons_Booking::VERSION, true );
 
