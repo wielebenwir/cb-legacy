@@ -20,7 +20,7 @@
 
   <h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 
-  <div id="tabs">
+  <div id="tabs" class="settings-tab">
     <ul>
       <li><a href="#tabs-welcome"><?php _e( 'Welcome', $this->plugin_slug  ); ?></a></li>
       <li><a href="#tabs-display"><?php _e( 'Pages', $this->plugin_slug  ); ?></a></li>
@@ -31,7 +31,7 @@
       <li><a href="#tabs-advanced"><?php _e( 'Advanced', $this->plugin_slug ); ?></a></li>
     </ul>
 
-    <div id="tabs-welcome">
+    <div id="tabs-welcome" class="wrap">
 
       
     <?php echo '<img src="' . plugins_url( 'commons-booking/assets/cb-logo.png' ) . '" > '; ?>
@@ -42,7 +42,7 @@
       <p>All the best, Florian & <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a></p>
 
     </div>
-    <div id="tabs-display">
+    <div id="tabs-display" class="wrap">
       <?php
 
       $option_fields_pages = array(
@@ -108,7 +108,7 @@
       cmb2_metabox_form( $option_fields_pages, $this->plugin_slug . '-settings-pages' );
       ?>
     </div>
-    <div id="tabs-bookingsettings">
+    <div id="tabs-bookingsettings" class="wrap">
       <?php
 
       $option_fields_bookingsettings = array(
@@ -146,7 +146,7 @@
       cmb2_metabox_form( $option_fields_bookingsettings, $this->plugin_slug . '-settings-bookings' );
       ?>
     </div>
-    <div id="tabs-codes">
+    <div id="tabs-codes" class="wrap">
       <?php
 
       $option_fields_codes = array(
@@ -167,7 +167,7 @@
       ?>
 
     </div>   
-    <div id="tabs-advanced">
+    <div id="tabs-advanced" class="wrap">
       <?php
 
       $option_fields_advanced = array(
@@ -194,7 +194,7 @@
       ?>
 
     </div>       
-    <div id="tabs-messages">
+    <div id="tabs-messages" class="wrap">
       <?php
 
       $option_fields_messages = array(
@@ -233,7 +233,7 @@
       ?>
 
     </div>  
-    <div id="tabs-mail">
+    <div id="tabs-mail" class="wrap">
       <?php
 
       $option_fields_mail = array(
