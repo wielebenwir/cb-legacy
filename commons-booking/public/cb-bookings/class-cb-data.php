@@ -82,7 +82,7 @@ class Commons_Booking_Data {
         return esc_attr( $page );
       }
     } else { // setting wasn´t found
-      return "At least one required value was not set. Please check the settings in the backend.";
+      return __('At least one required value was not set. Please check the settings in the backend.', 'commons-booking');
     }
   }
 
@@ -539,24 +539,6 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     );
     return $address_string;
   }
-
-
-/**
- * Calendar .  @TODO: RETIRE ME
- *
- *@param $id item id
- *
-*/
-
-  public function render_item_single_timeframe_list( $tf, $location, $item_id ) {
-
-    $timeframe_comment = $tf['timeframe_title'];
-    $timeframe_date = date_i18n( get_option( 'date_format' ), strtotime( $tf['date_start'] ) ) . ' - ' . date_i18n( get_option( 'date_format' ), strtotime( $tf['date_end'] ) );
-
-    echo ( '<div class="cb-timeframe-list" data-tfid="'. $tf['id'] .'" data-itemid="'. $item_id . '"' .'" data-locid="'. $tf['location_id'] . '">' );
-
-  }
-
 /**
  * Get code by Date
  *
