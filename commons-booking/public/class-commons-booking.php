@@ -74,7 +74,7 @@ class Commons_Booking {
      * 
      * @var array
      */
-    protected static $plugin_roles = array( // @TODO: User Roles 
+    protected static $plugin_roles = array( // Not using user Roles 
         // 'editor' => array(
         //     'edit_bookings' => true,
         //     'edit_others_bookings' => true,            
@@ -111,7 +111,6 @@ class Commons_Booking {
         // Register items & locations custom post types
         add_action( 'init', array( $this, 'register_cpts' ) );
       
-        // $items = new Commons_Booking_Public_Items(); //@TODO: Retire me
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
         $this->bookings = new Commons_Booking_Booking();
@@ -186,46 +185,6 @@ class Commons_Booking {
         add_action( 'the_content', array( $this, 'cb_content' ) ); 
 
     }
-    /**
-     *   Add main items list to page selected in settings
-     *   Add bookings review to page selected in settings.
-     * Add main plugin overview output to page selected in settings.
-     *
-     * @since    0.0.1
-     *
-     * @return    Mixed 
-     */    
-        // public function send_register_mail( $user_id ) {
-
-        //     $user_basic = get_user_by( 'id', $user_id );
-        //     $user_meta = get_user_meta( $user_id );
-
-
-        //     // transform from object to an array that the replace_template_tags functions expects
-        //     $user_basic_array =  object_to_array ($user_basic);
-            
-        //     $user_meta_array = array();
-        //     foreach ($user_meta as $key => $value) {
-        //         $user_meta_array[$key] = $value[0];
-        //     }
-
-        //     // merge the arrays
-        //     $uservars = array_merge($user_basic_array['data'], $user_meta_array);
-
-        //     $this->email_messages = $this->settings->get( 'mail' ); // get email templates from settings page
-        //     $body_template = ( $this->email_messages['mail_registration_body'] );  // get template
-        //     $subject_template = ( $this->email_messages['mail_registration_subject'] );  // get template
-      
-        //     $headers = array('Content-Type: text/html; charset=UTF-8'); 
-
-        //     $to = $uservars['user_email'];
-
-        //     $body = replace_template_tags( $body_template, $uservars);
-        //     $subject = replace_template_tags( $subject_template, $uservars);
-
-        //     wp_mail( 'hallo@fleg.de', $subject, $body, $headers );
-
-        // }
 
     public function register_cpts() {
 
@@ -740,17 +699,6 @@ class Commons_Booking {
        $url = get_permalink( $id );
        return $url;
     }    
-    /**
-     * Redirect: After registration
-     *
-     * @since    0.2
-     */
-    // public function cb_register_url() {
-
-    //    $id = $this->settings->get('pages', 'registration_page_select');
-    //    $url = get_permalink( $id );
-    //    return $url;
-    // }
 
     /**
      * NOTE:  Shortcode simple set of functions for creating macro codes for use
