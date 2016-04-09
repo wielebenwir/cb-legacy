@@ -47,7 +47,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         parent::__construct(array(
             'singular' => __( 'Booking' ),
             'plural' => __( 'Bookings' ),
-            $this->plugin_slug
+            'commons-booking'
         ));
 
     }

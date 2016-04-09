@@ -48,8 +48,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         parent::__construct(array(
             'singular' => __( 'Code' ),
             'plural' => __( 'Codes' ),
-
-            $this->plugin_slug
+            'commons-booking'
         ));
     }
 
@@ -122,10 +121,10 @@ class Commons_Booking_Codes_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'item_id' => __('Item', $this->plugin_slug ),
-            'bookingcode' => __('Code', $this->plugin_slug ),
-            'booking_date' => __('Date', $this->plugin_slug ),
-            'edit_actions' => __('Edit', $this->plugin_slug ),
+            'item_id' => __('Item', 'commons-booking' ),
+            'bookingcode' => __('Code', 'commons-booking' ),
+            'booking_date' => __('Date', 'commons-booking' ),
+            'edit_actions' => __('Edit', 'commons-booking' ),
         );
         return $columns;
     }
@@ -320,7 +319,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-        printf(__('You must create at least one %s', $this->plugin_slug), $posttype  );
+        printf(__('You must create at least one %s', 'commons-booking'), $posttype  );
       }
       /* Restore original Post Data */
       wp_reset_postdata();

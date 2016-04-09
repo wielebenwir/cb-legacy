@@ -149,7 +149,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  */
 public function render() {
 
-  echo ( '<h2> '. __( 'Codes ', $this->prefix) . '</h2>');
+  echo ( '<h2> '. __( 'Codes ', 'commons-booking') . '</h2>');
 
   $allDates = array_merge ($this->missing_dates, $this->matched_dates);
   $this->render_table( $allDates );

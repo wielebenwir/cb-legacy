@@ -7,25 +7,25 @@
  */
 ?>
 <?php // ITEM  ?>
-<div class="cb-headline"><?php echo  __( 'Your Booking:', $attributes['plugin_slug'] ) . ' ' . $attributes['item_name']; ?></div>
+<div class="cb-headline"><?php echo  __( 'Your Booking:', 'commons-booking' ) . ' ' . $attributes['item_name']; ?></div>
   <div class="cb-booking-item cb-table">
   <div class="cb-row"><?php echo $attributes['item_content']; ?></div>
 </div>
 
 <?php // REVIEW ?>
-<div class="cb-headline"><?php echo __( ' Pickup & Return ', $attributes['plugin_slug'] ); ?></div>
+<div class="cb-headline"><?php echo __( ' Pickup & Return ', 'commons-booking' ); ?></div>
 <div class="cb-booking-review cb-table">
   <div class="cb-row">
-    <span class="cb-row-title"><?php echo __( 'Pickup at:', $attributes['plugin_slug'] ); ?></span><?php echo $attributes['location_name']; ?>
+    <span class="cb-row-title"><?php echo __( 'Pickup at:', 'commons-booking' ); ?></span><?php echo $attributes['location_name']; ?>
   </div>
   <div class="cb-row">
-    <span class="cb-row-title"><?php echo __( 'Pickup date:', $attributes['plugin_slug'] ); ?></span><span class="cb-date"><?php echo $attributes['date_start'] ?></span>
+    <span class="cb-row-title"><?php echo __( 'Pickup date:', 'commons-booking' ); ?></span><span class="cb-date"><?php echo $attributes['date_start'] ?></span>
   </div>
   <div class="cb-row">
-    <span class="cb-row-title"><?php echo __( 'Return date:', $attributes['plugin_slug'] ); ?></span> <span class="cb-date"><?php echo $attributes['date_end']; ?></span>
+    <span class="cb-row-title"><?php echo __( 'Return date:', 'commons-booking' ); ?></span> <span class="cb-date"><?php echo $attributes['date_end']; ?></span>
   </div>  
   <div class="cb-row">
-    <span class="cb-row-title"><?php echo __( 'Opening hours:', $attributes['plugin_slug'] ); ?></span> <span class="cb-date"><?php echo $attributes['location_openinghours']; ?></span>
+    <span class="cb-row-title"><?php echo __( 'Opening hours:', 'commons-booking' ); ?></span> <span class="cb-date"><?php echo $attributes['location_openinghours']; ?></span>
   </div>
 </div>
 

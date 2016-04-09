@@ -35,8 +35,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         parent::__construct(array(
             'singular' => __( 'Timeframe' ),
             'plural' => __( 'Timeframes' ),
-
-            $this->plugin_slug
+            'commons-booking'
         ));
     }
 
@@ -115,12 +114,12 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'location_id' => __('Location', 'cb_timeframes_table'),
-            'item_id' => __('Item', 'cb_timeframes_table'),
-            'date_start' => __('Starting Date', 'cb_timeframes_table'),
-            'date_end' => __('End Date', 'cb_timeframes_table'),
-            'timeframe_title' => __('Note', 'cb_timeframes_table'),
-            'edit_actions' => __('Edit', 'cb_timeframes_table'),
+            'location_id' => __('Location', 'commons-booking'),
+            'item_id' => __('Item', 'commons-booking'),
+            'date_start' => __('Starting Date', 'commons-booking'),
+            'date_end' => __('End Date', 'commons-booking'),
+            'timeframe_title' => __('Note', 'commons-booking'),
+            'edit_actions' => __('Edit', 'commons-booking'),
         );
         return $columns;
     }
@@ -244,7 +243,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         global $wpdb;
         $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
 
-        $per_page = 5; // constant, how much records will be shown per page
+        $per_page = 30; // constant, how much records will be shown per page
 
         $columns = $this->get_columns();
         $hidden = array();
@@ -322,7 +321,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', $this->plugin_slug);
+       echo __( 'Something went wrong', 'commons-booking');
       }
       /* Restore original Post Data */
       wp_reset_postdata();
@@ -393,7 +392,7 @@ function cb_timeframes_table_page_handler()
 
     $message = '';
     if ('delete' === $table->current_action()) {
-        $message =  sprintf(__('Items deleted: %d', 'cb_timeframes_table'), count($_REQUEST['id']));
+        $message =  sprintf(__('Items deleted: %d', 'commons-booking'), count($_REQUEST['id']));
     }
     ?>
 
@@ -401,7 +400,7 @@ function cb_timeframes_table_page_handler()
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <h2><?php echo get_admin_page_title(); ?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'cb_timeframes_table')?></a>
+                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'commons-booking')?></a>
     </h2>
 
     <?php new Admin_Table_Message ( $message, 'updated' ); ?>
