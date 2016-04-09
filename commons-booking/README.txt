@@ -9,7 +9,7 @@ Stable Tag: 0.5.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A Wordpress plugin for management and booking of commons. Brought you by wielebenwir.de
+A Wordpress plugin for management and booking of commons.
 
 == Description ==
 
