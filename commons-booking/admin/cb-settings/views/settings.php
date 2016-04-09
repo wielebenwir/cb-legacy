@@ -136,7 +136,7 @@
           ),          
           array(
             'name' => __( 'Allow booking comments.', $this->plugin_slug ),
-            'desc' => __( 'Give users the ability to add a comment on the booking review page. The comment be shown as a tooltip on the calendar. NOTE: You must enable comments for the item.', $this->plugin_slug ),
+            'desc' => __( 'Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments for the item.', $this->plugin_slug ),
             'id' => $this->plugin_slug . '_bookingsettings_allow_comments',
             'type' => 'checkbox',
           ),
