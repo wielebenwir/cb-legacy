@@ -191,20 +191,20 @@ class Commons_Booking {
     public function register_cpts() {
 
         $item_labels = array(
-            'name'               => __( 'Items', self::$plugin_slug ),
-            'singular_name'      => __( 'Item', self::$plugin_slug ),
-            'menu_name'          => __( 'Items', self::$plugin_slug ),
-            'name_admin_bar'     => __( 'Item', self::$plugin_slug ),
-            'add_new'            => __( 'Add New', self::$plugin_slug ),
-            'add_new_item'       => __( 'Add New Item', self::$plugin_slug ),
-            'new_item'           => __( 'New Item', self::$plugin_slug ),
-            'edit_item'          => __( 'Edit Item', self::$plugin_slug ),
-            'view_item'          => __( 'View Item', self::$plugin_slug ),
-            'all_items'          => __( 'All Items', self::$plugin_slug ),
-            'search_items'       => __( 'Search Items', self::$plugin_slug ),
-            'parent_item_colon'  => __( 'Parent Items:', self::$plugin_slug ),
-            'not_found'          => __( 'No Items found.', self::$plugin_slug ),
-            'not_found_in_trash' => __( 'No Items found in Trash.', self::$plugin_slug )
+            'name'               => __( 'Items', 'commons-booking' ),
+            'singular_name'      => __( 'Item', 'commons-booking' ),
+            'menu_name'          => __( 'Items', 'commons-booking' ),
+            'name_admin_bar'     => __( 'Item', 'commons-booking' ),
+            'add_new'            => __( 'Add New', 'commons-booking' ),
+            'add_new_item'       => __( 'Add New Item', 'commons-booking' ),
+            'new_item'           => __( 'New Item', 'commons-booking' ),
+            'edit_item'          => __( 'Edit Item', 'commons-booking' ),
+            'view_item'          => __( 'View Item', 'commons-booking' ),
+            'all_items'          => __( 'All Items', 'commons-booking' ),
+            'search_items'       => __( 'Search Items', 'commons-booking' ),
+            'parent_item_colon'  => __( 'Parent Items:', 'commons-booking' ),
+            'not_found'          => __( 'No Items found.', 'commons-booking' ),
+            'not_found_in_trash' => __( 'No Items found in Trash.', 'commons-booking' )
         );
 
         $item_args = array(
@@ -236,20 +236,20 @@ class Commons_Booking {
 
 
         $location_labels = array(
-            'name'               => __( 'Locations', self::$plugin_slug ),
-            'singular_name'      => __( 'Location', self::$plugin_slug ),
-            'menu_name'          => __( 'Locations', self::$plugin_slug ),
-            'name_admin_bar'     => __( 'Location', self::$plugin_slug ),
-            'add_new'            => __( 'Add New', self::$plugin_slug ),
-            'add_new_item'       => __( 'Add New Location', self::$plugin_slug ),
-            'new_item'           => __( 'New Location', self::$plugin_slug ),
-            'edit_item'          => __( 'Edit Location', self::$plugin_slug ),
-            'view_item'          => __( 'View Location', self::$plugin_slug ),
-            'all_items'          => __( 'All Location', self::$plugin_slug ),
-            'search_items'       => __( 'Search Locations', self::$plugin_slug ),
-            'parent_item_colon'  => __( 'Parent Locations:', self::$plugin_slug ),
-            'not_found'          => __( 'No Locations found.', self::$plugin_slug ),
-            'not_found_in_trash' => __( 'No Locations found in Trash.', self::$plugin_slug )
+            'name'               => __( 'Locations', 'commons-booking' ),
+            'singular_name'      => __( 'Location', 'commons-booking' ),
+            'menu_name'          => __( 'Locations', 'commons-booking' ),
+            'name_admin_bar'     => __( 'Location', 'commons-booking' ),
+            'add_new'            => __( 'Add New', 'commons-booking' ),
+            'add_new_item'       => __( 'Add New Location', 'commons-booking' ),
+            'new_item'           => __( 'New Location', 'commons-booking' ),
+            'edit_item'          => __( 'Edit Location', 'commons-booking' ),
+            'view_item'          => __( 'View Location', 'commons-booking' ),
+            'all_items'          => __( 'All Location', 'commons-booking' ),
+            'search_items'       => __( 'Search Locations', 'commons-booking' ),
+            'parent_item_colon'  => __( 'Parent Locations:', 'commons-booking' ),
+            'not_found'          => __( 'No Locations found.', 'commons-booking' ),
+            'not_found_in_trash' => __( 'No Locations found in Trash.', 'commons-booking' )
         );
 
         $location_args = array(
@@ -560,10 +560,10 @@ class Commons_Booking {
         $bookings_table->install();
 
         // create the default pages 
-        $item_page = create_page(__( 'Items', self::$plugin_slug ), self::$plugin_slug.'_item_page_select');
-        $user_bookings_page = create_page(__( 'My Bookings', self::$plugin_slug ), self::$plugin_slug.'_user_bookings_page_select');
-        $booking_confirmed_page = create_page(__( 'Booking', self::$plugin_slug ), self::$plugin_slug.'_booking_confirmed_page_select');
-        $booking_view_page = create_page(__( 'Confirm booking', self::$plugin_slug ), self::$plugin_slug.'_booking_review_page_select');
+        $item_page = create_page(__( 'Items', 'commons-booking' ), self::$plugin_slug.'_item_page_select');
+        $user_bookings_page = create_page(__( 'My Bookings', 'commons-booking' ), self::$plugin_slug.'_user_bookings_page_select');
+        $booking_confirmed_page = create_page(__( 'Booking', 'commons-booking' ), self::$plugin_slug.'_booking_confirmed_page_select');
+        $booking_view_page = create_page(__( 'Confirm booking', 'commons-booking' ), self::$plugin_slug.'_booking_review_page_select');
 
         // set defaults, set pages, update wp_options
         $settings = new CB_Admin_Settings(); 
@@ -652,17 +652,17 @@ class Commons_Booking {
             'setting_maxdays' => $maxdays,
             'setting_booking_review_page' => $bookingpage,
             'setting_allowclosed' => $allowclosed,
-            'text_start_booking' => __( 'Book here:', $this->get_plugin_slug() ),
-            'text_choose' => __( 'Click the days you want to book', $this->get_plugin_slug() ),
-            'text_pickup' => __( 'Pickup date:', $this->get_plugin_slug() ),
-            'text_return' => __( 'Return date:', $this->get_plugin_slug() ),
-            'text_pickupreturn' => __( 'Pickup and return date:', $this->get_plugin_slug() ),
-            'text_error_days' => __( 'Sorry, too many days between pickup and return, the maximum is: ', $this->get_plugin_slug() ),
-            'text_error_timeframes' => __( 'Sorry, you can only book at one station.', $this->get_plugin_slug() ),
-            'text_error_notbookable' => __( 'Sorry, this day is not bookable.', $this->get_plugin_slug() ),
-            'text_error_sequential' => __( 'Please select sequential days.', $this->get_plugin_slug() ),
-            'text_error_bookedday' => __( 'Sorry, there must be no booked day between pickup and return.', $this->get_plugin_slug() ),
-            'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', $this->get_plugin_slug() )
+            'text_start_booking' => __( 'Book here:', 'commons-booking' ),
+            'text_choose' => __( 'Click the days you want to book', 'commons-booking' ),
+            'text_pickup' => __( 'Pickup date:', 'commons-booking' ),
+            'text_return' => __( 'Return date:', 'commons-booking' ),
+            'text_pickupreturn' => __( 'Pickup and return date:', 'commons-booking' ),
+            'text_error_days' => __( 'Sorry, too many days between pickup and return, the maximum is: ', 'commons-booking' ),
+            'text_error_timeframes' => __( 'Sorry, you can only book at one station.', 'commons-booking' ),
+            'text_error_notbookable' => __( 'Sorry, this day is not bookable.', 'commons-booking' ),
+            'text_error_sequential' => __( 'Please select sequential days.', 'commons-booking' ),
+            'text_error_bookedday' => __( 'Sorry, there must be no booked day between pickup and return.', 'commons-booking' ),
+            'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', 'commons-booking' )
                 )
         );
     }
