@@ -409,7 +409,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         // add the closed days to maxdays
         foreach ( $between as $day ) {
             $weekday = date( "N", strtotime( $day )); // convert date to weekday # 
-            if ( in_array( $weekday, $closed_days ) ) { // a closed day found
+            if ( is_array ( $closed_days ) && in_array( $weekday, $closed_days ) ) { // a closed day found
                 if ( $allow_closed == "on" ) { // booking over closed days is allowed
                     $closed_days_count++;
                 } else {
