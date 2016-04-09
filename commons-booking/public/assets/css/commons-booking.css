@@ -1,36 +1,157 @@
-/* Variables */
-/* mixins */
-.padding, .cb-box, #cb-bookingbar .inner, .cb-timeframe, #cb-bookingbar-msg {
+/*
+ * Main SCSS - import partials
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since 0.2
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+/* Variables: colors, widths, padding */
+/*
+ * Base colors etc.
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+/* COLORS */
+/* COLORS */
+/* Mixins */
+/*
+ * Effects & eye-candy
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+/* Base styles */
+/*
+ * Standard elements
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+.padding, .cb-box, .cb-timeframe, #cb-bookingbar .inner {
   padding: 1em; }
 
-.align-right, #cb-bookingbar .booking #cb-submit, .cb-list ul li span.cb-action {
+.align-right {
   float: right; }
 
-.cb-small, .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
+.align-left {
+  float: left; }
+
+.cb-small, .cb-user-bar a.cb-button {
   font-size: 0.8em; }
 
-.cb-big, .cb-headline, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit, .cb-timeframe .cb-location .cb-location-name {
-  font-size: 1.2em;
+.cb-big, .cb-headline, .cb-timeframe .cb-location .cb-location-name {
+  font-size: 1.4em;
   font-weight: bold;
-  color: #3356a4; }
+  color: #3356a4;
+  margin-bottom: 0.5em; }
 
-.cb-headline {
-  margin-bottom: 1em; }
-  .cb-headline a {
-    color: #3356a4; }
-
-.border, .cb-box, #cb-bookingbar .inner, .cb-timeframe, .cb-list ul li {
+.border {
   border-top: 1px solid #e1e1e1;
   display: block; }
 
-.cb-row {
-  border-bottom: 1px solid #e1e1e1;
-  padding: 0.5em; }
+.cb-headline a {
+  color: #3356a4; }
 
-.cb-box, #cb-bookingbar .inner, .cb-timeframe {
-  background: #f6f6f6;
+/* all individual elements (timeframes, items, etc) are grouped with cb-box */
+.cb-box, .cb-timeframe, #cb-bookingbar .inner {
+  overflow: hidden;
+  border: 1px solid #e1e1e1;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  margin-bottom: 2em; }
+
+.cb-big a, .cb-headline a, .cb-timeframe .cb-location .cb-location-name a {
+  color: #3356a4;
+  text-decoration: none;
+  border-bottom: none; }
+
+.cb-table {
   margin-bottom: 1em;
+  display: block; }
+  .cb-table .cb-row {
+    color: #414141;
+    border-top: 1px solid #e1e1e1;
+    padding: 0.5em 0;
+    overflow: hidden; }
+    .cb-table .cb-row:last-child {
+      border-bottom: 1px solid #e1e1e1; }
+    .cb-table .cb-row .cb-row-title {
+      font-weight: bold;
+      margin-right: 1em; }
+    .cb-table .cb-row .cb-big, .cb-table .cb-row .cb-headline, .cb-table .cb-row .cb-timeframe .cb-location .cb-location-name, .cb-timeframe .cb-location .cb-table .cb-row .cb-location-name {
+      display: block; }
+    .cb-table .cb-row .cb-button {
+      margin: 1em 0 1em 1em; }
+
+/* Bookings */
+.cb-user-bar {
+  margin-bottom: 2em; }
+  .cb-user-bar a.cb-button {
+    background: #3356a4;
+    border: 1px solid #3356a4; }
+
+.cb-timeframe-title {
+  display: none; }
+
+.entry-content .cb-box h2, .entry-content .cb-timeframe h2, .entry-content #cb-bookingbar .inner h2, #cb-bookingbar .entry-content .inner h2 {
+  margin-top: 0; }
+
+.cb-list-item-description {
+  margin-bottom: 1em;
+  display: block;
   overflow: hidden; }
+  .cb-list-item-description img {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    margin-right: 1em; }
+
+a.cb-button, input#wp-submit, input#wp-submit-comment {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 10px 15px;
+  overflow: hidden;
+  background: #56a820;
+  color: white;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid #56a820; }
+  a.cb-button:hover, input#wp-submit:hover, input#wp-submit-comment:hover {
+    background: #3356a4;
+    border: 1px solid #3356a4;
+    color: white; }
+  a.cb-button.cb-small, .cb-user-bar a.cb-button, input#wp-submit.cb-small, input#wp-submit-comment.cb-small {
+    background: #3356a4;
+    border: 1px solid #e1e1e1; }
+  a.cb-button.warning, input#wp-submit.warning, input#wp-submit-comment.warning {
+    background: #a70001;
+    border: 1px solid #a70001; }
+    a.cb-button.warning:hover, input#wp-submit.warning:hover, input#wp-submit-comment.warning:hover {
+      background: #ff0002;
+      border: 1px solid #ff0002; }
+
+.cb-row a.cb-button,
+.cb-user-bar a.cb-button {
+  padding: 5px 10px; }
 
 .cb-booking-code strong {
   padding: 5px;
@@ -39,82 +160,51 @@
   color: green;
   font-weight: normal; }
 
-.confirmed {
-  color: #56a820; }
+/*****************
+ * MESSAGES
+ *
+ */
+.cb-message, #cb-bookingbar-msg {
+  display: block;
+  margin-bottom: 2em;
+  padding: 0.5em 1em;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
+  color: white; }
+  .cb-message.success, .success#cb-bookingbar-msg {
+    color: #407d18;
+    background: #c3eea6; }
+  .cb-message.error, .error#cb-bookingbar-msg {
+    background: #ff0002; }
 
-/*****************
- * ITEMS LIST
- *
- */
-/*****************
- * ITEMS SINGLE
- *
- */
 .cb-description {
   margin-bottom: 2em; }
 
-/*****************
-* ITEMS SINGLE: Bookingbar
-*
-*/
-#cb-bookingbar-msg.error {
-  background: red;
-  color: white; }
-#cb-bookingbar-msg.notice {
-  background: green;
-  color: white; }
+.cb-tooltipster {
+  background: #27427d; }
 
-#cb-bookingbar {
-  z-index: 99;
-  position: fixed;
-  height: auto;
-  width: 100%;
-  left: 0;
-  right: 0;
-  bottom: 0; }
-  #cb-bookingbar .inner {
-    margin: 0;
-    background: white;
-    overflow: hidden; }
-  #cb-bookingbar .cb-userinfo {
-    display: block; }
-  #cb-bookingbar .booking #intro {
-    display: none; }
-  #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
-    color: #56a820;
-    float: left;
-    margin-right: 20px; }
-    #cb-bookingbar .booking #date-start span, #cb-bookingbar .booking #date-end span, #cb-bookingbar .booking #cb-submit span {
-      font-weight: bold;
-      color: #3356a4;
-      display: inline;
-      padding: 0 0.2em; }
-      #cb-bookingbar .booking #date-start span.cb-day, #cb-bookingbar .booking #date-end span.cb-day, #cb-bookingbar .booking #cb-submit span.cb-day {
-        display: none; }
-
-/*****************
- * LISTS
- *
- */
-.cb-list .cb-list-item {
+.cb-booking-comment {
+  background: #f6f6f6;
+  padding: 1em;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  border-radius: 7px;
   margin-bottom: 1em;
-  display: block;
   overflow: hidden; }
-.cb-list ul {
-  overflow: hidden;
-  display: block;
-  list-style: none;
-  padding: 0;
-  margin: 0; }
-  .cb-list ul li {
-    list-style: none;
-    background: #fff; }
-    .cb-list ul li:hover {
-      background: #fff; }
+  .cb-booking-comment input {
+    margin-top: 1em;
+    float: right; }
 
-/*****************
- * ITEMS SINGLE Timeframes
- *
+/* Calendar styles */
+/*
+ * Calendar
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
  */
 .cb-timeframe {
   /* Calendar */ }
@@ -135,8 +225,6 @@
   .cb-timeframe .cb-location {
     display: block;
     overflow: hidden; }
-    .cb-timeframe .cb-location .cb-date, .cb-timeframe .cb-location .cb-address, .cb-timeframe .cb-location .cb-contact {
-      padding-left: 0; }
   .cb-timeframe ul.cb-calendar {
     list-style: none;
     clear: both;
@@ -149,30 +237,143 @@
       -moz-box-sizing: border-box;
       box-sizing: border-box;
       width: 14.28571%;
-      height: 80px;
+      position: relative;
       overflow: hidden;
-      padding: 10px;
+      padding: 4px;
       float: left;
       text-align: center;
       background: white;
       color: #e1e1e1;
-      border: 1px solid #f6f6f6; }
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease; }
+      .cb-timeframe ul.cb-calendar li .cb-cal-inner {
+        min-height: 40px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        height: 100%;
+        padding: 2px; }
+        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-j {
+          margin-top: 5px;
+          display: block;
+          line-height: 1em; }
+        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-M {
+          margin-bottom: 5px;
+          display: block;
+          font-size: 0.7em; }
       .cb-timeframe ul.cb-calendar li.bookable {
         cursor: pointer;
-        color: white;
-        background: #56a820; }
-        .cb-timeframe ul.cb-calendar li.bookable:hover {
-          background: #155113;
+        color: #56a820; }
+        .cb-timeframe ul.cb-calendar li.bookable .cb-cal-inner:hover {
+          background: #27427d;
           color: white; }
-      .cb-timeframe ul.cb-calendar li.selected {
-        border: 1px solid #3356a4;
+      .cb-timeframe ul.cb-calendar li.selected, .cb-timeframe ul.cb-calendar li.closed.overbooking {
         background: #3356a4;
-        color: white; }
+        color: #adbbda; }
+      .cb-timeframe ul.cb-calendar li.selected-first {
+        -webkit-border-top-left-radius: 7px;
+        -webkit-border-bottom-left-radius: 7px;
+        -moz-border-radius-topleft: 7px;
+        -moz-border-radius-bottomleft: 7px;
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px; }
+        .cb-timeframe ul.cb-calendar li.selected-first .cb-cal-inner {
+          color: white;
+          background: #27427d; }
+      .cb-timeframe ul.cb-calendar li.selected-last {
+        -webkit-border-top-right-radius: 7px;
+        -webkit-border-bottom-right-radius: 7px;
+        -moz-border-radius-topright: 7px;
+        -moz-border-radius-bottomright: 7px;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px; }
+        .cb-timeframe ul.cb-calendar li.selected-last .cb-cal-inner {
+          color: white;
+          background: #27427d; }
       .cb-timeframe ul.cb-calendar li.booked {
-        background: #e1e1e1;
+        cursor: not-allowed;
         color: #a70001; }
-    .cb-timeframe ul.cb-calendar .cb-day {
-      display: block;
-      font-size: 0.8em; }
-    .cb-timeframe ul.cb-calendar .cb-date {
-      display: block; }
+        .cb-timeframe ul.cb-calendar li.booked .cb-cal-inner {
+          background: #a70001;
+          color: white; }
+      .cb-timeframe ul.cb-calendar li.closed {
+        cursor: not-allowed;
+        color: #aeaeae; }
+        .cb-timeframe ul.cb-calendar li.closed .cb-cal-inner {
+          background: #f6f6f6; }
+
+/* Booking Bar */
+/*
+ * Booking bar displayed on calendar pages
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+#cb-bookingbar {
+  z-index: 99;
+  position: fixed;
+  height: auto;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease; }
+  #cb-bookingbar .inner {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    -webkit-box-shadow: 0 0 70px 1px #afafaf;
+    -moz-box-shadow: 0 0 70px 1px #afafaf;
+    box-shadow: 0 0 70px 1px #afafaf;
+    margin: 0;
+    background: white;
+    color: #3356a4;
+    overflow: hidden; }
+  #cb-bookingbar .cb-userinfo {
+    display: block;
+    margin-bottom: 10px; }
+  #cb-bookingbar .booking #intro, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
+    font-weight: normal;
+    float: left; }
+  #cb-bookingbar .booking div.bb-date {
+    display: inline-block;
+    background: white;
+    color: #3356a4;
+    line-height: 0.8em;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px; }
+    #cb-bookingbar .booking div.bb-date .cb-cal-inner {
+      font-weight: bold;
+      margin: 0 10px 0 5px;
+      border: 0;
+      padding: 0; }
+      #cb-bookingbar .booking div.bb-date .cb-cal-inner span {
+        color: #3356a4;
+        padding: 0; }
+      #cb-bookingbar .booking div.bb-date .cb-cal-inner span.cb-day {
+        display: none; }
+  #cb-bookingbar .booking #cb-submit {
+    margin-right: 0;
+    margin-top: 5px;
+    float: right; }
+    #cb-bookingbar .booking #cb-submit .cb-button {
+      line-height: 40px;
+      height: 40px; }
+
+#cb-bookingbar-msg {
+  margin-bottom: 0; }
+
+/* Tooltipster */

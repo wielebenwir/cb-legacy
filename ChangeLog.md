@@ -1,3 +1,60 @@
+# 0.7 
+
+**Features**
+
+* FEATURE: Redesigned Calendar with better representation of pickup/return/booking over weekends and helpful tooltips
+* FEATURE: Redesigned item lists 
+* FEATURE: Redesigned timeframes. 
+* FEATURE: Bookings list & booking Detail now have a handy navigation bar. 
+* FEATURE: Added CRON job:  Pending bookings will be deleted after one day. 
+* FEATURE: Booking Comments. Users can add a comment on the booking review screen, which will be shown in the calendar tooltip. Uses the Wordpress comments feature, so 
+
+**Changes**
+* Behaviour of the calendar date picker. Now, you have to select the days in sequence. 
+* REMOVED: User Profile/Registration/Forgot Password functionality. I recommend installing "Theme my Login". 
+
+**Bug fixes**
+
+* FIX: Now correctly jumping to selected timeframe anchor when "Book here" was clicked in item list  
+* FIX: Issue with javascript de/selection sometimes behaving strange
+* FIX: Javascript validation bug when booking over multiple days
+* FIX: Server-side booking validation (closed days are now correctly counted) 
+* FIX: Fix: Registration page extra fields were not properly defined ( if $_POST didn´t exist)
+* FIX: User meta data was not saved when editing the profile. 
+* FIX: Unchecked Checkboxes in settings don´t throw errors anymore. 
+* FIX: Bookings that are "pending" are no longer shown on the User Bookings page. 
+* FIX: Codes table pagination
+* FIX: Bookings table pagination
+* FIX: Pagination table
+* FIX: Fixed ambiguous (wrong) message after hitting "Save and generate codes" on the Timeframes edit screen when no changes were made.
+* FIX: Plugin localization string in cb-timeframes-edit.php 
+* FIX: Items List: If no item short description provided, show a message.
+* Fix: URL to booking in booking confirmation email now compatible with Wordpress non-pretty  Permalinks (?page=X)
+* FIX: Double bookings are no longer possible. (compare function (booked days != selected days) did not work).  
+* FIX: Users can´t cancel bookings from the past (booking end date < current date)
+* FIX: HTML structure, items without a timeframe now have a proper end < div > ending-tag
+* FIX: Item Timeframes: If no timeframe present, display message
+* FIX: Booking over closed days php validation now correctly throws an error when javascript is tricked.
+
+**Enhancements**
+
+* ENHANCEMENT: Daily Cron job deletes all pending bookings older than one day 
+* ENHANCEMENT: Output of location address can now be formatted (Localisation in translation file) 
+* ENHANCEMENT: Adding new timeframes from the item edit screen: Added a link to navigate back to the item. 
+* ENHANCEMENT: Timeframe Edit Screen: First location/Item is pre-selected in dropdown menu. Provides better behaviour if using the plugin with just one location. 
+* ENHANCEMENT: Timeframe Edit Screen: Added More meaningful message if no locations/items available. 
+* ENHANCEMENT: Booking Review & Booking Confirmation are now separate pages (so you can add your own texts). 
+* ENHANCEMENT: Bookings Table is now sortable
+* ENHANCEMENT: Opening hours are now shown on the calendar pages. 
+
+**Known issues:** 
+
+* YOAST SEO: Booking Confirmation Message is not displayed. Possible Workaround: [Disabling WordPress SEO plugins on a page by page basis - MemberFindMe](https://memberfind.me/disabling-wordpress-seo-plugins-on-a-page-by-page-basis/) 
+
+# 0.6 
+* FIX: Corrected Database Table Version Option names
+* FIX: Installation / Code Table creation. Corrected Primary column (id). Removed legacy if empty. 
+
 # 0.5.3 
 
 * added missing translation strings

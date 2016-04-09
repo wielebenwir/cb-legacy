@@ -1,0 +1,153 @@
+/*
+ * Calendar
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+.cb-timeframes-wrapper {
+}
+
+.cb-timeframe {
+
+  @extend .cb-box;
+
+  // this class pushes the calendar cells into the right position
+  .pusher {
+      &.day1 {margin-left: 0; }
+      &.day2 {margin-left: $cellwidth; }
+      &.day3 {margin-left: $cellwidth * 2; }
+      &.day4 {margin-left: $cellwidth * 3; }
+      &.day5 {margin-left: $cellwidth * 4; }
+      &.day6 {margin-left: $cellwidth * 5; }
+      &.day7 {margin-left: $cellwidth * 6; }
+
+  }
+
+  .cb-location {
+    display: block;
+    overflow: hidden; 
+    .cb-date, .cb-address, .cb-contact {
+
+    }
+    .cb-location-name {
+      @extend .cb-big;
+    }
+  }
+
+  /* Calendar */
+  ul.cb-calendar {
+    list-style: none; 
+    clear: both;
+    overflow: hidden;
+    margin: 1em 0 1em 0; 
+
+    input {
+      display:none;
+    }
+
+    li:first-child {
+      @extend .pusher; // add margin to push first entry. 
+    }
+
+
+    li {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      width: $cellwidth;
+      // height: 80px;
+      position: relative;
+      overflow: hidden;
+      padding: 4px;
+      float: left;
+      text-align: center;
+      background: $white;
+      color: $grey;
+      // border-bottom: 1px solid $grey;
+      @include transition(all .3s ease);
+
+      .cb-cal-inner {
+        min-height: 40px;
+        span.cb-j {
+          margin-top:5px;
+          display: block;
+          line-height: 1em; 
+        }
+        span.cb-M {
+          margin-bottom:5px;
+           display: block;
+          font-size: 0.7em;
+        }
+        @include border-radius($radius);
+        height: 100%;
+        padding: 2px;
+
+        &:hover {
+        }
+      }
+
+      &.bookable { // selectable dates
+        cursor: pointer;
+        color: $green;
+        // border: 1px solid $white;
+
+        .cb-cal-inner {
+        }
+
+        // border: 1px solid darken($green, 5%);
+        .cb-cal-inner:hover {
+          background: $dark-blue;
+          color: $white;
+        }
+      }
+      &.selected {
+        background: $blue;
+        color: mix(white, $blue, 60%);
+        // border: 1px solid $blue;
+      }    
+      &:hover {
+        // @include border-radius($radius);
+      }  
+      &.selected-first {
+        @include selection-start-round($radius);
+        .cb-cal-inner {       
+          color: $white;
+          background: $dark-blue;
+        }
+      }      
+      &.selected-last {
+        @include selection-end-round($radius);
+        .cb-cal-inner {
+          color: $white;
+          background: $dark-blue;
+        }
+      }
+
+      &.booked {
+        cursor: not-allowed;
+        color: $dark-red;
+        .cb-cal-inner {
+          // background: $grey;
+          // color: $dark-red;
+          background: $dark-red;
+          color: $white;
+        }
+      }
+      &.closed {
+        cursor: not-allowed;
+        color: darken($grey, 20%);
+        .cb-cal-inner {
+          background: $light-grey;
+        }
+          &.overbooking {
+            @extend .selected;
+
+        }
+      }
+    }
+  }
+}

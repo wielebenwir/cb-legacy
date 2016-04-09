@@ -49,6 +49,24 @@ function pages_dropdown() {
   }
 
 /**
+ * Format message
+ *
+ *@param $string, 
+ *
+ *@return html
+ */
+ function display_cb_message( $string, $replace = null, $success = TRUE ) {
+    
+    if ( ! $replace ) {
+      $replace = array();
+    }
+
+    $msg = replace_template_tags( $string, $replace );
+    $class = $success ? 'success' : 'error';
+    return sprintf (' <p class="cb-message %s">%s</p>', $class , $msg );
+  }
+
+/**
  * Get a list of all dates within the defind range. 
  *
  * @return array dates
@@ -60,7 +78,7 @@ function pages_dropdown() {
     }
     return $dates;
   }
-
+  
 /**
  * Helper: search a 2-dim array for key, return value
  * 
@@ -73,6 +91,25 @@ function pages_dropdown() {
    }
    return null;
   }
+/**
+ * Helper: Convert object to array.  
+ * 
+ */
+
+ function object_to_array($object) {
+  $array = json_decode(json_encode($object), true);
+  return $array;
+    // if (is_array($data) || is_object($data))
+    // {
+    //     $result = array();
+    //     foreach ($data as $key => $value)
+    //     {
+    //         $result[$key] = object_to_array($value);
+    //     }
+    //     return $result;
+    // }
+    // return $data;
+} 
 /**
  * Helper: Check if Thumbmail exists, if so, return it.  
  * 

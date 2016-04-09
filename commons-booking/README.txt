@@ -4,11 +4,12 @@ Contributors: Florian Egermann, Christian Wenzel, Sven Baier, Stefan Meretz
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.4.
+Tested up to: 4.4.2
+Stable Tag: 0.5.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A Wordpress plugin for management and booking of commons. Brought you by wielebenwir.de
+A Wordpress plugin for management and booking of commons.
 
 == Description ==
 

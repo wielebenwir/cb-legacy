@@ -44,6 +44,14 @@
           var text_pickup = cb_js_vars.text_pickup;
           var text_pickupreturn = cb_js_vars.text_pickupreturn;
           var text_choose = cb_js_vars.text_choose;
+
+          var text_errors = {
+            'maxDays': cb_js_vars.text_error_days + maxDays,
+            'timeframes': cb_js_vars.text_error_timeframes,
+            'closedforbidden': cb_js_vars.text_error_closedforbidden,
+            'sequential': cb_js_vars.text_error_sequential
+          };
+
           var text_error_days = cb_js_vars.text_error_days;
           var text_error_timeframes = cb_js_vars.text_error_timeframes;
           var text_error_notbookable = cb_js_vars.text_error_notbookable;
@@ -55,14 +63,15 @@
 
           // DOM containers
           var debug = $( '#debug' );
+          var introContainer = $( '#intro' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
-          var bookingButton = $( '#cb-submit .button' );
+          var bookingButton = $( '#cb-submit .cb-button' );
   
-          var dataContainer = $( '#cb-bookingbar #data' );
+          var dataContainer = $( '#cb-bookingbar #data' ); // @TODO: Retire me
 
           var wrapper = $( '.cb-timeframe' );
-          var calEl = $( '.cb-calendar li' );
+          var calEl = $( '.cb-timeframes-wrapper' );
           var msgEl = $( '#cb-bookingbar-msg' );
 
           var formEl = $( '#booking-selection');
@@ -73,252 +82,353 @@
           var form_timeframe_id = $( 'input[name="timeframe_id"]' ); 
           var formButton = $('#cb-submit a');
 
+          var allCalendarDates = calEl.find('li');
+
+          var errors = [];
+          var selectedCount;
+          var overbookDays = [];
+          var betweenDays = [];
+          var allBookableDates = calEl.find('li.bookable');
+
           // set starting text
-          startContainer.html ( text_choose );
+          introContainer.html (text_choose);
+          startContainer.html ( '' );
           endContainer.html ( '' );
           bookingButton.hide();
 
 
-          // $('.tooltip').tooltipster({
-          //   animation: 'grow',
-          //   delay: 0,
-          //   theme: 'tooltipster-default',
-          //   touchDevices: false,
-          // });
+          $('.cb-tooltip').tooltipster({
+            animation: 'fade',
+            delay: 0,
+            theme: 'tooltipster-cb',
+          });
+          // $('.cb-tooltip').tooltipster();
 
+          function resize_bookingbar() {
+
+              var parentpos = $('.cb-timeframes-wrapper').offset();
+
+              // .outerWidth() takes into account border and padding.
+              var width = $('.cb-timeframes-wrapper').outerWidth();
+
+              $("#cb-bookingbar").css({
+                  width: width,
+                  // top: parentpos.top + "px",
+                  'margin-left': (parentpos.left) + "px"
+              })
+
+          }
+
+          $(window).on('resize', function(){
+
+            resize_bookingbar();
+
+          });
+
+          resize_bookingbar();
 
           formButton.click(function( event ) {
             event.preventDefault();
             formEl.submit();
           });
+          
+          calEl.selectonic({
+            multi: true,
+            mouseMode: "toggle",
+            keyboard: false,
+            selectedClass: "selected",
+            filter: ".bookable",
+            select: function(event, ui) {
 
-        wrapper.each( function( ) {
-          $( 'li', this).on( "click", function( index ) {
-              update ( $( this ).index(), $( this ).parents( '.cb_timeframe_form' ).attr( 'id' ) );
+            },
+            stop: function(event, ui) {
+
+              var selectedIndexes = update_selected();
+              var msgErrors = errors;
+
+
+              if( errors.length > 0 ) {     
+                  this.selectonic("cancel"); // cancel selection
+                  for (var i = msgErrors.length - 1; i >= 0; i--) {
+                    displayErrorNotice( text_errors[ msgErrors[i] ] );
+                  }
+
+
+              } else {
+                removeClasses();
+                addClasses();
+                update_bookingbar( selectedIndexes );
+                // showToolTips();
+                resize_bookingbar();
+              }
+
+            },
+            unselectAll: function(event, ui) {
+              // …and disable actions buttons
+            }
           });
-        });
+          
+          var selected; 
 
-        function update( index, tf_id ) {
+          var parentCal = '';
+          var overbookable = true;
 
-          var clickedIndexes = [];
 
-          var needle = $.inArray( index, selectedIndexes ); // look for index in array. 
-          var clickedIndexes = selectedIndexes.concat();
+          function update_selected() {
 
-          // De-Selection
-          if ( needle > -1 )  { // already selected, so de-select
-            clickedIndexes.splice( needle, 1 );              
-          } else {        
-            if (selectedIndexes.length > 1 ) { // 2 selected, so exchange first item with it
-              clickedIndexes[0] = index;   
-            } else {
-               clickedIndexes.push ( index );          
+            errors = [];
+            overbookDays = [];
+            var indexes = [];
+            var selectedIDs = [];
+
+            selected = calEl.find('li.selected'); // find selected elements
+
+            selectedCount = selected.length;
+
+            parentCal = $(selected).parents('.cb-timeframe');
+
+            // VALIDATION - Timeframe
+            // check if selection spans more than one timeframe 
+            if ( $(selected).parents('.cb-timeframe').length > 1 ) {
+              errors.push ("text_error_timeframes");
+            }
+
+            // var indexes = [];
+            var calIndexes = []; 
+
+            // add selected indexes to array
+            selected.each(function ( index, element ) {
+               indexes.push ( calEl.find(element).index( 'li.bookable') );
+               calIndexes.push ( parentCal.find(element).index() );
+            } );            
+
+            // check if there are days between the selection
+            betweenDays = getDaysBetween( calIndexes );
+
+            if ( betweenDays.length > 0 ) { // there are days between selected
+              if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes                
+                var allowedClasses = ['closed', 'selected'];
+                overbookDays = checkForClass ( betweenDays, allowedClasses);
+                if ( typeof overbookDays != 'undefined' ) { // all days between are closed
+                  selectedCount++; // booking over closed days, which count as one day           
+                } else { // at least one day between is not closed
+                   errors.push ("sequential");  
+                }
+              } else { //booking over closed days not allowed, so return error
+                errors.push ("sequential");
+              }
+            }
+
+            // VALIDATION - Day Count
+            // Check if selection is more than max days
+            if ( selectedCount > maxDays ) {
+              errors.push ("maxDays");
+            }
+
+            return indexes;
+
+          } // end update_selected()
+
+          // remove all Classes
+          function removeClasses() {
+            allCalendarDates.each(function() {
+              $(this).removeClass('selected-last');
+              $(this).removeClass('selected-first');
+              $(this).removeClass('overbooking');
+            })
+          }
+          // set classes
+          function addClasses() {
+            selected.first().addClass('selected-first');
+            selected.last().addClass('selected-last');
+            if ( overbookDays.length > 0 ) {
+              $.each(overbookDays, function (key ){
+                    $(betweenDays).get(key).addClass('overbooking');
+                  } );
             }
           }
 
+          //check for classes
+          function checkForClass( els, classes ) {
 
-          // Calculate Distance & get the classes of the days in between
-          var distance = 0;
-          var daystatus = 0;
+            var error = 0;
+            var betweenEls = [];
 
-          if ( clickedIndexes.length > 1 ) { // if more than one clicked 
-            var firstEl = $( '#'+tf_id+' li').eq( clickedIndexes[0] ).attr('id');
-            var secondEl = $( '#'+tf_id+' li').eq( clickedIndexes[1] ).attr('id');
-            
-            var daysBetween = getDaysBetween (firstEl, secondEl);
-            daystatus = getDayStatus ( daysBetween );            
-            distance = daysBetween.length -1;
+            $(els).each( function ( element, index ) {
+              if ( $(this).hasClasses( classes )) {
+                betweenEls.push( $(this).index() );          
+              } else {
+                error++;
+              }
+            });
 
+            if (error == 0) {
+              return betweenEls;
+            } 
           }
 
-          // if setting allowclosed is set, add the closed days to the max days to allow booking           
-          var theDays;
-          if ( allowclosed == 1 ) {
-            theDays = maxDays + daystatus;
-          } else {
-            theDays = maxDays;
+          // check if there are non-selected days between selection
+          function getDaysBetween( calIndexes ) {
+              var counter = 0;
+              var low = calIndexes[0];
+              var high = calIndexes[calIndexes.length-1];
+              var daysBetween = [];
+
+              // loop through days
+              for (var i = low; i < high; i++) { 
+                if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
+                  // daysBetween.push( calEl.eq(low + counter) );
+                  daysBetween.push( parentCal.find('li').eq(low + counter) );
+                }
+                counter++;
+              }
+              return daysBetween;    
           }
 
-          // VALIDATION
-          if ( selectedIndexes.length > 0 && currentTimeFrame != tf_id ) { // within current timeframe
-              displayNotice (text_error_timeframes,  "error");
-              return false;
-          } else if ( !$( '#'+tf_id+' li').eq( index ).hasClass('bookable') ) { // day selected is bookable
-              displayNotice (text_error_notbookable,  "error");
-              return false;       
-          } else if ( distance >= theDays ) { // max days is not exceeded
-              displayNotice (text_error_days + maxDays, "error");
-              return false;              
-          } else if ( daystatus < 0 ) { // between pickup date and return date is a booked date
-              displayNotice ( text_error_bookedday, "error");
-              return false;            
-          } else if ( ( daystatus > 0 ) && ( allowclosed = 0 ) ) { // booking over closed days, but not allowed
-              displayNotice ( text_error_closedforbidden , "error");
-              return false;       
-          } else { // no errors
-            selectedIndexes = clickedIndexes;  
-            currentTimeFrame = tf_id;     
-          }
-
-          // set selected, show Booking Button
-          setSelected( selectedIndexes, tf_id );
-
-          }
-
-          // show notices
-          function displayNotice ( msg, theclass) {
+          // show error notice
+          function displayErrorNotice ( msg ) {
             msgEl.html( msg );
             msgEl.show();
-            msgEl.attr( 'class', theclass );
+            msgEl.attr( 'class', 'error' );
             msgEl.delay(3000).fadeOut();
           }
 
-          // set the selection & texts 
-          function setSelected( selected, id ) {
+          // add dates to the form element
+          function setDataContainer( start, end, meta ) {
+              form_date_start.val( start );
+              form_date_end.val( end );
+              form_timeframe_id.val( meta['timeframe'] );
+              form_item_id.val( meta['item'] );
+              form_location_id.val( meta['location'] ); 
 
-            var tf_id = id;
-            var indexes = selected.concat();
-            var textFirst;
-            var textSecond;
+          }
 
-            var ready = 0;
+          // return the timeframe-id, location-id & item-id of the timeframe containing the currently selected days  
+          function getCurrentTimeframeMeta( indexes ) {
+            var timeframe = allBookableDates.eq(indexes[0]).parents('.cb-timeframe');
+            var tf_id = timeframe.attr('id');
+            var item_id = timeframe.data('itemid');
+            var loc_id = timeframe.data('locid');
+            var meta = {  
+              timeframe:  tf_id, 
+              item:       item_id, 
+              location:   loc_id
+            };
+            return meta; 
+          }
 
-            var indexes = selected.sort(function(a,b){return a - b});
-            var targetli = $( '#'+tf_id+' li' );
+          // set html text on the booking bar
+          function bookingbar_set_text( target, content ) {
 
-            targetli.each(function( myindex ) {
-              if ( $.inArray( myindex, indexes )  > -1 )  {
-                $( this ).addClass(' selected ');
-              } else {
-                $( this ).removeClass(' selected ');
-            }
-            });   
-
-
-            if ( indexes.length == 1  ) { // 1 selected -> pickup & return same day 
-              
-              textFirst = text_pickupreturn + targetli.get([ indexes[0] ]).innerHTML; // set Text
-              textSecond = '';
-
-              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') ); // write to Container
-              dataContainer.data( "de", targetli.eq([ indexes[0] ]).attr('id') ); 
-            
-              ready = 1;
-
-            } else if ( indexes.length == 2 ) { // 2 selected -> pickup & return different days 
-
-              textFirst = text_pickup + targetli.get([ indexes[0] ]).innerHTML; // set Text
-              textSecond = text_return + targetli.get([ indexes[1] ]).innerHTML;
-
-              dataContainer.data( "ds", targetli.eq([ indexes[0] ]).attr('id') );  // write to Container
-              dataContainer.data( "de", targetli.eq([ indexes[1] ]).attr('id') ); 
-
-              ready = 1;
-
-            } else { // None selected or error
-
-              form_date_start.val(''); // clear start & end input values
-              form_date_end.val('');  
-              
-              textFirst = text_choose;    // set texts
-              textSecond = "";
-
-              ready = 0;
-            } 
-
-            startContainer.fadeOut(200);
-            startContainer.html ( textFirst );
-            startContainer.fadeIn(500);
-
-            endContainer.fadeOut(200);
-            endContainer.html ( textSecond );  
-            endContainer.fadeIn(500);
-
-
-            if ( ready == 1 ) {
-
-
-              dataContainer.data( "tf_id", targetli.parents('.cb-timeframe').data('tfid') );  // get data from DOM data- attribute
-              dataContainer.data( "item_id", targetli.parents('.cb-timeframe').data('itemid') );  // write to Container
-              dataContainer.data( "location_id", targetli.parents('.cb-timeframe').data('locid') );  // write to Container
-
-              // set inputs
-              form_date_start.val( dataContainer.data ("ds") );
-              form_date_end.val( dataContainer.data ("de") );
-
-              form_timeframe_id.val( dataContainer.data ("tf_id") );
-              form_item_id.val( dataContainer.data ("item_id") );
-              form_location_id.val( dataContainer.data ("location_id") );      
-
-              bookingButton.fadeIn(800); 
+            if (content) {
+              target.html(content);
+              target.fadeIn('slow');
             } else {
-              bookingButton.fadeOut(300);           
+              target.hide();      
             }
-
-          } // setselected
-
-          function updateData ( ds ) {
-            dataContainer.data( "ds", ds );
-            dataContainer.data( "de", de );
-
           }
 
-          function setData () {
+          // update the bookingbar 
+          function update_bookingbar( indexes ) {
 
-          }
+            var tf_meta = getCurrentTimeframeMeta( indexes );
+            var textFirst = '';
+            var textSecond = '';
 
+            var pickupIndex = indexes[0];
+            var returnIndex = indexes[ indexes.length -1 ];
+
+            var pickupDate = allBookableDates.get([ pickupIndex ]);
+            var returnDate = allBookableDates.get([ returnIndex ]);
+
+            if ( indexes.length > 0 ) { // there is a selection, show dates in bar
+
+              var dateStartID = $(pickupDate).attr('id');
+              var dateEndID = $(returnDate).attr('id');
+
+              introContainer.hide();
+
+              if ( pickupDate == returnDate ) { // one day selected
+
+                textFirst = text_pickupreturn + '<div class="bb-date">' + pickupDate.innerHTML + '</div>'; // set Text
+                textSecond = '';
+
+              } else { // at least two days selected
+
+                textFirst = text_pickup + '<div class="bb-date">' + pickupDate.innerHTML + '</div>'; // set Text
+                textSecond = text_return + '<div class="bb-date">' + returnDate.innerHTML + '</div>';
+              }
+
+              setDataContainer( dateStartID, dateEndID, tf_meta ); // update the form
+              bookingButton.fadeIn(800); // we show the booking button
+
+            } else { // no selection, reset the text to standard
+
+              introContainer.fadeIn ('fast');
+              bookingButton.fadeOut(200); 
+
+            }
+              bookingbar_set_text( startContainer, textFirst );
+              bookingbar_set_text( endContainer, textSecond );
+
+          } // update_bookingbar
+
+          // submit the form
           function submitForm() {
             $( "#target" ).submit();
           }
 
-          /* 
-           * Gets the days between two timestamps
-           * @param   startdate, endDate: timestamps
-           * @return  array (timestamps)
-           */
-          function getDaysBetween(startdate, endDate) { 
+          function showToolTips() {
 
-            var dates = [startdate, endDate];
-            dates.sort();
+            // if in addition you want the tooltip to be displayed when the field gets focus, add these custom triggers :
+            
+            // $('.selected-first').tooltipster({
+            //   animation: 'fade',
+            //   content: 'Pickup',
+            //   delay: 500,
+            //   theme: 'cb-tooltipster',
+            //   touchDevices: false
+            // });            
+            // $('.selected-last').tooltipster({
+            //   animation: 'fade',
+            //   content: 'Return',
+            //   delay: 500,
+            //   theme: 'cb-tooltipster',
+            //   touchDevices: false
+            // });
+            // $('.selected-first').tooltipster('show');
+            // $('.selected-last').tooltipster('show');
 
-            // convert timestamps to date js object
-            var start = new Date( dates[0] * 1000 ),
-                end = new Date ( dates[1]  * 1000 ),
-                currentDate = start,
-                between = []
-            ;
+          //   $('.selected-first').tooltipster({
+          //   animation: 'fade',
+          //   content: 'Pickup',
+          //   delay: 500,
+          //   theme: 'tooltipster-default',
+          //   touchDevices: false,
+          // });
 
-            while (currentDate <= end) {
-                var temp = new Date(currentDate);
-                between.push( temp.getTime()/1000 ); // convert back to timestamp and push into array
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-            return between;
-          } // getDaysBetween
-          
-          /* 
-           * Gets the relevant classes 
-           * @param   array ids 
-           * @return  int closed days count 
-           */
-          function getDayStatus( ids ) {
-            var closed = 0;
-            for (var i = ids.length - 1; i >= 0; i--) {
-              if ( $( 'li#'+ids[i]).hasClass( 'booked' ) ) {
-                return -1;
-              } else if ( $( 'li#'+ids[i]).hasClass( 'closed' ) ) {
-                closed++;
+          }
+
+          // helper: create range array 
+          function range( start, end ){ 
+            start = start || 1; return end >= start ? range(start,end-1).concat(end) : []; 
+          }
+
+          // helper: has css classes 
+          $.fn.extend({
+              hasClasses: function (selectors) {
+                  var self = this;
+                  for (var i in selectors) {
+                      if ($(self).hasClass(selectors[i])) 
+                          return true;
+                  }
+                  return false;
               }
-            };
-            return closed;
-          } // getDaysBetween
+          });
 
         }
       }
     };
-
-
-
 
 
     // The routing fires all common scripts, followed by the page specific scripts.

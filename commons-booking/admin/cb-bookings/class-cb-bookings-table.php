@@ -2,16 +2,17 @@
 /**
  *
  * @package   Commons_Booking
- * @author    Florian Egermann <florian@wielebenwir.de>
+ * @author    Florian Egermann <florian@macht-medien.de
+ * @author    Christian Wenzel <christian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
 
 /**
- * Extend the Wordpress Table
+ * Extends the list Table
  *
- * @package Commons_Booking_Timeframes_Table
+ * @package Commons_Booking_Bookings_Table
  * @author  Florian Egermann <florian@wielebenwir.de>
  */
 
@@ -20,25 +21,36 @@ if (!class_exists('WP_List_Table')) {
 }
 
 /**
- * Commons_Booking_Timeframes_Table class that will display our custom table
+* Page handler: Table
+*
+*/    
+function commons_booking_bookins_table_handler() {
+    include ('views/bookings-table.php');
+}
+
+
+
+/**
+ * Commons_Booking_Bookings_Table class that will display our custom table
  * records in nice table
  */
-class Commons_Booking_Timeframes_Table extends WP_List_Table
+class Commons_Booking_Bookings_Table extends WP_List_Table
 {
     /**
      * [REQUIRED] You must declare constructor and give some basic params
      */
+
     function __construct()
     {
         global $status, $page;
 
         parent::__construct(array(
-            'singular' => __( 'Timeframe' ),
-            'plural' => __( 'Timeframes' ),
+            'singular' => __( 'Booking' ),
+            'plural' => __( 'Bookings' ),
             'commons-booking'
         ));
-    }
 
+    }
     /**
      * [REQUIRED] this is a default column renderer
      *
@@ -66,6 +78,13 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     function column_item_id($item)
     {
       return '<strong>' .get_the_title( $item['item_id'] ). '</strong>';
+    }    
+    function column_user_id($item)
+    {
+        $user = get_user_by( 'id', $item['user_id'] ); 
+        $profile_edit_url = admin_url( 'user-edit.php?user_id=' . $user->ID );
+
+        return '<strong><a href="' . $profile_edit_url . '">' .$user->first_name . ' ' . $user->last_name . '</a></strong>';
     }
 
     /**
@@ -82,8 +101,8 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         // also notice how we use $this->_args['singular'] so in this example it will
         // be something like &person=2
         $actions = array(
-            'edit' => sprintf('<a href="?page=cb_timeframes_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('Edit', 'cb_timeframes_table')),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'cb_timeframes_table')),
+            // 'view' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('View', $this->plugin_slug )),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
         );
 
         return $this->row_actions($actions);
@@ -114,12 +133,16 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'location_id' => __('Location', 'commons-booking'),
-            'item_id' => __('Item', 'commons-booking'),
-            'date_start' => __('Starting Date', 'commons-booking'),
-            'date_end' => __('End Date', 'commons-booking'),
-            'timeframe_title' => __('Note', 'commons-booking'),
-            'edit_actions' => __('Edit', 'commons-booking'),
+            'id' => __('ID', $this->plugin_slug ),
+            'item_id' => __('Item', $this->plugin_slug ),
+            'date_start' => __('Starting Date', $this->plugin_slug ),
+            'date_end' => __('End Date', $this->plugin_slug ),
+            'code_id' => __('Code', $this->plugin_slug ),
+            'user_id' => __('User', $this->plugin_slug ),
+            'location_id' => __('Location', $this->plugin_slug ),
+            'booking_time' => __('Booking time', $this->plugin_slug ),
+            'status' => __('Status', $this->plugin_slug ),
+            'edit_actions' => __('Edit', $this->plugin_slug ),
         );
         return $columns;
     }
@@ -134,12 +157,14 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     function get_sortable_columns()
     {
         $sortable_columns = array(
-            'location_id' => array('location_id', true),
             'item_id' => array('item_id', false),
             'date_start' => array('date_start', false),
             'date_end' => array('date_end', false),
+            'user_id' => array('user_id', false),
+            'booking_time' => array('booking_time', false),
+            'status' => array('status', false),
+            'location_id' => array('location_id', false),
             'id' => array('ID', false),
-            'timeframe_title' => array('timeframe_title', false),
         );
         return $sortable_columns;
     }
@@ -167,7 +192,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     function process_bulk_action()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
+        $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
@@ -241,7 +266,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     public function prepare_items()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'cb_timeframes'; // do not forget about tables prefix
+        $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
         $per_page = 30; // constant, how much records will be shown per page
 
@@ -264,7 +289,6 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
             // set query 
             $sqlfilter = 'WHERE ' . implode (' AND ', $filters);
         }
-
         // will be used in pagination settings
         $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name $sqlfilter");
 
@@ -273,6 +297,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
+
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged * $per_page), ARRAY_A);
@@ -304,7 +329,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         $type = $filters[ $key ][ 'posttype' ];
         $name = $filters[ $key ][ 'name' ];
         $filter = $filters[ $key ][ 'filter' ];
-        $args = array( 'posts_per_page' => -1, 'post_type' => $type );
+        $args = array(  'post_type' => $type );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) {
 
@@ -321,7 +346,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', 'commons-booking');
+       echo __( 'You need to add some items.', $this->plugin_slug);
       }
       /* Restore original Post Data */
       wp_reset_postdata();
@@ -335,11 +360,9 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
     * @param $tableNav
     * @return html dropdown
     */    
-
     function extra_tablenav( $which ) {
 
         global $wpdb;
-        // echo( "<h2>--- ".$this->$testing."</h2>" );
 
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
@@ -354,61 +377,11 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
          } 
     }
     
-    function add_tablenav( $var ) {
+    function add_tablenav( $var ) { //@TODO delete?
         // return $this->$myvar;
-        echo ($var);
 
     }
 
-}
+} // end Commons_Booking_Bookings_Table
 
-/**
- * PART 3. Admin page
- * ============================================================================
- *
- * In this part you are going to add admin page for custom table
- *
- * http://codex.wordpress.org/Administration_Menus
- */
-
-/**
- * List page handler
- *
- * This function renders our custom table
- * Notice how we display message about successfull deletion
- * Actualy this is very easy, and you can add as many features
- * as you want.
- *
- * Look into /wp-admin/includes/class-wp-*-list-table.php for examples
- */
-function cb_timeframes_table_page_handler()
-{
-
-
-    global $wpdb;
-
-    $table = new Commons_Booking_Timeframes_Table();
-    $table->prepare_items();
-
-    $message = '';
-    if ('delete' === $table->current_action()) {
-        $message =  sprintf(__('Items deleted: %d', 'commons-booking'), count($_REQUEST['id']));
-    }
-    ?>
-
-<div class="wrap">
-
-    <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php echo get_admin_page_title(); ?> <a class="add-new-h2"
-                                 href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes_edit');?>"><?php _e('Add new Timeframe', 'commons-booking')?></a>
-    </h2>
-
-    <?php new Admin_Table_Message ( $message, 'updated' ); ?>
-
-    <form id="timeframes-table" method="GET">
-        <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
-        <?php $table->display(); ?>
-    </form>
-</div>
-
-<?php } // end cb_timeframes_table_page_handler  ?>
+?>

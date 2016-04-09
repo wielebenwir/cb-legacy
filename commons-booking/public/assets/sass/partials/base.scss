@@ -1,0 +1,183 @@
+/*
+ * Standard elements
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+.padding { padding: 1em; }
+.align-right { float: right; }
+.align-left { float: left; }
+.cb-small { font-size: 0.8em; }
+.cb-big { font-size: 1.4em; font-weight: bold; color: $blue; margin-bottom: $padding / 2; }
+.border { border-top: 1px solid $grey; display: block; }
+.cb-headline { 
+  @extend .cb-big;
+  a { color: $blue }
+}
+
+/* all individual elements (timeframes, items, etc) are grouped with cb-box */
+.cb-box { 
+    @extend .padding;
+    overflow: hidden; 
+    border: 1px solid $grey;
+    @include rounded($radius);
+    margin-bottom: $padding * 2;
+  }
+
+.cb-big a {
+  color: $blue;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.cb-table {
+  margin-bottom: $padding;
+  display: block;
+  .cb-row {
+    color: $dark-grey;
+    border-top: 1px solid $grey;
+    padding: 0.5em 0;
+    overflow: hidden;
+    &:hover {
+    }
+    &:first-child {
+      // @include border-radiuses($radius, 0, 0, $radius);
+    }
+    &:last-child {
+      // @include border-radiuses(0, $radius, $radius, 0);
+      border-bottom: 1px solid $grey;
+    }
+    .cb-row-title {
+      font-weight: bold;
+      margin-right: $padding;
+    }
+    .cb-big {
+      display: block;
+    }
+    .cb-button {
+        margin: 1em 0 1em 1em;
+    }
+  }
+}
+
+/* Bookings */
+.cb-user-bar {
+  margin-bottom: $padding * 2;
+  a.cb-button {
+    @extend .cb-small;
+    background: $blue;
+    border: 1px solid $blue;
+  }
+}
+
+.cb-timeframe-title  {
+  display: none;
+}
+
+.entry-content .cb-box h2 {
+    margin-top: 0;
+}
+
+.cb-list-item-description {
+  margin-bottom: $padding;
+  display:block;
+  overflow: hidden;
+  img {
+    @include rounded($radius);
+    margin-right: $padding;
+  }
+}
+
+a.cb-button, input#wp-submit, input#wp-submit-comment {
+  @include transition(all .3s ease);
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 10px 15px;
+  overflow: hidden;
+  background: $green;
+  color: $white;
+  @include rounded($radius);
+  border: 1px solid $green;
+  &:hover {
+    background: $blue;
+    border: 1px solid $blue;
+    color: $white;
+  }
+  &.cb-small {
+    background: $blue;
+    border: 1px solid $grey;
+  }
+  &.warning {
+    background: $dark-red;
+    border: 1px solid $dark-red;
+    &:hover {
+      background: $red;
+        border: 1px solid $red;
+
+    }
+  }
+}
+
+.cb-row,
+.cb-user-bar {
+  a.cb-button {
+    padding: 5px 10px;
+  }
+}
+
+.cb-booking-code  strong{
+  padding: 5px;
+  display:block;
+  font-family: Courier, monospaced;
+  color: green;
+  font-weight: normal;
+}
+
+/*****************
+ * MESSAGES
+ *
+ */
+
+.cb-message {
+  display: block;
+  margin-bottom: $padding * 2;
+  padding: $padding / 2 $padding ;
+  @include rounded($radius);
+  color: $white;
+  strong {
+  }
+  &.success {
+    color: darken( $green, 10%);
+    background: lighten( $green, 40%);
+  }
+  &.error {
+    background: $red;
+  }
+}
+
+.cb-description {
+  margin-bottom: 2em;
+}
+
+.cb-tooltipster {
+  background: $dark-blue;
+}
+
+.cb-booking-comment {
+  background: $light-grey;
+  padding: $padding;
+  @include rounded($radius);
+  margin-bottom: $padding;
+  overflow: hidden;
+  form#cb-comment-form {
+  }
+  input {
+    margin-top: $padding; 
+    float: right;
+
+  }
+}
