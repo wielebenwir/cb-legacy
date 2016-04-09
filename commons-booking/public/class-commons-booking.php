@@ -111,6 +111,8 @@ class Commons_Booking {
         // Register items & locations custom post types
         add_action( 'init', array( $this, 'register_cpts' ) );
       
+        $this->items = new Commons_Booking_Public_Items();
+        $this->data = new Commons_Booking_Data();
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
         $this->bookings = new Commons_Booking_Booking();
@@ -268,51 +270,48 @@ class Commons_Booking {
         register_post_type( 'cb_locations', $location_args );
     }
      /**
-     *   Add main items list to page selected in settings
-     *   Add bookings review to page selected in settings.
-     * Add main plugin overview output to page selected in settings.
+     *   We add content to all the plugin pages.
      *
-     * @since    0.0.1
+     * @since    0.3.
      *
      * @return    Mixed 
      */
     public function cb_content( $page_content ) {
 
-
         $settings_display = $this->settings->get_settings('pages'); // get array of page ids from settings
         $post_id = get_the_ID();
 
-
+            // items page
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
-                $items = new Commons_Booking_Public_Items;
                 $args = array ();
-                return  $page_content.$items->output( $args );
+                return  $page_content . $this->items->output( $args );
             
+            // booking review page
             } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
 
-                $bookingpage = new Commons_Booking_Booking;
-                return $page_content.$bookingpage->booking_review_page();            
+                return $page_content . $this->bookings->booking_review_page();            
 
+            // booking confirmed page
             } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
-                $bookingpage = new Commons_Booking_Booking;
-                return $page_content.$bookingpage->booking_confirmed_page();
 
+                return $page_content . $this->bookings->booking_confirmed_page();
+
+            // user: bookings list
             } elseif ( !empty( $settings_display[ 'user_bookings_page_select' ] ) && ( is_page( $settings_display[ 'user_bookings_page_select' ] ) ) ) {
 
-                $cb_user = new Commons_Booking_Users;
-                return $page_content.$cb_user->render_user_bookings_page();            
+                return $page_content . $this->users->render_user_bookings_page();            
 
+            // user: single item with timeframes & calendar
             } elseif (  is_singular( 'cb_items' ) ) {                             
 
                 $item_id = get_the_ID();
-                $timeframes = new Commons_Booking_Data();
-                return $page_content . $timeframes->render_item_single( $item_id ) . $timeframes->render_booking_bar() ;
+                return $page_content . $this->data->render_item_single( $item_id ) . $this->data->render_booking_bar() ;
 
+            // items as wordpress archive
             } elseif ( ( is_post_type_archive ( 'cb_items' ) ) OR ( is_tax( 'cb_items_category' ) ) ) { // list of items 
 
-                $tf = new Commons_Booking_Data();
-                return $tf->render_item_list( );
+                return $this->data->render_item_list( );
             
             } else { 
 
