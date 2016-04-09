@@ -640,7 +640,7 @@ class Commons_Booking {
         $maxdays = $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_maxdays'];
         
         $s_display = get_option( $this->get_plugin_slug() . '-settings-pages' ); 
-        $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_bookingconfirm_page_select'] );
+        $bookingpage = get_permalink ( $s_display[ $this->get_plugin_slug() . '_booking_review_page_select'] );
 
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
         if ( isset( $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
