@@ -86,8 +86,6 @@
     border-top: 1px solid #e1e1e1;
     padding: 0.5em 0;
     overflow: hidden; }
-    .cb-table .cb-row:last-child {
-      border-bottom: 1px solid #e1e1e1; }
     .cb-table .cb-row .cb-row-title {
       font-weight: bold;
       margin-right: 1em; }

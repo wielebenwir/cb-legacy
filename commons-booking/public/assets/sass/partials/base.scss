@@ -45,11 +45,9 @@
     &:hover {
     }
     &:first-child {
-      // @include border-radiuses($radius, 0, 0, $radius);
     }
     &:last-child {
-      // @include border-radiuses(0, $radius, $radius, 0);
-      border-bottom: 1px solid $grey;
+
     }
     .cb-row-title {
       font-weight: bold;
