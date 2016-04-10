@@ -1,3 +1,7 @@
+# 0.7.0.2
+
+* FIX: Show no error message if one of the location address fields are empty
+
 # 0.7.0.1
 
 * FIX: When using the plugin Yoast SEO, login/user-bar was shown multiple times
