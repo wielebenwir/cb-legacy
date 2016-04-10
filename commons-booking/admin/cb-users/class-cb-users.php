@@ -367,12 +367,14 @@ class Commons_Booking_Users extends Commons_Booking {
   */
   public function render_user_bookings_page() {
     
+    $content = "";
+
     if ( is_user_logged_in() ) {
 
         $current_user = wp_get_current_user();
         $template_vars = object_to_array ( $current_user );
 
-        cb_get_template_part( 'user-bar', $template_vars ); // include user bar
+        $content .= cb_get_template_part( 'user-bar', $template_vars, TRUE ); // include user bar
 
         $user_bookings = $this->get_user_bookings( $current_user->ID );
 
@@ -387,16 +389,17 @@ class Commons_Booking_Users extends Commons_Booking {
             );
 
 
-          cb_get_template_part( 'user-bookings', $template_vars ); 
+          $content .= cb_get_template_part( 'user-bookings', $template_vars, TRUE ); 
 
         } else {
-          echo __( 'You haven´t booked anything yet.', 'commons-booking'); 
+          $content .= __( 'You haven´t booked anything yet.', 'commons-booking'); 
         }
 
     } else { // Message and Login/Registration Links. 
 
-      return sprintf (__( 'You need to be logged in to book items. <br>Please <a href="%s">Log in</a> or <a href="%s">register</a>.', 'commons-booking'), wp_login_url(), wp_registration_url());     
+      $content .= sprintf (__( 'You need to be logged in to book items. <br>Please <a href="%s">Log in</a> or <a href="%s">register</a>.', 'commons-booking'), wp_login_url(), wp_registration_url());     
     }
+    return $content;
  }
 
 /**
