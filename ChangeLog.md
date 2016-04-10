@@ -1,3 +1,8 @@
+# 0.7.0.1
+
+* FIX: When using the plugin Yoast SEO, login/user-bar was shown multiple times
+* FIX Issue #98 : enabled pagination on item pages
+
 # 0.7 
 
 **Features**

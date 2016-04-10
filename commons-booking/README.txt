@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.4.2
-Stable Tag: 0.7.
+Stable Tag: 0.7.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,11 @@ Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-
 == Screenshots ==
 
 == Changelog ==
+
+=== 0.7.0.1 ===
+
+* FIX: When using the plugin Yoast SEO, login/user-bar was shown multiple times
+* FIX Issue #98 : enabled pagination on item pages
 
 === 0.7 ===
 
