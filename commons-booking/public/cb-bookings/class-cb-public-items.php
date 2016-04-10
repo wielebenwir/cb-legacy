@@ -34,7 +34,7 @@ class Commons_Booking_Public_Items {
         'posts_per_page' => 10, 
         'post_type' => 'cb_items', 
         'orderby' => 'title', 
-        'order' => 'DESC'
+        'order' => 'DESC',
       );
     }
 
@@ -95,7 +95,13 @@ class Commons_Booking_Public_Items {
    
     $content = '';
     $queryargs = $this->merge_args($args);  
-    $query = new WP_Query( $queryargs );
+
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $p = array( 'paged' => $paged );
+
+    $thequery = array_merge_recursive( $queryargs, $p );
+    
+    $query = new WP_Query( $thequery );
     wp_reset_postdata();
     $item_ids = $this->get_Items( $query );
 
@@ -108,7 +114,16 @@ class Commons_Booking_Public_Items {
       } else {
         $content = __('No items found', 'commons-booking');
       }
-    return $content; 
+
+      $pagination = $this->item_pagination($query ); 
+
+    return $content . $pagination; 
+  }
+
+  public function item_pagination( $query ) {
+    $next = get_next_posts_link( __('Next items', 'commons-booking'), $query->max_num_pages );
+    $prev = get_previous_posts_link( __('Previous items', 'commons-booking') , $query->max_num_pages );
+    return $prev . $next;
   }
 }
 ?>
