@@ -499,7 +499,10 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
   }
 
-  $address_check = array_filter( $location[ 'address' ] );
+  $address_check = array_filter( $location[ 'address' ], function( $val ) {
+    if (! empty( $val ) ){ $val = ''; };
+    return $val;
+  });
 
    if ( !empty ( $address_check ) ) { // format the adress
       $address_string = $this->format_adress( $address_check );
