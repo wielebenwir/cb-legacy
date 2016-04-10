@@ -546,15 +546,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
             } else { // not all needed vars present  
                
-                echo __( 'Error: Page called with missing variables.', 'commons-booking' );
+                return __( 'Error: Page called with missing variables.', 'commons-booking' );
             } 
         } else { // page is called without flag "create booking"
 
-            echo __( 'Error: Page called without needed flag.', 'commons-booking' );   
+            return __( 'Error: Page called without needed flag.', 'commons-booking' );   
         }
 
     } else {
-        echo __( 'Error: You have to be logged in to view this page!', 'commons-booking' );
+        return __( 'Error: You have to be logged in to view this page!', 'commons-booking' );
 
         }
 
@@ -633,7 +633,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
 
 
-                        if ( strtotime( $this->b_vars['date_end'] ) < time() ) {
+                        if ( strtotime( $this->b_vars['date_end'] ) > time() ) {
                             $cancel_button = cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );    
                         } else {
                             $cancel_button = '';                            
@@ -646,7 +646,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         }
 
                         // PRINT: Code, Booking review, Cancel Button
-                        return cb_get_template_part( 'user-bar' ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
+                        return cb_get_template_part( 'user-bar', array(), true ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
 
 
                     } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
