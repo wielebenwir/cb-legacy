@@ -405,7 +405,7 @@ class Commons_Booking_Data {
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $item_content .=  cb_get_template_part( 'timeframes-compact', $timeframes, TRUE );           
+      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );           
     } else {
       $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span></div>';
     }
