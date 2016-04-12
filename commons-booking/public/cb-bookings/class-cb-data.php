@@ -354,7 +354,6 @@ class Commons_Booking_Data {
 
           // 6. check if there are days to be displayed (honoring the settings-function days_to_show)
           if ( $cal_start < $cal_end ) {
-           
             $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
             // 7. Loop through days
@@ -500,7 +499,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   }
 
   $address_check = array_filter( $location[ 'address' ], function( $val ) {
-    if (! empty( $val ) ){ $val = ''; };
+    if ( empty( $val ) ){ $val = ''; };
     return $val;
   });
 
