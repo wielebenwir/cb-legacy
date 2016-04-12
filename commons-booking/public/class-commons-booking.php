@@ -184,7 +184,7 @@ class Commons_Booking {
         /* 
          * Filter: Overwrite pages.
          */
-        add_action( 'the_content', array( $this, 'cb_content' ) ); 
+        add_filter( 'the_content', array( $this, 'cb_content' ) ); 
 
     }
 
@@ -285,33 +285,33 @@ class Commons_Booking {
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
                 $args = array ();
-                return  $page_content . $this->items->output( $args );
+                return  $page_content . '<div class="cb-wrapper">' . $this->items->output( $args ) . '</div>';
             
             // booking review page
             } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
 
-                return $page_content . $this->bookings->booking_review_page();            
+                return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_review_page() . '</div>';            
 
             // booking confirmed page
             } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
 
-                return $page_content . $this->bookings->booking_confirmed_page();
+                return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_confirmed_page() . '</div>';
 
             // user: bookings list
             } elseif ( !empty( $settings_display[ 'user_bookings_page_select' ] ) && ( is_page( $settings_display[ 'user_bookings_page_select' ] ) ) ) {
 
-                return $page_content . $this->users->render_user_bookings_page();            
+                return $page_content . '<div class="cb-wrapper">' . $this->users->render_user_bookings_page() . '</div>';            
 
             // user: single item with timeframes & calendar
             } elseif (  is_singular( 'cb_items' ) ) {                             
 
                 $item_id = get_the_ID();
-                return $page_content . $this->data->render_item_single( $item_id ) . $this->data->render_booking_bar() ;
+                return $page_content . '<div class="cb-wrapper">' . $this->data->render_item_single( $item_id ) . '</div>' . $this->data->render_booking_bar() ;
 
             // items as wordpress archive
             } elseif ( ( is_post_type_archive ( 'cb_items' ) ) OR ( is_tax( 'cb_items_category' ) ) ) { // list of items 
 
-                return $this->data->render_item_list( );
+                return '<div class="cb-wrapper">' . $this->data->render_item_list( ) . '</div>';
             
             } else { 
 
