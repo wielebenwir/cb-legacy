@@ -19,6 +19,8 @@
   a { color: $blue }
 }
 
+
+
 /* all individual elements (timeframes, items, etc) are grouped with cb-box */
 .cb-box { 
     @extend .padding;
@@ -163,6 +165,12 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
 
 .cb-tooltipster {
   background: $dark-blue;
+}
+
+/* FORMS */
+
+.single-cb_items #comments {
+  display: none;
 }
 
 .cb-booking-comment {

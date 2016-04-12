@@ -182,6 +182,10 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
 .cb-tooltipster {
   background: #27427d; }
 
+/* FORMS */
+.single-cb_items #comments {
+  display: none; }
+
 .cb-booking-comment {
   background: #f6f6f6;
   padding: 1em;
