@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.4.2
-Stable Tag: 0.7.0.2
+Stable Tag: 0.7.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

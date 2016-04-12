@@ -1,3 +1,9 @@
+# 0.7.0.3
+
+* Re-packeged plugin. Should fix "can not confirm or cancel" error
+* FIX: Address was not printed on calendar. Issue #106
+* ENHANCEMENT: Address now added to timeframes-compact template. 
+
 # 0.7.0.2
 
 * FIX: Show no error message if one of the location address fields are empty
