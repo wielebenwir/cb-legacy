@@ -133,15 +133,13 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   color: white;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
-  border-radius: 7px;
-  border: 1px solid #56a820; }
+  border-radius: 7px;}
   a.cb-button:hover, input#wp-submit:hover, input#wp-submit-comment:hover {
     background: #3356a4;
     border: 1px solid #3356a4;
     color: white; }
   a.cb-button.cb-small, .cb-user-bar a.cb-button, input#wp-submit.cb-small, input#wp-submit-comment.cb-small {
-    background: #3356a4;
-    border: 1px solid #e1e1e1; }
+    background: #3356a4;}
   a.cb-button.warning, input#wp-submit.warning, input#wp-submit-comment.warning {
     background: #a70001;
     border: 1px solid #a70001; }
