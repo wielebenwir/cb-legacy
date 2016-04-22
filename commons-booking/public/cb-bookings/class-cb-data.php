@@ -498,13 +498,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
   }
 
-  $address_check = array_filter( $location[ 'address' ], function( $val ) {
-    if ( empty( $val ) ){ $val = ''; };
-    return $val;
-  });
-
    if ( !empty ( $address_check ) ) { // format the adress
-      $address_string = $this->format_adress( $address_check );
+      $address_string = $this->format_adress( $location[ 'address' ] );
   }
 
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
@@ -531,13 +526,19 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
  *
 */
   public function format_adress( $address ) {
+
+    $street = isset ( $address[ 'street'] ) ? $address[ 'street'] : '';
+    $zip = isset ( $address[ 'zip'] ) ? $address[ 'zip'] : '';
+    $city = isset ( $address[ 'city'] ) ? $address[ 'city'] : '';
+    $country = isset ( $address[ 'country'] ) ? $address[ 'country'] : '';
+
     $address_string = sprintf(
         /* translators: 1: Name of Street 2: ZIP code 3: Name of a city  4: Country*/
         __( '%1$s, %2$s %3$s, %4$s', 'commons-booking' ),
-        $address[ 'street'],
-        $address[ 'zip'],
-        $address[ 'city'],
-        $address[ 'country']
+        $street,
+        $zip,
+        $city,
+        $country
     );
     return $address_string;
   }
