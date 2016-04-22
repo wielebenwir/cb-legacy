@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   Commons_Booking
+ * @package   CB_Data
  * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -11,10 +11,10 @@
 /**
  * This class handles the display of calendar & timeframes
  *
- * @package Commons_Booking_Data
+ * @package Commons_Booking
  * @author    Florian Egermann <florian@wielebenwir.de>
  */
-class Commons_Booking_Data {
+class CB_Data {
 
   public $timeframe_id;
   public $item_id;

@@ -112,7 +112,7 @@ class Commons_Booking {
         add_action( 'init', array( $this, 'register_cpts' ) );
       
         $this->items = new Commons_Booking_Public_Items();
-        $this->data = new Commons_Booking_Data();
+        $this->data = new CB_Data();
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
         $this->bookings = new CB_Booking();

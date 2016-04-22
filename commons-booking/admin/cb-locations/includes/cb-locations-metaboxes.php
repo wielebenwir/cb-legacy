@@ -32,7 +32,7 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
 
   public function add_metabox ( array $meta_boxes ) {
 
-    $myitems = new Commons_Booking_Data;
+    $myitems = new CB_Data;
     $items = $myitems->get_items();
 
 

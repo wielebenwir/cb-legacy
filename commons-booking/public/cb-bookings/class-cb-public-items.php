@@ -26,7 +26,7 @@ class Commons_Booking_Public_Items {
     public function __construct() {
 
       // get timeframe data 
-      $this->data = new Commons_Booking_Data;
+      $this->data = new CB_Data;
 
       $this->defaults = array( 
         'p' => '',

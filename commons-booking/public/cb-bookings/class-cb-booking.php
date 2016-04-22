@@ -32,7 +32,7 @@ class CB_Booking {
     public function __construct() {
 
         $this->settings = new CB_Admin_Settings();
-        $this->data = new Commons_Booking_Data;
+        $this->data = new CB_Data;
         $this->booking_comments = new CB_Booking_Comments;
 
         $this->prefix = 'commons-booking';
