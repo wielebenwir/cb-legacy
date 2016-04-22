@@ -115,7 +115,7 @@ class Commons_Booking {
         $this->data = new Commons_Booking_Data();
         $this->users = new Commons_Booking_Users();
         $this->settings = new CB_Admin_Settings();
-        $this->bookings = new Commons_Booking_Booking();
+        $this->bookings = new CB_Booking();
         $this->booking_comments = new CB_Booking_Comments();
 
         // add CSS class

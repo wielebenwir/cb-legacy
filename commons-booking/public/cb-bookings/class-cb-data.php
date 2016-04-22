@@ -323,7 +323,7 @@ class Commons_Booking_Data {
 
     $booking_comments = new CB_Booking_Comments();
     $comments = $booking_comments->get_booking_comments( $item_id );    
-    $booked = new Commons_Booking_Booking;
+    $booked = new CB_Booking;
     $booked_days = $booked->get_booked_days_array( $item_id, $comments );
 
     // 2. Calculate start & end dates 

@@ -19,7 +19,7 @@
  *
  */
 
-class Commons_Booking_Booking { 
+class CB_Booking { 
 
     /**
      * Plugin version, used for cache-busting of style and script file references.
