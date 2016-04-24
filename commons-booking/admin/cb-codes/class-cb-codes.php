@@ -170,7 +170,7 @@ public function render_table( $dates ) {
       if ( !isset($row[ 'code' ])) { 
         $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing Code', $this->prefix) .'</span>'); 
       } ?>
-    <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php _e( $row[ 'code' ] ); ?></td></tr>
+    <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php echo strip_tags( $row[ 'code' ] ); ?></td></tr>
   <?php } // end foreach ?>
   </table>
   <?php
