@@ -53,7 +53,7 @@ class Commons_Booking_Users extends Commons_Booking {
           'title' => __( 'Address', 'commons-booking'), 
           'type' => 'input', 
           'description' => '', 
-          'errormessage' => __('Please enter your Address', 'commons-booking') 
+          'errormessage' => __('Please enter your address', 'commons-booking') 
           ),       
       'terms_accepted' => array ( 
           'title' => __( 'Terms and Conditions', 'commons-booking'), 
@@ -87,13 +87,13 @@ class Commons_Booking_Users extends Commons_Booking {
             ?>
             <p>
                 <?php if ( $field['type'] == 'checkbox' ) { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], 'commons-booking') ?><br />
-                        <input type="checkbox" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" value="yes" <?php if ( $row  == "yes") echo "checked"; ?> /><?php _e( $field['description'], 'commons-booking') ?><br />
+                    <label for="<?php esc_attr_e( $field['field_name'] ) ?>"><?php esc_attr_e( $field['title'], 'commons-booking') ?><br />
+                        <input type="checkbox" name="<?php esc_attr_e( $field['field_name'] ) ?>" id="<?php esc_attr_e( $field['field_name'] ) ?>" value="yes" <?php if ( $row  == "yes") echo "checked"; ?> /><?php esc_attr_e( $field['description'], 'commons-booking') ?><br />
                     </label>
                     <?php echo $this->get_termsservices_string(); ?>
                 <?php } else { ?>
-                    <label for="<?php _e( $field['field_name'] ) ?>"><?php _e( $field['title'], 'commons-booking') ?><br />
-                        <input type="text" name="<?php _e( $field['field_name'] ) ?>" id="<?php _e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $row ) ); ?>" size="25" /><?php _e( $field['description'], 'commons-booking') ?>
+                    <label for="<?php esc_attr_e( $field['field_name'] ) ?>"><?php esc_attr_e( $field['title'], 'commons-booking') ?><br />
+                        <input type="text" name="<?php esc_attr_e( $field['field_name'] ) ?>" id="<?php esc_attr_e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $row ) ); ?>" size="25" /><?php esc_attr_e( $field['description'], 'commons-booking') ?>
                     </label>
                 <? } ?>
             </p>
