@@ -353,8 +353,11 @@ class Commons_Booking_Users extends Commons_Booking {
     if ( !current_user_can( 'edit_user', $user_id ) )
       return false;
 
-    update_user_meta( $user_id, 'phone', $_POST['phone'] );
-    update_user_meta( $user_id, 'address', $_POST['address'] );
+    $phone = sanitize_text_field( $_POST['phone'] );
+    $address = sanitize_text_field( $_POST['address'] );
+
+    update_user_meta( $user_id, 'phone', $phone );
+    update_user_meta( $user_id, 'address', $address );
 
   }
 
