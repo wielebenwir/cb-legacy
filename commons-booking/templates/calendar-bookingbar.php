@@ -30,7 +30,7 @@
       </div>
   </div>
     <?php // Form fields to save the selection ?>
-    <form id="booking-selection" action="<?php echo $attributes['target_url']; ?>" method="post">
+    <form id="booking-selection" action="<?php echo esc_url ( $attributes['target_url'] ); ?>" method="post">
       <input type="hidden" name="date_start">
       <input type="hidden" name="date_end">
       <input type="hidden" name="timeframe_id">
