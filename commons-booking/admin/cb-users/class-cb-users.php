@@ -7,7 +7,7 @@
  * @link      http://www.wielebenwir.de
  * @copyright 2015 wielebenwir
  */
-class Commons_Booking_Users extends Commons_Booking {
+class CB_Users extends Commons_Booking {
 
 
   public function __construct( ) {
@@ -457,7 +457,7 @@ if ( !function_exists('wp_new_user_notification') ) {
       }        
 
       $user = new WP_User( $user_id );
-      $cb_user = new Commons_Booking_Users();
+      $cb_user = new CB_Users();
 
       global $wpdb, $wp_hasher;
 

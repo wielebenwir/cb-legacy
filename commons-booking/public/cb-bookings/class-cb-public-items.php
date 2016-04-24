@@ -19,7 +19,7 @@
  *
  */
 
-class Commons_Booking_Public_Items {
+class CB_Public_Items {
 
     public $items;
 

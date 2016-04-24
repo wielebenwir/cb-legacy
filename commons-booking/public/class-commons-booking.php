@@ -111,9 +111,9 @@ class Commons_Booking {
         // Register items & locations custom post types
         add_action( 'init', array( $this, 'register_cpts' ) );
       
-        $this->items = new Commons_Booking_Public_Items();
+        $this->items = new CB_Public_Items();
         $this->data = new CB_Data();
-        $this->users = new Commons_Booking_Users();
+        $this->users = new CB_Users();
         $this->settings = new CB_Admin_Settings();
         $this->bookings = new CB_Booking();
         $this->booking_comments = new CB_Booking_Comments();
@@ -717,7 +717,7 @@ class Commons_Booking {
             'order' => 'DESC'
         ), $atts );
 
-        $items = new Commons_Booking_Public_Items;
+        $items = new CB_Public_Items;
         return  $items->output( $a );
     }
 
