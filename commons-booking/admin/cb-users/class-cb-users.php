@@ -343,7 +343,7 @@ class Commons_Booking_Users extends Commons_Booking {
     <?php }
 
   /**
-  * Backend: Update dte extra profile fields
+  * Backend: Update the extra profile fields
   *
   * @since    0.2
   *
