@@ -1,3 +1,7 @@
+# 0.7.0.4
+
+* Sanitizing extra user profile fields
+
 # 0.7.0.3
 
 * Re-packeged plugin. Should fix "can not confirm or cancel" error
