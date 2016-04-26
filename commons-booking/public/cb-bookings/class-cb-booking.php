@@ -497,7 +497,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $result = $wpdb->get_results( $wpdb->prepare(
             "
             SELECT id
-            FROM wp_cb_bookings
+            FROM " . $table_bookings . "
             WHERE HASH = '%s'
             ",  $hash), ARRAY_A        
         );
