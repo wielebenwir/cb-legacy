@@ -1,3 +1,7 @@
+# 0.7.0.5
+
+* FIX: Booking is now possible when using custom db prefixes.
+
 # 0.7.0.4
 
 * Sanitizing extra user profile fields

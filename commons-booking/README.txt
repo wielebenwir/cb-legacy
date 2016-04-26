@@ -4,8 +4,8 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.4.2
-Stable Tag: 0.7.0.4
+Tested up to: 4.5
+Stable Tag: 0.7.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,9 @@ Unique features:
 * Items, locations and timeframes: Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
 * Auto-accept bookings: A registered user can book items without the need for administration. 
 * Simple booking process with a beautiful calendar: Click a day to book an item. 
+* Users can leave comments (what they use the item for).
 
-* Official Website: http://www.wielebenwir.de/projekte/gemeingutsoftware
+* Official Website: http://www.wielebenwir.de/projekte/commons-booking
 * Manual: http://dein-lastenrad.de/index.php?title=Introduction
 * Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
 * Forum (Ask questions here): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
