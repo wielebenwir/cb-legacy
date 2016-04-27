@@ -146,7 +146,6 @@ class Commons_Booking_Admin {
 
 
 
-
 		/*
 		 * Debug mode
 		 */
