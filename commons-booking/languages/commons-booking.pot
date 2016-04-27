@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2016-04-09 15:33+0100\n"
-"PO-Revision-Date: 2016-04-09 15:34+0100\n"
+"POT-Creation-Date: 2016-04-27 20:41+0100\n"
+"PO-Revision-Date: 2016-04-27 20:42+0100\n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: Florian Egermann <hallo@fleg.de>\n"
 "Language: en\n"
@@ -23,12 +23,12 @@ msgstr ""
 
 #: admin/cb-bookings/class-cb-bookings-table.php:48
 #: admin/cb-settings/views/settings.php:27
-#: public/class-commons-booking.php:565
+#: public/class-commons-booking.php:567
 msgid "Booking"
 msgstr ""
 
 #: admin/cb-bookings/class-cb-bookings-table.php:49
-#: admin/class-cb-admin.php:381 admin/class-cb-admin.php:382
+#: admin/class-cb-admin.php:380 admin/class-cb-admin.php:381
 msgid "Bookings"
 msgstr ""
 
@@ -100,10 +100,6 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:349
-msgid "You need to add some items."
-msgstr ""
-
 #: admin/cb-bookings/class-cb-bookings-table.php:370
 #: admin/cb-codes/class-cb-codes-table.php:344
 #: admin/cb-timeframes/cb-timeframes-list.php:347
@@ -118,20 +114,16 @@ msgid "Items deleted: %d"
 msgstr ""
 
 #: admin/cb-codes/class-cb-codes-table.php:50
+#: admin/cb-codes/views/codes-table.php:30
 #: admin/cb-settings/views/settings.php:28
-#: admin/cb-settings/views/settings.php:158 admin/class-cb-admin.php:393
-#: admin/class-cb-admin.php:394
+#: admin/cb-settings/views/settings.php:159 admin/class-cb-admin.php:392
+#: admin/class-cb-admin.php:393
 msgid "Codes"
 msgstr ""
 
 #: admin/cb-codes/class-cb-codes-table.php:126
 #: admin/cb-codes/class-cb-codes.php:165
 msgid "Date"
-msgstr ""
-
-#: admin/cb-codes/class-cb-codes-table.php:322
-#, php-format
-msgid "You must create at least one %s"
 msgstr ""
 
 #: admin/cb-codes/class-cb-codes.php:152
@@ -158,13 +150,9 @@ msgstr ""
 msgid "New booking codes have been generated."
 msgstr ""
 
-#: admin/cb-codes/views/codes-table.php:30
-msgid "codes"
-msgstr ""
-
 #: admin/cb-items/includes/cb-items-metaboxes.php:36
-#: admin/cb-timeframes/cb-timeframes-list.php:37 admin/class-cb-admin.php:358
-#: admin/class-cb-admin.php:359
+#: admin/cb-timeframes/cb-timeframes-list.php:37 admin/class-cb-admin.php:357
+#: admin/class-cb-admin.php:358
 msgid "Timeframes"
 msgstr ""
 
@@ -256,18 +244,17 @@ msgid "Sunday"
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:64
-msgid "<p> Please review your booking and click \"confirm\".</p>"
+msgid "Please review your booking and click \"confirm\"."
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:65
 msgid ""
-"<h2>Congratulations, {{FIRST_NAME}}!</h2> <p>You´ve successfully booked "
-"{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
+"Congratulations, {{FIRST_NAME}}! You´ve successfully booked {{ITEM_NAME}}. "
+"An email has been sent to your address {{USER_EMAIL}}."
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:66
-msgid ""
-"<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>"
+msgid "Your booking has been canceled! Thanks for letting us know."
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:67
@@ -275,7 +262,7 @@ msgid "To leave a booking comment, click <a href=\"{{URL}}\">here</a>"
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:71
-msgid "Your booking"
+msgid "Your booking {{ITEM_NAME}}"
 msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:72
@@ -283,12 +270,9 @@ msgid ""
 "<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
 "\n"
 "          <p>Click here to see or cancel you booking: {{URL}}.</p>\n"
-"\n"
-"          <p>Here´s your booking code: <strong>{{CODE}}</strong></p>\n"
+"          <p>Booking code: <strong>{{CODE}}</strong></p>\n"
 "\n"
 "          <h3>Pick up information</h3>\n"
-"\n"
-"          <em>Please make sure you are on time.</em>\n"
 "\n"
 "          <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}."
 "<br>\n"
@@ -308,15 +292,15 @@ msgid ""
 "        "
 msgstr ""
 
-#: admin/cb-settings/cb-admin-settings.php:96
+#: admin/cb-settings/cb-admin-settings.php:93
 msgid "Welcome, {{USER_NAME}} – here´s your account information."
 msgstr ""
 
-#: admin/cb-settings/cb-admin-settings.php:97
+#: admin/cb-settings/cb-admin-settings.php:94
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
 "\n"
-"          <p>Only one more step:, click here to set your password:</p>\n"
+"          <p>Only one more step: Click here to set your password:</p>\n"
 "          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
 "\n"
 "          <h3>Your information</h3>\n"
@@ -349,198 +333,198 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:54
+#: admin/cb-settings/views/settings.php:55
 msgid "Items Page"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:55
+#: admin/cb-settings/views/settings.php:56
 msgid "Display list of items on this page"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:72
+#: admin/cb-settings/views/settings.php:73
 msgid "Booking Review Page"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:73
+#: admin/cb-settings/views/settings.php:74
 msgid "Shows the pending booking, prompts for confimation."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:81
+#: admin/cb-settings/views/settings.php:82
 msgid "Booking Confirmed Page"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:82
+#: admin/cb-settings/views/settings.php:83
 msgid "Shows the confirmed booking."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:90
+#: admin/cb-settings/views/settings.php:91
 msgid "My Bookings Page"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:91
+#: admin/cb-settings/views/settings.php:92
 msgid "Lists user´s bookings."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:99
+#: admin/cb-settings/views/settings.php:100
 msgid "Link to terms & services"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:100
+#: admin/cb-settings/views/settings.php:101
 msgid "Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:120
+#: admin/cb-settings/views/settings.php:121
 msgid "Maximum booking days"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:121
+#: admin/cb-settings/views/settings.php:122
 msgid "Users can only book this many days at once"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:126
-msgid "Days to show"
+#: admin/cb-settings/views/settings.php:127
+msgid "Calendar days to show"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:127
+#: admin/cb-settings/views/settings.php:128
 msgid ""
 "Set how many days are displayed on the booking calendar (starting form today)"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:132
+#: admin/cb-settings/views/settings.php:133
 msgid "Allow booking over closed days"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:133
+#: admin/cb-settings/views/settings.php:134
 msgid ""
 "Any number of closed days just counts as one booked day. <br>E.g. If you "
-"have a weekend specified as \"closed\" in the location editor, user will "
-"still be able book from friday till monday."
-msgstr ""
-
-#: admin/cb-settings/views/settings.php:138
-msgid "Allow booking comments."
+"have a weekend specified as \"closed\" in the location editor, user will be "
+"able book from friday till monday."
 msgstr ""
 
 #: admin/cb-settings/views/settings.php:139
+msgid "Allow booking comments."
+msgstr ""
+
+#: admin/cb-settings/views/settings.php:140
 msgid ""
 "Give users the ability to add a comment on the booking review page. <br>The "
 "comment be shown as a tooltip on the calendar. <br>NOTE: You must enable "
-"comments for the item."
+"comments in WP Settings and for the item."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:159
+#: admin/cb-settings/views/settings.php:160
 msgid ""
 "Enter comma-seperated Codes here. For examples see <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons "
 "Booking Plugin manual</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:179
+#: admin/cb-settings/views/settings.php:180
 msgid "Customize Login and Registration pages"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:180
+#: admin/cb-settings/views/settings.php:181
 msgid "Hide superfluous fields on login/registration pages."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:185
+#: admin/cb-settings/views/settings.php:186
 msgid "Enable redirects"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:186
+#: admin/cb-settings/views/settings.php:187
 msgid "Enable redirects after Registration & Login."
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:206
+#: admin/cb-settings/views/settings.php:207
 msgid "Message Booking Review"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:207
+#: admin/cb-settings/views/settings.php:208
 msgid ""
 "The message that appears after the user clicks \"Book now\" on the calendar. "
 "You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?"
 "title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:212
+#: admin/cb-settings/views/settings.php:213
 msgid "Message Booking Submitted"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:213
+#: admin/cb-settings/views/settings.php:214
 msgid ""
 "The message that appears after the user has confirmed the booking. You can "
 "use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
 "Template_Tags\" target=\"_blank\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:218
+#: admin/cb-settings/views/settings.php:219
 msgid "Message Booking Canceled"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:219
+#: admin/cb-settings/views/settings.php:220
 msgid ""
 "The message that appears after the user has canceled the booking. You can "
 "use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
 "Template_Tags\" target=\"_blank\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:224
+#: admin/cb-settings/views/settings.php:225
 msgid "Message: Invite users to leave a comment"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:225
+#: admin/cb-settings/views/settings.php:226
 msgid ""
 "Appears after the user has confirmed the booking. You can use HTML & <a href="
 "\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target="
 "\"_blank\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:245
+#: admin/cb-settings/views/settings.php:246
 msgid "Email address"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:246
+#: admin/cb-settings/views/settings.php:247
 msgid "The reply to address (make sure this exists)"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:251
+#: admin/cb-settings/views/settings.php:252
 msgid "Confirmation email subject"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:252
+#: admin/cb-settings/views/settings.php:253
 msgid ""
 "The subject of the confirmation Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:257
+#: admin/cb-settings/views/settings.php:258
 msgid "Confirmation email body"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:258
+#: admin/cb-settings/views/settings.php:259
 msgid ""
 "The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template tags</a>. "
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:263
+#: admin/cb-settings/views/settings.php:264
 msgid "Registration email subject"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:264
+#: admin/cb-settings/views/settings.php:265
 msgid ""
 "The subject of the registration Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target="
 "\"_blank\">Template tags</a>"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:269
+#: admin/cb-settings/views/settings.php:270
 msgid "Registration email body"
 msgstr ""
 
-#: admin/cb-settings/views/settings.php:270
+#: admin/cb-settings/views/settings.php:271
 msgid ""
 "The body of the registration confirmation email. You can use HTML & <a href="
 "\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
@@ -630,10 +614,6 @@ msgstr ""
 msgid "Note"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-list.php:324
-msgid "Something went wrong"
-msgstr ""
-
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:50
 msgid "Start Date "
 msgstr ""
@@ -675,7 +655,7 @@ msgid "Please enter your phone number"
 msgstr ""
 
 #: admin/cb-users/class-cb-users.php:56
-msgid "Please enter your Address"
+msgid "Please enter your address"
 msgstr ""
 
 #: admin/cb-users/class-cb-users.php:59
@@ -711,69 +691,69 @@ msgstr ""
 msgid "Accepted Terms & Conditions"
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:393
+#: admin/cb-users/class-cb-users.php:398
 msgid "You haven´t booked anything yet."
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:398
+#: admin/cb-users/class-cb-users.php:403
 #, php-format
 msgid ""
 "You need to be logged in to book items. <br>Please <a href=\"%s\">Log in</a> "
 "or <a href=\"%s\">register</a>."
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:467
+#: admin/cb-users/class-cb-users.php:473
 #, php-format
 msgid "New user registration on your blog %s:"
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:468
+#: admin/cb-users/class-cb-users.php:474
 #, php-format
 msgid "Username: %s"
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:469
+#: admin/cb-users/class-cb-users.php:475
 #, php-format
 msgid "E-mail: %s"
 msgstr ""
 
-#: admin/cb-users/class-cb-users.php:471
+#: admin/cb-users/class-cb-users.php:477
 #, php-format
 msgid "[%s] New User Registration"
 msgstr ""
 
-#: admin/class-cb-admin.php:155
+#: admin/class-cb-admin.php:154
 msgid "Plugin Loaded"
 msgstr ""
 
-#: admin/class-cb-admin.php:286
+#: admin/class-cb-admin.php:285
 msgid "Commons Booking Settings"
 msgstr ""
 
-#: admin/class-cb-admin.php:286
+#: admin/class-cb-admin.php:285
 msgid "Commons Booking"
 msgstr ""
 
-#: admin/class-cb-admin.php:307
+#: admin/class-cb-admin.php:306
 msgid "Settings"
 msgstr ""
 
-#: admin/class-cb-admin.php:308
+#: admin/class-cb-admin.php:307
 msgid "Manual"
 msgstr ""
 
-#: admin/class-cb-admin.php:331
+#: admin/class-cb-admin.php:330
 #, php-format
 msgid "%s "
 msgid_plural "%s "
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/class-cb-admin.php:370
+#: admin/class-cb-admin.php:369
 msgid "Add/Edit Timeframes"
 msgstr ""
 
-#: admin/class-cb-admin.php:371
+#: admin/class-cb-admin.php:370
 msgid "Add Timeframe"
 msgstr ""
 
@@ -1426,57 +1406,57 @@ msgstr ""
 msgid "My Recent Posts"
 msgstr ""
 
-#: includes/Widgets-Helper/widget-sample.php:34 includes/widgets/sample.php:14
+#: includes/Widgets-Helper/widget-sample.php:34
 msgid "My Recent Posts Widget Description"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:46
-#: includes/widgets/cb-items-widget.php:23 includes/widgets/sample.php:23
+#: includes/widgets/cb-items-widget.php:23
 msgid "Title"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:48
-#: includes/widgets/cb-items-widget.php:25 includes/widgets/sample.php:25
+#: includes/widgets/cb-items-widget.php:25
 msgid "Enter the widget title."
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:56
-#: includes/widgets/cb-items-widget.php:33 includes/widgets/sample.php:33
+#: includes/widgets/cb-items-widget.php:33
 msgid "Recent Posts"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:108
-#: includes/widgets/cb-items-widget.php:80 includes/widgets/sample.php:80
+#: includes/widgets/cb-items-widget.php:80
 msgid "Amount"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:109
-#: includes/widgets/cb-items-widget.php:81 includes/widgets/sample.php:81
+#: includes/widgets/cb-items-widget.php:81
 msgid "Select how many posts to show."
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:116
-#: includes/widgets/cb-items-widget.php:88 includes/widgets/sample.php:88
+#: includes/widgets/cb-items-widget.php:88
 msgid "1 Post"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:121
-#: includes/widgets/cb-items-widget.php:93 includes/widgets/sample.php:93
+#: includes/widgets/cb-items-widget.php:93
 msgid "2 Posts"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:125
-#: includes/widgets/cb-items-widget.php:97 includes/widgets/sample.php:97
+#: includes/widgets/cb-items-widget.php:97
 msgid "3 Posts"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:137
-#: includes/widgets/cb-items-widget.php:108 includes/widgets/sample.php:108
+#: includes/widgets/cb-items-widget.php:108
 msgid "Output as list"
 msgstr ""
 
 #: includes/Widgets-Helper/widget-sample.php:138
-#: includes/widgets/cb-items-widget.php:109 includes/widgets/sample.php:109
+#: includes/widgets/cb-items-widget.php:109
 msgid "Wraps posts with the <li> tag."
 msgstr ""
 
@@ -1488,27 +1468,23 @@ msgstr ""
 msgid "Show a list of items"
 msgstr ""
 
-#: includes/widgets/sample.php:13
-msgid "HELLO My Recent Posts"
-msgstr ""
-
 #: public/cb-bookings/class-cb-booking-comments.php:89
 msgid "Leave a comment"
 msgstr ""
 
-#: public/cb-bookings/class-cb-booking.php:549
+#: public/cb-bookings/class-cb-booking.php:550
 msgid "Error: Page called with missing variables."
 msgstr ""
 
-#: public/cb-bookings/class-cb-booking.php:553
+#: public/cb-bookings/class-cb-booking.php:554
 msgid "Error: Page called without needed flag."
 msgstr ""
 
-#: public/cb-bookings/class-cb-booking.php:557
+#: public/cb-bookings/class-cb-booking.php:558
 msgid "Error: You have to be logged in to view this page!"
 msgstr ""
 
-#: public/cb-bookings/class-cb-booking.php:663
+#: public/cb-bookings/class-cb-booking.php:661
 msgid "Error: Booking not found"
 msgstr ""
 
@@ -1523,31 +1499,31 @@ msgid "None found"
 msgstr ""
 
 #: public/cb-bookings/class-cb-data.php:307
-#: public/cb-bookings/class-cb-data.php:410
+#: public/cb-bookings/class-cb-data.php:409
 msgid "This item can´t be booked at the moment."
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:459
+#: public/cb-bookings/class-cb-data.php:458
 msgid "This day is closed. No pick up or return."
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:461
+#: public/cb-bookings/class-cb-data.php:460
 msgid "You can book on this day."
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:464
+#: public/cb-bookings/class-cb-data.php:463
 msgid "Booked by a user: "
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:466
+#: public/cb-bookings/class-cb-data.php:465
 msgid "This day is booked"
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:496
+#: public/cb-bookings/class-cb-data.php:495
 msgid "You will recieve contact information after your booking."
 msgstr ""
 
-#: public/cb-bookings/class-cb-data.php:534
+#: public/cb-bookings/class-cb-data.php:535
 #, php-format
 msgid "%1$s, %2$s %3$s, %4$s"
 msgstr ""
@@ -1556,12 +1532,20 @@ msgstr ""
 msgid " Sorry, nothing found."
 msgstr ""
 
-#: public/cb-bookings/class-cb-public-items.php:109
+#: public/cb-bookings/class-cb-public-items.php:115
 msgid "No items found"
 msgstr ""
 
+#: public/cb-bookings/class-cb-public-items.php:124
+msgid "Next items"
+msgstr ""
+
+#: public/cb-bookings/class-cb-public-items.php:125
+msgid "Previous items"
+msgstr ""
+
 #: public/class-commons-booking.php:194 public/class-commons-booking.php:196
-#: public/class-commons-booking.php:563
+#: public/class-commons-booking.php:565
 msgid "Items"
 msgstr ""
 
@@ -1649,55 +1633,55 @@ msgstr ""
 msgid "No Locations found in Trash."
 msgstr ""
 
-#: public/class-commons-booking.php:564
+#: public/class-commons-booking.php:566
 msgid "My Bookings"
 msgstr ""
 
-#: public/class-commons-booking.php:566
+#: public/class-commons-booking.php:568
 msgid "Confirm booking"
 msgstr ""
 
-#: public/class-commons-booking.php:655
+#: public/class-commons-booking.php:657
 msgid "Book here:"
 msgstr ""
 
-#: public/class-commons-booking.php:656
+#: public/class-commons-booking.php:658
 msgid "Click the days you want to book"
 msgstr ""
 
-#: public/class-commons-booking.php:657 templates/booking-review.php:22
+#: public/class-commons-booking.php:659 templates/booking-review.php:22
 msgid "Pickup date:"
 msgstr ""
 
-#: public/class-commons-booking.php:658 templates/booking-review.php:25
+#: public/class-commons-booking.php:660 templates/booking-review.php:25
 msgid "Return date:"
 msgstr ""
 
-#: public/class-commons-booking.php:659
+#: public/class-commons-booking.php:661
 msgid "Pickup and return date:"
 msgstr ""
 
-#: public/class-commons-booking.php:660
+#: public/class-commons-booking.php:662
 msgid "Sorry, too many days between pickup and return, the maximum is: "
 msgstr ""
 
-#: public/class-commons-booking.php:661
+#: public/class-commons-booking.php:663
 msgid "Sorry, you can only book at one station."
 msgstr ""
 
-#: public/class-commons-booking.php:662
+#: public/class-commons-booking.php:664
 msgid "Sorry, this day is not bookable."
 msgstr ""
 
-#: public/class-commons-booking.php:663
+#: public/class-commons-booking.php:665
 msgid "Please select sequential days."
 msgstr ""
 
-#: public/class-commons-booking.php:664
+#: public/class-commons-booking.php:666
 msgid "Sorry, there must be no booked day between pickup and return."
 msgstr ""
 
-#: public/class-commons-booking.php:665
+#: public/class-commons-booking.php:667
 msgid "Sorry, you can´t book over closed days."
 msgstr ""
 
@@ -1813,7 +1797,7 @@ msgstr ""
 msgid "No description provided."
 msgstr ""
 
-#: templates/items-list.php:17 templates/timeframes-compact.php:12
+#: templates/item-list-timeframes-compact.php:12
 msgid "Book here"
 msgstr ""
 
