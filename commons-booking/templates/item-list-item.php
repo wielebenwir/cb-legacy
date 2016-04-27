@@ -5,7 +5,7 @@
  * @since   0.6
  */
 ?>
-<div class="cb-box" id ="item_id<?=$attributes['id']; ?>"> <?php // div is closed in timeframes ?>
+<div class="cb-item-wrapper" id ="item_id<?=$attributes['id']; ?>"> <?php // div is closed in timeframes ?>
 <?php if (is_singular()) { ?>
   <h2 class="cb-big"><a href="<?=$attributes['permalink'] ?>"><?=$attributes['title'] ?></a></h2>
     <div class="cb-list-item-description">
