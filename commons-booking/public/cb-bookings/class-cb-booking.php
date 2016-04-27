@@ -605,12 +605,14 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $comments = '';
                     $message_comments = '';
 
+                    // check again if days are not already booked, and count <  maxdays (prevents double bookings)
+                    $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id );
+
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
 
                     // Finalise the booking
-                    if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) { 
-                        // check if status is pending and confirm = 1 
+                    if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1 
 
                         
                         $msg = ( $booking_messages[ 'messages_booking_confirmed' ] ); // Confirmation message
