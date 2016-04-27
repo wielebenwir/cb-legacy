@@ -319,7 +319,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-        printf(__('You must create at least one %s', 'commons-booking'), $posttype  );
+        echo '<select size=1 disabled></select>';
       }
       /* Restore original Post Data */
       wp_reset_postdata();

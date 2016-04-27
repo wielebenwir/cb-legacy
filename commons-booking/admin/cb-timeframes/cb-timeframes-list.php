@@ -321,7 +321,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'Something went wrong', 'commons-booking');
+        echo '<select size=1 disabled></select>';
       }
       /* Restore original Post Data */
       wp_reset_postdata();

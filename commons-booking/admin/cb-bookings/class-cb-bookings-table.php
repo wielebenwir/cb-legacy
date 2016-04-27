@@ -346,7 +346,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         }
         echo '</select>';
       } else {
-       echo __( 'You need to add some items.', $this->plugin_slug);
+        echo '<select size=1 disabled></select>';
       }
       /* Restore original Post Data */
       wp_reset_postdata();

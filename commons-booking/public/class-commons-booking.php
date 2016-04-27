@@ -268,6 +268,8 @@ class Commons_Booking {
         );
 
         register_post_type( 'cb_locations', $location_args );
+        // flush rewrite rules
+        flush_rewrite_rules();
     }
      /**
      *   We add content to all the plugin pages.

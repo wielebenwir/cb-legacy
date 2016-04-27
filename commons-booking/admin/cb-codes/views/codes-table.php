@@ -21,13 +21,13 @@
 
     $message = '';
     if ('delete' === $table->current_action()) {
-        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'cb_codes_table'), count($_REQUEST['id'])) . '</p></div>';
+        $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'commons-booking'), count($_REQUEST['id'])) . '</p></div>';
     }
     ?>
 <div class="wrap">
 
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <h2><?php _e('codes', 'cb_codes_table')?></h2>
+    <h2><?php _e('Codes', 'commons-booking')?></h2>
     <?php echo $message; ?>
 
     <form id="codes-table" method="GET">
