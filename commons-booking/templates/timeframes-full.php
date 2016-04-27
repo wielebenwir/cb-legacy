@@ -19,7 +19,7 @@
         <a href="http://maps.google.com/?q=<?=$tf['address'] ?>" target="_blank" class="cb-button align-right cb-small">Show in Maps</a>
         <span class="cb-row-title"><?=_e('Address', 'commons-booking'); ?></span>
         <?=$tf['address'] ?></div>
-      <div class="cb-contact cb-row"><span class="cb-row-title"><?=_e('Opening hours', 'commons-booking'); ?></span><?=$tf['opening_hours'] ?></div>
+      <div class="cb-opening-hours cb-row"><span class="cb-row-title"><?=_e('Opening hours', 'commons-booking'); ?></span><?=$tf['opening_hours'] ?></div>
       <div class="cb-contact cb-row"><span class="cb-row-title"><?=_e('Contact', 'commons-booking'); ?></span><?=$tf['contact'] ?></div>
     </div>
     <div id ="timeframe_<?=$tf['timeframe_id'] ?>" class="cb_timeframe_form">
