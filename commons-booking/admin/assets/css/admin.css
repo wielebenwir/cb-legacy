@@ -1,50 +1,6 @@
-.box, .cmb2-wrap {
+.box {
   padding: 20px;
   background: white; }
-
-.ui-state-default {
-  display: inline;
-  border-color: #cccccc #cccccc #f1f1f1;
-  border-width: 1px;
-  border-style: solid;
-  padding: 10px;
-  background: none repeat scroll 0% 0% #e4e4e4; }
-
-.ui-tabs-nav {
-  padding-bottom: 7px;
-  padding-left: 10px;
-  border-bottom: 1px solid #cccccc; }
-
-.ui-tabs-anchor {
-  text-decoration: none;
-  color: black;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 24px;
-  color: #7f7f7f; }
-
-.ui-tabs-anchor:hover, .ui-state-active a {
-  color: black; }
-
-.ui-tabs-active, .ui-tabs-active:hover, .ui-tabs-active:active {
-  color: black;
-  background: #efefef !important; }
-
-.postbox h3 {
-  padding-left: 10px; }
-
-#dashboard_right_now a.demo-count:before {
-  content: "\f115"; }
-
-.cmb2-wrap {
-  margin-bottom: 10px; }
-  .cmb2-wrap .cmb-row {
-    border-top: 1px solid #cccccc;
-    padding-top: 10px; }
-  .cmb2-wrap label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: block; }
 
 /* Timeframe edit Time picker */
 .ui-datepicker-div {
