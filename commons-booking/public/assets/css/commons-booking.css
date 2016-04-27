@@ -18,7 +18,7 @@
  * @copyright 2015 wielebenwir
  */
 /* COLORS */
-/* COLORS */
+/* Elements & widths */
 /* Mixins */
 /*
  * Effects & eye-candy
@@ -65,12 +65,14 @@
   color: #3356a4; }
 
 /* all individual elements (timeframes, items, etc) are grouped with cb-box */
+/* all individual elements (timeframes, items, etc) are grouped with cb-box */
 .cb-box, .cb-timeframe, #cb-bookingbar .inner {
   overflow: hidden;
   border: 1px solid #e1e1e1;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   border-radius: 7px;
+  background: white;
   margin-bottom: 2em; }
 
 .cb-big a, .cb-headline a, .cb-timeframe .cb-location .cb-location-name a {
@@ -83,9 +85,42 @@
   display: block; }
   .cb-table .cb-row {
     color: #414141;
-    border-top: 1px solid #e1e1e1;
-    padding: 0.5em 0;
-    overflow: hidden; }
+    border-top: 1px solid white;
+    padding: 0.5em;
+    overflow: hidden;
+    background: #f6f6f6; }
+    .cb-table .cb-row:first-child {
+      -webkit-border-top-right-radius: 7px;
+      -webkit-border-bottom-right-radius: 0;
+      -webkit-border-bottom-left-radius: 0;
+      -webkit-border-top-left-radius: 7px;
+      -moz-border-radius-topright: 7px;
+      -moz-border-radius-bottomright: 0;
+      -moz-border-radius-bottomleft: 0;
+      -moz-border-radius-topleft: 7px;
+      border-top-right-radius: 7px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 7px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box; }
+    .cb-table .cb-row:last-child {
+      -webkit-border-top-right-radius: 0;
+      -webkit-border-bottom-right-radius: 7px;
+      -webkit-border-bottom-left-radius: 7px;
+      -webkit-border-top-left-radius: 0;
+      -moz-border-radius-topright: 0;
+      -moz-border-radius-bottomright: 7px;
+      -moz-border-radius-bottomleft: 7px;
+      -moz-border-radius-topleft: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 7px;
+      border-bottom-left-radius: 7px;
+      border-top-left-radius: 0;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box; }
     .cb-table .cb-row .cb-row-title {
       font-weight: bold;
       margin-right: 1em; }
@@ -106,6 +141,11 @@
 
 .entry-content .cb-box h2, .entry-content .cb-timeframe h2, .entry-content #cb-bookingbar .inner h2, #cb-bookingbar .entry-content .inner h2 {
   margin-top: 0; }
+
+.cb-location-name {
+  display: block;
+  color: #3356a4;
+  font-weight: bold; }
 
 .cb-list-item-description {
   margin-bottom: 1em;
@@ -132,7 +172,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   border-radius: 7px;
-  border: 1px solid #56a820; }
+  border: 1px solid #56a820 !important; }
   a.cb-button:hover, input#wp-submit:hover, input#wp-submit-comment:hover {
     background: #3356a4;
     border: 1px solid #3356a4;
@@ -142,7 +182,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
     border: 1px solid #e1e1e1; }
   a.cb-button.warning, input#wp-submit.warning, input#wp-submit-comment.warning {
     background: #a70001;
-    border: 1px solid #a70001; }
+    border: 1px solid #a70001 !important; }
     a.cb-button.warning:hover, input#wp-submit.warning:hover, input#wp-submit-comment.warning:hover {
       background: #ff0002;
       border: 1px solid #ff0002; }
@@ -341,7 +381,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
     box-shadow: 0 0 70px 1px #afafaf;
     margin: 0;
     background: white;
-    color: #3356a4;
+    color: black;
     overflow: hidden; }
   #cb-bookingbar .cb-userinfo {
     display: block;
@@ -352,11 +392,11 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   #cb-bookingbar .booking div.bb-date {
     display: inline-block;
     background: white;
-    color: #3356a4;
-    line-height: 0.8em;
     -webkit-border-radius: 7px;
     -moz-border-radius: 7px;
-    border-radius: 7px; }
+    border-radius: 7px;
+    background: #e1e1e1;
+    margin: 0 0.5em; }
     #cb-bookingbar .booking div.bb-date .cb-cal-inner {
       font-weight: bold;
       margin: 0 10px 0 5px;

@@ -8,30 +8,34 @@
  * @copyright 2015 wielebenwir
  */
 
-.padding { padding: 1em; }
+.padding { padding: $padding; }
 .align-right { float: right; }
 .align-left { float: left; }
 .cb-small { font-size: 0.8em; }
-.cb-big { font-size: 1.4em; font-weight: bold; color: $blue; margin-bottom: $padding / 2; }
+.cb-big { font-size: 1.4em; font-weight: bold; color: $highlight-color; margin-bottom: $padding / 2; }
 .border { border-top: 1px solid $grey; display: block; }
 .cb-headline { 
   @extend .cb-big;
-  a { color: $blue }
+  a { color: $highlight-color }
 }
 
 
 
 /* all individual elements (timeframes, items, etc) are grouped with cb-box */
+.cb-wrapper {}
+
+/* all individual elements (timeframes, items, etc) are grouped with cb-box */
 .cb-box { 
     @extend .padding;
     overflow: hidden; 
-    border: 1px solid $grey;
+    border: 1px solid $border-color;
     @include rounded($radius);
+    background: $bg-color;
     margin-bottom: $padding * 2;
   }
 
 .cb-big a {
-  color: $blue;
+  color: $highlight-color;
   text-decoration: none;
   border-bottom: none;
 }
@@ -41,14 +45,18 @@
   display: block;
   .cb-row {
     color: $dark-grey;
-    border-top: 1px solid $grey;
-    padding: 0.5em 0;
+    border-top: 1px solid $border-inner-color;
+    padding: $padding / 2;
     overflow: hidden;
+    background: $bg-inner-color;
+
     &:hover {
     }
     &:first-child {
+      @include border-radiuses($radius, 0, 0, $radius );
     }
     &:last-child {
+      @include border-radiuses(0, $radius, $radius, 0 );
 
     }
     .cb-row-title {
@@ -69,8 +77,8 @@
   margin-bottom: $padding * 2;
   a.cb-button {
     @extend .cb-small;
-    background: $blue;
-    border: 1px solid $blue;
+    background: $highlight-color;
+    border: 1px solid $highlight-color;
   }
 }
 
@@ -80,6 +88,12 @@
 
 .entry-content .cb-box h2 {
     margin-top: 0;
+}
+
+.cb-location-name {
+  display: block;
+  color: $highlight-color;
+  font-weight: bold;
 }
 
 .cb-list-item-description {
@@ -101,19 +115,19 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   background: $green;
   color: $white;
   @include rounded($radius);
-  border: 1px solid $green;
+  border: 1px solid $green !important;
   &:hover {
-    background: $blue;
-    border: 1px solid $blue;
+    background: $highlight-color;
+    border: 1px solid $highlight-color;
     color: $white;
   }
   &.cb-small {
-    background: $blue;
+    background: $highlight-color;
     border: 1px solid $grey;
   }
   &.warning {
     background: $dark-red;
-    border: 1px solid $dark-red;
+    border: 1px solid $dark-red !important;
     &:hover {
       background: $red;
         border: 1px solid $red;

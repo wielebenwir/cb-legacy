@@ -24,7 +24,7 @@
     @include box-shadow( 0, 0, 70px, 1px, #AFAFAF );
     margin: 0;
     background: $white;
-    color: $blue;
+    color: $black;
     overflow: hidden;
   }
   .cb-userinfo {
@@ -42,9 +42,9 @@
       div.bb-date {
          display: inline-block;
           background: $white;
-          color: $blue;
-          line-height: 0.8em;
           @include rounded($radius);
+          background: $grey;
+          margin: 0 0.5em; 
         .cb-cal-inner {
           font-weight: bold;
           margin: 0 10px 0 5px;
