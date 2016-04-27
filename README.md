@@ -13,7 +13,7 @@ Florian Egermann / wielebenwir e.V.
 
 
 ## Further information
-* Project Website: http://www.wielebenwir.de/projekte/gemeingutsoftware
+* Project Website: http://www.wielebenwir.de/projekte/commons-booking
 * Manual: http://dein-lastenrad.de/index.php?title=Introduction
 * Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
 * Forum (Ask questions here): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software

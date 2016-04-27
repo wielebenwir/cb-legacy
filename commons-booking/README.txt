@@ -4,8 +4,8 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.5
-Stable Tag: 0.7.0.5
+Tested up to: 4.5.1
+Stable Tag: 0.7.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,16 +13,30 @@ A Wordpress plugin for management and booking of commons goods.
 
 == Description ==
 
-Unique features:
-* Items, locations and timeframes: Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
-* Auto-accept bookings: A registered user can book items without the need for administration. 
-* Simple booking process with a beautiful calendar: Click a day to book an item. 
-* Users can leave comments (what they use the item for).
+This is plugin is developed for a very specific use case. English documentation of the underlying concept is forthcoming. 
 
-* Official Website: http://www.wielebenwir.de/projekte/commons-booking
-* Manual: http://dein-lastenrad.de/index.php?title=Introduction
+Unique features:
+* Items, locations and timeframes: Items can be at different locations at specified timeframes. 
+* Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
+* Auto-accept bookings: A registered user can book items without the need for administration. 
+* Codes: Automatically generate codes for the pickup.
+* Simple booking process with a beautiful calendar: Click a day to book an item. 
+* Users can leave comments (e.g. what they use the item for).
+
+
+Background: 
+Developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
+
+
+Possible use cases: 
+* You have some special tools that you don´t use every day, and you want to make them available to a your friends.
+*  You own a bike that you want to offer for the community, and it will be stationed for pickup at different locations throughout the year.
+
+
+* Official Website (German): http://www.wielebenwir.de/projekte/commons-booking
+* Manual (English): http://dein-lastenrad.de/index.php?title=Introduction
 * Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
-* Forum (Ask questions here): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+* Forum (Ask questions here, in german): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
 
 
 == Installation ==
@@ -54,12 +68,48 @@ Unique features:
 
 = Where can i find help/report bugs? =
 
-Please go here: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+German language bulletin board: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+
+Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
 
 
 == Screenshots ==
 
+1. Booking calendar
+2. Items list
+3. Booking confirmation
+4. User bookings list
+
 == Changelog ==
+
+=== 0.7.0.6 ===
+
+* FIX: Address field now printed out correctly
+* FIX: Now correctly calculating the date difference to enable/disable booking cancel button. 
+* ENHANCEMENT: Better structure of variables in SASS Files 
+* ENHANCEMENT: Design updates. 
+* ENHANCEMENT:  Better display of the table filter if no items/timeframes/codes have been created. 
+* FIX: Flushing rewrite rules should no longer be necessary on first installation.  
+
+
+=== 0.7.0.5 ===
+
+* FIX: Booking is now possible when using custom db prefixes.
+
+=== 0.7.0.4 ===
+
+* Sanitizing extra user profile fields
+
+=== 0.7.0.3 ===
+
+* Re-packeged plugin. Should fix "can not confirm or cancel" error
+* FIX: Address was not printed on calendar. Issue #106
+* ENHANCEMENT: Address now added to timeframes-compact template. 
+
+=== 0.7.0.2 ===
+
+* FIX: Show no error message if one of the location address fields are empty
+
 
 === 0.7.0.1 ===
 

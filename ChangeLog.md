@@ -1,3 +1,13 @@
+# 0.7.0.6
+
+* FIX: Address field now printed out correctly
+* FIX: Now correctly calculating the date difference to enable/disable booking cancel button. 
+* ENHANCEMENT: Better structure of variables in SASS Files 
+* ENHANCEMENT: Design updates.  
+* ENHANCEMENT:  Better display of the table filter if no items/timeframes/codes have been created. 
+* FIX: Flushing rewrite rules should no longer be necessary on first installation. 
+
+
 # 0.7.0.5
 
 * FIX: Booking is now possible when using custom db prefixes.
