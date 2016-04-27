@@ -15,7 +15,8 @@ A Wordpress plugin for management and booking of commons goods.
 
 This is plugin is developed for a very specific use case. English documentation of the underlying concept is forthcoming. 
 
-Unique features:
+**Unique features:**
+
 * Items, locations and timeframes: Items can be at different locations at specified timeframes. 
 * Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
 * Auto-accept bookings: A registered user can book items without the need for administration. 
@@ -24,19 +25,25 @@ Unique features:
 * Users can leave comments (e.g. what they use the item for).
 
 
-Background: 
+**Background:**
+
 Developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
 
 
-Possible use cases: 
+**Possible use cases:**
+
 * You have some special tools that you don´t use every day, and you want to make them available to a your friends.
 *  You own a bike that you want to offer for the community, and it will be stationed for pickup at different locations throughout the year.
 
+**Plugin websites**
 
 * Official Website (German): http://www.wielebenwir.de/projekte/commons-booking
 * Manual (English): http://dein-lastenrad.de/index.php?title=Introduction
 * Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
 * Forum (Ask questions here, in german): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+
+== Upgrade Notice ==
+Initial Version. 
 
 
 == Installation ==
@@ -68,9 +75,8 @@ Possible use cases:
 
 = Where can i find help/report bugs? =
 
-German language bulletin board: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
-
-Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
+* German language bulletin board: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+* Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
 
 
 == Screenshots ==
@@ -82,7 +88,11 @@ Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&
 
 == Changelog ==
 
-=== 0.7.0.6 ===
+= 0.7.0.7 =
+
+* FIX: Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
+
+= 0.7.0.6 =
 
 * FIX: Address field now printed out correctly
 * FIX: Now correctly calculating the date difference to enable/disable booking cancel button. 
@@ -92,31 +102,31 @@ Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&
 * FIX: Flushing rewrite rules should no longer be necessary on first installation.  
 
 
-=== 0.7.0.5 ===
+= 0.7.0.5 =
 
 * FIX: Booking is now possible when using custom db prefixes.
 
-=== 0.7.0.4 ===
+= 0.7.0.4 =
 
 * Sanitizing extra user profile fields
 
-=== 0.7.0.3 ===
+= 0.7.0.3 =
 
 * Re-packeged plugin. Should fix "can not confirm or cancel" error
 * FIX: Address was not printed on calendar. Issue #106
 * ENHANCEMENT: Address now added to timeframes-compact template. 
 
-=== 0.7.0.2 ===
+= 0.7.0.2 =
 
 * FIX: Show no error message if one of the location address fields are empty
 
 
-=== 0.7.0.1 ===
+= 0.7.0.1 =
 
 * FIX: When using the plugin Yoast SEO, login/user-bar was shown multiple times
 * FIX Issue #98 : enabled pagination on item pages
 
-=== 0.7 ===
+= 0.7 =
 
 * FEATURE: Redesigned Calendar with better representation of pickup/return/booking over weekends and helpful tooltips
 * FEATURE: Redesigned item lists 
@@ -250,15 +260,3 @@ Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&
 * Timeframes
 * Bookings
 * Custom post types
-
-== Known Bugs ==
-
-See: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
-
-
-== Credits == 
-
-* Built with [The WordPress Plugin Boilerplate Powered ](https://github.com/sudar/wp-plugin-in-github/wiki) 
-* Uses [CMB2](https://github.com/WebDevStudios/Custom-Metaboxes-and-Fields-for-WordPress)
-* Uses [CPT_Core](https://github.com/WebDevStudios/CPT_Core)
-* Uses [Taxonomy_Core ]( https://github.com/WebDevStudios/Taxonomy_Core )
