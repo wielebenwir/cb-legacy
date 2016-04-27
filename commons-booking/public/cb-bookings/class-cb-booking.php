@@ -456,6 +456,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         $b_vars['date_start'] = date_i18n( get_option( 'date_format' ), strtotime($this->date_start) );
         $b_vars['date_end'] = date_i18n( get_option( 'date_format' ), strtotime($this->date_end) );
+        $b_vars['date_end_timestamp'] = strtotime($this->date_end);
         $b_vars['item_name'] = get_the_title ($this->item_id );
         $b_vars['item_thumb'] = get_thumb( $this->item_id ); 
         $b_vars['item_content'] =  get_post_meta( $this->item_id, 'commons-booking_item_descr', TRUE  );
@@ -630,10 +631,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         // booking is confirmed and we are not cancelling
 
                         // display cancel button only if currentdate <= booking end date 
-
-
-
-                        if ( strtotime( $this->b_vars['date_end'] ) > time() ) {
+                        if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) {
                             $cancel_button = cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );    
                         } else {
                             $cancel_button = '';                            
