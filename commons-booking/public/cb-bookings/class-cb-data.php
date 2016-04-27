@@ -498,10 +498,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
   }
 
-   if ( !empty ( $address_check ) ) { // format the adress
-      $address_string = $this->format_adress( $location[ 'address' ] );
-  }
-
+  $address_string = $this->format_adress( $location[ 'address' ] );
+  
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
 
   $attributes = array (
