@@ -22,13 +22,13 @@
 
   <div id="tabs" class="settings-tab">
     <ul>
-      <li><a href="#tabs-welcome"><?php _e( 'Welcome', $this->plugin_slug  ); ?></a></li>
-      <li><a href="#tabs-display"><?php _e( 'Pages', $this->plugin_slug  ); ?></a></li>
-      <li><a href="#tabs-bookingsettings"><?php _e( 'Booking', $this->plugin_slug  ); ?></a></li>
-      <li><a href="#tabs-codes"><?php _e( 'Codes', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-mail"><?php _e( 'E-Mails', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-messages"><?php _e( 'Messages', $this->plugin_slug ); ?></a></li>
-      <li><a href="#tabs-advanced"><?php _e( 'Advanced', $this->plugin_slug ); ?></a></li>
+      <li><a href="#tabs-welcome"><?php _e( 'Welcome', 'commons-booking'  ); ?></a></li>
+      <li><a href="#tabs-display"><?php _e( 'Pages', 'commons-booking'  ); ?></a></li>
+      <li><a href="#tabs-bookingsettings"><?php _e( 'Booking', 'commons-booking'  ); ?></a></li>
+      <li><a href="#tabs-codes"><?php _e( 'Codes', 'commons-booking' ); ?></a></li>
+      <li><a href="#tabs-mail"><?php _e( 'E-Mails', 'commons-booking' ); ?></a></li>
+      <li><a href="#tabs-messages"><?php _e( 'Messages', 'commons-booking' ); ?></a></li>
+      <li><a href="#tabs-advanced"><?php _e( 'Advanced', 'commons-booking' ); ?></a></li>
     </ul>
 
     <div id="tabs-welcome" class="wrap">
@@ -38,8 +38,9 @@
 
       <h1>Aloha!</h1>
       <p> Commons Booking Version <?php echo (Commons_Booking::VERSION); ?> </p>
-      <p>For first steps, see the <a href="http://dein-lastenrad.de/index.php?title=First_Steps">Wiki</a>, if you find bugs, please  <a href="http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software">report them here</a>, and <a href="http://www.wielebenwir.de/verein/unterstutzen">donate</a></p>
-      <p>All the best, Florian & <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a></p>
+      <p>For first steps, see the <a href="http://dein-lastenrad.de/index.php?title=First_Steps">Wiki</a>.</p> 
+      <p>More Links: <a href="https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open">Bug tracker</a> / <a href="http://www.wielebenwir.de/projekte/commons-booking">Official Plugin Website</a> / <a href="http://www.wielebenwir.de/verein/unterstutzen">Donate</a></p>
+      <p>All the best, Florian / <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a></p>
 
     </div>
     <div id="tabs-display" class="wrap">
@@ -51,8 +52,8 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name'             => __( 'Items Page', $this->plugin_slug ),
-            'desc'             => __( 'Display list of items on this page', $this->plugin_slug ),
+            'name'             => __( 'Items Page', 'commons-booking' ),
+            'desc'             => __( 'Display list of items on this page', 'commons-booking' ),
             'id'               => $this->plugin_slug . '_item_page_select',
             'type'             => 'select',
             'show_option_none' => true,
@@ -69,8 +70,8 @@
           //   'options'          => pages_dropdown(),
           // ),            
           array(
-            'name'             => __( 'Booking Review Page', $this->plugin_slug ),
-            'desc'             => __( 'Shows the pending booking, prompts for confimation.', $this->plugin_slug ),
+            'name'             => __( 'Booking Review Page', 'commons-booking' ),
+            'desc'             => __( 'Shows the pending booking, prompts for confimation.', 'commons-booking' ),
             'id'               => $this->plugin_slug . '_booking_review_page_select',
             'type'             => 'select',
             'show_option_none' => true,
@@ -78,8 +79,8 @@
             'options'          => pages_dropdown(),
           ),           
           array(
-            'name'             => __( 'Booking Confirmed Page', $this->plugin_slug ),
-            'desc'             => __( 'Shows the confirmed booking.', $this->plugin_slug ),
+            'name'             => __( 'Booking Confirmed Page', 'commons-booking' ),
+            'desc'             => __( 'Shows the confirmed booking.', 'commons-booking' ),
             'id'               => $this->plugin_slug . '_booking_confirmed_page_select',
             'type'             => 'select',
             'show_option_none' => true,
@@ -87,8 +88,8 @@
             'options'          => pages_dropdown(),
           ),           
           array(
-            'name'             => __( 'My Bookings Page', $this->plugin_slug ),
-            'desc'             => __( 'Lists user´s bookings.', $this->plugin_slug ),
+            'name'             => __( 'My Bookings Page', 'commons-booking' ),
+            'desc'             => __( 'Lists user´s bookings.', 'commons-booking' ),
             'id'               => $this->plugin_slug . '_user_bookings_page_select',
             'type'             => 'select',
             'show_option_none' => true,
@@ -96,8 +97,8 @@
             'options'          => pages_dropdown(),
           ),                     
           array(
-            'name'             => __( 'Link to terms & services', $this->plugin_slug ),
-            'desc'             => __( 'Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)', $this->plugin_slug ),
+            'name'             => __( 'Link to terms & services', 'commons-booking' ),
+            'desc'             => __( 'Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)', 'commons-booking' ),
             'id'               => $this->plugin_slug . '_termsservices_url',
             'type'             => 'text',
             'default'          => ''
@@ -117,26 +118,26 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name' => __( 'Maximum booking days', $this->plugin_slug ),
-            'desc' => __( 'Users can only book this many days at once', $this->plugin_slug ),
+            'name' => __( 'Maximum booking days', 'commons-booking' ),
+            'desc' => __( 'Users can only book this many days at once', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_maxdays',
             'type' => 'text_small',
           ),           
           array(
-            'name' => __( 'Days to show', $this->plugin_slug ),
-            'desc' => __( 'Set how many days are displayed on the booking calendar (starting form today)', $this->plugin_slug ),
+            'name' => __( 'Calendar days to show', 'commons-booking' ),
+            'desc' => __( 'Set how many days are displayed on the booking calendar (starting form today)', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_daystoshow',
             'type' => 'text_small',
           ),          
           array(
-            'name' => __( 'Allow booking over closed days', $this->plugin_slug ),
-            'desc' => __( 'Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as "closed" in the location editor, user will still be able book from friday till monday.', $this->plugin_slug ),
+            'name' => __( 'Allow booking over closed days', 'commons-booking' ),
+            'desc' => __( 'Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as "closed" in the location editor, user will be able book from friday till monday.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_allowclosed',
             'type' => 'checkbox',
           ),          
           array(
-            'name' => __( 'Allow booking comments.', $this->plugin_slug ),
-            'desc' => __( 'Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments for the item.', $this->plugin_slug ),
+            'name' => __( 'Allow booking comments.', 'commons-booking' ),
+            'desc' => __( 'Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments in WP Settings and for the item.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_allow_comments',
             'type' => 'checkbox',
           ),
@@ -155,8 +156,8 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name' => __( 'Codes', $this->plugin_slug ),
-            'desc' => __( 'Enter comma-seperated Codes here. For examples see <a href="http://dein-lastenrad.de/index.php?title=Settings#Codes" target="_blank">the Commons Booking Plugin manual</a>', $this->plugin_slug ),
+            'name' => __( 'Codes', 'commons-booking' ),
+            'desc' => __( 'Enter comma-seperated Codes here. For examples see <a href="http://dein-lastenrad.de/index.php?title=Settings#Codes" target="_blank">the Commons Booking Plugin manual</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_codes_pool',
             'type' => 'textarea',
           ),
@@ -176,14 +177,14 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name' => __( 'Customize Login and Registration pages', $this->plugin_slug ),
-            'desc' => __( 'Hide superfluous fields on login/registration pages.', $this->plugin_slug ),
+            'name' => __( 'Customize Login and Registration pages', 'commons-booking' ),
+            'desc' => __( 'Hide superfluous fields on login/registration pages.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_enable_customcss',
             'type' => 'checkbox',
           ),          
           array(
-            'name' => __( 'Enable redirects', $this->plugin_slug ),
-            'desc' => __( 'Enable redirects after Registration & Login.', $this->plugin_slug ),
+            'name' => __( 'Enable redirects', 'commons-booking' ),
+            'desc' => __( 'Enable redirects after Registration & Login.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_enable_redirect',
             'type' => 'checkbox',
           ),          
@@ -203,26 +204,26 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name' => __( 'Message Booking Review', $this->plugin_slug ),
-            'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Message Booking Review', 'commons-booking' ),
+            'desc' => __( 'The message that appears after the user clicks "Book now" on the calendar. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_messages_booking_pleaseconfirm',
             'type' => 'textarea',
           ),
           array(
-            'name' => __( 'Message Booking Submitted', $this->plugin_slug ),
-            'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Message Booking Submitted', 'commons-booking' ),
+            'desc' => __( 'The message that appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_messages_booking_confirmed',
             'type' => 'textarea',
           ),          
           array(
-            'name' => __( 'Message Booking Canceled', $this->plugin_slug ),
-            'desc' => __( 'The message that appears after the user has canceled the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Message Booking Canceled', 'commons-booking' ),
+            'desc' => __( 'The message that appears after the user has canceled the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_messages_booking_canceled',
             'type' => 'textarea',
           ),
           array(
-            'name' => __( 'Message: Invite users to leave a comment', $this->plugin_slug ),
-            'desc' => __( 'Appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Message: Invite users to leave a comment', 'commons-booking' ),
+            'desc' => __( 'Appears after the user has confirmed the booking. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_messages_booking_comment_notice',
             'type' => 'textarea',
           ),
@@ -242,32 +243,32 @@
         'show_names' => true,
         'fields' => array(
           array(
-            'name' => __( 'Email address', $this->plugin_slug ),
-            'desc' => __( 'The reply to address (make sure this exists)', $this->plugin_slug ),
+            'name' => __( 'Email address', 'commons-booking' ),
+            'desc' => __( 'The reply to address (make sure this exists)', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_confirmation_sender',
             'type' => 'text',
           ),          
           array(
-            'name' => __( 'Confirmation email subject', $this->plugin_slug ),
-            'desc' => __( 'The subject of the confirmation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Confirmation email subject', 'commons-booking' ),
+            'desc' => __( 'The subject of the confirmation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_confirmation_subject',
             'type' => 'text',
           ),            
           array(
-            'name' => __( 'Confirmation email body', $this->plugin_slug ),
-            'desc' => __( 'The body of the confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
+            'name' => __( 'Confirmation email body', 'commons-booking' ),
+            'desc' => __( 'The body of the confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>. ', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_confirmation_body',
             'type' => 'textarea',
           ),  
           array(
-            'name' => __( 'Registration email subject', $this->plugin_slug ),
-            'desc' => __( 'The subject of the registration Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>', $this->plugin_slug ),
+            'name' => __( 'Registration email subject', 'commons-booking' ),
+            'desc' => __( 'The subject of the registration Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_registration_subject',
             'type' => 'text',
           ),         
           array(
-            'name' => __( 'Registration email body', $this->plugin_slug ),
-            'desc' => __( 'The body of the registration confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>. ', $this->plugin_slug ),
+            'name' => __( 'Registration email body', 'commons-booking' ),
+            'desc' => __( 'The body of the registration confirmation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags" target="_blank">Template tags</a>. ', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_registration_body',
             'type' => 'textarea',
           ),

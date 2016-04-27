@@ -63,21 +63,18 @@ class CB_Admin_Settings extends Commons_Booking {
     $this->prefix.'-settings-messages' => array(
       $this->prefix.'_messages_booking_pleaseconfirm' => __( 'Please review your booking and click "confirm".', 'commons-booking'),
       $this->prefix.'_messages_booking_confirmed' => __( 'Congratulations, {{FIRST_NAME}}! You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}.', 'commons-booking'),
-      $this->prefix.'_messages_booking_canceled' => __( 'Your booking has been successfully canceled! Thanks for letting us know.', 'commons-booking'),      
+      $this->prefix.'_messages_booking_canceled' => __( 'Your booking has been canceled! Thanks for letting us know.', 'commons-booking'),      
       $this->prefix.'_messages_booking_comment_notice' => __( 'To leave a booking comment, click <a href="{{URL}}">here</a>', 'commons-booking'),
     ),         
     $this->prefix.'-settings-mail' => array(
       $this->prefix.'_mail_confirmation_sender' => 'recipient@domain.com',
-      $this->prefix.'_mail_confirmation_subject' => __( 'Your booking', 'commons-booking'),
+      $this->prefix.'_mail_confirmation_subject' => __( 'Your booking {{ITEM_NAME}}', 'commons-booking'),
       $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
 
           <p>Click here to see or cancel you booking: {{URL}}.</p>
-
-          <p>Here´s your booking code: <strong>{{CODE}}</strong></p>
+          <p>Booking code: <strong>{{CODE}}</strong></p>
 
           <h3>Pick up information</h3>
-
-          <em>Please make sure you are on time.</em>
 
           <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}.<br>
           Return it there on {{DATE_END}}.<br>
@@ -96,7 +93,7 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_registration_subject' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', 'commons-booking'),
       $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
 
-          <p>Only one more step:, click here to set your password:</p>
+          <p>Only one more step: Click here to set your password:</p>
           <p><strong>{{ACTIVATION_URL}}</strong>></p>
 
           <h3>Your information</h3>
