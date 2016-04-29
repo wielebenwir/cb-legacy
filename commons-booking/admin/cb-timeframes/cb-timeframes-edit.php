@@ -82,17 +82,41 @@ function cb_timeframes_table_form_page_handler( )
         'default');
     ?>
 <div class="wrap">
-
+<style type="text/css" media="print">
+    .metabox-holder,
+    .hidden-if-print,
+    #adminmenumain,
+    #wpfooter
+     {display: none !important;}
+    #wpcontent {
+        margin-left: 0;
+        display: block;
+    }
+    td {
+        border-top: 1px solid #000;
+    }
+    
+</style>
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
     <?php 
     if (isset($_REQUEST['id'])) { ?>  
-        <h2><?php echo  __('Edit Timeframe', 'commons-booking'); ?><a class="add-new-h2" href="<?php echo get_edit_post_link($item['item_id']); ?>"><?php printf ( __('Return to %s', 'commons-booking'), get_the_title($item['item_id'] ) ); ?></a> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('All timeframes', 'commons-booking')?></a>  
+        <h2 class="hidden-if-print"><?php echo  __('Edit Timeframe', 'commons-booking'); ?><a class="add-new-h2" href="<?php echo get_edit_post_link($item['item_id']); ?>"><?php printf ( __('Return to %s', 'commons-booking'), get_the_title($item['item_id'] ) ); ?></a> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('All timeframes', 'commons-booking')?></a>  
         </h2>
+        <h1><?php printf ( '%s at %s',
+            get_the_title( $item['item_id'] ),
+            get_the_title( $item['location_id'] )
+            ); ?></h1>        
+        <h2><?php printf ( '%s %s – %s',
+            $item['timeframe_title'],
+            date_i18n( get_option( 'date_format' ), strtotime( $item['date_start'] ) ),
+            date_i18n( get_option( 'date_format' ), strtotime( $item['date_end'] ) )
+            ); ?></h2>
+
+
     <?php } else { ?>
         <h2><?php _e('Add new Timeframe', 'commons-booking')?> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('All timeframes', 'commons-booking')?></a>
         </h2>
     <?php } ?>
-
     <?php 
 
     // Display Messages if any
@@ -114,6 +138,7 @@ function cb_timeframes_table_form_page_handler( )
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
                     <input type="submit" value="<?php _e('Save & generate Codes', 'commons-booking')?>" id="submit" class="button-primary" name="submit">
+                    <input type="button" value="<?php _e('Print Codes'); ?>"  onClick="window.print()" id="print" class="button-primary">
                 </div>
             </div>
         </div>
