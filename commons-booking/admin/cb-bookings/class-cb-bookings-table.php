@@ -40,9 +40,15 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
      * [REQUIRED] You must declare constructor and give some basic params
      */
 
+    public $table_bookings;
+    public $table_codes;
+
     function __construct()
     {
-        global $status, $page;
+
+        global $wpdb, $status, $page;
+        $this->table_bookings =  $wpdb->prefix . 'cb_bookings';
+        $this->table_codes =  $wpdb->prefix . 'cb_codes';
 
         parent::__construct(array(
             'singular' => __( 'Booking' ),
@@ -137,7 +143,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             'item_id' => __('Item', $this->plugin_slug ),
             'date_start' => __('Starting Date', $this->plugin_slug ),
             'date_end' => __('End Date', $this->plugin_slug ),
-            'code_id' => __('Code', $this->plugin_slug ),
+            'bookingcode' => __('Code', $this->plugin_slug ),
             'user_id' => __('User', $this->plugin_slug ),
             'location_id' => __('Location', $this->plugin_slug ),
             'booking_time' => __('Booking time', $this->plugin_slug ),
@@ -252,7 +258,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // check if defined, remove if not 
         foreach ($fd as $key => $subArray) {
             if (isset($_REQUEST[($subArray['filter'])]) && !empty($_REQUEST[($subArray['filter'])]) ) { // if $_REQUEST and Variable
-                array_push ($filterQuery, $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
+                array_push ($filterQuery, $this->table_bookings. '.' . $subArray['id'] . "=" .$_REQUEST[($subArray['filter'])]); 
             } 
         }   
         return $filterQuery;
@@ -266,7 +272,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     public function prepare_items()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
         $per_page = 30; // constant, how much records will be shown per page
 
@@ -290,17 +295,24 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             $sqlfilter = 'WHERE ' . implode (' AND ', $filters);
         }
         // will be used in pagination settings
-        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name $sqlfilter");
+        $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $this->table_bookings $sqlfilter");
 
         // prepare query params, as usual current page, order by and order direction
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'id';
+        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : $this->table_bookings . '.id';
         $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
  
 
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
-        $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name $sqlfilter ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged * $per_page), ARRAY_A);
+        $this->items = $wpdb->get_results($wpdb->prepare("
+            SELECT * FROM $this->table_bookings 
+            LEFT JOIN $this->table_codes
+            ON $this->table_bookings.code_id = $this->table_codes.id
+            $sqlfilter 
+            ORDER BY $orderby $order 
+            LIMIT %d OFFSET %d
+            ", $per_page, $paged * $per_page), ARRAY_A);
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
@@ -308,7 +320,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             'per_page' => $per_page, // per page constant defined at top of method
             'total_pages' => ceil($total_items / $per_page) // calculate pages count
         ));
-
 
     } //  prepare_items()
 
