@@ -56,8 +56,8 @@ Hosted here are development versions, if you don´t want to participate in beta-
 ### Translations
 
 * Albert Hölzle ([VeloCityRuhr](http://velocityruhr.net))
-* Stefan Meretz ([Bolle – Dein Freier Lastenanhänger für´s Fahrrad](http://bolle-bonn.de)) 
-    * Sven Baier ([Hannah – Lastenräder für Hannover](http://www.hannah-lastenrad.de))
+* Stefan Meretz ([Bolle – Dein Freier Lastenanhänger für´s Fahrrad](http://bolle-bonn.de))  
+*  Sven Baier ([Hannah – Lastenräder für Hannover](http://www.hannah-lastenrad.de))
 
 
 ### Built using:
