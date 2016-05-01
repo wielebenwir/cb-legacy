@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/plugins/plugin-name\n"
-"POT-Creation-Date: 2016-04-27 22:06+0100\n"
-"PO-Revision-Date: 2016-04-27 22:06+0100\n"
+"POT-Creation-Date: 2016-05-01 14:42+0100\n"
+"PO-Revision-Date: 2016-05-01 14:43+0100\n"
 "Last-Translator: Florian Egermann <florian@macht-medien.de>\n"
 "Language-Team: Florian Egermann <hallo@fleg.de>\n"
 "Language: en\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.5\n"
-"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_n;_x;esc_html_e;esc_html__;esc_attr_e;"
 "esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ../\n"
@@ -21,76 +21,76 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/cb-bookings/class-cb-bookings-table.php:48
+#: admin/cb-bookings/class-cb-bookings-table.php:54
 #: admin/cb-settings/views/settings.php:27
 #: public/class-commons-booking.php:567
 msgid "Booking"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:49
+#: admin/cb-bookings/class-cb-bookings-table.php:55
 #: admin/class-cb-admin.php:380 admin/class-cb-admin.php:381
 msgid "Bookings"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:105
+#: admin/cb-bookings/class-cb-bookings-table.php:111
 #: admin/cb-codes/class-cb-codes-table.php:93
 #: admin/cb-timeframes/cb-timeframes-list.php:86
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:137
 msgid "Delete"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:136
+#: admin/cb-bookings/class-cb-bookings-table.php:142
 msgid "ID"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:137
+#: admin/cb-bookings/class-cb-bookings-table.php:143
 #: admin/cb-codes/class-cb-codes-table.php:124
-#: admin/cb-timeframes/cb-timeframes-edit.php:181
+#: admin/cb-timeframes/cb-timeframes-edit.php:206
 #: admin/cb-timeframes/cb-timeframes-list.php:118
 #: public/class-commons-booking.php:195 public/class-commons-booking.php:197
 msgid "Item"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:138
+#: admin/cb-bookings/class-cb-bookings-table.php:144
 #: admin/cb-timeframes/cb-timeframes-list.php:119
 msgid "Starting Date"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:139
-#: admin/cb-timeframes/cb-timeframes-edit.php:214
-#: admin/cb-timeframes/cb-timeframes-edit.php:218
+#: admin/cb-bookings/class-cb-bookings-table.php:145
+#: admin/cb-timeframes/cb-timeframes-edit.php:239
+#: admin/cb-timeframes/cb-timeframes-edit.php:243
 #: admin/cb-timeframes/cb-timeframes-list.php:120
 msgid "End Date"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:140
+#: admin/cb-bookings/class-cb-bookings-table.php:146
 #: admin/cb-codes/class-cb-codes-table.php:49
 #: admin/cb-codes/class-cb-codes-table.php:125
 #: admin/cb-codes/class-cb-codes.php:166
 msgid "Code"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:141
+#: admin/cb-bookings/class-cb-bookings-table.php:147
 msgid "User"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:142
-#: admin/cb-timeframes/cb-timeframes-edit.php:197
+#: admin/cb-bookings/class-cb-bookings-table.php:148
+#: admin/cb-timeframes/cb-timeframes-edit.php:222
 #: admin/cb-timeframes/cb-timeframes-list.php:117
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
 #: public/class-commons-booking.php:240 public/class-commons-booking.php:242
 msgid "Location"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:143
+#: admin/cb-bookings/class-cb-bookings-table.php:149
 msgid "Booking time"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:144
+#: admin/cb-bookings/class-cb-bookings-table.php:150
 msgid "Status"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:145
+#: admin/cb-bookings/class-cb-bookings-table.php:151
 #: admin/cb-codes/class-cb-codes-table.php:127
 #: admin/cb-timeframes/cb-timeframes-edit.php:78
 #: admin/cb-timeframes/cb-timeframes-list.php:85
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: admin/cb-bookings/class-cb-bookings-table.php:370
+#: admin/cb-bookings/class-cb-bookings-table.php:381
 #: admin/cb-codes/class-cb-codes-table.php:344
 #: admin/cb-timeframes/cb-timeframes-list.php:347
 msgid "Filter by: "
@@ -131,7 +131,7 @@ msgid "Codes "
 msgstr ""
 
 #: admin/cb-codes/class-cb-codes.php:171
-msgid " Missing Code"
+msgid "Code is missing!"
 msgstr ""
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:48
@@ -548,60 +548,64 @@ msgstr ""
 msgid "Item not found"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:89
+#: admin/cb-timeframes/cb-timeframes-edit.php:103
 msgid "Edit Timeframe"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:89
+#: admin/cb-timeframes/cb-timeframes-edit.php:103
 #, php-format
 msgid "Return to %s"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:89
-#: admin/cb-timeframes/cb-timeframes-edit.php:92
+#: admin/cb-timeframes/cb-timeframes-edit.php:103
+#: admin/cb-timeframes/cb-timeframes-edit.php:117
 msgid "All timeframes"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:92
+#: admin/cb-timeframes/cb-timeframes-edit.php:117
 #: admin/cb-timeframes/cb-timeframes-list.php:403
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:159
 msgid "Add new Timeframe"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:116
+#: admin/cb-timeframes/cb-timeframes-edit.php:140
 msgid "Save & generate Codes"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:205
-#: admin/cb-timeframes/cb-timeframes-edit.php:209
+#: admin/cb-timeframes/cb-timeframes-edit.php:141
+msgid "Print Codes"
+msgstr ""
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:230
+#: admin/cb-timeframes/cb-timeframes-edit.php:234
 msgid "Start Date"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:223
+#: admin/cb-timeframes/cb-timeframes-edit.php:248
 msgid "Timeframe Title"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:227
+#: admin/cb-timeframes/cb-timeframes-edit.php:252
 msgid "Timeframe title"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:247
+#: admin/cb-timeframes/cb-timeframes-edit.php:272
 msgid "Location is required"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:248
+#: admin/cb-timeframes/cb-timeframes-edit.php:273
 msgid "Item is required"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:249
+#: admin/cb-timeframes/cb-timeframes-edit.php:274
 msgid "Start Date is not valid"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:250
+#: admin/cb-timeframes/cb-timeframes-edit.php:275
 msgid "End Date is not valid"
 msgstr ""
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:280
+#: admin/cb-timeframes/cb-timeframes-edit.php:305
 msgid "None found. Please create one."
 msgstr ""
 
@@ -627,7 +631,7 @@ msgid "No timeframes set up yet."
 msgstr ""
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:186
-msgid " Something went wrong "
+msgid "Post id not found."
 msgstr ""
 
 #: admin/cb-users/class-cb-users.php:32
@@ -1484,7 +1488,7 @@ msgstr ""
 msgid "Error: You have to be logged in to view this page!"
 msgstr ""
 
-#: public/cb-bookings/class-cb-booking.php:661
+#: public/cb-bookings/class-cb-booking.php:663
 msgid "Error: Booking not found"
 msgstr ""
 
@@ -1730,7 +1734,7 @@ msgid "Your Booking:"
 msgstr ""
 
 #: templates/booking-review.php:16
-msgid " Pickup & Return "
+msgid "Pickup & Return "
 msgstr ""
 
 #: templates/booking-review.php:19
@@ -1742,7 +1746,7 @@ msgid "Opening hours:"
 msgstr ""
 
 #: templates/booking-review.php:33
-msgid " Your information "
+msgid "Your information "
 msgstr ""
 
 #: templates/booking-review.php:35
@@ -1762,7 +1766,7 @@ msgid "Phone number:"
 msgstr ""
 
 #: templates/booking-review.php:42
-msgid " Location information "
+msgid "Location information "
 msgstr ""
 
 #: templates/booking-review.php:48
