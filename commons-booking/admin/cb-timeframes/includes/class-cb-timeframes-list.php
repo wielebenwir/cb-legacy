@@ -183,7 +183,7 @@ class Commons_Booking_Timeframes_List {
           return FALSE;
         } 
     } else {
-      return __(' Something went wrong ' );
+      return __('Post id not found.' );
     }
   }
 

@@ -168,7 +168,7 @@ public function render_table( $dates ) {
     </thead>
   <?php foreach ($dates as $row) {
       if ( !isset($row[ 'code' ])) { 
-        $row[ 'code' ] = ('<span style="color:red">'. __( ' Missing Code', $this->prefix) .'</span>'); 
+        $row[ 'code' ] = ('<span style="color:red">'. __( 'Code is missing!', $this->prefix) .'</span>'); 
       } ?>
     <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php echo strip_tags( $row[ 'code' ] ); ?></td></tr>
   <?php } // end foreach ?>
