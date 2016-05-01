@@ -13,7 +13,7 @@
 </div>
 
 <?php // REVIEW ?>
-<div class="cb-headline"><?php echo __( ' Pickup & Return ', 'commons-booking' ); ?></div>
+<div class="cb-headline"><?php echo __( 'Pickup & Return ', 'commons-booking' ); ?></div>
 <div class="cb-booking-review cb-table">
   <div class="cb-row">
     <span class="cb-row-title"><?php echo __( 'Pickup at:', 'commons-booking' ); ?></span><?php echo $attributes['location_name']; ?>
@@ -30,7 +30,7 @@
 </div>
 
 <?php //USER ?>
-<div class="cb-headline"><?php echo __( ' Your information ', $attributes['plugin_slug'] ); ?></div>
+<div class="cb-headline"><?php echo __( 'Your information ', $attributes['plugin_slug'] ); ?></div>
 <div class="cb-booking-user cb-table">
   <div class="cb-row"><span class="cb-row-title"><?php echo __( 'Full name:', $attributes['plugin_slug'] ); ?></span><?php echo ( $attributes['first_name'] . ' ' . $attributes['last_name'] ); ?></div>
   <div class="cb-row"><span class="cb-row-title"><?php echo __( 'Email:', $attributes['plugin_slug'] ); ?></span><?php echo $attributes['user_email']; ?></div>
@@ -39,7 +39,7 @@
 </div>
 
 <?php //LOCATION ?>
-<div class="cb-headline"><?php echo  __( ' Location information ', $attributes['plugin_slug'] ); ?></div>
+<div class="cb-headline"><?php echo  __( 'Location information ', $attributes['plugin_slug'] ); ?></div>
 <div class="cb-booking-location cb-table">
   <div class="cb-row">
     <span class="cb-row-title"><?php _e('Address:', 'commons-booking'); ?></span><?php echo $attributes['location_address']; ?>
