@@ -13,36 +13,33 @@ A Wordpress plugin for management and booking of commons goods.
 
 == Description ==
 
-This is plugin is developed for a very specific use case. English documentation of the underlying concept is forthcoming. 
+This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
+
+It was developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
 
 **Unique features:**
 
-* Items, locations and timeframes: Items can be at different locations at specified timeframes. 
-* Set the locations and timeframes (when the item is bookable at that location) for each of your items. 
+* Items, locations and timeframes: No need for a "centralised storage", items can be assigned to different locations for the duration of a timeframe, each with their own contact information.  
+* Simple booking process: A booking is at least one full day, just pick the date on the calendar.
 * Auto-accept bookings: A registered user can book items without the need for administration. 
-* Codes: Automatically generate codes for the pickup.
-* Simple booking process with a beautiful calendar: Click a day to book an item. 
-* Users can leave comments (e.g. what they use the item for).
-
-
-**Background:**
-
-Developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
+* Codes: The plugin automatically generates booking codes, which are used at the station to validate the booking. 
+* Users can leave booking comments (e.g. what they use the item for).
 
 
 **Possible use cases:**
 
-* You have some special tools that you don´t use every day, and you want to make them available to a your friends.
-*  You own a bike that you want to offer for the community, and it will be stationed for pickup at different locations throughout the year.
+* You have some special tools that you don´t use every day, and you want to make them available to your friends.
+*  You own a cargo bike that you want to share with the community, and it will be placed at different locations throughout the year.
 
 **Plugin websites**
 
-* Official Website (German): http://www.wielebenwir.de/projekte/commons-booking
-* Manual (English): http://dein-lastenrad.de/index.php?title=Introduction
-* Bug-Tracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open 
-* Forum (Ask questions here, in german): http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
+* [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
+* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
+* [Bug-Tracker](https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open ) 
+* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
 
 == Upgrade Notice ==
+
 Initial Version. 
 
 
@@ -75,8 +72,8 @@ Initial Version.
 
 = Where can i find help/report bugs? =
 
-* German language bulletin board: http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software
-* Bugtracker: https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open
+* [Bug-Tracker](https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open ) 
+* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
 
 
 == Screenshots ==
@@ -88,9 +85,18 @@ Initial Version.
 
 == Changelog ==
 
-= 0.7.0.7 =
+= 0.8 = 
 
-* FIX: Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
+* FEATURE: Added print button to edit timeframes screen and custom print styles. 
+* ENHANCEMENT: Instead of code ids, the codes are now shown in the bookings table.
+* FIX: All locations/items are visible in the filter dropdown again.
+* FIX: Users sometimes could not access their bookings in 0.7.0.7
+* Cleanup of language files (Removed Whitespaces in strings, etc.)
+
+= 0.7.0.6 =
+
+	* FIX:  Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
+
 
 = 0.7.0.6 =
 
@@ -166,7 +172,7 @@ Initial Version.
 * ENHANCEMENT: Opening hours are now shown on the calendar pages. 
 
 
-== 0.5.3.1 == 
+= 0.5.3.1 =
 * Fix Issue #96: Login redirect not working
 
 = 0.5.3 =
@@ -176,14 +182,14 @@ Initial Version.
 * Issue #74, Issue #71 Fix: A day that was booked couldn´t be booked again.
 * Fix: Replaced user_name with first_name & last_name
 
-== 0.5.2.1 == 
+= 0.5.2.1 = 
 * fixed missing translation strings ("Confirm Booking" & "Cancel")
 * Now printing the address fields in item single view as comma-seperated
 
-== 0.5.2 == 
+= 0.5.2 = 
 * Removed login page backend setting & creation by plugin (all handled by user page)
 
-== 0.5.1 ==
+= 0.5.1 =
 * New translation file (Thanks, Albert!)
 * Enhancement: Added link to WP Passwort recovery page. 
 * Enhancement: If registration submit was not successful, the following page will include the form now. 
@@ -194,13 +200,13 @@ Initial Version.
 * Fix: Fixed a bug where days with multi-page bookings were not correctly rendered as "non-bookable" if the booking start date had passed.
 * Fix: Pagination in codes table: offset is calculated correctly now.
 
-== 0.5.0.2 == 
+= 0.5.0.2 = 
 * removed "info/more" button (normal WP page content is rendered now)
 
-== 0.5.0.1 == 
+= 0.5.0.1 = 
 * Fixed div tag not closed
 
-== 0.5 ==
+= 0.5 =
 * Feature: Issue #34  Shortcode for items implemented
 * Feature: Days to show: Set the days to 
 * Feature: Single Items: "More…" button is only shown if description is entered (item edit main text field)
@@ -215,10 +221,10 @@ Initial Version.
 * Fix: #36 fixed the issue that the timeframes with a start date later than today weren´t shown correctly in the item edit screen.
 * + many more…
 
-== 0.4.2 =
+= 0.4.2 =
 * Added German translation
 
-== 0.4.1.1 =
+= 0.4.1.1 =
 * Fix: Now compatible with PHP Version 5.3.26
 
 = 0.4.1 =
