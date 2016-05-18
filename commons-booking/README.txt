@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.5.1
-Stable Tag: 0.7.0.6
+Stable Tag: 0.8.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -84,6 +84,14 @@ Initial Version.
 4. User bookings list
 
 == Changelog ==
+
+= 0.8.0.6 = 
+
+* Removed language files & functions. 
+
+= 0.8.0.2 = 
+
+* Repackaging so the german translation gets picked up. 
 
 = 0.8 = 
 
