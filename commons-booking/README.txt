@@ -85,6 +85,12 @@ Initial Version.
 
 == Changelog ==
 
+= 0.8.0.7 =
+
+* FIX Issue #120: Bookings can be deleted, correct Ids are printed in the bookings table.
+* FIX Translation strings for the booking table. 
+
+
 = 0.8.0.6 = 
 
 * Removed language files & functions. 
