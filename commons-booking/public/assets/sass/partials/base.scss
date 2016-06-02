@@ -78,8 +78,7 @@
   a.cb-button {
     @extend .cb-small;
     background: $highlight-color;
-    border: 1px solid $highlight-color;
-  }
+   }
 }
 
 .cb-timeframe-title  {
@@ -115,10 +114,10 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   background: $green;
   color: $white;
   @include rounded($radius);
-  border: 1px solid $green !important;
+  border: none !important;
   &:hover {
     background: $highlight-color;
-    border: 1px solid $highlight-color;
+    // border: 1px solid $highlight-color;
     color: $white;
   }
   &.cb-small {
@@ -127,11 +126,9 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   }
   &.warning {
     background: $dark-red;
-    border: 1px solid $dark-red !important;
+    // border: 1px solid $dark-red !important;
     &:hover {
       background: $red;
-        border: 1px solid $red;
-
     }
   }
 }
