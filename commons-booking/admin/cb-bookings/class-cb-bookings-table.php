@@ -340,7 +340,12 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         $type = $filters[ $key ][ 'posttype' ];
         $name = $filters[ $key ][ 'name' ];
         $filter = $filters[ $key ][ 'filter' ];
-        $args = array(  'post_type' => $type, 'posts_per_page' => -1 );
+        $args = array( 
+            'post_type' => $type, 
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order'   => 'ASC',
+        );
         $the_query = new WP_Query( $args );
         if ( $the_query->have_posts() ) {
 
