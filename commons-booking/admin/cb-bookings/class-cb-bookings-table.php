@@ -108,7 +108,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // be something like &person=2
         $actions = array(
             // 'view' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('View', $this->plugin_slug )),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', $this->plugin_slug )),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['booking_ID'], __('Delete', $this->plugin_slug )),
         );
 
         return $this->row_actions($actions);
@@ -139,7 +139,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'id' => __('ID', $this->plugin_slug ),
+            'booking_ID' => __('ID', $this->plugin_slug ),
             'item_id' => __('Item', $this->plugin_slug ),
             'date_start' => __('Starting Date', $this->plugin_slug ),
             'date_end' => __('End Date', $this->plugin_slug ),
@@ -170,7 +170,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             'booking_time' => array('booking_time', false),
             'status' => array('status', false),
             'location_id' => array('location_id', false),
-            'id' => array('ID', false),
+            'booking_ID' => array('ID', false),
         );
         return $sortable_columns;
     }
@@ -306,7 +306,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // [REQUIRED] define $items array
         // notice that last argument is ARRAY_A, so we will retrieve array
         $this->items = $wpdb->get_results($wpdb->prepare("
-            SELECT * FROM $this->table_bookings 
+            SELECT *, $this->table_bookings.id as booking_ID FROM $this->table_bookings 
             LEFT JOIN $this->table_codes
             ON $this->table_bookings.code_id = $this->table_codes.id
             $sqlfilter 
