@@ -250,19 +250,19 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
  */
 .cb-timeframe {
   /* Calendar */ }
-  .cb-timeframe .pusher.day1, .cb-timeframe ul.cb-calendar li.day1:first-child {
+  .cb-timeframe .pusher.day1, .cb-timeframe ul.cb-calendar li.day1:first-of-type {
     margin-left: 0; }
-  .cb-timeframe .pusher.day2, .cb-timeframe ul.cb-calendar li.day2:first-child {
+  .cb-timeframe .pusher.day2, .cb-timeframe ul.cb-calendar li.day2:first-of-type {
     margin-left: 14.28571%; }
-  .cb-timeframe .pusher.day3, .cb-timeframe ul.cb-calendar li.day3:first-child {
+  .cb-timeframe .pusher.day3, .cb-timeframe ul.cb-calendar li.day3:first-of-type {
     margin-left: 28.57143%; }
-  .cb-timeframe .pusher.day4, .cb-timeframe ul.cb-calendar li.day4:first-child {
+  .cb-timeframe .pusher.day4, .cb-timeframe ul.cb-calendar li.day4:first-of-type {
     margin-left: 42.85714%; }
-  .cb-timeframe .pusher.day5, .cb-timeframe ul.cb-calendar li.day5:first-child {
+  .cb-timeframe .pusher.day5, .cb-timeframe ul.cb-calendar li.day5:first-of-type {
     margin-left: 57.14286%; }
-  .cb-timeframe .pusher.day6, .cb-timeframe ul.cb-calendar li.day6:first-child {
+  .cb-timeframe .pusher.day6, .cb-timeframe ul.cb-calendar li.day6:first-of-type {
     margin-left: 71.42857%; }
-  .cb-timeframe .pusher.day7, .cb-timeframe ul.cb-calendar li.day7:first-child {
+  .cb-timeframe .pusher.day7, .cb-timeframe ul.cb-calendar li.day7:first-of-type {
     margin-left: 85.71429%; }
   .cb-timeframe .cb-location {
     display: block;
@@ -274,7 +274,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
     margin: 1em 0 1em 0; }
     .cb-timeframe ul.cb-calendar input {
       display: none; }
-    .cb-timeframe ul.cb-calendar li {
+    .cb-timeframe ul.cb-calendar li, .cb-timeframe ul.cb-calendar div.cb-weekday-row span {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -291,7 +291,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
       -ms-transition: all 0.3s ease;
       -o-transition: all 0.3s ease;
       transition: all 0.3s ease; }
-      .cb-timeframe ul.cb-calendar li .cb-cal-inner {
+      .cb-timeframe ul.cb-calendar li .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span .cb-cal-inner {
         min-height: 40px;
         -webkit-border-radius: 7px;
         -moz-border-radius: 7px;
@@ -301,54 +301,59 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
         background-clip: padding-box;
         height: 100%;
         padding: 2px; }
-        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-j {
+        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-j, .cb-timeframe ul.cb-calendar div.cb-weekday-row span .cb-cal-inner span.cb-j {
           margin-top: 5px;
           display: block;
           line-height: 1em; }
-        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-M {
+        .cb-timeframe ul.cb-calendar li .cb-cal-inner span.cb-M, .cb-timeframe ul.cb-calendar div.cb-weekday-row span .cb-cal-inner span.cb-M {
           margin-bottom: 5px;
           display: block;
           font-size: 0.7em; }
-      .cb-timeframe ul.cb-calendar li.bookable {
+      .cb-timeframe ul.cb-calendar li.bookable, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.bookable {
         cursor: pointer;
         color: #56a820; }
-        .cb-timeframe ul.cb-calendar li.bookable .cb-cal-inner:hover {
+        .cb-timeframe ul.cb-calendar li.bookable .cb-cal-inner:hover, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.bookable .cb-cal-inner:hover {
           background: #27427d;
           color: white; }
-      .cb-timeframe ul.cb-calendar li.selected, .cb-timeframe ul.cb-calendar li.closed.overbooking {
+      .cb-timeframe ul.cb-calendar li.selected, .cb-timeframe ul.cb-calendar li.closed.overbooking, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.selected, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.closed.overbooking {
         background: #3356a4;
         color: #adbbda; }
-      .cb-timeframe ul.cb-calendar li.selected-first {
+      .cb-timeframe ul.cb-calendar li.selected-first, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.selected-first {
         -webkit-border-top-left-radius: 7px;
         -webkit-border-bottom-left-radius: 7px;
         -moz-border-radius-topleft: 7px;
         -moz-border-radius-bottomleft: 7px;
         border-top-left-radius: 7px;
         border-bottom-left-radius: 7px; }
-        .cb-timeframe ul.cb-calendar li.selected-first .cb-cal-inner {
+        .cb-timeframe ul.cb-calendar li.selected-first .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.selected-first .cb-cal-inner {
           color: white;
           background: #27427d; }
-      .cb-timeframe ul.cb-calendar li.selected-last {
+      .cb-timeframe ul.cb-calendar li.selected-last, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.selected-last {
         -webkit-border-top-right-radius: 7px;
         -webkit-border-bottom-right-radius: 7px;
         -moz-border-radius-topright: 7px;
         -moz-border-radius-bottomright: 7px;
         border-top-right-radius: 7px;
         border-bottom-right-radius: 7px; }
-        .cb-timeframe ul.cb-calendar li.selected-last .cb-cal-inner {
+        .cb-timeframe ul.cb-calendar li.selected-last .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.selected-last .cb-cal-inner {
           color: white;
           background: #27427d; }
-      .cb-timeframe ul.cb-calendar li.booked {
+      .cb-timeframe ul.cb-calendar li.booked, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.booked {
         cursor: not-allowed;
         color: #a70001; }
-        .cb-timeframe ul.cb-calendar li.booked .cb-cal-inner {
+        .cb-timeframe ul.cb-calendar li.booked .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.booked .cb-cal-inner {
           background: #a70001;
           color: white; }
-      .cb-timeframe ul.cb-calendar li.closed {
+      .cb-timeframe ul.cb-calendar li.closed, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.closed {
         cursor: not-allowed;
         color: #aeaeae; }
-        .cb-timeframe ul.cb-calendar li.closed .cb-cal-inner {
+        .cb-timeframe ul.cb-calendar li.closed .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.closed .cb-cal-inner {
           background: #f6f6f6; }
+    .cb-timeframe ul.cb-calendar div.cb-weekday-row {
+      display: none; }
+      .cb-timeframe ul.cb-calendar div.cb-weekday-row span {
+        color: #aeaeae;
+        font-size: 0.7em; }
 
 /* Booking Bar */
 /*

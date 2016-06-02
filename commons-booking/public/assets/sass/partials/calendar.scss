@@ -49,12 +49,16 @@
       display:none;
     }
 
-    li:first-child {
+    .cb-weekday {
+
+    }
+
+    li:first-of-type {
       @extend .pusher; // add margin to push first entry. 
     }
 
 
-    li {
+    li, div.cb-weekday-row span {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -148,6 +152,14 @@
 
         }
       }
+    }
+    div.cb-weekday-row {
+      display: none;
+      span {
+        color: darken($grey, 20%);
+        font-size: 0.7em;
+      }
+
     }
   }
 }

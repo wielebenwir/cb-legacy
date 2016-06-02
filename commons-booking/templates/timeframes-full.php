@@ -24,6 +24,16 @@
     </div>
     <div id ="timeframe_<?=$tf['timeframe_id'] ?>" class="cb_timeframe_form">
         <ul class="cb-calendar">
+        <?php // optional: Row of weekday names ?>
+        <div class="cb-weekday-row">
+          <span><?php echo __('Mon', 'commons-booking'); ?></span>
+          <span><?php echo __('Tue', 'commons-booking'); ?></span>
+          <span><?php echo __('Wed', 'commons-booking'); ?></span>
+          <span><?php echo __('Thu', 'commons-booking'); ?></span>
+          <span><?php echo __('Fri', 'commons-booking'); ?></span>
+          <span><?php echo __('Sat', 'commons-booking'); ?></span>
+          <span><?php echo __('Sun', 'commons-booking'); ?></span>
+        </div>
           <?php // calendar cells ?>            
           <?php foreach ( $tf['calendar'] as $cell ) { ?>
             <li id="<?=$cell['id'] ?>" class="cb-tooltip <?=$cell['weekday_code'] ?> <?=$cell['status'] ?>" title="<?php echo $cell['tooltip']; ?>"><div class="cb-cal-inner"
