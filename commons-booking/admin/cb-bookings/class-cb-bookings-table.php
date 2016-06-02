@@ -51,8 +51,8 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         $this->table_codes =  $wpdb->prefix . 'cb_codes';
 
         parent::__construct(array(
-            'singular' => __( 'Booking' ),
-            'plural' => __( 'Bookings' ),
+            'singular' => __( 'Booking', 'commons-booking' ),
+            'plural' => __( 'Bookings', 'commons-booking' ),
             'commons-booking'
         ));
 
@@ -108,7 +108,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // be something like &person=2
         $actions = array(
             // 'view' => sprintf('<a href="?page=cb_bookings_edit&id=%s" class="button" style="visibility:visible">%s</a>', $item['id'], __('View', $this->plugin_slug )),
-            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['booking_ID'], __('Delete', $this->plugin_slug )),
+            'delete' => sprintf('<a href="?page=%s&action=delete&id=%s" class="button" style="visibility:visible">%s</a>', $_REQUEST['page'], $item['booking_ID'], __('Delete', 'commons-booking' )),
         );
 
         return $this->row_actions($actions);
@@ -139,16 +139,16 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     {
         $columns = array(
             'cb' => '<input type="checkbox" />', //Render a checkbox instead of text
-            'booking_ID' => __('ID', $this->plugin_slug ),
-            'item_id' => __('Item', $this->plugin_slug ),
-            'date_start' => __('Starting Date', $this->plugin_slug ),
-            'date_end' => __('End Date', $this->plugin_slug ),
-            'bookingcode' => __('Code', $this->plugin_slug ),
-            'user_id' => __('User', $this->plugin_slug ),
-            'location_id' => __('Location', $this->plugin_slug ),
-            'booking_time' => __('Booking time', $this->plugin_slug ),
-            'status' => __('Status', $this->plugin_slug ),
-            'edit_actions' => __('Edit', $this->plugin_slug ),
+            'booking_ID' => __('ID', 'commons-booking' ),
+            'item_id' => __('Item', 'commons-booking' ),
+            'date_start' => __('Starting Date', 'commons-booking' ),
+            'date_end' => __('End Date', 'commons-booking' ),
+            'bookingcode' => __('Code', 'commons-booking' ),
+            'user_id' => __('User', 'commons-booking' ),
+            'location_id' => __('Location', 'commons-booking' ),
+            'booking_time' => __('Booking time', 'commons-booking' ),
+            'status' => __('Status', 'commons-booking' ),
+            'edit_actions' => __('Edit', 'commons-booking' ),
         );
         return $columns;
     }
@@ -216,12 +216,12 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     public function filterDefinition() 
     {
      $filterDefinition = array ( 
-        array ( 'name' => 'Items', 
+        array ( 'name' => __('Items', 'commons-booking'), 
                 'filter' =>'item-filter', 
                 'id' => 'item_id',
                 'posttype' => 'cb_items'
                 ),
-        array ( 'name' => 'Locations', 
+        array ( 'name' => __('Locations', 'commons-booking'), 
                 'filter' =>'location-filter', 
                 'id' => 'location_id',
                 'posttype' => 'cb_locations'
@@ -378,7 +378,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
             echo (' <div class="tablefilters">' );
-            echo __( 'Filter by: ');  
+            echo __( 'Filter by: ', 'commons-booking');  
             $this->filterDropDown( 'location-filter' ); 
             $this->filterDropDown( 'item-filter' );
             echo ( '</div>' );
