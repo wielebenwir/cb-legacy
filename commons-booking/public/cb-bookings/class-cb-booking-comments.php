@@ -18,9 +18,12 @@ class CB_Booking_Comments {
   public $form_args;
   public $comments; 
   public $url;
+  public $table_name;
 
   public function __construct( ) {
 
+    global $wpdb;
+    $this->table_name = $wpdb->prefix . 'cb_bookings'; 
 
   }
 
@@ -39,12 +42,13 @@ class CB_Booking_Comments {
     $return = array();
 
     // get booking_code-id fromt codes database
+    // @TODO: Add Prefix!
      $sqlresult = $wpdb->get_results($wpdb->prepare(
         "
-        SELECT wp_cb_bookings.hash, comment_content 
-        FROM wp_cb_bookings 
+        SELECT $this->table_name.hash, comment_content 
+        FROM $this->table_name
         INNER JOIN wp_commentmeta
-          ON wp_commentmeta.meta_value=wp_cb_bookings.hash 
+          ON wp_commentmeta.meta_value=$this->table_name.hash 
         INNER JOIN wp_comments
           ON wp_comments.comment_ID= wp_commentmeta.comment_id 
         WHERE comment_approved = 1 AND item_id = %s
