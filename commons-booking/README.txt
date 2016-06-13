@@ -85,6 +85,10 @@ Initial Version.
 
 == Changelog ==
 
+= 0.8.0.8 =
+* FIX: Booking comments now displayed regardless of DB Prefix.
+
+
 = 0.8.0.7 =
 
 * FIX Issue #120: Bookings can be deleted, correct Ids are printed in the bookings table.

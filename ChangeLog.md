@@ -1,3 +1,15 @@
+# 0.8.0.8 
+* FIX: Booking comments now displayed regardless of DB Prefix.
+
+# 0.8.0.7
+
+* FIX Issue #120: Bookings can be deleted, correct Ids are printed in the bookings table.
+* FIX Translation strings for the booking table. 
+* FIX: Removed button borders in css
+* FIX: Logout-Button has button styling now.
+* ENHANCEMENT Bookings table filter dropdown: Now sorted alphabetically.
+* FEATURE: Added optional row of weekdays.
+
 # 0.7.0.6
 
 * FIX: Address field now printed out correctly
