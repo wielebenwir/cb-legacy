@@ -42,7 +42,6 @@ class CB_Booking_Comments {
     $return = array();
 
     // get booking_code-id fromt codes database
-    // @TODO: Add Prefix!
      $sqlresult = $wpdb->get_results($wpdb->prepare(
         "
         SELECT $this->table_name.hash, comment_content 
