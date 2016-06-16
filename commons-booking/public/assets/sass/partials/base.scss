@@ -57,7 +57,10 @@
     }
     &:last-child {
       @include border-radiuses(0, $radius, $radius, 0 );
-
+    }
+    &:only-child {
+       @include border-radiuses($radius, $radius, $radius, $radius );
+     
     }
     .cb-row-title {
       font-weight: bold;
