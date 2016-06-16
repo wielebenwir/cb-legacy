@@ -40,20 +40,21 @@ class CB_Booking_Comments {
 
     global $wpdb;
     $return = array();
+    $commentmeta_table = $wpdb->prefix . "commentmeta";
+    $comments_table = $wpdb->prefix . "comments";
 
-    // get booking_code-id fromt codes database
+    // get booking_code-id from codes database
      $sqlresult = $wpdb->get_results($wpdb->prepare(
         "
         SELECT $this->table_name.hash, comment_content 
         FROM $this->table_name
-        INNER JOIN wp_commentmeta
-          ON wp_commentmeta.meta_value=$this->table_name.hash 
-        INNER JOIN wp_comments
-          ON wp_comments.comment_ID= wp_commentmeta.comment_id 
+        INNER JOIN $commentmeta_table
+          ON $commentmeta_table.meta_value=$this->table_name.hash 
+        INNER JOIN $comments_table
+          ON $comments_table.comment_ID= $commentmeta_table.comment_id 
         WHERE comment_approved = 1 AND item_id = %s
         ", 
         $item_id), ARRAY_A); // get dates from 
-
 
      foreach ($sqlresult as $comments) {
        $return[ $comments['hash'] ] = $comments['comment_content'];
