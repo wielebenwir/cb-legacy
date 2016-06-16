@@ -88,6 +88,7 @@ Initial Version.
 = 0.8.0.9 =
 * FIX: Booking comments now displayed regardless of DB Prefix (again, this should do it).
 * FIX: CSS Styling of rows with only one item.
+* FIX: Removed PHP shorthand tag causing errors on some servers.
 
 
 = 0.8.0.8 =
