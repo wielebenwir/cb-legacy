@@ -95,7 +95,7 @@ class CB_Users extends Commons_Booking {
                     <label for="<?php esc_attr_e( $field['field_name'] ) ?>"><?php esc_attr_e( $field['title'], 'commons-booking') ?><br />
                         <input type="text" name="<?php esc_attr_e( $field['field_name'] ) ?>" id="<?php esc_attr_e( $field['field_name'] ) ?>" class="input" value="<?php echo esc_attr( wp_unslash( $row ) ); ?>" size="25" /><?php esc_attr_e( $field['description'], 'commons-booking') ?>
                     </label>
-                <? } ?>
+                <?php } ?>
             </p>
             <?php
          }
