@@ -1,4 +1,11 @@
+# 0.8.0.9
+
+* FIX: Booking comments now displayed regardless of DB Prefix (again, this should do it).
+* FIX: CSS Styling of rows with only one item.
+
+
 # 0.8.0.8 
+
 * FIX: Booking comments now displayed regardless of DB Prefix.
 
 # 0.8.0.7

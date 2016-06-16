@@ -24,7 +24,7 @@ class Commons_Booking {
      *
      * @var     string
      */
-    const VERSION = '0.8.0.8';
+    const VERSION = '0.8.0.9';
 
     /**
      *

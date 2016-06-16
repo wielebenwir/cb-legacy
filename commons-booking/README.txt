@@ -4,8 +4,8 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.5.1
-Stable Tag: 0.8.0.6
+Tested up to: 4.5.2
+Stable Tag: 0.8.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,9 +85,13 @@ Initial Version.
 
 == Changelog ==
 
+= 0.8.0.9 =
+* FIX: Booking comments now displayed regardless of DB Prefix (again, this should do it).
+* FIX: CSS Styling of rows with only one item.
+
+
 = 0.8.0.8 =
 * FIX: Booking comments now displayed regardless of DB Prefix.
-
 
 = 0.8.0.7 =
 
