@@ -1,3 +1,7 @@
+# 0.8.0.10
+
+* FIX: /Languages/ folder removed from svn, translations should be applied now. 
+
 # 0.8.0.9
 
 * FIX: Booking comments now displayed regardless of DB Prefix (again, this should do it).
