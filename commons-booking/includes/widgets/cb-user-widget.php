@@ -111,8 +111,7 @@ class CB_User_Widget extends WPH_Widget {
 
 		$content = "";
 	  	$current_user = wp_get_current_user();
-		// $option = get_option( 'commons-booking-settings-pages');
-		// $id = $option['commons-booking_user_bookings_page_select'];
+
 		$bookings_page_id = $this->settings->get_settings('pages', 'user_bookings_page_select');
 		$bookings_page_url = get_permalink( $bookings_page_id );
 
