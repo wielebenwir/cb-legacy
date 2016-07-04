@@ -702,6 +702,15 @@ class Commons_Booking {
     }    
 
     /**
+     * Redirect: User page
+     *
+     * @since    0.2
+     */
+    public function get_cb_settings() {
+       return $this->settings;
+    }
+
+    /**
      * NOTE:  Shortcode simple set of functions for creating macro codes for use
      *        in post content.
      *
