@@ -85,9 +85,10 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
 
 
 /*
- * Load Widget boilerplate - not used right now
+ * Load Widgets
  */
-// require_once( plugin_dir_path( __FILE__ ) . 'includes/Widgets-Helper/wph-widget-class.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'includes/widgets/cb-user-widget.php' );
+  
 
 
 /*
