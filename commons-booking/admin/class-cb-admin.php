@@ -126,11 +126,12 @@ class Commons_Booking_Admin {
 
     // add user profile fields 
   	add_action( 'personal_options_update', array( $cb_users , 'save_extra_profile_fields' ));
-		add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ));		
+	add_action( 'edit_user_profile_update', array( $cb_users , 'save_extra_profile_fields' ));		
+	add_action( 'edit_user_profile', array( $cb_users , 'show_extra_profile_fields' ));		
 
 
-		// Remove Wordpress styles
-		add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
+	// Remove Wordpress styles
+	add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
 
     // Login/Registration Customization. Applied only if $settings->customize = TRUE
     $enable_redirect = $this->settings->get_settings( 'advanced', 'enable_redirect');
