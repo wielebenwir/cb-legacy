@@ -124,8 +124,8 @@
             'type' => 'text_small',
           ),           
           array(
-            'name' => __( 'Calendar days to show', 'commons-booking' ),
-            'desc' => __( 'Set how many days are displayed on the booking calendar (starting form today)', 'commons-booking' ),
+            'name' => __( 'Calendar period', 'commons-booking' ),
+            'desc' => __( 'Set how many days are displayed on the booking calendar (starting from today)', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_daystoshow',
             'type' => 'text_small',
           ),          
