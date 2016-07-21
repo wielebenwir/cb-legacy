@@ -40,7 +40,8 @@ class CB_Data {
     $this->prefix = 'commons-booking';
     $this->settings = new CB_Admin_Settings;
     // from settings
-    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );    
+    $this->render_daynames = $this->settings->get_settings( 'bookings', 'bookingsettings_calendar_render_daynames' );
     $this->target_url = $this->settings->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
 
@@ -510,7 +511,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     'date_range' => $daterange_string,
     'timeframe_title' =>  $timeframe['timeframe_title'],
     'timeframe_id' =>  $timeframe['id'],
-    'location_id' =>  $location['id']
+    'location_id' =>  $location['id'],
+    'render_daynames' => $this->render_daynames
     );
   
   return $attributes;

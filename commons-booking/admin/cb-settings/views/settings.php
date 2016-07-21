@@ -128,13 +128,19 @@
             'desc' => __( 'Set how many days are displayed on the booking calendar (starting from today)', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_daystoshow',
             'type' => 'text_small',
+          ),           
+          array(
+            'name' => __( 'Show week days', 'commons-booking' ),
+            'desc' => __( 'Show the week days (Mon, Tue, ...) above the calendar.', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_bookingsettings_calendar_render_daynames',
+            'type' => 'checkbox',
           ),          
           array(
             'name' => __( 'Allow booking over closed days', 'commons-booking' ),
             'desc' => __( 'Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as "closed" in the location editor, user will be able book from friday till monday.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_allowclosed',
             'type' => 'checkbox',
-          ),          
+          ), 
           array(
             'name' => __( 'Allow booking comments.', 'commons-booking' ),
             'desc' => __( 'Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments in WP Settings and for the item.', 'commons-booking' ),
