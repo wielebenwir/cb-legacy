@@ -239,12 +239,15 @@
           }
           // set classes
           function addClasses() {
-            selected.first().addClass('selected-first');
-            selected.last().addClass('selected-last');
-            if ( overbookDays.length > 0 ) {
-              $.each(overbookDays, function (key ){
-                    $(betweenDays).get(key).addClass('overbooking');
-                  } );
+
+            var start = selected.first();
+            var end = selected.last();
+
+            start.addClass('selected-first'); // mark first el
+            end.addClass('selected-last'); // mark last el
+
+            if ( overbookDays.length > 0 ) {  // mark all days that are overbookable          
+              start.nextUntil( end ).addClass('overbooking');
             }
           }
 
