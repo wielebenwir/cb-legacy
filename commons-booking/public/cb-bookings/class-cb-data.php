@@ -498,7 +498,6 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     $contact_string = $location[ 'contact' ];
 
   }
-
   $address_string = $this->format_adress( $location[ 'address' ] );
   
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
