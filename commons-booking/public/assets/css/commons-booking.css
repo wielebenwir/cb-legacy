@@ -361,11 +361,9 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
         color: #aeaeae; }
         .cb-timeframe ul.cb-calendar li.closed .cb-cal-inner, .cb-timeframe ul.cb-calendar div.cb-weekday-row span.closed .cb-cal-inner {
           background: #f6f6f6; }
-    .cb-timeframe ul.cb-calendar div.cb-weekday-row {
-      display: none; }
-      .cb-timeframe ul.cb-calendar div.cb-weekday-row span {
-        color: #aeaeae;
-        font-size: 0.7em; }
+    .cb-timeframe ul.cb-calendar div.cb-weekday-row span {
+      color: #aeaeae;
+      font-size: 0.7em; }
 
 /* Booking Bar */
 /*
