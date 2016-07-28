@@ -165,6 +165,7 @@ class Commons_Booking {
 
         // Load public-facing style sheet and JavaScript.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_theme_styles' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
@@ -388,10 +389,22 @@ class Commons_Booking {
      *
      * @return    string    
      */
-    public function get_plugin_dir() {
+    public static function get_plugin_dir() {
 
-        $path = plugin_dir_path( __FILE__ ) . '../';
+        $path = plugin_dir_path( __FILE__ );
         return $path;
+    }    
+    /**
+     * Return path to plugin base.
+     *
+     * @since     0.9
+     *
+     * @return    string    
+     */
+    public static function get_plugin_url() {
+
+        $url = plugin_dir_url( __FILE__ );
+        return $url;
     }
     /**
      * Return path to templates.
@@ -608,12 +621,28 @@ class Commons_Booking {
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
-        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-calendar', plugins_url( 'assets/css/commons-booking.css', __FILE__ ), array(), self::VERSION );   
-        if ( is_singular ( 'cb_items' )) {
-            wp_enqueue_style( $this->get_plugin_slug() . '-tooltip-css', plugins_url( 'assets/css/tooltipster/tooltipster.css', __FILE__ ), array(), self::VERSION );
-            wp_enqueue_style( $this->get_plugin_slug() . '-tooltip-css-theme', plugins_url( 'assets/css/tooltipster/tooltipster-light.css', __FILE__ ), array(), self::VERSION );
-        }         
     }
+
+    /**
+     * Register and enqueue public-facing theme style sheet.
+     *
+     * @since    0.9
+     */
+    public function enqueue_theme_styles() {
+       
+        $theme_name = $this->settings->get_settings( 'pages', 'theme_select');
+
+
+        if ( empty ( $theme_name ) ) {
+            $theme_name = 'standard';
+        }
+        var_dump($theme_name);
+
+        $url = $this->get_plugin_url() . '/assets/css/themes/' . $theme_name . '/' . $theme_name . '.css';
+
+        wp_enqueue_style( $this->get_plugin_slug() . '-plugin-themes', $url , array(), self::VERSION );           
+    }
+
 
     public function enqueue_cleanup_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-profile-cleanup-tml', plugins_url( 'assets/css/profile-cleanup-tml.css', __FILE__ ), array(), self::VERSION );

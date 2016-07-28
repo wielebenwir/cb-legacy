@@ -1,5 +1,5 @@
 /*
- * Main SCSS - import partials
+ * Standard Theme
  * @package   Commons_Booking
  * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
@@ -18,8 +18,8 @@
 @import "partials/calendar";
 /* Booking Bar */
 @import "partials/bookingbar";
-/* Tooltipster */
-// @import "partials/tooltipster";
+/* Tooltips */
+@import "partials/tooltipster";
 
 
 

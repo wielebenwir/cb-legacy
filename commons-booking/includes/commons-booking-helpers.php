@@ -34,6 +34,30 @@ function pages_dropdown() {
 }
 
 /**
+ * Get a List of all wordpress pages for use in dropdown selects. 
+ *
+ * @return Array of Sub-Folders
+ */
+
+function theme_select() {
+
+  $themes_dir = Commons_Booking::get_plugin_dir() . 'assets/css/themes';
+  $themes_url = Commons_Booking::get_plugin_url() . 'assets/css/themes';
+  $directories = glob( $themes_dir . '/*' , GLOB_ONLYDIR);
+
+  $dropdown = array();
+
+  var_dump($themes_url);
+  
+  foreach ( $directories as $dir ) {
+    $theme_name = basename( $dir );
+    $dropdown[ $theme_name ] = $theme_name;
+  }
+  return $dropdown;
+}
+
+
+/**
  * Replace template tags – {MYTAG} with tags array
  *
  *@param string to replace

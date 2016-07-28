@@ -45,6 +45,7 @@ class CB_Admin_Settings extends Commons_Booking {
     // Default Settings
     $this->defaults = array(
         $this->prefix. '-settings-pages' => array(
+          $this->prefix.'_theme_select' => 'standard',
           $this->prefix.'_item_page_select' => $this->item_page_id,
           $this->prefix.'_user_bookings_page_select' => $this->user_bookings_page_id,
           $this->prefix.'_booking_confirmed_page_select' => $this->booking_confirmed_page_id, 
