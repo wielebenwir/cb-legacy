@@ -38,6 +38,7 @@
           // js vars from php
           var maxDays = cb_js_vars.setting_maxdays;
           var allowclosed = cb_js_vars.setting_allowclosed;
+          var closed_days_count_as = parseInt ( cb_js_vars.setting_closed_days_count );
           var booking_review_page = cb_js_vars.setting_booking_review_page;
           var text_start_booking = cb_js_vars.text_start_booking;
           var text_return = cb_js_vars.text_return;
@@ -96,7 +97,7 @@
           endContainer.html ( '' );
           bookingButton.hide();
 
-
+          // tooltipster script
           $('.cb-tooltip').tooltipster({
             animation: 'fade',
             delay: 0,
@@ -210,7 +211,7 @@
                 var allowedClasses = ['closed', 'selected'];
                 overbookDays = checkForClass ( betweenDays, allowedClasses);
                 if ( typeof overbookDays != 'undefined' ) { // all days between are closed
-                  selectedCount++; // booking over closed days, which count as one day           
+                  selectedCount = selectedCount + closed_days_count_as ; // booking over closed days, which count as one day           
                 } else { // at least one day between is not closed
                    errors.push ("sequential");  
                 }

@@ -647,13 +647,18 @@ class Commons_Booking {
         $allowclosed = 0; // weird bug with checkbox in cmb2: if not set, the key is not in the array. 
         if ( isset( $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_allowclosed']) ) {
             $allowclosed = 1;
+        }        
+
+        $closed_days_count = 0;
+        if ( isset( $s_bookings[ $this->get_plugin_slug() . '_bookingsettings_closeddayscount']) ) {
+            $closed_days_count = 1;
         }
         
-
         wp_localize_script( $this->get_plugin_slug() . '-plugin-script', 'cb_js_vars', array(
             'setting_maxdays' => $maxdays,
             'setting_booking_review_page' => $bookingpage,
             'setting_allowclosed' => $allowclosed,
+            'setting_closed_days_count' => $closed_days_count,
             'text_start_booking' => __( 'Book here:', 'commons-booking' ),
             'text_choose' => __( 'Click the days you want to book', 'commons-booking' ),
             'text_pickup' => __( 'Pickup date:', 'commons-booking' ),

@@ -142,7 +142,13 @@
             'type' => 'checkbox',
           ), 
           array(
-            'name' => __( 'Allow booking comments.', 'commons-booking' ),
+            'name' => __( 'Closed days counting', 'commons-booking' ),
+            'desc' => __( 'Count any number of closed days as one day. (If not enabled, they count as 0 days. Booking over closed days must be enabled)', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_bookingsettings_closeddayscount',
+            'type' => 'checkbox',
+          ),         
+          array(
+            'name' => __( 'Allow booking comments', 'commons-booking' ),
             'desc' => __( 'Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments in WP Settings and for the item.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_bookingsettings_allow_comments',
             'type' => 'checkbox',

@@ -55,6 +55,8 @@ class CB_Admin_Settings extends Commons_Booking {
           $this->prefix.'_bookingsettings_maxdays' => 3,
           $this->prefix.'_bookingsettings_daystoshow' => 30,
           $this->prefix.'_bookingsettings_allowclosed' => '',
+          $this->prefix.'_bookingsettings_daystoshow' => 30,
+          $this->prefix.'_bookingsettings_closeddayscount' => '',
           $this->prefix.'_bookingsettings_allow_comments' => ''
         ),   
          $this->prefix.'-settings-codes' => array(

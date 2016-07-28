@@ -402,8 +402,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $count_days = count ( $between);
         $max_days = $this->settings->get_settings( 'bookings', 'bookingsettings_maxdays');
         $allow_closed = $this->settings->get_settings( 'bookings', 'bookingsettings_allowclosed');
+        $allow_closed_count = $this->settings->get_settings( 'bookings', '_bookingsettings_closeddayscount');
         $location = $this->data->get_location( $location_id );
         $closed_days = $location['closed_days'];
+
+        // prevent error if setting isn´t set
+        if ( empty ( $allow_closed_count ) ) {
+            $allow_closed_count = 1;
+        } 
+
         $closed_days_count = 0;
 
         // add the closed days to maxdays
@@ -417,8 +424,12 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                 }
             }
         }
-        $max_days = $max_days + max ($closed_days_count -1 , 0); // closed days count as 1 day
+        $max_days = $max_days + ( $closed_days_count -1 + $allow_closed_count ); // closed days count as 1 day
 
+        var_dump( $max_days );
+        var_dump( $count_days );
+
+        // check if days are already booked
         $matches = array_intersect( $between, $booked_days ); // 
 
         // if date is already booked, or too many days selected
