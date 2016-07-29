@@ -426,9 +426,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         }
         $max_days = $max_days + ( $closed_days_count -1 + $allow_closed_count ); // closed days count as 1 day
 
-        var_dump( $max_days );
-        var_dump( $count_days );
-
         // check if days are already booked
         $matches = array_intersect( $between, $booked_days ); // 
 
