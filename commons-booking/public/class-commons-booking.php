@@ -630,16 +630,18 @@ class Commons_Booking {
      */
     public function enqueue_theme_styles() {
        
+       // get selected theme from settings
         $theme_name = $this->settings->get_settings( 'pages', 'theme_select');
 
-
+        // if not set
         if ( empty ( $theme_name ) ) {
             $theme_name = 'standard';
         }
-        var_dump($theme_name);
 
+        // construct the url
         $url = $this->get_plugin_url() . '/assets/css/themes/' . $theme_name . '/' . $theme_name . '.css';
 
+        //enque the theme css
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-themes', $url , array(), self::VERSION );           
     }
 

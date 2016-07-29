@@ -46,8 +46,6 @@ function theme_select() {
   $directories = glob( $themes_dir . '/*' , GLOB_ONLYDIR);
 
   $dropdown = array();
-
-  var_dump($themes_url);
   
   foreach ( $directories as $dir ) {
     $theme_name = basename( $dir );
