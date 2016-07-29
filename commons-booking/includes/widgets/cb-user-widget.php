@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Add a widget for user functions (login, logout, register, "my bookings")
+ *
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ * @since    0.9
+ */
+
 // Create custom widget class extending WP_Widget
 class CB_User_Widget extends WP_Widget {
 
@@ -11,8 +22,8 @@ class CB_User_Widget extends WP_Widget {
 
 		parent::__construct(
 			'cb_user_widget', // Base ID
-			__( 'CB USER', 'commons-booking' ), // Name
-			array( 'description' => __( 'A Foo Widget', 'commons-booking' ), ) // Args
+			__( 'Commons Booking user', 'commons-booking' ), // Name
+			array( 'description' => __( 'User functions (login, logout, register, my bookings)', 'commons-booking' ), ) // Args
 		);
 
 	}
