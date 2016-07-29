@@ -124,7 +124,7 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     {
         return sprintf(
             '<input type="checkbox" name="id[]" value="%s" />',
-            $item['id']
+            $item['booking_ID']
         );
     }
 
@@ -198,14 +198,13 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
     function process_bulk_action()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'cb_bookings'; // do not forget about tables prefix
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
             if (is_array($ids)) $ids = implode(',', $ids);
 
             if (!empty($ids)) {
-                $wpdb->query("DELETE FROM $table_name WHERE id IN($ids)");
+                $wpdb->query("DELETE FROM $this->table_bookings WHERE id IN($ids)");
             }
         }
     }
