@@ -170,6 +170,7 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
         add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
+        add_shortcode( 'cb_item_categories', array( $this, 'item_category_shortcode' ) );
 
         /* 
          * CRON.
@@ -218,6 +219,7 @@ class Commons_Booking {
             'rewrite'            => array( 'slug' => 'cb-items' ),
             'capability_type'    => 'post',
             'has_archive'        => true,
+            'show_in_nav_menus'  => true,
             'hierarchical'       => false,
             'menu_position'      => null,
             'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
@@ -230,7 +232,7 @@ class Commons_Booking {
             'cb_items',
             array(
                 'label' => __( 'Category' ),
-                'rewrite' => array( 'slug' => 'category' ),
+                'rewrite' => array( 'slug' => 'cb-item-cat' ),
                 'hierarchical' => true,
             )
         );
@@ -747,12 +749,11 @@ class Commons_Booking {
     }
 
     /**
-     * NOTE:  Shortcode simple set of functions for creating macro codes for use
-     *        in post content.
+     * Shortcode: Items
      *
      *        Reference:  http://codex.wordpress.org/Shortcode_API
      *
-     * @since    1.0.0
+     * @since    0.8
      */
     function item_shortcode( $atts ) {
         $a = shortcode_atts( array(
@@ -766,6 +767,27 @@ class Commons_Booking {
 
         $items = new CB_Public_Items;
         return  $items->output( $a );
+    }    
+
+    /**
+     * Shortcodes
+     *
+     *        Reference:  http://codex.wordpress.org/Shortcode_API
+     *
+     * @since    0.8
+     */
+    function item_category_shortcode( $atts ) {
+        $args = shortcode_atts( array(
+            'taxonomy' => 'cb_items_category',
+            'echo' => FALSE,
+            'title_li' => '',
+            'orderby' => 'title', 
+            'order' => 'DESC'
+        ), $atts );
+
+        $content = wp_list_categories( $args );
+
+        return $content;
     }
 
 }
