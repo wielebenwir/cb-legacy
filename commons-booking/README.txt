@@ -4,7 +4,7 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.5.2
+Tested up to: 4.5.3
 Stable Tag: 0.8.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -84,6 +84,18 @@ Initial Version.
 4. User bookings list
 
 == Changelog ==
+
+= 0.9 =
+
+* FEATURE: Category Wordpress Widget – List all item categories
+* FEATURE: User Wordpress Widget – User funtions (Login/Logout, Registration, "My Bookings")
+* FEATURE: New Setting: Themes (now included: "standard" & kasimir")
+* FEATURE: New Setting: Show Day Name Row (Mon, Tue, Wed…) above the calendar
+* FEATURE: New Setting: Closed days count. Now you can set how the system counts any number of closed days (0 or 1). See Issue #116
+* FIX Issue #120: Bulk delete in Bookings table
+* FIX: The first overbookable day was not correctly marked in calendar selection.
+* FIX Issue #134: Extra user fields are now visible in backend
+
 
 = 0.8.0.10 =
 
