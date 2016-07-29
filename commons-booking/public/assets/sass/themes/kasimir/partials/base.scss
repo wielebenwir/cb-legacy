@@ -12,7 +12,7 @@
 .align-right { float: right; }
 .align-left { float: left; }
 .cb-small { font-size: 0.8em; }
-.cb-big { font-size: 1.4em; font-weight: bold; color: $highlight-color; margin-bottom: $padding / 2; }
+.cb-big { font-size: 1.4em; font-weight: bold; color: $kasi-orange; margin-bottom: $padding / 2; }
 .border { border-top: 1px solid $grey; display: block; }
 .cb-headline { 
   @extend .cb-big;
@@ -35,9 +35,9 @@
   }
 
 .cb-big a {
-  color: $highlight-color;
+  color: $kasi-orange;
   text-decoration: none;
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .cb-table {
@@ -46,9 +46,9 @@
   .cb-row {
     color: $dark-grey;
     border-top: 1px solid $border-inner-color;
-    padding: $padding / 2;
+    padding: $padding;
     overflow: hidden;
-    background: $bg-inner-color;
+    background: $white;
 
     &:hover {
     }
@@ -94,7 +94,6 @@
 
 .cb-location-name {
   display: block;
-  color: $highlight-color;
   font-weight: bold;
 }
 
@@ -114,7 +113,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   text-decoration: none;
   padding: 10px 15px;
   overflow: hidden;
-  background: $green;
+  background: $action-color;
   color: $white;
   @include rounded($radius);
   border: none !important;

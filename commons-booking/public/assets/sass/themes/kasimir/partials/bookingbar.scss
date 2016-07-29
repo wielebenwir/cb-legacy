@@ -23,7 +23,7 @@
     @include rounded($radius);
     @include box-shadow( 0, 0, 70px, 1px, #AFAFAF );
     margin: 0;
-    background: $bg-color;
+    background: $white;
     color: $black;
     overflow: hidden;
   }

@@ -26,20 +26,25 @@ $light-green: #207B1C;
 $red: #FF0002;
 $dark-red: #A70001;
 
+$kasi-blue: #CCEEFF;
+$kasi-orange: #D53E08;
+$kasi-orange-light: lighten($kasi-orange, 10%);
+$kasi-orange-dark: darken($kasi-orange, 10%);
+
 /* Element styles */
 
-$bg-color: $white;
-$bg-inner-color: $light-grey;
+$bg-color: $kasi-blue;
+$bg-inner-color: $white;
 
-$border-color: $grey;
-$border-inner-color: $white;
+$border-color: darken ($kasi-blue, 30%);
+$border-inner-color: $kasi-blue;
 
-$highlight-color: $blue;
-$highlight-color-dark: $dark-blue;
-$highlight-color-light: $light-blue;
+$highlight-color: $green;
+$highlight-color-dark: darken($green, 10%);
+$highlight-color-light: lighten($green, 50%);
 
 $action-color: $green;
-$action-color-light: $light-green;
+$action-color-light: $kasi-orange-light;
 
 $inactive-color: $grey;
 
@@ -49,7 +54,7 @@ $error-color-dark: $dark-red;
 
 /* Elements & widths */
 $padding: 1em;
-$radius: 7px;
+$radius: 3px;
 $width: 100%;
 $cellwidth: $width / 7;
 $cellheight: 40px;

@@ -44,6 +44,9 @@
     clear: both;
     overflow: hidden;
     margin: 1em 0 1em 0; 
+    background: $white;
+   @include border-radius($radius);
+  
 
     input {
       display:none;
@@ -68,12 +71,12 @@
       padding: 4px;
       float: left;
       text-align: center;
-      background: $bg-color;
-      color: $inactive-color;
+      color: $black;
       @include transition(all .3s ease);
 
       .cb-cal-inner {
         min-height: $cellheight;
+
         span.cb-j {
           margin-top:5px;
           display: block;
@@ -97,6 +100,7 @@
         color: $action-color;
 
         .cb-cal-inner {
+          background: $white;
         }
 
         .cb-cal-inner:hover {
@@ -107,6 +111,9 @@
       &.selected {
         background: $highlight-color;
         color: mix($bg-color, $highlight-color, 60%);
+        .cb-cal-inner {
+          background: transparent;
+        }
       }    
       &:hover {
         // @include border-radius($radius);
@@ -114,33 +121,33 @@
       &.selected-first {
         @include selection-start-round($radius);
         .cb-cal-inner {       
-          color: $bg-color;
+          color: $white;
           background: $highlight-color-dark;
         }
       }      
       &.selected-last {
         @include selection-end-round($radius);
         .cb-cal-inner {
-          color: $bg-color;
+          color: $white;
           background: $highlight-color-dark;
         }
       }
 
       &.booked {
         cursor: not-allowed;
-        color: $error-color-dark;
+        color: $error-color;
         .cb-cal-inner {
           // background: $grey;
           // color: $error-color-dark;
-          background: $error-color-dark;
-          color: $bg-color;
+          background: $grey;
+          color: $white;
         }
       }
       &.closed {
         cursor: not-allowed;
         color: darken( $inactive-color, 20%);
         .cb-cal-inner {
-          background: $bg-inner-color;
+          // background: $bg-inner-color;
         }
           &.overbooking {
             @extend .selected;
