@@ -36,7 +36,7 @@ class CB_User_Widget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'text_domain' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( '', 'commons-booking' );
 		?>
 		<p>
 		<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( esc_attr( 'Title:' ) ); ?></label> 
@@ -69,12 +69,11 @@ class CB_User_Widget extends WP_Widget {
 
 		// And here do whatever you want
 		echo $args[ 'before_widget' ];
-		echo $args[ 'before_title' ];
+
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
-		echo $args[ 'after_title' ];
-
+		
 		echo $this->render_userinfo();
 
 		echo $args[ 'after_widget' ];
