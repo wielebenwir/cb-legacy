@@ -153,7 +153,7 @@
           } else { // timeframe element does not exist
             
             bookingBar.hide();
-          
+
           }
           
           var selected; 
@@ -179,7 +179,6 @@
                   'margin-left': (parentpos.left) + "px"
               })
           }
-
 
           function update_selected() {
 
