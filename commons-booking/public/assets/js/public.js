@@ -115,22 +115,20 @@
                   width: width,
                   'margin-left': (parentpos.left) + "px"
               })
-
           }
-
+          // resizes the bookingbar 
           $(window).on('resize', function(){
-
             resize_bookingbar();
-
           });
-
           resize_bookingbar();
 
+          // Submit
           formButton.click(function( event ) {
             event.preventDefault();
             formEl.submit();
           });
           
+          // Selection script 
           calEl.selectonic({
             multi: true,
             mouseMode: "toggle",
@@ -151,7 +149,6 @@
                   for (var i = msgErrors.length - 1; i >= 0; i--) {
                     displayErrorNotice( text_errors[ msgErrors[i] ] );
                   }
-
 
               } else {
                 removeClasses();
@@ -378,37 +375,6 @@
           // submit the form
           function submitForm() {
             $( "#target" ).submit();
-          }
-
-          function showToolTips() {
-
-            // if in addition you want the tooltip to be displayed when the field gets focus, add these custom triggers :
-            
-            // $('.selected-first').tooltipster({
-            //   animation: 'fade',
-            //   content: 'Pickup',
-            //   delay: 500,
-            //   theme: 'cb-tooltipster',
-            //   touchDevices: false
-            // });            
-            // $('.selected-last').tooltipster({
-            //   animation: 'fade',
-            //   content: 'Return',
-            //   delay: 500,
-            //   theme: 'cb-tooltipster',
-            //   touchDevices: false
-            // });
-            // $('.selected-first').tooltipster('show');
-            // $('.selected-last').tooltipster('show');
-
-          //   $('.selected-first').tooltipster({
-          //   animation: 'fade',
-          //   content: 'Pickup',
-          //   delay: 500,
-          //   theme: 'tooltipster-default',
-          //   touchDevices: false,
-          // });
-
           }
 
           // helper: create range array 
