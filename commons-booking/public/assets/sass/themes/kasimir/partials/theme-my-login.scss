@@ -1,0 +1,39 @@
+/*
+ * Forms created by Theme My Login
+ * @package   Commons_Booking
+ * @author    Florian Egermann <florian@wielebenwir.de>
+ * @license   GPL-2.0+
+ * @since     0.7
+ * @link      http://www.wielebenwir.de
+ * @copyright 2015 wielebenwir
+ */
+
+#theme-my-login, #respond {
+	width: 100%;
+	max-width: 100%;
+	@extend .cb-box;
+	form {
+		@extend .cb-table;
+		input#submit {
+			@extend .cb-button;
+			background: $highlight-color;
+		}
+	}
+	p {
+		@extend .cb-row;
+		margin-bottom: 1px;
+		input {
+			padding: $padding;
+		}
+
+	}
+	.message {
+			// @extend .success;
+		&.error {	
+		}
+	}
+}
+
+p.message {
+
+}
