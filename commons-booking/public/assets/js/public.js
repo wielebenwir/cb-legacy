@@ -103,7 +103,6 @@
             delay: 0,
             theme: 'tooltipster-cb',
           });
-          // $('.cb-tooltip').tooltipster();
 
           function resize_bookingbar() {
 
@@ -114,7 +113,6 @@
 
               $("#cb-bookingbar").css({
                   width: width,
-                  // top: parentpos.top + "px",
                   'margin-left': (parentpos.left) + "px"
               })
 
