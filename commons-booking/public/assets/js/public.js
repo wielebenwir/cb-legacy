@@ -63,6 +63,7 @@
           var currentTimeFrame;
 
           // DOM containers
+          var bookingBar = $( '#cb-bookingbar' );
           var debug = $( '#debug' );
           var introContainer = $( '#intro' );
           var startContainer = $( '#date-start' );
@@ -91,19 +92,81 @@
           var betweenDays = [];
           var allBookableDates = calEl.find('li.bookable');
 
-          // set starting text
-          introContainer.html (text_choose);
-          startContainer.html ( '' );
-          endContainer.html ( '' );
-          bookingButton.hide();
+          // check if timeframe  element exist on the site
+          if ( $( '.cb-timeframes-wrapper' ).length ) {
 
-          // tooltipster script
-          $('.cb-tooltip').tooltipster({
-            animation: 'fade',
-            delay: 0,
-            theme: 'tooltipster-cb',
+            // START: set starting text & element status
+            introContainer.html (text_choose);
+            startContainer.html ( '' );
+            endContainer.html ( '' );
+            bookingButton.hide();
+
+            // START: tooltipster script
+            $('.cb-tooltip').tooltipster({
+              animation: 'fade',
+              delay: 0,
+              theme: 'tooltipster-cb',
+            });
+
+            // START: resizes the bookingbar 
+            $(window).on('resize', function(){
+              resize_bookingbar();
+            });
+            resize_bookingbar();
+          
+            // Selection script 
+            calEl.selectonic({
+              multi: true,
+              mouseMode: "toggle",
+              keyboard: false,
+              selectedClass: "selected",
+              filter: ".bookable",
+              select: function(event, ui) {
+
+              },
+              stop: function(event, ui) {
+
+                var selectedIndexes = update_selected();
+                var msgErrors = errors;
+
+
+                if( errors.length > 0 ) {     
+                    this.selectonic("cancel"); // cancel selection
+                    for (var i = msgErrors.length - 1; i >= 0; i--) {
+                      displayErrorNotice( text_errors[ msgErrors[i] ] );
+                    }
+
+                } else {
+                  removeClasses();
+                  addClasses();
+                  update_bookingbar( selectedIndexes );
+                  // showToolTips();
+                  resize_bookingbar();
+                }
+
+              },
+              unselectAll: function(event, ui) {
+                // …and disable actions buttons
+              }
+            });
+
+          } else { // timeframe element does not exist
+            
+            bookingBar.hide();
+          
+          }
+          
+          var selected; 
+          var parentCal = '';
+          var overbookable = true;
+
+          // Submit
+          formButton.click(function( event ) {
+            event.preventDefault();
+            formEl.submit();
           });
 
+          // resize the bookingbar to width of calendar.
           function resize_bookingbar() {
 
               var parentpos = $('.cb-timeframes-wrapper').offset();
@@ -116,58 +179,6 @@
                   'margin-left': (parentpos.left) + "px"
               })
           }
-          // resizes the bookingbar 
-          $(window).on('resize', function(){
-            resize_bookingbar();
-          });
-          resize_bookingbar();
-
-          // Submit
-          formButton.click(function( event ) {
-            event.preventDefault();
-            formEl.submit();
-          });
-          
-          // Selection script 
-          calEl.selectonic({
-            multi: true,
-            mouseMode: "toggle",
-            keyboard: false,
-            selectedClass: "selected",
-            filter: ".bookable",
-            select: function(event, ui) {
-
-            },
-            stop: function(event, ui) {
-
-              var selectedIndexes = update_selected();
-              var msgErrors = errors;
-
-
-              if( errors.length > 0 ) {     
-                  this.selectonic("cancel"); // cancel selection
-                  for (var i = msgErrors.length - 1; i >= 0; i--) {
-                    displayErrorNotice( text_errors[ msgErrors[i] ] );
-                  }
-
-              } else {
-                removeClasses();
-                addClasses();
-                update_bookingbar( selectedIndexes );
-                // showToolTips();
-                resize_bookingbar();
-              }
-
-            },
-            unselectAll: function(event, ui) {
-              // …and disable actions buttons
-            }
-          });
-          
-          var selected; 
-
-          var parentCal = '';
-          var overbookable = true;
 
 
           function update_selected() {
