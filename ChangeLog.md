@@ -1,3 +1,11 @@
+# 0.9.1
+
+* FIX: Issue #131: Booking comments are now restricted to max 140 characters.
+* ENHANCEMENT: Compatibility with "Theme my Login" Wordpress-Plugin & "Kasimir" Wordpress-Theme
+* FIX: No more Javscript errors if no timeframe configured. Bookingbar is hidden.
+* ENHANCEMENT: User Widget formatting
+
+
 # 0.9 
 
 * FEATURE: Category Wordpress Widget – List all item categories
