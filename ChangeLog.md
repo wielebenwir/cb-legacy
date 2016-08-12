@@ -1,3 +1,9 @@
+# 0.9.1.2 
+
+* Updated profile cleanup styles for standard WordPress & "Theme My Login"
+* Updated settings intro text to be translateable
+* Consolidated the two setting options under "Advanced" into "Customize Login and Registration pages", since one doesn´t make sense without the other.
+
 # 0.9.1
 
 * FIX: Issue #131: Booking comments are now restricted to max 140 characters.

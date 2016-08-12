@@ -21,10 +21,10 @@ class Commons_Booking {
      * Plugin version, used for cache-busting of style and script file references.
      *
      * @since   0.0.1
-     *
+     *s
      * @var     string
      */
-    const VERSION = '0.9.1';
+    const VERSION = '0.9.1.2';
 
     /**
      *
