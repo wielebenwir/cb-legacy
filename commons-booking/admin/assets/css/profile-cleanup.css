@@ -1,14 +1,15 @@
 /*
- * Hides options from the user profile screen. 
- * @package   Commons_Booking
- * @author    Florian Egermann <florian@wielebenwir.de>
- * @license   GPL-2.0+
- * @link      http://www.wielebenwir.de
- * @copyright 2015 wielebenwir
- */
+* Hides options from the user profile screen. 
+* @package   Commons_Booking
+* @author    Florian Egermann <florian@wielebenwir.de>
+* @license   GPL-2.0+
+* @link      http://www.wielebenwir.de
+* @copyright 2015 wielebenwir
+*/
 
 
 /* standard wordpress profile */
+#wpadminbar,
 .admin_head,
 .user-rich-editing-wrap,
 .user-description-wrap,
@@ -21,9 +22,13 @@
 .user-profile-picture,
 .user-sessions-wrap,
 .user-url-wrap,
+.user-aim-wrap,
+.user-yim-wrap,
+.user-jabber-wrap,
 h3, h2,
 #adminmenumain,
-#screen-meta-links
+#screen-meta-links,
+#wpfooter
  {
   display: none;
 }
