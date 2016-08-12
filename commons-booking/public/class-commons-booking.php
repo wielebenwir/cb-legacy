@@ -143,22 +143,16 @@ class Commons_Booking {
         }
 
         // Redirect Customization. Applied only if $settings->enable_redirect = TRUE
-        $enable_redirect = $this->settings->get_settings( 'advanced', 'enable_redirect');
+        $enable_customprofile = $this->settings->get_settings( 'advanced', 'enable_customprofile');
 
-        if ( !empty ($enable_redirect) ) {
+        if ( !empty ($enable_customprofile) ) {
             add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  // @TODO RETIRE ME
             add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
             add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect'), 10, 3 );
             add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect' ) );
-        }
-        // Custom CSS. Applied only if $settings->enable_redirect = TRUE
-        $enable_customcss = $this->settings->get_settings( 'advanced', 'enable_customcss');
-
-        if ( !empty ($enable_customcss) ) {
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cleanup_styles' ) );
-        }       
-
-
+        }
+    
         // Editing User Profile: Add extra form fields 
         add_action( 'show_user_profile', array( $this->users, 'show_extra_profile_fields' ) );
  

@@ -132,17 +132,13 @@ class Commons_Booking_Admin {
 
 	// Remove Wordpress styles
 	add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
+ 
 
-    // Login/Registration Customization. Applied only if $settings->customize = TRUE
-    $enable_redirect = $this->settings->get_settings( 'advanced', 'enable_redirect');
-    if ( !empty ($enable_redirect) ) {
-			add_action( 'admin_init', array( $cb_users, 'cb_redirect_prevent_dashboard' ) );
-    }    
-
-    // Login/Registration Customization. Applied only if $settings->customize = TRUE
-    $enable_customcss = $this->settings->get_settings( 'advanced', 'enable_customcss');
-    if ( !empty ($enable_customcss) ) {
+    // Login/Registration/Profile Customization. Applied only if $settings->customize = TRUE
+    $enable_customprofile = $this->settings->get_settings( 'advanced', 'enable_customprofile');
+    if ( !empty ($enable_customprofile) ) {
     	add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_user_profile_styles' ) );
+    	add_action( 'admin_init', array( $cb_users, 'cb_redirect_prevent_dashboard' ) );
     }
 
 

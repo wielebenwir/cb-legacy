@@ -110,8 +110,7 @@ class CB_Admin_Settings extends Commons_Booking {
         ', 'commons-booking'),
       ),
     $this->prefix.'-settings-advanced' => array(
-      $this->prefix.'_enable_customcss' => 'ON',
-      $this->prefix.'_enable_redirect' => 'ON'
+      $this->prefix.'_enable_customprofile' => 'ON'
       ),  
     );
 

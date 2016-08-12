@@ -199,16 +199,10 @@
         'fields' => array(
           array(
             'name' => __( 'Customize Login and Registration pages', 'commons-booking' ),
-            'desc' => __( 'Hide superfluous fields on login/registration pages.', 'commons-booking' ),
-            'id' => $this->plugin_slug . '_enable_customcss',
+            'desc' => __( 'Clean up the user registration & profile page, prevent users from accessing the dashbaord, hide superfluous fields (aim, website, etc), enable redirects.', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_enable_customprofile',
             'type' => 'checkbox',
-          ),          
-          array(
-            'name' => __( 'Enable redirects', 'commons-booking' ),
-            'desc' => __( 'Enable redirects after Registration & Login.', 'commons-booking' ),
-            'id' => $this->plugin_slug . '_enable_redirect',
-            'type' => 'checkbox',
-          ),          
+          ),       
         ),
       );
 
