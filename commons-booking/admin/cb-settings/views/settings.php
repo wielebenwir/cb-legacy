@@ -263,7 +263,25 @@
             'desc' => __( 'The reply to address (make sure this exists)', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_confirmation_sender',
             'type' => 'text',
-          ),          
+          ),
+          array(
+            'name' => __( 'From: name', 'commons-booking' ),
+            'desc' => __( 'eg. Commons Booking', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_from_name',
+            'type' => 'text',
+          ),  
+          // array(
+          //   'name' => __( 'From: address', 'commons-booking' ),
+          //   'desc' => __( 'eg. commmons-booking@wielebenwir.de. Some hosts require that this address exists.', 'commons-booking' ),
+          //   'id' => $this->plugin_slug . '_mail_from',
+          //   'type' => 'text',
+          // ),            
+          array(
+            'name' => __( 'Send a copy to address', 'commons-booking' ),
+            'desc' => __( 'e.g. admin@wielebenwir.de.', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_bcc',
+            'type' => 'text',
+          ),                           
           array(
             'name' => __( 'Confirmation email subject', 'commons-booking' ),
             'desc' => __( 'The subject of the confirmation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),

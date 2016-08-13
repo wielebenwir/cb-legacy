@@ -71,7 +71,9 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_messages_booking_comment_notice' => __( 'To leave a booking comment, click <a href="{{URL}}">here</a>', 'commons-booking'),
     ),         
     $this->prefix.'-settings-mail' => array(
-      $this->prefix.'_mail_confirmation_sender' => 'recipient@domain.com',
+      $this->prefix.'_mail_confirmation_sender' => 'recipient@domain.com', /* @TODO: retired – delete this with the next update */
+      $this->prefix.'_mail_from' => '',
+      $this->prefix.'_mail_from_name' => '',
       $this->prefix.'_mail_confirmation_subject' => __( 'Your booking {{ITEM_NAME}}', 'commons-booking'),
       $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
 

@@ -379,8 +379,23 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         $body_template = ( $this->email_messages['mail_confirmation_body'] );  // get template
         $subject_template = ( $this->email_messages['mail_confirmation_subject'] );  // get template
-    	
-        $headers = array('Content-Type: text/html; charset=UTF-8');
+        
+        $sender_from_email = $this->settings->get_settings( 'mail', 'mail_from');        
+        $sender_from_name = $this->settings->get_settings( 'mail', 'mail_from_name'); 
+        //$confirmation_bcc = $this->settings->get_settings( 'mail', 'mail_bcc'); 
+
+        // if custom email adress AND name is specified in settings use them, otherwise fall back to standard
+        if ( ! empty ( $sender_from_name ) && ! empty ( $sender_from_email )) {
+            $headers[] = 'From: ' . $sender_from_name . ' <' . $sender_from_email . '>';
+        }        
+
+        // @TODO: implement BCC:
+        // if BCC: ist specified, send a copy to the address
+        // if ( ! empty ( $confirmation_bcc ) ) {
+        //     $headers[] = 'Bcc: ' . $confirmation_bcc;
+        // }
+
+        $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
         $body = replace_template_tags( $body_template, $this->b_vars);
         $subject = replace_template_tags( $subject_template, $this->b_vars);
@@ -388,7 +403,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         wp_mail( $to, $subject, $body, $headers );
 
     }
-
     /**
     * Validation: Days already booked, allowed to book over closed days, max days
     *
