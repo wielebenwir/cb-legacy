@@ -75,7 +75,7 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_from' => '',
       $this->prefix.'_mail_from_name' => '',
       $this->prefix.'_mail_confirmation_subject' => __( 'Your booking {{ITEM_NAME}}', 'commons-booking'),
-      $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>
+      $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks for booking {{ITEM_NAME}}!</h2>
 
           <p>Click here to see or cancel you booking: {{URL}}.</p>
           <p>Booking code: <strong>{{CODE}}</strong></p>
