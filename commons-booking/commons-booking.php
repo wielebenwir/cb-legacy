@@ -87,8 +87,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'includes/template.php' );
 /*
  * Load Widgets
  */
-require_once( plugin_dir_path( __FILE__ ) . 'includes/widgets/cb-user-widget.php' );
-require_once( plugin_dir_path( __FILE__ ) . 'includes/widgets/cb-category-widget.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-widgets/cb-user-widget.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-widgets/cb-category-widget.php' );
   
 
 
