@@ -382,14 +382,13 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         
         $sender_from_email = $this->settings->get_settings( 'mail', 'mail_from');        
         $sender_from_name = $this->settings->get_settings( 'mail', 'mail_from_name'); 
-        //$confirmation_bcc = $this->settings->get_settings( 'mail', 'mail_bcc'); 
+        $confirmation_bcc = $this->settings->get_settings( 'mail', 'mail_bcc'); 
 
         // if custom email adress AND name is specified in settings use them, otherwise fall back to standard
         if ( ! empty ( $sender_from_name ) && ! empty ( $sender_from_email )) {
             $headers[] = 'From: ' . $sender_from_name . ' <' . $sender_from_email . '>';
         }        
 
-        // @TODO: implement BCC:
         // if BCC: ist specified, send a copy to the address
         if ( ! empty ( $confirmation_bcc ) ) {
             $headers[] = 'Bcc: ' . $confirmation_bcc;
