@@ -17,13 +17,15 @@
 		input#submit {
 			@extend .cb-button;
 			background: $highlight-color;
+			margin-left: 0;
 		}
 	}
-	p {
+
+	p, .g-recaptcha {
 		@extend .cb-row;
 		margin-bottom: 1px;
 		input {
-			padding: $padding;
+			padding: 0.5em 1em;
 		}
 
 	}
@@ -34,6 +36,7 @@
 	}
 }
 
-p.message {
-
+p.message, p.error {
+border: none !important;
+margin-bottom: $padding !important;
 }

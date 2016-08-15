@@ -184,8 +184,6 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
 }
 
 .cb-booking-comment {
-  background: $light-grey;
-  padding: $padding;
   @include rounded($radius);
   margin-bottom: $padding;
   overflow: hidden;
@@ -195,5 +193,12 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
     margin-top: $padding; 
     float: right;
 
+  }
+}
+
+.form-submit {
+  background: transparent;
+  input {
+    float: right;
   }
 }
