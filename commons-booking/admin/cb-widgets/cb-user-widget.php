@@ -93,8 +93,8 @@ class CB_User_Widget extends WP_Widget {
 			$bookings_page_id = $this->settings->get_settings('pages', 'user_bookings_page_select');
 			$bookings_page_url = get_permalink( $bookings_page_id );
 
-	  		$content .= sprintf( __( 'Welcome, %s. ', 'commons-booking' ), $current_user->display_name);
-			$content .= '<ul>'; 
+	  		$content .= sprintf( __( 'Welcome, %s.', 'commons-booking' ), $current_user->display_name);
+			$content .= ' <ul>'; 
 			$content .= sprintf( __( '<li><a href="%s">My Bookings</a></li>', 'commons-booking' ),  $bookings_page_url );
 			$content .= sprintf( __( '<li><a href="%s">My Profile</a></li>', 'commons-booking' ),  get_edit_profile_url() );     
 			$content .= sprintf( __( '<li><a href="%s">Log out</a></li>', 'commons-booking' ),  wp_logout_url() ); 
