@@ -129,7 +129,6 @@
                 var selectedIndexes = update_selected();
                 var msgErrors = errors;
 
-
                 if( errors.length > 0 ) {     
                     this.selectonic("cancel"); // cancel selection
                     for (var i = msgErrors.length - 1; i >= 0; i--) {
@@ -210,7 +209,6 @@
 
             // check if there are days between the selection
             betweenDays = getDaysBetween( calIndexes );
-
             if ( betweenDays.length > 0 ) { // there are days between selected
               if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes                
                 var allowedClasses = ['closed', 'selected'];
@@ -286,7 +284,6 @@
               // loop through days
               for (var i = low; i < high; i++) { 
                 if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
-                  // daysBetween.push( calEl.eq(low + counter) );
                   daysBetween.push( parentCal.find('li').eq(low + counter) );
                 }
                 counter++;
