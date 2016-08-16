@@ -205,7 +205,7 @@
             // add selected indexes to array
             selected.each(function ( index, element ) {
                indexes.push ( calEl.find(element).index( 'li.bookable') );
-               calIndexes.push ( parentCal.find(element).index() );
+               calIndexes.push ( parentCal.find(element).index( 'li' ) );
             } );            
 
             // check if there are days between the selection
