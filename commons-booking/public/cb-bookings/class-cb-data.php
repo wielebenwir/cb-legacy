@@ -353,7 +353,7 @@ class Commons_Booking_Data {
           $day_counter = $cal_start;
 
           // 6. check if there are days to be displayed (honoring the settings-function days_to_show)
-          if ( $cal_start < $cal_end ) {
+          if ( $cal_start <= $cal_end ) {
            
             $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
