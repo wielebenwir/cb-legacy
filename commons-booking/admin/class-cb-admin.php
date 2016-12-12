@@ -279,7 +279,7 @@ class Commons_Booking_Admin {
 		 * Menu in Plugin Settings
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-				__( 'Commons Booking Settings', $this->plugin_slug ), __( 'Commons Booking', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
+				__( 'Commons Booking Settings', 'commons-booking' ), __( 'Commons Booking', 'commons-booking' ), 'manage_options', $this->plugin_slug, array( $this, 'display_plugin_admin_page' )
 		);
 	}
 
@@ -351,8 +351,8 @@ class Commons_Booking_Admin {
      * 3. Timeframes
      */
 	    $this->plugin_screen_hook_suffix = add_menu_page(
-	        __( 'Timeframes', $this->plugin_slug ),   // page_title
-	        __( 'Timeframes', $this->plugin_slug ),   // menu_title
+	        __( 'Timeframes', 'commons-booking' ),   // page_title
+	        __( 'Timeframes', 'commons-booking' ),   // menu_title
 	        $capability,                              // capability
 	        'cb_timeframes',                            // menu_slug
 	        'cb_timeframes_table_page_handler',       // function
@@ -363,8 +363,8 @@ class Commons_Booking_Admin {
 	    // Editing or adding entries $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function
 	    $this->plugin_screen_hook_suffix = add_submenu_page(
 	        'cb_timeframes',                                      // parent_menu_slug
-	        __( 'Add/Edit Timeframes', $this->plugin_slug ),      // page_title
-	        __( 'Add Timeframe', $this->plugin_slug ),            // menu_title
+	        __( 'Add/Edit Timeframes', 'commons-booking' ),      // page_title
+	        __( 'Add Timeframe', 'commons-booking' ),            // menu_title
 	        $capability,                                          // capability
 	        'cb_timeframes_edit',                                 // menu_slug
 	        'cb_timeframes_table_form_page_handler'               // function
@@ -374,8 +374,8 @@ class Commons_Booking_Admin {
 	     * 4. Bookings
 	     */
 	    $this->plugin_screen_hook_suffix = add_menu_page(
-	        __( 'Bookings', $this->plugin_slug ),         // page_title
-	        __( 'Bookings', $this->plugin_slug ),         // menu_title
+	        __( 'Bookings', 'commons-booking' ),         // page_title
+	        __( 'Bookings', 'commons-booking' ),         // menu_title
 	        $capability,                              // capability
 	        'cb_bookings',                              // menu_slug
 	        'commons_booking_bookins_table_handler', 	// function
