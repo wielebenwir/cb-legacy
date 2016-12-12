@@ -14,7 +14,7 @@
  * @package Commons_Booking_Data
  * @author    Florian Egermann <florian@wielebenwir.de>
  */
-class Commons_Booking_Data {
+class CB_Data {
 
   public $timeframe_id;
   public $item_id;
@@ -40,7 +40,8 @@ class Commons_Booking_Data {
     $this->prefix = 'commons-booking';
     $this->settings = new CB_Admin_Settings;
     // from settings
-    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );
+    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );    
+    $this->render_daynames = $this->settings->get_settings( 'bookings', 'bookingsettings_calendar_render_daynames' );
     $this->target_url = $this->settings->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
 
@@ -60,31 +61,6 @@ class Commons_Booking_Data {
     $this->dates = $this->get_dates();
 
   } 
-
-/**
- * Get settings from backend. Return either full array or specified setting
- *
- *@param setting_page: name of the page (cmb metabox name)
- *@param (optional) name of the setting
- *
- *@return array
- */
-  public function get_settings( $setting_page, $setting_name = "") {
-    
-    global $wpdb;
-
-    $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
-
-    if ( get_option( $this->prefix . '-settings-' .$setting_page ) ) {
-      if ( $setting_name ) {
-       return esc_attr( $page [ $this->prefix . '_'. $setting_name ] );
-      } else {
-        return esc_attr( $page );
-      }
-    } else { // setting wasn´t found
-      return __('At least one required value was not set. Please check the settings in the backend.', 'commons-booking');
-    }
-  }
 
 /**
  * Get a list of all dates within the defind range. @TODO retire this function 
@@ -179,15 +155,15 @@ class Commons_Booking_Data {
         'name' => get_the_title( $id ),
         'id' => $id ,
         'address' => array ( 
-          'street' => get_post_meta( $id, $this->prefix . '_location_adress_street', true ),
-          'city' => get_post_meta( $id, $this->prefix . '_location_adress_city', true ),
-          'zip' => get_post_meta( $id, $this->prefix . '_location_adress_zip', true ),
-          'country' => get_post_meta( $id, $this->prefix . '_location_adress_country', true ),
+          'street' => cb_get_custom_field( $id, $this->prefix . '_location_adress_street', true ),
+          'city' => cb_get_custom_field( $id, $this->prefix . '_location_adress_city', true ),
+          'zip' => cb_get_custom_field( $id, $this->prefix . '_location_adress_zip', true ),
+          'country' => cb_get_custom_field( $id, $this->prefix . '_location_adress_country', true ),
         ),
-        'contact' => get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true ),
-        'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
-        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true ),
-        'openinghours' => get_post_meta( $id, $this->prefix . '_location_openinghours', true ),
+        'contact' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_text', true ),
+        'contact_hide' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_hide', true ),
+        'closed_days' => cb_get_custom_field( $id, $this->prefix . '_location_closeddays', true ),
+        'openinghours' => cb_get_custom_field( $id, $this->prefix . '_location_openinghours', true ),
         );
       return $location;
     } else {
@@ -323,7 +299,7 @@ class Commons_Booking_Data {
 
     $booking_comments = new CB_Booking_Comments();
     $comments = $booking_comments->get_booking_comments( $item_id );    
-    $booked = new Commons_Booking_Booking;
+    $booked = new CB_Booking;
     $booked_days = $booked->get_booked_days_array( $item_id, $comments );
 
     // 2. Calculate start & end dates 
@@ -405,7 +381,7 @@ class Commons_Booking_Data {
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $item_content .=  cb_get_template_part( 'timeframes-compact', $timeframes, TRUE );           
+      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );           
     } else {
       $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span></div>';
     }
@@ -515,6 +491,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     'date_range' => $daterange_string,
     'timeframe_title' =>  $timeframe['timeframe_title'],
     'timeframe_id' =>  $timeframe['id'],
+    'render_daynames' => $this->render_daynames,
     'location_id' =>  $location['id']
     );
   
@@ -529,13 +506,19 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
  *
 */
   public function format_adress( $address ) {
+    $street = isset ( $address[ 'street'] ) ? $address[ 'street'] : '';
+    $zip = isset ( $address[ 'zip'] ) ? $address[ 'zip'] : '';
+    $city = isset ( $address[ 'city'] ) ? $address[ 'city'] : '';
+    $country = isset ( $address[ 'country'] ) ? $address[ 'country'] : '';
+
     $address_string = sprintf(
         /* translators: 1: Name of Street 2: ZIP code 3: Name of a city  4: Country*/
         __( '%1$s, %2$s %3$s, %4$s', 'commons-booking' ),
-        $address[ 'street'],
-        $address[ 'zip'],
-        $address[ 'city'],
-        $address[ 'country']
+        $street,
+        $zip,
+        $city,
+        $country
+
     );
     return $address_string;
   }
