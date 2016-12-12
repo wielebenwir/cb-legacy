@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   CB_Data
+ * @package   Commons_Booking
  * @author    Florian Egermann <florian@wielebenwir.de>
  * @license   GPL-2.0+
  * @link      http://www.wielebenwir.de
@@ -11,10 +11,10 @@
 /**
  * This class handles the display of calendar & timeframes
  *
- * @package Commons_Booking
+ * @package Commons_Booking_Data
  * @author    Florian Egermann <florian@wielebenwir.de>
  */
-class CB_Data {
+class Commons_Booking_Data {
 
   public $timeframe_id;
   public $item_id;
@@ -40,8 +40,7 @@ class CB_Data {
     $this->prefix = 'commons-booking';
     $this->settings = new CB_Admin_Settings;
     // from settings
-    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );    
-    $this->render_daynames = $this->settings->get_settings( 'bookings', 'bookingsettings_calendar_render_daynames' );
+    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     $this->target_url = $this->settings->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
 
@@ -324,7 +323,7 @@ class CB_Data {
 
     $booking_comments = new CB_Booking_Comments();
     $comments = $booking_comments->get_booking_comments( $item_id );    
-    $booked = new CB_Booking;
+    $booked = new Commons_Booking_Booking;
     $booked_days = $booked->get_booked_days_array( $item_id, $comments );
 
     // 2. Calculate start & end dates 
@@ -354,7 +353,8 @@ class CB_Data {
           $day_counter = $cal_start;
 
           // 6. check if there are days to be displayed (honoring the settings-function days_to_show)
-          if ( $cal_start < $cal_end ) {
+          if ( $cal_start <= $cal_end ) {
+           
             $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
             // 7. Loop through days
@@ -405,7 +405,7 @@ class CB_Data {
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );           
+      $item_content .=  cb_get_template_part( 'timeframes-compact', $timeframes, TRUE );           
     } else {
       $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span></div>';
     }
@@ -498,8 +498,13 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     $contact_string = $location[ 'contact' ];
 
   }
-  $address_string = $this->format_adress( $location[ 'address' ] );
-  
+
+  $address_check = array_filter( $location[ 'address' ] );
+
+   if ( !empty ( $address_check ) ) { // format the adress
+      $address_string = $this->format_adress( $address_check );
+  }
+
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
 
   $attributes = array (
@@ -510,8 +515,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     'date_range' => $daterange_string,
     'timeframe_title' =>  $timeframe['timeframe_title'],
     'timeframe_id' =>  $timeframe['id'],
-    'location_id' =>  $location['id'],
-    'render_daynames' => $this->render_daynames
+    'location_id' =>  $location['id']
     );
   
   return $attributes;
@@ -525,19 +529,13 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
  *
 */
   public function format_adress( $address ) {
-
-    $street = isset ( $address[ 'street'] ) ? $address[ 'street'] : '';
-    $zip = isset ( $address[ 'zip'] ) ? $address[ 'zip'] : '';
-    $city = isset ( $address[ 'city'] ) ? $address[ 'city'] : '';
-    $country = isset ( $address[ 'country'] ) ? $address[ 'country'] : '';
-
     $address_string = sprintf(
         /* translators: 1: Name of Street 2: ZIP code 3: Name of a city  4: Country*/
         __( '%1$s, %2$s %3$s, %4$s', 'commons-booking' ),
-        $street,
-        $zip,
-        $city,
-        $country
+        $address[ 'street'],
+        $address[ 'zip'],
+        $address[ 'city'],
+        $address[ 'country']
     );
     return $address_string;
   }
