@@ -1,3 +1,12 @@
+# 0.9.2.2
+
+* FIX: Javascript validation no longer failing if week day row is activated
+
+# 0.9.2
+
+* FEATURE: Set sender name and email address for booking confirmation emails.
+
+
 # 0.9.1.2 
 
 * Updated profile cleanup styles for standard WordPress & "Theme My Login"
