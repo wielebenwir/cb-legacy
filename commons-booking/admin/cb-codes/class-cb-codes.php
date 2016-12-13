@@ -149,7 +149,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
  */
 public function render() {
 
-  echo ( '<h2> '. __( 'Codes ', 'commons-booking') . '</h2>');
+  echo ( '<h2> '. __( 'Codes', 'commons-booking') . '</h2>');
 
   $allDates = array_merge ($this->missing_dates, $this->matched_dates);
   $this->render_table( $allDates );
@@ -168,7 +168,7 @@ public function render_table( $dates ) {
     </thead>
   <?php foreach ($dates as $row) {
       if ( !isset($row[ 'code' ])) { 
-        $row[ 'code' ] = ('<span style="color:red">'. __( 'Code is missing!', $this->prefix) .'</span>'); 
+        $row[ 'code' ] = ('<span style="color:red">'. __( 'Code is missing!', 'commons-booking') .'</span>'); 
       } ?>
     <tr><td><?php _e( date( 'j.n.y', strtotime( $row[ 'date' ] ))); ?></td><td><?php echo strip_tags( $row[ 'code' ] ); ?></td></tr>
   <?php } // end foreach ?>
