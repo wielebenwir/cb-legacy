@@ -344,7 +344,7 @@ class Commons_Booking_Timeframes_Table extends WP_List_Table
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
             echo (' <div class="tablefilters">' );
-            echo __( 'Filter by: ');  
+            echo __( 'Filter by: ', 'commons-booking' );  
             $this->filterDropDown( 'location-filter' ); 
             $this->filterDropDown( 'item-filter' );
             echo ( '</div>' );

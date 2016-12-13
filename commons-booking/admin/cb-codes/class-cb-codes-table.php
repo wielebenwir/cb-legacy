@@ -341,7 +341,7 @@ class Commons_Booking_Codes_Table extends WP_List_Table
         if ( $which == "top" ){
             $filters = $this->filterDefinition();
             echo (' <div class="tablefilters">' );
-            echo __( 'Filter by: ');  
+            echo __( 'Filter by: ', 'commons-booking' );  
             $this->filterDropDown( 'item-filter' );
             echo ( '</div>' );
         }     
