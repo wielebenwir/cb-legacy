@@ -52,7 +52,7 @@ function cb_timeframes_table_form_page_handler( )
                         $codes->generate_codes( $item['id'] );
 
                     } else { // nothing changed (-> Codes were already generated and no form-field input was changed.). We didn´t do anything, but send a happy message. 
-                         new Admin_Table_Message ( __('Timeframe updated.', 'commons-booking'), 'updated' );
+                         new Admin_Table_Message ( __('Nothing changed.', 'commons-booking'), 'updated' );
                     }
                 }
             } else {
@@ -300,7 +300,7 @@ function cb_timeframes_table_edit_dropdown( $posttype, $fieldname, $selected ) {
       $the_query->the_post();
       $id = get_the_ID(); 
       if ( $id == $selected ) { $s = ' selected'; } else { $s = ''; }
-      echo '<option value=' . $id . '"' . $s .' >' . get_the_title() . '</option>';
+      echo '<option value="' . $id . '"' . $s .' >' . get_the_title() . '</option>';
     }
     echo '</select>';
   } else {
