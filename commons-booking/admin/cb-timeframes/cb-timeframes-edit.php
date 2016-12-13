@@ -31,7 +31,7 @@ function cb_timeframes_table_form_page_handler( )
             $item = shortcode_atts($default, $_REQUEST);
             // validate data, and if all ok save item to database
             // if id is zero insert otherwise update
-            $item_valid = cb_timeframes_table_validate_entry($item);
+            $item_valid = cb_timeframes_table_validate_entry( $item );
             if ($item_valid === true) {
                 if ($item['id'] == 0) {
                     $result = $wpdb->insert($table_name, $item);
@@ -75,7 +75,7 @@ function cb_timeframes_table_form_page_handler( )
     // Editing Form
     add_meta_box(
         'timeframes_form_meta_box', 
-        __( 'Edit', 'cb_timeframes_table' ), 
+        __( 'Edit timeframe', 'commons-booking' ), 
         'cb_timeframes_table_form_meta_box_handler', 
         'timeframes_form_meta_box', 
         'normal', 
@@ -98,13 +98,15 @@ function cb_timeframes_table_form_page_handler( )
     
 </style>
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
-    <?php 
+
+    <?php
+    var_dump($item); 
     if (isset($_REQUEST['id'])) { ?>  
         <h2 class="hidden-if-print"><?php echo  __('Edit Timeframe', 'commons-booking'); ?><a class="add-new-h2" href="<?php echo get_edit_post_link($item['item_id']); ?>"><?php printf ( __('Return to %s', 'commons-booking'), get_the_title($item['item_id'] ) ); ?></a> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('All timeframes', 'commons-booking')?></a>  
         </h2>
         <h1><?php printf ( '%s at %s',
             get_the_title( $item['item_id'] ),
-            get_the_title( $item['location_id'] )
+            get_the_title( $item['location_id'], 'commons-booking' )
             ); ?></h1>        
         <h2><?php printf ( '%s %s – %s',
             $item['timeframe_title'],
@@ -137,8 +139,8 @@ function cb_timeframes_table_form_page_handler( )
                 <div id="post-body-content">
                     <?php /* And here we call our custom meta box */ ?>
                     <?php do_meta_boxes('timeframes_form_meta_box', 'normal', $item); ?>
-                    <input type="submit" value="<?php _e('Save & generate Codes', 'commons-booking')?>" id="submit" class="button-primary" name="submit">
-                    <input type="button" value="<?php _e('Print Codes'); ?>"  onClick="window.print()" id="print" class="button-primary">
+                    <input type="submit" value="<?php _e('Save & generate codes', 'commons-booking')?>" id="submit" class="button-primary" name="submit">
+                    <input type="button" value="<?php _e('Print codes', 'commons-booking'); ?>"  onClick="window.print()" id="print" class="button-primary">
                 </div>
             </div>
         </div>
