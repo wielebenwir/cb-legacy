@@ -162,7 +162,7 @@ class CB_Data {
         ),
         'contact' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_text', true ),
         'contact_hide' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_hide', true ),
-        'closed_days' => cb_get_custom_field( $id, $this->prefix . '_location_closeddays', true ),
+        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true, true ),
         'openinghours' => cb_get_custom_field( $id, $this->prefix . '_location_openinghours', true ),
         );
       return $location;
@@ -553,6 +553,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     $status = '';
 
     $timestamp = $booked_days;
+
+    var_dump($location[ 'closed_days']);
 
     // first: check if the date is in the locations´ closed days array
     if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
