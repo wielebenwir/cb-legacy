@@ -33,7 +33,7 @@ class Commons_Booking_Items_Metabox extends Commons_Booking {
     //limit meta box to certain post types
     if (in_array($post_type, $post_types)) {
       add_meta_box('cs-meta',
-      __('Timeframes'),
+      __('Timeframes', 'commons-booking'),
       array($this, 'cb_items_timeframe_meta_box_function'),
       $post_type,
       'normal',
