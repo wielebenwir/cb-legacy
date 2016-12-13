@@ -46,11 +46,11 @@ class Commons_Booking_Timeframes_List {
    */
   private function set_Columns() {
     $this->columns = array(
-      'location_id' => __( 'Location' ),
-      'date_start' => __( 'Start Date '),
-      'date_end' => __( 'End Date '),
-      'timeframe_title' => __('Note'),
-      'edit' => __( 'Edit' )
+      'location_id' => __( 'Location', 'commons-booking' ),
+      'date_start' => __( 'Start Date', 'commons-booking'),
+      'date_end' => __( 'End Date', 'commons-booking'),
+      'timeframe_title' => __('Note', 'commons-booking'),
+      'edit' => __( 'Edit', 'commons-booking' )
       );
     return $this->columns;
   }
@@ -90,7 +90,7 @@ class Commons_Booking_Timeframes_List {
       }
       return ($columns);
     } else {
-      return '<p>' . __( 'No timeframes set up yet.', $this->prefix ) . '</p>';
+      return '<p>' . __( 'No timeframes set up yet.', 'commons-booking' ) . '</p>';
     }
   }
 
@@ -125,7 +125,7 @@ class Commons_Booking_Timeframes_List {
    * @return  html
    */ 
   private function table_fields_edit_button( $itemID ) {
-    return '<a href="admin.php?page=cb_timeframes_edit&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'cb_timeframes_table') . '</a>';
+    return '<a href="admin.php?page=cb_timeframes_edit&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Edit', 'commons-booking') . '</a>';
  
   }   
   /**
@@ -134,7 +134,7 @@ class Commons_Booking_Timeframes_List {
    * @return  html
    */ 
   private function table_fields_delete_button( $itemID ) {
-    return '<a href="admin.php?page=cb_timeframes&action=delete&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Delete', 'cb_timeframes_table') . '</a>';
+    return '<a href="admin.php?page=cb_timeframes&action=delete&id=' . $itemID . '" class="button" style="visibility:visible">'.  __('Delete', 'commons-booking') . '</a>';
  
   }
 
@@ -156,7 +156,7 @@ class Commons_Booking_Timeframes_List {
    * @return  html
    */ 
   private function jump_to_timeframes_link() {    
-     return ( '<a class="button" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=cb_timeframes_edit&item_id='. $this->postID. '&new=1">' . __('Add new Timeframe', 'cb_timeframes_table') . '</a>' );    
+     return ( '<a class="button" href="'. get_admin_url(get_current_blog_id()) . 'admin.php?page=cb_timeframes_edit&item_id='. $this->postID. '&new=1">' . __('Add new Timeframe', 'commons-booking') . '</a>' );    
   }
 
 
@@ -183,7 +183,7 @@ class Commons_Booking_Timeframes_List {
           return FALSE;
         } 
     } else {
-      return __('Post id not found.' );
+      return __('Post id not found.', 'commons-booking' );
     }
   }
 
