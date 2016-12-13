@@ -149,9 +149,11 @@ class CB_Admin_Settings extends Commons_Booking {
     global $wpdb;
     $page = get_option( $this->prefix . '-settings-' .$setting_page ); 
 
-    if ( $setting_name ) {
-      if ( !empty ( $page[ $this->prefix . '_'. $setting_name ] ) ) {
+    if ( $setting_name ) { // setting field set
+      if ( !empty ( $page[ $this->prefix . '_'. $setting_name ] ) ) { // value set
         return $page [ $this->prefix . '_'. $setting_name ];
+        } else { // value not set
+          return "";
         }
     } else { // grabbing all entries     
       foreach($page as $key => $value) { // remove the prefix 
