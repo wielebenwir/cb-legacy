@@ -204,8 +204,10 @@
             // add selected indexes to array
             selected.each(function ( index, element ) {
                indexes.push ( calEl.find(element).index( 'li.bookable') );
-               calIndexes.push ( parentCal.find(element).index( 'li' ) );
-            } );            
+               calIndexes.push ( parentCal.find(element).index() );
+               // console.log(element);
+            } );     
+            // console.log(calIndexes);       
 
             // check if there are days between the selection
             betweenDays = getDaysBetween( calIndexes );
@@ -269,7 +271,7 @@
               }
             });
 
-            if (error == 0) {
+            if (error === 0) {
               return betweenEls;
             } 
           }
@@ -280,13 +282,15 @@
               var low = calIndexes[0];
               var high = calIndexes[calIndexes.length-1];
               var daysBetween = [];
+              console.log(low);
+              console.log(high);
 
               // loop through days
               for (var i = low; i < high; i++) { 
-                if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
-                  daysBetween.push( parentCal.find('li').eq(low + counter) );
+                if ( ( low + i != calIndexes[i] ) ) { // date is not in indexes
+                  daysBetween.push( calEl.find('li').eq(low + i) );
+                  console.log(low + i);
                 }
-                counter++;
               }
               return daysBetween;    
           }
