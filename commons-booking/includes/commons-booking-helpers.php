@@ -195,7 +195,26 @@ function theme_select() {
     }
    
   }
+  /**
+   * Get WP Custom field
+   *
+   * @since    0.9.2.1
+   *
+   * @param     $key
+   * @param     $echo
+   * @return    Meta field
+   */
+function cb_get_custom_field( $key, $echo = FALSE ) {
+  global $post;
+  $custom_field = get_post_meta($post->ID, $key, true);
 
+  if (! $custom_field ) {
+    $custom_field = "";
+  }
+
+  if ($echo == FALSE) return $custom_field;
+  echo $custom_field;
+}
 
 
 ?>
