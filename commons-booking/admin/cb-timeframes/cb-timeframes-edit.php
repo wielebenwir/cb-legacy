@@ -100,7 +100,6 @@ function cb_timeframes_table_form_page_handler( )
     <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
 
     <?php
-    var_dump($item); 
     if (isset($_REQUEST['id'])) { ?>  
         <h2 class="hidden-if-print"><?php echo  __('Edit Timeframe', 'commons-booking'); ?><a class="add-new-h2" href="<?php echo get_edit_post_link($item['item_id']); ?>"><?php printf ( __('Return to %s', 'commons-booking'), get_the_title($item['item_id'] ) ); ?></a> <a class="add-new-h2" href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=cb_timeframes');?>"><?php _e('All timeframes', 'commons-booking')?></a>  
         </h2>
