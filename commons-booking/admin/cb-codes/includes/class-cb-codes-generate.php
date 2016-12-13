@@ -59,7 +59,7 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
     if ( count($this->missing_dates) > 0 ) {
       $this->sql_insert($this->item_id);
     } else {
-      new Admin_Table_Message ( __('Codes already in Database.', $this->prefix), 'updated' );
+      new Admin_Table_Message ( __('Codes already in Database.', 'commons-booking' ), 'updated' );
     }
   }
 
@@ -73,25 +73,22 @@ class Commons_Booking_Codes_Generate extends Commons_Booking_Codes {
 
     global $wpdb;
 
-    shuffle( $this->codes_array ); // randomize array
-
-    if ( count( $this->codes_array ) < count( $this->missing_dates )) {
-      new Admin_Table_Message ( __('No or not enough codes defined. Add them in Commons Booking Settings.', $this->prefix), 'error' );
-      return false;
-    } else {
-        new Admin_Table_Message ( __('New booking codes have been generated.', $this->prefix), 'updated' );
-    }
-
     $sqlcols = "item_id,booking_date,bookingcode";
     $sqlcontents = array();
     $sqlquery = '';
     $count = count( $this->missing_dates );
 
+    if ( count( $this->codes_array ) < count( $this->missing_dates )) {
+      new Admin_Table_Message ( __('Notice: Not enough codes defined in settings, some codes will be repeated.', $this->prefix), 'error' );
+    } 
+    new Admin_Table_Message ( __('Missing booking codes have been generated.', $this->prefix), 'updated' );
+
+    // create mysql query
     for ( $i=0; $i < $count; $i++ ) {
-      array_push($sqlcontents, '("' . $this->item_id. '","' . $this->missing_dates[$i]['date'] . '","' . $this->codes_array[$i] . '")');
+      $random = rand( 0, count( $this->codes_array ) -1 );
+      array_push($sqlcontents, '("' . $this->item_id. '","' . $this->missing_dates[$i]['date'] . '","' . $this->codes_array[ $random ] . '")');
     }
     $sqlquery = 'INSERT INTO ' . $this->table_name . ' (' . $sqlcols . ') VALUES ' . implode (',', $sqlcontents ) . ';';
-
     $wpdb->query($sqlquery);
   }
 

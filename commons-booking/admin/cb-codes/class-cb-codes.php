@@ -122,7 +122,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
     foreach ( $codes_db as $entry ) {
       array_push ($codeDates, $entry['booking_date']);
     }
-    
+
     $matched = array();
     $missing = array();
     $missingFlat = '';
