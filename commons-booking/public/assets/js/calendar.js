@@ -129,6 +129,7 @@
                 var selectedIndexes = update_selected();
                 var msgErrors = errors;
 
+
                 if( errors.length > 0 ) {     
                     this.selectonic("cancel"); // cancel selection
                     for (var i = msgErrors.length - 1; i >= 0; i--) {
@@ -152,7 +153,7 @@
           } else { // timeframe element does not exist
             
             bookingBar.hide();
-
+          
           }
           
           var selected; 
@@ -178,6 +179,7 @@
                   'margin-left': (parentpos.left) + "px"
               })
           }
+
 
           function update_selected() {
 
@@ -205,12 +207,11 @@
             selected.each(function ( index, element ) {
                indexes.push ( calEl.find(element).index( 'li.bookable') );
                calIndexes.push ( parentCal.find(element).index() );
-               // console.log(element);
-            } );     
-            // console.log(calIndexes);       
+            } );            
 
             // check if there are days between the selection
             betweenDays = getDaysBetween( calIndexes );
+
             if ( betweenDays.length > 0 ) { // there are days between selected
               if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes                
                 var allowedClasses = ['closed', 'selected'];
@@ -264,6 +265,7 @@
             var betweenEls = [];
 
             $(els).each( function ( element, index ) {
+              // $(this).css('background','red'); DEBUG only @TODO remove me
               if ( $(this).hasClasses( classes )) {
                 betweenEls.push( $(this).index() );          
               } else {
@@ -271,26 +273,26 @@
               }
             });
 
-            if (error === 0) {
+            if (error == 0) {
               return betweenEls;
             } 
           }
 
           // check if there are non-selected days between selection
           function getDaysBetween( calIndexes ) {
+
               var counter = 0;
               var low = calIndexes[0];
               var high = calIndexes[calIndexes.length-1];
               var daysBetween = [];
-              console.log(low);
-              console.log(high);
 
               // loop through days
               for (var i = low; i < high; i++) { 
-                if ( ( low + i != calIndexes[i] ) ) { // date is not in indexes
-                  daysBetween.push( calEl.find('li').eq(low + i) );
-                  console.log(low + i);
+                if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
+                  // daysBetween.push( calEl.eq(low + counter) );
+                  daysBetween.push( calEl.find('li').eq(low + counter) );
                 }
+                counter++;
               }
               return daysBetween;    
           }
