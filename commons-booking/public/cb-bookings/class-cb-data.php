@@ -554,8 +554,6 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
     $timestamp = $booked_days;
 
-    var_dump($location[ 'closed_days']);
-
     // first: check if the date is in the locations´ closed days array
     if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
        $status = 'closed';
