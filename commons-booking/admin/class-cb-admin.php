@@ -345,7 +345,7 @@ class Commons_Booking_Admin {
 
     public function add_plugin_admin_menu( ) {
 
-    $capability = 'manage_options'; // Restrict access to whole menu to users with this capabilty
+    $capability = 'publish_pages'; // Restrict access to whole menu to users with this capabilty
 
     /*
      * 3. Timeframes
