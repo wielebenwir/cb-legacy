@@ -1,5 +1,5 @@
 # Commons Booking
-![Logo](./commons-booking/assets/cb-logo.png)
+![Commons Booking Logo](./commons-booking/wp-plugins-assets/cb-logo.png)
 
 Wordpress plugin for managing and booking of common goods. 
 
@@ -7,11 +7,15 @@ Wordpress plugin for managing and booking of common goods.
 
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
-It was developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
+It was developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. See: [wielebenwir e.V. | “Free” nomadic cargo bikes are changing the urban landscape](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape).
 
 # Download
 
 Hosted here are development versions, if you don´t want to participate in beta-testing, please download stable releases form [Wordpress.org](https://wordpress.org/plugins/commons-booking/)
+
+# Contribute
+
+We´re always looking for help. Get in touch: commons-booking AT wielebenwir.de
 
 # Unique features:
 
