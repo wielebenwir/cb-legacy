@@ -391,7 +391,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         // if BCC: ist specified, send a copy to the address
         if ( ! empty ( $confirmation_bcc ) ) {
-            $headers[] = 'Bcc: ' . $confirmation_bcc;
+            $headers[] = 'BCC: ' . $confirmation_bcc . "\r\n";
         }
 
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
