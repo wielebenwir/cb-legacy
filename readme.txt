@@ -85,6 +85,16 @@ Initial Version.
 
 == Changelog ==
 
+= 0.9.2.4 =
+
+* CHANGE: Plugin directory structure flattened
+
+= 0.9.2.3 =
+
+* CHANGE: Editors now have access to the CB Menu. (capability: publish_pages)
+* FIX: Closed days where not correctly rendered
+
+
 = 0.9.2.2 =
 
 * FIX: Javascript validation no longer failing if week day row is activated
