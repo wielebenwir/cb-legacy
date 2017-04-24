@@ -155,15 +155,15 @@ class CB_Data {
         'name' => get_the_title( $id ),
         'id' => $id ,
         'address' => array ( 
-          'street' => cb_get_custom_field( $id, $this->prefix . '_location_adress_street', true ),
-          'city' => cb_get_custom_field( $id, $this->prefix . '_location_adress_city', true ),
-          'zip' => cb_get_custom_field( $id, $this->prefix . '_location_adress_zip', true ),
-          'country' => cb_get_custom_field( $id, $this->prefix . '_location_adress_country', true ),
+          'street' => get_post_meta( $id, $this->prefix . '_location_adress_street', true ),
+          'city' => get_post_meta( $id, $this->prefix . '_location_adress_city', true ),
+          'zip' => get_post_meta( $id, $this->prefix . '_location_adress_zip', true ),
+          'country' => get_post_meta( $id, $this->prefix . '_location_adress_country', true ),
         ),
-        'contact' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_text', true ),
-        'contact_hide' => cb_get_custom_field( $id, $this->prefix . '_location_contactinfo_hide', true ),
-        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true, true ),
-        'openinghours' => cb_get_custom_field( $id, $this->prefix . '_location_openinghours', true ),
+        'contact' => get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true ),
+        'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
+        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', false ),
+        'openinghours' => get_post_meta( $id, $this->prefix . '_location_openinghours', true ),
         );
       return $location;
     } else {
@@ -322,7 +322,7 @@ class CB_Data {
       foreach ( $timeframes as $tf) {
 
           $location = $this->get_location ( $tf['location_id'] ); // get location info
-
+          var_dump($location);
           // 5. Calculate the starting & end-dates for display of the timeframe 
           $cal_start = strtotime ( max( $date_range_start, $tf['date_start'] ) );
           $cal_end = strtotime( min( $date_range_end, $tf['date_end'] ) );
