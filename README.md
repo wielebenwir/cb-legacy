@@ -1,5 +1,5 @@
 # Commons Booking
-![Commons Booking Logo](./commons-booking/wp-plugins-assets/cb-logo.png)
+![Commons Booking Logo](/wp-plugins-assets/cb-logo.png)
 
 Wordpress plugin for managing and booking of common goods. 
 
@@ -35,7 +35,6 @@ We´re always looking for help. Get in touch: commons-booking AT wielebenwir.de
 
 * [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
 * [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
-* [Bug-Tracker](https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open ) 
 * [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
 
 ## Credits
@@ -72,7 +71,7 @@ We´re always looking for help. Get in touch: commons-booking AT wielebenwir.de
 *  [Taxonomy_Core ]( https://github.com/WebDevStudios/Taxonomy_Core )
    
 
-##License
+## License
 
 > This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
