@@ -85,6 +85,10 @@ Initial Version.
 
 == Changelog ==
 
+= 0.9.2.5 =
+
+* FIXED: Location information is now displayed correctly. 
+
 = 0.9.2.4 =
 
 * CHANGE: Plugin directory structure flattened
