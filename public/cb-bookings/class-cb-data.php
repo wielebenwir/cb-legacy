@@ -322,7 +322,6 @@ class CB_Data {
       foreach ( $timeframes as $tf) {
 
           $location = $this->get_location ( $tf['location_id'] ); // get location info
-          var_dump($location);
           // 5. Calculate the starting & end-dates for display of the timeframe 
           $cal_start = strtotime ( max( $date_range_start, $tf['date_start'] ) );
           $cal_end = strtotime( min( $date_range_end, $tf['date_end'] ) );
