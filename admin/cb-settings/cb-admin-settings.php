@@ -100,7 +100,7 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
 
           <p>Only one more step: Click here to set your password:</p>
-          <p><strong>{{ACTIVATION_URL}}</strong>></p>
+          <p><strong>{{ACTIVATION_URL}}</strong></p>
 
           <h3>Your information</h3>
           <p>Username: <strong>{{USER_NAME}}</strong></p>
