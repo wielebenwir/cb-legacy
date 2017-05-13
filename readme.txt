@@ -4,7 +4,7 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.5.3
+Tested up to: 4.7.4
 Stable Tag: 0.8.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -35,7 +35,7 @@ It was developed for the "free cargo bike" movement in Germany and Austria, but 
 
 * [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
 * [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
-* [Bug-Tracker](https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open ) 
+* [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
 * [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
 
 == Upgrade Notice ==
@@ -72,7 +72,7 @@ Initial Version.
 
 = Where can i find help/report bugs? =
 
-* [Bug-Tracker](https://bitbucket.org/wielebenwir/commons-booking/issues?status=new&status=open ) 
+* [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
 * [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
 
 
@@ -84,6 +84,15 @@ Initial Version.
 4. User bookings list
 
 == Changelog ==
+
+= 0.9.2.9 =
+
+* FIXED: Yoast SEO campatibility
+* FIXED: Jetpack Compatibility #146
+
+= 0.9.2.6 =
+
+* FIXED: a typo in email registration settings
 
 = 0.9.2.5 =
 
