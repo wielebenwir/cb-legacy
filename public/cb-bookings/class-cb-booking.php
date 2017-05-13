@@ -653,8 +653,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
 
-                        echo ("IS NOT CONFIRMED");
-
                         // display cancel button only if currentdate <= booking end date 
                         if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) {
                             $cancel_button = cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );    
