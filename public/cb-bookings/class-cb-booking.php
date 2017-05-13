@@ -585,8 +585,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
     public function booking_confirmed_page() {
 
         if (is_user_logged_in() ) {
-
-        
+      
             $current_user = wp_get_current_user();
 
             $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
@@ -630,6 +629,10 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
 
+                    echo("STATUS" .  $this->booking['status'] );
+                    echo("CONFIRM: ".  $_GET['confirm'] );
+                    // @TODO: If YOast SEO activated, variables fail (pending/booking)
+
                     // Finalise the booking
                     if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1 
 
@@ -652,6 +655,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                     } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
+
+                        echo ("IS NOT CONFIRMED");
 
                         // display cancel button only if currentdate <= booking end date 
                         if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) {
