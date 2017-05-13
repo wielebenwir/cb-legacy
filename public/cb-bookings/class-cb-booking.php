@@ -629,9 +629,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
 
-                    echo("STATUS" .  $this->booking['status'] );
-                    echo("CONFIRM: ".  $_GET['confirm'] );
-                    // @TODO: If YOast SEO activated, variables fail (pending/booking)
 
                     // Finalise the booking
                     if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1 
