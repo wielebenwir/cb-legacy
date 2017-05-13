@@ -277,6 +277,11 @@ class Commons_Booking {
      */
     public function cb_content( $page_content ) {
 
+        $cb_main_query = FALSE;
+        if ( in_the_loop() && is_singular() && is_main_query() ) {
+            $cb_main_query = TRUE;
+        }
+
         $settings_display = $this->settings->get_settings('pages'); // get array of page ids from settings
         $post_id = get_the_ID();
 
@@ -287,19 +292,19 @@ class Commons_Booking {
                 return  $page_content . '<div class="cb-wrapper">' . $this->items->output( $args ) . '</div>';
             
             // booking review page
-            } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
-
+            } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) &&  $cb_main_query && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
+                
                 return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_review_page() . '</div>';            
 
             // booking confirmed page
-            } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
+            } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && $cb_main_query && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
 
                 return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_confirmed_page() . '</div>';
 
             // user: bookings list
             } elseif ( !empty( $settings_display[ 'user_bookings_page_select' ] ) && ( is_page( $settings_display[ 'user_bookings_page_select' ] ) ) ) {
 
-                return $page_content . '<div class="cb-wrapper">' . $this->users->render_user_bookings_page() . '</div>';            
+                return $page_content . '<div class="cb-wrapper">' . $this->users->render_user_bookings_page( ) . '</div>';            
 
             // user: single item with timeframes & calendar
             } elseif (  is_singular( 'cb_items' ) ) {                             
@@ -317,7 +322,7 @@ class Commons_Booking {
                 return $page_content;
             }
         }    
-      
+
     /**
      * Return the plugin slug.
      *
