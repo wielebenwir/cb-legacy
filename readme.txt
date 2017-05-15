@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.7.4
-Stable Tag: 0.8.0.10
+Stable Tag: 0.9.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ A Wordpress plugin for management and booking of commons goods.
 
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
-It was developed for the "free cargo bike" movement in Germany and Austria, but it can use it for any kind items. About the movement:  http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape
+It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape) across Germany and Austria, but it can use it for any kind items.
 
 **Unique features:**
 
@@ -26,9 +26,9 @@ It was developed for the "free cargo bike" movement in Germany and Austria, but 
 * Users can leave booking comments (e.g. what they use the item for).
 
 
-**Possible use cases:**
+**Use cases:**
 
-* You have some special tools that you don´t use every day, and you want to make them available to your friends.
+* You/your associations owns special tools that are not in use every day, and you want to make them available to a local group.
 *  You own a cargo bike that you want to share with the community, and it will be placed at different locations throughout the year.
 
 **Plugin websites**
@@ -40,8 +40,15 @@ It was developed for the "free cargo bike" movement in Germany and Austria, but 
 
 == Upgrade Notice ==
 
-Initial Version. 
+New in this version: 
 
+* FEATURE: Set sender name and email address for booking confirmation emails. *Update this in settings!*
+* FEATURE: Category WordPress Widget – List all item categories
+* FEATURE: User WordPress Widget – User funtions (Login/Logout, Registration, „My Bookings“)
+* FEATURE: New Setting: Themes (now included: „standard“ & kasimir“)
+* FEATURE: New Setting: Show Day Name Row (Mon, Tue, Wed…) above the calendar
+* FEATURE: New Setting: Closed days count. Now you can set how the system counts any number of closed days (0 or 1). See Issue #116
+* CHANGE: Consolidated the two setting options under „Advanced“ into „Customize Login and Registration pages“, since one does not make sense without the other.
 
 == Installation ==
 
@@ -84,6 +91,10 @@ Initial Version.
 4. User bookings list
 
 == Changelog ==
+
+= 0.9.2.11 =
+
+* FIXED: Re-added screenshots & updated WP plugin directory description.  
 
 = 0.9.2.9 =
 
