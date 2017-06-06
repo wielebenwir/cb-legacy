@@ -112,6 +112,7 @@ class Commons_Booking {
         add_action( 'init', array( $this, 'register_cpts' ) );
       
         $this->items = new CB_Public_Items();
+        $this->locations = new CB_Public_Locations();
         $this->data = new CB_Data();
         $this->users = new CB_Users();
         $this->settings = new CB_Admin_Settings();
@@ -283,35 +284,73 @@ class Commons_Booking {
             // items page
             if ( !empty( $settings_display[ 'item_page_select' ] ) && ( is_page( $settings_display[ 'item_page_select' ] ) ) ) {
                 
-                $args = array ();
+                $args = array (); // Output ALL POSTS
+                // $this->items = new CB_Public_Items(); (NOT DATA)
+                // calls => CB_Data::render_item_list($posts) using item-list-item template
                 return  $page_content . '<div class="cb-wrapper">' . $this->items->output( $args ) . '</div>';
+            
+            // locations page
+            } elseif ( !empty( $settings_display[ 'location_page_select' ] ) && ( is_page( $settings_display[ 'location_page_select' ] ) ) ) {
+
+                $args = array (); // Output ALL POSTS
+                // $this->locations = new CB_Public_Locations(); (NOT DATA)
+                // calls => CB_Data::render_location_list($posts) using location-list-location template
+                return $page_content . '<div class="cb-wrapper">' . $this->locations->output( $args ) . '</div>';            
             
             // booking review page
             } elseif ( !empty( $settings_display[ 'booking_review_page_select' ] ) && ( is_page( $settings_display[ 'booking_review_page_select' ] ) ) ) {
 
+                // $this->bookings = new CB_Booking(); (NOT DATA)
                 return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_review_page() . '</div>';            
 
             // booking confirmed page
             } elseif ( !empty( $settings_display[ 'booking_confirmed_page_select' ] ) && ( is_page( $settings_display[ 'booking_confirmed_page_select' ] ) ) ) {
 
+                // $this->bookings = new CB_Booking(); (NOT DATA)
                 return $page_content . '<div class="cb-wrapper">' . $this->bookings->booking_confirmed_page() . '</div>';
 
             // user: bookings list
             } elseif ( !empty( $settings_display[ 'user_bookings_page_select' ] ) && ( is_page( $settings_display[ 'user_bookings_page_select' ] ) ) ) {
 
+                // $this->users = new CB_Users(); (NOT DATA)
                 return $page_content . '<div class="cb-wrapper">' . $this->users->render_user_bookings_page() . '</div>';            
 
             // user: single item with timeframes & calendar
+            // SINGLE POST
             } elseif (  is_singular( 'cb_items' ) ) {                             
 
-                $item_id = get_the_ID();
+                $item_id = get_the_ID(); 
+                // $this->data = new CB_Data(); (NOT DATA)
+                // CB_Data::render_item_single() => using timeframes-full template
                 return $page_content . '<div class="cb-wrapper">' . $this->data->render_item_single( $item_id ) . '</div>' . $this->data->render_booking_bar() ;
 
-            // items as wordpress archive
+            // user: single location with timeframes
+            // SINGLE POST
+            } elseif (  is_singular( 'cb_locations' ) ) {                             
+
+                $location_id = get_the_ID();
+                // $this->data = new CB_Data(); (NOT DATA)
+                // CB_Data::render_location_single() => using location-single template
+                return $page_content . '<div class="cb-wrapper">' . $this->data->render_location_single( $location_id ) . '</div>' . $this->data->render_booking_bar() ;
+
+            // items as wordpress archive loop
             } elseif ( ( is_post_type_archive ( 'cb_items' ) ) OR ( is_tax( 'cb_items_category' ) ) ) { // list of items 
 
+                // $this->data = new CB_Data(); (NOT DATA)
+                // CB_Data::render_item_list(NO ARGS) will render the current global $post
+                //   => using item-list-item template
+                // because we are in a post archive LOOP, this will be called foreach $post in the archive page
                 return '<div class="cb-wrapper">' . $this->data->render_item_list( ) . '</div>';
             
+            // locations as wordpress archive loop
+            } elseif ( ( is_post_type_archive ( 'cb_locations' ) ) OR ( is_tax( 'cb_locations_category' ) ) ) { // list of locations
+
+                // $this->data = new CB_Data(); (NOT DATA)
+                // CB_Data::render_location_list(NO ARGS) will render the current global $post
+                //   => using location-list-location template
+                // because we are in a post archive LOOP, this will be called foreach $post in the archive page
+                return '<div class="cb-wrapper">' . $this->data->render_location_list( ) . '</div>';
+
             } else { 
 
                 return $page_content;
@@ -572,6 +611,7 @@ class Commons_Booking {
 
         // create the default pages 
         $item_page = create_page(__( 'Items', 'commons-booking' ), self::$plugin_slug.'_item_page_select');
+        $locations_page = create_page(__( 'Locations', 'commons-booking' ), self::$plugin_slug.'_location_page_select');
         $user_bookings_page = create_page(__( 'My Bookings', 'commons-booking' ), self::$plugin_slug.'_user_bookings_page_select');
         $booking_confirmed_page = create_page(__( 'Booking', 'commons-booking' ), self::$plugin_slug.'_booking_confirmed_page_select');
         $booking_view_page = create_page(__( 'Confirm booking', 'commons-booking' ), self::$plugin_slug.'_booking_review_page_select');
@@ -579,7 +619,7 @@ class Commons_Booking {
         // set defaults, set pages, update wp_options
         $settings = new CB_Admin_Settings(); 
 
-        $settings->set_defaults( $item_page, $user_bookings_page , $booking_confirmed_page, $booking_view_page );
+        $settings->set_defaults( $item_page, $locations_page, $user_bookings_page , $booking_confirmed_page, $booking_view_page );
         $settings->apply_defaults();
 
         //Clear the permalinks
@@ -617,6 +657,11 @@ class Commons_Booking {
      */
     public function enqueue_styles() {
         wp_enqueue_style( $this->get_plugin_slug() . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
+
+        // TODO: conditional inclusion as below
+        // if ( is_singular ( 'cb_locations' )) {
+            wp_enqueue_style(  $this->get_plugin_slug() . '-leaflet', plugins_url( 'assets/leaflet/leaflet.css', __FILE__ ), array(), self::VERSION );
+        // }
     }
 
     /**
@@ -659,8 +704,15 @@ class Commons_Booking {
         if ( is_singular ( 'cb_items' )) {
             wp_enqueue_script( $this->get_plugin_slug() . '-tooltip-lib', plugins_url( 'assets/js/jquery.tooltipster.min.js', __FILE__ ), array( 'jquery' ), self::VERSION );           
             wp_enqueue_script( $this->get_plugin_slug() . '-selectonic-lib', plugins_url( 'assets/js/selectonic.min.js', __FILE__ ), array( 'jquery' ), self::VERSION );
-            wp_enqueue_script( $this->get_plugin_slug() . '-calendar-script', plugins_url( 'assets/js/calendar.js', __FILE__ ), array( 'jquery' ), self::VERSION );
         }
+
+        // Annesley: moved this to always included (from if above) 
+        // because it is really a generalised Commons_Booking event system
+        // TODO: conditional inclusion as above
+        // if ( is_singular ( 'cb_locations' ) ) {
+            wp_enqueue_script( $this->get_plugin_slug() . '-calendar-script', plugins_url( 'assets/js/commons-booking.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+            wp_enqueue_script( $this->get_plugin_slug() . '-leaflet', plugins_url( 'assets/leaflet/leaflet.js', __FILE__ ), array( 'jquery' ), self::VERSION );
+        // }
     }
     /**
      * For calendar page: Print the PHP vars in the HTML of the frontend for access by JavaScript @TODO use settings api

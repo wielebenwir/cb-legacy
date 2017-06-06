@@ -1,1 +1,34 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
+
+/* direct classes */
+/* TODO: couldn't find an existing way to do this... */
+.cb-meta-info {display:none;}
+
+/* Location list */
+.cb-list-location-items {
+  clear:both;
+}
+body .cb-location-wrapper .cb-list-location-items .cb-table .cb-row h3 {
+  margin-top:0px;
+  margin-bottom:20px;
+}
+body .cb-list-location-items .cb-table .cb-row h3 {
+  clear:none;
+}
+
+/* Map */
+.commons-booking-hcard-map {
+  height:300px;
+}
+.cb-list-location-location {
+  display:none;
+}
+.commons-booking-hcard-map .leaflet-popup .leaflet-popup-content h2 {
+  margin-bottom:0.5em;
+}
+.commons-booking-hcard-map .leaflet-popup .leaflet-popup-content h3 {
+  margin-top:0px;
+  margin-bottom:0px;
+  margin:0px;
+  font-size:1em;
+}

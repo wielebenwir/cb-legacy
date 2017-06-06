@@ -137,6 +137,49 @@ class CB_Data {
   }
 
 
+/**
+ * Get items by location_id
+ *
+ * @author Annesley Newholm <annesley_newholm@yahoo.it>
+ * @param  $date_start OPTIONAL, defaults to today
+ * @since  0.9.2.5
+ *
+ * @return array
+ */
+  public function get_items_by_location( $location_id, $date_start = '', $single = FALSE ) {
+
+    $return = $limit = '';
+
+    if ( empty( $date_start) ) {
+      $date_start = $this->current_date;
+    }
+
+    if ( $single ) {
+      $limit = 'LIMIT 1';
+    }
+
+    if ( $location_id ) {
+      global $wpdb;
+      // @TODO: Fix start date not being honored by function -> maybe change data format
+      $table_name = $wpdb->prefix . 'cb_timeframes'; 
+      $items_table_name = $wpdb->prefix . 'posts'; 
+      $sql = $wpdb->prepare( "SELECT p.* FROM $table_name tf INNER JOIN $items_table_name p ON tf.item_id = p.id WHERE tf.location_id = %s AND tf.date_end >= %s ORDER BY tf.date_start ASC $limit", $location_id, $date_start );
+      $items = $wpdb->get_results($sql, ARRAY_A);
+      
+      // Template vars ready for rendering
+      foreach ( $items as &$item ) {
+        $item['template_vars'] = $this->get_timeframe_array( $item['ID'] );
+      }
+
+      if ( !empty( $items) ) {
+          return $items;
+        } else { 
+          return FALSE;
+        } 
+    } else {
+      return FALSE;
+    }
+  }
 
 
 /**
@@ -151,6 +194,19 @@ class CB_Data {
   public function get_location ( $id ) {
   
     if ( $id ) {
+      // Coordinate calculations
+      // Array: commons-booking_location_adress_coordinates with lat, lng
+      $latitude        = '';
+      $longitude       = '';
+      $coordinates     = get_post_meta( $id, $this->prefix . '_location_adress_coordinates', TRUE );
+      if ( $coordinates ) {
+        $latitude    = $coordinates['lat'];
+        $longitude   = $coordinates['lng'];
+      }
+      $icon_url_fields = get_post_meta( $id, $this->prefix . '_location_icon' );
+      $icon_url        = ( isset( $icon_url_fields[0]['icon'] ) ? $icon_url_fields[0]['icon'] : '' );
+      $icon_shadow_url = ( isset( $icon_url_fields[0]['icon_shadow'] ) ? $icon_url_fields[0]['icon_shadow'] : '' );
+      
       $location = array ( 
         'name' => get_the_title( $id ),
         'id' => $id ,
@@ -159,6 +215,10 @@ class CB_Data {
           'city' => get_post_meta( $id, $this->prefix . '_location_adress_city', true ),
           'zip' => get_post_meta( $id, $this->prefix . '_location_adress_zip', true ),
           'country' => get_post_meta( $id, $this->prefix . '_location_adress_country', true ),
+          'latitude' => $latitude,
+          'longitude' => $longitude,
+          'icon_url' => $icon_url,
+          'icon_shadow_url' => $icon_shadow_url,
         ),
         'contact' => get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true ),
         'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
@@ -283,9 +343,30 @@ class CB_Data {
       return '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
     }
   }
+  
+/**
+ * Single location, all items. 
+ *
+ *@param $id location id
+ *
+*/
+  public function render_location_single( $id ) {
+    $location_content = '';
+    $post = get_post( $id );
+    setup_postdata( $post ); // TODO: this is a different style to render_item_list(): DISCUSS
+
+    // Complex attributes
+    $attributes = $this->prepare_template_vars_location( $post, TRUE );
+
+    $location_content .=  cb_get_template_part( 'location-single', $attributes, TRUE );      
+    
+    wp_reset_postdata();
+    
+    return $location_content;
+  }
 
 /**
- * Single item, all calendars. 
+ * All timeframes, all calendars. 
  *
  *@param $id item id
  *
@@ -355,7 +436,8 @@ class CB_Data {
   }
 
 /**
- * Renders the list of items (Archive) 
+ * Renders ONE item in a list style (Archive) 
+ * usually called within a foreach
  *
  * @return html
 */
@@ -390,6 +472,51 @@ class CB_Data {
   }  
 
 /**
+ * Renders the ONE location in list style (Archive) 
+ * usually called within a foreach
+ *
+ * @author Annesley Newholm<annesley_newholm@yahoo.it>
+ * @since  0.9.2.5
+ * @return html
+*/
+
+  public function render_location_list ( $id = false ) {
+    global $post;
+  
+    $location_content = '';
+    if ( $id ) {
+      $post = get_post( $id );
+      setup_postdata( $post ); // TODO: this is a different style to render_item_list(): DISCUSS
+    }
+
+    // Complex attributes
+    $attributes = $this->prepare_template_vars_location( $post, TRUE );
+
+    $location_content .=  cb_get_template_part( 'location-list-location', $attributes, TRUE );      
+    
+    if ( $id ) wp_reset_postdata();
+    
+    return $location_content;
+  }  
+
+/**
+ * Prepare attributes for general location template
+ *
+ * @author Annesley Newholm <annesley_newholm@yahoo.it>
+ * @param array $location
+ * @return array
+*/
+
+public function prepare_template_vars_location ( $location_post, $include_items = TRUE ) {
+
+  $attributes = $this->get_location( $location_post->ID );
+  $attributes['address']['description']      = $this->format_adress( $attributes['address'] );
+  if ( $include_items ) $attributes['items'] = $this->get_items_by_location( $location_post->ID );
+  
+  return $attributes;
+}
+
+/**
  * Prepare attributes for calendar-cell template
  * Converts the timestamp to an array with 
  * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")  
@@ -407,7 +534,7 @@ public function prepare_template_vars_item ( $item ) {
     'title' => $item['post_title'],
     'description_short' => $item['commons-booking_item_descr'],
     'description_full' => $item['post_content']  
-    );
+  );
   
   return $attributes;
 }

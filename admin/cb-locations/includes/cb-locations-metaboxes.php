@@ -35,7 +35,6 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
     $myitems = new CB_Data;
     $items = $myitems->get_items();
 
-
     $meta_boxes[ 'cb_location_metabox_adress' ] = array(
       'id' => 'cb_location_metabox_adress',
       'title' => __( 'Address', 'commons-booking'),
@@ -44,6 +43,43 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
       'priority' => 'high',
       'show_names' => true, // Show field names on the left   
       'fields' => array(        
+        array(
+          'name' => __('Coordinates', 'commons-booking'),
+          'id' => parent::$plugin_slug . '_location_adress_coordinates',
+          'type' => 'leaflet_map',
+          'desc' => '<b>' . __('Search first', 'commons-booking') . '</b>, ' . __('then Drag the marker after finding the right spot to set the exact coordinates', 'commons-booking'),
+          'attributes' => array(
+            'initial_coordinates' => [
+                // TODO: detect the users location initially
+                'lat' => 61.9241, // Go Finland!
+                'lng' => 25.7482  // Go Finland!
+            ],
+            'initial_zoom'        => 4,  // Zoomlevel when there's no coordinates set,
+            'default_zoom'        => 12, // Zoomlevel after the coordinates have been set & page saved
+            // For these extra attributes, please consult Leaflet [documentation](http://leafletjs.com/reference-1.0.0.html)
+            /*
+            'tilelayer'           => 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            'searchbox_position'  => 'topright'; // topright, bottomright, topleft, bottomleft,
+            'search'              => __( 'Search...', 'commons-booking' ),
+            'not_found'           => __( 'Not found', 'commons-booking' ),
+            */
+          )
+        ),
+        array(
+          'name' => __( 'Door colour', 'commons-booking'),
+          'id' => parent::$plugin_slug . '_location_adress_door_colour',
+          'type' => 'text',
+        ),        
+        array(
+          'name' => __( 'Floor, apartment', 'commons-booking'),
+          'id' => parent::$plugin_slug . '_location_adress_floor_apartment',
+          'type' => 'text',
+        ),        
+        array(
+          'name' => __( 'House / building number', 'commons-booking'),
+          'id' => parent::$plugin_slug . '_location_adress_house_number',
+          'type' => 'text',
+        ),        
         array(
           'name' => __( 'Street', 'commons-booking'),
           'id' => parent::$plugin_slug . '_location_adress_street',
@@ -67,6 +103,30 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
       ),      
     );
 
+    $meta_boxes[ 'cb_item_metabox_icon' ] = array(
+      'id' => 'cb_location_metabox_icon',
+      'title' => __( 'Icon', parent::$plugin_slug ),
+      'object_types' => array( 'cb_locations', ), // Post type
+      'context' => 'side',
+      'priority' => 'high',
+      'show_names' => false,
+      'fields' => array(        
+        array(
+          'name' => __( 'Icon', parent::$plugin_slug ),
+          'id' => parent::$plugin_slug . '_location_icon',
+          'type' => 'icon',
+          'desc' => 'Used in Maps.',
+          'options' => array(
+            'paths' => array( 
+              COMMONSBOOKING_PATH . 'public/assets/images',
+              wp_upload_dir()['path'], // Since 2.0.0
+              'http://www.flaticon.com/packs/holiday-travelling-3',
+            ),
+          ),
+        ),
+      ),      
+    );
+
     $meta_boxes[ 'cb_location_metabox_contactinfo' ] = array(
       'id' => 'cb_location_metabox_contactinfo',
       'title' => __( 'Contact Information', 'commons-booking'),
@@ -86,7 +146,8 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
           'type' => 'checkbox',
         ),  
       ),              
-    );      
+    );   
+    
     $meta_boxes[ 'cb_location_metabox_openinghours' ] = array(
       'id' => 'cb_location_metabox_openinghours',
       'title' => __( 'Opening hours', 'commons-booking'),
@@ -127,7 +188,6 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
           ),        
       ),              
     );
-
 
     return $meta_boxes;
   }

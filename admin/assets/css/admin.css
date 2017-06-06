@@ -2,6 +2,9 @@
   padding: 20px;
   background: white; }
 
+.cmb-type-leaflet-map .cmb2-metabox-description b {
+  color:red; }
+
 /* Timeframe edit Time picker */
 .ui-datepicker-div {
   background: #fff; }

@@ -88,6 +88,8 @@ class Commons_Booking_Admin {
 		 * CMB 2 library
 		 */
 		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2/init.php' );
+		require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-field-Leaflet-Geocoder/cmb-field-leaflet-map.php' );
+                require_once( plugin_dir_path( __FILE__ ) . '/includes/CMB2-field-Icon/cmb-field-icon.php' );
 
 		// Definition of Custom meta boxes for items & Locations
 		require_once( plugin_dir_path( __FILE__ ) . 'cb-items/includes/cb-items-metaboxes.php' );
@@ -122,6 +124,7 @@ class Commons_Booking_Admin {
 		// add meta boxes
     add_action( 'add_meta_boxes', array( $items_metabox, 'cb_items_add_timeframe_meta_box'));
     add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_descr_metaboxes' ) );
+    add_filter( 'cmb2_meta_boxes', array( $items_metabox, 'cb_item_icon_metaboxes' ) );
     add_filter( 'cmb2_meta_boxes', array( $locations_metabox, 'add_metabox' ) );
 
     // add user profile fields 
@@ -253,7 +256,7 @@ class Commons_Booking_Admin {
 			return;
 		}
 		$screen = get_current_screen();
-		if ( $screen->id == 'settings_page_commons-booking' ) {
+		if ( $screen->id == 'settings_page_commons-booking' || $screen->id == 'cb_items' ) {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery', 'jquery-ui-tabs' ), Commons_Booking::VERSION );
 		}
 	}	

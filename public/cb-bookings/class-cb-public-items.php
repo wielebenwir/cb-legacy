@@ -84,8 +84,10 @@ class CB_Public_Items {
       $array = array_filter( $array, 'strlen' ); // remove empty keys
       return ($array);
     }
+    
   /**
    * Output the item list
+   * using foreach render_item_list()
    * 
    * @since     0.4.5
    * @param     args array

@@ -33,11 +33,12 @@ class Commons_Booking_Items_Metabox extends Commons_Booking {
     //limit meta box to certain post types
     if (in_array($post_type, $post_types)) {
       add_meta_box('cs-meta',
-      __('Timeframes', 'commons-booking'),
-      array($this, 'cb_items_timeframe_meta_box_function'),
-      $post_type,
-      'normal',
-      'high');      
+        __('Timeframes', 'commons-booking'),
+        array($this, 'cb_items_timeframe_meta_box_function'),
+        $post_type,
+        'normal',
+        'high'
+      );
     }
   }
 
@@ -46,14 +47,14 @@ class Commons_Booking_Items_Metabox extends Commons_Booking {
    *
    * @param WP_Post $post The post object.
    */
-
+   
   public function cb_items_timeframe_meta_box_function($post) {
 
     $timeframes = new Commons_Booking_Timeframes_List( $post->ID );
     $timeframes->render_timeframes();
 
   }
-
+  
   /**
    * Set up the description meta box.
    *
@@ -74,6 +75,36 @@ class Commons_Booking_Items_Metabox extends Commons_Booking {
           'name' => __( 'Short description', parent::$plugin_slug ),
           'id' => parent::$plugin_slug . '_item_descr',
           'type' => 'textarea',
+        ),
+      ),      
+    );
+    return $meta_boxes;
+  }
+
+  /**
+   * Set up the icon meta box.
+   *
+   * @param WP_Post $post The post object.
+   */
+
+  public function cb_item_icon_metaboxes( array $meta_boxes ) {
+
+    $meta_boxes[ 'cb_item_metabox_icon' ] = array(
+      'id' => 'cb_item_metabox_icon',
+      'title' => __( 'Icon', parent::$plugin_slug ),
+      'object_types' => array( 'cb_items', ), // Post type
+      'context' => 'side',
+      'priority' => 'high',
+      'show_names' => false,
+      'fields' => array(        
+        array(
+          'name' => __( 'Icon', parent::$plugin_slug ),
+          'id' => parent::$plugin_slug . '_item_icon',
+          'type' => 'icon',
+          'desc' => 'Used in Maps.',
+          'options' => array(
+            'paths' => array( COMMONSBOOKING_PATH . 'public/assets/images' ),
+          ),
         ),
       ),      
     );

@@ -204,17 +204,62 @@ function theme_select() {
    * @param     $echo
    * @return    Meta field
    */
-function cb_get_custom_field( $key, $echo = FALSE ) {
-  global $post;
-  $custom_field = get_post_meta($post->ID, $key, true);
+  function cb_get_custom_field( $key, $echo = FALSE ) {
+    global $post;
+    $custom_field = get_post_meta($post->ID, $key, true);
 
-  if (! $custom_field ) {
-    $custom_field = "";
+    if (! $custom_field ) {
+      $custom_field = "";
+    }
+
+    if ($echo == FALSE) return $custom_field;
+    echo $custom_field;
   }
 
-  if ($echo == FALSE) return $custom_field;
-  echo $custom_field;
-}
+  /**
+   * Echo post custom field
+   *
+   * @author   Annesley Newholm <annesley_newholm@yahoo.it>
+   * @since    0.9.2.5
+   *
+   * @param     $key
+   * @return    NULL
+   */
+  function the_post_custom( $key ) {
+    return cb_get_custom_field($key, TRUE);
+  }
 
+  /**
+   * Echo the commonly used $attributes value
+   *
+   * @author   Annesley Newholm <annesley_newholm@yahoo.it>
+   * @since    0.9.2.5
+   *
+   * @return    NULL
+   */
+  function the_attribute( $attributes, $keys ) {
+    // e.g. the_attribute( $attributes, 'address/latitude' );
+    $value = $attributes;
+    foreach ( explode( '/', $keys ) as $key ) {
+      if ( isset( $value[$key] ) ) $value = $value[$key];
+      else {
+        $value = NULL;
+        break;
+      }
+    }
+    if ( $value ) echo ( $value );
+  }
 
+  /**
+   * Echo raw post content
+   *
+   * @author   Annesley Newholm <annesley_newholm@yahoo.it>
+   * @since    0.9.2.5
+   *
+   * @return    NULL
+   */
+  function the_post_content() {
+    global $post;
+    echo ( $post ? $post->post_content : '' );
+  }
 ?>

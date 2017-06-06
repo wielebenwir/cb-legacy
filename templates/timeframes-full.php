@@ -2,10 +2,14 @@
 /**
  * Template for item single view including location and calendar. 
  *
+ * CB_Data::render_item_single() 
+ *   => using timeframes-full template
+ *
  * @since   0.5
  */
 ?>
 <div class="cb-timeframes-wrapper">
+  <!-- TEMPLATE: timeframes-full -->
 <?php foreach ( $attributes['timeframes'] as $tf ) { ?>
 
   <a name="timeframe<?= $tf['timeframe_id'] ?>"></a>
@@ -22,7 +26,7 @@
       <div class="cb-opening-hours cb-row"><span class="cb-row-title"><?=_e('Opening hours', 'commons-booking'); ?></span><?=$tf['opening_hours'] ?></div>
       <div class="cb-contact cb-row"><span class="cb-row-title"><?=_e('Contact', 'commons-booking'); ?></span><?=$tf['contact'] ?></div>
     </div>
-    <div id ="timeframe_<?=$tf['timeframe_id'] ?>" class="cb_timeframe_form">
+    <div id="timeframe_<?=$tf['timeframe_id'] ?>" class="cb_timeframe_form">
         <ul class="cb-calendar">
         <?php // optional: Row of weekday names 
         if ($tf['render_daynames'] == "on") { ?>
