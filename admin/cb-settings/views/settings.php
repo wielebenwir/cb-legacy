@@ -34,12 +34,12 @@
     <div id="tabs-welcome" class="wrap">
 
       
-    <?php echo '<img src="' . plugins_url( 'commons-booking/wp-plugin-assets/cb-logo.png' ) . '" > '; ?>
+    <?php echo '<img src="' . plugins_url( 'commons-booking/assets/cb-logo.png' ) . '" > '; ?>
 
       <h1>Aloha!</h1>
       <p> Commons Booking - Version <?php echo (Commons_Booking::VERSION); ?> </p>
-      <p><?php _e('To get started: Read the <a href="http://dein-lastenrad.de/index.php?title=Commons_Booking_Benutzerhandbuch">user manual (german)</a>', 'commons-booking'); ?>, <?php _e('ask questions in the <a href="http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software">discussion forum (german)</a> and file bugs in the <a href="https://github.com/wielebenwir/commons-booking/issues">bug tracker (english)</a>', 'commons-booking'); ?>.</p>
-        <p><?php _e('The future of this plugin is dependent on your contribution. Want to help? <a href="http://www.wielebenwir.de/verein/unterstutzen">Donate</a> and/or join the <a href="https://github.com/wielebenwir/commons-booking">development team</a>.', 'commons-booking'); ?>
+      <p><?php _e('To get started: Read the <a href="http://dein-lastenrad.de/index.php?title=Commons_Booking_Benutzerhandbuch">user manual (german)</a>', 'commons-booking'); ?>, <?php _e('ask questions in the <a href="http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software">discussion forum (german)</a> and file bugs in the <a href="https://github.com/wielebenwir/commons-booking/issues">bug tracker (english)</a>', 'commons-booking'); ?></p>
+        <p><?php _e('The future of this plugin depends on your contribution. Want to help? <a href="http://www.wielebenwir.de/verein/unterstutzen">Donate</a> and/or join the <a href="https://github.com/wielebenwir/commons-booking">development team</a>.', 'commons-booking'); ?>
       <p><?php _e('<a href="http://www.wielebenwir.de/projekte/commons-booking">Official Plugin Website</a>', 'commons-booking'); ?></p>
       <p><?php _e('All the best, Florian Egermann / <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a>', 'commons-booking'); ?></p>
 
