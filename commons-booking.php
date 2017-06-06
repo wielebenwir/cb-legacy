@@ -32,8 +32,6 @@ if ( !defined( 'WPINC' ) ) {
  * Public-Facing Functionality
  * ---------------------------------------------------------------------------- */
 define( 'COMMONSBOOKING_PATH', plugin_dir_path( __FILE__ ) );
-// Annesley test root (because of symlinks) : 
-// define( 'COMMONSBOOKING_PATH', '/var/www/wordpress/wordpress-4.4.2/wp-content/plugins/commons-booking/' );
 
 /*
  * Load library for simple and fast creation of Taxonomy and Custom Post Type

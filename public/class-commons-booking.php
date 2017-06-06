@@ -164,6 +164,7 @@ class Commons_Booking {
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_calendar_js_vars' ) );
 
+        add_shortcode( 'cb_locations', array( $this, 'location_shortcode' ) );
         add_shortcode( 'cb_items', array( $this, 'item_shortcode' ) );
         add_shortcode( 'cb_item_categories', array( $this, 'item_category_shortcode' ) );
 
@@ -797,6 +798,27 @@ class Commons_Booking {
     public function get_cb_settings() {
        return $this->settings;
     }
+
+    /**
+     * Shortcode: Locations
+     *
+     *        Reference:  http://codex.wordpress.org/Shortcode_API
+     *
+     * @since    0.8
+     */
+    function location_shortcode( $atts ) {
+        $a = shortcode_atts( array(
+            'p' => '',
+            'cat' => '',
+            'posts_per_page' => 10, 
+            'post_type' => 'cb_locations', 
+            'orderby' => 'title', 
+            'order' => 'DESC'
+        ), $atts );
+
+        $locations = new CB_Public_Locations;
+        return  $locations->output( $a );
+    }    
 
     /**
      * Shortcode: Items
