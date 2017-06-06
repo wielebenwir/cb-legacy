@@ -162,7 +162,7 @@ class CB_Data {
         ),
         'contact' => get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true ),
         'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
-        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', false ),
+        'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true, true ),
         'openinghours' => get_post_meta( $id, $this->prefix . '_location_openinghours', true ),
         );
       return $location;
