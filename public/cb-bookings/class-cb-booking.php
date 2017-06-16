@@ -143,6 +143,7 @@ class CB_Booking {
  *
  * @return array
  */   
+ /* NOT_CURRENTLY_USED, see CB_Data->get_location($location_id)
     public function get_location( $posts_id ) {
         
         global $wpdb;
@@ -159,7 +160,7 @@ class CB_Booking {
         return $item;
 
     }
-
+*/
 
  /**
  * Get a list of all booked days
@@ -239,6 +240,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
  /**
  * Store all booking relevant data into booking-table, set status pending. Return booking_id
+ *
+ * Called from booking_review_page() when $_POST
  *
  * @return id
  */   
@@ -372,13 +375,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
     } 
     /**
      * Sends the confirm booking email.
+     *
+     * Called from booking_confirmed_page()
      * 
-     *@param $to, 
+     * @param $to, 
      */   
-    public function send_mail( $to ) {
+    public function send_mail( $to, $template_name = 'confirmation' ) {
 
-        $body_template = ( $this->email_messages['mail_confirmation_body'] );  // get template
-        $subject_template = ( $this->email_messages['mail_confirmation_subject'] );  // get template
+        $body_template = ( $this->email_messages["mail_{$template_name}_body"] );  // get template
+        $subject_template = ( $this->email_messages["mail_{$template_name}_subject"] );  // get template
         
         $sender_from_email = $this->settings->get_settings( 'mail', 'mail_from');        
         $sender_from_name = $this->settings->get_settings( 'mail', 'mail_from_name'); 
@@ -485,7 +490,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $b_vars['location_content'] = get_the_content( $this->location_id  );
         $b_vars['location_address'] = $this->data->format_adress($this->location['address']);
         $b_vars['location_thumb'] = get_thumb( $this->location_id ); 
-        $b_vars['location_contact'] = $this->location['contact']; 
+        $b_vars['location_contact'] = $this->location['contact']['string']; 
         $b_vars['location_openinghours'] = $this->location['openinghours']; 
 
         $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'booking_confirmed_page_select');
@@ -619,16 +624,16 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->item_id = ( $this->booking['item_id'] ); 
                     $this->user_id = ( $this->booking['user_id'] );
                     $this->booking_id = ( $b_id );
+                    $this->location = $this->data->get_location( $this->location_id );
 
+                    $location_email = ( isset( $this->location['contact']['email'] ) ? $this->location['contact']['email'] : NULL );
                     $allow_booking_comments = $this->settings->get_settings( 'bookings', 'bookingsettings_allow_comments');
                     $allow_booking_comments_message = $this->settings->get_settings( 'messages', 'messages_booking_comment_notice');
                     $comments = '';
                     $message_comments = '';
 
-
                     // Set Variable for Template
                     $this->set_booking_vars( TRUE );
-
 
                     // Finalise the booking
                     if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1 
@@ -644,6 +649,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                         $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                         $this->send_mail( $this->user['email'] );
+                        if ( $location_email ) $this->send_mail( $location_email );
 
                         // PRINT: Booking review, Cancel Button
                         $message = display_cb_message( $msg, $this->b_vars );
