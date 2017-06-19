@@ -14,7 +14,7 @@
         echo '<div class="cb-userinfo cb-small">' . __( 'Logged in as', 'commons-booking' ) . ' <a href="'. get_edit_user_link( $current_user->ID ) .'">'. esc_attr( $current_user->user_nicename ) .'</a></div>';
       ?>
   <div class="booking">
-    <div id="intro">
+    <div id="cb-intro">
     <?php echo __( 'Book this item:', 'commons-booking' ); ?>
     </div>
     <div id="date-start">

@@ -65,7 +65,7 @@
           // DOM containers
           var bookingBar = $( '#cb-bookingbar' );
           var debug = $( '#debug' );
-          var introContainer = $( '#intro' );
+          var introContainer = $( '#cb-intro' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
           var bookingButton = $( '#cb-submit .cb-button' );
