@@ -17,6 +17,26 @@
         
         init: function(mapDIV) {
           var locationsMap, vcards, markers, group, padding;
+
+          // Location info toggle functionality
+          var notice_map_click = cb_js_vars.text_notice_map_click; // String from PHP
+          console.log(notice_map_click);
+          $('<div id="cb-location-popup-container" class="cb-location-wrapper cb-box"></div>').insertAfter(mapDIV); // insert info box div
+          var locationInfoTaget = $('#cb-location-popup-container'); // set div as target
+          locationInfoTaget.html(notice_map_click); // Set initial string
+          var locationInfoOld = '';
+
+          // update the target div with location info
+          function updateLocationInfo( locationInfo ) {
+            if (locationInfo != locationInfoOld) { // prevent fade if same marker is clicked twice
+              locationInfoTaget.fadeOut("slow", function() { // is faded out
+                  locationInfoTaget.html( locationInfo ); // exchange info
+                  locationInfoTaget.fadeIn("fast"); // fade in
+                  locationInfoOld = locationInfo;
+              });
+            } 
+          }
+
           if (window.L) {
             locationsMap = L.map(mapDIV).setView([51.505, -0.09], 13);
             markers      = [];
@@ -46,6 +66,7 @@
               $(this).find('.cb-popup').each(function() {
                 desc += $("<div/>").append($(this).clone()).html();
               });
+             $(this).hide();
               
               // Warnings
               if (window.console) {
@@ -79,7 +100,8 @@
                 
                 if (window.console) console.info('adding [' + title + '] at [' + lat + ',' + lng + ']');
                 marker = L.marker([lat, lng], oOptions).addTo(locationsMap);
-                marker.bindPopup('<h2><a href="' + href + '">' + title + '</a></h2>' + desc);
+                var locationInfo = '<h2><a href="' + href + '">' + title + '</a></h2>' + desc;
+                marker.on('click', function(e) { updateLocationInfo( locationInfo ); } );
                 markers.push(marker);
               }
             });

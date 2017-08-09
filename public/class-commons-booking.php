@@ -753,7 +753,8 @@ class Commons_Booking {
             'text_error_notbookable' => __( 'Sorry, this day is not bookable.', 'commons-booking' ),
             'text_error_sequential' => __( 'Please select sequential days.', 'commons-booking' ),
             'text_error_bookedday' => __( 'Sorry, there must be no booked day between pickup and return.', 'commons-booking' ),
-            'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', 'commons-booking' )
+            'text_error_closedforbidden' => __( 'Sorry, you can´t book over closed days.', 'commons-booking' ),
+            'text_notice_map_click' => __( 'Select a location on the map.', 'commons-booking' )
                 )
         );
     }

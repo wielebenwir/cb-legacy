@@ -39,6 +39,5 @@
       }
     ?>
   </div>
-
   <?php // div is closed here because we do not have any further content ?>
 </div>
