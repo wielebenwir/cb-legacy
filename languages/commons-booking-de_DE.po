@@ -1893,7 +1893,7 @@ msgstr "Telefonnummer:"
 #, fuzzy
 #| msgid " Location information: "
 msgid "Location information "
-msgstr "Standort-Infomationen"
+msgstr "Standort-Informationen"
 
 #: templates/booking-review.php:48
 #, fuzzy
