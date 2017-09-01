@@ -982,7 +982,7 @@ msgstr "Bitte gib deine Adresse an"
 
 #: admin/cb-users/class-cb-users.php:59
 msgid "Terms and Conditions"
-msgstr "Nutzungsbedingungen akzeptiert"
+msgstr "Nutzungsbedingungen"
 
 #: admin/cb-users/class-cb-users.php:62
 msgid "I accept the terms & conditions"
@@ -1893,7 +1893,7 @@ msgstr "Telefonnummer:"
 #, fuzzy
 #| msgid " Location information: "
 msgid "Location information "
-msgstr "Standort-Infomationen"
+msgstr "Standort-Informationen"
 
 #: templates/booking-review.php:48
 #, fuzzy

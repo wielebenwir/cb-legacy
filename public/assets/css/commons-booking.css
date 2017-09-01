@@ -342,7 +342,7 @@ a.cb-button, input#wp-submit, input#wp-submit-comment {
   #cb-bookingbar .cb-userinfo {
     display: block;
     margin-bottom: 10px; }
-  #cb-bookingbar .booking #intro, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
+  #cb-bookingbar .booking #cb-intro, #cb-bookingbar .booking #date-start, #cb-bookingbar .booking #date-end, #cb-bookingbar .booking #cb-submit {
     font-weight: normal;
     float: left; }
   #cb-bookingbar .booking div.bb-date {
