@@ -195,15 +195,15 @@ class CB_Users extends Commons_Booking {
 
   public function cb_login_redirect( $redirect_to, $request, $user ) {
       //is there a user to check?
-      global $user;
+      global $user, $_SERVER;
       if ( isset( $user->roles ) && is_array( $user->roles ) ) {
           //check for admins
           if ( in_array( 'administrator', $user->roles ) ) {
               // redirect them to the default place
               return $redirect_to;
-          } 
-        }
-        return home_url();
+          }
+      }
+      return isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : home_url();
   }
 
     /*
