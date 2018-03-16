@@ -1,5 +1,17 @@
 # Commons Booking 
 
+---
+
+## We are currently working on Commons Booking 2.0, a complete rewrite. 
+No new features will be added to CB 0.X, for the new version see:
+[Commons Booking 2 Repo](https://github.com/wielebenwir/commons-booking-2/)
+
+---
+
+
+
+
+
 **Contributors:** flegfleg  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons  
