@@ -53,19 +53,13 @@
             'sequential': cb_js_vars.text_error_sequential
           };
 
-          var text_error_days = cb_js_vars.text_error_days;
-          var text_error_timeframes = cb_js_vars.text_error_timeframes;
-          var text_error_notbookable = cb_js_vars.text_error_notbookable;
-          var text_error_closedforbidden = cb_js_vars.text_error_closedforbidden;
-          var text_error_bookedday = cb_js_vars.text_error_bookedday;
-
           var selectedIndexes = [];
           var currentTimeFrame;
 
           // DOM containers
           var bookingBar = $( '#cb-bookingbar' );
           var debug = $( '#debug' );
-          var introContainer = $( '#intro' );
+          var introContainer = $( '#cb-intro' );
           var startContainer = $( '#date-start' );
           var endContainer = $( '#date-end' );
           var bookingButton = $( '#cb-submit .cb-button' );
@@ -129,8 +123,7 @@
                 var selectedIndexes = update_selected();
                 var msgErrors = errors;
 
-
-                if( errors.length > 0 ) {     
+                if( msgErrors.length > 0 ) {
                     this.selectonic("cancel"); // cancel selection
                     for (var i = msgErrors.length - 1; i >= 0; i--) {
                       displayErrorNotice( text_errors[ msgErrors[i] ] );
@@ -151,9 +144,7 @@
             });
 
           } else { // timeframe element does not exist
-            
             bookingBar.hide();
-          
           }
           
           var selected; 
@@ -177,7 +168,7 @@
               $("#cb-bookingbar").css({
                   width: width,
                   'margin-left': (parentpos.left) + "px"
-              })
+              });
           }
 
 
@@ -197,7 +188,7 @@
             // VALIDATION - Timeframe
             // check if selection spans more than one timeframe 
             if ( $(selected).parents('.cb-timeframe').length > 1 ) {
-              errors.push ("text_error_timeframes");
+              errors.push ("timeframes");
             }
 
             // var indexes = [];
@@ -205,9 +196,9 @@
 
             // add selected indexes to array
             selected.each(function ( index, element ) {
-               indexes.push ( calEl.find(element).index( 'li.bookable') );
-               calIndexes.push ( parentCal.find(element).index() );
-            } );            
+               indexes.push ( calEl.find('li.bookable').index(element) );
+               calIndexes.push ( parentCal.find('li').index(element) );
+            });
 
             // check if there are days between the selection
             betweenDays = getDaysBetween( calIndexes );
@@ -215,7 +206,7 @@
             if ( betweenDays.length > 0 ) { // there are days between selected
               if (allowclosed == 1) { // booking over closed days is allowed, so check the days´ classes                
                 var allowedClasses = ['closed', 'selected'];
-                overbookDays = checkForClass ( betweenDays, allowedClasses);
+                overbookDays = checkForClass( betweenDays, allowedClasses);
                 if ( typeof overbookDays != 'undefined' ) { // all days between are closed
                   selectedCount = selectedCount + closed_days_count_as ; // booking over closed days, which count as one day           
                 } else { // at least one day between is not closed
@@ -242,7 +233,7 @@
               $(this).removeClass('selected-last');
               $(this).removeClass('selected-first');
               $(this).removeClass('overbooking');
-            })
+            });
           }
           // set classes
           function addClasses() {
@@ -264,16 +255,15 @@
             var error = 0;
             var betweenEls = [];
 
-            $(els).each( function ( element, index ) {
-              // $(this).css('background','red'); DEBUG only @TODO remove me
-              if ( $(this).hasClasses( classes )) {
-                betweenEls.push( $(this).index() );          
+            $(els).each( function ( index, element ) {
+              if ( element.hasClasses( classes )) {
+                betweenEls.push( element.index() );
               } else {
                 error++;
               }
             });
 
-            if (error == 0) {
+            if (error === 0) {
               return betweenEls;
             } 
           }
@@ -281,20 +271,17 @@
           // check if there are non-selected days between selection
           function getDaysBetween( calIndexes ) {
 
-              var counter = 0;
-              var low = calIndexes[0];
-              var high = calIndexes[calIndexes.length-1];
-              var daysBetween = [];
+            var low = calIndexes[0];
+            var high = calIndexes[calIndexes.length-1];
+            var daysBetween = [];
 
-              // loop through days
-              for (var i = low; i < high; i++) { 
-                if ( ( low + counter != calIndexes[counter] ) ) { // date is not in indexes
-                  // daysBetween.push( calEl.eq(low + counter) );
-                  daysBetween.push( calEl.find('li').eq(low + counter) );
-                }
-                counter++;
+            // loop through selected days and find "holes" in the selection
+            for (var i = low; i < high; i++) {
+              if (jQuery.inArray( i, calIndexes ) < 0) { // if this index (i.e. day) is not in calIndexes
+                daysBetween.push( parentCal.find('li').eq(i) );
               }
-              return daysBetween;    
+            }
+            return daysBetween;
           }
 
           // show error notice

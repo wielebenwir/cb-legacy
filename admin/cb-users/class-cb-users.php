@@ -201,9 +201,9 @@ class CB_Users extends Commons_Booking {
           if ( in_array( 'administrator', $user->roles ) ) {
               // redirect them to the default place
               return $redirect_to;
-          } 
-        }
-        return home_url();
+          }
+      }
+      return isset( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : home_url();
   }
 
     /*
