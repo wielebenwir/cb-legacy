@@ -193,9 +193,9 @@ class CB_Data {
         foreach ( $contact_parts as $contact_item ) { // PHP 4
           $contact_item = trim( $contact_item ); // PHP 4
           if ( ! empty( $contact_item ) ) {
-            if ( is_email( $contact_item ) ) $location['contact']['email'] = $location['contact']['email'] + [ $contact_item ]; // Since WP 0.7.1
-            else if ( $this->is_phone( $contact_item ) ) $location['contact']['phone'] = $location['contact']['phone'] + [ $contact_item ];
-            else $location['contact']['other'] = $location['contact']['other'] + [ $contact_item ];
+            if ( is_email( $contact_item ) ) $location['contact']['email'] = array_merge($location['contact']['email'], [$contact_item]); // Since WP 0.7.1
+            else if ( $this->is_phone( $contact_item ) ) $location['contact']['phone'] = array_merge($location['contact']['phone'], [$contact_item]);
+            else $location['contact']['other'] = array_merge($location['contact']['other'], [$contact_item]);
           }
         }
       }
