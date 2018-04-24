@@ -178,21 +178,24 @@ class CB_Data {
 
       // Parse the contact string
       $location['contact'] = array();
+      $location['contact']['email'] = array();
+      $location['contact']['phone'] = array();
+      $location['contact']['other'] = array();
       $contact_string = get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true );
+      $location['contact']['string'] = $contact_string;
       if ( empty( $contact_string ) ) {
         // Allow direct fields for future versions
-        $location['contact']['phone'] = get_post_meta( $id, $this->prefix . '_location_phone', true );
-        $location['contact']['email'] = get_post_meta( $id, $this->prefix . '_location_email', true );
+        $location['contact']['email'] = [ get_post_meta( $id, $this->prefix . '_location_email', true ) ];
+        $location['contact']['phone'] = [ get_post_meta( $id, $this->prefix . '_location_phone', true ) ];
       } else {
         // Previous versions (< 0.9.2.5) of commons-booking had a freeform contact details field
-        $location['contact']['string'] = $contact_string;
         $contact_parts = preg_split( '/[\n,]/', $contact_string ); // PHP 4
         foreach ( $contact_parts as $contact_item ) { // PHP 4
           $contact_item = trim( $contact_item ); // PHP 4
           if ( ! empty( $contact_item ) ) {
-            if ( $this->is_phone( $contact_item ) ) $location['contact']['phone'] = $contact_item;
-            else if ( is_email( $contact_item ) ) $location['contact']['email'] = $contact_item; // Since WP 0.7.1
-            else $location['contact']['other'] = $contact_item;
+            if ( is_email( $contact_item ) ) $location['contact']['email'] = $location['contact']['email'] + [ $contact_item ]; // Since WP 0.7.1
+            else if ( $this->is_phone( $contact_item ) ) $location['contact']['phone'] = $location['contact']['phone'] + [ $contact_item ];
+            else $location['contact']['other'] = $location['contact']['other'] + [ $contact_item ];
           }
         }
       }
@@ -502,7 +505,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   if ( !empty( $location['contact_hide'] ) ) { // honor setting to hide contact info
     $contact_string = __('You will recieve contact information after your booking.', 'commons-booking');
   } else {
-    $contact_string = $location[ 'contact' ][ 'string' ];
+    $contact_string = $location['contact']['string'];
 
   }
 
