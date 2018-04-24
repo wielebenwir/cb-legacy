@@ -146,7 +146,7 @@ class CB_Data {
  */
 
   public function is_phone ( $string ) {
-    return preg_match( '/^\+?[0-9 ()]+$/', $string ); // PHP 4
+    return preg_match( '/^\+?[0-9 ()\/-]+$/', $string ); // PHP 4
   }
 
 
