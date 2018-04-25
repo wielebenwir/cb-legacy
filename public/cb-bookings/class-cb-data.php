@@ -145,10 +145,6 @@ class CB_Data {
  *
  */
 
-  public function is_phone ( $string ) {
-    return preg_match( '/^\+?[0-9 ()\/-]+$/', $string ); // PHP 4
-  }
-
 
 /**
  * Get Location & metadata
@@ -179,25 +175,21 @@ class CB_Data {
       // Parse the contact string
       $location['contact'] = array();
       $location['contact']['email'] = array();
-      $location['contact']['phone'] = array();
-      $location['contact']['other'] = array();
       $contact_string = get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true );
       $location['contact']['string'] = $contact_string;
       if ( empty( $contact_string ) ) {
         // Allow direct fields for future versions
-        $location['contact']['email'] = [ get_post_meta( $id, $this->prefix . '_location_email', true ) ];
-        $location['contact']['phone'] = [ get_post_meta( $id, $this->prefix . '_location_phone', true ) ];
+        $email_string = get_post_meta( $id, $this->prefix . '_location_email', true );
+        if ( !empty( $email_string ) ) {
+          $location['contact']['email'] = [ $email_string ];
+        }
       } else {
         // Previous versions (< 0.9.2.5) of commons-booking had a freeform contact details field
-        $contact_parts = preg_split( '/[\n,]/', $contact_string ); // PHP 4
-        foreach ( $contact_parts as $contact_item ) { // PHP 4
-          $contact_item = trim( $contact_item ); // PHP 4
-          if ( ! empty( $contact_item ) ) {
-            if ( is_email( $contact_item ) ) $location['contact']['email'] = array_merge($location['contact']['email'], [$contact_item]); // Since WP 0.7.1
-            else if ( $this->is_phone( $contact_item ) ) $location['contact']['phone'] = array_merge($location['contact']['phone'], [$contact_item]);
-            else $location['contact']['other'] = array_merge($location['contact']['other'], [$contact_item]);
-          }
-        }
+        // Parse the contact field to extract all the contained email addresses
+        preg_match_all("/[a-zA-Z0-9.!#$%&'*+\-\/=?^_`{|}~]+@[a-zA-Z0-9.!#$%&'*+\-\/=?^_`{|}~]+/", // try to match all allowed email address characters according to https://stackoverflow.com/questions/2049502/what-characters-are-allowed-in-an-email-address
+          $contact_string, $matches);
+        $matches[0] = array_map(function($s) { return(trim($s, ".")); }, $matches[0]); // strip off leading or trailing dots
+        $location['contact']['email'] = $matches[0];
       }
 
       return $location;
