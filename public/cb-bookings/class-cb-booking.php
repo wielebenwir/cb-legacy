@@ -686,6 +686,13 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
 
                         $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
+                        $this->send_mail( $this->user['email'], 'cancelation' );
+                        if ( $location_email ) {
+                          foreach ($location_email as $email) {
+                            $this->send_mail( $email, 'cancelation' );
+                          }
+                        }
+
                         return display_cb_message( $msg, $this->b_vars );
 
                     } else {

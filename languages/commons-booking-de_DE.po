@@ -291,12 +291,60 @@ msgstr ""
 "hinterlassen. "
 
 #: admin/cb-settings/cb-admin-settings.php:77
+msgid "Welcome, {{USER_NAME}} – here´s your account information."
+msgstr "Willkommen, {{USER_NAME}} – hier sind Deine Kontodaten."
+
+#: admin/cb-settings/cb-admin-settings.php:78
+#, fuzzy
+#| msgid ""
+#| "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
+#| "\n"
+#| "          <p>Only one more step:, click here to set your password:</p>\n"
+#| "          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
+#| "\n"
+#| "          <h3>Your information</h3>\n"
+#| "          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
+#| "          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
+#| "          <p>Address: {{ADDRESS}}</p>\n"
+#| "          <p>Phone: {{PHONE}}</p>\n"
+#| "\n"
+#| "          <p>Thanks, the Team. </p>\n"
+#| "        "
+msgid ""
+"<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
+"\n"
+"          <p>Only one more step: Click here to set your password:</p>\n"
+"          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
+"\n"
+"          <h3>Your information</h3>\n"
+"          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
+"          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
+"          <p>Address: {{ADDRESS}}</p>\n"
+"          <p>Phone: {{PHONE}}</p>\n"
+"\n"
+"          <p>Thanks, the Team. </p>\n"
+"        "
+msgstr ""
+"<h2>Hallo {{USER_NAME}}, danke für deine Registrierung!</h2>\n"
+"\n"
+"<p>Noch ein Schritt: Klicke hier, um dein Passwort zu setzen:</p>\n"
+"<p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
+"\n"
+"<h3>Deine Daten</h3>\n"
+"<p>Benutzername: <strong>{{USER_NAME}}</strong></p>\n"
+"<p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
+"<p>Adresse: {{ADDRESS}}</p>\n"
+"<p>Telefon: {{PHONE}}</p>\n"
+"\n"
+"<p>Danke! </p>"
+
+#: admin/cb-settings/cb-admin-settings.php:91
 #, fuzzy
 #| msgid "Your booking"
 msgid "Your booking {{ITEM_NAME}}"
 msgstr "Deine Buchung {{ITEM_NAME}}"
 
-#: admin/cb-settings/cb-admin-settings.php:78
+#: admin/cb-settings/cb-admin-settings.php:92
 #, fuzzy
 #| msgid ""
 #| "<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
@@ -380,53 +428,28 @@ msgstr ""
 "              <p>Danke, das Team. </p>\n"
 "            "
 
-#: admin/cb-settings/cb-admin-settings.php:99
-msgid "Welcome, {{USER_NAME}} – here´s your account information."
-msgstr "Willkommen, {{USER_NAME}} – hier sind Deine Kontodaten."
-
-#: admin/cb-settings/cb-admin-settings.php:100
+#: admin/cb-settings/cb-admin-settings.php:113
 #, fuzzy
-#| msgid ""
-#| "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
-#| "\n"
-#| "          <p>Only one more step:, click here to set your password:</p>\n"
-#| "          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
-#| "\n"
-#| "          <h3>Your information</h3>\n"
-#| "          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
-#| "          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
-#| "          <p>Address: {{ADDRESS}}</p>\n"
-#| "          <p>Phone: {{PHONE}}</p>\n"
-#| "\n"
-#| "          <p>Thanks, the Team. </p>\n"
-#| "        "
+#| msgid "Your booking"
+msgid "Your booking {{ITEM_NAME}} was canceled"
+msgstr "Deine Buchung {{ITEM_NAME}} wurde storniert"
+
+#: admin/cb-settings/cb-admin-settings.php:114
+#, fuzzy
 msgid ""
-"<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
+"<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>\n"
 "\n"
-"          <p>Only one more step: Click here to set your password:</p>\n"
-"          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
-"\n"
-"          <h3>Your information</h3>\n"
-"          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
-"          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
-"          <p>Address: {{ADDRESS}}</p>\n"
-"          <p>Phone: {{PHONE}}</p>\n"
+"          <p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>\n"
 "\n"
 "          <p>Thanks, the Team. </p>\n"
 "        "
 msgstr ""
-"<h2>Hallo {{USER_NAME}}, danke für deine Registrierung!</h2>\n"
+"<h2>Hallo {{USER_NAME}}, deine Buchung von {{ITEM_NAME}} wurde storniert!</h2>\n"
 "\n"
-"<p>Noch ein Schritt: Klicke hier, um dein Passwort zu setzen:</p>\n"
-"<p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
+"              <p>Deine Buchung von {{ITEM_NAME}} bei {{LOCATION_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} ist storniert worden.</p>\n"
 "\n"
-"<h3>Deine Daten</h3>\n"
-"<p>Benutzername: <strong>{{USER_NAME}}</strong></p>\n"
-"<p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
-"<p>Adresse: {{ADDRESS}}</p>\n"
-"<p>Telefon: {{PHONE}}</p>\n"
-"\n"
-"<p>Danke! </p>"
+"              <p>Danke, das Team. </p>\n"
+"            "
 
 #: admin/cb-settings/views/settings.php:25
 msgid "Welcome"
@@ -769,42 +792,10 @@ msgid "e.g. admin@wielebenwir.de."
 msgstr "z.B. admin@wielebenwir.de"
 
 #: admin/cb-settings/views/settings.php:286
-#, fuzzy
-#| msgid "Confirmation email subject"
-msgid "Booking Confirmation email subject"
-msgstr "Buchungsbestätigung E-Mail Betreff"
-
-#: admin/cb-settings/views/settings.php:287
-msgid ""
-"The subject of the confirmation Email. You can use <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>"
-msgstr ""
-"Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
-
-#: admin/cb-settings/views/settings.php:292
-#, fuzzy
-#| msgid "Confirmation email body"
-msgid "Booking confirmation email body"
-msgstr "Buchungsbestätigung E-Mail Inhalt"
-
-#: admin/cb-settings/views/settings.php:293
-msgid ""
-"The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>. "
-msgstr ""
-"Der Inhalt der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
-
-#: admin/cb-settings/views/settings.php:298
 msgid "Registration email subject"
 msgstr "Registrierung: Betreff"
 
-#: admin/cb-settings/views/settings.php:299
+#: admin/cb-settings/views/settings.php:287
 msgid ""
 "The subject of the registration Email. You can use <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank"
@@ -814,17 +805,81 @@ msgstr ""
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 
-#: admin/cb-settings/views/settings.php:304
+#: admin/cb-settings/views/settings.php:292
 msgid "Registration email body"
 msgstr "Registrierung: Inhalt"
 
-#: admin/cb-settings/views/settings.php:305
+#: admin/cb-settings/views/settings.php:293
 msgid ""
 "The body of the registration confirmation email. You can use HTML & <a href="
 "\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
 "target=\"_blank\">Template tags</a>. "
 msgstr ""
 "Der Inhalt der Registrierung. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:298
+#, fuzzy
+#| msgid "Confirmation email subject"
+msgid "Booking Confirmation email subject"
+msgstr "Buchungsbestätigung E-Mail Betreff"
+
+#: admin/cb-settings/views/settings.php:299
+msgid ""
+"The subject of the confirmation Email. You can use <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>"
+msgstr ""
+"Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:304
+#, fuzzy
+#| msgid "Confirmation email body"
+msgid "Booking confirmation email body"
+msgstr "Buchungsbestätigung E-Mail Inhalt"
+
+#: admin/cb-settings/views/settings.php:305
+msgid ""
+"The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>. "
+msgstr ""
+"Der Inhalt der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:310
+#, fuzzy
+#| msgid "Cancelation email subject"
+msgid "Booking cancelation email subject"
+msgstr "Stornierungsbestätigung E-Mail Betreff"
+
+#: admin/cb-settings/views/settings.php:311
+msgid ""
+"The subject of the cancelation Email. You can use <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>"
+msgstr ""
+"Der Betreff der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:316
+#, fuzzy
+#| msgid "Cancelation email body"
+msgid "Booking cancelation email body"
+msgstr "Stornierungsbestätigung E-Mail Inhalt"
+
+#: admin/cb-settings/views/settings.php:317
+msgid ""
+"The body of the cancelation email. You can use HTML & <a href=\"http://dein-"
+"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
+"\">Template tags</a>. "
+msgstr ""
+"Der Inhalt der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
 "lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
 "\">Template Tags</a> benutzen."
 

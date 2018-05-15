@@ -74,6 +74,20 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_confirmation_sender' => 'recipient@domain.com', /* @TODO: retired – delete this with the next update */
       $this->prefix.'_mail_from' => '',
       $this->prefix.'_mail_from_name' => '',
+      $this->prefix.'_mail_registration_subject' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', 'commons-booking'),
+      $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
+
+          <p>Only one more step: Click here to set your password:</p>
+          <p><strong>{{ACTIVATION_URL}}</strong></p>
+
+          <h3>Your information</h3>
+          <p>Username: <strong>{{USER_NAME}}</strong></p>
+          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
+          <p>Address: {{ADDRESS}}</p>
+          <p>Phone: {{PHONE}}</p>
+
+          <p>Thanks, the Team. </p>
+        ', 'commons-booking'),
       $this->prefix.'_mail_confirmation_subject' => __( 'Your booking {{ITEM_NAME}}', 'commons-booking'),
       $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks for booking {{ITEM_NAME}}!</h2>
 
@@ -96,17 +110,10 @@ class CB_Admin_Settings extends Commons_Booking {
 
           <p>Thanks, the Team. </p>
         ', 'commons-booking'),
-      $this->prefix.'_mail_registration_subject' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', 'commons-booking'),
-      $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
+      $this->prefix.'_mail_cancelation_subject' => __( 'Your booking {{ITEM_NAME}} was canceled', 'commons-booking'),
+      $this->prefix.'_mail_cancelation_body' => __('<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>
 
-          <p>Only one more step: Click here to set your password:</p>
-          <p><strong>{{ACTIVATION_URL}}</strong></p>
-
-          <h3>Your information</h3>
-          <p>Username: <strong>{{USER_NAME}}</strong></p>
-          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
-          <p>Address: {{ADDRESS}}</p>
-          <p>Phone: {{PHONE}}</p>
+          <p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>
 
           <p>Thanks, the Team. </p>
         ', 'commons-booking'),
