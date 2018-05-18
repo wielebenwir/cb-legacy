@@ -4,8 +4,8 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.7.5
-Stable Tag: 0.9.2.12
+Tested up to: 4.9.6
+Stable Tag: 0.9.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ A Wordpress plugin for management and booking of commons goods.
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
 It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape) across Germany and Austria, but it can use it for any kind items.
+
+Note: [Commons Booking 2.0 is in development](https://github.com/wielebenwir/commons-booking-2)! 
 
 **Unique features:**
 
@@ -34,9 +36,9 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 **Plugin websites**
 
 * [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
-* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
+* [Commons Booking 2.0 development](https://github.com/wielebenwir/commons-booking-2)
 
 == Upgrade Notice ==
 
@@ -93,6 +95,14 @@ New in this version:
 == Changelog ==
 
 = 0.9.2.2 =
+
+Maintenance release. New features will be added to Version 2.0.  
+
+* FIXED: Calendar javascript selection count failed if weekday rows enabled (Thanks to Markus Voge). 
+* Minimal change: Div class name changed from "intro" to "cb-intro" (Again, thanks to Markus Voge). 
+
+
+= 0.9.2.1.2 =
 
 * FIXED: Closed days are now correctly rendered on the calendar, and non-bookable. 
 
