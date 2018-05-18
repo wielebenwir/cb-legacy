@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
 Tested up to: 4.9.6
-Stable Tag: 0.9.2.3
+Stable Tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,7 +94,7 @@ New in this version:
 
 == Changelog ==
 
-= 0.9.2.3 =
+= 0.9.3 =
 
 Maintenance release. New features will be added to Version 2.0.  
 
@@ -128,13 +128,13 @@ Maintenance release. New features will be added to Version 2.0.
 
 * CHANGE: Plugin directory structure flattened
 
-= 0.9.2.3 =
+= 0.9.3 =
 
 * CHANGE: Editors now have access to the CB Menu. (capability: publish_pages)
 * FIX: Closed days where not correctly rendered
 
 
-= 0.9.2.3 =
+= 0.9.3 =
 
 * FIX: Javascript validation no longer failing if week day row is activated
 
