@@ -378,9 +378,11 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
      *
      * Called from booking_confirmed_page()
      *
-     * @param $to,
+     * @param $to the email address of the recipient
+     * @param $bcc also send a bcc copy to the specified bcc address?
+     * @param $template_name name of the configured email subject/body template to use
      */
-    public function send_mail( $to, $template_name = 'confirmation' ) {
+    public function send_mail( $to, $bcc = true, $template_name = 'confirmation' ) {
 
         $body_template = ( $this->email_messages["mail_{$template_name}_body"] );  // get template
         $subject_template = ( $this->email_messages["mail_{$template_name}_subject"] );  // get template
@@ -394,8 +396,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
             $headers[] = 'From: ' . $sender_from_name . ' <' . $sender_from_email . '>';
         }
 
-        // if BCC: ist specified, send a copy to the address
-        if ( ! empty ( $confirmation_bcc ) ) {
+        // if BCC sending is desired and BCC is specified, send a copy to the address
+        if ( $bcc && ! empty ( $confirmation_bcc ) ) {
             $headers[] = 'BCC: ' . $confirmation_bcc . "\r\n";
         }
 
@@ -651,7 +653,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         $this->send_mail( $this->user['email'] );
                         if ( $location_email ) {
                           foreach ($location_email as $email) {
-                            $this->send_mail( $email );
+                            $this->send_mail( $email, false );
                           }
                         }
 
@@ -686,10 +688,10 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
 
                         $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
-                        $this->send_mail( $this->user['email'], 'cancelation' );
+                        $this->send_mail( $this->user['email'], true, 'cancelation' );
                         if ( $location_email ) {
                           foreach ($location_email as $email) {
-                            $this->send_mail( $email, 'cancelation' );
+                            $this->send_mail( $email, false, 'cancelation' );
                           }
                         }
 
