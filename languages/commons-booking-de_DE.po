@@ -1,5 +1,5 @@
-# Copyright (C) 2013 TODO
-# This file is distributed under the same license as the TODO package.
+# Translation of Plugins - Commons Booking - Stable (latest release) in German
+# This file is distributed under the same license as the Plugins - Commons Booking - Stable (latest release) package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Commons Booking 0.5.0.2\n"
@@ -149,18 +149,12 @@ msgid "Codes already in Database."
 msgstr "Codes sind bereits in der Datenbank."
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:82
-#, fuzzy
-msgid ""
-"Notice: Not enough codes defined in settings, some codes will be repeated."
-msgstr ""
-"Hinweis: Nicht genügend Codes in den Einstellungen definiert, einige Codes "
-"werden mehrfach verwendet. "
+msgid "Notice: Not enough codes defined in settings, some codes will be repeated."
+msgstr "Hinweis: Nicht genügend Codes in den Einstellungen definiert, einige Codes werden mehrfach verwendet. "
 
 #: admin/cb-codes/includes/class-cb-codes-generate.php:84
-#, fuzzy
-#| msgid "New booking codes have been generated."
 msgid "Missing booking codes have been generated."
-msgstr "Neue Buchungs-Codes wurden generiert."
+msgstr "Neue Buchungscodes wurden generiert."
 
 #: admin/cb-items/includes/cb-items-metaboxes.php:36
 #: admin/cb-timeframes/cb-timeframes-list.php:37 admin/class-cb-admin.php:354
@@ -208,8 +202,7 @@ msgstr "Telefonnummer, E-Mail, ..."
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:84
 msgid "Hide contact information until user has confirmed the booking."
-msgstr ""
-"Kontaktdaten verstecken, bis die/der Nutzer*in die Buchung bestätigt hat."
+msgstr "Kontaktdaten verstecken, bis die/der Nutzer*in die Buchung bestätigt hat."
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:92
 #: templates/timeframes-full.php:22
@@ -226,8 +219,7 @@ msgstr "Geschlossene Tage"
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:115
 msgid "Location is closed on the following days, booking is prohibited. "
-msgstr ""
-"Der Standort ist an diesen Tagen geschlossen, buchen ist nicht erlaubt. "
+msgstr "Der Standort ist an den folgenden Tagen geschlossen, buchen ist nicht möglich. "
 
 #: admin/cb-locations/includes/cb-locations-metaboxes.php:119
 msgid "Monday"
@@ -258,63 +250,31 @@ msgid "Sunday"
 msgstr "Sonntag"
 
 #: admin/cb-settings/cb-admin-settings.php:68
-#, fuzzy
-#| msgid "<p> Please review your booking and click \"confirm\".</p>"
 msgid "Please review your booking and click \"confirm\"."
-msgstr ""
-"Bitte überprüfe deine Buchung und drücke dann auf \"Buchung bestätigen\"."
+msgstr "Bitte überprüfe deine Buchung und drücke dann auf \"Buchung bestätigen\"."
 
 #: admin/cb-settings/cb-admin-settings.php:69
-#, fuzzy
-#| msgid ""
-#| "<h2>Congratulations, {{FIRST_NAME}}!</h2> <p>You´ve successfully booked "
-#| "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
-msgid ""
-"Congratulations, {{FIRST_NAME}}! You´ve successfully booked {{ITEM_NAME}}. An "
-"email has been sent to your address {{USER_EMAIL}}."
-msgstr ""
-"Herzlichen Glückwunsch, {{FIRST_NAME}}! Du hast {{ITEM_NAME}} erfolgreich "
-"gebucht. Eine E-Mail wurde an Deine Adresse {{USER_EMAIL}} gesendet."
+msgid "Congratulations, {{FIRST_NAME}}! You´ve successfully booked {{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}."
+msgstr "Herzlichen Glückwunsch, {{FIRST_NAME}}! Du hast {{ITEM_NAME}} erfolgreich gebucht. Eine E-Mail wurde an Deine Adresse {{USER_EMAIL}} gesendet."
 
 #: admin/cb-settings/cb-admin-settings.php:70
-#, fuzzy
-#| msgid ""
-#| "<h2>Your booking has been canceled!</h2><p>Thanks for letting us know.</p>"
 msgid "Your booking has been canceled! Thanks for letting us know."
 msgstr "Deine Buchung wurde storniert. Danke, dass Du uns informiert hast!"
 
 #: admin/cb-settings/cb-admin-settings.php:71
-#, fuzzy
 msgid "To leave a booking comment, click <a href=\"{{URL}}\">here</a>"
-msgstr ""
-"<a href=\"{{URL}}\">Klicke hier</a> um einen Buchungskommentar zu "
-"hinterlassen. "
+msgstr "<a href=\"{{URL}}\">Klicke hier</a> um einen Buchungskommentar zu hinterlassen. "
 
 #: admin/cb-settings/cb-admin-settings.php:77
 msgid "Welcome, {{USER_NAME}} – here´s your account information."
 msgstr "Willkommen, {{USER_NAME}} – hier sind Deine Kontodaten."
 
 #: admin/cb-settings/cb-admin-settings.php:78
-#, fuzzy
-#| msgid ""
-#| "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
-#| "\n"
-#| "          <p>Only one more step:, click here to set your password:</p>\n"
-#| "          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
-#| "\n"
-#| "          <h3>Your information</h3>\n"
-#| "          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
-#| "          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>\n"
-#| "          <p>Address: {{ADDRESS}}</p>\n"
-#| "          <p>Phone: {{PHONE}}</p>\n"
-#| "\n"
-#| "          <p>Thanks, the Team. </p>\n"
-#| "        "
 msgid ""
 "<h2>Hi {{USER_NAME}}, thanks for registering!</h2>\n"
 "\n"
 "          <p>Only one more step: Click here to set your password:</p>\n"
-"          <p><strong>{{ACTIVATION_URL}}</strong>></p>\n"
+"          <p><strong>{{ACTIVATION_URL}}</strong></p>\n"
 "\n"
 "          <h3>Your information</h3>\n"
 "          <p>Username: <strong>{{USER_NAME}}</strong></p>\n"
@@ -339,41 +299,10 @@ msgstr ""
 "<p>Danke! </p>"
 
 #: admin/cb-settings/cb-admin-settings.php:91
-#, fuzzy
-#| msgid "Your booking"
 msgid "Your booking {{ITEM_NAME}}"
 msgstr "Deine Buchung {{ITEM_NAME}}"
 
 #: admin/cb-settings/cb-admin-settings.php:92
-#, fuzzy
-#| msgid ""
-#| "<h2>Hi {{FIRST_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
-#| "\n"
-#| "          <p>Click here to see or cancel you booking: {{URL}}.</p>\n"
-#| "\n"
-#| "          <p>Here´s your booking code: <strong>{{CODE}}</strong></p>\n"
-#| "\n"
-#| "          <h3>Pick up information</h3>\n"
-#| "\n"
-#| "          <em>Please make sure you are on time.</em>\n"
-#| "\n"
-#| "          <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}."
-#| "<br>\n"
-#| "          Return it there on {{DATE_END}}.<br>\n"
-#| "          Address: {{LOCATION_ADDRESS}}<br>\n"
-#| "          Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
-#| "\n"
-#| "          <h3>Your information</h3>\n"
-#| "\n"
-#| "          <em>Please make sure you have entered the correct name and "
-#| "adress from your ID - otherwise you will not be able to pick up the item</"
-#| "em>\n"
-#| "\n"
-#| "          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>\n"
-#| "            Address: {{USER_ADDRESS}}</p>\n"
-#| "\n"
-#| "          <p>Thanks, the Team. </p>\n"
-#| "        "
 msgid ""
 "<h2>Hi {{FIRST_NAME}}, thanks for booking {{ITEM_NAME}}!</h2>\n"
 "\n"
@@ -382,16 +311,14 @@ msgid ""
 "\n"
 "          <h3>Pick up information</h3>\n"
 "\n"
-"          <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}."
-"<br>\n"
+"          <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}.<br>\n"
 "          Return it there on {{DATE_END}}.<br>\n"
 "          Address: {{LOCATION_ADDRESS}}<br>\n"
 "          Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
 "\n"
 "          <h3>Your information</h3>\n"
 "\n"
-"          <em>Please make sure you have entered the correct name and adress "
-"from your ID - otherwise you will not be able to pick up the item</em>\n"
+"          <em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>\n"
 "\n"
 "          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>\n"
 "            Address: {{USER_ADDRESS}}</p>\n"
@@ -401,8 +328,7 @@ msgid ""
 msgstr ""
 "<h2>Hallo {{USER_NAME}}, danke für das Buchen von {{ITEM_NAME}}!</h2>\n"
 "\n"
-"              <p>Klicke hier, um Deine Buchung zu sehen oder zu stornieren: "
-"{{URL}}.</p>\n"
+"              <p>Klicke hier, um Deine Buchung zu sehen oder zu stornieren: {{URL}}.</p>\n"
 "\n"
 "              <p>Hier ist Dein Buchungscode: <strong>{{CODE}}</strong></p>\n"
 "\n"
@@ -410,17 +336,14 @@ msgstr ""
 "\n"
 "              <em>Sei bitte pünktlich.</em>\n"
 "\n"
-"              <p>Hole {{ITEM_NAME}} am {{DATE_START}} bei {{LOCATION_NAME}} "
-"ab.<br>\n"
+"              <p>Hole {{ITEM_NAME}} am {{DATE_START}} bei {{LOCATION_NAME}} ab.<br>\n"
 "              Bring es dort am {{DATE_END}} zurück.<br>\n"
 "              Adresse: {{LOCATION_ADDRESS}}<br>\n"
 "              Öffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
 "\n"
 "              <h3>Deine persönlichen Angaben</h3>\n"
 "\n"
-"              <em>Stelle bitte sicher, dass Du hier die gleichen Angaben wie "
-"aus Deinem Personalausweis verwendest, sonst kannst Du den Artikel nicht "
-"ausleihen.</em>\n"
+"              <em>Stelle bitte sicher, dass Du hier die gleichen Angaben wie aus Deinem Personalausweis verwendest, sonst kannst Du den Artikel nicht ausleihen.</em>\n"
 "\n"
 "              <p>Name: {{USER_NAME}}.<br>\n"
 "                Adresse: {{USER_ADDRESS}}</p>\n"
@@ -429,13 +352,10 @@ msgstr ""
 "            "
 
 #: admin/cb-settings/cb-admin-settings.php:113
-#, fuzzy
-#| msgid "Your booking"
 msgid "Your booking {{ITEM_NAME}} was canceled"
 msgstr "Deine Buchung {{ITEM_NAME}} wurde storniert"
 
 #: admin/cb-settings/cb-admin-settings.php:114
-#, fuzzy
 msgid ""
 "<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>\n"
 "\n"
@@ -468,72 +388,34 @@ msgid "Messages"
 msgstr "Nachrichten"
 
 #: admin/cb-settings/views/settings.php:31
-#, fuzzy
-#| msgid "Canceled"
 msgid "Advanced"
 msgstr "Erweitert"
 
 #: admin/cb-settings/views/settings.php:41
-#, fuzzy
-msgid ""
-"To get started: Read the <a href=\"http://dein-lastenrad.de/index.php?"
-"title=Commons_Booking_Benutzerhandbuch\">user manual (german)</a>"
-msgstr ""
-"Um los zu legen: Lese das <a href=\"http://dein-lastenrad.de/index.php?"
-"title=Commons_Booking_Benutzerhandbuch\">Benutzerhandbuch</a>"
+msgid "To get started: Read the <a href=\"http://dein-lastenrad.de/index.php?title=Commons_Booking_Benutzerhandbuch\">user manual (german)</a>"
+msgstr "Um los zu legen: Lese das <a href=\"http://dein-lastenrad.de/index.php?title=Commons_Booking_Benutzerhandbuch\">Benutzerhandbuch</a>"
 
 #: admin/cb-settings/views/settings.php:41
-#, fuzzy
-msgid ""
-"ask questions in the <a href=\"http://forum.dein-lastenrad.de/index.php?p=/"
-"categories/buchungs-software\">discussion forum (german)</a> and file bugs in "
-"the <a href=\"https://bitbucket.org/wielebenwir/commons-booking/issues?"
-"status=new&status=open\">bug tracker (english)</a>"
-msgstr ""
-"stelle Fragen im <a href=\"http://forum.dein-lastenrad.de/index.php?p=/"
-"categories/buchungs-software\">Diskussions-Forum</a> und melde Fehler/Bugs im "
-"<a href=\"https://bitbucket.org/wielebenwir/commons-booking/issues?"
-"status=new&status=open\">bug tracker (English)</a>"
+msgid "ask questions in the <a href=\"http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software\">discussion forum (german)</a> and file bugs in the <a href=\"https://github.com/wielebenwir/commons-booking/issues\">bug tracker (english)</a>"
+msgstr "stelle Fragen im <a href=\"http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software\">Diskussionsforum</a>. Fehler gefunden? Trage sie in unserem <a href=\"https://github.com/wielebenwir/commons-booking/issues\">bug tracker (englischsprachig)</a> ein."
 
 #: admin/cb-settings/views/settings.php:42
-#, fuzzy
-msgid ""
-"The future of this plugin is dependent on your contribution. Want to help? <a "
-"href=\"http://www.wielebenwir.de/verein/unterstutzen\">Donate</a> and/or join "
-"the <a href=\"https://bitbucket.org/wielebenwir/commons-booking\">development "
-"team</a>."
-msgstr ""
-"Die Zukunft dieses Plugins ist abhängig von Deinem Beitrag. Du willst helfen? "
-"Du kannst <a href=\"http://www.wielebenwir.de/verein/unterstutzen\">spenden</"
-"a> und/oder dich dem <a href=\"https://bitbucket.org/wielebenwir/commons-"
-"booking\">Entwicklerteam anschliessen</a>."
+msgid "The future of this plugin depends on your contribution. Want to help? <a href=\"http://www.wielebenwir.de/verein/unterstutzen\">Donate</a> and/or join the <a href=\"https://github.com/wielebenwir/commons-booking\">development team</a>."
+msgstr "Die Zukunft des Plugins ist abhängig von Deinem Beitrag. Du willst mithelfen? <a href=\"http://www.wielebenwir.de/verein/unterstutzen\">Hier kannst du spenden</a> und/oder dem <a href=\"https://github.com/wielebenwir/commons-booking\">Entwickler-Team beitreten</a>."
 
 #: admin/cb-settings/views/settings.php:43
-#, fuzzy
-msgid ""
-"<a href=\"http://www.wielebenwir.de/projekte/commons-booking\">Official "
-"Plugin Website</a>"
-msgstr ""
-"<a href=\"http://www.wielebenwir.de/projekte/commons-booking\">Offizielle "
-"Plugin-Website</a>"
+msgid "<a href=\"http://www.wielebenwir.de/projekte/commons-booking\">Official Plugin Website</a>"
+msgstr "<a href=\"http://www.wielebenwir.de/projekte/commons-booking\">Offizielle Plugin-Website</a>"
 
 #: admin/cb-settings/views/settings.php:44
-#, fuzzy
-msgid ""
-"All the best, Florian Egermann / <a href=\"http:://www.wielebenwir.de"
-"\">wielebenwir e.V. </a>"
-msgstr ""
-"Liebe Grüsse, Florian Egermann / <a href=\"http:://www.wielebenwir.de"
-"\">wielebenwir e.V.</a>"
+msgid "All the best, Florian Egermann / <a href=\"http:://www.wielebenwir.de\">wielebenwir e.V. </a>"
+msgstr "Liebe Grüsse, Florian Egermann / <a href=\"http:://www.wielebenwir.de\">wielebenwir e.V.</a>"
 
 #: admin/cb-settings/views/settings.php:56
-#, fuzzy
 msgid "Theme"
 msgstr "Thema"
 
 #: admin/cb-settings/views/settings.php:57
-#, fuzzy
-#| msgid "Choose Time"
 msgid "Choose a theme."
 msgstr "Ein Thema auswählen."
 
@@ -547,22 +429,17 @@ msgstr "Auf dieser Seite werden die Artikel aufgeführt."
 
 #: admin/cb-settings/views/settings.php:83
 msgid "Booking Review Page"
-msgstr "Buchungsbestätigung-Seite"
+msgstr "Seite Buchung überprüfen"
 
 #: admin/cb-settings/views/settings.php:84
-#, fuzzy
 msgid "Shows the pending booking, prompts for confimation."
 msgstr "Zeigt die ausstehende Buchung und bitte um Bestätigung. "
 
 #: admin/cb-settings/views/settings.php:92
-#, fuzzy
-#| msgid "Booking Review Page"
 msgid "Booking Confirmed Page"
 msgstr "Seite Buchung bestätigt"
 
 #: admin/cb-settings/views/settings.php:93
-#, fuzzy
-#| msgid "Confirm my booking"
 msgid "Shows the confirmed booking."
 msgstr "Zeigt die bestätigte Buchung an."
 
@@ -580,7 +457,7 @@ msgstr "Link zu den AGBs"
 
 #: admin/cb-settings/views/settings.php:111
 msgid "Full URL to PDF or page (e.g. http://www.kasimir-lastenrad.de/AGB.PDF)"
-msgstr "Komplette URL (Beispiel: http://www.kasimir-lastenrad.de/AGB.PDF)"
+msgstr "Komplette URL zu einem PDF (Beispiel: http://www.kasimir-lastenrad.de/AGB.PDF)"
 
 #: admin/cb-settings/views/settings.php:131
 msgid "Maximum booking days"
@@ -591,28 +468,18 @@ msgid "Users can only book this many days at once"
 msgstr "Nutzer*innen können nur so viele Tage auf einmal buchen"
 
 #: admin/cb-settings/views/settings.php:137
-#, fuzzy
 msgid "Calendar period"
 msgstr "Kalenderzeitraum"
 
 #: admin/cb-settings/views/settings.php:138
-#, fuzzy
-#| msgid ""
-#| "Set how many days are displayed on the booking calendar (starting form "
-#| "today)"
-msgid ""
-"Set how many days are displayed on the booking calendar (starting from today)"
-msgstr ""
-"Legt die Anzahl der Tage fest (Start: heute), die im Buchungskalender "
-"angezeigt werden."
+msgid "Set how many days are displayed on the booking calendar (starting from today)"
+msgstr "Legt die Anzahl der Tage fest (Start: heute), die im Buchungskalender angezeigt werden."
 
 #: admin/cb-settings/views/settings.php:143
-#, fuzzy
 msgid "Show week days"
 msgstr "Wochentage anzeigen"
 
 #: admin/cb-settings/views/settings.php:144
-#, fuzzy
 msgid "Show the week days (Mon, Tue, ...) above the calendar."
 msgstr "Zeige die Wochentage (Mon, Die, ...) über dem Kalender"
 
@@ -621,173 +488,90 @@ msgid "Allow booking over closed days"
 msgstr "Buchung über \"geschlossene\" Tage erlauben"
 
 #: admin/cb-settings/views/settings.php:150
-#, fuzzy
-#| msgid ""
-#| "Any number of closed days just counts as one booked day. <br>E.g. If you "
-#| "have a weekend specified as \"closed\" in the location editor, user will "
-#| "still be able book from friday till monday."
-msgid ""
-"Any number of closed days just counts as one booked day. <br>E.g. If you have "
-"a weekend specified as \"closed\" in the location editor, user will be able "
-"book from friday till monday."
-msgstr ""
-"Zusammenhängende, nicht-buchbare Tage gelten als ein buchbarer Tag. <br> "
-"Beispiel: Wenn ein Standort am Wochenende geschlossen ist, können Nutzer "
-"trotzdem von Freitag bis Montag buchen."
+msgid "Any number of closed days just counts as one booked day. <br>E.g. If you have a weekend specified as \"closed\" in the location editor, user will be able book from friday till monday."
+msgstr "Zusammenhängende, nicht-buchbare Tage gelten als ein buchbarer Tag. <br> Beispiel: Wenn ein Standort am Wochenende geschlossen ist, können Nutzer trotzdem von Freitag bis Montag buchen."
 
 #: admin/cb-settings/views/settings.php:155
-#, fuzzy
-#| msgid "Closed Days"
 msgid "Closed days counting"
 msgstr "Zählweise für nicht-buchbare Tage"
 
 #: admin/cb-settings/views/settings.php:156
-#, fuzzy
-msgid ""
-"Count any number of closed days as one day. (If not enabled, they count as 0 "
-"days. Booking over closed days must be enabled)"
-msgstr ""
-"Alle geschlossenen Tage werden als ein Tag gezählt. (Wenn diese Checkbox "
-"nicht aktiviert ist, zählen diese als 0 Tage. Buchung über geschlossene Tage "
-"muss aktiviert sein)"
+msgid "Count any number of closed days as one day. (If not enabled, they count as 0 days. Booking over closed days must be enabled)"
+msgstr "Alle geschlossenen Tage werden als ein Tag gezählt. (Wenn diese Checkbox nicht aktiviert ist, zählen diese als 0 Tage. Buchung über geschlossene Tage muss aktiviert sein)"
 
 #: admin/cb-settings/views/settings.php:161
-#, fuzzy
-#| msgid "Allow booking over closed days"
 msgid "Allow booking comments"
 msgstr "Aktiviere Buchungskommentare. "
 
 #: admin/cb-settings/views/settings.php:162
-#, fuzzy
-msgid ""
-"Give users the ability to add a comment on the booking review page. <br>The "
-"comment be shown as a tooltip on the calendar. <br>NOTE: You must enable "
-"comments in WP Settings and for the item."
-msgstr ""
-"Ermögliche es Benutzern, einen Kommentar auf der Buchungsseite abzugeben."
-"<br>Der Kommentar wird als Popup im Kalender gezeigt.<br>BITTE BEACHTEN: Du "
-"musst auch die Wordpress-Kommentare generell und für den Artikel aktivieren. "
+msgid "Give users the ability to add a comment on the booking review page. <br>The comment be shown as a tooltip on the calendar. <br>NOTE: You must enable comments in WP Settings and for the item."
+msgstr "Ermögliche es Benutzern, einen Kommentar auf der Buchungsseite abzugeben.<br>Der Kommentar wird als Popup im Kalender gezeigt.<br>BITTE BEACHTEN: Du musst auch die Wordpress-Kommentare generell und für den Artikel aktivieren. "
 
 #: admin/cb-settings/views/settings.php:182
-msgid ""
-"Enter comma-seperated Codes here. For examples see <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons "
-"Booking Plugin manual</a>"
-msgstr ""
-"Komma-getrennte Codes hier einfügen. Beispiele: <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">Commons "
-"Booking Software Manual</a>."
+msgid "Enter comma-seperated Codes here. For examples see <a href=\"http://dein-lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">the Commons Booking Plugin manual</a>"
+msgstr "Komma-getrennte Codes hier einfügen. Beispiele: <a href=\"http://dein-lastenrad.de/index.php?title=Settings#Codes\" target=\"_blank\">Commons Booking Software Manual</a>."
 
 #: admin/cb-settings/views/settings.php:202
 msgid "Customize Login and Registration pages"
-msgstr "Login- und Registrierungs-Seite anpassen"
+msgstr "Login- und Registrierungsseiten anpassen"
 
 #: admin/cb-settings/views/settings.php:203
-#, fuzzy
-msgid ""
-"Clean up the user registration & profile page, prevent users from accessing "
-"the dashbaord, hide superfluous fields (aim, website, etc), enable redirects."
-msgstr ""
-"Überflüssige Felder (wie Benutzer-Website AIM, Jabber, etc) auf Benutzer-"
-"Registrierung und Profil-Seiten ausblenden, Zugriff zum Wordpress-\"Dashboard"
-"\" verhindern, Weiterleitungen aktivieren. "
+msgid "Clean up the user registration & profile page, prevent users from accessing the dashbaord, hide superfluous fields (aim, website, etc), enable redirects."
+msgstr "Überflüssige Felder (wie Benutzer-Website AIM, Jabber, etc) auf Benutzer-Registrierung und Profil-Seiten ausblenden, Zugriff zum Wordpress-\"Dashboard\" verhindern, Weiterleitungen aktivieren. "
 
 #: admin/cb-settings/views/settings.php:223
 msgid "Message Booking Review"
 msgstr "Nachricht: Buchung überprüfen"
 
 #: admin/cb-settings/views/settings.php:224
-msgid ""
-"The message that appears after the user clicks \"Book now\" on the calendar. "
-"You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?"
-"title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
-msgstr ""
-"Diese Nachricht escheint nach Klick auf \"Jetzt buchen\" mit der "
-"Zusammenfassung aller Buchungsdetails. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The message that appears after the user clicks \"Book now\" on the calendar. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Diese Nachricht escheint nach Klick auf \"Jetzt buchen\" mit der Zusammenfassung aller Buchungsdetails. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:229
 msgid "Message Booking Submitted"
 msgstr "Nachricht: Buchung übermittelt"
 
 #: admin/cb-settings/views/settings.php:230
-msgid ""
-"The message that appears after the user has confirmed the booking. You can "
-"use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
-"Template_Tags\" target=\"_blank\">Template tags</a>"
-msgstr ""
-"Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & "
-"<a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" "
-"target=\"_blank\">Template Tags</a> benutzen."
+msgid "The message that appears after the user has confirmed the booking. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:235
 msgid "Message Booking Canceled"
 msgstr "Nachricht: Buchung storniert"
 
 #: admin/cb-settings/views/settings.php:236
-msgid ""
-"The message that appears after the user has canceled the booking. You can use "
-"HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
-"Template_Tags\" target=\"_blank\">Template tags</a>"
-msgstr ""
-"Diese Nachricht erscheint, wenn ein*e Nutzer*in eine Buchung storniert hat. "
-"Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
-"Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
+msgid "The message that appears after the user has canceled the booking. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Diese Nachricht erscheint, wenn ein*e Nutzer*in eine Buchung storniert hat. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:241
-#, fuzzy
 msgid "Message: Invite users to leave a comment"
 msgstr "Nachricht: Lade Benutzer ein, einen Kommentar zu hinterlassen. "
 
 #: admin/cb-settings/views/settings.php:242
-#, fuzzy
-#| msgid ""
-#| "The message that appears after the user has confirmed the booking. You can "
-#| "use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:"
-#| "Template_Tags\" target=\"_blank\">Template tags</a>"
-msgid ""
-"Appears after the user has confirmed the booking. You can use HTML & <a href="
-"\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target="
-"\"_blank\">Template tags</a>"
-msgstr ""
-"Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & "
-"<a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" "
-"target=\"_blank\">Template Tags</a> benutzen."
+msgid "Appears after the user has confirmed the booking. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Diese Nachricht erscheint nach der Bestätigung der Buchung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:268
-#, fuzzy
 msgid "Booking Confirmation from: Name"
 msgstr "Buchungsbestätigung von: Name"
 
 #: admin/cb-settings/views/settings.php:269
-#, fuzzy
-#| msgid "Commons Booking"
 msgid "eg. Commons Booking"
 msgstr "z.B. Commons Booking"
 
 #: admin/cb-settings/views/settings.php:274
-#, fuzzy
 msgid "Booking Confirmation from: Address"
 msgstr "Buchungsbestätigung von: Adresse "
 
 #: admin/cb-settings/views/settings.php:275
-#, fuzzy
-msgid ""
-"eg. commmons-booking@wielebenwir.de. Some hosts require that this address "
-"exists."
-msgstr ""
-"z.B. commmons-booking@wielebenwir.de. Manche Hosts erfordern, dass diese "
-"Adresse existiert. "
+msgid "eg. commmons-booking@wielebenwir.de. Some hosts require that this address exists."
+msgstr "z.B. commmons-booking@wielebenwir.de. Manche Hosts erfordern, dass diese Adresse existiert. "
 
 #: admin/cb-settings/views/settings.php:280
-#, fuzzy
-#| msgid "Confirmation email body"
 msgid "Booking Confirmation: Send a copy to:"
 msgstr "Buchungsbestätigung: Sende eine Kopie an:"
 
 #: admin/cb-settings/views/settings.php:281
-#, fuzzy
 msgid "e.g. admin@wielebenwir.de."
 msgstr "z.B. admin@wielebenwir.de"
 
@@ -796,64 +580,34 @@ msgid "Registration email subject"
 msgstr "Registrierung: Betreff"
 
 #: admin/cb-settings/views/settings.php:287
-msgid ""
-"The subject of the registration Email. You can use <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank"
-"\">Template tags</a>"
-msgstr ""
-"Der Betreff der Registrierung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The subject of the registration Email. You can use <a href=\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Der Betreff der Registrierung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:292
 msgid "Registration email body"
 msgstr "Registrierung: Inhalt"
 
 #: admin/cb-settings/views/settings.php:293
-msgid ""
-"The body of the registration confirmation email. You can use HTML & <a href="
-"\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" "
-"target=\"_blank\">Template tags</a>. "
-msgstr ""
-"Der Inhalt der Registrierung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The body of the registration confirmation email. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Registration_Mail_Template_Tags\" target=\"_blank\">Template tags</a>. "
+msgstr "Der Inhalt der Registrierung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:298
-#, fuzzy
-#| msgid "Confirmation email subject"
 msgid "Booking Confirmation email subject"
 msgstr "Buchungsbestätigung E-Mail Betreff"
 
 #: admin/cb-settings/views/settings.php:299
-msgid ""
-"The subject of the confirmation Email. You can use <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>"
-msgstr ""
-"Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The subject of the confirmation Email. You can use <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Der Betreff der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:304
-#, fuzzy
-#| msgid "Confirmation email body"
 msgid "Booking confirmation email body"
 msgstr "Buchungsbestätigung E-Mail Inhalt"
 
 #: admin/cb-settings/views/settings.php:305
-msgid ""
-"The body of the confirmation email. You can use HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>. "
-msgstr ""
-"Der Inhalt der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The body of the confirmation email. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>. "
+msgstr "Der Inhalt der Buchungsbestätigung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:310
-#, fuzzy
-#| msgid "Cancelation email subject"
 msgid "Booking cancelation email subject"
 msgstr "Stornierungsbestätigung E-Mail Betreff"
 
@@ -868,8 +622,6 @@ msgstr ""
 "\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:316
-#, fuzzy
-#| msgid "Cancelation email body"
 msgid "Booking cancelation email body"
 msgstr "Stornierungsbestätigung E-Mail Inhalt"
 
@@ -892,13 +644,10 @@ msgid "There was an error while saving item"
 msgstr "Beim Speichern des Artikels ist ein Fehler aufgetreten."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:50
-#, fuzzy
-#| msgid "Timeframe"
 msgid "Timeframe updated."
 msgstr "Zeitraum aktualisiert."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:55
-#, fuzzy
 msgid "Nothing changed."
 msgstr "Nichts verändert."
 
@@ -907,8 +656,6 @@ msgid "Item not found"
 msgstr "Artikel nicht gefunden"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:78
-#, fuzzy
-#| msgid "Edit Timeframe"
 msgid "Edit timeframe"
 msgstr "Zeitraum editieren"
 
@@ -917,15 +664,11 @@ msgid "Edit Timeframe"
 msgstr "Zeitraum bearbeiten"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:104
-#, fuzzy, php-format
-#| msgid " Return date: "
 msgid "Return to %s"
 msgstr "Zurück zu %s"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:104
 #: admin/cb-timeframes/cb-timeframes-edit.php:118
-#, fuzzy
-#| msgid "Timeframes"
 msgid "All timeframes"
 msgstr "Alle Zeiträume"
 
@@ -936,16 +679,12 @@ msgid "Add new Timeframe"
 msgstr "Neuen Zeitraum anlegen"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:141
-#, fuzzy
-#| msgid "Save & generate Codes"
 msgid "Save & generate codes"
-msgstr "Speichen & Codes erzeugen"
+msgstr "Speichern & Codes erzeugen"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:142
-#, fuzzy
-#| msgid "codes"
 msgid "Print codes"
-msgstr "Codes"
+msgstr "Codes drucken"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:231
 #: admin/cb-timeframes/cb-timeframes-edit.php:235
@@ -954,14 +693,10 @@ msgid "Start Date"
 msgstr "Anfangsdatum"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:249
-#, fuzzy
-#| msgid "Timeframe"
 msgid "Timeframe Title"
 msgstr "Zeitraum-Titel"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:253
-#, fuzzy
-#| msgid "Timeframe"
 msgid "Timeframe title"
 msgstr "Zeitraum-Titel"
 
@@ -982,7 +717,6 @@ msgid "End Date is not valid"
 msgstr "Enddatum ist ungültig"
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:306
-#, fuzzy
 msgid "None found. Please create one."
 msgstr "Nichts gefunden. Bitte erstelle einen Eintrag. "
 
@@ -1000,8 +734,6 @@ msgid "No timeframes set up yet."
 msgstr "Noch kein Zeitraum angelegt."
 
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:186
-#, fuzzy
-#| msgid "Item not found"
 msgid "Post id not found."
 msgstr "Artikel-id nicht gefunden."
 
@@ -1030,8 +762,6 @@ msgid "Please enter your phone number"
 msgstr "Bitte gib deine Telefonnummer an"
 
 #: admin/cb-users/class-cb-users.php:56
-#, fuzzy
-#| msgid "Please enter your Address"
 msgid "Please enter your address"
 msgstr "Bitte gib deine Adresse an"
 
@@ -1048,7 +778,6 @@ msgid "Please accept the terms & conditions"
 msgstr "Bitte akzeptiere die Nutzungsbedingungen"
 
 #: admin/cb-users/class-cb-users.php:152
-#, php-format
 msgid "<a href=\"%s\" target=_blank\">Read the terms and services</a>"
 msgstr "<a href=\"%s\" target=_blank\">Lies die Nutzungsbedingungen</a>"
 
@@ -1073,59 +802,42 @@ msgid "You haven´t booked anything yet."
 msgstr "Du hast noch nichts gebucht."
 
 #: admin/cb-users/class-cb-users.php:403
-#, php-format
-msgid ""
-"You need to be logged in to book items. <br>Please <a href=\"%s\">Log in</a> "
-"or <a href=\"%s\">register</a>."
-msgstr ""
-"Du musst angemeldet sein, um Artikel zu buchen. <br>Bitte <a href=\"%s"
-"\">anmelden</a> oder <a href=\"%s\">registrieren</a>."
+msgid "You need to be logged in to book items. <br>Please <a href=\"%s\">Log in</a> or <a href=\"%s\">register</a>."
+msgstr "Du musst angemeldet sein, um Artikel zu buchen. <br>Bitte <a href=\"%s\">anmelden</a> oder <a href=\"%s\">registrieren</a>."
 
 #: admin/cb-users/class-cb-users.php:473
-#, php-format
 msgid "New user registration on your blog %s:"
 msgstr "Neue Benutzerregistrierung auf deinem Blog %s"
 
 #: admin/cb-users/class-cb-users.php:474
-#, php-format
 msgid "Username: %s"
 msgstr "Benutzername: %s"
 
 #: admin/cb-users/class-cb-users.php:475
-#, php-format
 msgid "E-mail: %s"
 msgstr "E-Mail: %s"
 
 #: admin/cb-users/class-cb-users.php:477
-#, php-format
 msgid "[%s] New User Registration"
-msgstr "Neue Benutzer Registrierung %s"
+msgstr "Neue Benutzerregistrierung %s"
 
 #: admin/cb-widgets/cb-category-widget.php:21
-#, fuzzy
-#| msgid "Commons Booking Settings"
 msgid "Commons Booking categories"
 msgstr "Commons Booking Kategorien"
 
 #: admin/cb-widgets/cb-category-widget.php:22
-#, fuzzy
 msgid "List all item categories"
 msgstr "Alle Kategorien anzeigen"
 
 #: admin/cb-widgets/cb-category-widget.php:35
-#, fuzzy
-#| msgid "New Item"
 msgid "New title"
 msgstr "Neuer Titel"
 
 #: admin/cb-widgets/cb-items-widget.php:13
-#, fuzzy
-#| msgid "Items Page"
 msgid "Items Widget"
 msgstr "Artikel-Widget"
 
 #: admin/cb-widgets/cb-items-widget.php:14
-#, fuzzy
 msgid "Show a list of items"
 msgstr "Zeige eine Artikel-Liste"
 
@@ -1180,55 +892,38 @@ msgid "Wraps posts with the <li> tag."
 msgstr "Umschließt Beiträge mit dem <li>-Tag."
 
 #: admin/cb-widgets/cb-user-widget.php:25
-#, fuzzy
-#| msgid "Commons Booking"
 msgid "Commons Booking user"
 msgstr "Commons Booking Benutzer"
 
 #: admin/cb-widgets/cb-user-widget.php:26
-#, fuzzy
 msgid "User functions (login, logout, register, my bookings)"
-msgstr ""
-"Benutzer-Funktionen (Ein- und ausloggen, Registrierung, meine Buchungen)"
+msgstr "Benutzer-Funktionen (Ein- und ausloggen, Registrierung, meine Buchungen)"
 
 #: admin/cb-widgets/cb-user-widget.php:96
-#, fuzzy, php-format
-#| msgid "Welcome, %s! "
 msgid "Welcome, %s."
 msgstr "Willkommen, %s."
 
 #: admin/cb-widgets/cb-user-widget.php:98
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Logout</a>"
 msgid "<li><a href=\"%s\">My Bookings</a></li>"
 msgstr "<li><a href=\"%s\">Meine Buchungen</a></li>"
 
 #: admin/cb-widgets/cb-user-widget.php:99
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Profile</a>"
 msgid "<li><a href=\"%s\">My Profile</a></li>"
 msgstr "<li><a href=\"%s\">Mein Profil</a></li>"
 
 #: admin/cb-widgets/cb-user-widget.php:100
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Logout</a>"
 msgid "<li><a href=\"%s\">Log out</a></li>"
 msgstr "<li><a href=\"%s\">Ausloggen</a></li>"
 
 #: admin/cb-widgets/cb-user-widget.php:105
-#, fuzzy
 msgid "You are not logged in."
 msgstr "Du bist nicht eingeloggt."
 
 #: admin/cb-widgets/cb-user-widget.php:107
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Logout</a>"
 msgid "<li><a href=\"%s\">Login</a></li>"
 msgstr "<li><a href=\"%s\">Einloggen</a></li>"
 
 #: admin/cb-widgets/cb-user-widget.php:108
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Logout</a>"
 msgid "<li><a href=\"%s\">Register</a></li>"
 msgstr "<li><a href=\"%s\">Registrieren</a></li>"
 
@@ -1238,7 +933,7 @@ msgstr "Plugin geladen"
 
 #: admin/class-cb-admin.php:282
 msgid "Commons Booking Settings"
-msgstr "Commons Booking-Einstellungen"
+msgstr "Commons-Booking-Einstellungen"
 
 #: admin/class-cb-admin.php:282
 msgid "Commons Booking"
@@ -1262,7 +957,7 @@ msgstr "Zeitraum hinzufügen"
 
 #: admin/includes/CMB2/includes/CMB2.php:120
 msgid "Metabox configuration is required to have an ID parameter"
-msgstr "Die Metabox Konfiguration benötigt einen ID-Parameter"
+msgstr "Die Metabox-Konfiguration benötigt einen ID-Parameter"
 
 #: admin/includes/CMB2/includes/CMB2.php:326
 msgid "Click to toggle"
@@ -1277,7 +972,6 @@ msgid "Remove Embed"
 msgstr "Einbettung entfernen"
 
 #: admin/includes/CMB2/includes/CMB2_Ajax.php:139
-#, php-format
 msgid "No oEmbed Results Found for %s. View more info at"
 msgstr "Keine oEmbed Ergebnisse für %s gefunden. Mehr Info unter"
 
@@ -1324,12 +1018,8 @@ msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
 msgstr "So, Mo, Di, Mi, Do, Fr, Sa"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:113
-msgid ""
-"January, February, March, April, May, June, July, August, September, October, "
-"November, December"
-msgstr ""
-"Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, "
-"November, Dezember"
+msgid "January, February, March, April, May, June, July, August, September, October, November, December"
+msgstr "Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"
 
 #: admin/includes/CMB2/includes/CMB2_JS.php:114
 msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
@@ -1412,7 +1102,7 @@ msgstr "Zeile hinzufügen"
 #: admin/includes/CMB2/includes/CMB2_Types.php:734
 #: admin/includes/CMB2/includes/CMB2_Types.php:782
 msgid "No terms"
-msgstr "Keine Bedingungen"
+msgstr "Keine Nutzungsbedingungen"
 
 #: admin/includes/CMB2/includes/CMB2_Types.php:847
 msgid "Add or Upload Files"
@@ -1433,53 +1123,44 @@ msgstr "Bitte gib einen Single, Plural und Slug-String für CPT_Core an"
 
 #: includes/CPT_Core/CPT_Core.php:134 includes/CPT_Core/CPT_Core.php:135
 #: includes/Taxonomy_Core/Taxonomy_Core.php:131
-#, php-format
 msgid "Add New %s"
 msgstr "%s hinzufügen"
 
 #: includes/CPT_Core/CPT_Core.php:136
 #: includes/Taxonomy_Core/Taxonomy_Core.php:128
-#, php-format
 msgid "Edit %s"
 msgstr "%s bearbeiten "
 
 #: includes/CPT_Core/CPT_Core.php:137
-#, php-format
 msgid "New %s"
 msgstr "Neue %s"
 
 #: includes/CPT_Core/CPT_Core.php:138
 #: includes/Taxonomy_Core/Taxonomy_Core.php:127
-#, php-format
 msgid "All %s"
 msgstr "Alle %s"
 
 #: includes/CPT_Core/CPT_Core.php:139
 #: includes/Taxonomy_Core/Taxonomy_Core.php:129
-#, php-format
 msgid "View %s"
 msgstr "Zeige %s"
 
 #: includes/CPT_Core/CPT_Core.php:140
 #: includes/Taxonomy_Core/Taxonomy_Core.php:126
-#, php-format
 msgid "Search %s"
 msgstr "Suche %s"
 
 #: includes/CPT_Core/CPT_Core.php:141
 #: includes/Taxonomy_Core/Taxonomy_Core.php:134
-#, php-format
 msgid "No %s"
 msgstr "Keine %s"
 
 #: includes/CPT_Core/CPT_Core.php:142
-#, php-format
 msgid "No %s found in Trash"
 msgstr "Keine %s im Papierkorb gefunden"
 
 #: includes/CPT_Core/CPT_Core.php:143
 #: includes/Taxonomy_Core/Taxonomy_Core.php:138
-#, php-format
 msgid "Parent %s:"
 msgstr "Vorgänger %s:"
 
@@ -1492,77 +1173,58 @@ msgid "Custom field deleted."
 msgstr "Spezialfeld erkannt."
 
 #: includes/CPT_Core/CPT_Core.php:196 includes/CPT_Core/CPT_Core.php:213
-#, php-format
 msgid "%1$s updated."
 msgstr "%1$s aktualisiert."
 
 #: includes/CPT_Core/CPT_Core.php:198
-#, php-format
 msgid "%1$s restored to revision from %2$s"
 msgstr "%1$s wiederhergestellt zur Revision vom %2$s"
 
 #: includes/CPT_Core/CPT_Core.php:199
-#, php-format
 msgid "%1$s saved."
 msgstr "%1$s gespeichert."
 
 #: includes/CPT_Core/CPT_Core.php:204
-#, php-format
 msgid "%1$s updated. <a href=\"%2$s\">View %1$s</a>"
 msgstr "%1$s aktualisiert. <a href=\"%2$s\">Ansehen %1$s</a>"
 
 #: includes/CPT_Core/CPT_Core.php:205
-#, php-format
 msgid "%1$s published. <a href=\"%2$s\">View %1$s</a>"
 msgstr "%1$s veröffentlicht. <a href=\"%2$s\">%1$s ansehen</a>"
 
 #: includes/CPT_Core/CPT_Core.php:206
-#, php-format
 msgid "%1$s submitted. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
 msgstr "%1$s angelegt. <a target=\"_blank\" href=\"%2$s\">Vorschau %1$s</a>"
 
 #: includes/CPT_Core/CPT_Core.php:208
-#, php-format
-msgid ""
-"%1$s scheduled for: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s"
-"\">Preview %1$s</a>"
-msgstr ""
-"%1$s geplant für: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s"
-"\">Vorschau %1$s</a>"
+msgid "%1$s scheduled for: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s\">Preview %1$s</a>"
+msgstr "%1$s geplant für: <strong>%2$s</strong>. <a target=\"_blank\" href=\"%3$s\">Vorschau %1$s</a>"
 
 #: includes/CPT_Core/CPT_Core.php:208 includes/CPT_Core/CPT_Core.php:217
 msgid "M j, Y @ G:i"
 msgstr "j. F Y @ G:i"
 
 #: includes/CPT_Core/CPT_Core.php:209
-#, php-format
 msgid "%1$s draft updated. <a target=\"_blank\" href=\"%2$s\">Preview %1$s</a>"
-msgstr ""
-"%1$s Entwurf aktualisiert. <a target=\"_blank\" href=\"%2$s\">Vorschau %1$s</"
-"a>"
+msgstr "%1$s Entwurf aktualisiert. <a target=\"_blank\" href=\"%2$s\">Vorschau %1$s</a>"
 
 #: includes/CPT_Core/CPT_Core.php:214
-#, php-format
 msgid "%1$s published."
 msgstr "%1$s veröffentlicht."
 
 #: includes/CPT_Core/CPT_Core.php:215
-#, php-format
 msgid "%1$s submitted."
 msgstr "%1$s übermittelt."
 
 #: includes/CPT_Core/CPT_Core.php:217
-#, php-format
 msgid "%1$s scheduled for: <strong>%2$s</strong>."
 msgstr "%1$s vorgesehen für: <strong>%2$s</strong>."
 
 #: includes/CPT_Core/CPT_Core.php:218
-#, php-format
 msgid "%1$s draft updated."
 msgstr "%1$s Entwurf aktualisiert."
 
 #: includes/CPT_Core/CPT_Core.php:267
-#, php-format
 msgid "%s Title"
 msgstr "%s Titel"
 
@@ -1573,42 +1235,34 @@ msgid "It is required to pass a single, plural and slug string to Taxonomy_Core"
 msgstr "Bitte gib einen Single, Plural und Slug-String für Taxonomy_Core an"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:130
-#, php-format
 msgid "Update %s"
 msgstr "Update %s"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:132
-#, php-format
 msgid "New %s Name"
 msgstr "Neuer %s Name"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:133
-#, php-format
 msgid "No %s found."
 msgstr "Keine %s gefunden."
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:137
-#, php-format
 msgid "Parent %s"
 msgstr "Vorgänger %s"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:141
-#, php-format
 msgid "Popular %s"
 msgstr "Beliebt %s"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:142
-#, php-format
 msgid "Separate %s with commas"
 msgstr "Trenne %s mit Kommas"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:143
-#, php-format
 msgid "Add or remove %s"
 msgstr "%s hinzufügen oder entfernen"
 
 #: includes/Taxonomy_Core/Taxonomy_Core.php:144
-#, php-format
 msgid "Choose from the most used %s"
 msgstr "Wähle aus den meist genutzten %s"
 
@@ -1621,28 +1275,22 @@ msgid "My Recent Posts Widget Description"
 msgstr "Meine letzten Artikel Widget-Beschreibung"
 
 #: public/cb-bookings/class-cb-booking-comments.php:93
-#, fuzzy
 msgid "Leave a comment"
 msgstr "Kommentar hinterlassen"
 
 #: public/cb-bookings/class-cb-booking.php:571
-#, fuzzy
 msgid "Error: Page called with missing variables."
 msgstr "Fehler: Variblen fehlen. "
 
 #: public/cb-bookings/class-cb-booking.php:575
-#, fuzzy
 msgid "Error: Page called without needed flag."
 msgstr "Fehler: Die Seite wurde ohne die nötigen Variablen aufgerufen. "
 
 #: public/cb-bookings/class-cb-booking.php:579
-#, fuzzy
 msgid "Error: You have to be logged in to view this page!"
 msgstr "Fehler: Du musst eingeloggt sein, um diese Seite sehen zu können!"
 
 #: public/cb-bookings/class-cb-booking.php:684
-#, fuzzy
-#| msgid " Your Booking Code"
 msgid "Error: Booking not found"
 msgstr "Fehler: Buchung nicht gefunden"
 
@@ -1656,35 +1304,26 @@ msgid "This item can´t be booked at the moment."
 msgstr "Der Artikel kann derzeit nicht gebucht werden."
 
 #: public/cb-bookings/class-cb-data.php:435
-#, fuzzy
 msgid "This day is closed. No pick up or return."
 msgstr "Dieser Tag ist geschlossen. Keine Entleihe oder Rückgabe möglich. "
 
 #: public/cb-bookings/class-cb-data.php:437
-#, fuzzy
-#| msgid "You haven´t booked anything yet."
 msgid "You can book on this day."
 msgstr "Du kannst an diesem Tag buchen."
 
 #: public/cb-bookings/class-cb-data.php:440
-#, fuzzy
 msgid "Booked by a user: "
 msgstr "Gebucht von einem Benutzer:"
 
 #: public/cb-bookings/class-cb-data.php:442
-#, fuzzy
-#| msgid "Sorry, this day is not bookable."
 msgid "This day is booked"
 msgstr "Dieser Tag ist gebucht"
 
 #: public/cb-bookings/class-cb-data.php:472
-#, fuzzy
-#| msgid "Hide contact information until user has confirmed the booking."
 msgid "You will recieve contact information after your booking."
 msgstr "Die Kontaktdaten werden nach der Buchung angezeigt."
 
 #: public/cb-bookings/class-cb-data.php:516
-#, fuzzy, php-format
 msgid "%1$s, %2$s %3$s, %4$s"
 msgstr "%1$s, %2$s %3$s, %4$s"
 
@@ -1693,25 +1332,20 @@ msgid " Sorry, nothing found."
 msgstr " Sorry, nichts gefunden."
 
 #: public/cb-bookings/class-cb-public-items.php:115
-#, fuzzy
-#| msgid "No Items found."
 msgid "No items found"
 msgstr "Keine Artikel gefunden"
 
 #: public/cb-bookings/class-cb-public-items.php:124
-#, fuzzy
-#| msgid "Parent Items:"
 msgid "Next items"
 msgstr "Nächste Artikel"
 
 #: public/cb-bookings/class-cb-public-items.php:125
-#, fuzzy
 msgid "Previous items"
 msgstr "Vorherige Artikel"
 
 #: public/class-commons-booking.php:194 public/class-commons-booking.php:240
 msgid "Add New"
-msgstr "Neuen Zeitraum anlegen"
+msgstr "Neu anlegen"
 
 #: public/class-commons-booking.php:195
 msgid "Add New Item"
@@ -1750,52 +1384,42 @@ msgid "No Items found in Trash."
 msgstr "Keine Artikel im Papierkorb."
 
 #: public/class-commons-booking.php:228
-#, fuzzy
 msgid "Category"
 msgstr "Kategorie"
 
 #: public/class-commons-booking.php:241
-#, fuzzy
 msgid "Add New Location"
 msgstr "Standort"
 
 #: public/class-commons-booking.php:242
-#, fuzzy
 msgid "New Location"
 msgstr "Neuer Standort"
 
 #: public/class-commons-booking.php:243
-#, fuzzy
 msgid "Edit Location"
 msgstr "Standort bearbeiten"
 
 #: public/class-commons-booking.php:244
-#, fuzzy
 msgid "View Location"
 msgstr "Standort ansehen"
 
 #: public/class-commons-booking.php:245
-#, fuzzy
 msgid "All Location"
 msgstr "Alle Standorte"
 
 #: public/class-commons-booking.php:246
-#, fuzzy
 msgid "Search Locations"
 msgstr "Standorte durchsuchen"
 
 #: public/class-commons-booking.php:247
-#, fuzzy
 msgid "Parent Locations:"
 msgstr "Übergeordnete Standorte"
 
 #: public/class-commons-booking.php:248
-#, fuzzy
 msgid "No Locations found."
 msgstr "Keine Standorte gefunden."
 
 #: public/class-commons-booking.php:249
-#, fuzzy
 msgid "No Locations found in Trash."
 msgstr "Keine Standorte im Papierkorb."
 
@@ -1804,8 +1428,6 @@ msgid "My Bookings"
 msgstr "Meine Buchungen"
 
 #: public/class-commons-booking.php:577
-#, fuzzy
-#| msgid "Confirm my booking"
 msgid "Confirm booking"
 msgstr "Buchung bestätigen"
 
@@ -1814,7 +1436,6 @@ msgid "Book here:"
 msgstr "Hier buchen:"
 
 #: public/class-commons-booking.php:694
-#, fuzzy
 msgid "Click the days you want to book"
 msgstr "Markiere die Tage, die Du buchen möchtest."
 
@@ -1831,8 +1452,6 @@ msgid "Pickup and return date:"
 msgstr "Abhol- und Rückgabedatum:"
 
 #: public/class-commons-booking.php:698
-#, fuzzy
-#| msgid "Sorry, To many days between pickup and return, the maximum is: "
 msgid "Sorry, too many days between pickup and return, the maximum is: "
 msgstr "Sorry, zu viele Tage zwischen Abholung und Rückgabe. Maximale Tage: "
 
@@ -1845,7 +1464,6 @@ msgid "Sorry, this day is not bookable."
 msgstr "Sorry, dieser Tag ist nicht buchbar."
 
 #: public/class-commons-booking.php:701
-#, fuzzy
 msgid "Please select sequential days."
 msgstr "Bitte wähle aufeinanderfolgende Tage aus."
 
@@ -1874,19 +1492,14 @@ msgid "Minimum System Requirements not satisfied for: "
 msgstr "Minimale Systemanforderungen nicht ausreichend für:"
 
 #: templates/booking-review-booking-comment.php:9
-#, fuzzy
-#| msgid "Booking time"
 msgid "Booking Comment"
 msgstr "Kommentar zur Buchung"
 
 #: templates/booking-review-booking-comment.php:12
-#, fuzzy
 msgid "Thank you for leaving a comment!"
 msgstr "Danke für deinen Kommentar!"
 
 #: templates/booking-review-booking-comment.php:14
-#, fuzzy
-#| msgid "Your Booking:"
 msgid "Your comment:"
 msgstr "Dein Kommentar:"
 
@@ -1895,8 +1508,6 @@ msgid "Cancel my booking"
 msgstr "Buchung stornieren"
 
 #: templates/booking-review-code.php:9
-#, fuzzy
-#| msgid " Your Booking Code"
 msgid "Your Booking Code"
 msgstr " Dein Buchungscode"
 
@@ -1909,8 +1520,6 @@ msgid "Your Booking:"
 msgstr "Deine Buchung:"
 
 #: templates/booking-review.php:16
-#, fuzzy
-#| msgid " Pickup & Return "
 msgid "Pickup & Return "
 msgstr "Abholung und Rückgabe"
 
@@ -1923,8 +1532,6 @@ msgid "Opening hours:"
 msgstr "Öffnungszeiten:"
 
 #: templates/booking-review.php:33
-#, fuzzy
-#| msgid " Your information "
 msgid "Your information "
 msgstr "Deine Informationen"
 
@@ -1945,13 +1552,10 @@ msgid "Phone number:"
 msgstr "Telefonnummer:"
 
 #: templates/booking-review.php:42
-#, fuzzy
-#| msgid " Location information: "
 msgid "Location information "
 msgstr "Standort-Informationen"
 
 #: templates/booking-review.php:48
-#, fuzzy
 msgid "Contact:"
 msgstr "Kontaktdaten:"
 
@@ -1980,8 +1584,6 @@ msgid "Register"
 msgstr "Registrierung"
 
 #: templates/item-list-item.php:17 templates/item-list-item.php:21
-#, fuzzy
-#| msgid "Short description"
 msgid "No description provided."
 msgstr "Keine Beschreibung vorhanden."
 
@@ -1990,689 +1592,77 @@ msgid "Book here"
 msgstr "Hier buchen"
 
 #: templates/timeframes-full.php:19
-#, fuzzy
 msgid "Show in Maps"
 msgstr "Auf der Karte zeigen"
 
 #: templates/timeframes-full.php:23
-#, fuzzy
 msgid "Contact"
 msgstr "Kontaktdaten"
 
 #: templates/timeframes-full.php:30
-#, fuzzy
-#| msgid "Monday"
 msgid "Mon"
 msgstr "Mo"
 
 #: templates/timeframes-full.php:31
-#, fuzzy
-#| msgid "Tuesday"
 msgid "Tue"
 msgstr "Di"
 
 #: templates/timeframes-full.php:32
-#, fuzzy
 msgid "Wed"
 msgstr "Mi"
 
 #: templates/timeframes-full.php:33
-#, fuzzy
 msgid "Thu"
 msgstr "Do"
 
 #: templates/timeframes-full.php:34
-#, fuzzy
-#| msgid "Friday"
 msgid "Fri"
 msgstr "Fr"
 
 #: templates/timeframes-full.php:35
-#, fuzzy
-#| msgid "Status"
 msgid "Sat"
 msgstr "Sa"
 
 #: templates/timeframes-full.php:36
-#, fuzzy
-#| msgid "Sunday"
 msgid "Sun"
 msgstr "So"
 
 #: templates/user-bar.php:16
-#, fuzzy, php-format
 msgid "Aloha, %s. "
 msgstr "Hallo %s."
 
 #: templates/user-bar.php:18
-#, fuzzy, php-format
 msgid "<a href=\"%s\" class=\"cb-button\">My Bookings</a> "
 msgstr "<a href=\"%s\" class=\"cb-button\">Meine Buchungen</a> "
 
 #: templates/user-bar.php:19
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Profile</a>"
 msgid "<a href=\"%s\" class=\"cb-button\">My Profile</a> "
 msgstr "<a href=\"%s\" class=\"cb-button\">Profil</a> "
 
 #: templates/user-bar.php:20
-#, fuzzy, php-format
-#| msgid "<a href=\"%s\">Logout</a>"
 msgid "<a href=\"%s\" class=\"cb-button\">Logout</a> "
 msgstr "<a href=\"%s\" class=\"cb-button\">Ausloggen</a>"
 
 #: templates/user-bookings.php:14
-#, fuzzy
-#| msgid "Your booking"
 msgid "Show booking"
 msgstr "Buchung anzeigen"
 
-#~ msgid "Something went wrong"
-#~ msgstr "Etwas ist schief gelaufen"
+msgid "http://www.wielebenwir.de/projekte/commons-booking"
+msgstr "http://www.wielebenwir.de/projekte/commons-booking"
 
-#~ msgid "Codes "
-#~ msgstr "Codes "
+msgid "A wordpress plugin for management and booking of common goods."
+msgstr "Ein Wordpress-Plugin für die Verwaltung und Buchen von Gemeingütern."
 
-#~ msgid " Missing Code"
-#~ msgstr "Fehlender Code"
+msgid "Florian Egermann"
+msgstr "Florian Egermann"
 
-#~ msgid "No or not enough codes defined. Add them in Commons Booking Settings."
-#~ msgstr ""
-#~ "Keine oder nicht genügend Codes definiert. Füge diese in den Commons-"
-#~ "Booking-Einstellungen hinzu."
+msgid "http://www.wielebenwir.de"
+msgstr "http://www.wielebenwir.de"
 
-#~ msgid "Customization"
-#~ msgstr "Anpassungen"
+msgctxt "Valid formatting string, as per http://trentrichardson.com/examples/timepicker/"
+msgid "hh:mm TT"
+msgstr "hh:mm TT"
 
-#~ msgid "Users will be forwarded to this page after clicking \"Book\""
-#~ msgstr ""
-#~ "Benutzer werden nach dem Klick auf \"Buchen\" auf diese Seite "
-#~ "weitergeleitet"
-
-#~ msgid "Days to show"
-#~ msgstr "Angezeigte Tage"
-
-#~ msgid ""
-#~ "Style the login/registration pages and handle redirects. <br />Disable if "
-#~ "you want to use other plugins (e.g. \"Theme my Login\") to customize the "
-#~ "Login/Registration process. E-Mail templates still apply."
-#~ msgstr ""
-#~ "Die Login- und Registrierungsseiten Anpassen (Stil und Weiterleitungen). "
-#~ "<br /> Deaktiviere dies, wenn du andere Plugins (wie \"Theme my Login\") "
-#~ "für das Anpassen der Login/Registrierung verwenden willst. E-Mail "
-#~ "Templates werden trotzdem verwendet. "
-
-#~ msgid "Logo"
-#~ msgstr "Logo"
-
-#~ msgid ""
-#~ "Upload your Logo (150x150px) here. This replaces the logo on the login "
-#~ "page."
-#~ msgstr ""
-#~ "Lade dein Logo (150x150px) hier hoch, es wird auf der Login-Seite gezeigt. "
-
-#~ msgid "Custom CSS for Login & Registration pages"
-#~ msgstr "Eigene CSS-Stile für Login- und Registrierung-Seiten. "
-
-#~ msgid "Enter custom CSS styles here."
-#~ msgstr "Gib deine CSS-Stile hier ein. "
-
-#~ msgid "Email address"
-#~ msgstr "E-Mail-Adresse"
-
-#~ msgid "The reply to address (make sure this exists)"
-#~ msgstr "Die Absender-Adresse (bitte stelle sicher, dass diese existiert)."
-
-#~ msgid "Item was successfully updated"
-#~ msgstr "Der Artikel wurde erfolgreich aktualisiert."
-
-#~ msgid "There was an error while updating item!"
-#~ msgstr "Bei der Aktualisierung des Artikels ist ein Fehler aufgetreten."
-
-#~ msgid "back to list"
-#~ msgstr "zurück zur Liste"
-
-#~ msgid "Back to list"
-#~ msgstr "Zurück zur Liste"
-
-#~ msgid " – Please select – "
-#~ msgstr " – Bitte auswählen – "
-
-#~ msgid "Start Date "
-#~ msgstr "Anfangsdatum"
-
-#~ msgid "End Date "
-#~ msgstr "Enddatum"
-
-#~ msgid " Something went wrong "
-#~ msgstr " Etwas ist schief gelaufen "
-
-#~ msgid "Addresss"
-#~ msgstr "Adresse"
-
-#~ msgid "Test Metabox"
-#~ msgstr "Test Metabox"
-
-#~ msgid "Test Text"
-#~ msgstr "Test Text"
-
-#~ msgid "field description (optional)"
-#~ msgstr "Feldbeschreibung (optional)"
-
-#~ msgid "Test Text Small"
-#~ msgstr "Test Text klein"
-
-#~ msgid "Test Text Medium"
-#~ msgstr "Test Text mittel"
-
-#~ msgid "Website URL"
-#~ msgstr "Website-URL"
-
-#~ msgid "Test Text Email"
-#~ msgstr "Test Text E-Mail"
-
-#~ msgid "Test Time"
-#~ msgstr "Test Zeit"
-
-#~ msgid "Time zone"
-#~ msgstr "Zeitzone"
-
-#~ msgid "Test Date Picker"
-#~ msgstr "Test Datum-Picker"
-
-#~ msgid "Test Date Picker (UNIX timestamp)"
-#~ msgstr "Test Datum-Picker (UNIX Zeitstempel)"
-
-#~ msgid "Test Date/Time Picker Combo (UNIX timestamp)"
-#~ msgstr "Test Datum-/Zeit-Picker-Combo (UNIX Zeitstempel)"
-
-#~ msgid "Test Money"
-#~ msgstr "Test Geld"
-
-#~ msgid "Test Color Picker"
-#~ msgstr "Test Farb-Picker"
-
-#~ msgid "Test Text Area"
-#~ msgstr "Test Text Bereich"
-
-#~ msgid "Test Text Area Small"
-#~ msgstr "Test Text Bereich klein"
-
-#~ msgid "Test Text Area for Code"
-#~ msgstr "Test Text Bereich für Code"
-
-#~ msgid "Test Title Weeeee"
-#~ msgstr "Test Titel Weeeee"
-
-#~ msgid "This is a title description"
-#~ msgstr "Dies ist die Titel-Beschreibung"
-
-#~ msgid "Test Select"
-#~ msgstr "Test Auswahl"
-
-#~ msgid "Option One"
-#~ msgstr "Option Eins"
-
-#~ msgid "Option Two"
-#~ msgstr "Option Zwei"
-
-#~ msgid "Option Three"
-#~ msgstr "Option Drei"
-
-#~ msgid "Test Radio inline"
-#~ msgstr "Test Radio inline"
-
-#~ msgid "Test Radio"
-#~ msgstr "Test Radio"
-
-#~ msgid "Test Taxonomy Radio"
-#~ msgstr "Test Taxonomie Radio"
-
-#~ msgid "Test Taxonomy Select"
-#~ msgstr "Test Taxonomie Auswahl"
-
-#~ msgid "Test Taxonomy Multi Checkbox"
-#~ msgstr "Test Taxonomie Mehrfachcheckbox"
-
-#~ msgid "Test Checkbox"
-#~ msgstr "Test Checkbox"
-
-#~ msgid "Test Multi Checkbox"
-#~ msgstr "Test Mehrfachcheckbox"
-
-#~ msgid "Check One"
-#~ msgstr "Check Eins"
-
-#~ msgid "Check Two"
-#~ msgstr "Check Zwei"
-
-#~ msgid "Check Three"
-#~ msgstr "Check Drei"
-
-#~ msgid "Test wysiwyg"
-#~ msgstr "Test WYSIWYG"
-
-#~ msgid "Test Image"
-#~ msgstr "Test Bild"
-
-#~ msgid "Upload an image or enter a URL."
-#~ msgstr "Bild hochladen oder URL angeben."
-
-#~ msgid "Multiple Files"
-#~ msgstr "Mehrere Dateien"
-
-#~ msgid "Upload or add multiple images/attachments."
-#~ msgstr "Mehrere Bilder/Anhänge hochladen oder hinzufügen."
-
-#~ msgid "oEmbed"
-#~ msgstr "oEmbed"
-
-#~ msgid ""
-#~ "Enter a youtube, twitter, or instagram URL. Supports services listed at <a "
-#~ "href=\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/"
-#~ "Embeds</a>."
-#~ msgstr ""
-#~ "Gib eine youtube, twitter oder instagram URL ein. Die unter <a href="
-#~ "\"http://codex.wordpress.org/Embeds\">http://codex.wordpress.org/Embeds</"
-#~ "a> aufgeführten Dienste werden unterstützt."
-
-#~ msgid "About Page Metabox"
-#~ msgstr "Über Page Metabox"
-
-#~ msgid "Repeating Field Group"
-#~ msgstr "Feldgruppe wiederholen"
-
-#~ msgid "Generates reusable form entries"
-#~ msgstr "Generiert wiederverwendbare Formulareinträge"
-
-#~ msgid "Entry {#}"
-#~ msgstr "Eintrag {#}"
-
-#~ msgid "Add Another Entry"
-#~ msgstr "Füge einen weiteren Eintrag hinzu"
-
-#~ msgid "Remove Entry"
-#~ msgstr "Eintrag entfernen"
-
-#~ msgid "Entry Title"
-#~ msgstr "Eintragstitel"
-
-#~ msgid "Description"
-#~ msgstr "Beschreibung"
-
-#~ msgid "Write a short description for this entry"
-#~ msgstr "Schreibe eine kurze Beschreibung für diesen Eintrag"
-
-#~ msgid "Entry Image"
-#~ msgstr "Eintragsbild"
-
-#~ msgid "Image Caption"
-#~ msgstr "Bildunterschrift"
-
-#~ msgid "User Profile Metabox"
-#~ msgstr "Nutzer*in-Profil Metabox"
-
-#~ msgid "Extra Info"
-#~ msgstr "Extra Info"
-
-#~ msgid "Avatar"
-#~ msgstr "Avatar"
-
-#~ msgid "Facebook URL"
-#~ msgstr "Facebook URL"
-
-#~ msgid "Twitter URL"
-#~ msgstr "Twitter URL"
-
-#~ msgid "Google+ URL"
-#~ msgstr "Google+ URL"
-
-#~ msgid "Linkedin URL"
-#~ msgstr "LinkedIn URL"
-
-#~ msgid "User Field"
-#~ msgstr "Nutzer*in-Feld"
-
-#~ msgid "Theme Options Metabox"
-#~ msgstr "Theme-Optionen Metabox"
-
-#~ msgid "Site Background Color"
-#~ msgstr "Wähle Hintergrundfarbe"
-
-#~ msgid "Click pickup and return date(s):"
-#~ msgstr "Wähle Abhol- und Rückgabedatum:"
-
-#~ msgid " Your Booking: "
-#~ msgstr " Deine Buchung: "
-
-#~ msgid " Pickup at: "
-#~ msgstr " Abholung bei: "
-
-#~ msgid " Pickup date:"
-#~ msgstr " Abholdatum: "
-
-#~ msgid " Full name: "
-#~ msgstr "Vollständiger Name:"
-
-#~ msgid " Email: "
-#~ msgstr "E-Mail:"
-
-#~ msgid " Address: "
-#~ msgstr "Adresse:"
-
-#~ msgid " Phone number: "
-#~ msgstr "Telefonnummer:"
-
-#~ msgid "Confirmed"
-#~ msgstr "Bestätigt"
-
-#~ msgid "Details"
-#~ msgstr "Details"
-
-#~ msgid "Pending"
-#~ msgstr "Wartend"
-
-#~ msgid "Welcome, stranger!"
-#~ msgstr "Willkommen, Fremder!"
-
-#~ msgid "If you don´t have an account, please register here: "
-#~ msgstr "Falls Du noch kein Nutzer*in-Konto hast, registriere Dich hier: "
-
-#~ msgid "If you have lost your password, click here:"
-#~ msgstr "Wenn Du dein Passwort verloren hast, klick hier:"
-
-#~ msgid "Lost Password"
-#~ msgstr "Passwort vergessen"
-
-#~ msgid "Username"
-#~ msgstr "Benutzername"
-
-#~ msgid "Email"
-#~ msgstr "E-Mail"
-
-#~ msgid "Phone"
-#~ msgstr "Telefon"
-
-#~ msgid "I accept the terms"
-#~ msgstr "Ich akzeptiere die Nutzungsbedingungen"
-
-#, fuzzy
-#~ msgid "Categories"
-#~ msgstr "Kategorien"
-
-#~ msgid "%s image"
-#~ msgstr "%s Bild"
-
-#, fuzzy
-#~ msgid "%s"
-#~ msgstr "Keine %s"
-
-#, fuzzy
-#~ msgid "No %s found"
-#~ msgstr "Keine %s gefunden."
-
-#, fuzzy
-#~ msgid "Seperate %s with commas"
-#~ msgstr "Trenne %s mit Kommas"
-
-#, fuzzy
-#~ msgid "Choose from most used %s"
-#~ msgstr "Wähle aus den meist genutzten %s"
-
-#, fuzzy
-#~ msgid "%s updated."
-#~ msgstr "%1$s aktualisiert."
-
-#, fuzzy
-#~ msgid "%2$s restored to revision from %1$s"
-#~ msgstr "%1$s wurde zur Version vom %2$s zurückgesetzt"
-
-#, fuzzy
-#~ msgid "%s saved."
-#~ msgstr "%1$s gespeichert."
-
-#, fuzzy
-#~ msgid "%s submitted."
-#~ msgstr "%1$s eingereicht."
-
-#, fuzzy
-#~ msgid "%2$s scheduled for: <strong>%1$s</strong>."
-#~ msgstr "%1$s geplant für: <strong>%2$s</strong>."
-
-#, fuzzy
-#~ msgid "%s draft updated."
-#~ msgstr "%1$s Entwurf aktualisiert."
-
-#~ msgid "Description."
-#~ msgstr "Beschreibung."
-
-#~ msgid "Sausages"
-#~ msgstr "Blutwurst"
-
-#~ msgid "items new"
-#~ msgstr "Artikelzzzzzzzz"
-
-#~ msgid "Booking Settings"
-#~ msgstr "Buchungs-Einstellungen"
-
-#~ msgid "Mail Settings"
-#~ msgstr "E-Mail-Einstellungen"
-
-#~ msgid "Once you click \"Book, you will be forwarded to this page"
-#~ msgstr ""
-#~ "Wenn ein*e Nutzer*in auf \"Jetzt buchen\" klickt, wird sie/er auf diese "
-#~ "Seite weitergeleitet."
-
-#~ msgid "Export Settings"
-#~ msgstr "Einstellungen exportieren"
-
-#~ msgid ""
-#~ "Export the plugin settings for this site as a .json file. This allows you "
-#~ "to easily import the configuration into another site."
-#~ msgstr ""
-#~ "Exportiere die Einstellungen als .json-Datei, um sie später hier oder an "
-#~ "anderer Stelle importieren zu können."
-
-#~ msgid "Export"
-#~ msgstr "Export"
-
-#~ msgid "Import Settings"
-#~ msgstr "Einstellungen importieren"
-
-#~ msgid ""
-#~ "Import the plugin settings from a .json file. This file can be obtained by "
-#~ "exporting the settings on another site using the form above."
-#~ msgstr ""
-#~ "Plugin-Einstellungen aus einer .json-Datei importieren. Diese Datei kann "
-#~ "durch den Export der Einstellungen auf einer anderen Website mit dem "
-#~ "Formular oben erstellt werden."
-
-#~ msgid "Import"
-#~ msgstr "Import"
-
-#~ msgid "Please upload a valid .json file"
-#~ msgstr "Bitte eine gültige .json-Datei hochladen"
-
-#~ msgid "Please upload a file to import"
-#~ msgstr "Bitte Datei zum Import hochladen"
-
-#~ msgid "User Page"
-#~ msgstr "Nutzer*in-Seite"
-
-#~ msgid "The User page."
-#~ msgstr ""
-#~ "Auf dieser Seite kann ein*e Nutzer*in die eigenen Buchungen einsehen."
-
-#~ msgid "Link to terms and services"
-#~ msgstr "Link zu den Nutzungsbedingungen"
-
-#~ msgid "User Registration"
-#~ msgstr "Nutzer*in-Registrierung"
-
-#~ msgid "The registration form."
-#~ msgstr "Diese Seite ist das Registrierungs-Formular für neue Nutzer*innen."
-
-#~ msgid "Welcome, registered user!"
-#~ msgstr "Willkommen, registrierte(r) Nutzer*in!"
-
-#~ msgid "Sorry, registration is not allowed"
-#~ msgstr "Sorry, Registrierung ist nicht erlaubt"
-
-#~ msgid "Required form field is missing: "
-#~ msgstr "Folgende Felder müssen ausgefüllt werden: "
-
-#~ msgid "Username too short. At least 4 characters is required"
-#~ msgstr "Der Benutzername muss aus mind. 4 Zeichen bestehen."
-
-#~ msgid "Sorry, that username already exists!"
-#~ msgstr "Sorry, dieser Nutzer*in-Name wierd bereits verwendet."
-
-#~ msgid "Sorry, that email already exists!"
-#~ msgstr "Sorry, diese E-Mail-Adresse wird bereits verwendet."
-
-#~ msgid "You must accept the terms"
-#~ msgstr "Du musst die Nutzungsbedingungen akzeptieren!"
-
-#~ msgid "<strong>Error:</strong> "
-#~ msgstr "<strong>Fehler:</strong> "
-
-#~ msgid ""
-#~ "Thanks! Registration is complete. We´ve sent you an email with your "
-#~ "Account information. "
-#~ msgstr ""
-#~ "Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben Dir eine E-"
-#~ "Mail mit Deinen Daten zugesendet. "
-
-#~ msgid "locations"
-#~ msgstr "Standorte"
-
-#~ msgid "Login Page"
-#~ msgstr "Anmelde-Seite"
-
-#~ msgid "The login form."
-#~ msgstr "Auf dieser Seite kann ein*e Nutzer*in sich anmelden."
-
-#~ msgid " Pickup date: "
-#~ msgstr " Abholdatum: "
-
-#~ msgid " Opening hours: "
-#~ msgstr " Öffnungszeiten: "
-
-#~ msgid " â Please select â "
-#~ msgstr "â Bitte auswÃ¤hlen â"
-
-#~ msgid ""
-#~ "Thanks! Registration is complete. WeÂ´ve sent you an email with your "
-#~ "Account information. "
-#~ msgstr ""
-#~ "Vielen Dank! Die Registrierung ist abgeschlossen. Wir haben dir eine E-"
-#~ "Mail "
-
-#~ msgid " You havenÂ´t booked anything yet."
-#~ msgstr "Du hast bisher keine Buchungen."
-
-#~ msgctxt "Valid formatDate string for jquery-ui datepicker"
-#~ msgid "mm/dd/yy"
-#~ msgstr "dd.mm.yy"
-
-#~ msgctxt ""
-#~ "Valid formatting string, as per http://trentrichardson.com/examples/"
-#~ "timepicker/"
-#~ msgid "hh:mm TT"
-#~ msgstr "hh:mm TT"
-
-#~ msgid "This item canÂ´t be booked at the moment."
-#~ msgstr "Dieser Artikel kann momentan nicht gebucht werden."
-
-#~ msgid ""
-#~ "<h2>Congratulations, {{USER_NAME}}!</h2> <p>YouÂ´ve successfully booked "
-#~ "{{ITEM_NAME}}. An email has been sent to your address {{USER_EMAIL}}. </p>"
-#~ msgstr ""
-#~ "<h2>GlÃ¼ckwunsch, {{USER_NAME}}!</h2> <p>Du hast {{ITEM_NAME}} erfolgreich "
-
-#~ msgid ""
-#~ "<h2>Hi {{USER_NAME}}, thanks and for booking {{ITEM_NAME}}!</h2>\n"
-#~ "\n"
-#~ "              <p>Click here to see or cancel you booking: {{URL}}.</p>\n"
-#~ "\n"
-#~ "              <p>HereÂ´s your booking code: <strong>{{CODE}}</strong></p>\n"
-#~ "\n"
-#~ "              <h3>Pick up information</h3>\n"
-#~ "\n"
-#~ "              <em>Please make sure you are on time.</em>\n"
-#~ "\n"
-#~ "              <p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on "
-#~ "{{DATE_START}}.<br>\n"
-#~ "              Return it there on {{DATE_END}}.<br>\n"
-#~ "              Address: {{LOCATION_ADDRESS}}<br>\n"
-#~ "              Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
-#~ "\n"
-#~ "              <h3>Your information</h3>\n"
-#~ "\n"
-#~ "              <em>Please make sure you have entered the correct name and "
-#~ "adress from your ID - otherwise you will not be able to pick up the item</"
-#~ "em>\n"
-#~ "\n"
-#~ "              <p>Name: {{USER_NAME}}.<br>\n"
-#~ "                Address: {{USER_ADDRESS}}</p>\n"
-#~ "\n"
-#~ "              <p>Thanks, the Team. </p>\n"
-#~ "            "
-#~ msgstr ""
-#~ "<h2>Hallo {{USER_NAME}}, danke fÃ¼r die Buchung von {{ITEM_NAME}}!</h2>\n"
-#~ "\n"
-#~ "              <p>Deine Buchung ansehen oder stornieren: {{URL}}.</p>\n"
-#~ "\n"
-#~ "              <p>Dein Buchungscode: <strong>{{CODE}}</strong></p>\n"
-#~ "\n"
-#~ "              <h3>Informationen zur Abholung</h3>\n"
-#~ "\n"
-#~ "              <em>Bitte sei punktlich.</em>\n"
-#~ "\n"
-#~ "              <p>Du kannst {{ITEM_NAME}} bei {{LOCATION_NAME}} am "
-#~ "{{DATE_START}} abholen.<br>\n"
-#~ "              RÃ¼ckgabedatum: {{DATE_END}}.<br>\n"
-#~ "              Adresse: {{LOCATION_ADDRESS}}<br>\n"
-#~ "              Ãffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
-#~ "\n"
-#~ "              <h3>Deine Angaben:</h3>\n"
-#~ "\n"
-#~ "              <em>Bitte stell sicher, dass du den richtigen Namen und "
-#~ "Adresse aus deinem Personalausweis eingegeben hast - die Ãbergabe kann "
-#~ "sonst nicht stattfinden.</em>\n"
-#~ "\n"
-#~ "              <p>Name: {{USER_NAME}}.<br>\n"
-#~ "                Adresse: {{USER_ADDRESS}}</p>\n"
-#~ "\n"
-#~ "              <p>Danke, das Team. </p>\n"
-#~ "            "
-
-#~ msgid "Welcome, {{USER_NAME}} â hereÂ´s your account information."
-#~ msgstr "Willkommen, {{USER_NAME}} â hier sind deine Account-Informationen."
-
-#, fuzzy
-#~ msgid "Sorry, you canÂ´t book over closed days."
-#~ msgstr ""
-#~ "#-#-#-#-#  0catalog.po (Commons Booking 0.3)  #-#-#-#-#\n"
-#~ "Sorry, du kannst diese Tage nicht buchen.\n"
-#~ "#-#-#-#-#  0catalog.po (Commons Booking 0.3)  #-#-#-#-#\n"
-#~ "Sorry, du kannst geschlossene Tage nicht buchen."
-
-#~ msgid "Info..."
-#~ msgstr "Info..."
-
-#~ msgid "If you donÂ´t have an account, please register here: "
-#~ msgstr "Wenn du noch keinen Account hast, registriere dich bitte hier:"
-
-#~ msgid "Book here "
-#~ msgstr "Jetzt buchen"
-
-#, fuzzy
-#~ msgid "Informationen"
-#~ msgstr "Kontakt-Informationen"
-
-#~ msgid "Read more"
-#~ msgstr "Mehr lesen"
-
-#~ msgid "Book"
-#~ msgstr "Buchen"
+msgctxt "Valid formatDate string for jquery-ui datepicker"
+msgid "mm/dd/yy"
+msgstr "dd.mm.yy"
