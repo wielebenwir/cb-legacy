@@ -85,6 +85,11 @@ class Commons_Booking_Locations_Metaboxes extends Commons_Booking {
           'id' => parent::$plugin_slug . '_location_contactinfo_hide',
           'type' => 'checkbox',
         ),  
+        array(
+          'name' => __( 'Send copies of booking confirmation emails to the location. Any email address typed into "Phone Number, Email, ..." will receive copies.', 'commons-booking'),
+          'id' => parent::$plugin_slug . '_location_contactinfo_recv_copies',
+          'type' => 'checkbox',
+        ),
       ),              
     );      
     $meta_boxes[ 'cb_location_metabox_openinghours' ] = array(

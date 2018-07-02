@@ -204,48 +204,52 @@ msgstr "Telefonnummer, E-Mail, ..."
 msgid "Hide contact information until user has confirmed the booking."
 msgstr "Kontaktdaten verstecken, bis die/der Nutzer*in die Buchung bestätigt hat."
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:92
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:89
+msgid "Send copies of booking confirmation emails to the location. Any email address typed into \"Phone Number, Email, ...\" will receive copies."
+msgstr "Kopien der Buchungsbestätigungs-E-Mails an den Standort schicken. Jede E-Mail-Adresse, die unter \"Telefonnummer, E-Mail, ...\" eingegeben wurde, wird Kopien erhalten."
+
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:97
 #: templates/timeframes-full.php:22
 msgid "Opening hours"
 msgstr "Öffnungszeiten"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:99
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:104
 msgid "Enter the opening hours here. E.g.: Mon-Fri, 8:00 - 18:00"
 msgstr "Gib hier die Öffnungszeiten an. Beispiel: Mo-Fr, 8:00 - 18:00"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:108
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:113
 msgid "Closed Days"
 msgstr "Geschlossene Tage"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:115
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:120
 msgid "Location is closed on the following days, booking is prohibited. "
 msgstr "Der Standort ist an den folgenden Tagen geschlossen, buchen ist nicht möglich. "
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:119
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:124
 msgid "Monday"
 msgstr "Montag"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:120
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:125
 msgid "Tuesday"
 msgstr "Dienstag"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:121
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:126
 msgid "Wednesday"
 msgstr "Mittwoch"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:122
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:127
 msgid "Thursday"
 msgstr "Donnerstag"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:123
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:128
 msgid "Friday"
 msgstr "Freitag"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:124
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:129
 msgid "Saturday"
 msgstr "Samstag"
 
-#: admin/cb-locations/includes/cb-locations-metaboxes.php:125
+#: admin/cb-locations/includes/cb-locations-metaboxes.php:130
 msgid "Sunday"
 msgstr "Sonntag"
 
