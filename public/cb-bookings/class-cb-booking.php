@@ -628,6 +628,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->booking_id = ( $b_id );
                     $this->location = $this->data->get_location( $this->location_id );
 
+                    $recv_copies = ( $this->location['recv_copies'] );
                     $location_email = ( count( $this->location['contact']['email'] ) > 0 ? $this->location['contact']['email'] : NULL );
                     $allow_booking_comments = $this->settings->get_settings( 'bookings', 'bookingsettings_allow_comments');
                     $allow_booking_comments_message = $this->settings->get_settings( 'messages', 'messages_booking_comment_notice');
@@ -651,7 +652,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                         $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
                         $this->send_mail( $this->user['email'] );
-                        if ( $location_email ) {
+                        if ( !empty( $recv_copies ) && $location_email ) {
                           foreach ($location_email as $email) {
                             $this->send_mail( $email, false );
                           }
@@ -689,7 +690,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                         $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
                         $this->send_mail( $this->user['email'], true, 'cancelation' );
-                        if ( $location_email ) {
+                        if ( !empty( $recv_copies ) && $location_email ) {
                           foreach ($location_email as $email) {
                             $this->send_mail( $email, false, 'cancelation' );
                           }

@@ -168,6 +168,7 @@ class CB_Data {
           'country' => get_post_meta( $id, $this->prefix . '_location_adress_country', true ),
         ),
         'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
+        'recv_copies' => get_post_meta( $id, $this->prefix . '_location_contactinfo_recv_copies', true ),
         'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true, true ),
         'openinghours' => get_post_meta( $id, $this->prefix . '_location_openinghours', true ),
         );
