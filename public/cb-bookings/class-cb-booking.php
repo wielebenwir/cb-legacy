@@ -70,6 +70,13 @@ class CB_Booking {
           $this->send_mail( $email, false, 'deletion' );
         }
       }
+      $msg = __( 'Notification email about the booking deletion has beeen sent to the following addresses', 'commons-booking' );
+      $email_addresses = $this->user['email'].', '.implode(', ', $this->location_email);
+      print("
+        <div id='message' class='updated'>
+          <p>$msg: $email_addresses.</p>
+        </div>
+        ");
     }
 
 /**
@@ -504,6 +511,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
      *
      */
     private function prepare_for_set_booking_vars( $booking ) {
+      $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
+
       $this->booking = $booking;
       $this->date_start = ( $booking['date_start'] );
       $this->date_end = ( $booking['date_end'] );
@@ -550,7 +559,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         $b_vars['hash'] = $this->hash;
 
-        $b_vars['site_email'] = $this->email_messages['mail_confirmation_sender'];
+        $b_vars['site_email'] = $this->email_messages['mail_from'];
 
         $b_vars['user_name'] = $this->user['name'];
         $b_vars['user_email'] = $this->user['email'];
@@ -647,7 +656,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
             $current_user = wp_get_current_user();
 
             $booking_messages = $this->settings->get_settings( 'messages' ); // get messages templates from settings page
-            $this->email_messages = $this->settings->get_settings( 'mail' ); // get email templates from settings page
 
             // 1. Confirm the booking / 2. view the booking / 3. cancel the booking
             if ( !empty($_GET['booking']) ) { // we confirm the booking

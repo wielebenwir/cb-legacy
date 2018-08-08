@@ -202,20 +202,17 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
 
-            // convert to array, easier to find items in:
-            if (is_string($ids)) $ids = array($ids);
-
-            foreach ($this->items as $item) {
-              if (in_array($item['booking_ID'], $ids) &&
-                'confirmed' === $item['status']) {
-                print_r($item);
-                print_r('<br>');
-                do_action('cb_booking_send_delete_emails', $item['booking_ID']);
-              }
-            }
-
             // convert to string, suited for SQL:
             if (is_array($ids)) $ids = implode(',', $ids);
+
+            $items = $wpdb->get_results($wpdb->prepare("
+            SELECT * FROM $this->table_bookings
+            WHERE id IN($ids) AND status = 'confirmed'
+            "), ARRAY_A);
+
+            foreach ($items as $item) {
+              do_action('cb_booking_send_delete_emails', $item['id']);
+            }
 
             if (!empty($ids)) {
                 $wpdb->query("DELETE FROM $this->table_bookings WHERE id IN($ids)");
