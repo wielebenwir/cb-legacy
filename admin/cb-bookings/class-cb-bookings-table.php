@@ -201,6 +201,20 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
+
+            // convert to array, easier to find items in:
+            if (is_string($ids)) $ids = array($ids);
+
+            foreach ($this->items as $item) {
+              if (in_array($item['booking_ID'], $ids) &&
+                'confirmed' === $item['status']) {
+                print_r($item);
+                print_r('<br>');
+                do_action('cb_booking_send_delete_emails', $item['booking_ID']);
+              }
+            }
+
+            // convert to string, suited for SQL:
             if (is_array($ids)) $ids = implode(',', $ids);
 
             if (!empty($ids)) {
@@ -281,9 +295,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // here we configure table headers, defined in our methods
         $this->_column_headers = array($columns, $hidden, $sortable);
 
-        // [OPTIONAL] process bulk action if any
-        $this->process_bulk_action();
-
         // get filters
         $filters = $this->get_selected_Filters(); 
         $sqlfilter = "";
@@ -312,6 +323,10 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             ORDER BY $orderby $order 
             LIMIT %d OFFSET %d
             ", $per_page, $paged * $per_page), ARRAY_A);
+
+        // [OPTIONAL] process bulk action if any
+        // Run this after filling $items so that you can access them
+        $this->process_bulk_action();
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(

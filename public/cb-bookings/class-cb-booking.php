@@ -43,6 +43,33 @@ class CB_Booking {
         $this->table_codes = $wpdb->prefix . 'cb_codes';
         $this->table_bookings = $wpdb->prefix . 'cb_bookings';
 
+        // Interface so that foreign classes can access this class'
+        // functionalities via the wordpress action API
+        // (https://developer.wordpress.org/reference/functions/add_action/)
+        add_action( 'cb_booking_send_delete_emails', array ( $this, 'send_delete_emails' ), 10, 1 );
+    }
+
+    /**
+     * Can send deletion emails from another class via an action. The argument
+     * is the booking_ID to send deletion emails for.
+     *
+     * Usage:
+     *    <code>do_action( 'cb_booking_send_delete_emails', 42);</code>
+     *
+     * @param string $b_id The booking_ID
+     * @return void
+     */
+    public function send_delete_emails( $b_id ) {
+      $booking = $this->get_booking($b_id);
+      $this->prepare_for_set_booking_vars($booking);
+      // Set variable for template
+      $this->set_booking_vars();
+      $this->send_mail( $this->user['email'], true, 'deletion' );
+      if ( !empty( $this->recv_copies ) && $this->location_email ) {
+        foreach ($this->location_email as $email) {
+          $this->send_mail( $email, false, 'deletion' );
+        }
+      }
     }
 
 /**
@@ -471,7 +498,31 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
     }
 
     /**
-     * Set all needed variabls for template.
+     * Prepare for setting all needed variables for template.
+     *
+     * @param OBJECT The booking object
+     *
+     */
+    private function prepare_for_set_booking_vars( $booking ) {
+      $this->booking = $booking;
+      $this->date_start = ( $booking['date_start'] );
+      $this->date_end = ( $booking['date_end'] );
+      $this->location_id = ( $booking['location_id'] );
+      $this->item_id = ( $booking['item_id'] );
+      $this->user_id = ( $booking['user_id'] );
+      $this->booking_id = ( $booking['id'] );
+      $this->location = $this->data->get_location( $this->location_id );
+
+      $this->recv_copies = ( $this->location['recv_copies'] );
+      $this->location_email = (
+        count( $this->location['contact']['email'] ) > 0 ?
+        $this->location['contact']['email'] :
+        NULL
+      );
+    }
+
+    /**
+     * Set all needed variables for template.
      *
      * @param BOOL include code
      *
@@ -616,20 +667,12 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     die();
                 }
                 $user_id = get_current_user_id();
-                $this->booking = $this->get_booking( $b_id );
+                $booking = $this->get_booking( $b_id );
 
-                if ( ( $this->booking['user_id'] ==  $user_id ) ) { // user that booked or admin
+                if ( ( $booking['user_id'] ==  $user_id ) ) { // user that booked or admin
 
-                    $this->date_start = ( $this->booking['date_start'] );
-                    $this->date_end = ( $this->booking['date_end'] );
-                    $this->location_id = ( $this->booking['location_id'] );
-                    $this->item_id = ( $this->booking['item_id'] );
-                    $this->user_id = ( $this->booking['user_id'] );
-                    $this->booking_id = ( $b_id );
-                    $this->location = $this->data->get_location( $this->location_id );
+                    $this->prepare_for_set_booking_vars($booking);
 
-                    $recv_copies = ( $this->location['recv_copies'] );
-                    $location_email = ( count( $this->location['contact']['email'] ) > 0 ? $this->location['contact']['email'] : NULL );
                     $allow_booking_comments = $this->settings->get_settings( 'bookings', 'bookingsettings_allow_comments');
                     $allow_booking_comments_message = $this->settings->get_settings( 'messages', 'messages_booking_comment_notice');
                     $comments = '';
@@ -639,7 +682,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->set_booking_vars( TRUE );
 
                     // Finalise the booking
-                    if ( $this->booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1
+                    if ( $booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1
 
                         // check again if days are not already booked, and count <  maxdays (prevents double bookings)
                         $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id );
@@ -650,10 +693,10 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                             $message_comments = display_cb_message( $allow_booking_comments_message, $this->b_vars );
                         }
 
-                        $this->set_booking_status( $this->booking['id'], 'confirmed' ); // set booking status to confirmed
+                        $this->set_booking_status( $booking['id'], 'confirmed' ); // set booking status to confirmed
                         $this->send_mail( $this->user['email'] );
-                        if ( !empty( $recv_copies ) && $location_email ) {
-                          foreach ($location_email as $email) {
+                        if ( !empty( $this->recv_copies ) && $this->location_email ) {
+                          foreach ($this->location_email as $email) {
                             $this->send_mail( $email, false );
                           }
                         }
@@ -663,7 +706,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                         return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
-                    } elseif ( $this->booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
+                    } elseif ( $booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
 
                         // display cancel button only if currentdate <= booking end date
@@ -683,15 +726,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         return cb_get_template_part( 'user-bar', array(), true ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
 
 
-                    } elseif ( $this->booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
+                    } elseif ( $booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
                         // booking is confirmed and we are cancelling
 
                         $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
 
-                        $this->set_booking_status( $this->booking['id'], 'canceled' ); // set booking status to canceled
+                        $this->set_booking_status( $booking['id'], 'canceled' ); // set booking status to canceled
                         $this->send_mail( $this->user['email'], true, 'cancelation' );
-                        if ( !empty( $recv_copies ) && $location_email ) {
-                          foreach ($location_email as $email) {
+                        if ( !empty( $this->recv_copies ) && $this->location_email ) {
+                          foreach ($this->location_email as $email) {
                             $this->send_mail( $email, false, 'cancelation' );
                           }
                         }
