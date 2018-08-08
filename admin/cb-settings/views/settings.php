@@ -308,14 +308,26 @@
           ),
           array(
             'name' => __( 'Booking cancelation email subject', 'commons-booking' ),
-            'desc' => __( 'The subject of the cancelation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
+            'desc' => __( 'The subject of the cancelation Email. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_cancelation_subject',
             'type' => 'text',
           ),
           array(
             'name' => __( 'Booking cancelation email body', 'commons-booking' ),
-            'desc' => __( 'The body of the cancelation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>. ', 'commons-booking' ),
+            'desc' => __( 'The body of the cancelation email. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>.', 'commons-booking' ),
             'id' => $this->plugin_slug . '_mail_cancelation_body',
+            'type' => 'textarea',
+          ),
+          array(
+            'name' => __( 'Booking deletion email subject', 'commons-booking' ),
+            'desc' => __( 'The subject of the email sent when an admin deletes a booking from the list of bookings. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_deletion_subject',
+            'type' => 'text',
+          ),
+          array(
+            'name' => __( 'Booking deletion email body', 'commons-booking' ),
+            'desc' => __( 'The body of the email sent when an admin deletes a booking from the list of bookings. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>.', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_deletion_body',
             'type' => 'textarea',
           ),
         ),

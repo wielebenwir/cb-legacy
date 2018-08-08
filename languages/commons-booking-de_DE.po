@@ -363,17 +363,36 @@ msgstr "Deine Buchung {{ITEM_NAME}} wurde storniert"
 msgid ""
 "<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>\n"
 "\n"
-"          <p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>\n"
+"<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>\n"
 "\n"
-"          <p>Thanks, the Team. </p>\n"
-"        "
+"<p>Thanks, the Team.</p>"
 msgstr ""
 "<h2>Hallo {{USER_NAME}}, deine Buchung von {{ITEM_NAME}} wurde storniert!</h2>\n"
 "\n"
-"              <p>Deine Buchung von {{ITEM_NAME}} bei {{LOCATION_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} ist storniert worden.</p>\n"
+"<p>Deine Buchung von {{ITEM_NAME}} bei {{LOCATION_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} ist storniert worden.</p>\n"
 "\n"
-"              <p>Danke, das Team. </p>\n"
-"            "
+"<p>Danke, das Team.</p>"
+
+#: admin/cb-settings/cb-admin-settings.php:120
+msgid "Your booking {{ITEM_NAME}} was deleted by an admin"
+msgstr "Deine Buchung {{ITEM_NAME}} wurde von einem Administrator gelöscht"
+
+#: admin/cb-settings/cb-admin-settings.php:121
+msgid "<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been deleted by a page admin</h2>\n"
+"\n"
+"<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been deleted.</p>\n"
+"\n"
+"<p>Please contact {{SITE_EMAIL}} if you need further assistance.</p>\n"
+"\n"
+"<p>Thanks, the Team.</p>"
+msgstr ""
+"<h2>Hallo {{USER_NAME}}, deine Buchung von {{ITEM_NAME}} wurde von einem Seitenadministrator gelöscht</h2>\n"
+"\n"
+"<p>Deine Buchung von {{ITEM_NAME}} bei {{LOCATION_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} ist gelöscht worden.</p>\n"
+"\n"
+"<p>Bitte wende dich an {{SITE_EMAIL}}, falls du Unterstützung brauchst.</p>\n"
+"\n"
+"<p>Danke, das Team.</p>"
 
 #: admin/cb-settings/views/settings.php:25
 msgid "Welcome"
@@ -616,28 +635,32 @@ msgid "Booking cancelation email subject"
 msgstr "Stornierungsbestätigung E-Mail Betreff"
 
 #: admin/cb-settings/views/settings.php:311
-msgid ""
-"The subject of the cancelation Email. You can use <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>"
-msgstr ""
-"Der Betreff der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The subject of the cancelation Email. You can use <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>."
+msgstr "Der Betreff der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-settings/views/settings.php:316
 msgid "Booking cancelation email body"
 msgstr "Stornierungsbestätigung E-Mail Inhalt"
 
 #: admin/cb-settings/views/settings.php:317
-msgid ""
-"The body of the cancelation email. You can use HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template tags</a>. "
-msgstr ""
-"Der Inhalt der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-"
-"lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank"
-"\">Template Tags</a> benutzen."
+msgid "The body of the cancelation email. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>."
+msgstr "Der Inhalt der Stornierungsbestätigung. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:322
+msgid "Booking deletion email subject"
+msgstr "Löschungsbestätigung E-Mail Betreff"
+
+#: admin/cb-settings/views/settings.php:323
+msgid "The subject of the email sent when an admin deletes a booking from the list of bookings. You can use <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Der Betreff der E-Mail, die versendet wird, wenn ein Administrator die Buchung in der Liste der Buchungen löscht. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:328
+msgid "Booking deletion email body"
+msgstr "Löschungsbestätigung E-Mail Inhalt"
+
+#: admin/cb-settings/views/settings.php:329
+msgid "The body of the email sent when an admin deletes a booking from the list of bookings. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>."
+msgstr "Der Inhalt der E-Mail, die versendet wird, wenn ein Administrator die Buchung in der Liste der Buchungen löscht. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:40
 msgid "Item saved"

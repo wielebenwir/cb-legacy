@@ -113,10 +113,17 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_cancelation_subject' => __( 'Your booking {{ITEM_NAME}} was canceled', 'commons-booking'),
       $this->prefix.'_mail_cancelation_body' => __('<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>
 
-          <p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>
+<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>
 
-          <p>Thanks, the Team. </p>
-        ', 'commons-booking'),
+<p>Thanks, the Team.</p>', 'commons-booking'),
+      $this->prefix.'_mail_deletion_subject' => __( 'Your booking {{ITEM_NAME}} was deleted by an admin', 'commons-booking'),
+      $this->prefix.'_mail_deletion_body' => __('<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been deleted by a page admin</h2>
+
+<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been deleted.</p>
+
+<p>Please contact {{SITE_EMAIL}} if you need further assistance.</p>
+
+<p>Thanks, the Team.</p>', 'commons-booking'),
       ),
     $this->prefix.'-settings-advanced' => array(
       $this->prefix.'_enable_customprofile' => 'ON'
