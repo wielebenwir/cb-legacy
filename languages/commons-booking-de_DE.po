@@ -97,18 +97,18 @@ msgstr "Status"
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: admin/cb-bookings/class-cb-bookings-table.php:218
+#: admin/cb-bookings/class-cb-bookings-table.php:229
 #: public/class-commons-booking.php:190 public/class-commons-booking.php:192
 #: public/class-commons-booking.php:574
 msgid "Items"
 msgstr "Artikel"
 
-#: admin/cb-bookings/class-cb-bookings-table.php:223
+#: admin/cb-bookings/class-cb-bookings-table.php:234
 #: public/class-commons-booking.php:236 public/class-commons-booking.php:238
 msgid "Locations"
 msgstr "Standorte"
 
-#: admin/cb-bookings/class-cb-bookings-table.php:385
+#: admin/cb-bookings/class-cb-bookings-table.php:397
 #: admin/cb-codes/class-cb-codes-table.php:344
 #: admin/cb-timeframes/cb-timeframes-list.php:347
 msgid "Filter by: "
@@ -1305,19 +1305,23 @@ msgstr "Meine letzten Artikel Widget-Beschreibung"
 msgid "Leave a comment"
 msgstr "Kommentar hinterlassen"
 
-#: public/cb-bookings/class-cb-booking.php:571
+#: public/cb-bookings/class-cb-booking.php:74
+msgid "Notification about the booking deletion has been sent to the following email addresses"
+msgstr "Benachrichtigung über die Löschung der Buchung wurde an folgende E-Mailadressen gesendet"
+
+#: public/cb-bookings/class-cb-booking.php:639
 msgid "Error: Page called with missing variables."
 msgstr "Fehler: Variblen fehlen. "
 
-#: public/cb-bookings/class-cb-booking.php:575
+#: public/cb-bookings/class-cb-booking.php:643
 msgid "Error: Page called without needed flag."
 msgstr "Fehler: Die Seite wurde ohne die nötigen Variablen aufgerufen. "
 
-#: public/cb-bookings/class-cb-booking.php:579
+#: public/cb-bookings/class-cb-booking.php:647
 msgid "Error: You have to be logged in to view this page!"
 msgstr "Fehler: Du musst eingeloggt sein, um diese Seite sehen zu können!"
 
-#: public/cb-bookings/class-cb-booking.php:684
+#: public/cb-bookings/class-cb-booking.php:756
 msgid "Error: Booking not found"
 msgstr "Fehler: Buchung nicht gefunden"
 

@@ -66,13 +66,14 @@ class CB_Booking {
       // Set variable for template
       $this->set_booking_vars();
       $this->send_mail( $this->user['email'], true, 'deletion' );
+      $email_addresses = $this->user['email'];
       if ( !empty( $this->recv_copies ) && $this->location_email ) {
         foreach ($this->location_email as $email) {
           $this->send_mail( $email, false, 'deletion' );
+          $email_addresses = $email_addresses.', '.$email;
         }
       }
-      $msg = __( 'Notification email about the booking deletion has beeen sent to the following addresses', 'commons-booking' );
-      $email_addresses = $this->user['email'].', '.implode(', ', $this->location_email);
+      $msg = __( 'Notification about the booking deletion has been sent to the following email addresses', 'commons-booking' );
       print("
         <div id='message' class='updated'>
           <p>$msg: $email_addresses.</p>
