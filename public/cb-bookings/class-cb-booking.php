@@ -45,7 +45,8 @@ class CB_Booking {
 
         // Interface so that foreign classes can access this class'
         // functionalities via the wordpress action API
-        // (https://developer.wordpress.org/reference/functions/add_action/)
+        // (https://developer.wordpress.org/reference/functions/add_action/ and
+        // https://wordpress.stackexchange.com/questions/44708/using-a-plugin-class-inside-a-template)
         add_action( 'cb_booking_send_delete_emails', array ( $this, 'send_delete_emails' ), 10, 1 );
     }
 
