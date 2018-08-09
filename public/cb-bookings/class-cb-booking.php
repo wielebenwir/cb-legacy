@@ -74,11 +74,7 @@ class CB_Booking {
         }
       }
       $msg = __( 'Notification about the booking deletion has been sent to the following email addresses', 'commons-booking' );
-      print("
-        <div id='message' class='updated'>
-          <p>$msg: $email_addresses.</p>
-        </div>
-        ");
+      new Admin_Table_Message ( "$msg: $email_addresses.", 'updated' );
     }
 
 /**
