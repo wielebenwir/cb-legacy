@@ -206,8 +206,8 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             if (is_array($ids)) $ids = implode(',', $ids);
 
             $items = $wpdb->get_results($wpdb->prepare("
-            SELECT * FROM $this->table_bookings
-            WHERE id IN($ids) AND date_end >= DATE(NOW()) AND status = 'confirmed'
+              SELECT * FROM $this->table_bookings
+              WHERE id IN($ids) AND date_start >= DATE(NOW()) AND status != 'canceled'
             "), ARRAY_A);
 
             foreach ($items as $item) {
