@@ -82,10 +82,11 @@ function cb_timeframes_table_form_page_handler( )
                     if ($booking['location_id'] != $item['location_id']) {
                       // then change it in the bookings table and notify the
                       // user via email that the location has changed
+                      $old_loc_id = $booking['location_id'];
                       $booking['location_id'] = $item['location_id'];
                       $result = $wpdb->update($bookings_table, $booking, array('id' => $booking['id']));
                       if ($result) {
-                        do_action('cb_booking_send_location_change_emails', $booking['id']);
+                        do_action('cb_booking_send_location_change_emails', $booking['id'], $old_loc_id);
                         new Admin_Table_Message( __('Timeframe updated.', 'commons-booking'), 'updated' );
                       } else { // nothing changed or there was an error
                         new Admin_Table_Message ( __('Nothing changed.', 'commons-booking'), 'error' );

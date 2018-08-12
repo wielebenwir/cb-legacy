@@ -48,7 +48,7 @@ class CB_Booking {
         // (https://developer.wordpress.org/reference/functions/add_action/ and
         // https://wordpress.stackexchange.com/questions/44708/using-a-plugin-class-inside-a-template)
         add_action( 'cb_booking_send_delete_emails', array ( $this, 'send_delete_emails' ), 10, 1 );
-        add_action( 'cb_booking_send_location_change_emails', array ( $this, 'send_location_change_emails' ), 10, 1 );
+        add_action( 'cb_booking_send_location_change_emails', array ( $this, 'send_location_change_emails' ), 10, 2 );
     }
 
     /**
@@ -80,15 +80,19 @@ class CB_Booking {
 
     /**
      * Can send location change emails from another class via an action. The argument
-     * is the booking_ID to send notification of the location change for.
+     * is the booking_ID to send notification of the location change for. Use
+     * this function after you have changed the location_id of the booking to
+     * the new location so that the information on the new location is there.
      *
      * Usage:
      *    <code>do_action( 'cb_booking_send_location_change_emails', 42);</code>
      *
      * @param string $b_id The booking_ID
+     * @param string $old_loc_id The ID of the old location that you might want
+     *   to notify as well.
      * @return void
      */
-    public function send_location_change_emails( $b_id ) {
+    public function send_location_change_emails( $b_id, $old_loc_id = NULL ) {
       $booking = $this->get_booking($b_id);
       $this->prepare_for_set_booking_vars($booking);
       // Set variable for template
@@ -101,6 +105,22 @@ class CB_Booking {
           $email_addresses = $email_addresses.', '.$email;
         }
       }
+      if ($old_loc_id) {
+        $old_location = $this->data->get_location( $old_loc_id );
+        $old_recv_copies = ( $old_location['recv_copies'] );
+        $old_location_email = (
+          count( $old_location['contact']['email'] ) > 0 ?
+          $old_location['contact']['email'] :
+          NULL
+        );
+        if ( !empty( $old_recv_copies ) && $old_location_email ) {
+          foreach ($old_location_email as $email) {
+            $this->send_mail( $email, false, 'location_change' );
+            $email_addresses = $email_addresses.', '.$email;
+          }
+        }
+      }
+
       $msg = __( 'Notification about the changed location of booking %d has been sent to the following email addresses', 'commons-booking' );
       $msg = sprintf($msg, $b_id);
       new Admin_Table_Message ( "$msg: $email_addresses.", 'updated' );
