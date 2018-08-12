@@ -42,7 +42,7 @@ msgstr "ID"
 
 #: admin/cb-bookings/class-cb-bookings-table.php:143
 #: admin/cb-codes/class-cb-codes-table.php:124
-#: admin/cb-timeframes/cb-timeframes-edit.php:207
+#: admin/cb-timeframes/cb-timeframes-edit.php:240
 #: admin/cb-timeframes/cb-timeframes-list.php:118
 #: public/class-commons-booking.php:191 public/class-commons-booking.php:193
 msgid "Item"
@@ -54,8 +54,8 @@ msgid "Starting Date"
 msgstr "Anfangsdatum"
 
 #: admin/cb-bookings/class-cb-bookings-table.php:145
-#: admin/cb-timeframes/cb-timeframes-edit.php:240
-#: admin/cb-timeframes/cb-timeframes-edit.php:244
+#: admin/cb-timeframes/cb-timeframes-edit.php:273
+#: admin/cb-timeframes/cb-timeframes-edit.php:277
 #: admin/cb-timeframes/cb-timeframes-list.php:120
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:51
 msgid "End Date"
@@ -73,7 +73,7 @@ msgid "User"
 msgstr "Nutzer*in"
 
 #: admin/cb-bookings/class-cb-bookings-table.php:148
-#: admin/cb-timeframes/cb-timeframes-edit.php:223
+#: admin/cb-timeframes/cb-timeframes-edit.php:256
 #: admin/cb-timeframes/cb-timeframes-list.php:117
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:49
 #: public/class-commons-booking.php:237 public/class-commons-booking.php:239
@@ -341,7 +341,7 @@ msgstr ""
 "              <em>Sei bitte pünktlich.</em>\n"
 "\n"
 "              <p>Hole {{ITEM_NAME}} am {{DATE_START}} bei {{LOCATION_NAME}} ab.<br>\n"
-"              Bring es dort am {{DATE_END}} zurück.<br>\n"
+"              Bring es dorthin am {{DATE_END}} zurück.<br>\n"
 "              Adresse: {{LOCATION_ADDRESS}}<br>\n"
 "              Öffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
 "\n"
@@ -373,11 +373,11 @@ msgstr ""
 "\n"
 "<p>Danke, das Team.</p>"
 
-#: admin/cb-settings/cb-admin-settings.php:120
+#: admin/cb-settings/cb-admin-settings.php:119
 msgid "Your booking {{ITEM_NAME}} was deleted by an admin"
 msgstr "Deine Buchung {{ITEM_NAME}} wurde von einem Administrator gelöscht"
 
-#: admin/cb-settings/cb-admin-settings.php:121
+#: admin/cb-settings/cb-admin-settings.php:120
 msgid "<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been deleted by a page admin</h2>\n"
 "\n"
 "<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been deleted.</p>\n"
@@ -389,6 +389,58 @@ msgstr ""
 "<h2>Hallo {{FIRST_NAME}}, deine Buchung von {{ITEM_NAME}} wurde von einem Seitenadministrator gelöscht</h2>\n"
 "\n"
 "<p>Deine Buchung von {{ITEM_NAME}} bei {{LOCATION_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} ist gelöscht worden.</p>\n"
+"\n"
+"<p>Bitte wende dich an {{SITE_EMAIL}}, falls du Unterstützung brauchst.</p>\n"
+"\n"
+"<p>Danke, das Team.</p>"
+
+#: admin/cb-settings/cb-admin-settings.php:127
+msgid "Your booking of {{ITEM_NAME}} has changed its location"
+msgstr "Deine Buchung {{ITEM_NAME}} wurde von einem Administrator gelöscht"
+
+#: admin/cb-settings/cb-admin-settings.php:128
+msgid "<h2>Hi {{FIRST_NAME}}, your booking of {{ITEM_NAME}} has a new location</h2>\n"
+"\n"
+"<p>Your booking of {{ITEM_NAME}} from {{DATE_START}} till {{DATE_END}} has changed its location.</p>\n"
+"\n"
+"<p>It can now be found at {{LOCATION_NAME}}:</p>\n"
+"\n"
+"<p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}.<br>\n"
+"Return it there on {{DATE_END}}.<br>\n"
+"Address: {{LOCATION_ADDRESS}}<br>\n"
+"Opening hours: {{LOCATION_OPENINGHOURS}}.</p>\n"
+"\n"
+"<p>Click here to see or cancel your booking: {{URL}}.</p>\n"
+"\n"
+"<h3>Your information</h3>\n"
+"\n"
+"<em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>\n"
+"\n"
+"<p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>\n"
+"Address: {{USER_ADDRESS}}</p>\n"
+"\n"
+"<p>Please contact {{SITE_EMAIL}} if you need further assistance.</p>\n"
+"\n"
+"<p>Thanks, the Team.</p>"
+msgstr "<h2>Hallo {{FIRST_NAME}}, deine Buchung von {{ITEM_NAME}} hat einen neuen Standort</h2>\n"
+"\n"
+"<p>Deine Buchung von {{ITEM_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} hat den Standort geändert.</p>\n"
+"\n"
+"<p>Der neue Standort ist {{LOCATION_NAME}}:</p>\n"
+"\n"
+"<p>Hole {{ITEM_NAME}} bei {{LOCATION_NAME}} am {{DATE_START}} ab.<br>\n"
+"Bring es dorthin am {{DATE_END}} zurück.<br>\n"
+"Adresse: {{LOCATION_ADDRESS}}<br>\n"
+"Öffnungszeiten: {{LOCATION_OPENINGHOURS}}.</p>\n"
+"\n"
+"<p>Klicke hier, um Deine Buchung zu sehen oder zu stornieren: {{URL}}.</p>\n"
+"\n"
+"<h3>Deine persönlichen Angaben</h3>\n"
+"\n"
+"<em>Stelle bitte sicher, dass Du hier die gleichen Angaben wie aus Deinem Personalausweis verwendest, sonst kannst Du den Artikel nicht ausleihen.</em>\n"
+"\n"
+"<p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>\n"
+"Adresse: {{USER_ADDRESS}}</p>\n"
 "\n"
 "<p>Bitte wende dich an {{SITE_EMAIL}}, falls du Unterstützung brauchst.</p>\n"
 "\n"
@@ -662,54 +714,78 @@ msgstr "Löschungsbestätigung E-Mail Inhalt"
 msgid "The body of the email sent when an admin deletes a booking from the list of bookings. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>."
 msgstr "Der Inhalt der E-Mail, die versendet wird, wenn ein Administrator die Buchung in der Liste der Buchungen löscht. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:40
+#: admin/cb-settings/views/settings.php:334
+msgid "Booking location change email subject"
+msgstr "Standortänderung E-Mail Betreff"
+
+#: admin/cb-settings/views/settings.php:335
+msgid "The subject of the email sent when the location of a booking changes. You can use <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>"
+msgstr "Der Betreff der E-Mail, die versendet wird, wenn sich der Standort einer Buchung ändert. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
+
+#: admin/cb-settings/views/settings.php:340
+msgid "Booking location change email body"
+msgstr "Standortänderung E-Mail Inhalt"
+
+#: admin/cb-settings/views/settings.php:341
+msgid "The body of the email sent when the location of a booking changes. You can use HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template tags</a>."
+msgstr "Der Inhalt der E-Mail, die versendet wird, wenn sich der Standort einer Buchung ändert. Du kannst HTML & <a href=\"http://dein-lastenrad.de/index.php?title=Settings:Template_Tags\" target=\"_blank\">Template Tags</a> benutzen."
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:43
 msgid "Item saved"
 msgstr "Artikel gespeichert"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:45
+#: admin/cb-timeframes/cb-timeframes-edit.php:48
 msgid "There was an error while saving item"
 msgstr "Beim Speichern des Artikels ist ein Fehler aufgetreten."
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:50
+#: admin/cb-timeframes/cb-timeframes-edit.php:54
 msgid "Timeframe updated."
 msgstr "Zeitraum aktualisiert."
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:55
+#: admin/cb-timeframes/cb-timeframes-edit.php:59
 msgid "Nothing changed."
 msgstr "Nichts verändert."
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:70
+#: admin/cb-timeframes/cb-timeframes-edit.php:83
+msgid "Bookings table updated."
+msgstr "Buchungstabelle aktualisiert."
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:86
+msgid "Bookings table could not be updated."
+msgstr "Buchungstabelle konnte nicht aktualisiert werden."
+
+#: admin/cb-timeframes/cb-timeframes-edit.php:103
 msgid "Item not found"
 msgstr "Artikel nicht gefunden"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:78
+#: admin/cb-timeframes/cb-timeframes-edit.php:111
 msgid "Edit timeframe"
 msgstr "Zeitraum editieren"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:104
+#: admin/cb-timeframes/cb-timeframes-edit.php:137
 msgid "Edit Timeframe"
 msgstr "Zeitraum bearbeiten"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:104
+#: admin/cb-timeframes/cb-timeframes-edit.php:137
 msgid "Return to %s"
 msgstr "Zurück zu %s"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:104
-#: admin/cb-timeframes/cb-timeframes-edit.php:118
+#: admin/cb-timeframes/cb-timeframes-edit.php:137
+#: admin/cb-timeframes/cb-timeframes-edit.php:151
 msgid "All timeframes"
 msgstr "Alle Zeiträume"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:118
+#: admin/cb-timeframes/cb-timeframes-edit.php:151
 #: admin/cb-timeframes/cb-timeframes-list.php:403
 #: admin/cb-timeframes/includes/class-cb-timeframes-list.php:159
 msgid "Add new Timeframe"
 msgstr "Neuen Zeitraum anlegen"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:141
+#: admin/cb-timeframes/cb-timeframes-edit.php:174
 msgid "Save & generate codes"
 msgstr "Speichern & Codes erzeugen"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:142
+#: admin/cb-timeframes/cb-timeframes-edit.php:175
 msgid "Print codes"
 msgstr "Codes drucken"
 
@@ -719,31 +795,31 @@ msgstr "Codes drucken"
 msgid "Start Date"
 msgstr "Anfangsdatum"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:249
+#: admin/cb-timeframes/cb-timeframes-edit.php:282
 msgid "Timeframe Title"
 msgstr "Zeitraum-Titel"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:253
+#: admin/cb-timeframes/cb-timeframes-edit.php:286
 msgid "Timeframe title"
 msgstr "Zeitraum-Titel"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:273
+#: admin/cb-timeframes/cb-timeframes-edit.php:306
 msgid "Location is required"
 msgstr "Standort ist erforderlich"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:274
+#: admin/cb-timeframes/cb-timeframes-edit.php:307
 msgid "Item is required"
 msgstr "Artikel ist erforderlich"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:275
+#: admin/cb-timeframes/cb-timeframes-edit.php:308
 msgid "Start Date is not valid"
 msgstr "Anfangsdatum ist ungültig"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:276
+#: admin/cb-timeframes/cb-timeframes-edit.php:309
 msgid "End Date is not valid"
 msgstr "Enddatum ist ungültig"
 
-#: admin/cb-timeframes/cb-timeframes-edit.php:306
+#: admin/cb-timeframes/cb-timeframes-edit.php:339
 msgid "None found. Please create one."
 msgstr "Nichts gefunden. Bitte erstelle einen Eintrag. "
 
@@ -1305,23 +1381,27 @@ msgstr "Meine letzten Artikel Widget-Beschreibung"
 msgid "Leave a comment"
 msgstr "Kommentar hinterlassen"
 
-#: public/cb-bookings/class-cb-booking.php:74
+#: public/cb-bookings/class-cb-booking.php:77
 msgid "Notification about the booking deletion has been sent to the following email addresses"
 msgstr "Benachrichtigung über die Löschung der Buchung wurde an folgende E-Mail-Adressen gesendet"
 
-#: public/cb-bookings/class-cb-booking.php:639
+#: public/cb-bookings/class-cb-booking.php:124
+msgid "Notification about the changed location of booking %d has been sent to the following email addresses"
+msgstr "Benachrichtigung über die Standortänderung von Buchung %d wurde an folgende E-Mail-Adressen gesendet"
+
+#: public/cb-bookings/class-cb-booking.php:685
 msgid "Error: Page called with missing variables."
 msgstr "Fehler: Variblen fehlen. "
 
-#: public/cb-bookings/class-cb-booking.php:643
+#: public/cb-bookings/class-cb-booking.php:689
 msgid "Error: Page called without needed flag."
 msgstr "Fehler: Die Seite wurde ohne die nötigen Variablen aufgerufen. "
 
-#: public/cb-bookings/class-cb-booking.php:647
+#: public/cb-bookings/class-cb-booking.php:693
 msgid "Error: You have to be logged in to view this page!"
 msgstr "Fehler: Du musst eingeloggt sein, um diese Seite sehen zu können!"
 
-#: public/cb-bookings/class-cb-booking.php:756
+#: public/cb-bookings/class-cb-booking.php:802
 msgid "Error: Booking not found"
 msgstr "Fehler: Buchung nicht gefunden"
 

@@ -71,12 +71,6 @@ function cb_timeframes_table_form_page_handler( )
                     WHERE item_id = %d AND date_start >= DATE(NOW()) AND date_start <= %s AND status != 'canceled'
                   ", $item['item_id'], $item['date_end']), ARRAY_A);
                   foreach ($bookings as $booking) {
-                    print_r($booking);
-                    print("<br>");
-                    print($item['location_id']);
-                    print("<br>");
-                    print($booking['location_id']);
-                    print("<br>");
                     // if the booking's location does not match the timeframe's
                     // location
                     if ($booking['location_id'] != $item['location_id']) {
@@ -86,10 +80,10 @@ function cb_timeframes_table_form_page_handler( )
                       $booking['location_id'] = $item['location_id'];
                       $result = $wpdb->update($bookings_table, $booking, array('id' => $booking['id']));
                       if ($result) {
+                        new Admin_Table_Message( __('Bookings table updated.', 'commons-booking'), 'updated' );
                         do_action('cb_booking_send_location_change_emails', $booking['id'], $old_loc_id);
-                        new Admin_Table_Message( __('Timeframe updated.', 'commons-booking'), 'updated' );
                       } else { // nothing changed or there was an error
-                        new Admin_Table_Message ( __('Nothing changed.', 'commons-booking'), 'error' );
+                        new Admin_Table_Message ( __('Bookings table could not be updated.', 'commons-booking'), 'error' );
                       }
                     }
                   }

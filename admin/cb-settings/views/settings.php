@@ -330,6 +330,18 @@
             'id' => $this->plugin_slug . '_mail_deletion_body',
             'type' => 'textarea',
           ),
+          array(
+            'name' => __( 'Booking location change email subject', 'commons-booking' ),
+            'desc' => __( 'The subject of the email sent when the location of a booking changes. You can use <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_location_change_subject',
+            'type' => 'text',
+          ),
+          array(
+            'name' => __( 'Booking location change email body', 'commons-booking' ),
+            'desc' => __( 'The body of the email sent when the location of a booking changes. You can use HTML & <a href="http://dein-lastenrad.de/index.php?title=Settings:Template_Tags" target="_blank">Template tags</a>.', 'commons-booking' ),
+            'id' => $this->plugin_slug . '_mail_location_change_body',
+            'type' => 'textarea',
+          ),
         ),
       );
 
