@@ -80,10 +80,10 @@ function cb_timeframes_table_form_page_handler( )
                       $booking['location_id'] = $item['location_id'];
                       $result = $wpdb->update($bookings_table, $booking, array('id' => $booking['id']));
                       if ($result) {
-                        new Admin_Table_Message( __('Bookings table updated.', 'commons-booking'), 'updated' );
+                        new Admin_Table_Message( sprintf(__('Bookings table updated for booking %d.', 'commons-booking'), $booking['id']), 'updated' );
                         do_action('cb_booking_send_location_change_emails', $booking['id'], $old_loc_id);
                       } else { // nothing changed or there was an error
-                        new Admin_Table_Message ( __('Bookings table could not be updated.', 'commons-booking'), 'error' );
+                        new Admin_Table_Message ( sprintf(__('Bookings table could not be updated for booking %d.', 'commons-booking'), $booking['id']), 'error' );
                       }
                     }
                   }

@@ -96,7 +96,7 @@ class CB_Booking {
       $booking = $this->get_booking($b_id);
       $this->prepare_for_set_booking_vars($booking);
       // Set variable for template
-      $this->set_booking_vars();
+      $this->set_booking_vars(TRUE);
       $this->send_mail( $this->user['email'], true, 'location_change' );
       $email_addresses = $this->user['email'];
       if ( !empty( $this->recv_copies ) && $this->location_email ) {
@@ -384,12 +384,13 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $booking_data['id']             = $sqlresult['id'];
         $booking_data['date_start']     = $sqlresult['date_start'];
         $booking_data['date_end']       = $sqlresult['date_end'];
-        $booking_data['item_id']            = $sqlresult['item_id'];
-        $booking_data['code_id']            = $sqlresult['code_id'];
-        $booking_data['user_id']            = $sqlresult['user_id'];
-        $booking_data['location_id']        = $sqlresult['location_id'];
+        $booking_data['item_id']        = $sqlresult['item_id'];
+        $booking_data['code_id']        = $sqlresult['code_id'];
+        $booking_data['user_id']        = $sqlresult['user_id'];
+        $booking_data['location_id']    = $sqlresult['location_id'];
         $booking_data['booking_time']   = $sqlresult['booking_time'];
         $booking_data['status']         = $sqlresult['status'];
+        $booking_data['hash']           = $sqlresult['hash'];
 
         return $booking_data;
     }
@@ -575,6 +576,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $this->location['contact']['email'] :
         NULL
       );
+      $this->hash = $booking['hash'];
     }
 
     /**
@@ -605,6 +607,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'booking_confirmed_page_select');
 
         $b_vars['hash'] = $this->hash;
+        $b_vars['url'] = add_query_arg( 'booking', $this->hash, get_the_permalink() );
 
         $b_vars['site_email'] = $this->email_messages['mail_from'];
 
@@ -618,8 +621,6 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $b_vars['user_phone'] = $this->user['phone'];
         if ( $include_code ) {
             $b_vars['code'] = $this->get_code( $this->booking['code_id'] );
-            $b_vars['url'] = add_query_arg( 'booking', $this->hash, get_the_permalink() );
-
         }
         $this->b_vars = $b_vars;
 

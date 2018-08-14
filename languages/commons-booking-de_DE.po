@@ -396,7 +396,7 @@ msgstr ""
 
 #: admin/cb-settings/cb-admin-settings.php:127
 msgid "Your booking of {{ITEM_NAME}} has changed its location"
-msgstr "Deine Buchung {{ITEM_NAME}} wurde von einem Administrator gelöscht"
+msgstr "Deine Buchung {{ITEM_NAME}} hat den Standort gewechselt"
 
 #: admin/cb-settings/cb-admin-settings.php:128
 msgid "<h2>Hi {{FIRST_NAME}}, your booking of {{ITEM_NAME}} has a new location</h2>\n"
@@ -424,7 +424,7 @@ msgid "<h2>Hi {{FIRST_NAME}}, your booking of {{ITEM_NAME}} has a new location</
 "<p>Thanks, the Team.</p>"
 msgstr "<h2>Hallo {{FIRST_NAME}}, deine Buchung von {{ITEM_NAME}} hat einen neuen Standort</h2>\n"
 "\n"
-"<p>Deine Buchung von {{ITEM_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} hat den Standort geändert.</p>\n"
+"<p>Deine Buchung von {{ITEM_NAME}} vom {{DATE_START}} bis zum {{DATE_END}} hat den Standort gewechselt.</p>\n"
 "\n"
 "<p>Der neue Standort ist {{LOCATION_NAME}}:</p>\n"
 "\n"
@@ -747,12 +747,12 @@ msgid "Nothing changed."
 msgstr "Nichts verändert."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:83
-msgid "Bookings table updated."
-msgstr "Buchungstabelle aktualisiert."
+msgid "Bookings table updated for booking %d."
+msgstr "Buchungstabelle aktualisiert bei Buchung %d."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:86
-msgid "Bookings table could not be updated."
-msgstr "Buchungstabelle konnte nicht aktualisiert werden."
+msgid "Bookings table could not be updated for booking %d."
+msgstr "Buchungstabelle konnte nicht aktualisiert werden bei Buchung %d."
 
 #: admin/cb-timeframes/cb-timeframes-edit.php:103
 msgid "Item not found"
