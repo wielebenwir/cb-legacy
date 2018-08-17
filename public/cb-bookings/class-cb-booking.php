@@ -607,7 +607,11 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $b_vars['page_confirmation'] = $this->settings->get_settings('pages', 'booking_confirmed_page_select');
 
         $b_vars['hash'] = $this->hash;
-        $b_vars['url'] = add_query_arg( 'booking', $this->hash, get_the_permalink() );
+        // Request the booking page explicitly (if using get_the_permalink() w/o
+        // argument, the wrong URL is returned when this code is run from an
+        // external class by an action)
+        $permalink = get_permalink( get_page_by_title( __('Booking', 'commons-booking') ) );
+        $b_vars['url'] = add_query_arg( 'booking', $this->hash, $permalink );
 
         $b_vars['site_email'] = $this->email_messages['mail_from'];
 
