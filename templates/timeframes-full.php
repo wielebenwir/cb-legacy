@@ -39,7 +39,7 @@
           <?php // calendar cells ?>            
           <?php foreach ( $tf['calendar'] as $cell ) { ?>
             <li id="<?=$cell['id'] ?>" class="cb-tooltip <?=$cell['weekday_code'] ?> <?=$cell['status'] ?>" title="<?php echo $cell['tooltip']; ?>"><div class="cb-cal-inner"
-              ><span class="cb-j"><?=$cell['date_short'] ?></span><span class="cb-M"><?=$cell['day_short'] ?> </span>
+              ><span class="cb-j"><?=$cell['date_short'] ?> </span><span class="cb-M"><?=$cell['day_short'] ?> </span>
             </div>
             </li>
           <?php } // end foreach: cell ?>

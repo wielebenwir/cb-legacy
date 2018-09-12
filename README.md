@@ -1,5 +1,17 @@
 # Commons Booking 
 
+---
+
+## We are currently working on Commons Booking 2.0, a complete rewrite. 
+No new features will be added to CB 0.X, for the new version see:
+[Commons Booking 2 Repo](https://github.com/wielebenwir/commons-booking-2/)
+
+---
+
+
+
+
+
 **Contributors:** flegfleg  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons  
@@ -113,6 +125,8 @@ New in this version:
 
 ### 0.9.4
 
+Markus Voge took over adding features to Version 1.0.
+
 * FEATURE: Locations can receive copies of confirmation emails that concern
   their item. This feature must be enabled for each location by checking the new
   checkbox "Send copies of booking confirmation emails to the location" on the
@@ -137,6 +151,14 @@ New in this version:
 
 
 ### 0.9.3
+
+Maintenance release. New features will be added to Version 2.0.
+
+* FIXED: Calendar javascript selection count failed if weekday rows enabled (Thanks to Markus Voge). 
+* Minimal change: Div class name changed from "intro" to "cb-intro" (Again, thanks to Markus Voge). 
+
+
+### 0.9.2.12
 
 * FIXED: Closed days are now correctly rendered on the calendar, and non-bookable. 
 
@@ -174,7 +196,7 @@ New in this version:
 
 
 
-### 0.9.2.2 
+### 0.9.2.3 
 
 * FIX: Javascript validation no longer failing if week day row is activated
 

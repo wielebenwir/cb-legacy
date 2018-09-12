@@ -17,6 +17,8 @@ This plugin gives associations, groups and individuals the ability to share item
 
 It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape) across Germany and Austria, but it can use it for any kind items.
 
+Note: [Commons Booking 2.0 is in development](https://github.com/wielebenwir/commons-booking-2)! 
+
 **Unique features:**
 
 * Items, locations and timeframes: No need for a "centralised storage", items can be assigned to different locations for the duration of a timeframe, each with their own contact information.  
@@ -34,9 +36,9 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 **Plugin websites**
 
 * [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
-* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
+* [Commons Booking 2.0 development](https://github.com/wielebenwir/commons-booking-2)
 
 == Upgrade Notice ==
 
@@ -94,6 +96,8 @@ New in this version:
 
 = 0.9.4 =
 
+Markus Voge took over adding features to Version 1.0.
+
 * FEATURE: Locations can receive copies of confirmation emails that concern
   their item. This feature must be enabled for each location by checking the new
   checkbox "Send copies of booking confirmation emails to the location" on the
@@ -117,6 +121,13 @@ New in this version:
   order: descending by booking start date).
 
 = 0.9.3 =
+
+Maintenance release. New features will be added to Version 2.0.
+
+* FIXED: Calendar javascript selection count failed if weekday rows enabled (Thanks to Markus Voge). 
+* Minimal change: Div class name changed from "intro" to "cb-intro" (Again, thanks to Markus Voge). 
+
+= 0.9.2.12 =
 
 * FIXED: Closed days are now correctly rendered on the calendar, and non-bookable. 
 
@@ -147,7 +158,7 @@ New in this version:
 * FIX: Closed days where not correctly rendered
 
 
-= 0.9.2.2 =
+= 0.9.2.3 =
 
 * FIX: Javascript validation no longer failing if week day row is activated
 
