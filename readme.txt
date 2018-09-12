@@ -4,8 +4,8 @@ Contributors: flegfleg
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons
 Requires at least: 3.9
-Tested up to: 4.7.5
-Stable Tag: 0.9.2.12
+Tested up to: 4.9.8
+Stable Tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,10 +92,33 @@ New in this version:
 
 == Changelog ==
 
-= 0.9.2.2 =
+= 0.9.4 =
+
+* FEATURE: Locations can receive copies of confirmation emails that concern
+  their item. This feature must be enabled for each location by checking the new
+  checkbox "Send copies of booking confirmation emails to the location" on the
+  location edit page. By default, the checkbox is unchecked. If it is checked,
+  any email address entered into the contact details text field will receive
+  copies of all conformation emails, but only about the item managed by the
+  location.
+* FEATURE: Emails are sent to users confirming the cancelation of a booking.
+  The concerned location is informed via a copy of the email if the "Send
+  copies ..." checkbox is checked (see above).
+* FEATURE: When an admin deletes an open booking from the bookings table, the
+  user (and location if configured, see above) is also informed via email.
+* FEATURE: When the location of an item changes, users who already booked are
+  informed via email of the new location. If configured for receiving email
+  copies (see above), also the old and new location are informed. Admins can
+  either edit an existing timeframe to change the location or delete the old and
+  create a new timeframe at the correct location. This enables to use a "fake"
+  location as a placeholder and then change to the actual location as soon as it
+  is known.
+* FIXED: Bookings table shows the latest bookings at the top by default (default
+  order: descending by booking start date).
+
+= 0.9.3 =
 
 * FIXED: Closed days are now correctly rendered on the calendar, and non-bookable. 
-
 
 = 0.9.2.11 =
 
