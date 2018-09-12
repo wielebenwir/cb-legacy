@@ -74,6 +74,20 @@ class CB_Admin_Settings extends Commons_Booking {
       $this->prefix.'_mail_confirmation_sender' => 'recipient@domain.com', /* @TODO: retired – delete this with the next update */
       $this->prefix.'_mail_from' => '',
       $this->prefix.'_mail_from_name' => '',
+      $this->prefix.'_mail_registration_subject' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', 'commons-booking'),
+      $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
+
+          <p>Only one more step: Click here to set your password:</p>
+          <p><strong>{{ACTIVATION_URL}}</strong></p>
+
+          <h3>Your information</h3>
+          <p>Username: <strong>{{USER_NAME}}</strong></p>
+          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
+          <p>Address: {{ADDRESS}}</p>
+          <p>Phone: {{PHONE}}</p>
+
+          <p>Thanks, the Team. </p>
+        ', 'commons-booking'),
       $this->prefix.'_mail_confirmation_subject' => __( 'Your booking {{ITEM_NAME}}', 'commons-booking'),
       $this->prefix.'_mail_confirmation_body' => __('<h2>Hi {{FIRST_NAME}}, thanks for booking {{ITEM_NAME}}!</h2>
 
@@ -96,20 +110,44 @@ class CB_Admin_Settings extends Commons_Booking {
 
           <p>Thanks, the Team. </p>
         ', 'commons-booking'),
-      $this->prefix.'_mail_registration_subject' => __( 'Welcome, {{USER_NAME}} – here´s your account information.', 'commons-booking'),
-      $this->prefix.'_mail_registration_body' => __( '<h2>Hi {{USER_NAME}}, thanks for registering!</h2>
+      $this->prefix.'_mail_cancelation_subject' => __( 'Your booking {{ITEM_NAME}} was canceled', 'commons-booking'),
+      $this->prefix.'_mail_cancelation_body' => __('<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been canceled!</h2>
 
-          <p>Only one more step: Click here to set your password:</p>
-          <p><strong>{{ACTIVATION_URL}}</strong></p>
+<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been canceled.</p>
 
-          <h3>Your information</h3>
-          <p>Username: <strong>{{USER_NAME}}</strong></p>
-          <p>Name: {{FIRST_NAME}} {{LAST_NAME}}</p>
-          <p>Address: {{ADDRESS}}</p>
-          <p>Phone: {{PHONE}}</p>
+<p>Thanks, the Team.</p>', 'commons-booking'),
+      $this->prefix.'_mail_deletion_subject' => __( 'Your booking {{ITEM_NAME}} was deleted by an admin', 'commons-booking'),
+      $this->prefix.'_mail_deletion_body' => __('<h2>Hi {{FIRST_NAME}}, your booking {{ITEM_NAME}} has been deleted by a page admin</h2>
 
-          <p>Thanks, the Team. </p>
-        ', 'commons-booking'),
+<p>Your booking of {{ITEM_NAME}} at {{LOCATION_NAME}} from {{DATE_START}} till {{DATE_END}} has been deleted.</p>
+
+<p>Please contact {{SITE_EMAIL}} if you need further assistance.</p>
+
+<p>Thanks, the Team.</p>', 'commons-booking'),
+      $this->prefix.'_mail_location_change_subject' => __( 'Your booking of {{ITEM_NAME}} has changed its location', 'commons-booking'),
+      $this->prefix.'_mail_location_change_body' => __('<h2>Hi {{FIRST_NAME}}, your booking of {{ITEM_NAME}} has a new location</h2>
+
+<p>Your booking of {{ITEM_NAME}} from {{DATE_START}} till {{DATE_END}} has changed its location.</p>
+
+<p>It can now be found at {{LOCATION_NAME}}:</p>
+
+<p>Pick up {{ITEM_NAME}} at {{LOCATION_NAME}} on {{DATE_START}}.<br>
+Return it there on {{DATE_END}}.<br>
+Address: {{LOCATION_ADDRESS}}<br>
+Opening hours: {{LOCATION_OPENINGHOURS}}.</p>
+
+<p>Click here to see or cancel your booking: {{URL}}.</p>
+
+<h3>Your information</h3>
+
+<em>Please make sure you have entered the correct name and adress from your ID - otherwise you will not be able to pick up the item</em>
+
+<p>Name: {{FIRST_NAME}} {{LAST_NAME}}.<br>
+Address: {{USER_ADDRESS}}</p>
+
+<p>Please contact {{SITE_EMAIL}} if you need further assistance.</p>
+
+<p>Thanks, the Team.</p>', 'commons-booking'),
       ),
     $this->prefix.'-settings-advanced' => array(
       $this->prefix.'_enable_customprofile' => 'ON'
