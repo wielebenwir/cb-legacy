@@ -68,8 +68,9 @@ function cb_timeframes_table_form_page_handler( )
                   // send the user and the (new) location update emails.
                   $bookings = $wpdb->get_results($wpdb->prepare("
                     SELECT * FROM $bookings_table
-                    WHERE item_id = %d AND date_start >= DATE(NOW()) AND date_start <= %s AND status != 'canceled'
-                  ", $item['item_id'], $item['date_end']), ARRAY_A);
+                    WHERE item_id = %d AND date_start >= %s AND date_start <= %s
+                      AND date_start >= DATE(NOW()) AND status != 'canceled'
+                  ", $item['item_id'], $item['date_start'], $item['date_end']), ARRAY_A);
                   foreach ($bookings as $booking) {
                     // if the booking's location does not match the timeframe's
                     // location
