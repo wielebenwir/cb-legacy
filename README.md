@@ -2,9 +2,8 @@
 
 ---
 
-## We are currently working on Commons Booking 2.0, a complete rewrite. 
-No new features will be added to CB 0.X, for the new version see:
-[Commons Booking 2 Repo](https://github.com/wielebenwir/commons-booking-2/)
+> Note: We are currently working on **CommonsBooking 2.0**, a complete rewrite with many additional features. 
+> [CommonsBooking 2 Repo](https://github.com/wielebenwir/commons-booking-2/)
 
 ---
 
