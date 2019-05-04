@@ -203,12 +203,20 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
 
             // convert to string, suited for SQL:
-            if (is_array($ids)) $ids = implode(',', $ids);
+            if (is_array($ids)) {
+              // some SQL injection protection: (see https://stackoverflow.com/questions/10634058/issue-when-trying-to-use-in-in-wpdb and https://codex.wordpress.org/Function_Reference/esc_sql)
+              $ids = array_map(function($id) {
+                return "'" . esc_sql($id) . "'";
+              }, $ids);
+              $ids = implode(',', $ids);
+            } else {
+              $ids = esc_sql($ids);
+            }
 
-            $items = $wpdb->get_results($wpdb->prepare("
+            $items = $wpdb->get_results("
               SELECT * FROM $this->table_bookings
               WHERE id IN($ids) AND date_start >= DATE(NOW()) AND status != 'canceled'
-            "), ARRAY_A);
+            ", ARRAY_A);
 
             foreach ($items as $item) {
               do_action('cb_booking_send_delete_emails', $item['id']);
