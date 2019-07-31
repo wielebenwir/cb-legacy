@@ -25,8 +25,8 @@ class CB_Data {
 /**
  * Constructor.
  *
- * @param $timeframe_id 
- * @param $item_id 
+ * @param $timeframe_id
+ * @param $item_id
  * @param $date_start
  * @param $date_end
  * @param $currentdate
@@ -40,7 +40,7 @@ class CB_Data {
     $this->prefix = 'commons-booking';
     $this->settings = new CB_Admin_Settings;
     // from settings
-    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );    
+    $this->daystoshow = $this->settings->get_settings( 'bookings', 'bookingsettings_daystoshow' );
     $this->render_daynames = $this->settings->get_settings( 'bookings', 'bookingsettings_calendar_render_daynames' );
     $this->target_url = $this->settings->get_settings( 'pages', 'booking_review_page_select' );
     $this->current_date = current_time('Y-m-d');
@@ -60,10 +60,10 @@ class CB_Data {
     $this->codes = $this->get_codes();
     $this->dates = $this->get_dates();
 
-  } 
+  }
 
 /**
- * Get a list of all dates within the defind range. @TODO retire this function 
+ * Get a list of all dates within the defind range. @TODO retire this function
  *
  * @return array
  */
@@ -76,7 +76,7 @@ class CB_Data {
   }
 
 /**
- * Return a list of all dates within the defined range. 
+ * Return a list of all dates within the defined range.
  *
  * @return array
  */
@@ -90,7 +90,7 @@ class CB_Data {
 
 
 /**
- * Get all entries from the codes DB. Ignore dates earlier than 30 days 
+ * Get all entries from the codes DB. Ignore dates earlier than 30 days
  *
  * @return array
  */
@@ -100,10 +100,10 @@ class CB_Data {
     $dateRangeStart = date('Y-m-d', strtotime( $scope )); // currentdate - 30 days
     $codesDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name WHERE item_id = %s AND booking_date > $dateRangeStart", $this->item_id ), ARRAY_A); // get dates from db
     return $codesDB;
-  } 
+  }
 /**
  * Get timeframes by item_id
- * 
+ *
  *
  * @return array
  */
@@ -122,49 +122,77 @@ class CB_Data {
     if ( $item_id ) {
       global $wpdb;
       // @TODO: Fix start date not being honored by function -> maybe change data format
-      $table_name = $wpdb->prefix . 'cb_timeframes'; 
+      $table_name = $wpdb->prefix . 'cb_timeframes';
       $sql = $wpdb->prepare( "SELECT * FROM $table_name WHERE item_id = %s AND date_end >= %s ORDER BY date_start ASC $limit", $item_id, $date_start );
       $timeframes = $wpdb->get_results($sql, ARRAY_A);
 
       if ( !empty( $timeframes) ) {
           return $timeframes;
-        } else { 
+        } else {
           return FALSE;
-        } 
+        }
     } else {
       return FALSE;
     }
   }
 
-
+/**
+ * Complement to WordPress is_email()
+ *
+ *@param $string string to parse
+ *
+ *@return boolean
+ *
+ */
 
 
 /**
- * Get Location & metadata 
+ * Get Location & metadata
  *
  *@param $id location id
  *
- *@return array 
+ *@return array
  *
  */
 
   public function get_location ( $id ) {
-  
+
     if ( $id ) {
-      $location = array ( 
+      $location = array (
         'name' => get_the_title( $id ),
         'id' => $id ,
-        'address' => array ( 
+        'address' => array (
           'street' => get_post_meta( $id, $this->prefix . '_location_adress_street', true ),
           'city' => get_post_meta( $id, $this->prefix . '_location_adress_city', true ),
           'zip' => get_post_meta( $id, $this->prefix . '_location_adress_zip', true ),
           'country' => get_post_meta( $id, $this->prefix . '_location_adress_country', true ),
         ),
-        'contact' => get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true ),
         'contact_hide' => get_post_meta( $id, $this->prefix . '_location_contactinfo_hide', true ),
+        'recv_copies' => get_post_meta( $id, $this->prefix . '_location_contactinfo_recv_copies', true ),
         'closed_days' => get_post_meta( $id, $this->prefix . '_location_closeddays', true, true ),
         'openinghours' => get_post_meta( $id, $this->prefix . '_location_openinghours', true ),
         );
+
+      // Parse the contact string
+      $location['contact'] = array();
+      $location['contact']['email'] = array();
+      $contact_string = get_post_meta( $id, $this->prefix . '_location_contactinfo_text', true );
+      $location['contact']['string'] = $contact_string;
+      if ( empty( $contact_string ) ) {
+        // Allow direct fields for future versions
+        $email_string = get_post_meta( $id, $this->prefix . '_location_email', true );
+        if ( !empty( $email_string ) ) {
+          $location['contact']['email'] = [ $email_string ];
+        }
+      } else {
+        // Previous versions (< 0.9.2.5) of commons-booking had a freeform contact details field
+        // Parse the contact field to extract all the contained email addresses
+        preg_match_all("/[a-zA-Z0-9.!#$%&'*+\-\/=?^_`{|}~]+@[a-zA-Z0-9.!#$%&'*+\-\/=?^_`{|}~]+/", // try to match all allowed email address characters according to https://stackoverflow.com/questions/2049502/what-characters-are-allowed-in-an-email-address
+          $contact_string, $matches);
+        $matches[0] = array_map(function($s) { return(trim($s, ".")); }, $matches[0]); // strip off leading or trailing dots
+        $location['contact']['email'] = $matches[0];
+      }
+
       return $location;
     } else {
       return false;
@@ -176,11 +204,11 @@ class CB_Data {
  *
  *@param $id item id
  *
- *@return array 
+ *@return array
  *
  */
   public function get_item_meta ( $id ) {
-  
+
     $meta = get_post_meta ( $id );
 
   }
@@ -191,11 +219,11 @@ class CB_Data {
  *
  *@param $id item id
  *
- *@return array 
+ *@return array
  *
  */
   public function get_item ( $id ) {
-  
+
     global $wpdb;
 
     if ( $id ) {
@@ -211,7 +239,7 @@ class CB_Data {
  * Get all items
  *
  *
- * @return array 
+ * @return array
  *
  */
  public function get_items( ) {
@@ -244,15 +272,15 @@ class CB_Data {
  *
  *@param $id user id
  *
- *@return array 
+ *@return array
  *
  */
   public function get_user( $id ) {
-  
+
     if ( $id ) {
       $userdb = get_user_by( 'id', $id );
- 
-      $user = array ( 
+
+      $user = array (
         'id' => $id ,
         'first_name' => $userdb->first_name,
         'last_name' => $userdb->last_name,
@@ -269,7 +297,7 @@ class CB_Data {
   }
 
 /**
- * Single item, all calendars. 
+ * Single item, all calendars.
  *
  *@param $id item id
  *
@@ -285,7 +313,7 @@ class CB_Data {
   }
 
 /**
- * Single item, all calendars. 
+ * Single item, all calendars.
  *
  *@param $id item id
  *
@@ -298,49 +326,49 @@ class CB_Data {
     $codes = $this->codes;
 
     $booking_comments = new CB_Booking_Comments();
-    $comments = $booking_comments->get_booking_comments( $item_id );    
+    $comments = $booking_comments->get_booking_comments( $item_id );
     $booked = new CB_Booking;
     $booked_days = $booked->get_booked_days_array( $item_id, $comments );
 
-    // 2. Calculate start & end dates 
+    // 2. Calculate start & end dates
     $date_range_start = date('Y-m-d'); // current date
     $date_range_end = date('Y-m-d', strtotime ( '+ ' .$this->daystoshow . 'days' )); // current date + configured daystoshow setting
     $dates_list = $this->get_dates_list ( $date_range_start, $date_range_end, $single );
 
     // 3. Get timeframes from the db that: match the item_id + end_date is after today´s date
     $timeframes = $this->get_timeframes( $item_id, $date_range_start );
-    
+
     // ob_start(); // start buffering
 
     $template_vars = array(
       'item' => $item,
       'timeframes' => array()
       );
-    // 4. Loop through timeframes  
+    // 4. Loop through timeframes
     if ( $timeframes ) { // there are timeframes
 
       foreach ( $timeframes as $tf) {
 
           $location = $this->get_location ( $tf['location_id'] ); // get location info
-          // 5. Calculate the starting & end-dates for display of the timeframe 
+          // 5. Calculate the starting & end-dates for display of the timeframe
           $cal_start = strtotime ( max( $date_range_start, $tf['date_start'] ) );
           $cal_end = strtotime( min( $date_range_end, $tf['date_end'] ) );
           $day_counter = $cal_start;
 
           // 6. check if there are days to be displayed (honoring the settings-function days_to_show)
           if ( $cal_start <= $cal_end ) {
-           
+
             $template_vars[ 'timeframes' ][ $tf[ 'id' ] ] =  $this->prepare_template_vars_timeframe( $location, $tf );
 
             // 7. Loop through days
             while ( $day_counter <= $cal_end ) { // loop through days
 
-              // $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );        
+              // $cell_attributes = $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
               $template_vars[ 'timeframes' ][ $tf[ 'id' ] ][ 'calendar' ][ $day_counter ] =  $this->prepare_template_vars_calendar_cell( $day_counter, $location, $booked_days );
 
               $day_counter = strtotime('+1 day', $day_counter); // count up
-            }    
-          } 
+            }
+          }
       }
 
     } else { // no timeframes, item can´t be booked
@@ -355,7 +383,7 @@ class CB_Data {
   }
 
 /**
- * Renders the list of items (Archive) 
+ * Renders the list of items (Archive)
  *
  * @return html
 */
@@ -364,35 +392,35 @@ class CB_Data {
 
     $item_content = '';
     if (! $id ) {
-      $id = get_the_ID(); // get post id 
+      $id = get_the_ID(); // get post id
     }
 
     $attributes = array (
       'id' => $id,
       'title' => get_the_title( $id ),
       'permalink' => get_the_permalink( $id ),
-      'thumb' => get_post_thumbnail_id ( $id ), 
+      'thumb' => get_post_thumbnail_id ( $id ),
       'meta' => get_post_meta( $id )
       );
 
-    $item_content =  cb_get_template_part( 'item-list-item', $attributes, TRUE );      
+    $item_content =  cb_get_template_part( 'item-list-item', $attributes, TRUE );
 
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );           
+      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );
     } else {
       $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span></div>';
     }
-    
+
     return $item_content;
 
-  }  
+  }
 
 /**
  * Prepare attributes for calendar-cell template
- * Converts the timestamp to an array with 
- * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")  
+ * Converts the timestamp to an array with
+ * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")
  *
  * @param $string timestamp
  * @param array $location
@@ -401,22 +429,22 @@ class CB_Data {
 */
 
 public function prepare_template_vars_item ( $item ) {
-  
+
   $attributes = array (
     'id' => $item['id'],
     'title' => $item['post_title'],
     'description_short' => $item['commons-booking_item_descr'],
-    'description_full' => $item['post_content']  
+    'description_full' => $item['post_content']
     );
-  
+
   return $attributes;
 }
 
 
 /**
  * Prepare attributes for calendar-cell template
- * Converts the timestamp to an array with 
- * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")  
+ * Converts the timestamp to an array with
+ * Day name ("Tue"), Short date ("11.3."), weekday-code ("day2")
  *
  * @param $string timestamp
  * @param array $location
@@ -442,16 +470,16 @@ public function prepare_template_vars_calendar_cell ( $timestamp, $location, $bo
     }
   }
 
-  
+
   $attributes = array (
     'day_short' => date_i18n ('M', $timestamp ),
     'date_short' => date_i18n ('j.', $timestamp ),
     'weekday_code' => 'day' . date('N', $timestamp),
     'id' => $timestamp,
-    'status' => $this->set_day_status( $timestamp, $location, $dates ),   
-    'tooltip' => $tooltip    
+    'status' => $this->set_day_status( $timestamp, $location, $dates ),
+    'tooltip' => $tooltip
     );
-  
+
   return $attributes;
 }
 
@@ -470,7 +498,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   if ( !empty( $location['contact_hide'] ) ) { // honor setting to hide contact info
     $contact_string = __('You will recieve contact information after your booking.', 'commons-booking');
   } else {
-    $contact_string = $location[ 'contact' ];
+    $contact_string = $location['contact']['string'];
 
   }
 
@@ -483,7 +511,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );
 
   $attributes = array (
-    'name' => $location['name'], 
+    'name' => $location['name'],
     'contact' => $contact_string,
     'opening_hours' => $location['openinghours'],
     'address' => $address_string,
@@ -493,7 +521,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     'render_daynames' => $this->render_daynames,
     'location_id' =>  $location['id']
     );
-  
+
   return $attributes;
 }
 
@@ -531,8 +559,8 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
   private function get_code_by_date ( $date, $codes ) {
       $needle = ( search_array( date('Y-m-d', $date ), 'booking_date', $codes ) );
       if ( $needle ) {
-         $code = ( $codes[ $needle ][ 'bookingcode' ] ); 
-         return $code;    
+         $code = ( $codes[ $needle ][ 'bookingcode' ] );
+         return $code;
       } else {
         return false;
       }
@@ -554,11 +582,11 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
     $timestamp = $booked_days;
 
     // first: check if the date is in the locations´ closed days array
-    if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {  
+    if ( ( is_array( $location[ 'closed_days'] )) &&  ( in_array( date( 'N', $date ), $location[ 'closed_days'] ))) {
        $status = 'closed';
     // second: check if day is booked
     } elseif ( is_array( $timestamp) && in_array( $date, $timestamp )) {
-        $status = 'booked'; 
+        $status = 'booked';
     // you may book
     } else {
       $status = 'bookable';

@@ -11,6 +11,7 @@ function cb_timeframes_table_form_page_handler( )
 {
     global $wpdb;
     $table_name = $wpdb->prefix . 'cb_timeframes'; 
+    $bookings_table = $wpdb->prefix . 'cb_bookings';
 
     $message = '';
     $notice = '';
@@ -33,10 +34,12 @@ function cb_timeframes_table_form_page_handler( )
             // if id is zero insert otherwise update
             $item_valid = cb_timeframes_table_validate_entry( $item );
             if ($item_valid === true) {
+                $timeframe_change = false;
                 if ($item['id'] == 0) {
                     $result = $wpdb->insert($table_name, $item);
                     $item['id'] = $wpdb->insert_id;
                     if ($result) {
+                        $timeframe_change = true;
                         new Admin_Table_Message ( __('Item saved', 'commons-booking'), 'updated' );
                         $codes = new Commons_Booking_Codes_Generate;
                         $codes->generate_codes( $item['id'] );
@@ -47,6 +50,7 @@ function cb_timeframes_table_form_page_handler( )
                 } else {
                     $result = $wpdb->update($table_name, $item, array('id' => $item['id']));
                     if ($result) {
+                        $timeframe_change = true;
                         new Admin_Table_Message( __('Timeframe updated.', 'commons-booking'), 'updated' );
                         $codes = new Commons_Booking_Codes_Generate;
                         $codes->generate_codes( $item['id'] );
@@ -54,6 +58,36 @@ function cb_timeframes_table_form_page_handler( )
                     } else { // nothing changed (-> Codes were already generated and no form-field input was changed.). We didn´t do anything, but send a happy message. 
                          new Admin_Table_Message ( __('Nothing changed.', 'commons-booking'), 'updated' );
                     }
+                }
+                if ($timeframe_change) {
+                  // Check if there are already bookings in the DB with the same
+                  // item_id during this new/changed timeframe (if the booking's
+                  // date_start falls within the timeframe and lies in the
+                  // future). If yes, check if the location in the bookings
+                  // table is correct and if not, update the bookings table and
+                  // send the user and the (new) location update emails.
+                  $bookings = $wpdb->get_results($wpdb->prepare("
+                    SELECT * FROM $bookings_table
+                    WHERE item_id = %d AND date_start >= %s AND date_start <= %s
+                      AND date_start >= DATE(NOW()) AND status != 'canceled'
+                  ", $item['item_id'], $item['date_start'], $item['date_end']), ARRAY_A);
+                  foreach ($bookings as $booking) {
+                    // if the booking's location does not match the timeframe's
+                    // location
+                    if ($booking['location_id'] != $item['location_id']) {
+                      // then change it in the bookings table and notify the
+                      // user via email that the location has changed
+                      $old_loc_id = $booking['location_id'];
+                      $booking['location_id'] = $item['location_id'];
+                      $result = $wpdb->update($bookings_table, $booking, array('id' => $booking['id']));
+                      if ($result) {
+                        new Admin_Table_Message( sprintf(__('Bookings table updated for booking %d.', 'commons-booking'), $booking['id']), 'updated' );
+                        do_action('cb_booking_send_location_change_emails', $booking['id'], $old_loc_id);
+                      } else { // nothing changed or there was an error
+                        new Admin_Table_Message ( sprintf(__('Bookings table could not be updated for booking %d.', 'commons-booking'), $booking['id']), 'error' );
+                      }
+                    }
+                  }
                 }
             } else {
                 // if $item_valid not true it contains error message(s)

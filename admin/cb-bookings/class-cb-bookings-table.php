@@ -201,7 +201,26 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
 
         if ('delete' === $this->current_action()) {
             $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
-            if (is_array($ids)) $ids = implode(',', $ids);
+
+            // convert to string, suited for SQL:
+            if (is_array($ids)) {
+              // some SQL injection protection: (see https://stackoverflow.com/questions/10634058/issue-when-trying-to-use-in-in-wpdb and https://codex.wordpress.org/Function_Reference/esc_sql)
+              $ids = array_map(function($id) {
+                return "'" . esc_sql($id) . "'";
+              }, $ids);
+              $ids = implode(',', $ids);
+            } else {
+              $ids = esc_sql($ids);
+            }
+
+            $items = $wpdb->get_results("
+              SELECT * FROM $this->table_bookings
+              WHERE id IN($ids) AND date_start >= DATE(NOW()) AND status != 'canceled'
+            ", ARRAY_A);
+
+            foreach ($items as $item) {
+              do_action('cb_booking_send_delete_emails', $item['id']);
+            }
 
             if (!empty($ids)) {
                 $wpdb->query("DELETE FROM $this->table_bookings WHERE id IN($ids)");
@@ -281,9 +300,6 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
         // here we configure table headers, defined in our methods
         $this->_column_headers = array($columns, $hidden, $sortable);
 
-        // [OPTIONAL] process bulk action if any
-        $this->process_bulk_action();
-
         // get filters
         $filters = $this->get_selected_Filters(); 
         $sqlfilter = "";
@@ -298,8 +314,8 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
 
         // prepare query params, as usual current page, order by and order direction
         $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
-        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : $this->table_bookings . '.id';
-        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
+        $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : $this->table_bookings . '.date_start';
+        $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'desc';
  
 
         // [REQUIRED] define $items array
@@ -312,6 +328,10 @@ class Commons_Booking_Bookings_Table extends WP_List_Table
             ORDER BY $orderby $order 
             LIMIT %d OFFSET %d
             ", $per_page, $paged * $per_page), ARRAY_A);
+
+        // [OPTIONAL] process bulk action if any
+        // Run this after filling $items so that you can access them
+        $this->process_bulk_action();
 
         // [REQUIRED] configure pagination
         $this->set_pagination_args(array(
