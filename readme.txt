@@ -1,10 +1,10 @@
 === Commons Booking ===
 
-Contributors: flegfleg
+Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
-Tags: booking, commons
+Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 4.9.8
+Tested up to: 5.2.2
 Stable Tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -82,7 +82,7 @@ New in this version:
 = Where can i find help/report bugs? =
 
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
 
 == Screenshots ==
@@ -94,9 +94,18 @@ New in this version:
 
 == Changelog ==
 
+= 0.9.4.2 = 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
+
+= 0.9.4.1 =
+
+* Critical bugfix: Logic error in date check of bookings
+
 = 0.9.4 =
 
-Markus Voge took over adding features to Version 1.0.
+Markus Voge took over adding features to CB 0.9
 
 * FEATURE: Locations can receive copies of confirmation emails that concern
   their item. This feature must be enabled for each location by checking the new

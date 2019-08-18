@@ -11,9 +11,9 @@
 
 
 
-**Contributors:** flegfleg  
+**Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
-**Tags:** booking, commons  
+**Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
 **Tested up to:** 4.9.8
 **Stable Tag:** 0.9.3
@@ -99,28 +99,19 @@ New in this version:
 ### Where can i find help/report bugs? 
 
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
-
-
-
-## Screenshots 
-
-### 1. Booking calendar
-[missing image]
-
-### 2. Items list
-[missing image]
-
-### 3. Booking confirmation
-[missing image]
-
-### 4. User bookings list
-[missing image]
-
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
 
 ## Changelog 
 
+### 0.9.4.2 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
+
+### 0.9.4.1
+
+* Critical bugfix: Logic error in date check of bookings
 
 ### 0.9.4
 
@@ -147,6 +138,11 @@ Markus Voge took over adding features to Version 1.0.
   is known.
 * FIXED: Bookings table shows the latest bookings at the top by default (default
   order: descending by booking start date).
+
+### 0.9.4.2 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
 
 
 ### 0.9.3
