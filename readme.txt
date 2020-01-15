@@ -4,7 +4,7 @@ Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 5.2.2
+Tested up to: 5.3.2
 Stable Tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -93,6 +93,11 @@ New in this version:
 4. User bookings list
 
 == Changelog ==
+
+= 0.9.4.3 = 
+
+* Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
+* Maintenance: Adress string can now be empty without throwing an error. 
 
 = 0.9.4.2 = 
 
