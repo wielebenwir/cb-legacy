@@ -228,7 +228,18 @@ class CB_Users extends Commons_Booking {
       } // if DOING_AJAX
  
     }
-
+    /*
+    * CUSTOMIZE - Redirects User after Profile update
+    *
+    * @since    0.6
+    *
+    */
+    public function cb_user_profile_redirect() {
+        
+        wp_redirect( trailingslashit( home_url() ) );
+        exit;
+        
+    } 
 
   /**
    * Get the additional User fields
