@@ -104,6 +104,12 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.4 
+
+* Bugfix: Fixed profile update hook to fire later.
+* Bugfix: Missing function triggered error #180  (thanks mega-stoffel & poilu)
+
+
 ### 0.9.4.3 
 
 * Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
