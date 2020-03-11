@@ -532,9 +532,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $matches = array_intersect( $between, $booked_days ); //
 
         // if date is already booked, or too many days selected
-        if ( ! empty ( $matches ) OR $count_days > $max_days ) {
-            die ('Error: There was an error with your request.');
-        } else {
+        if ( ! empty ( $matches ) ) {
+            $error_string = 'Error: You are trying to book days that are already booked.';
+            echo ( $error_string );
+            return false;
+        } elseif ( $count_days > $max_days ) {
+            $error_string = '"Error: You have selected more days than allowed! Selected: $count_days / Maximum: $max_days"';
+            echo ($error_string);
+            return false;
+         } else {
             return TRUE;
         }
     }
