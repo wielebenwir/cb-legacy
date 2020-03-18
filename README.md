@@ -104,6 +104,10 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.5
+
+* Maintenance: Better messages on max booking days error
+
 ### 0.9.4.4 
 
 * Bugfix: Fixed profile update hook to fire later.
