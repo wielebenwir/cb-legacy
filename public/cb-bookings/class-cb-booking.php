@@ -794,15 +794,21 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                     } elseif ( $booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
                         // booking is confirmed and we are cancelling
+                        
+                        if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) { // booking end date is today or in the future
 
-                        $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
+                            $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
 
-                        $this->set_booking_status( $booking['id'], 'canceled' ); // set booking status to canceled
-                        $this->send_mail( $this->user['email'], true, 'cancelation' );
-                        if ( !empty( $this->recv_copies ) && $this->location_email ) {
-                          foreach ($this->location_email as $email) {
-                            $this->send_mail( $email, false, 'cancelation' );
-                          }
+                            $this->set_booking_status( $booking['id'], 'canceled' ); // set booking status to canceled
+                            $this->send_mail( $this->user['email'], true, 'cancelation' );
+
+                            if ( !empty( $this->recv_copies ) && $this->location_email ) {
+                            foreach ($this->location_email as $email) {
+                                $this->send_mail( $email, false, 'cancelation' );
+                                }
+                            }
+                        } else { // booking end date is in the past
+                            $msg = "ERROR: You can not cancel a booking that is in the past.";  // get message
                         }
 
                         return display_cb_message( $msg, $this->b_vars );
