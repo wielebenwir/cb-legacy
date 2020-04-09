@@ -104,7 +104,11 @@ New in this version:
 
 ## Changelog 
 
-### 0.9.4.5
+### 0.9.4.6
+
+* Fixed: Password reset mail function & redirect 
+
+### 0.9.4.6
 
 * Maintenance: Better messages on max booking days error
 
