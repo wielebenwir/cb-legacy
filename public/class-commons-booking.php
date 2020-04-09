@@ -149,7 +149,7 @@ class Commons_Booking {
             add_filter( 'login_headertitle', array( $this->users, 'cb_login_header_title' ) );  // @TODO RETIRE ME
             add_filter( 'login_headerurl', array( $this->users, 'cb_login_custom_site_url' ) );  
             add_filter( 'login_redirect', array( $this->users, 'cb_login_redirect'), 10, 3 );
-            add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect', 12) );
+            add_action( 'profile_update', array( $this->users, 'cb_user_profile_redirect'), 12);
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_cleanup_styles' ) );
         }
     
