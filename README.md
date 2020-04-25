@@ -11,9 +11,9 @@
 
 
 
-**Contributors:** flegfleg  
+**Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
-**Tags:** booking, commons  
+**Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
 **Tested up to:** 4.9.8
 **Stable Tag:** 0.9.3
@@ -99,28 +99,41 @@ New in this version:
 ### Where can i find help/report bugs? 
 
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
-
-
-
-## Screenshots 
-
-### 1. Booking calendar
-[missing image]
-
-### 2. Items list
-[missing image]
-
-### 3. Booking confirmation
-[missing image]
-
-### 4. User bookings list
-[missing image]
-
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
 
 ## Changelog 
 
+
+### 0.9.4.6
+
+* Maintenance: Better messages on max booking days error
+* Fixed: Password reset mail function & redirect (thanks, poilu!)
+* Fixed: Past bookings could be canceled.
+
+### 0.9.4.5
+
+* Maintenance: Better messages on max booking days error
+
+### 0.9.4.4 
+
+* Bugfix: Fixed profile update hook to fire later.
+* Bugfix: Missing function triggered error #180  (thanks mega-stoffel & poilu)
+
+
+### 0.9.4.3 
+
+* Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
+* Maintenance: Adress string can now be empty without throwing an error. 
+
+### 0.9.4.2 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
+
+### 0.9.4.1
+
+* Critical bugfix: Logic error in date check of bookings
 
 ### 0.9.4
 
@@ -147,6 +160,11 @@ Markus Voge took over adding features to Version 1.0.
   is known.
 * FIXED: Bookings table shows the latest bookings at the top by default (default
   order: descending by booking start date).
+
+### 0.9.4.2 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
 
 
 ### 0.9.3
@@ -188,14 +206,14 @@ Maintenance release. New features will be added to Version 2.0.
 * CHANGE: Plugin directory structure flattened
 
 
-### 0.9.2.3 
+### 0.9.3 
 
 * CHANGE: Editors now have access to the CB Menu. (capability: publish_pages)
 * FIX: Closed days where not correctly rendered
 
 
 
-### 0.9.2.3 
+### 0.9.3 
 
 * FIX: Javascript validation no longer failing if week day row is activated
 

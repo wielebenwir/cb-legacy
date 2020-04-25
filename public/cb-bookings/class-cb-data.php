@@ -502,10 +502,12 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
 
   }
 
-  $address_check = array_filter( $location[ 'address' ] );
+  if ( is_array ( $location[ 'address' ] ) ) {
+    $address_check = array_filter( $location[ 'address' ] );
 
-   if ( !empty ( $address_check ) ) { // format the adress
-      $address_string = $this->format_adress( $address_check );
+    if ( !empty ( $address_check ) ) { // format the adress
+        $address_string = $this->format_adress( $address_check );
+    }
   }
 
   $daterange_string = date_i18n( 'd.m.y', strtotime( $timeframe['date_start'] ) ) . ' - ' . date_i18n( 'd.m.y', strtotime( $timeframe['date_end'] ) );

@@ -142,14 +142,6 @@ class Commons_Booking_Admin {
     }
 
 
-
-		/*
-		 * Debug mode
-		 */
-		require_once( plugin_dir_path( __FILE__ ) . 'includes/debug.php' );
-		$debug = new Pn_Debug( $this );
-		$debug->log( __( 'Plugin Loaded', $this->plugin_slug ) );
-
 	  /*
 	   * Load Wp_Admin_Notice for the notices in the backend
 	   * 

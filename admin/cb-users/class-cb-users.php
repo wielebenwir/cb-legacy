@@ -207,18 +207,6 @@ class CB_Users extends Commons_Booking {
   }
 
     /*
-    * CUSTOMIZE - Redirects User after Profile update
-    *
-    * @since    0.6
-    *
-    */
-    public function cb_user_profile_redirect() {
-        
-        wp_redirect( trailingslashit( home_url() ) );
-        exit;
-        
-    }    
-    /*
     * CUSTOMIZE - Prevents Subscribers from accessing the Dashboard, redirect to Profile
     *
     * @since    0.6
@@ -240,7 +228,21 @@ class CB_Users extends Commons_Booking {
       } // if DOING_AJAX
  
     }
+    /*
+    * CUSTOMIZE - Redirects User after Profile update
+    *
+    * @since    0.6
+    *
+    */
+    public function cb_user_profile_redirect() {
 
+      if ( isset( $_REQUEST[ 'action' ] ) &&  $_REQUEST[ 'action' ] == 'lostpassword' ) {
+        // user is requesting a password reset, do not interfere 
+      } else { 
+        wp_redirect( trailingslashit( home_url() ) ); // user profile update, redirect to home page
+        exit;
+      } 
+    } 
 
   /**
    * Get the additional User fields

@@ -1,10 +1,10 @@
 === Commons Booking ===
 
-Contributors: flegfleg
+Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
-Tags: booking, commons
+Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 4.9.8
+Tested up to: 5.4
 Stable Tag: 0.9.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -82,7 +82,7 @@ New in this version:
 = Where can i find help/report bugs? =
 
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
 
 == Screenshots ==
@@ -94,9 +94,39 @@ New in this version:
 
 == Changelog ==
 
+### 0.9.4.6
+
+* Maintenance: Better messages on max booking days error
+* Fixed: Password reset mail function & redirect (thanks, poilu!)
+* Fixed: Past bookings could be canceled.
+
+= 0.9.4.5 =
+
+* Maintenance: Better messages on max booking days error
+
+
+= 0.9.4.4 =
+
+* Bugfix: Fixed profile update hook to fire later.
+* Bugfix: Missing function triggered error #180  (thanks mega-stoffel & poilu)
+
+= 0.9.4.3 = 
+
+* Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
+* Maintenance: Adress string can now be empty without throwing an error. 
+
+= 0.9.4.2 = 
+
+* Maintenance: Remove $wpdb->prepare() where not needed
+* Maintenance: Version bump
+
+= 0.9.4.1 =
+
+* Critical bugfix: Logic error in date check of bookings
+
 = 0.9.4 =
 
-Markus Voge took over adding features to Version 1.0.
+Markus Voge took over adding features to CB 0.9
 
 * FEATURE: Locations can receive copies of confirmation emails that concern
   their item. This feature must be enabled for each location by checking the new
@@ -152,13 +182,13 @@ Maintenance release. New features will be added to Version 2.0.
 
 * CHANGE: Plugin directory structure flattened
 
-= 0.9.2.3 =
+= 0.9.3 =
 
 * CHANGE: Editors now have access to the CB Menu. (capability: publish_pages)
 * FIX: Closed days where not correctly rendered
 
 
-= 0.9.2.3 =
+= 0.9.3 =
 
 * FIX: Javascript validation no longer failing if week day row is activated
 
