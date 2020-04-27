@@ -107,8 +107,9 @@ New in this version:
 ### 0.9.4.7
 
 * Fixed: Past bookings could be canceled.
+* Fixed: Past bookings could be canceled.
 
-### 0.9.4.6
+### 0.9.4.5
 
 * Maintenance: Better messages on max booking days error
 * Fixed: Password reset mail function & redirect (thanks, poilu!)
