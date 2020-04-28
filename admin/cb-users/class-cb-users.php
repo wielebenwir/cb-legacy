@@ -240,7 +240,6 @@ class CB_Users extends Commons_Booking {
         // user is requesting a password reset, do not interfere 
       } else { 
         wp_redirect( trailingslashit( home_url() ) ); // user profile update, redirect to home page
-        exit;
       } 
     } 
 
