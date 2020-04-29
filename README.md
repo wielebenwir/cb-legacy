@@ -104,9 +104,9 @@ New in this version:
 
 ## Changelog 
 
+
 ### 0.9.4.7
 
-* Fixed: Past bookings could be canceled.
 * Fixed: Past bookings could be canceled.
 
 ### 0.9.4.5

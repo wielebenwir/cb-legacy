@@ -236,12 +236,10 @@ class CB_Users extends Commons_Booking {
     */
     public function cb_user_profile_redirect() {
 
-      if ( isset( $_REQUEST[ 'action' ] ) &&  $_REQUEST[ 'action' ] == 'lostpassword' ) {
-        // user is requesting a password reset, do not interfere 
-      } else { 
-        wp_redirect( trailingslashit( home_url() ) ); // user profile update, redirect to home page
+      if ( is_user_logged_in() ) { // user is logged in (updating profile), no redirect on lost password
+        wp_redirect( trailingslashit( home_url() ) ); // redirect to home page
         exit;
-      } 
+      }
     } 
 
   /**
