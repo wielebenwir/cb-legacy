@@ -105,6 +105,10 @@ New in this version:
 ## Changelog 
 
 
+### 0.9.4.8
+
+* Fixed: Password reset did not work in some configurations (thanks, sgrubsmyon!)
+
 ### 0.9.4.7
 
 * Fixed: Past bookings could be canceled.
