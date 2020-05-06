@@ -104,6 +104,9 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.9 
+
+* Better debugging: missing variables are now listed on booking page (if WP_DEBUG is enabled). 
 
 ### 0.9.4.8
 
