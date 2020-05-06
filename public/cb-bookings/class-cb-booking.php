@@ -693,7 +693,16 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
             } else { // not all needed vars present
 
-                return __( 'Error: Page called with missing variables.', 'commons-booking' );
+                $debug_string = '';
+                if ( WP_DEBUG ) { 
+                    $debug_string .= empty( $_POST['date_start'])   ?  ' date_start is missing' : '';
+                    $debug_string .= empty( $_POST['date_end'])     ?  ' date_end is missing' : '';
+                    $debug_string .= empty( $_POST['timeframe_id']) ?  ' timeframe_id is missing' : '';
+                    $debug_string .= empty( $_POST['item_id'])      ?  ' item_id is missing' : '';
+                    $debug_string .= empty( $_POST['location_id'])  ?  ' location_id is missing' : '';
+                 }
+
+                return __( 'Error: Page called with missing variable(s).', 'commons-booking' ) . $debug_string;
             }
         } else { // page is called without flag "create booking"
 
@@ -808,7 +817,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                                 }
                             }
                         } else { // booking end date is in the past
-                            $msg = "ERROR: You can not cancel a booking that is in the past.";  // get message
+                            $msg = __( 'Error: You are not allowed to cancel a booking that is in the past.', 'commons-booking');  // get message
                         }
 
                         return display_cb_message( $msg, $this->b_vars );
@@ -816,7 +825,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     } else {
                         // canceled booking, page refresh
 
-                        $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
+                        $msg = __( 'Error: Booking not found', 'commons-booking' ); // @TODO: set canceled message
                         return display_cb_message( $msg, array(), FALSE );
 
                     }
