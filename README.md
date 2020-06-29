@@ -104,6 +104,11 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.10
+
+* Prefix helper functions to prevent conflict with other plugins
+* Prevent double bookings
+
 ### 0.9.4.9 
 
 * Better debugging: missing variables are now listed on booking page (if WP_DEBUG is enabled). 
