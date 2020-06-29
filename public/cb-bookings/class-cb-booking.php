@@ -745,26 +745,32 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     if ( $booking['status'] == 'pending' && $_GET['confirm'] == 1 ) {  // check if status is pending and confirm = 1
 
                         // check again if days are not already booked, and count <  maxdays (prevents double bookings)
-                        $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id );
+                        if ( $this->validate_days( $this->item_id, $this->date_start, $this->date_end, $this->location_id ) ) {
 
-                        $msg = ( $booking_messages[ 'messages_booking_confirmed' ] ); // Confirmation message
+                            $msg = ( $booking_messages[ 'messages_booking_confirmed' ] ); // Confirmation message
 
-                        if ( $allow_booking_comments ) {
-                            $message_comments = cb_display_message( $allow_booking_comments_message, $this->b_vars );
-                        }
+                            if ( $allow_booking_comments ) {
+                                $message_comments = cb_display_message( $allow_booking_comments_message, $this->b_vars );
+                            }
 
-                        $this->set_booking_status( $booking['id'], 'confirmed' ); // set booking status to confirmed
-                        $this->send_mail( $this->user['email'] );
-                        if ( !empty( $this->recv_copies ) && $this->location_email ) {
-                          foreach ($this->location_email as $email) {
-                            $this->send_mail( $email, false );
-                          }
-                        }
+                            $this->set_booking_status( $booking['id'], 'confirmed' ); // set booking status to confirmed
+                            $this->send_mail( $this->user['email'] );
+                            if ( !empty( $this->recv_copies ) && $this->location_email ) {
+                            foreach ($this->location_email as $email) {
+                                $this->send_mail( $email, false );
+                            }
+                            }
 
-                        // PRINT: Booking review, Cancel Button
-                        $message = cb_display_message( $msg, $this->b_vars );
+                            // PRINT: Booking review, Cancel Button
+                            $message = cb_display_message( $msg, $this->b_vars );
 
-                        return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                            return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+
+                        } else { // while pending, somebody else took the slot 
+                            $string = __('Sorry, somebody else just booked this slot.', 'commons-booking' );
+                            $msg = cb_display_message( $string, null, FALSE );
+                            return $msg; 
+                        } // end if $this->validate_days()
 
                     } elseif ( $booking['status'] == 'confirmed' && empty($_GET['cancel']) ) {
                         // booking is confirmed and we are not cancelling
