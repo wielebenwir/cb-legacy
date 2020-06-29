@@ -532,9 +532,15 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $matches = array_intersect( $between, $booked_days ); //
 
         // if date is already booked, or too many days selected
-        if ( ! empty ( $matches ) OR $count_days > $max_days ) {
-            die ('Error: There was an error with your request.');
-        } else {
+        if ( ! empty ( $matches ) ) {
+            $error_string = 'Error: You are trying to book days that are already booked.';
+            echo ( $error_string );
+            return false;
+        } elseif ( $count_days > $max_days ) {
+            $error_string = '"Error: You have selected more days than allowed! Selected: $count_days / Maximum: $max_days"';
+            echo ($error_string);
+            return false;
+         } else {
             return TRUE;
         }
     }
@@ -687,7 +693,16 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
             } else { // not all needed vars present
 
-                return __( 'Error: Page called with missing variables.', 'commons-booking' );
+                $debug_string = '';
+                if ( WP_DEBUG ) { 
+                    $debug_string .= empty( $_POST['date_start'])   ?  ' date_start is missing' : '';
+                    $debug_string .= empty( $_POST['date_end'])     ?  ' date_end is missing' : '';
+                    $debug_string .= empty( $_POST['timeframe_id']) ?  ' timeframe_id is missing' : '';
+                    $debug_string .= empty( $_POST['item_id'])      ?  ' item_id is missing' : '';
+                    $debug_string .= empty( $_POST['location_id'])  ?  ' location_id is missing' : '';
+                 }
+
+                return __( 'Error: Page called with missing variable(s).', 'commons-booking' ) . $debug_string;
             }
         } else { // page is called without flag "create booking"
 
@@ -794,15 +809,21 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                     } elseif ( $booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {
                         // booking is confirmed and we are cancelling
+                        
+                        if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) { // booking end date is today or in the future
 
-                        $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
+                            $msg = ( $booking_messages['messages_booking_canceled'] );  // get message
 
-                        $this->set_booking_status( $booking['id'], 'canceled' ); // set booking status to canceled
-                        $this->send_mail( $this->user['email'], true, 'cancelation' );
-                        if ( !empty( $this->recv_copies ) && $this->location_email ) {
-                          foreach ($this->location_email as $email) {
-                            $this->send_mail( $email, false, 'cancelation' );
-                          }
+                            $this->set_booking_status( $booking['id'], 'canceled' ); // set booking status to canceled
+                            $this->send_mail( $this->user['email'], true, 'cancelation' );
+
+                            if ( !empty( $this->recv_copies ) && $this->location_email ) {
+                            foreach ($this->location_email as $email) {
+                                $this->send_mail( $email, false, 'cancelation' );
+                                }
+                            }
+                        } else { // booking end date is in the past
+                            $msg = __( 'Error: You are not allowed to cancel a booking that is in the past.', 'commons-booking');  // get message
                         }
 
                         return cb_display_message( $msg, $this->b_vars );
@@ -810,8 +831,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     } else {
                         // canceled booking, page refresh
 
-                        $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
-                        return cb_display_message( $msg, array(), FALSE );
+                        $msg = __( 'Error: Booking not found', 'commons-booking' ); // @TODO: set canceled message
+                        return display_cb_message( $msg, array(), FALSE );
 
                     }
 

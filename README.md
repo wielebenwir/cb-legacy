@@ -15,7 +15,7 @@
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
-**Tested up to:** 4.9.8
+**Tested up to:** 5.4
 **Stable Tag:** 0.9.3
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -103,6 +103,38 @@ New in this version:
 
 
 ## Changelog 
+
+### 0.9.4.9 
+
+* Better debugging: missing variables are now listed on booking page (if WP_DEBUG is enabled). 
+
+### 0.9.4.8
+
+* Fixed: Password reset did not work in some configurations (thanks, sgrubsmyon!)
+
+### 0.9.4.7
+
+* Fixed: Past bookings could be canceled.
+
+### 0.9.4.5
+
+* Maintenance: Better messages on max booking days error
+* Fixed: Password reset mail function & redirect (thanks, poilu!)
+
+### 0.9.4.5
+
+* Maintenance: Better messages on max booking days error
+
+### 0.9.4.4 
+
+* Bugfix: Fixed profile update hook to fire later.
+* Bugfix: Missing function triggered error #180  (thanks mega-stoffel & poilu)
+
+
+### 0.9.4.3 
+
+* Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
+* Maintenance: Adress string can now be empty without throwing an error. 
 
 ### 0.9.4.2 
 
