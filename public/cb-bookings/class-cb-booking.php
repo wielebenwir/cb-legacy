@@ -485,8 +485,8 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
 
-        $body = replace_template_tags( $body_template, $this->b_vars);
-        $subject = replace_template_tags( $subject_template, $this->b_vars);
+        $body = cb_replace_template_tags( $body_template, $this->b_vars);
+        $subject = cb_replace_template_tags( $subject_template, $this->b_vars);
 
         wp_mail( $to, $subject, $body, $headers );
 
@@ -500,7 +500,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
     private function validate_days ( $item_id, $date_start, $date_end, $location_id ) {
 
         $booked_days = $this->get_booked_days ( $item_id, 'confirmed' );
-        $between = get_dates_between( $date_start, $date_end );
+        $between = cb_get_dates_between( $date_start, $date_end );
         $count_days = count ( $between);
         $max_days = $this->settings->get_settings( 'bookings', 'bookingsettings_maxdays');
         $allow_closed = $this->settings->get_settings( 'bookings', 'bookingsettings_allowclosed');
@@ -595,12 +595,12 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
         $b_vars['date_end'] = date_i18n( get_option( 'date_format' ), strtotime($this->date_end) );
         $b_vars['date_end_timestamp'] = strtotime($this->date_end);
         $b_vars['item_name'] = get_the_title ($this->item_id );
-        $b_vars['item_thumb'] = get_thumb( $this->item_id );
+        $b_vars['item_thumb'] = cb_get_thumb( $this->item_id );
         $b_vars['item_content'] =  get_post_meta( $this->item_id, 'commons-booking_item_descr', TRUE  );
         $b_vars['location_name'] = get_the_title ($this->location_id );
         $b_vars['location_content'] = get_the_content( $this->location_id  );
         $b_vars['location_address'] = $this->data->format_adress($this->location['address']);
-        $b_vars['location_thumb'] = get_thumb( $this->location_id );
+        $b_vars['location_thumb'] = cb_get_thumb( $this->location_id );
         $b_vars['location_contact'] = $this->location['contact']['string'];
         $b_vars['location_openinghours'] = $this->location['openinghours'];
 
@@ -681,7 +681,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                     $this->set_booking_vars();
 
-                    return display_cb_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
+                    return cb_display_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
                 } // end if validated - days
 
@@ -723,7 +723,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                 if ( ( isset( $temp[0]['id'] ) && ! empty ( $temp[0]['id'] ) ) ) {
                    $b_id = $temp[0]['id'];
                 } else {
-                    return display_cb_message( "Error: Booking not found.", array(), FALSE );
+                    return cb_display_message( "Error: Booking not found.", array(), FALSE );
                     die();
                 }
                 $user_id = get_current_user_id();
@@ -750,7 +750,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         $msg = ( $booking_messages[ 'messages_booking_confirmed' ] ); // Confirmation message
 
                         if ( $allow_booking_comments ) {
-                            $message_comments = display_cb_message( $allow_booking_comments_message, $this->b_vars );
+                            $message_comments = cb_display_message( $allow_booking_comments_message, $this->b_vars );
                         }
 
                         $this->set_booking_status( $booking['id'], 'confirmed' ); // set booking status to confirmed
@@ -762,7 +762,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         }
 
                         // PRINT: Booking review, Cancel Button
-                        $message = display_cb_message( $msg, $this->b_vars );
+                        $message = cb_display_message( $msg, $this->b_vars );
 
                         return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
@@ -799,13 +799,13 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                           }
                         }
 
-                        return display_cb_message( $msg, $this->b_vars );
+                        return cb_display_message( $msg, $this->b_vars );
 
                     } else {
                         // canceled booking, page refresh
 
                         $msg = __( 'Error: Booking not found', $this->prefix ); // @TODO: set canceled message
-                        return display_cb_message( $msg, array(), FALSE );
+                        return cb_display_message( $msg, array(), FALSE );
 
                     }
 
@@ -816,7 +816,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
             } // end if confirm
         } else { // not logged in
-            return display_cb_message( "Error: You must be logged in to access this page.", array(), FALSE );
+            return cb_display_message( "Error: You must be logged in to access this page.", array(), FALSE );
 
         }
     }

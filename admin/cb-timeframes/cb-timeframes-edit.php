@@ -306,8 +306,8 @@ function cb_timeframes_table_validate_entry($item)
 
     if ( $item['location_id'] == '-1' ) $messages[] = __('Location is required' );
     if ( $item['item_id'] == '-1' ) $messages[] = __('Item is required' );
-    if ( !is_valid_date( $item['date_start']) ) $messages[] = __('Start Date is not valid' );
-    if ( !is_valid_date( $item['date_end']) ) $messages[] = __('End Date is not valid' );
+    if ( !cb_is_valid_date( $item['date_start']) ) $messages[] = __('Start Date is not valid' );
+    if ( !cb_is_valid_date( $item['date_end']) ) $messages[] = __('End Date is not valid' );
 
 
     if (empty($messages)) return true;

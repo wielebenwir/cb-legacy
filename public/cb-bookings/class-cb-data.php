@@ -557,7 +557,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
  * @return string / false
  */
   private function get_code_by_date ( $date, $codes ) {
-      $needle = ( search_array( date('Y-m-d', $date ), 'booking_date', $codes ) );
+      $needle = ( cb_search_array( date('Y-m-d', $date ), 'booking_date', $codes ) );
       if ( $needle ) {
          $code = ( $codes[ $needle ][ 'bookingcode' ] );
          return $code;

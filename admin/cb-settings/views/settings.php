@@ -57,11 +57,11 @@
           array(
             'name'             => __( 'Theme', 'commons-booking' ),
             'desc'             => __( 'Choose a theme.', 'commons-booking' ),
-            'id'               => $this->plugin_slug . '_theme_select',
+            'id'               => $this->plugin_slug . '_cb_theme_select',
             'type'             => 'select',
             'show_option_none' => false,
             'default'          => 'standard',
-            'options'          => theme_select(),
+            'options'          => cb_theme_select(),
           ), 
           array(
             'name'             => __( 'Items Page', 'commons-booking' ),
@@ -70,7 +70,7 @@
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
-            'options'          => pages_dropdown(),
+            'options'          => cb_pages_dropdown(),
           ),            
           // array(
           //   'name'             => __( 'Locations Page', $this->plugin_slug ),
@@ -79,7 +79,7 @@
           //   'type'             => 'select',
           //   'show_option_none' => true,
           //   'default'          => 'none',
-          //   'options'          => pages_dropdown(),
+          //   'options'          => cb_pages_dropdown(),
           // ),            
           array(
             'name'             => __( 'Booking Review Page', 'commons-booking' ),
@@ -88,7 +88,7 @@
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
-            'options'          => pages_dropdown(),
+            'options'          => cb_pages_dropdown(),
           ),           
           array(
             'name'             => __( 'Booking Confirmed Page', 'commons-booking' ),
@@ -97,7 +97,7 @@
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
-            'options'          => pages_dropdown(),
+            'options'          => cb_pages_dropdown(),
           ),           
           array(
             'name'             => __( 'My Bookings Page', 'commons-booking' ),
@@ -106,7 +106,7 @@
             'type'             => 'select',
             'show_option_none' => true,
             'default'          => 'none',
-            'options'          => pages_dropdown(),
+            'options'          => cb_pages_dropdown(),
           ),                     
           array(
             'name'             => __( 'Link to terms & services', 'commons-booking' ),

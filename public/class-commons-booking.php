@@ -576,10 +576,10 @@ class Commons_Booking {
         $bookings_table->install();
 
         // create the default pages 
-        $item_page = create_page(__( 'Items', 'commons-booking' ), self::$plugin_slug.'_item_page_select');
-        $user_bookings_page = create_page(__( 'My Bookings', 'commons-booking' ), self::$plugin_slug.'_user_bookings_page_select');
-        $booking_confirmed_page = create_page(__( 'Booking', 'commons-booking' ), self::$plugin_slug.'_booking_confirmed_page_select');
-        $booking_view_page = create_page(__( 'Confirm booking', 'commons-booking' ), self::$plugin_slug.'_booking_review_page_select');
+        $item_page = cb_create_page(__( 'Items', 'commons-booking' ), self::$plugin_slug.'_item_page_select');
+        $user_bookings_page = cb_create_page(__( 'My Bookings', 'commons-booking' ), self::$plugin_slug.'_user_bookings_page_select');
+        $booking_confirmed_page = cb_create_page(__( 'Booking', 'commons-booking' ), self::$plugin_slug.'_booking_confirmed_page_select');
+        $booking_view_page = cb_create_page(__( 'Confirm booking', 'commons-booking' ), self::$plugin_slug.'_booking_review_page_select');
 
         // set defaults, set pages, update wp_options
         $settings = new CB_Admin_Settings(); 
@@ -632,7 +632,7 @@ class Commons_Booking {
     public function enqueue_theme_styles() {
        
        // get selected theme from settings
-        $theme_name = $this->settings->get_settings( 'pages', 'theme_select');
+        $theme_name = $this->settings->get_settings( 'pages', 'cb_theme_select');
 
         // if not set
         if ( empty ( $theme_name ) ) {

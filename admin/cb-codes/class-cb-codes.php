@@ -116,7 +116,7 @@ public function set_timeframe ( $timeframe_id, $date_start, $date_end ) {
   public function compare() {
     $codes_db = $this->get_codes();
 
-    $tfDates = get_dates_between( $this->date_start, $this->date_end );
+    $tfDates = cb_get_dates_between( $this->date_start, $this->date_end );
     $codeDates = array();
 
     foreach ( $codes_db as $entry ) {

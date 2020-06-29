@@ -264,8 +264,8 @@ class CB_Users extends Commons_Booking {
       $user_basic = get_user_by( 'id', $user_id );
       $user_meta = get_user_meta( $user_id );
 
-      // transform from object to an array that the replace_template_tags functions expects
-      $user_basic_array =  object_to_array ($user_basic);
+      // transform from object to an array that the cb_replace_template_tags functions expects
+      $user_basic_array =  cb_object_to_array ($user_basic);
       
       $user_meta_array = array();
       foreach ($user_meta as $key => $value) {
@@ -375,7 +375,7 @@ class CB_Users extends Commons_Booking {
     if ( is_user_logged_in() ) {
 
         $current_user = wp_get_current_user();
-        $template_vars = object_to_array ( $current_user );
+        $template_vars = cb_object_to_array ( $current_user );
 
         $content .= cb_get_template_part( 'user-bar', $template_vars, TRUE ); // include user bar
 
@@ -437,8 +437,8 @@ class CB_Users extends Commons_Booking {
     $headers = array('Content-Type: text/html; charset=UTF-8'); 
 
     $to = $vars['user_email'];
-    $body = replace_template_tags( $body_template, $vars );
-    $subject = replace_template_tags( $subject_template, $vars );
+    $body = cb_replace_template_tags( $body_template, $vars );
+    $subject = cb_replace_template_tags( $subject_template, $vars );
 
     wp_mail( $to, $subject, $body, $headers ); 
 

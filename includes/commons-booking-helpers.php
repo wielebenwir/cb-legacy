@@ -6,7 +6,7 @@
  * Helper functions
  *    Dropdown of Pages
  *    Replace Template Tags    
- *    get_dates_between
+ *    cb_get_dates_between
  *
  * @package   Commons_Booking_Admin
  * @author    Florian Egermann <florian@wielebenwir.de>
@@ -22,7 +22,7 @@
  * @return Array of wordpress pages as [pagedID][title]
  */
 
-function pages_dropdown() {
+function cb_pages_dropdown() {
   // dropdown for page select
   $pages = get_pages();
   $dropdown = array();
@@ -39,7 +39,7 @@ function pages_dropdown() {
  * @return Array of Sub-Folders
  */
 
-function theme_select() {
+function cb_theme_select() {
 
   $themes_dir = Commons_Booking::get_plugin_dir() . 'assets/css/themes';
   $themes_url = Commons_Booking::get_plugin_url() . 'assets/css/themes';
@@ -63,7 +63,7 @@ function theme_select() {
  *
  *@return string
  */
- function replace_template_tags( $string, $tags_array ) {
+ function cb_replace_template_tags( $string, $tags_array ) {
     foreach($tags_array as $key => $value){
         $string = str_replace('{{'.strtoupper($key).'}}', $value, $string);
     }
@@ -77,13 +77,13 @@ function theme_select() {
  *
  *@return html
  */
- function display_cb_message( $string, $replace = null, $success = TRUE ) {
+ function cb_display_message( $string, $replace = null, $success = TRUE ) {
     
     if ( ! $replace ) {
       $replace = array();
     }
 
-    $msg = replace_template_tags( $string, $replace );
+    $msg = cb_replace_template_tags( $string, $replace );
     $class = $success ? 'success' : 'error';
     return sprintf (' <p class="cb-message %s">%s</p>', $class , $msg );
   }
@@ -93,7 +93,7 @@ function theme_select() {
  *
  * @return array dates
  */
- function get_dates_between( $date_start, $date_end ) {
+ function cb_get_dates_between( $date_start, $date_end ) {
     $dates = array ( $date_start );
     while(end($dates) < $date_end){
         $dates[] = date('Y-m-d', strtotime(end($dates).' +1 day'));
@@ -105,7 +105,7 @@ function theme_select() {
  * Helper: search a 2-dim array for key, return value
  * 
  */
-  function search_array($value, $key, $array) {
+  function cb_search_array($value, $key, $array) {
    foreach ($array as $k => $val) {
        if ($val[$key] == $value) {
            return $k;
@@ -118,7 +118,7 @@ function theme_select() {
  * 
  */
 
- function object_to_array($object) {
+ function cb_object_to_array($object) {
   $array = json_decode(json_encode($object), true);
   return $array;
     // if (is_array($data) || is_object($data))
@@ -126,7 +126,7 @@ function theme_select() {
     //     $result = array();
     //     foreach ($data as $key => $value)
     //     {
-    //         $result[$key] = object_to_array($value);
+    //         $result[$key] = cb_object_to_array($value);
     //     }
     //     return $result;
     // }
@@ -136,7 +136,7 @@ function theme_select() {
  * Helper: Check if Thumbmail exists, if so, return it.  
  * 
  */
-  function get_thumb( $post_id ) {
+  function cb_get_thumb( $post_id ) {
     if ( has_post_thumbnail( $post_id ) ) {
       $thumb = get_the_post_thumbnail( $post_id, 'thumbnail' );
     } else {
@@ -147,7 +147,7 @@ function theme_select() {
  * Convert to timestamp.  
  * 
  */
-  function convert_to_timestamp( $date ) {
+  function cb_convert_to_timestamp( $date ) {
     return strtotime($date);
   }
   /**
@@ -158,7 +158,7 @@ function theme_select() {
    * @param     $string string to check
    * @param     Bool
    */
-  function is_valid_date( $string ) {
+  function cb_is_valid_date( $string ) {
     return (bool)strtotime( $string );
   }
   /**
@@ -170,7 +170,7 @@ function theme_select() {
    * @param     $option_name the name of the option in the settings-pages array
    * @return    Page ID
    */
-  function create_page( $title, $option_name ) {
+  function cb_create_page( $title, $option_name ) {
 
     $option_page = get_option ( 'commons-booking-settings-pages' );
     $option = $option_page[ $option_name ];
