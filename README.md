@@ -1,21 +1,11 @@
 # Commons Booking 
 
----
-
-> Note: We are currently working on **CommonsBooking 2.0**, a complete rewrite with many additional features. 
-> [CommonsBooking 2 Repo](https://github.com/wielebenwir/commons-booking-2/)
-
----
-
-
-
-
 
 **Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
-**Tested up to:** 5.4
+**Tested up to:** 5.5
 **Stable Tag:** 0.9.4.10
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -45,7 +35,7 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 
 **Plugin websites**
 
-* [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
+* [Official Website](https://commonsbooking.org)
 * [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
 * [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
@@ -103,6 +93,11 @@ New in this version:
 
 
 ## Changelog 
+
+### 0.9.4.11
+
+* Fix jQuery warning in Wordpress 5.5
+* Fix cb_get_thumb now returning an image
 
 ### 0.9.4.10
 

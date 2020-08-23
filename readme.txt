@@ -4,7 +4,7 @@ Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 5.4
+Tested up to: 5.5
 Stable Tag: 0.9.4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,7 +17,6 @@ This plugin gives associations, groups and individuals the ability to share item
 
 It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape) across Germany and Austria, but it can use it for any kind items.
 
-Note: [Commons Booking 2.0 is in development](https://github.com/wielebenwir/commons-booking-2)! 
 
 **Unique features:**
 
@@ -35,10 +34,9 @@ Note: [Commons Booking 2.0 is in development](https://github.com/wielebenwir/com
 
 **Plugin websites**
 
-* [Official Website (German)](http://www.wielebenwir.de/projekte/commons-booking)
+* [Official Website](https://commonsbooking.org)
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
 * [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
-* [Commons Booking 2.0 development](https://github.com/wielebenwir/commons-booking-2)
 
 == Upgrade Notice ==
 
@@ -93,6 +91,11 @@ New in this version:
 4. User bookings list
 
 == Changelog ==
+
+= 0.9.4.11 =
+
+* Fix jQuery warning in Wordpress 5.5
+* Fix cb_get_thumb now returning an image
 
 = 0.9.4.10 =
 
