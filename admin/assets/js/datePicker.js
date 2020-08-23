@@ -10,7 +10,7 @@
 
     // set German Localization @TODO 
     $.datepicker.setDefaults(
-      $.extend($.datepicker.regional['de'])
+      $.datepicker.regional["de"]
     );
 
     $( '.cb-datepicker' ).each(function( ) { 
