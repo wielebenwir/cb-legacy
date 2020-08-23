@@ -142,6 +142,7 @@ function cb_theme_select() {
     } else {
       $thumb = "";
     }
+    return $thumb;
   }
 /**
  * Convert to timestamp.  
