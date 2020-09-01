@@ -94,6 +94,11 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.12
+
+* Fix calendar issues with Customify theme
+* Removed depreciated function
+
 ### 0.9.4.11
 
 * Fix jQuery warning in Wordpress 5.5
