@@ -167,16 +167,7 @@ class CB_Users extends Commons_Booking {
   public function cb_login_custom_site_url($url) {  
     return get_bloginfo('url'); //return the current wp blog url  
     }  
-
-    /*
-    * CUSTOMIZE - Change the title
-    *
-    * @since    0.6
-    *
-    */  
-    public function cb_login_header_title($message) {  
-      return False; /*return the description of current blog */  
-    }  
+ 
     /*
     * CUSTOMIZE - Set custom Logo
     *
