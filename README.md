@@ -5,8 +5,8 @@
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
-**Tested up to:** 5.5
-**Stable Tag:** 0.9.4.10
+**Tested up to:** 5.5.2
+**Stable Tag:** 0.9.4.12
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -36,10 +36,14 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 **Plugin websites**
 
 * [Official Website](https://commonsbooking.org)
-* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title=Commons_Booking_Software)
-* [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p=/categories/buchungs-software)
+* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title
 
+### Commons_Booking_Software)
+
+* [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
+* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p
+
+### /categories/buchungs-software)
 
 ## Upgrade Notice 
 
@@ -314,7 +318,7 @@ Maintenance release. New features will be added to Version 2.0.
 
 ### 0.7.0.6 
 
-	* FIX:  Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
+  * FIX:  Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
 
 
 
@@ -382,8 +386,14 @@ Maintenance release. New features will be added to Version 2.0.
 * FIX: Fixed ambiguous (wrong) message after hitting "Save and generate codes" on the Timeframes edit screen when no changes were made.
 * FIX: Plugin localization string in cb-timeframes-edit.php 
 * FIX: Items List: If no item short description provided, show a message.
-* Fix: URL to booking in booking confirmation email now compatible with Wordpress non-pretty  Permalinks (?page=X)
-* FIX: Double bookings are no longer possible. (compare function (booked days != selected days) did not work).  
+* Fix: URL to booking in booking confirmation email now compatible with Wordpress non-pretty  Permalinks (?page
+
+### X)
+
+* FIX: Double bookings are no longer possible. (compare function (booked days !
+
+### selected days) did not work).
+
 * FIX: Users can´t cancel bookings from the past (booking end date < current date)
 * FIX: HTML structure, items without a timeframe now have a proper end < div > ending-tag
 * FIX: Item Timeframes: If no timeframe present, display message

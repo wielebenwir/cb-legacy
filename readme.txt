@@ -4,8 +4,8 @@ Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 5.5
-Stable Tag: 0.9.4.8
+Tested up to: 5.5.2
+Stable Tag: 0.9.4.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,13 +42,7 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 
 New in this version: 
 
-* FEATURE: Set sender name and email address for booking confirmation emails. *Update this in settings!*
-* FEATURE: Category WordPress Widget – List all item categories
-* FEATURE: User WordPress Widget – User funtions (Login/Logout, Registration, „My Bookings“)
-* FEATURE: New Setting: Themes (now included: „standard“ & kasimir“)
-* FEATURE: New Setting: Show Day Name Row (Mon, Tue, Wed…) above the calendar
-* FEATURE: New Setting: Closed days count. Now you can set how the system counts any number of closed days (0 or 1). See Issue #116
-* CHANGE: Consolidated the two setting options under „Advanced“ into „Customize Login and Registration pages“, since one does not make sense without the other.
+* Bug fixes.
 
 == Installation ==
 

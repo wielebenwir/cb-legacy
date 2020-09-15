@@ -13,10 +13,6 @@ class CB_Mail extends Commons_Booking {
   	public function __construct( ) {
 
 		$this->settings = Parent::get_cb_settings();
-
-		var_dump($this->settings);
-
-	    // $this->settings = Commons_Booking::get_cb_settings();
 	    
 	    $this->html = TRUE;
 
