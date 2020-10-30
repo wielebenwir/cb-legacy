@@ -367,7 +367,7 @@ class CB_Users extends Commons_Booking {
         $current_user = wp_get_current_user();
         $template_vars = cb_object_to_array ( $current_user );
 
-        $content .= cb_get_template_part( 'user-bar', $template_vars, TRUE ); // include user bar
+        $content .= cb1_get_template_part( 'user-bar', $template_vars, TRUE ); // include user bar
 
         $user_bookings = $this->get_user_bookings( $current_user->ID );
 
@@ -382,7 +382,7 @@ class CB_Users extends Commons_Booking {
             );
 
 
-          $content .= cb_get_template_part( 'user-bookings', $template_vars, TRUE ); 
+          $content .= cb1_get_template_part( 'user-bookings', $template_vars, TRUE ); 
 
         } else {
           $content .= __( 'You haven´t booked anything yet.', 'commons-booking'); 

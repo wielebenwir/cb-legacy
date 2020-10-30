@@ -44,7 +44,7 @@ function commons_booking_get_template_part( $slug, $name = '', $include = true )
 	}
 }
 
-function cb_get_template_part( $template = '', $attributes = null, $buffer = FALSE ) {
+function cb1_get_template_part( $template = '', $attributes = null, $buffer = FALSE ) {
 	$path = plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . 'templates/';
 	$plugin = Commons_Booking::get_instance();
 	$plugin_slug = $plugin->get_plugin_slug();
