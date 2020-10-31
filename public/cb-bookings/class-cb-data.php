@@ -306,7 +306,7 @@ class CB_Data {
 
     $template_vars = $this->get_timeframe_array( $item_id );
     if ($template_vars) {
-      return cb_get_template_part( 'timeframes-full', $template_vars, true ); // include the template
+      return cb1_get_template_part( 'timeframes-full', $template_vars, true ); // include the template
     } else {
       return '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span>';
     }
@@ -403,12 +403,12 @@ class CB_Data {
       'meta' => get_post_meta( $id )
       );
 
-    $item_content =  cb_get_template_part( 'item-list-item', $attributes, TRUE );
+    $item_content =  cb1_get_template_part( 'item-list-item', $attributes, TRUE );
 
     $timeframes = $this->get_timeframe_array( $id, $this->current_date, TRUE );
 
     if ( $timeframes ) {
-      $item_content .=  cb_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );
+      $item_content .=  cb1_get_template_part( 'item-list-timeframes-compact', $timeframes, TRUE );
     } else {
       $item_content .= '<span class="">'. __( 'This item can´t be booked at the moment.', $this->prefix ) . '</span></div>';
     }
@@ -607,7 +607,7 @@ public function prepare_template_vars_timeframe ( $location, $timeframe ) {
       'target_url' => get_permalink( $this->target_url ),
       'plugin_slug' => $this->prefix
       );
-    return cb_get_template_part( 'calendar-bookingbar', $template_vars , true );
+    return cb1_get_template_part( 'calendar-bookingbar', $template_vars , true );
   }
 }
 ?>
