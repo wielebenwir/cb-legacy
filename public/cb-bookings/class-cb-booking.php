@@ -687,7 +687,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                     $this->booking_id = $this->create_booking( $this->date_start, $this->date_end, $this->item_id);
                     $this->set_booking_vars();
 
-                    return cb_display_message( $msg, $this->b_vars ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-submit', $this->b_vars , true );
+                    return cb_display_message( $msg, $this->b_vars ) . cb1_get_template_part( 'booking-review', $this->b_vars , true ) . cb1_get_template_part( 'booking-review-submit', $this->b_vars , true );
 
                 } // end if validated - days
 
@@ -779,7 +779,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                             // PRINT: Booking review, Cancel Button
                             $message = cb_display_message( $msg, $this->b_vars );
 
-                            return $message . $message_comments . cb_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb_get_template_part( 'booking-review', $this->b_vars , true ) . cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                            return $message . $message_comments . cb1_get_template_part( 'booking-review-code', $this->b_vars , true ) . cb1_get_template_part( 'booking-review', $this->b_vars , true ) . cb1_get_template_part( 'booking-review-cancel', $this->b_vars , true );
 
                         } else { // while pending, somebody else took the slot 
                             $string = __('Sorry, somebody else just booked this slot.', 'commons-booking' );
@@ -792,7 +792,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
 
                         // display cancel button only if currentdate <= booking end date
                         if ( date ('ymd', time() ) <= date ('ymd', $this->b_vars['date_end_timestamp'] ) ) {
-                            $cancel_button = cb_get_template_part( 'booking-review-cancel', $this->b_vars , true );
+                            $cancel_button = cb1_get_template_part( 'booking-review-cancel', $this->b_vars , true );
                         } else {
                             $cancel_button = '';
                         }
@@ -804,7 +804,7 @@ public function get_booked_days_array( $item_id, $comments, $status= 'confirmed'
                         }
 
                         // PRINT: Code, Booking review, Cancel Button
-                        return cb_get_template_part( 'user-bar', array(), true ) .cb_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
+                        return cb1_get_template_part( 'user-bar', array(), true ) .cb1_get_template_part( 'booking-review-code', $this->b_vars , true ) .  $comments . cb1_get_template_part( 'booking-review', $this->b_vars , true ) . $cancel_button;
 
 
                     } elseif ( $booking['status'] == 'confirmed' && !empty($_GET['cancel']) && $_GET['cancel'] == 1 ) {

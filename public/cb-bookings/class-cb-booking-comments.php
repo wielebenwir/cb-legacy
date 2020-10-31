@@ -76,7 +76,7 @@ class CB_Booking_Comments {
       $args = array (
         'comment' => $comments[0]->comment_content
         );
-      cb_get_template_part('booking-review-booking-comment', $args);
+      cb1_get_template_part('booking-review-booking-comment', $args);
 
     } else { // No comment, show form
 
