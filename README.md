@@ -98,6 +98,10 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.13
+
+* Renamed cb_get_template_part into cb1_get_template to ensure cb2 compatibility. 
+
 ### 0.9.4.12
 
 * Fix calendar issues with Customify theme
