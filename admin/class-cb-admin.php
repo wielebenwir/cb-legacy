@@ -293,7 +293,7 @@ class Commons_Booking_Admin {
 		return array_merge(
 				array(
 			'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings' ) . '</a>',
-			'manual' => '<a href="http://dein-lastenrad.de/index.php?title=Introduction" target="_blank">' . __( 'Manual' ) . '</a>'
+			'manual' => '<a href="https://commonsbooking.org/docs/informationen-zur-alten-version-0-9/" target="_blank">' . __( 'Manual', 'commons-booking' ) . '</a>'
 				), $links
 		);
 	}

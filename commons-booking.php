@@ -11,7 +11,7 @@
  * @copyright 2015 wielebenwir
  *
  * @wordpress-plugin
- * Plugin Name:       Commons Booking
+ * Plugin Name:       Commons Booking (Version 0.X)
  * Plugin URI:        http://www.wielebenwir.de/projekte/commons-booking
  * Description:       A wordpress plugin for management and booking of common goods. 
  * Version:           0.9.4.13

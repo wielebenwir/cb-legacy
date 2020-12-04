@@ -36,13 +36,9 @@
       
     <?php echo '<img src="' . plugins_url( 'commons-booking/assets/cb-logo.png' ) . '" > '; ?>
 
-      <h1>Aloha!</h1>
-      <p> Commons Booking - Version <?php echo (Commons_Booking::VERSION); ?> </p>
-      <p><a href="https://github.com/wielebenwir/commons-booking-2">Commons Booking 2.0 is in development!</a></p>
-      <p></p>
-      <p><?php _e('To get started: Read the <a href="http://dein-lastenrad.de/index.php?title=Commons_Booking_Benutzerhandbuch">user manual (german)</a>', 'commons-booking'); ?>, <?php _e('ask questions in the <a href="http://community.dein-lastenrad.de/foren/forum/commons-booking/">discussion forum (german)</a> and file bugs in the <a href="https://github.com/wielebenwir/commons-booking/issues">bug tracker (english)</a>', 'commons-booking'); ?></p>
-        <p><?php _e('The future of this plugin depends on your contribution. Want to help? <a href="http://www.wielebenwir.de/verein/unterstutzen">Donate</a> and/or join the <a href="https://github.com/wielebenwir/commons-booking">development team</a>.', 'commons-booking'); ?>
-      <p><?php _e('<a href="http://www.commonsbooking.org">Official Plugin Website</a>', 'commons-booking'); ?></p>
+      <p>Commons Booking - Version <?php echo (Commons_Booking::VERSION); ?> </p>
+      <p style="color:#67b32a"><?php echo __('A major new version of CommonsBooking was released!<br>More Information & how to upgrade:', 'commons-booking'); ?> <a href="https://commonsbooking.org">commonsbooking.org</a></p>
+      <p><?php echo __('Documentation & Support:') ?> <a href="https://commonsbooking.org/docs/">commonsbooking.org/docs</a></p>
       <p><?php _e('All the best, Florian Egermann / <a href="http:://www.wielebenwir.de">wielebenwir e.V. </a>', 'commons-booking'); ?></p>
 
     </div>
