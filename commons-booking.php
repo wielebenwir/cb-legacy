@@ -94,7 +94,6 @@ require_once( plugin_dir_path( __FILE__ ) . 'admin/cb-widgets/cb-category-widget
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
- * When the plugin is deleted, the uninstall.php file is loaded.
  *
  */
 
