@@ -1,17 +1,22 @@
-=== Commons Booking ===
+=== Commons Booking (Version 0.X) ===
 
 Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons, sharing
 Requires at least: 3.9
-Tested up to: 5.5.2
-Stable Tag: 0.9.4.13
+Tested up to: 5.5.4
+Stable Tag: 0.9.4.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 A Wordpress plugin for management and booking of commons goods. 
 
 == Description ==
+
+Note: This is the depreciated version of CommonsBooking.
+
+The new CommonsBooking (Version 2) with hourly booking has been released as a new plugin! 
+Go to [commonsbooking.org](https://commonsbooking.org) for more information.
 
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
@@ -43,6 +48,7 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 New in this version: 
 
 * Bug fixes.
+* The new CommonsBooking is now available! Learn more at https://commonsbooking.org
 
 == Installation ==
 
@@ -85,6 +91,11 @@ New in this version:
 4. User bookings list
 
 == Changelog ==
+
+= 0.9.4.14 =
+
+* Removed uninstall routine that produced an error on plugin deletion (thanks, craiten)
+* Updated Settings readme, plugin links and name
 
 = 0.9.4.13 =
 

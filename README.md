@@ -1,12 +1,11 @@
-# Commons Booking 
-
+# Commons Booking (Version 0.X) 
 
 **Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
-**Tested up to:** 5.5.2
-**Stable Tag:** 0.9.4.13
+**Tested up to:** 5.5.4  
+**Stable Tag:** 0.9.4.14  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -15,9 +14,15 @@ A Wordpress plugin for management and booking of commons goods.
 
 ## Description 
 
+Note: This is the depreciated version of CommonsBooking.
+
+The new CommonsBooking (Version 2) with hourly booking has been released as a new plugin! 
+Go to [commonsbooking.org](https://commonsbooking.org) for more information.
+
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
 It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.de/mobilitaet/free-nomadic-cargo-bikes-are-changing-the-urban-landscape) across Germany and Austria, but it can use it for any kind items.
+
 
 **Unique features:**
 
@@ -36,26 +41,16 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 **Plugin websites**
 
 * [Official Website](https://commonsbooking.org)
-* [Official WIKI (German)](http://dein-lastenrad.de/index.php?title
-
-### Commons_Booking_Software)
-
 * [Bug-Tracker](https://github.com/wielebenwir/commons-booking/issues) 
-* [Bulletin Board (German)](http://forum.dein-lastenrad.de/index.php?p
+* [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
-### /categories/buchungs-software)
 
 ## Upgrade Notice 
 
 New in this version: 
 
-* FEATURE: Set sender name and email address for booking confirmation emails. *Update this in settings!*
-* FEATURE: Category WordPress Widget – List all item categories
-* FEATURE: User WordPress Widget – User funtions (Login/Logout, Registration, „My Bookings“)
-* FEATURE: New Setting: Themes (now included: „standard“ & kasimir“)
-* FEATURE: New Setting: Show Day Name Row (Mon, Tue, Wed…) above the calendar
-* FEATURE: New Setting: Closed days count. Now you can set how the system counts any number of closed days (0 or 1). See Issue #116
-* CHANGE: Consolidated the two setting options under „Advanced“ into „Customize Login and Registration pages“, since one does not make sense without the other.
+* Bug fixes.
+* The new CommonsBooking is now available! Learn more at https://commonsbooking.org
 
 
 ## Installation 
@@ -96,47 +91,81 @@ New in this version:
 * [Bulletin Board (German)](http://community.dein-lastenrad.de/foren/forum/commons-booking/)
 
 
+
+## Screenshots 
+
+### 1. Booking calendar
+[missing image]
+
+### 2. Items list
+[missing image]
+
+### 3. Booking confirmation
+[missing image]
+
+### 4. User bookings list
+[missing image]
+
+
+
 ## Changelog 
 
-### 0.9.4.13
+
+### 0.9.4.14 
+
+* Removed uninstall routine that produced an error on plugin deletion (thanks, craiten)
+* Updated Settings readme, plugin links and name
+
+
+### 0.9.4.13 
 
 * Renamed cb_get_template_part into cb1_get_template to ensure cb2 compatibility. 
 
-### 0.9.4.12
+
+### 0.9.4.12 
 
 * Fix calendar issues with Customify theme
 * Removed depreciated function
 
-### 0.9.4.11
+
+### 0.9.4.11 
 
 * Fix jQuery warning in Wordpress 5.5
 * Fix cb_get_thumb now returning an image
 
-### 0.9.4.10
+
+### 0.9.4.10 
 
 * Prefix helper functions to prevent conflict with other plugins
 * Prevent double bookings
+
 
 ### 0.9.4.9 
 
 * Better debugging: missing variables are now listed on booking page (if WP_DEBUG is enabled). 
 
-### 0.9.4.8
+
+### 0.9.4.8 
 
 * Fixed: Password reset did not work in some configurations (thanks, sgrubsmyon!)
 
-### 0.9.4.7
+
+### 0.9.4.7 
 
 * Fixed: Past bookings could be canceled.
 
-### 0.9.4.5
+
+### 0.9.4.6 
 
 * Maintenance: Better messages on max booking days error
 * Fixed: Password reset mail function & redirect (thanks, poilu!)
 
-### 0.9.4.5
+
+### 0.9.4.5 
 
 * Maintenance: Better messages on max booking days error
+
+
 
 ### 0.9.4.4 
 
@@ -149,18 +178,21 @@ New in this version:
 * Bugfix: Remove redirect after profile update that prevented password reset emails to be sent on WP 5.3
 * Maintenance: Adress string can now be empty without throwing an error. 
 
+
 ### 0.9.4.2 
 
 * Maintenance: Remove $wpdb->prepare() where not needed
 * Maintenance: Version bump
 
-### 0.9.4.1
+
+### 0.9.4.1 
 
 * Critical bugfix: Logic error in date check of bookings
 
-### 0.9.4
 
-Markus Voge took over adding features to Version 1.0.
+### 0.9.4 
+
+Markus Voge took over adding features to CB 0.9
 
 * FEATURE: Locations can receive copies of confirmation emails that concern
   their item. This feature must be enabled for each location by checking the new
@@ -184,13 +216,8 @@ Markus Voge took over adding features to Version 1.0.
 * FIXED: Bookings table shows the latest bookings at the top by default (default
   order: descending by booking start date).
 
-### 0.9.4.2 
 
-* Maintenance: Remove $wpdb->prepare() where not needed
-* Maintenance: Version bump
-
-
-### 0.9.3
+### 0.9.3 
 
 Maintenance release. New features will be added to Version 2.0.
 
@@ -198,7 +225,7 @@ Maintenance release. New features will be added to Version 2.0.
 * Minimal change: Div class name changed from "intro" to "cb-intro" (Again, thanks to Markus Voge). 
 
 
-### 0.9.2.12
+### 0.9.2.12 
 
 * FIXED: Closed days are now correctly rendered on the calendar, and non-bookable. 
 
@@ -322,7 +349,7 @@ Maintenance release. New features will be added to Version 2.0.
 
 ### 0.7.0.6 
 
-  * FIX:  Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
+	* FIX:  Double Bookings (two pending bookings on the same day could be both finalised) are no longer possible.
 
 
 
@@ -390,14 +417,8 @@ Maintenance release. New features will be added to Version 2.0.
 * FIX: Fixed ambiguous (wrong) message after hitting "Save and generate codes" on the Timeframes edit screen when no changes were made.
 * FIX: Plugin localization string in cb-timeframes-edit.php 
 * FIX: Items List: If no item short description provided, show a message.
-* Fix: URL to booking in booking confirmation email now compatible with Wordpress non-pretty  Permalinks (?page
-
-### X)
-
-* FIX: Double bookings are no longer possible. (compare function (booked days !
-
-### selected days) did not work).
-
+* Fix: URL to booking in booking confirmation email now compatible with Wordpress non-pretty  Permalinks (?page=X)
+* FIX: Double bookings are no longer possible. (compare function (booked days != selected days) did not work).  
 * FIX: Users can´t cancel bookings from the past (booking end date < current date)
 * FIX: HTML structure, items without a timeframe now have a proper end < div > ending-tag
 * FIX: Item Timeframes: If no timeframe present, display message
