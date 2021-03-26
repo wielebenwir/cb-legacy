@@ -12,7 +12,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Commons Booking (Version 0.X)
- * Plugin URI:        http://www.wielebenwir.de/projekte/commons-booking
+ * Plugin URI:        https://www.commonsbooking.org
  * Description:       A wordpress plugin for management and booking of common goods. 
  * Version:           0.9.4.14
  * Author:            Florian Egermann

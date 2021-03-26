@@ -1,4 +1,4 @@
-=== Commons Booking (Version 0.X) ===
+===  CB legacy ===
 
 Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen

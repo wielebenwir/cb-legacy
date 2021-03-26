@@ -1,4 +1,4 @@
-# Commons Booking (Version 0.X) 
+# CB legacy
 
 **Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
@@ -11,10 +11,9 @@
 
 A Wordpress plugin for management and booking of commons goods. 
 
-
 ## Description 
 
-Note: This is the depreciated version of CommonsBooking.
+Note: This is the depreciated version of CommonsBooking (V.0.9x).
 
 The new CommonsBooking (Version 2) with hourly booking has been released as a new plugin! 
 Go to [commonsbooking.org](https://commonsbooking.org) for more information.
