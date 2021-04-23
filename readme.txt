@@ -1,4 +1,4 @@
-===  CB legacy ===
+===  CB (legacy) ===
 
 Contributors: flegfleg, sgrubsmyon
 Donate link: https://www.wielebenwir.de/verein/unterstutzen

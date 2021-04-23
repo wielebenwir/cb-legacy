@@ -11,9 +11,9 @@
  * @copyright 2015 wielebenwir
  *
  * @wordpress-plugin
- * Plugin Name:       Commons Booking (Version 0.X)
+ * Plugin Name:       CB (legacy)
  * Plugin URI:        https://www.commonsbooking.org
- * Description:       A wordpress plugin for management and booking of common goods. 
+ * Description:       Legacy version (0.X) of CommonsBooking 
  * Version:           0.9.4.14
  * Author:            Florian Egermann
  * Author URI:        http://www.wielebenwir.de
