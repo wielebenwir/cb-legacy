@@ -5,7 +5,7 @@
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
 **Tested up to:** 5.5.4  
-**Stable Tag:** 0.9.4.14  
+**Stable Tag:** 0.9.4.15  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -109,6 +109,9 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.15
+
+* Renamed plugin to differentiate this legacy version from CommonsBooking (2).
 
 ### 0.9.4.14 
 

@@ -14,7 +14,7 @@
  * Plugin Name:       CB (legacy)
  * Plugin URI:        https://www.commonsbooking.org
  * Description:       Legacy version (0.X) of CommonsBooking 
- * Version:           0.9.4.14
+ * Version:           0.9.4.15
  * Author:            Florian Egermann
  * Author URI:        http://www.wielebenwir.de
  * Text Domain:       commons-booking
