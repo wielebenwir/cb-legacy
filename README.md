@@ -109,6 +109,10 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.17
+
+* Fix: Sending the email recovery link from the user-edit screen failed. 
+
 ### 0.9.4.16
 
 * Renamed plugin to differentiate this legacy version from CommonsBooking (2).
