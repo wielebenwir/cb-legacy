@@ -226,8 +226,8 @@ class CB_Users extends Commons_Booking {
     *
     */
     public function cb_user_profile_redirect() {
-      
-      if ( is_user_logged_in() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) )  { // user is logged in (updating profile), no redirect on lost password
+      global $pagenow;
+      if ( is_user_logged_in() && ($pagenow =='profile.php' ) )  { // user is logged in (updating profile)
         wp_redirect( trailingslashit( home_url() ) ); // redirect to home page
         exit;
       }
