@@ -109,9 +109,13 @@ New in this version:
 
 ## Changelog 
 
+### 0.9.4.18
+
+Fix: Sending the email recovery link from the user list screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
+
 ### 0.9.4.17
 
-* Fix: Sending the email recovery link from the user-edit screen failed. 
+* Fix: Sending the email recovery link from the user-edit screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
 
 ### 0.9.4.16
 

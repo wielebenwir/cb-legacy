@@ -5,7 +5,7 @@ Donate link: https://www.wielebenwir.de/verein/unterstutzen
 Tags: booking, commons, sharing
 Requires at least: 3.9
 Tested up to: 5.5.4
-Stable Tag: 0.9.4.16
+Stable Tag: 0.9.4.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,10 +92,13 @@ New in this version:
 
 == Changelog ==
 
+= 0.9.4.18 = 
+
+Fix: Sending the email recovery link from the user list screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
+
 = 0.9.4.17 =
 
-* Fix: Sending the email recovery link from the user-edit screen failed. 
-
+* Fix: Sending the email recovery link from the user-edit screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
 
 = 0.9.4.16 =
 
