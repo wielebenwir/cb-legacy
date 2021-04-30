@@ -1,22 +1,23 @@
-# CB (legacy)
+#  CB (legacy) 
 
 **Contributors:** flegfleg, sgrubsmyon  
 **Donate link:** https://www.wielebenwir.de/verein/unterstutzen  
 **Tags:** booking, commons, sharing  
 **Requires at least:** 3.9  
-**Tested up to:** 5.5.4  
-**Stable Tag:** 0.9.4.16  
+**Tested up to:** 5.7.1  
+**Stable Tag:** 0.9.4.19  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 A Wordpress plugin for management and booking of commons goods. 
 
+
 ## Description 
 
-Note: This is the depreciated version of CommonsBooking (V.0.9x).
+Note: This is the legacy version of CommonsBooking.
 
 The new CommonsBooking (Version 2) with hourly booking has been released as a new plugin! 
-Go to [commonsbooking.org](https://commonsbooking.org) for more information.
+See [commonsbooking.org](https://commonsbooking.org) for more information.
 
 This plugin gives associations, groups and individuals the ability to share items (e.g. cargobikes, tools) with users. It is based on the idea of Commons and sharing resources for the benefit of the community. 
 
@@ -48,7 +49,7 @@ It was developed for the ["commons cargo bike" movement](http://www.wielebenwir.
 
 New in this version: 
 
-* Bug fixes.
+* Compatibility with WordPress 5.7.1
 * The new CommonsBooking is now available! Learn more at https://commonsbooking.org
 
 
@@ -109,17 +110,17 @@ New in this version:
 
 ## Changelog 
 
-### 0.9.4.18
 
-Fix: Sending the email recovery link from the user list screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
+### 0.9.4.19 
 
-### 0.9.4.17
+* Fix: Sending the email recovery link from the user list and user-edit screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
+* WordPress 5.7.1 compatibility
 
-* Fix: Sending the email recovery link from the user-edit screen failed. Thanks Gundel (flotte Berlin) for the bug report. 
 
-### 0.9.4.16
+### 0.9.4.16 
 
 * Renamed plugin to differentiate this legacy version from CommonsBooking (2).
+
 
 ### 0.9.4.14 
 
